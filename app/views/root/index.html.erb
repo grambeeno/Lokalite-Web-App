@@ -1,0 +1,37 @@
+<pre id='dojo4' style='color:white; background-color:black; margin:auto; margin-top:10em; font:monospace; white-space:pre; width:50%;'>
+
+                               _ooooo888888888ooooo._
+     _____      ___         ,d888888888888888888888888L
+    ][''''Yp  ,P'''`Y.     ,888888888888888888888888888b
+    ][     8  d     `b     d8888888888888888888888888888.
+    ][     d  8      b     88888888888' d88  Y8888888888b
+    ][     8  Y     ,b    ]8888888888', d88 ,.Y8888888888
+    ]L___,dP  `h.__,P'    d88888888P,d8 d88 ]8L`888888888
+     '''''      `[[       d8888888P,888 d88 ]88b.Y8888888
+        ]b    ,P'''`o.    d888888' """" dP" `"""' Y888888
+        ]b    d'    ]b    ]888888booooo d8o ,ooooo8888888
+        ]b    8      b    `888888888888 Y8" ]88888888888P
+        ]b    Y     ,b     Y88888888888od8oo888888888888'
+    __ _d'    `b_  ,d'     `888888888888888888888888888P
+     '''        ''''        `Y888888888888888888888888P
+                              ``"YPP888888888888PP""'
+
+</pre>
+
+<script type='text/javascript'>
+  jq(function(){
+    var opacities = [0.25, 1.00];
+
+    opacities.next = function(){
+      var opacity = opacities.shift();
+      opacities.push(opacity);
+      return(opacity);
+    };
+
+    var blink = function(){
+      jq('#dojo4').animate({'opacity' : opacities.next()}, 10000, blink);
+    };
+
+    blink();
+  });
+</script>

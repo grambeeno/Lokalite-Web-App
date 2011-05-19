@@ -1,0 +1,23 @@
+<%
+  context "Statuses #{ @organization.name.inspect }"
+%>
+
+<% form do %>
+
+    <legend> New Status </legend>
+    <input name='status' />
+    <br />
+    <br />
+    <input type='submit' value='Set Status'/>
+    <br />
+    <br />
+    <ol>
+      <% @statuses.each do |status| %>
+        <li>
+          <%= c status %> <span class='hint'><%= time_ago_in_words status.created_at %> ago</span>
+        </li>
+      <% end %>
+    </ol>
+
+<% end %>
+

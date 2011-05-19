@@ -1,0 +1,50 @@
+<% content_for :aside do %>
+  <% organization = @organization %>
+  <%= #link_to raw('&larr; browse all orgs...'), browse_path() 
+%>
+
+  <div class="organization">
+
+  <h1><a href="<%= organization.url %>" target="_blank"><%= organization.name %></a></h1>
+
+  <%= link_to raw('&times;'), browse_path(), :class=>'close', :title=>"Back to all organizations" %>
+
+  <a href="<%= organization.image.url(:medium) %>" rel="facebox"><%= image_tag(organization.image.url(:small) ) %></a>
+
+  <div class="description">
+    <dl class='app'>
+      <% unless organization.status.blank? %>
+        <dt>Status</dt>
+        <dd>&ldquo;<%= c organization.status %>&rdquo;</dd>
+      <% end %>
+
+      <% unless organization.phone.blank? %>
+        <dt>Phone</dt>
+        <dd><%= c organization.phone %></dd>
+      <% end %>
+
+      <% unless organization.address.blank? %>
+        <dt>Address</dt>
+        <dd><%= c organization.address %></dd>
+      <% end %>
+
+      <% unless organization.description.blank? %>
+        <dt>Description</dt>
+        <dd><%= c organization.description %></dd>
+      <% end %>
+    </dl>
+  </div>
+
+  <%
+    editor = (current_user and current_user.organizations.include?(organization))
+  %>
+
+  <% if editor %>
+    <br />
+    <%= link_to 'edit!', my_organization_path(:id => organization.id, :action => :edit), :class => :admin %>
+  <% end %>
+
+  </div>
+
+
+<% end %>

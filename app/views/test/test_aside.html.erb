@@ -1,0 +1,26 @@
+<% message 'oh noes!', :class => :error %>
+
+<% n = 10 %>
+
+<% content_for :aside do %>
+
+  <a class="active" href="TKTKTK">A link to a really long category name that breaks on space, oh my.</a>
+  <% n.times do %>
+    <a href="TKTKTK">A link to a really long category name that breaks on space, oh my.</a>
+  <% end %>
+
+  <h3>A sidebar section hed that is far too long. Seriously.</h3>
+  <a class="active" href="TKTKTK">Another link to a really long category name that breaks on space and also includes a 123456789012345678901234567890.</a>
+  <h3>A <em>good</em> sidebar hed.</h3>
+  <% n.times do %>
+    <a href="TKTKTK">Another link to a really long category name that breaks on space and also includes a 123456789012345678901234567890.</a>
+  <% end %>
+
+<% end %>
+
+  <section class="padded">
+  <% (50*n).times do %>
+    this is the main content...
+    <br />
+  <% end %>
+  </section>

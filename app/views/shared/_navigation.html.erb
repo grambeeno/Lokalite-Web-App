@@ -1,0 +1,18 @@
+<%
+  activated = false
+  count = navigation.size
+%>
+
+  <% 
+    navigation.each_with_index do |element, index|
+      css_id = "navigation-#{ index }"
+      css_class = activated ? 'inactive' : ((activated ||= element.active) ? 'active' : 'inactive')
+      css_class += ' navigation'
+
+      width = (100.0 / count).floor.to_s
+      style = {:width => "#{ width }%"}
+  %>
+
+    <h3 class="<%= css_class %>" style="<%= raw style.to_css %>"><%= link_to(element.label, url_for(element.options), element.html_options||{}) %></h3>
+
+  <% end %>

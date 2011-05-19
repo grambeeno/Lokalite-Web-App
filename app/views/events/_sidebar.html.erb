@@ -1,0 +1,24 @@
+<% content_for :aside do %>
+  <nav>
+  <%=
+    activated = @context[:category].blank? || @context[:category] =~ %r/^all$/i
+    link_to('All', browse_path(:category => 'All'), :class => (activated ? 'activated' : '')) 
+  %>
+
+
+  <% Category.list.each do |category| 
+    activated = Slug.for(category.name) == @context[:category]
+  %>
+    <%= link_to(category.name, browse_path(:category => category), :class => (activated ? 'activated' : '')) %>
+  <% end %>
+
+
+  <h3>Dates</h3>
+
+    <% ['All', 'Today', 'Tomorrow', 'This Weekend', 'This Week', 'This Month', 'This Year'].each do |date|
+      activated = ((Slug.for(date) == @context[:date]) || (date=='All' && @context[:date].blank?))
+    %>
+      <%= link_to(date, browse_path(:date => date), :class => (activated ? 'activated' : '')) %>
+    <% end %>
+  </nav>
+<% end %>

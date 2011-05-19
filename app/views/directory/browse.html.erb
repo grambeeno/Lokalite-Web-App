@@ -1,0 +1,128 @@
+<% 
+  browse_context = browse_context_for(params)
+  context(
+    (
+      browse_context.category + ' organizations ' +
+      browse_context.keywords + ' ' +
+      browse_context.date + ' in ' +
+      browse_context.location
+    ).titleize
+  )
+%>
+
+
+<%= render :partial => 'browse_sidebar' %>
+
+<% @organizations.each do |organization| 
+     organization_url = browse_path(:organization => organization)
+%>
+
+  <section style="display:none" class="profile blurb vcard" id="organization-<%= organization.id %>">
+
+    <a href="<%= organization.image.url(:medium) %>" rel="facebox"><%= image_tag(organization.image.url(:small), :class=>'float-left') %></a>
+
+    <div id="event-data" class="fill-right">
+    <hgroup>
+      <h1>
+        <!-- #<%= organization.id %> -->
+          <%= link_to(organization.name, organization_url, :title => "organization ##{ organization.id }", :style=>"white-space:nowrap;overflow:hidden;", :class=>"url fn") %>
+      </h1>
+    </hgroup>
+
+        <dl class='app'>
+          <% unless organization.phone.blank? %>
+            <dt>Phone</dt>
+            <dd><%= c organization.phone %></dd>
+          <% end %>
+
+          <% unless organization.address.blank? %>
+            <dt>Address</dt>
+            <dd><%= c organization.address %></dd>
+          <% end %>
+
+          <% unless organization.description.blank? %>
+            <dt>Description</dt>
+            <dd><%= c organization.description.ellipsis(256) %></dd>
+          <% end %>
+        </dl>
+
+        <!--
+        <div class="description">
+        </div>
+        -->
+
+    <nav id="event-buttons">
+      <%= link_to("Events at #{ organization.name }", organization_url, :class=>:button) %>
+
+      <%=
+        st_url = fullpath
+        st_title = "#{ App.url } [#{ organization.name.ellipsis(64) }]"
+        share_this(:st_url => st_url, :st_title => st_title)
+      %>
+    </nav>
+
+
+  </div>
+
+  </section>
+<% end %>
+
+  <table class="search-results">
+
+    <tr>
+      <th width="33%"><%= link_to('Organization', browse_path(:order => :name)) %></th>
+      <th width="67%"><%= link_to('Status', browse_path(:order => :name)) %></th>
+    </tr>
+
+    <% if @organizations.empty? %>
+      <tr class="huge"><td colspan="2">
+      <%= render :partial => 'no_results' %>
+      </td></tr>
+    <% end %>
+
+    <% @organizations.each do |organization| %>
+      <%
+        #href = organization_path(:slug => organization.slug, :id => organization.id)
+        href='#'
+      %>
+    
+      <tr>
+        <td width="33%">
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="organization-<%= organization.id %>"><%= organization.name %></a>
+        </td>
+        <td width="67%">
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="organization-<%= organization.id %>"><%= organization.status.to_s %></a>
+        </td>
+      </tr>
+
+    <% end %>
+
+  </table>
+
+  <script type="text/javascript">
+    jq(function(){
+      jq('a.targeting').each(function(){
+        var a = jq(this);
+        var tr = a.parents('tr');
+
+        var target_class = a.attr('data-target-class');
+        var target = a.attr('data-target');
+
+        var click = function(){
+          jq('.' + target_class).hide();
+          jq('#' + target).show();
+          tr.siblings('tr').removeClass('active');
+          tr.addClass('active');
+          return(false);
+        };
+
+        a.click(click);
+      });
+
+      jq('a.targeting:first').click();
+    });
+  </script>
+
+  <nav id="pagination">
+    <%= paginate @organizations %>
+  </nav>

@@ -1,0 +1,46 @@
+<%
+  context "Managing #{ @organization.name.inspect }"
+%>
+
+<% form do %>
+
+  <fieldset>
+    <legend> Set Status </legend>
+    <input name='status' />
+    <br />
+    <br />
+    <input type='submit' value='Set Status'/>
+    <br />
+    <br />
+    <ol>
+      <% @statuses.each do |status| %>
+        <li>
+          <%= c status %> <span class='hint'><%= time_ago_in_words status.created_at %> ago</span>
+        </li>
+      <% end %>
+    </ol>
+  </fieldset>
+
+  <br />
+  <br />
+
+  <fieldset>
+    <legend> My Events </legend>
+    <table style='width:100%'>
+      <% @events.each_slice(1) do |slice| %>
+        <tr>
+        <% slice.each do |event| %>
+          <td>
+            <% 
+              url = event_path(:id => event.id, :slug => event.slug)
+            %>
+            <%= link_to(url, url) %>
+          </td>
+        <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </fieldset>
+
+<% end %>
+

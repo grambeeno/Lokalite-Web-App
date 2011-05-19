@@ -1,0 +1,64 @@
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <!-- script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script>!window.jQuery && document.write(unescape('%3Cscript src="jquery.js"%3E%3C/script%3E'))</script>
+    <script>window.jq = jQuery;</script>
+
+  <!-- Typekit font -->
+    <script type="text/javascript" src="http://use.typekit.com/nqt6nsq.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+  <!-- sharethis -->
+    <script type="text/javascript"> var switchTo5x=false; </script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+      stLight.options({
+        publisher : 'a8319c2d-4acc-45ba-ad3a-f8089c356a2c'
+      });
+    </script>
+
+  <!-- modernizer -->
+    <%= javascript_include_tag('libs/modernizr-1.6.min.js') %>
+
+  <!-- app scripts -->
+    <%=
+      javascripts = %w(
+        rails.js
+        jquery.gradient.js
+        jquery.sizes.min.js
+        jquery.corner.js
+        jquery.form.js
+        jquery.toggleformtext.js
+        jquery.expandable.js
+        jQuery.dPassword.min.js
+        jquery.date_input.js
+        underscore.min.js
+        sprintf.js
+        jquery.tmpl.js
+        jquery.json-2.2.min.js
+        facebox.js
+        dao.js
+        application.js
+      )
+
+      if !!session['firebug']
+        javascripts.push('firebug-lite-compressed.js')
+      end
+
+      unless Rails.env.production?
+        # javascripts.push('profiling/yahoo-profiling.min.js')
+        # javascripts.push('profiling/config.js')
+      end
+
+      javascript_include_tag(
+        javascripts,
+        :cache => "all-#{ git_rev }"
+      )
+    %>
+    <% default_content_for(:script){} %>
+
+  
+    <!--[if lt IE 7 ]>
+      <script src="/javascripts/libs/dd_belatedpng.js"></script>
+      <script> DD_belatedPNG.fix('img, .png_bg');                //fix any <img> or .png_bg background-images </script>
+    <![endif]-->

@@ -1,0 +1,12 @@
+
+<br />
+<br />
+
+<%= will_paginate @events %>
+<hr />
+
+<% @events.each do |event| %>
+
+  <%= event.name %>
+
+<% end %>

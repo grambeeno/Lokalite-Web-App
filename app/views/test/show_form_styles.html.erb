@@ -1,0 +1,38 @@
+<% title 'whacka' %>
+
+<% %w( small medium large ).each do |size| %>
+
+  <br />
+  <br />
+  <form class='app <%= size %>'>
+    
+    <h3>form class='app <%= size %>'</h3>
+    <hr />
+
+    <div class='errors'>
+      oh noes!
+    </div>
+
+    <div class='instructions'>
+      you might want to fill this form out...
+    </div>
+
+    <label for='input'>input</label>
+    <input type='text' class='focus'/>
+    <br />
+
+    <label for='textarea'>textarea</label>
+    <textarea title='textarea'></textarea>
+
+    <fieldset>
+      <legend> legend </legend>
+      <label for='bar'>bar</label>
+      <input type='text' title='this is a hint..'/>
+      <br />
+      <input type='password'/>
+    </fieldset>
+  </form>
+
+<% end %>
+
+

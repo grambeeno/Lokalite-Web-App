@@ -1,0 +1,37 @@
+todo:
+
+  route -> path??
+
+  - nested AR conversions
+      to_dao(:a, :b => [:foo, :bar])
+
+  - AR as_dao contains the model type/class.name
+
+
+done:
+    - engine-ify the rails stuff?  or what
+      - generator api
+      - controller
+      - helper
+      - json/pretty fix baked in? (yajl might simply this...)
+  - description/doc logic
+  - api.index
+  - to_alpo -> to_dao
+  - tests!
+  - #call auto parses data iff appropriate
+      @result = api.read.call('/posts/new(', params)  ### check keys for '/posts/new'
+  - re-visit how parameters are parsed, perhaps we just use rack?
+  - next 'data' => {}
+  - check the db layer
+  - make sure one can call route based method (/foo/:bar) methods with params...
+  - Path==Route ??
+  - add result.rb, params.rb
+  - name -> path
+  - tagz for html methods?
+  - data aquires the name/path of the method?
+  - interfaces are objects that respond to call.  namespaces respond to call.
+    api responds to call
+  - nested namespaces
+  - routing for path_info + mode 
+      route(path_info, :mode => mode, :params => params)
+  - call() on namespaces AND interfaces... why?

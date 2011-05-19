@@ -1,0 +1,137 @@
+todo:
+
+- edit event (prototypes only!)
+
+- search can be over a specific org (( /organization/42 ))
+
+- convert browse an api endpoint
+- ensure_parents in location doesn't quite work (denver, co)...
+
+
+
+done:
+- pagination on directory pages.
+  - browse
+  - by organization
+- status NOT count in directory
+- default sort in directory is updated_at... (due to status)
+- rework manage page as table with
+  - status
+  - events
+  - edit
+- cookie issue.  blank?
+- video keeps playing issue.
+- ara
+  - sort columns on events index page should toggle sort up|down
+  - repeating events need exposed in the ui
+  - search by specific organization needs to be done (More By This Organization)
+
+- justin 
+  - layout blown in some browsers (get list from mark)
+  - scrolling on event list only
+  - empty state when no searches
+  - coming soon for directory
+  - typekit fixes (see error in firebug)
+
+- directory
+- browse
+  - keyword search
+  - pagination links
+  - date filters
+- basic 'manage' links
+- event creation form with venues added
+- form styles need work.  see /signup page
+- deployment orphans images (needs symlink)
+- map 2.5.1
+- solution for time zones
+  - time without timezones?
+  - time zone determined in browser
+  - time zone determined by location?
+- location in session/url... etc
+- redirect/flash issues on signup...
+- full data on events browse...
+- fake:data running fast...
+- scrape more info for location (email)
+- event permalink/url
+- pages for justin...
+- event creation....
+- toolbar support
+  - navigation_for_current_controller
+  - context_for_request
+  - user.email
+- new org
+  - image upload
+  - geolocation
+  - creator becomes member/owner
+  - redirect to show/edit with user/owner/member filter
+  - cannot pick 'featured' category unless admin
+- when data comes back it should already be valid... so valid? should return
+  true?!
+- ImageCache instead of image_cache hack...
+- full-text with pg??
+  http://code.google.com/p/acts-as-tsearch/
+- dao support
+- vendorize vs Gemfile for .rb gems...
+- will_paginate plugin (with dao support...)
+- paperclip plugin
+    or https://github.com/jnicklas/carrierwave
+- formtastic forms + basic form styles (app forms)?
+- https://github.com/justinfrench/formtastic
+- logging haxors?
+- https://github.com/bartt/ssl_requirement
+- user/role system
+  - signup
+  - uuid, not id, based
+  - tokens
+  - login
+    - with sudo support
+  - md5 in js using salt
+  - bcrypt
+  - password reset
+  - root user
+- raptcha
+  - pre-build'em ! (Rails.cache?)
+- static controller
+- server side sessions too
+- backup rake task
+- db:select
+- db:createuser
+- find mysql socket!
+- sample db configs for mysql/sqlite/postgresl
+- clean up flash using jq templates
+- jquery templates
+- layout
+  - default_layout_for_request
+
+  - blueprint css? (fluid?)
+
+  - modal layout shared head/foot/base support
+    - https://gist.github.com/740835
+
+  - flash support + js flash support
+
+  - js framework built-in
+    - alpo.js/api.js
+    - js flash methods
+- navigation/tab support
+- script/rename MUST adjust the application secret!
+- html5 boilerplate baked in
+- private/system
+- xsendfile... (behind apache/nginx)
+- encrypt/encode support
+- rails stage support
+- helper object
+- current controller
+- helper object
+- default url options
+- uuid support
+- url_safe_base64 lugin
+- App module...
+- support for pre-initializers
+- good logging support!
+- test/sample controller
+- non-shitty local request definition
+- default layout support
+- json fix!
+- renaming functionality
+- jquery-ujs baked in

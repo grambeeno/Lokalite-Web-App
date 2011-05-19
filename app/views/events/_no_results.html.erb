@@ -1,0 +1,10 @@
+<% browse_context = browse_context_for(params) %>
+
+Uh oh, there are no
+<%=
+  browse_context.category.titleize + ' events ' +
+  browse_context.keywords + ' ' +
+  browse_context.date + ' in ' +
+  browse_context.location.titleize
+%>.<br />
+<%= link_to('Create the first one!', my_organizations_path) %>

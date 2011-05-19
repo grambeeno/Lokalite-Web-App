@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# parse argv
+#
+  email = ARGV.shift or abort("no email given")
+
+  ENV['RAILS_EMAIL'] = 'true'
+  ENV['SMTP_DEBUG'] = 'true'
+
+# bootstrap
+#
+  require File.dirname(__FILE__) + '/../config/environment'
+
+  Rails.configuration.action_mailer.perform_deliveries = true
+  Rails.configuration.action_mailer.raise_delivery_errors = true
+
+  class Net::SMTP
+    unless defined?(Initialize)
+      Initialize = instance_method(:initialize)
+      def initialize(*args, &block)
+        Initialize.bind(self).call(*args, &block)
+      ensure
+        @debug_output = STDERR
+      end
+    end
+  end
+  
+# send the test email
+#
+  mail = Mailer.test(email).deliver
+  p mail
+

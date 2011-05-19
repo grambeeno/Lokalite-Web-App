@@ -1,0 +1,28 @@
+<%
+  ### HACK just to let the form show
+   
+  @user = User.first
+
+  def user_path(*args, &block)
+    root_path(*args, &block)
+  end
+
+  User.module_eval do
+    def boolean
+      false
+    end
+  end
+%>
+
+<% semantic_form_for @user do |form| %>
+
+  <% form.inputs :name => "Basic" do %>
+    <%= form.input :email %>
+    <%= form.input :boolean, :as => :radio %>
+  <% end %>
+
+  <% form.buttons do %>
+    <%= form.commit_button %>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,27 @@
+    <%=
+      #blueprint/src/reset.css
+      #blueprint/src/typography.css
+      #blueprint/src/grid.css
+      #blueprint/src/forms.css
+      #blueprint/src/forms.css
+      #blueprint/src/liquid.css
+
+      stylesheets = %w(
+        html5boilerplate.css
+        facebox.css
+        jquery.date_input.css
+        application.css
+      )
+      stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")
+    %>
+    <% default_content_for(:style){} %>
+
+    <style>
+      <%= css_for(style) %>
+    </style>
+
+<% if false %>
+    <!--[if lt IE 8]>
+      <link rel="stylesheet" href="stylesheets/blueprint/src/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+<% end %>

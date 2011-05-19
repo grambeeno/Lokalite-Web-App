@@ -1,0 +1,15 @@
+<% content_for :aside do %>
+  <%=
+    activated = @context[:category].blank? || @context[:category] =~ %r/^all$/i
+    link_to('All', browse_path(:category => 'All'), :class => (activated ? 'activated' : '')) 
+  %>
+
+  <nav>
+  <% Category.list.each do |category| 
+    activated = Slug.for(category.name) == @context[:category]
+  %>
+    <%= link_to(category.name, browse_path(:category => category), :class => (activated ? 'activated' : '')) %>
+  <% end %>
+  </nav>
+
+<% end %>

@@ -1,0 +1,17 @@
+<% content_for(:context) { "Our Locations" } %>
+
+<section class="profile"><article>
+
+<h1 style="margin-bottom:1em;">Our list of locations is growing!</h1>
+
+<% 
+  Location.prefixes.each do |prefix| 
+    basename = File.basename(prefix).titleize
+%>
+  
+
+  <%= link_to raw("<strong>#{ basename }</strong>") +" (#{ prefix })", "/events/location#{ prefix }"  %>
+  <br />
+
+<% end %>
+</article></section>

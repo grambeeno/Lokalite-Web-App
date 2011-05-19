@@ -1,0 +1,9 @@
+<%= form do %>
+
+  <%= select_tag :location, options_for_select(@prefixes) %>
+
+  <br />
+  <br />
+  <%= submit_tag 'Set Location' %>
+
+<% end %>

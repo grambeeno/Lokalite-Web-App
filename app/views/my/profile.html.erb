@@ -1,0 +1,11 @@
+<%= form(@user, :class => 'medium centered') do |f| %>
+
+  <%= f.text_field(:email) %>
+  <br />
+
+  <%= f.time_zone_select(:time_zone) %>
+  <br />
+
+  <br />
+  <%= f.submit %>
+<% end %>

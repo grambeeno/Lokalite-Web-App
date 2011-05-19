@@ -1,0 +1,30 @@
+<a id="home-link" href="/" title="Home" class="fixed-left"><h1 class="visuallyhidden">lokalite</h1></a>
+
+<div class="fluid-right">
+    <nav id="location-nav" class="location-context">
+      <%
+        if params[:location]
+          href = set_location_path(:layout => 'facebox')
+          content = current_location_name
+          style = ''
+        else
+          href = '/'
+          content = ''
+          style = 'opacity:0.0;'
+        end
+      %>
+      <a title="Change Location" href="<%= href %>" style="<%= style %>" class="button" rel="facebox"><%= content %></a>
+    </nav>
+
+  <h2 class="tagline">Boulder's Event Directory</h2>
+
+  <nav id="account-nav" class="main-buttons">
+    <a href="mailto:feedback@lokalite.com" class="button">send feedback!</a> 
+    <a href="<%= my_organizations_path %>" class="button">organize events</a> 
+    <% if current_user %>
+      <a href="/logout" class="button">logout</a>
+    <% else %>
+      <a href="/login" class="button">login</a>  <a href="/signup" class="button">signup</a>
+    <% end %>
+  </nav>
+</div>

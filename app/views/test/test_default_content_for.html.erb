@@ -1,0 +1,29 @@
+<br />
+A
+<hr />
+<% default_content_for(:foobar) do %>
+
+  this just shows some default content
+  <br />
+
+<% end %>
+
+<br />
+B
+<hr />
+<% content_for(:foobar) do %>
+
+  now this is the content...
+  <br />
+
+<% end %>
+
+
+<br />
+C
+<hr />
+<% default_content_for(:foobar) do %>
+
+  this isn't shown...
+
+<% end %>

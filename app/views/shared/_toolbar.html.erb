@@ -1,0 +1,19 @@
+<%
+  nav = navigation_for_request
+  css = raw(nav.empty? ? 'full-width' : 'fluid-right')
+%>
+
+  <% unless nav.empty? %>
+
+    <hgroup id="navigation-links" class="fixed-left">
+      <%= nav %>
+    </hgroup>
+
+  <% end %>
+
+  <hgroup id="context-titles" class="<%= css %>">
+
+    <h3 class="context-message"><span style="margin-left:10px;"><%= context_for_request %></span></h3>
+
+    <h3 class="identification"><%= authinfo_for_request %></h3>
+  </hgroup>

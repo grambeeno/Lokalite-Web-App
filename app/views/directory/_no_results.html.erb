@@ -1,0 +1,23 @@
+
+<% if defined?(@organization) %>
+
+  <% browse_context = browse_context_for(params) %>
+
+  Hey, <%= @organization.name %> hasn't created any events yet. What's up with that?
+
+  <%= link_to('You can do better.', my_organizations_path) %>
+
+<% else %>
+
+<% browse_context = browse_context_for(params) %>
+
+Uh oh, there are no
+<%=
+  browse_context.category.titleize + ' organizations ' +
+  browse_context.keywords + ' ' +
+  browse_context.location.titleize
+%>.<br />
+<%= link_to('Create the first one!', my_organizations_path) %>
+
+
+<% end %>

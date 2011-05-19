@@ -1,0 +1,53 @@
+
+<div style='width:80%;margin:auto'>
+
+  <br />
+  <br />
+
+    <%= link_to 'Create A New User', :action => :new %>
+
+  <br />
+  <br />
+
+  <table style='width:100%'>
+    <tr>
+      <th>
+        email
+      </th>
+      <th>
+        created_at
+      </th>
+      <th>
+        sudo
+      </th>
+      <th>
+        admin?
+      </th>
+    </tr>
+
+    <% @users.each do |user| %>
+
+      <tr>
+        <td style='padding:0.5em'>
+          <%= link_to user.email, :action => :edit, :id => user.id %> <br />
+        </td>
+        <td style='padding:0.5em'>
+          <%= user.created_at.iso8601 %> <br />
+        </td>
+        <td style='padding:0.5em'>
+          <%= link_to 'sudo', :action => :sudo, :id => user.id %> <br />
+        </td>
+        <td style='padding:0.5em'>
+          <% checked = user.admin? ? 'checked' : '' %>
+          <input type='checkbox' disabled='true' <%= checked %>/><br />
+        </td>
+      </tr>
+
+    <% end %>
+  </table>
+
+  <br />
+  <%= will_paginate :collection => @users %>
+
+
+</div>

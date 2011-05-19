@@ -1,0 +1,26 @@
+<%
+  context_for_request('My Organizations')
+%>
+
+<nav id="organizations-nav">
+
+  <table>
+
+
+  <% @organizations.each_with_index do |organization, index| %>
+  
+    <tr>
+      <th><%= organization.name %> </th>
+      <td><%= link_to('New Event', my_organization_path(:id => organization.id, :action => :new_event), :class => 'button') %></td>
+      <!-- HACK -->
+      <td><%= link_to('All Events', organization.directory_path, :class => 'button') %></td>
+      <td><%= link_to('Statuses', my_organization_path(:id => organization.id, :action => :statuses), :class => 'button') %></td>
+      <td><%= link_to('Edit', my_organization_path(:id => organization.id, :action => :edit), :class => 'button') %></td>
+    </tr>
+  <% end %>
+
+    <tr><td colspan="4"><%= link_to('Add a new organization', my_organizations_path(:new), :class => 'yellow button') %><br /><br /></td></tr>
+
+  </table>
+
+</nav>

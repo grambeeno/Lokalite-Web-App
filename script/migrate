@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+# occasionally i need to run a single migration.  there are few ways to do
+# that, but this script, save as ./script/migrate is a very simple way to do
+# that.
+#
+  USAGE = 'migrate path_to_migration [up|down] <environment>'
+
+# parse args
+#
+  migration_path = ARGV.shift 
+  abort(USAGE) unless migration_path
+
+  direction = ARGV.shift || 'up'
+  abort(USAGE) unless %w[ up down redo ].include?(direction)
+
+  environment = ARGV.shift || ENV['RAILS_ENV'] || 'development'
+  ENV['RAILS_ENV'] = environment
+ 
+# bootstrap
+#
+  require File.dirname(__FILE__) + '/../config/environment'
+
+# track loaded migrations classes and load the migration path 
+#
+  migrations = []
+
+  singleton_class = 
+    class << ActiveRecord::Migration
+      self
+    end
+
+  singleton_class.module_eval do
+    define_method(:inherited) do |other|
+      migrations << other
+      super if defined? super
+    end
+  end
+
+  Kernel.load(migration_path)
+
+# run any appropriate migrations the right direction
+#
+  if direction == 'redo'
+    begin
+      migrations.each{|migration| migration.migrate(:down)}
+    rescue Object
+    end
+    migrations.each{|migration| migration.migrate(:up)}
+  else
+    migrations.each{|migration| migration.migrate(direction.to_sym)}
+  end
