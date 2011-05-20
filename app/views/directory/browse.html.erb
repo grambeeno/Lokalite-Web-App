@@ -71,7 +71,7 @@
 
     <tr>
       <th width="33%"><%= link_to('Organization', browse_path(:order => :name)) %></th>
-      <th width="67%"><%= link_to('Status', browse_path(:order => :name)) %></th>
+      <th width="67%"><%= link_to('Status', browse_path(:order => :status)) %></th>
     </tr>
 
     <% if @organizations.empty? %>
