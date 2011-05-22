@@ -42,7 +42,8 @@
 
     <%= @result.form.label(:all_day, :content => 'All day?') %> &mdash; <span class='hint'>going to be a long day!</span>
     <br />
-    <%= @result.form.input(:all_day, :type => :checkbox, :checked => data.get(:all_day).to_s=='true') %>
+    <%= @result.form.input(:all_day, :type => :checkbox,
+      :checked => data.get(:all_day).to_s=='true' ? true : nil) %>
     <br />
     <br />
 
@@ -56,24 +57,34 @@
     <br />
       <blockquote style='margin-top:0.2em;'>
       <!--
-        <%= @result.form.input(:repeats, :type => :checkbox, :value => :monthly) %>
+        <%= @result.form.input(:repeats, :type => :checkbox,
+          :value => :monthly,
+          :checked => data.get(:repeats) == 'monthly' ? true : nil) %>
         <em style='color:#333;'>monthy?</em>
         <br />
       -->
 
-        <%= @result.form.input(:repeats, :type => :checkbox, :value => :daily) %>
+        <%= @result.form.input(:repeats, :type => :checkbox,
+          :value => :daily,
+          :checked => data.get(:repeats) == 'daily' ? true : nil) %>
         <em style='color:#333;'>daily?</em>
         <br />
 
-        <%= @result.form.input(:repeats, :type => :checkbox, :value => :weekdays) %>
+        <%= @result.form.input(:repeats, :type => :checkbox,
+          :value => :weekdays,
+          :checked => data.get(:repeats) == 'weekdays' ? true : nil) %>
         <em style='color:#333;'>weekdays?</em>
         <br />
 
-        <%= @result.form.input(:repeats, :type => :checkbox, :value => :weekends) %>
+        <%= @result.form.input(:repeats, :type => :checkbox,
+          :value => :weekends,
+          :checked => data.get(:repeats) == 'weekends' ? true : nil) %>
         <em style='color:#333;'>weekends?</em>
         <br />
 
-        <%= @result.form.input(:repeats, :type => :checkbox, :value => :weekly) %>
+        <%= @result.form.input(:repeats, :type => :checkbox,
+          :value => :weekly,
+          :checked => data.get(:repeats) == 'weekly' ? true : nil) %>
         <em style='color:#333;'>weekly?</em>
         <br />
       </blockquote>

@@ -242,6 +242,7 @@ Api =
           event.starts_at = starts_at
           event.ends_at = ends_at
           event.all_day = data.blank?(:all_day) ? false : true
+          event.repeats = data.get(:repeats)
           event.save!
 
           event.organization = organization
@@ -360,6 +361,7 @@ Api =
           @event.starts_at = starts_at
           @event.ends_at = ends_at
           @event.all_day = data.blank?(:all_day) ? false : true
+          @event.repeats = data.get(:repeats)
           @event.save!
           @event.reload
 
