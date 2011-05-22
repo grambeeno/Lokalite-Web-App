@@ -17,9 +17,7 @@
     </nav>
 
   <h2 class="tagline">
-    <% if current_location_name %>
-      <%= possessive(current_location_name.humanize) %> Event Directory
-    <% end %>
+    <%= possessive(current_location_name_robust.humanize) %> Event Directory
   </h2>
 
   <nav id="account-nav" class="main-buttons">

@@ -478,5 +478,18 @@ module ApplicationHelper
   def possessive(noun)
     (noun.pluralize == noun) ? "#{noun}'" : "#{noun}'s"
   end
-end
 
+  def current_location_name_robust
+    if params[:location]
+      current_location_name
+    elsif @event
+      @event.venue.location.locality
+    else
+      # copied from EventsController
+      default_location = Location.absolute_path_for(
+        session[:location].blank? ? Location.default.prefix : session[:location]
+      )
+      (default_location.split('/').last || '').titleize
+    end
+  end
+end
