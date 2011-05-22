@@ -126,11 +126,18 @@
   <table class="search-results">
 
     <tr>
-      <th><%= link_to('Event', browse_path(:order => :name)) %></th>
-      <th><%= link_to('Date', browse_path(:order => :date)) %></th>
-      <th><%= link_to('Category', browse_path(:order => :category)) %></th>
-      <th><%= link_to('Venue', browse_path(:order => :venue)) %></th>
-      <th><%= link_to('Location', browse_path(:order => :location)) %></th>
+      <th><%= link_to('Event',
+        browse_path(:order => :name, :keywords => params['keywords'])) %></th>
+      <th><%= link_to('Date',
+        browse_path(:order => :date, :keywords => params['keywords'])) %></th>
+      <th><%= link_to('Category',
+        browse_path(:order => :category, :keywords => params['keywords']))
+        %></th>
+      <th><%= link_to('Venue',
+        browse_path(:order => :venue, :keywords => params['keywords'])) %></th>
+      <th><%= link_to('Location',
+        browse_path(:order => :location, :keywords => params['keywords']))
+        %></th>
     </tr>
 
     <% if @events.empty? %>
