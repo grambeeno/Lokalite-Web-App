@@ -472,5 +472,11 @@ module ApplicationHelper
       span_(:st_url => st_url, :st_title => st_title, :class => 'st_facebook_large sharethis', :displayText => 'Facebook')
     }
   end
+
+  # possessive("United States") => "United States'"
+  # possessive("Colorado") => "Colorado's"
+  def possessive(noun)
+    (noun.pluralize == noun) ? "#{noun}'" : "#{noun}'s"
+  end
 end
 

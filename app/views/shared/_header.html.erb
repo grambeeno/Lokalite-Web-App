@@ -16,7 +16,11 @@
       <a title="Change Location" href="<%= href %>" style="<%= style %>" class="button" rel="facebox"><%= content %></a>
     </nav>
 
-  <h2 class="tagline">Boulder's Event Directory</h2>
+  <h2 class="tagline">
+    <% if current_location_name %>
+      <%= possessive(current_location_name.humanize) %> Event Directory
+    <% end %>
+  </h2>
 
   <nav id="account-nav" class="main-buttons">
     <a href="mailto:feedback@lokalite.com" class="button">send feedback!</a> 
