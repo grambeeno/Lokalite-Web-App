@@ -100,7 +100,7 @@ class Event < ActiveRecord::Base
         when 'venue'
           ['venues.name', [:venue]]
         when 'location'
-          ['locations.prefix', [{:venue => :location}]]
+          ['locations.locality', [{:venue => :location}]]
         else
           ['events.starts_at asc', []]
       end
