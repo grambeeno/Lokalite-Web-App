@@ -255,9 +255,10 @@ Api =
           dao = event.to_dao
  
           unless data.blank?(:repeats)
-            frequency = data.get(:repeats)
-            events = event.repeat!(frequency)
-            dao.update(:clone_count => events.size)
+            #Causing a PROD crash - June 10, '11
+            #frequency = data.get(:repeats)
+            #events = event.repeat!(frequency)
+            #dao.update(:clone_count => events.size)
           end
 
           data!(dao)
@@ -372,9 +373,10 @@ Api =
           @event.index!
 
           unless data.blank?(:repeats)
-            frequency = data.get(:repeats)
-            events = @event.repeat!(frequency)
-            data.update(:clone_count => events.size)
+            #Causing a PROD crash - June 10, '11
+            #frequency = data.get(:repeats)
+            #events = @event.repeat!(frequency)
+            #data.update(:clone_count => events.size)
           end
 
 
