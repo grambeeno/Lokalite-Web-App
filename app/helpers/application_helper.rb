@@ -472,5 +472,24 @@ module ApplicationHelper
       span_(:st_url => st_url, :st_title => st_title, :class => 'st_facebook_large sharethis', :displayText => 'Facebook')
     }
   end
-end
 
+  # possessive("United States") => "United States'"
+  # possessive("Colorado") => "Colorado's"
+  def possessive(noun)
+    (noun.pluralize == noun) ? "#{noun}'" : "#{noun}'s"
+  end
+
+  def current_location_name_robust
+    if params[:location]
+      current_location_name
+    elsif @event
+      @event.venue.location.locality
+    else
+      # copied from EventsController
+      default_location = Location.absolute_path_for(
+        session[:location].blank? ? Location.default.prefix : session[:location]
+      )
+      (default_location.split('/').last || '').titleize
+    end
+  end
+end

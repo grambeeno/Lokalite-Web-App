@@ -242,6 +242,7 @@ Api =
           event.starts_at = starts_at
           event.ends_at = ends_at
           event.all_day = data.blank?(:all_day) ? false : true
+          event.repeats = data.get(:repeats)
           event.save!
 
           event.organization = organization
@@ -280,12 +281,12 @@ Api =
         transaction do
           data.update(@event.to_dao)
 
-          date = @event.starts_at.to_date.to_s
-          time =  @event.starts_at.strftime('%H:%M')
+          date = @event.venue_time(:starts_at).to_date.to_s
+          time =  @event.venue_time(:starts_at).strftime('%H:%M')
           data.set :starts_at, :date => date, :time => time
 
-          date = @event.ends_at.to_date.to_s
-          time =  @event.ends_at.strftime('%H:%M')
+          date = @event.venue_time(:ends_at).to_date.to_s
+          time =  @event.venue_time(:ends_at).strftime('%H:%M')
           data.set :ends_at, :date => date, :time => time
 
           data.update(:category => @organization.category.to_dao)
@@ -360,6 +361,7 @@ Api =
           @event.starts_at = starts_at
           @event.ends_at = ends_at
           @event.all_day = data.blank?(:all_day) ? false : true
+          @event.repeats = data.get(:repeats)
           @event.save!
           @event.reload
 

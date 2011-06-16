@@ -89,20 +89,20 @@ class Event < ActiveRecord::Base
     ### per_page = 3 if Rails.env.development?
 
     order = options[:order]
-    order =
+    order, joins =
       case order.to_s
         when 'name'
-          'events.name'
+          ['events.name', []]
         when 'date'
-          'events.starts_at'
+          ['events.starts_at', []]
         when 'category'
-          'categories.name'
+          ['categories.name', [:categories]]
         when 'venue'
-          'venues.name'
+          ['venues.name', [:venue]]
         when 'location'
-          'locations.prefix'
+          ['locations.locality', [{:venue => :location}]]
         else
-          'events.starts_at asc'
+          ['events.starts_at asc', []]
       end
 
     if organization.blank?
@@ -120,7 +120,10 @@ class Event < ActiveRecord::Base
       dates = location.date_range_for(date)
     end
 
-    joins = [:categories, :image, :venue, {:venue => :location}]
+    # Not sure why all these joins were necessary;
+    # It should be sufficient to join only tables needed for sorting
+    # joins = [:categories, :image, :venue, {:venue => :location}]
+
     includes = [:categories, :image, :venue]
 
     results = relation
@@ -132,7 +135,7 @@ class Event < ActiveRecord::Base
     end
     results = results.search(keywords.join(' ')) unless keywords.blank?
     results = results.order(order)
-    #results = results.joins(joins)
+    results = results.joins(joins) # uncommented to fix sorting bug
     results = results.includes(includes)
 
     if dates
