@@ -10,6 +10,7 @@ class AuthController < ApplicationController
     return_to = flash[:return_to] || '/'
 
     @email = email = params[:email]
+    @email_confirmation = email_confirmation = params[:email_confirmation]
     @password = password = params[:password]
 
     return if request.get?
@@ -18,14 +19,18 @@ class AuthController < ApplicationController
       @errors.push "Hrm, that doesn't look like a valid email."
     end
 
+    unless @email === @email_confirmation 
+      @errors.push "Email and Email Confirmation must be identical."
+    end
+
     unless @password and @password.size >= 3
       @errors.push "Wow, that is a really short password!"
     end
 
-    unless Raptcha.valid?(params)
-      @errors.push "Sorry to ask, are you *really* human?"
-      return
-    end
+    #unless Raptcha.valid?(params)
+    #  @errors.push "Sorry to ask, are you *really* human?"
+    #  return
+    #end
 
     begin
       signup = Signup.signup!(:email => email, :password => password, :deliver => false)

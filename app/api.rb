@@ -34,12 +34,14 @@ Api =
        # validates_as_phone(:phone)
         validates_presence_of(:address)
         validates_presence_of(:category)
-        validates_presence_of(:image)
+        #TTD - handle this gracefully, and informatiovely, but for now, don't bomb
+        #russ 20110615
+        validates_presence_of(:image) if data.has_key?'image'
         validates_presence_of(:status)
 
         validate!
 
-        ensure_io_or_url!(:image)
+        ensure_io_or_url!(:image) if data.has_key?'image'
 
         transaction do
 
@@ -78,7 +80,6 @@ Api =
   #
     interface('/organizations/edit') do
       require_user!
-
       id = parameter(:organization_id, :or => :id)
 
       read do
@@ -87,13 +88,13 @@ Api =
           data.update(organization.to_dao)
           data.update(:category => organization.category.to_dao)
           data.update(:venue => organization.venue.to_dao)
-          data.update(:image => organization.image.to_dao(:id, :basename, :url))
+
+          data.update(:image => organization.image.to_dao(:id, :basename, :url)) if data.has_key?'image'
         end
       end
 
       write do
         apply(params)
-
         validates_length_of(:name, :in => (2..64))
         validates_word_count_of(:description, :in => (4..420))
         validates_as_location(:address)
@@ -102,10 +103,14 @@ Api =
        # validates_as_phone(:phone)
         validates_presence_of(:address)
         validates_presence_of(:category)
-        #validates_presence_of(:image)
+        # dunno why yet, but unless a new image is selected, :image isn't in the params, so 
+        # validating itis a guaranted error. Skipping the validation of presence for now.
+        # russ 20110615
+        #validates_presence_of(:image)  
 
         validate!
-        #ensure_io_or_url!(:image)
+        # dunno why yet, but unless a new image is selected, :image isn't in the params        
+        ensure_io_or_url!(:image)  if params.has_key?'image'
 
         transaction do
           organization = Organization.find(id)
@@ -128,7 +133,7 @@ Api =
           organization.category = category
           organization.save!
 
-          unless data.get(:image).blank?
+          if data.has_key?'image'
             image = Image.for(data.image)
             image.save!
             organization.image = image
@@ -138,7 +143,7 @@ Api =
           data.update(organization.to_dao)
           data.update(:category => organization.category.to_dao)
           data.update(:venue => organization.venue.to_dao)
-          data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          data.update(:image => organization.image.to_dao(:id, :basename, :url)) if params.has_key?'image'
         end
       end
     end
@@ -190,7 +195,15 @@ Api =
         validates_word_count_of(:description, :in => (4..420))
         validates_presence_of(:starts_at)
         validates_presence_of(:category)
-        validates_presence_of(:image)
+        # TTD - must handle missing image in a more graceful manner. FOr now, don't bomb out!
+        # russ 20110615
+        if data.has_key?'image' 
+          validates_presence_of(:image) 
+        else
+          #TTD should probably use the org's image if empty?
+          errors.add "Please add an image for this event."
+        end
+        
         validates(:venue) do |value|
           if value.blank?(:id)
             if value.blank?(:name) and value.blank?(:address)
@@ -205,7 +218,7 @@ Api =
 
 
         validate!
-        ensure_io_or_url!(:image)
+        ensure_io_or_url!(:image) if data.has_key?'image'
 
         transaction do
           venue =
@@ -233,8 +246,8 @@ Api =
 
           category = Category.for(data.category)
 
-          image = Image.for(data.image)
-          image.save!
+          image = Image.for(data.image) if data.has_key?'image'
+          image.save! if !image.nil?
 
           event = Event.new
           event.name = data.name
@@ -246,7 +259,7 @@ Api =
 
           event.organization = organization
           event.category = category
-          event.image = image
+          event.image = image if !image.nil?
           event.venue = venue
           
           event.save!
@@ -292,7 +305,7 @@ Api =
           data.update(:category => @organization.category.to_dao)
           data.update(:organization => @organization.to_dao)
           data.update(:venue => @organization.venue.to_dao(:id))
-          data.update(:image => @event.image.to_dao(:id, :basename, :url))
+          data.update(:image => @event.image.to_dao(:id, :basename, :url)) if data.has_key?'image'
         end
       end
 
@@ -304,10 +317,10 @@ Api =
         validates_word_count_of(:description, :in => (4..420))
         validates_presence_of(:starts_at)
         #validates_presence_of(:category)
-        #validates_presence_of(:image)
+        validates_presence_of(:image)  if data.has_key?'image'
 
-        #validate!
-        #ensure_io_or_url!(:image)
+        validate!
+        ensure_io_or_url!(:image) if data.has_key?'image'
         #
 
 
@@ -349,7 +362,7 @@ Api =
           category = Category.for(data.category)
 
           image = nil
-          unless data.get(:image).blank?
+          if data.has_key?'image'
             ensure_io_or_url!(:image)
             image = Image.for(data.image)
             image.save!
@@ -394,7 +407,7 @@ Api =
           data.update(:category => @organization.category.to_dao)
           data.update(:organization => @organization.to_dao)
           data.update(:venue => @organization.venue.to_dao(:id))
-          data.update(:image => @organization.image.to_dao(:id, :basename, :url))
+          data.update(:image => @organization.image.to_dao(:id, :basename, :url)) if data.has_key?'image'
 
           validate!
         end
