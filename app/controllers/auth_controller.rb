@@ -91,13 +91,13 @@ class AuthController < ApplicationController
 
     login!(@user)
     message("Thanks #{ h(@user.email.inspect) } &mdash; Your account has been activated and you are logged in!", :class => :success)
-    redirect_to('/')
+    redirect_to(my_organizations_path)
   end
 
   def login
     @errors = []
     flash.keep(:return_to)
-    return_to = flash[:return_to] || '/'
+    return_to = flash[:return_to] || my_organizations_path
 
     @email = email = params[:email]
     @password = password = params[:password]
