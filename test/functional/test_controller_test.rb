@@ -5,4 +5,10 @@ class TestControllerTest < ActionController::TestCase
   test "the truth" do
     assert true
   end
+  
+  test "should get Dao Test Index Page" do
+    get :index
+    assert_response :success
+  end
+
 end
