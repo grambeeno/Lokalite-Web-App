@@ -64,7 +64,6 @@ class Organization < ActiveRecord::Base
 #
   before_validation(:on => :create) do |organization|
     organization.uuid ||= App.uuid
-
     if organization.address and not organization.location
       location = Location.for(organization.address)
       organization.location = location if location

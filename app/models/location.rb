@@ -15,6 +15,18 @@ class Location < ActiveRecord::Base
 
   validates_uniqueness_of :address
 
+  def Location.assemble_address(params)
+    return nil unless !params["addr_street"].nil? \
+                    && !params["addr_city"].nil? \
+                    && !params["addr_state"].nil? \
+                    && !params["addr_zip"].nil? 
+    addr = params["addr_street"]
+    addr += ', ' + params["addr_city"]
+    addr += ', ' + params["addr_state"]
+    addr += ', ' + params["addr_zip"]
+    return addr
+  end
+
   def Location.for(address)
     location = Location.locate(address)
     raise(ArgumentError, address.inspect) unless(location and location.valid?)

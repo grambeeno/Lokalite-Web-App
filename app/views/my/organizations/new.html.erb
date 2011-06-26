@@ -39,7 +39,17 @@
 
   <%= @result.form.label(:address) %> &mdash; <span class='hint'>the organization's street address</span>
   <br />
-  <%= @result.form.input(:address) %>
+	<% if @result.form.data.address.empty? %>
+		<%= text_field_tag 'addr_street','', :placeholder => 'street'  %>
+	  <br />
+		<%= text_field_tag 'addr_city','', :placeholder => 'city'  %>
+	  <br />
+		<%= text_field_tag 'addr_state','', :placeholder => 'state'  %>
+	  <br />
+		<%= text_field_tag 'addr_zip','', :placeholder => 'zip/(post) code'  %>
+	<% else %>
+	  <%= @result.form.input(:address) %>
+	<% end %>
   <br />
   <br />
 
@@ -60,7 +70,6 @@
   <%= @result.form.textarea(:status, :style => 'height:3em') %>
   <br />
   <br />
-
   <%= @image_cache %>
   <% if url = @image_cache.url %>
     <br /> <label>Uploaded: <%= raw(@image_cache.basename.inspect) %></label> <br />

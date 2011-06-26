@@ -22,6 +22,9 @@ class My::OrganizationsController < My::Controller
       @result = api.read(interface, params)
       render_dao(@result)
     else
+      if params['/organizations/new(address)'].nil?  || params['/organizations/new(address)'].empty? 
+        params['/organizations/new(address)'] = Location.assemble_address(params)
+      end
       @result = api.write(interface, params)
 
       if @result.valid?

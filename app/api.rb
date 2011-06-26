@@ -63,8 +63,8 @@ Api =
           venue = Organization.default_venue_for(organization)
           venue.save!
 
-          image = Image.for(data.image)
-          image.save!
+          image = Image.for(data.image)  if data.has_key?'image'
+          image.save! unless image.nil?
 
           organization.category = category
           organization.venue = venue
@@ -88,8 +88,9 @@ Api =
           data.update(organization.to_dao)
           data.update(:category => organization.category.to_dao)
           data.update(:venue => organization.venue.to_dao)
-
-          data.update(:image => organization.image.to_dao(:id, :basename, :url)) if data.has_key?'image'
+          if data.has_key?'image' and !data['image'].nil?
+            data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          end 
         end
       end
 
@@ -143,7 +144,9 @@ Api =
           data.update(organization.to_dao)
           data.update(:category => organization.category.to_dao)
           data.update(:venue => organization.venue.to_dao)
-          data.update(:image => organization.image.to_dao(:id, :basename, :url)) if params.has_key?'image'
+          if data.has_key?'image' and !data['image'].nil?
+            data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          end
         end
       end
     end
@@ -407,7 +410,9 @@ Api =
           data.update(:category => @organization.category.to_dao)
           data.update(:organization => @organization.to_dao)
           data.update(:venue => @organization.venue.to_dao(:id))
-          data.update(:image => @organization.image.to_dao(:id, :basename, :url)) if data.has_key?'image'
+          if data.has_key?'image' and !data['image'].nil?
+            data.update(:image => @organization.image.to_dao(:id, :basename, :url))
+          end
 
           validate!
         end
