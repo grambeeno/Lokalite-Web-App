@@ -88,14 +88,14 @@
     <%= @image_cache %>
 
     <% if url = @image_cache.url %>
-
+  <!--June 2011: Changed max-dimensions to 300x300-->
       <br /> <label>Uploaded: <%= raw(@image_cache.basename.inspect) %></label> <br />
-      <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:600px; max-height:600px' /> <br />
+      <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:300px; max-height:300px' /> <br />
 
     <% else %>
 
       <br /> <label>Uploaded: <%= raw(image.basename.inspect) %></label> <br />
-      <img src='<%= raw(image.url) %>' alt='<%= raw(image.url) %>' style='max-width:600px; max-height:600px' /> <br />
+      <img src='<%= raw(image.url) %>' alt='<%= raw(image.url) %>' style='max-width:300px; max-height:300px' /> <br />
 
     <% end %>
   </fieldset>

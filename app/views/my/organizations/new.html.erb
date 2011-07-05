@@ -9,7 +9,7 @@
 
   <%= @result.form.label(:name) %>&mdash; <span class='hint'>name of the organization</span>
   <br />
-  <%= @result.form.input(:name, :class => :focus) %>
+  <%= @result.form.input(:name, :class => :focus, :autofocus => 'autofocus') %>
   <br />
   <br />
 
@@ -67,13 +67,13 @@
 
   <%= @result.form.label(:status) %> &mdash; <span class='hint'>what's going on at the organization?</span>
   <br />
-  <%= @result.form.textarea(:status, :style => 'height:3em') %>
+  <%= @result.form.textarea(:status, :maxlength => '140', :placeholder => '140 Characters Max') %>
   <br />
   <br />
   <%= @image_cache %>
   <% if url = @image_cache.url %>
     <br /> <label>Uploaded: <%= raw(@image_cache.basename.inspect) %></label> <br />
-    <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:600px; max-height:600px' /> <br />
+    <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:300px; max-height:300px' /> <br />
   <% end %>
 
   <hr />
