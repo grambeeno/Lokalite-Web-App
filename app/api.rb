@@ -34,14 +34,12 @@ Api =
        # validates_as_phone(:phone)
         validates_presence_of(:address)
         validates_presence_of(:category)
-        #TTD - handle this gracefully, and informatiovely, but for now, don't bomb
-        #russ 20110615
-        validates_presence_of(:image) if data.has_key?'image'
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
         validates_presence_of(:status)
 
         validate!
 
-        ensure_io_or_url!(:image) if data.has_key?'image'
+        ensure_io_or_url!(:image)
 
         transaction do
 
@@ -63,7 +61,7 @@ Api =
           venue = Organization.default_venue_for(organization)
           venue.save!
 
-          image = Image.for(data.image)  if data.has_key?'image'
+          image = Image.for(data.image)  
           image.save! unless image.nil?
 
           organization.category = category
@@ -104,14 +102,13 @@ Api =
        # validates_as_phone(:phone)
         validates_presence_of(:address)
         validates_presence_of(:category)
-        # dunno why yet, but unless a new image is selected, :image isn't in the params, so 
-        # validating itis a guaranted error. Skipping the validation of presence for now.
-        # russ 20110615
-        #validates_presence_of(:image)  
+        #Given:must be an image to do initial save, so there IS an image.
+        #Unless user clicks accept/Choose button during EDIT, nothing comes back in params, 
+        #so ignore the absence of image during EDIT.
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false) if data.has_key?'image'
 
         validate!
-        # dunno why yet, but unless a new image is selected, :image isn't in the params        
-        ensure_io_or_url!(:image)  if params.has_key?'image'
+        ensure_io_or_url!(:image) if data.has_key?'image'
 
         transaction do
           organization = Organization.find(id)
@@ -198,14 +195,8 @@ Api =
         validates_word_count_of(:description, :in => (4..420))
         validates_presence_of(:starts_at)
         validates_presence_of(:category)
-        # TTD - must handle missing image in a more graceful manner. FOr now, don't bomb out!
-        # russ 20110615
-        if data.has_key?'image' 
-          validates_presence_of(:image) 
-        else
-          #TTD should probably use the org's image if empty?
-          errors.add "Please add an image for this event."
-        end
+        #TTD should probably use the org's image if empty?
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
         
         validates(:venue) do |value|
           if value.blank?(:id)
@@ -221,7 +212,7 @@ Api =
 
 
         validate!
-        ensure_io_or_url!(:image) if data.has_key?'image'
+        ensure_io_or_url!(:image) 
 
         transaction do
           venue =
@@ -249,7 +240,7 @@ Api =
 
           category = Category.for(data.category)
 
-          image = Image.for(data.image) if data.has_key?'image'
+          image = Image.for(data.image) 
           image.save! if !image.nil?
 
           event = Event.new
@@ -308,7 +299,7 @@ Api =
           data.update(:category => @organization.category.to_dao)
           data.update(:organization => @organization.to_dao)
           data.update(:venue => @organization.venue.to_dao(:id))
-          data.update(:image => @event.image.to_dao(:id, :basename, :url)) if data.has_key?'image'
+          data.update(:image => @event.image.to_dao(:id, :basename, :url)) 
         end
       end
 
@@ -320,10 +311,10 @@ Api =
         validates_word_count_of(:description, :in => (4..420))
         validates_presence_of(:starts_at)
         #validates_presence_of(:category)
-        validates_presence_of(:image)  if data.has_key?'image'
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
 
         validate!
-        ensure_io_or_url!(:image) if data.has_key?'image'
+        ensure_io_or_url!(:image)
         #
 
 
