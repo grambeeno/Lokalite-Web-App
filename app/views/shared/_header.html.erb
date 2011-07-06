@@ -20,7 +20,8 @@
 
   <nav id="account-nav" class="main-buttons">
     <a href="mailto:feedback@lokalite.com" class="button">send feedback!</a> 
-    <a href="<%= my_organizations_path %>" class="button">organize events</a> 
+    <!-- Removing organize events button for ease of navigation Paul July 2011 -->
+    <!--<a href="<%= my_organizations_path %>" class="button">organize events</a> -->
     <% if current_user %>
       <a href="/logout" class="button">logout</a>
     <% else %>
