@@ -385,7 +385,9 @@ class Location < ActiveRecord::Base
   end
 
   def Location.date_range_name_for(location, date)
-    ranges = %w( today tomorrow this_weekend this_week this_month this_year all ).map{|name| date_range_for(location, name)}
+    #remove ALL as a possible query value - russ 1107 
+    #ranges = %w( today tomorrow this_weekend this_week this_month this_year all).map{|name| date_range_for(location, name)}
+    ranges = %w( today tomorrow this_weekend this_week this_month this_year).map{|name| date_range_for(location, name)}
     time = date.to_time
     range = ranges.detect{|r| r.include?(time)}
     range.name

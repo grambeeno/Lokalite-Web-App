@@ -118,6 +118,10 @@ class Event < ActiveRecord::Base
     dates = nil
     if date
       dates = location.date_range_for(date)
+    else
+      #default date_range scope will be today
+      #TTD - make date_range scope 24 hours ASAP   russ 1107
+      dates = location.date_range_for('today')  
     end
 
     joins = [:categories, :image, :venue, {:venue => :location}]

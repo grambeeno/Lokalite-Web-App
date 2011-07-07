@@ -15,8 +15,8 @@
 
   <h3>Dates</h3>
 
-    <% ['All', 'Today', 'Tomorrow', 'This Weekend', 'This Week', 'This Month', 'This Year'].each do |date|
-      activated = ((Slug.for(date) == @context[:date]) || (date=='All' && @context[:date].blank?))
+    <% ['Today', 'Tomorrow', 'This Week', 'This Weekend', 'This Month', 'This Year'].each do |date|
+      activated = ((Slug.for(date) == @context[:date]) || (date=='Today' && @context[:date].blank?))
     %>
       <%= link_to(date, browse_path(:date => date), :class => (activated ? 'activated' : '')) %>
     <% end %>
