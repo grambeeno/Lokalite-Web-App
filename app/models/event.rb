@@ -65,7 +65,6 @@ class Event < ActiveRecord::Base
   end
 
   def Event.browse(*args)
-debugger
     options = Map.extract_options!(args)
     prefix = options[:location] || options[:prefix]
     prefix = prefix.prefix if prefix.respond_to?(:prefix)

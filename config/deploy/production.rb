@@ -1,11 +1,10 @@
 ### require 'config/capistrano_database_yml'
 #
 
-
 set :application, "lokalite"
-set :repository,  "git@github.com:dojo4/lokalite.git"
-set :user, "dojo4"
-set :deploy_to, "/ebs/apps/#{ application }"
+set :repository,  "git@github.com:grambeeno/Lokalite-Web-App.git"
+set :user, "lokalitedev"
+set :deploy_to, "/home/lokalitedev/#{ application }"
 
 set :scm, :git
 set :deploy_via, :remote_cache
@@ -15,10 +14,10 @@ system "ssh-add 2>&1" unless ENV['NO_SSH_ADD']
 ssh_options[:forward_agent] = true
 
 set :deploy_via, :remote_cache
-set :branch, "master"
+set :branch, "dev"
 set :use_sudo, false
 
-ip = "184.72.58.24"
+ip = "72.249.171.49"
 role :web, ip                          # Your HTTP server, Apache/etc
 role :app, ip                          # This may be the same as your `Web` server
 role :db,  ip, :primary => true # This is where Rails migrations will run

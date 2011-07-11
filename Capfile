@@ -35,7 +35,7 @@ Dir['vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
 ### multistage (require 'capistrano/ext/multistage')
 #
   set :stages, %w( staging production )
-  set :default_stage, "staging"
+  set :default_stage, "production"
 
  ### require 'capistrano/ext/multistage'
 
