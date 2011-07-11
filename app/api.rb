@@ -410,6 +410,30 @@ Api =
       end
     end
 
+  # events/
+  #
+    interface('/events/browse') do
+
+      read do
+        joins = []
+        #TTD - fix hack forcing location to united_statoes for now
+        params[:location] = '/united_states' if !params.has_key?(:location)
+        params[:category] = 'Featured' if !params.has_key?(:category)
+        params[:per_page] = 10 if !params.has_key?(:per_page)
+
+        events = Event.browse(params)
+
+        unless events.empty?
+          args = Event.to_dao + [:venue, :category, :image, :organization, {:venue => :location}]
+          list = events.map{|event| event.to_dao(*args)}
+
+          data!(:list => list)
+        else
+          status(404)
+        end
+      end
+    end
+
   # event/show
   #
     interface('/events/show') do

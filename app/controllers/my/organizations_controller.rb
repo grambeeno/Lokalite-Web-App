@@ -43,7 +43,7 @@ class My::OrganizationsController < My::Controller
   def edit
     interface = '/organizations/edit'
     @image_cache = ImageCache.for(request.params, Dao.name_for(interface, :image))
-
+debugger
     if request.get?
       @result = api.read(interface, params)
       render_dao(@result)

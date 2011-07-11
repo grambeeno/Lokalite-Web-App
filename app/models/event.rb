@@ -65,8 +65,8 @@ class Event < ActiveRecord::Base
   end
 
   def Event.browse(*args)
+debugger
     options = Map.extract_options!(args)
-
     prefix = options[:location] || options[:prefix]
     prefix = prefix.prefix if prefix.respond_to?(:prefix)
     prefix = Location.absolute_path_for(prefix)
@@ -120,7 +120,7 @@ class Event < ActiveRecord::Base
       dates = location.date_range_for(date)
     else
       #default date_range scope will be today
-      #TTD - make date_range scope 24 hours ASAP   russ 1107
+      #TTD - make date_range scope 24 hours ASAP?   russ 1107
       dates = location.date_range_for('today')  
     end
 
