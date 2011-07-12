@@ -41,11 +41,6 @@ gem "will_paginate", '~> 3.0.beta'
 
 
 
-
-
-
-
-
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -54,6 +49,7 @@ gem "will_paginate", '~> 3.0.beta'
 
 # Deploy with Capistrano
 # gem 'capistrano'
+# gem 'capistrano-ext'
 
 # To use debugger
   gem 'ruby-debug'

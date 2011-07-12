@@ -34,10 +34,10 @@ Dir['vendor/plugins/*/recipes/*.rb'].each { |plugin| load(plugin) }
 
 ### multistage (require 'capistrano/ext/multistage')
 #
-  set :stages, %w( staging production )
-  set :default_stage, "production"
+  set :stages, %w( dev beta production )
+  set :default_stage, "dev"
 
- ### require 'capistrano/ext/multistage'
+###  require 'capistrano/ext/multistage'
 
   location = fetch(:stage_dir, "config/deploy")
   unless exists?(:stages)

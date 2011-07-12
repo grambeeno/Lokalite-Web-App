@@ -14,7 +14,7 @@ system "ssh-add 2>&1" unless ENV['NO_SSH_ADD']
 ssh_options[:forward_agent] = true
 
 set :deploy_via, :remote_cache
-set :branch, "master"
+set :branch, "dev"
 set :use_sudo, true
 
 ip = "72.249.171.49"
