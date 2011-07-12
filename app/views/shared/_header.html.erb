@@ -20,9 +20,9 @@
 
   <nav id="account-nav" class="main-buttons">
     <a href="mailto:feedback@lokalite.com" class="button">send feedback!</a> 
-    <!-- Adding back organize events button for ease of navigation Paul July 2011 -->
-    <a href="<%= my_organizations_path %>" class="button">oRganize events</a>
     <% if current_user %>
+      <!-- Adding back organize events button for ease of navigation Paul July 2011 -->
+      <a href="<%= my_organizations_path %>" class="button">organize events</a>
       <a href="/logout" class="button">logout</a>
     <% else %>
       <a href="/login" class="button">login</a>  <a href="/signup" class="button">signup</a>
