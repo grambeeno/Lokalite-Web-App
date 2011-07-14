@@ -6,6 +6,12 @@ GIT
       geokit (~> 1.5.0)
       rails (~> 3.0.0)
 
+GIT
+  remote: git://github.com/johnbintz/silent-postgres.git
+  revision: 22b767853d9375f2fe3d88e3833eb37e3796520d
+  specs:
+    silent-postgres (0.0.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -114,7 +120,6 @@ GEM
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
     shared (1.1.0)
-    silent-postgres (0.0.7)
     subexec (0.0.4)
     tagz (8.2.0)
     texticle (1.0.4.20101004123327)
@@ -149,7 +154,7 @@ DEPENDENCIES
   rails (= 3.0.1)
   ruby-debug
   shared
-  silent-postgres
+  silent-postgres!
   tagz (~> 8.2.0)
   texticle
   tzinfo

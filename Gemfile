@@ -18,7 +18,6 @@ gem 'shared'
 gem 'map', '~> 2.7.1'
 gem 'tagz', '~> 8.2.0'
 
-
 gem 'geokit-rails3', :git => 'git://github.com/jlecour/geokit-rails3.git'
 gem 'chronic'
 gem 'unidecode'
@@ -31,8 +30,7 @@ gem 'tzinfo'
 gem 'earth-tools'
 
 # Grab it from a git fork to fix problem when running via Pow
-#gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
-gem 'silent-postgres'
+gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
 
 gem 'texticle'
 
