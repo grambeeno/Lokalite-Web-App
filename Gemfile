@@ -37,20 +37,16 @@ gem 'texticle'
 
 gem "will_paginate", '~> 3.0.beta'
 
-
 #gem 'dao', :path => 'vendor/gems/dao-2.0.0'
 
-
+gem 'capistrano'
+# gem 'capistrano-ext'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-# gem 'capistrano-ext'
 
 # To use debugger
   gem 'ruby-debug'
