@@ -30,7 +30,8 @@ gem 'tzinfo'
 
 gem 'earth-tools'
 
-gem 'silent-postgres'
+# Grab it from a git fork to fix problem when running via Pow
+gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
 
 gem 'texticle'
 
