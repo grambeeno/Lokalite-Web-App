@@ -428,8 +428,6 @@ Api =
           list = events.map{|event| event.to_dao(*args)}
 
           data!(:list => list)
-        else
-          status(404)
         end
       end
     end
@@ -468,8 +466,6 @@ Api =
           list = events.map{|event| event.to_dao(*args)}
 
           data!(:list => list)
-        else
-          status(404)
         end
       end
     end
