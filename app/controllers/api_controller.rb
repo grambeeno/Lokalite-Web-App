@@ -7,7 +7,11 @@ class APIController < ApplicationController
   before_filter :setup_path
   before_filter :setup_api
 
-  WhiteList = %w( ping index module )
+  WhiteList = ['ping',
+               'events/browse',
+               'events/show',
+               'events/recommended'
+  ]
 
   ### skip_before_filter :set_current_user if Rails.env.production?
 
