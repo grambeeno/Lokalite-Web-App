@@ -439,13 +439,20 @@
   }
 
   #content section.blurb {
-    height:225px;
+    height:300px;
     overflow:hidden;
   }
 
   #content section.blurb .description {
-    height:2.4em;
-    overflow:hidden;
+    position:absolute;
+    top:145px;
+    left:815px;
+    max-height:260px;
+    max-width:400px;
+    padding:5px;
+    border:2px solid black;
+    background-color: white;
+    overflow:auto;
   }
 
   .cssgradients #content .profile, .cssgradients #content .recommended-events {
@@ -471,10 +478,12 @@
     box-shadow: 1px 1px 4px #7c7570; 
     float:left;
     margin:0 0 2em 0;
+    max-width:300px;
+    max-height:300px;
   }
 
   #content .fill-right {
-    margin-left:150px;
+    margin-left:300px;
     padding-left:2em;
   }
 
@@ -510,9 +519,17 @@
   }
 
   #content section.profile h2 {
+    position: relative;
+    top:10px;
     font-weight:100;
     font-size:150%;
-    margin-bottom:.6em;
+    min-width:200px;
+    max-width:200px;
+    max-height: 200px;
+    border:2px solid black;
+    background-color: white;
+    padding:5px;
+    overflow:auto;
   }
 
   #content section.vevent h2 {
@@ -522,6 +539,7 @@
   #content section#about h2 {
     font-size:225%;
   }
+/* TTD h3 was removed due to everything being under h2 Paul*/
 
   #content section.profile h3 {
     font-weight:100;
@@ -529,8 +547,9 @@
   }
 
   #content section.profile nav {
-    margin-top: 1.5em;
+    margin-top:1em;
     height:20px;
+    max-width:200px;
   }
 
   #content section.profile nav .button {

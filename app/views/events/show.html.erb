@@ -82,31 +82,36 @@
 
       </h1>
 
-      <h2>
-        <time class="dtstart" datetime="<%= event.starts_at.strftime("%Y-%m-%dT%H:%M:00") %>">
-          <%= event.venue_time_formatted %>
-        </time>
-        <time class="dtend" datetime="<%= event.ends_at.strftime("%Y-%m-%dT%H:%M:00") %>">
-          <em class='hint'>for <%= pluralize(hours, 'hour', 'hours') %></em>
-        </time>
-      </h2>
-
-      <h3 class="location vcard">
-        <span class="fn"><a class="fn url" target="_blank" href="<%= event.venue.url %>"><%= event.venue.name %></a></span>
+      <h2 class="location vcard">
+        <span class="fn org"><a class="fn org url" target="blank" href="<%= event.venue.url %>"><%= event.venue.name %></a></span>
         <div class="adr">
           <div class="street-address"><%= event.venue.location.address %></div>
-          <span class="locality"><%= event.venue.location.locality %></span>,  
-          <span class="region"><%= event.venue.location.administrative_area_level_1 %></span>
+          <!-- TTD Changed locality and region to visuallyhidden, not removing b/c may be needed. Paul July 2011 -->
+          <span class="locality visuallyhidden"><%= event.venue.location.locality %></span> 
+          <abbr class="region visuallyhidden"><%= event.venue.location.administrative_area_level_1 %></abbr>
           <span class="postal-code visuallyhidden"><%= event.venue.location.postal_code %></span>
           <span class="country-name visuallyhidden"><%= event.venue.location.country %></span>
           <div class="geo visuallyhidden">
-           <span class="latitude"><%= event.venue.location.lat %></span>, 
-           <span class="longitude"><%= event.venue.location.lng %></span>
+          <span class="latitude"><%= event.venue.location.lat %></span>, 
+          <span class="longitude"><%= event.venue.location.lng %></span>
           </div>
-
-        </div>
-
-      </h3>
+         </div>
+        <br />
+        <time class="dtstart" datetime="<%= event.starts_at.iso8601 %>">
+        <%= event.venue_time_formatted_date %> <br />
+        <%= event.venue_time_formatted_start %>
+        <span class="dtstart"> - </span>
+        </time>
+        
+        <time class="dtend" datetime="<%= event.ends_at.iso8601 %>">
+        <%= event.venue_time_formatted_end %>
+        <!-- TTD commenting out lasting field Paul -->
+        <!-- <em class='hint'>lasting <%= pluralize(hours, 'hour', 'hours') %></em> -->  
+        </time>
+      </h2>
+      <br />
+      
+   <!-- TTD h3 has been removed in browse, show, and org view for events paul -->
     </hgroup>
 
     <div class="description">

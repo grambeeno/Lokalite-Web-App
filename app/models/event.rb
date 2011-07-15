@@ -235,9 +235,23 @@ class Event < ActiveRecord::Base
     end
   end
   alias_method('time_for', 'venue_time')
-
+  
+  #TTD Original method for time format Paul 
   def venue_time_formatted(*args)
     venue_time(*args).strftime("%A, %b. %e, %Y %l:%M%p (%Z)")
+  end
+  
+  #TTD new methods for time format Paul
+  def venue_time_formatted_date(*args)
+    venue_time(*args).strftime("%A, %B %e")
+  end
+
+  def venue_time_formatted_start(*args)
+    venue_time(starts_at).strftime("%l:%M%p")
+  end
+  
+  def venue_time_formatted_end(*args)
+    venue_time(ends_at).strftime("%l:%M%p")
   end
 
   def duration

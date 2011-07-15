@@ -32,33 +32,35 @@
         <% end %>
         </span>
       </h1>
-      <br />
-
-      <h2>
-        <time class="dtstart" datetime="<%= event.starts_at.iso8601 %>">
-          <%= event.venue_time_formatted %>
-        </time>
-        <time class="dtend" datetime="<%= event.ends_at.iso8601 %>">
-          <em class='hint'>lasting <%= pluralize(hours, 'hour', 'hours') %></em>
-        </time>
-      </h2>
-
-      <h3 class="location vcard">
+ 
+      <h2 class="location vcard">
         <span class="fn org"><a class="fn org url" target="blank" href="<%= event.venue.url %>"><%= event.venue.name %></a></span>
         <div class="adr">
           <div class="street-address"><%= event.venue.location.address %></div>
-          <span class="locality"><%= event.venue.location.locality %></span>,  
-          <abbr class="region"><%= event.venue.location.administrative_area_level_1 %></abbr>
+          <!-- TTD Changed locality and region to visuallyhidden, not removing b/c may be needed. Paul July 2011 -->
+          <span class="locality visuallyhidden"><%= event.venue.location.locality %></span> 
+          <abbr class="region visuallyhidden"><%= event.venue.location.administrative_area_level_1 %></abbr>
           <span class="postal-code visuallyhidden"><%= event.venue.location.postal_code %></span>
           <span class="country-name visuallyhidden"><%= event.venue.location.country %></span>
           <div class="geo visuallyhidden">
-           <span class="latitude"><%= event.venue.location.lat %></span>, 
-           <span class="longitude"><%= event.venue.location.lng %></span>
+          <span class="latitude"><%= event.venue.location.lat %></span>, 
+          <span class="longitude"><%= event.venue.location.lng %></span>
           </div>
-
-        </div>
-
-      </h3>
+         </div>
+        <br />
+        <time class="dtstart" datetime="<%= event.starts_at.iso8601 %>">
+        <%= event.venue_time_formatted_date %> <br />
+        <%= event.venue_time_formatted_start %>
+        <span class="dtstart"> - </span>
+        </time>
+        
+        <time class="dtend" datetime="<%= event.ends_at.iso8601 %>">
+        <%= event.venue_time_formatted_end %>
+        <!-- TTD commenting out lasting field Paul -->
+        <!-- <em class='hint'>lasting <%= pluralize(hours, 'hour', 'hours') %></em> -->  
+        </time>
+     </h2>
+     
     </hgroup>
 
     <div class="description">
@@ -66,13 +68,15 @@
     </div>
 
     <nav id="event-buttons">
-      <%= link_to("More Event Details", event_path(:id => event.id, :slug => event.slug), :class=>:button) %>
+      <%= link_to("More", event_path(:id => event.id, :slug => event.slug), :class=>:button) %>
 
+     <!-- TTD Removing navigation for Twitter and Facebook - Paul
       <%=
         st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
         st_title = "#{ App.url } [#{ event.name.ellipsis(64) }]"
         share_this(:st_url => st_url, :st_title => st_title)
       %>
+      -->
     </nav>
 
 
@@ -86,10 +90,11 @@
 
     <tr>
       <th><%= link_to('Event', browse_path(:order => :name)) %></th>
-      <th><%= link_to('Date', browse_path(:order => :date)) %></th>
-      <th><%= link_to('Category', browse_path(:order => :category)) %></th>
       <th><%= link_to('Venue', browse_path(:order => :venue)) %></th>
-      <th><%= link_to('Location', browse_path(:order => :location)) %></th>
+      <th><%= link_to('Category', browse_path(:order => :category)) %></th>
+      <th><%= link_to('Date', browse_path(:order => :date)) %></th>
+      <th><%= link_to('Start Time', browse_path(:order => :start)) %></th>
+      <th><%= link_to('End Time', browse_path(:order => :end)) %></th>
     </tr>
 
     <% if @events.empty? %>
@@ -103,22 +108,30 @@
         href = event_path(:slug => event.slug, :id => event.id)
       %>
     
-      <tr>
+     <tr>
         <td>
           <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.name %></a>
-        </td>
-        <td>
-          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue_time_formatted %></a>
-        </td>
-        <td>
-          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.category.name rescue event.id %></a>
         </td>
         <td>
           <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue.name %></a>
         </td>
         <td>
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.category.name rescue event.id %></a>
+        </td>
+        <td>
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue_time_formatted_date %></a>
+        </td>
+       <td>
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue_time_formatted_start %></a>
+        </td>
+        <td>
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue_time_formatted_end %></a>
+        </td>
+        <!-- TTD getting rid of location - Paul
+        <td>
           <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue.location.locality.titleize %></a>
         </td>
+        -->
       </tr>
 
     <% end %>
