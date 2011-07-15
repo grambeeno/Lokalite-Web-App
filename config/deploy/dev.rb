@@ -15,7 +15,7 @@ ssh_options[:forward_agent] = true
 
 set :deploy_via, :remote_cache
 set :branch, "dev"
-set :use_sudo, true
+set :use_sudo, false
 
 ip = "72.249.171.49"
 role :web, ip                          # Your HTTP server, Apache/etc

@@ -20,6 +20,9 @@
   <!-- modernizer -->
     <%= javascript_include_tag('libs/modernizr-1.6.min.js') %>
 
+  <!-- facebox -->
+  <%= javascript_include_tag('/facebox/facebox.js') %>
+
   <!-- app scripts -->
     <%=
       javascripts = %w(
@@ -36,7 +39,6 @@
         sprintf.js
         jquery.tmpl.js
         jquery.json-2.2.min.js
-        facebox.js
         dao.js
         application.js
       )
