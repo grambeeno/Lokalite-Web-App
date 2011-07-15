@@ -7,3 +7,15 @@ one:
 two:
   name: MyString2
   position: 2
+
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

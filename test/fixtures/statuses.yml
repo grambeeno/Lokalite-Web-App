@@ -13,3 +13,16 @@ two:
   context_type: Organization
   context_id: 1
   content: Margs Margs Margs - get the best takillya deal in town on the Hill.
+
+# == Schema Information
+#
+# Table name: statuses
+#
+#  id           :integer         not null, primary key
+#  context_type :string(255)
+#  context_id   :integer
+#  content      :text
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

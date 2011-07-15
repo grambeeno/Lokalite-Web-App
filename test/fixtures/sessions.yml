@@ -4,3 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+
+# == Schema Information
+#
+# Table name: sessions
+#
+#  id         :integer         not null, primary key
+#  data       :text            default("--- {}\n\n")
+#  user_id    :integer         not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+

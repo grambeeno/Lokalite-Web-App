@@ -6,3 +6,15 @@ class CategoryTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  position   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

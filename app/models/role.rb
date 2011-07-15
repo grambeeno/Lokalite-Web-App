@@ -43,3 +43,14 @@ class Role < ActiveRecord::Base
     name.to_s === (other.is_a?(Role) ? other.name.to_s : other.to_s)
   end
 end
+
+# == Schema Information
+#
+# Table name: roles
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
