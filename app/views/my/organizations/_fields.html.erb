@@ -1,24 +1,24 @@
 <%= @result.errors %>
 
-<%= @result.form.label(:name) %> &mdash; <span class='hint'>name of the organization</span>
+<%= @result.form.label(:name) %>* &mdash; <span class='hint'>name of the organization</span>
 <br />
 <%= @result.form.input(:name, :class => :focus, :autofocus => 'autofocus') %>
 <br />
 <br />
 
-<%= @result.form.label(:description) %> &mdash; <span class='hint'>tell us about the organization</span>
+<%= @result.form.label(:description) %>* &mdash; <span class='hint'>tell us about the organization</span>
 <br />
 <%= @result.form.textarea(:description) %>
 <br />
 <br />
 
-<%= @result.form.label(:email) %> &mdash; <span class='hint'>an email where we can contact you</span>
+<%= @result.form.label(:email) %>* &mdash; <span class='hint'>an email where we can contact you</span>
 <br />
 <%= @result.form.input(:email) %>
 <br />
 <br />
 
-<%= @result.form.label(:url, :content => 'Website') %> &mdash; <span class='hint'>your organization's website, facebook, or twitter url</span>
+<%= @result.form.label(:url, :content => 'Website') %>* &mdash; <span class='hint'>your organization's website, facebook, or twitter url</span>
 <br />
 <%= @result.form.input(:url) %>
 <br />
@@ -30,7 +30,7 @@
 <br />
 <br />
 
-<%= @result.form.label(:address) %> &mdash; <span class='hint'>the organization's street address</span>
+<%= @result.form.label(:address) %>* &mdash; <span class='hint'>the organization's street address</span>
 <br />
 	<% if @result.form.data.address.empty? %>
 		<%= text_field_tag 'addr_street','', :placeholder => 'street'  %>
@@ -46,14 +46,14 @@
 <br />
 <br />
 
-<%= @result.form.label(:category) %> &mdash; <span class='hint'>pick a category for the organization</span>
+<%= @result.form.label(:category) %>* &mdash; <span class='hint'>pick a category for the organization</span>
 <br />
 <%- category_id = defined?(category) ? category.id : nil %>
 <%= @result.form.select(:category, :options => Category.options_for_select, :selected => category_id) %>
 <br />
 <br />
 
-<%= @result.form.label(:image) %> &mdash; <span class='hint'>a <em>square</em> image of the organization (300x300px is best / <%= accept %>)</span>
+<%= @result.form.label(:image) %>* &mdash; <span class='hint'>a <em>square</em> image of the organization (300x300px is best / <%= accept %>)</span>
 <br />
 <%= @result.form.input(:image, :type => :file, :accept => accept) %>
 <br />

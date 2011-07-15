@@ -5,7 +5,7 @@
 <%= form do %>
   <% context 'Create A New Organization' %>
 
-  <%= render :partial => 'form', :locals => {:accept => accept} %>
+  <%= render :partial => 'fields', :locals => {:accept => accept} %>
 
   <%= submit_tag('Create Organization') %>
 <% end %>

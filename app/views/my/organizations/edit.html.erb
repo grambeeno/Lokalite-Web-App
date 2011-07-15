@@ -25,7 +25,7 @@
 <%= form do %>
 <% context "Editing #{ raw @result.data.name.inspect }" %>
 
-  <%= render :partial => 'form', :locals => locals %>
+  <%= render :partial => 'fields', :locals => locals %>
 
-  <%= submit_tag('Update Organization!') %>
+  <%= submit_tag('Update Organization') %>
 <% end %>
