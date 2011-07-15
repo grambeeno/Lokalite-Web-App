@@ -413,7 +413,7 @@ Api =
 
       read do
         joins = []
-        #TTD - fix hack forcing location to united_statoes for now
+        #TTD - fix hack forcing location to united_states for now
         params[:location] = '/united_states' if !params.has_key?(:location)
         params[:category] = 'Featured' if !params.has_key?(:category)
         params[:per_page] = 20 if !params.has_key?(:per_page)
@@ -421,7 +421,7 @@ Api =
         events = Event.browse(params)
 
         unless events.empty?
-          args = Event.to_dao + [:venue, :category, :image, :organization, {:venue => :location}]
+          args = Event.to_dao + [:venue, :category, :image, {:venue => :location}, {:organization => Organization.to_dao + [:status]}]
           list = events.map{|event| event.to_dao(*args)}
 
           data!(:list => list)

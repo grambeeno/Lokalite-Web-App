@@ -123,8 +123,8 @@ class Event < ActiveRecord::Base
       dates = location.date_range_for('today')  
     end
 
-    joins = [:categories, :image, :venue, {:venue => :location}]
-    includes = [:categories, :image, :venue]
+    joins = [:categories, :image, :venue, :organization, {:venue => :location}]
+    includes = [:categories, :image, :venue, :organization]
 
     results = relation
     if organization.blank?
