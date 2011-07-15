@@ -35,7 +35,6 @@ Api =
         validates_presence_of(:address)
         validates_presence_of(:category)
         validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
-        validates_presence_of(:status)
 
         validate!
 
@@ -53,8 +52,6 @@ Api =
           organization.address = data.address
           organization.save!
           organization.reload
-
-          organization.set_status!(data.status) unless data.status.blank?
 
           category = Category.for(data.category)
 
