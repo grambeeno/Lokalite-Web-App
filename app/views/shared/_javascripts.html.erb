@@ -17,15 +17,11 @@
       });
     </script>
 
-  <!-- modernizer -->
-    <%= javascript_include_tag('libs/modernizr-1.6.min.js') %>
-
-  <!-- facebox -->
-  <%= javascript_include_tag('/facebox/facebox.js') %>
-
   <!-- app scripts -->
     <%=
       javascripts = %w(
+        libs/modernizr-1.6.min.js
+        /facebox/facebox.js
         rails.js
         jquery.gradient.js
         jquery.sizes.min.js
