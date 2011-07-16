@@ -35,7 +35,6 @@ class EventsController < ApplicationController
     render(:text => '', :status => 200, :layout => false)
   end
 
-
 private
   def ensure_location_or_organization
     unless params[:location] or params[:organization]
