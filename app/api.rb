@@ -414,9 +414,10 @@ Api =
       read do
         joins = []
         #TTD - fix hack forcing location to united_states for now
-        params[:location] = '/united_states' if !params.has_key?(:location)
-        params[:category] = 'Featured' if !params.has_key?(:category)
-        params[:per_page] = 20 if !params.has_key?(:per_page)
+        params[:location]     = '/united_states' unless params.has_key?(:location)
+        params[:category]     = 'Featured' unless params.has_key?(:category)
+        params[:per_page]     = 20 unless params.has_key?(:per_page)
+        params[:organization] = Organization.find(params[:organization_id]) if params.has_key?(:organization_id)
 
         events = Event.browse(params)
 

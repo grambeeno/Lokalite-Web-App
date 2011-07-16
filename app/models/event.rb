@@ -111,6 +111,8 @@ class Event < ActiveRecord::Base
         location = locations.last
       end
       raise "no location for #{ prefix.inspect }" unless location
+    else
+      location = options[:organization].location
     end
 
     date = options[:date]
