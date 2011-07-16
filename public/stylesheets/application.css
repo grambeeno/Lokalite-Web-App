@@ -48,6 +48,14 @@
   padding-right:1%;
 }
 
+
+/* Signup Form */
+
+.signup h1 {
+  font-size: 1.6em;
+  margin-bottom: 12px;
+}
+
 /*Organization Status*/
 
   input.orgstatus {

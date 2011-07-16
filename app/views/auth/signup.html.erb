@@ -1,27 +1,24 @@
-
 <% form_tag(request.fullpath, form_attrs(:half, :signup, :style => 'margin:1em auto')) do %>
   <%= errors_for(@errors) %>
 
   <div>
-<h1 style="font-size:1.6em; margin-bottom:1em;">Sign up now to promote your events!</h1>
-<p style="margin-bottom:1em;"><strong>Businesses and organizations</strong>: <strong>Sign up now</strong> and promote your events on the front page of lokalite in minutes.</p>
-<p><strong>lokalite users</strong>: No need to sign up now. But soon, registered users will get access to <strong>VIP benefits</strong>. Keep your eye on lokalite.com!</p>
+    <% if params[:business] %>
+      <h1>Sign up now to promote your events!</h1>
+      <p>
+        Sign up now and promote your events on the front page of lokalite in minutes.
+      </p>
+    <% else %>
+      <h1>Find life in your community</h1>
+      <p>
+        With lokalite, finding something to do has never been so easy. Whether at home or traveling around, you'll always feel like a lokal.
+      </p>
+      <p>
+        Get started, fun's right around the corner.
+      </p>
+    <% end %>
   </div>
 
-  <%= label_tag 'Email' %>
-  <br />
-  <%= text_field_tag :email, @email, :class => :focus, :autofocus => 'autofocus', :style => 'width:232px' %>
-  <br />
-  <%= label_tag 'Email Confirmation' %>
-  <br />
-  <%= text_field_tag :email_confirmation, @email_confirmation, :style => 'width:232px' %>
-  <br />
-  <%= label_tag 'Password' %>
-  <br />
-  <%= password_field_tag :password, @password, :style => 'width:232px', :class => 'dPassword' %>
-  <br />
-
-  <br />
+  <%= render :partial => 'signup_fields' %>
 
   <br />
   <table class='layout' style='width:100%'>

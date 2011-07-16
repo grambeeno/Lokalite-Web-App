@@ -46,13 +46,8 @@
   <body<% if content.aside %> class="has-sidebar"<% end %>>
     <div id="wrap" class="full-width">
 
-      <header id="page-top" class="full-width">
-        <%= render :partial => 'shared/header' %>
-      </header>
-
-      <header id="toolbar" class="full-width">
-          <%= render :partial => 'shared/toolbar' %>
-      </header>
+      <%= render :partial => 'shared/header' %>
+      <%= render :partial => 'shared/toolbar' %>
 
       <div id="main" class="full-width">
         <% if content.aside %>

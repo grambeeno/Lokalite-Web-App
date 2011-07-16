@@ -1,5 +1,6 @@
 class AuthController < ApplicationController
   def signup
+    redirect_to events_path and return if logged_in?
     if params[:token]
       redirect_to(url_for(:action => :activate, :token => params[:token]))
       return
