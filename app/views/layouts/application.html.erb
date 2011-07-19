@@ -4,7 +4,7 @@
   content = Map.new
 
   content.main = raw content_for(:main)
-  content.aside = raw content_for(:aside)
+  content.aside = render(:partial => '/layouts/sidebar')
 
   content.main = yield if content.main.blank?
   content.aside = false if content.aside.blank?
@@ -51,10 +51,10 @@
 
       <div id="main" class="full-width">
         <% if content.aside %>
-            <div id="sidebar" class="fixed-left">
-              <%= search_form %>
-              <%= content.aside %>
-            </div>
+          <div id="sidebar" class="fixed-left">
+            <%= search_form %>
+            <%= content.aside %>
+          </div>
         <% end %>
 
         <div id="content" class="<% if content.aside %>fluid-right<% else %>full-width<% end %>">

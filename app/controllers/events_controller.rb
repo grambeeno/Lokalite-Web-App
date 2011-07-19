@@ -89,12 +89,6 @@ private
     session[:location] = @context[:location]
   end
 
-  def default_location
-    Location.absolute_path_for(
-      session[:location].blank? ? Location.default.prefix : session[:location]
-    )
-  end
-
   def show_splash_to_new_visitors
     unless params[:location] or params[:organization]
       session[:splash] = true
@@ -134,49 +128,7 @@ private
 =end
 
   def browse_path(options = {})
-    options.to_options!
-    context = (defined?(@context) ? @context : {}).to_options!
-
-    query = {}
-
-    location = options[:location] || context[:location] || default_location
-    category = options[:category] || context[:category]
-    date = options[:date] || context[:date]
-
-    organization = options[:organization] || context[:organization]
-
-    keywords = options[:keywords]
-    order = options[:order]
-    page = options[:page]
-    per_page = options[:per_page]
-
-    location = location.prefix if location.respond_to?(:prefix)
-    category = category.name if category.respond_to?(:name)
-    organization = organization.id if organization.is_a?(Organization)
-    category = Slug.for(category)
-    date = Slug.for(date) if date
-
-    path = []
-    path.push("/events")
-
-    if(location and options[:location] != false)
-      path.push("/location/#{ location }") unless location.blank?
-      path.push("/category/#{ category }") unless(category.blank? or category =~ /^All$/i)
-      path.push("/date/#{ date }") unless(date.blank? or date =~ /^All$/i)
-    else
-      path.push("/organization/#{ organization }") unless organization.blank?
-    end
-
-    query[:keywords] = keywords unless keywords.blank?
-    query[:order] = order unless order.blank?
-    query[:page] = page unless page.blank?
-    query[:per_page] = per_page unless per_page.blank?
-
-    query_string = query.query_string
-
-    url = path.join('/').squeeze('/')
-    url += "?#{ query_string }" unless query_string.blank?
-    url
+    browse_events_path(options)
   end
   helper_method(:browse_path)
 
