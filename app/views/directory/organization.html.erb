@@ -87,6 +87,66 @@
   <table class="search-results">
 
     <tr>
+      <th width="33%"><%= link_to('Organization', browse_path(:order => :name)) %></th>
+      <th width="67%"><%= link_to('Status', browse_path(:order => :name)) %></th>
+    </tr>
+
+    <% if @organizations.empty? %>
+      <tr class="huge"><td colspan="2">
+      <%= render :partial => 'no_results' %>
+      </td></tr>
+    <% end %>
+
+    <% @organizations.each do |organization| %>
+      <%
+        #href = organization_path(:slug => organization.slug, :id => organization.id)
+        href='#'
+      %>
+    
+      <tr>
+        <td width="33%">
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="organization-<%= organization.id %>"><%= organization.name %></a>
+        </td>
+        <td width="67%">
+          <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="organization-<%= organization.id %>"><%= organization.status.to_s %></a>
+        </td>
+      </tr>
+
+    <% end %>
+
+  </table>
+
+  <script type="text/javascript">
+    jq(function(){
+      jq('a.targeting').each(function(){
+        var a = jq(this);
+        var tr = a.parents('tr');
+
+        var target_class = a.attr('data-target-class');
+        var target = a.attr('data-target');
+
+        var click = function(){
+          jq('.' + target_class).hide();
+          jq('#' + target).show();
+          tr.siblings('tr').removeClass('active');
+          tr.addClass('active');
+          return(false);
+        };
+
+        a.click(click);
+      });
+
+      jq('a.targeting:first').click();
+    });
+  </script>
+
+  <nav id="pagination">
+    <%= paginate @organizations %>
+  </nav>
+
+  <table class="search-results">
+
+    <tr>
       <th><%= link_to('Event', browse_path(:order => :name)) %></th>
       <th><%= link_to('Venue', browse_path(:order => :venue)) %></th>
       <th><%= link_to('Category', browse_path(:order => :category)) %></th>
