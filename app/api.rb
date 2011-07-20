@@ -422,7 +422,7 @@ Api =
         events = Event.browse(params)
 
         unless events.empty?
-          args = Event.to_dao + [:venue, :category, :image, {:venue => :location}, {:organization => Organization.to_dao + [:status]}]
+          args = Event.to_dao + [:featured?, :venue, :category, :image, {:venue => :location}, {:organization => Organization.to_dao + [:status]}]
           list = events.map{|event| event.to_dao(*args)}
 
           data!(:list => list)
