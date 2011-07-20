@@ -1,7 +1,6 @@
 <!--
   left sidebar
 -->
-  <%= render :partial => 'sidebar' %>
 
   <% 
     event = @event 
@@ -15,7 +14,7 @@
 -->
   <section class="profile vevent" id="event-<%= event.id %>">
 
-    <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:small), :class=>'float-left') %></a>
+    <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:medium), :class=>'float-left') %></a>
 
     <div id="event-data" class="fill-right">
     <hgroup>
@@ -124,7 +123,6 @@
       <small><a href="<%= maps_url %>" style="color:#0000FF;text-align:left">View Larger Map</a></small>
     </div>
 
-
     <nav>
       <a href="#event-map" class="button" rel="facebox">Map It!</a>
       <%=
@@ -168,7 +166,7 @@
     <h4>About the Organizer</h4>
 
     <article>
-      <a href="<%= event.organization.image.url(:medium) %>" rel="facebox"><%= image_tag(event.organization.image.url(:small), :class=>'float-left') %></a>
+      <a href="<%= event.organization.image.url(:medium) %>" rel="facebox"><%= image_tag(event.organization.image.url(:medium), :class=>'float-left') %></a>
 
       <div class="fill-right clearfix">
         <h1 class="smaller"><a href="<%= "/directory/#{ event.organization.id }" %>"><%= event.organization.name %></a></h1>

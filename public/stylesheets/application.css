@@ -586,6 +586,8 @@
     baseline:20%;
     padding-left:10px;
     text-align:left;
+    border-right: solid 1px #adaeae;
+
   }
 
   #content table th, .profile h4 {
@@ -910,13 +912,13 @@
 
 
 /* app forms */
-
+/*TTD any property set to 0* may eventually be removed - Paul */
   form.app {
     background-color: #eeeeee;
     text-align: left;
-    padding: 1em;
-    margin: 1em;
-    margin-top: 2em;
+    padding: 0em;
+    margin: 0em;
+    margin-top: 0em;
 /*
     border: 20px solid #4d4d4d;
     -webkit-border-bottom-left-radius:12px; 
@@ -945,10 +947,54 @@
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
 */
-    border: 1px solid #ccc;
+    border-left: 2px solid #ccc;
     padding: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 0em;
   }
+    
+  form.app h1 {
+    font-weight:100;
+    font-size:220%;
+  }
+  
+  form.app h2 {
+  	font-weight:100;
+  	font-size:220%;
+  }
+  
+  form.app div.update-status {
+  	padding:2em;
+  	padding-bottom:0em;
+  }
+  
+  form.app div.update-status textarea {
+  position:static;
+  margin-bottom:20px;
+  min-width:600px;
+  height:3em;
+  resize:none;
+  padding:.3em;
+  }
+  
+  form.app div.update-status .submit {
+  padding:.5em;
+  margin-top:0px;
+  margin-left:550px;  
+  }
+  
+  form.app div.previous-posts {
+    border-top:2px solid;
+    border-color:#ccc;
+    margin-left: 2em;
+    margin-right:2em;
+    padding-top:2em;
+    padding-bottom: 2em;
+  }
+  
+  form.app div.previous-posts ul {
+  	list-style-type: none;
+  }
+  
   form.app legend {
     color: #666;
     font-weight: normal;
@@ -965,14 +1011,20 @@
   {
     margin-top: 4.2px;
     padding: 4.2px;
-    width: 62%;
+    width: 45%;
   }
 
   form.app textarea
   {
-    width: 62%;
+    position:absolute;
+    top: 155px;
+    left: 750px;
+    max-height:220px;
+    max-width:300px;
+    width: 45%;
+    resize: none;
   }
-  form.ap hr {
+  form.app hr {
     border: 0px;
     border-bottom: 1px solid #999;
   }
@@ -1000,10 +1052,10 @@
 
 /* date inputs */
    form.app input.date {
-     width: 10em;
+     width: 5em;
    }
    form.app input.time {
-     width: 10em;
+     width: 5em;
    }
 
 /* raptcha */

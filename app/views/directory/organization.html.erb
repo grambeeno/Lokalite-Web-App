@@ -17,7 +17,7 @@
 
   <section style="display:none" class="profile blurb vevent" id="event-<%= event.id %>">
 
-    <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:small), :class=>'float-left') %></a>
+    <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:medium), :class=>'float-left') %></a>
 
     <div id="event-data" class="fill-right">
     <hgroup>
@@ -70,13 +70,12 @@
     <nav id="event-buttons">
       <%= link_to("More", event_path(:id => event.id, :slug => event.slug), :class=>:button) %>
 
-     <!-- TTD Removing navigation for Twitter and Facebook - Paul
       <%=
         st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
         st_title = "#{ App.url } [#{ event.name.ellipsis(64) }]"
         share_this(:st_url => st_url, :st_title => st_title)
       %>
-      -->
+      
     </nav>
 
 
@@ -84,7 +83,7 @@
 
   </section>
   <% end %>
-
+  
   <table class="search-results">
 
     <tr>
@@ -94,10 +93,11 @@
       <th><%= link_to('Date', browse_path(:order => :date)) %></th>
       <th><%= link_to('Start Time', browse_path(:order => :start)) %></th>
       <th><%= link_to('End Time', browse_path(:order => :end)) %></th>
+      <th>Features</th>
     </tr>
 
     <% if @events.empty? %>
-      <tr class="huge"><td colspan="5">
+      <tr class="huge"><td colspan="7">
       <%= render :partial => 'no_results' %>
       </td></tr>
     <% end %>
@@ -126,7 +126,8 @@
         <td>
           <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue_time_formatted_end %></a>
         </td>
-        <!-- TTD getting rid of location - Paul
+        <td> coming soon </td>
+        <!-- TTD removing location - Paul
         <td>
           <a href="<%= href %>" class="targeting" data-target-class="blurb" data-target="event-<%= event.id %>"><%= event.venue.location.locality.titleize %></a>
         </td>
