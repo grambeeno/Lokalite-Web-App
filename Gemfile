@@ -29,6 +29,8 @@ gem 'tzinfo'
 
 gem 'earth-tools'
 
+gem 'annotate'
+
 # Grab it from a git fork to fix problem when running via Pow
 gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
 
@@ -38,8 +40,10 @@ gem "will_paginate", '~> 3.0.beta'
 
 #gem 'dao', :path => 'vendor/gems/dao-2.0.0'
 
-gem 'capistrano'
-gem 'capistrano-ext'
+group :development, :test do
+  gem 'capistrano'
+  gem 'capistrano-ext'
+end
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

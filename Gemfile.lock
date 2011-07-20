@@ -42,6 +42,7 @@ GEM
       activemodel (= 3.0.1)
       activesupport (= 3.0.1)
     activesupport (3.0.1)
+    annotate (2.4.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.4)
@@ -136,6 +137,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bcrypt-ruby
   capistrano
   capistrano-ext
