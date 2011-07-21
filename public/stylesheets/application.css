@@ -968,8 +968,14 @@
     border-bottom: 1px solid #999;
 */
     border-left: 2px solid #ccc;
-    padding: 1em;
-    margin-bottom: 0em;
+    padding: 2em;
+    margin: 0em;
+  }
+  
+/*Could be put in global -Paul */
+  form.app .form-titles {
+    font-size:100%;
+    font-weight:bold;
   }
     
   form.app h1 {
@@ -1034,20 +1040,43 @@
     width: 45%;
   }
 
-  form.app textarea
-  {
-    position:absolute;
-    top: 155px;
-    left: 750px;
-    max-height:220px;
-    max-width:300px;
-    width: 45%;
-    resize: none;
+  form.app .description-field {
+   float:left;
+   margin-top:-500px;
+   margin-left:600px;
   }
+  
+  form.app .description-field textarea {
+   resize:none;
+   width:300px;
+   height:300px;
+  }
+
+  form.app .image-field {
+   float:left;
+   margin-top:-150px;
+   margin-left:600px;
+  }
+  
+  form.app .end-time {
+   position:relative;
+   top:-59px;
+   left:200px;
+  }
+  
   form.app hr {
     border: 0px;
     border-bottom: 1px solid #999;
   }
+  
+  form.app hr#line {
+    position:relative;
+    margin:0px;
+    left: 20px;
+    width:500px;
+    border-bottom: 3px solid #999;
+  }
+  
   form.app .disabled {
     opacity: 0.70;
   }

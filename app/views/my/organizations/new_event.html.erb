@@ -8,46 +8,45 @@
 
   <%= @result.errors %>
 
-  <fieldset>
-    <legend>Event</legend>
-
-    <%= @result.form.label(:name) %> &mdash; <span class='hint'>name your event!</span>
+  <fieldset>	
+    <h1> Create Event</h1>
+    <span class='hint'>future: Have you created this event before dropdown?</span>
+    <%= @result.form.select(:category, :options => Category.options_for_select) %>
+    <br />
+    <%= @result.form.label(:name, :content => 'Name of Event') %> <span class='hint'></span>
     <br />
     <%= @result.form.input(:name, :class => :focus, :autofocus => 'autofocus') %>
     <br />
     <br />
 
-    <%= @result.form.label(:description) %> &mdash; <span class='hint'>tell us about the event</span>
-    <br />
-    <%= @result.form.textarea(:description) %>
-    <br />
-    <br />
 
-    <%= @result.form.label(:starts_at) %> &mdash; <span class='hint'>pick the date, type the time</span>
+    <%= @result.form.label(:starts_at, :content => 'Start Time') %> <span class='hint'></span>
     <br />
     <%= @result.form.input(:starts_at, :date, :class => 'date') %> @ <%= @result.form.input(:starts_at, :time, :class => 'time') %>
-    <br />
-    <br />
-
-    <%= @result.form.label(:ends_at) %> &mdash; <span class='hint'>pick the date, type the time</span>
+    
+    <div class="end-time">
+    <%= @result.form.label(:ends_at, :content => 'End Time') %> <span class='hint'></span>
     <br />
     <%= @result.form.input(:ends_at, :date, :class => 'date') %> @ <%= @result.form.input(:ends_at, :time, :class => 'time') %>
+    </div>
+    
+    <%= @result.form.label(:category, :content => 'Primary Category') %> <span class='hint'></span>
     <br />
+    <%= @result.form.select(:category, :options => Category.options_for_select) %>
     <br />
-
-    <%= @result.form.label(:all_day, :content => 'All day?') %> &mdash; <span class='hint'>going to be a long day!</span>
-    <br />
-    <%= @result.form.input(:all_day, :type => :checkbox) %>
-    <br />
-    <br />
-
-    <%= @result.form.label(:category) %> &mdash; <span class='hint'>pick a category for the event</span>
+    <%= @result.form.label(:category, :content => 'Secondary Category') %><span class='hint'></span>
     <br />
     <%= @result.form.select(:category, :options => Category.options_for_select) %>
     <br />
     <br />
 
-    <%= @result.form.label(:repeats) %> &mdash; <span class='hint'>how often does this event repeat (3 months into the future)</span>
+    <%= @result.form.label(:all_day, :content => 'All day?') %> <span class='hint'></span>
+    <br />
+    <%= @result.form.input(:all_day, :type => :checkbox) %>
+    <br />
+    <br />
+
+    <%= @result.form.label(:repeats, :content => 'Repeat (Does your event repeat? If so, let us known when.)') %><span class='hint'></span>
     <br />
       <blockquote style='margin-top:0.2em;'>
       <!--
@@ -72,67 +71,70 @@
         <em style='color:#333;'>weekly?</em>
         <br />
       </blockquote>
+    <div class="description-field">  
+    <%= @result.form.label(:description, :content => 'Description')  %><span class='hint'></span>
     <br />
-
-    <%= @result.form.label(:image) %> &mdash; <span class='hint'>a square picture.  300x300px is good!</span>
+    <%= @result.form.textarea(:description) %>
+    <br />
+    <br />
+    </div>
+    <br />
+    
+    <div class="image-field"> 
+    <%= @result.form.label(:image) %> &mdash; <span class='hint'>a square picture. 300x300px is best!</span>
     <br />
     <%= @result.form.input(:image, :type => :file, :accept => accept) %>
     <br />
     <br />
-<!--June 2011: Changed max-dimensions to 300x300-->
+    
     <%= @image_cache %>
     <% if url = @image_cache.url %>
       <br /> <label>Uploaded: <%= raw(@image_cache.basename.inspect) %></label> <br />
       <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:300px; max-height:300px' /> <br />
     <% end %>
+    </div>
   </fieldset>
 
+<hr id="line" />
 
   <fieldset>
-    <legend>Venue where the Event will be held</legend>
-
-    <span class='hint'>Pick an existing venue for the event:</span>
+    <span class='form-titles'>Choose the Venue where your event will be held</span>
+    
     <br />
+    <br />
+    <%= @result.form.label(:name, :content => 'Pick an Existing Venue for your Event:') %> <span class='hint'></span>
     <%= @result.form.select(:venue, :id, :options => Venue.options_for_select(:organization => @organization_id)) %>
     <br />
-    <br />
 
-    <span class='hint'>Or create a new one...</span>
+    <span class='form-titles'>Or create a new one: (If your event's not held at your location, nor a peviously added Venue)</span>
     <br />
-    <br />
-    <%= @result.form.label(:venue, :name) %>
+    <%= @result.form.label(:venue, :name, :content => 'Name of Venue') %>
     <br />
     <%= @result.form.input(:venue, :name) %>
     <br />
-    <br />
 
-    <%= @result.form.label(:venue, :address) %>
+    <%= @result.form.label(:venue, :name, :content => 'Street Address') %>
+    <%= @result.form.input(:type => :checkbox) %>
+    <em style='color:#333;'>It's at a Campus Address</em>
     <br />
     <%= @result.form.input(:venue, :address) %>
     <br />
-    <br />
 
-    <%= @result.form.label(:venue, :phone) %>
-    <br />
-    <%= @result.form.input(:venue, :phone) %>
-    <br />
-    <br />
-
-    <%= @result.form.label(:venue, :email) %>
-    <br />
-    <%= @result.form.input(:venue, :email) %>
-    <br />
-    <br />
-
-    <%= @result.form.label(:venue, :url) %>
+    <%= @result.form.label(:venue, :url, :content => 'Website') %>
     <br />
     <%= @result.form.input(:venue, :url) %>
     <br />
+
+    <%= @result.form.label(:venue, :phone, :content => 'Website') %>
+    <br />
+    <%= @result.form.input(:venue, :phone) %>
     <br />
 
-  </fieldset>
+    <%= @result.form.label(:venue, :email, :content => 'Email') %>
+    <br />
+    <%= @result.form.input(:venue, :email) %>
 
+   </fieldset>
 
-  <hr />
-  <%= submit_tag('Create Event') %>
+  <%= submit_tag('Save') %>
 <% end %>
