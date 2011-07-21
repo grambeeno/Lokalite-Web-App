@@ -35,7 +35,10 @@
         <% end %>
 
         <% if editor %>
-          <a href='<%= edit_url %>' class='admin'>edit!</a>
+         <nav id="features">
+          <%= link_to('Edit', edit_url, :class=> :button) %>
+          <%= link_to('Delete', static_path(:coming_soon), :class=>:button) %>
+         </nav>
         <% end %>
 
         <% if admin %>
@@ -124,7 +127,7 @@
     </div>
 
     <nav>
-      <a href="#event-map" class="button" rel="facebox">Map It!</a>
+      <a href="#event-map" class="button" rel="facebox">Map!</a>
       <%=
         st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
         st_title = "#{ App.url } [#{ event.name.ellipsis(64) }]"
@@ -181,7 +184,6 @@
           <%= c event.organization.description %>
         </div>
 
-
       <nav>
         <a href="<%= event.organization.url %>" target="_blank" class="button"><%= event.organization.name %>'s web site</a>
         <%= 
@@ -197,5 +199,3 @@
     </article>
 
   </section>
-
-

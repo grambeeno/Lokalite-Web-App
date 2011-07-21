@@ -49,7 +49,12 @@
   <section style="display:none" class="profile blurb vevent" id="event-<%= event.id %>">
 
     <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:medium), :class=>'float-left') %></a>
-
+    
+    <nav id="features">
+      <%= link_to('Trend', static_path(:coming_soon), :class=>:button) %>
+      <%= link_to('Add to Q', static_path(:coming_soon), :class=>:button) %>
+    </nav>
+  
     <div id="event-data" class="fill-right">
     <hgroup>
       <h1>
@@ -58,7 +63,7 @@
           <%= link_to(event.name, event_url, :title => "event ##{ event.id }", :style=>"white-space:nowrap;overflow:hidden;") %>
         </span>
       </h1>
-            
+         
       <h2 class="location vcard">
         <span class="fn org"><a class="fn org url" target="blank" href="<%= event.venue.url %>"><%= event.venue.name %></a></span>
         <div class="adr">
@@ -88,12 +93,18 @@
       </h2>
       <!-- TTD h3 has been removed in browse, show, and org view for events paul -->
     </hgroup>
+    
+    <div style="display:none;" id="event-map">
+      <% maps_url = gmaps_url_for(event) %>
+      <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%= maps_url %>"></iframe><br />
+      <small><a href="<%= maps_url %>" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+    </div>
 
    <nav id="event-buttons">
       <%= link_to("More", event_path(:id => event.id, :slug => event.slug), :class=>:button) %>
       <%= 
         link_to(
-          raw("&ldquo;#{ h event.organization.name }&rdquo;"),
+          raw("&ldquo;#{ h event.organization.name.ellipsis(5) }&rdquo;"),
           #browse_path(:organization => event.organization.id, :location => false), :class=>'button'
           event.organization.directory_path, :class=>'button'
         )
@@ -105,11 +116,14 @@
         share_this(:st_url => st_url, :st_title => st_title)
       %>
       -->
+
+      <a href="#event-map" class="button" rel="facebox">Map</a>
+      <%= link_to("Share", static_path(:coming_soon), :class=>:button)%>
     </nav>
-	<!-- TTD description chaged to unlimited -Paul -->
+    
     <div class="description">
       <%= c event.description %>
-      <!-- <%= c event.description.ellipsis(1024) %> -->
+      <!-- <%= c event.description.ellipsis(1024) %> TTD description chaged to unlimited -Paul -->
     </div>
 
   </div>

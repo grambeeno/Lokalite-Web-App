@@ -150,14 +150,26 @@
     background-color:#fcfc00;
   }
 
-  dl.app dt {
+   dl.app dt {
     font-weight: bolder;
     margin-top: 0.5em;
     color: #444;
   }
+  
   dl.app dd {
     margin-left: 0.5em;
+    max-width:200px;
     color: #666;
+  }
+/* For below: see #content section.blurb .description for similar orientation */
+
+  dl.app div.description-org {
+    position:absolute;
+    top:145px;
+    left:815px;
+    max-height:260px;
+    max-width:400px;
+    overflow:auto;
   }
 
 /* global: button style */
@@ -451,7 +463,7 @@
     overflow:hidden;
   }
 
-  #content section.blurb .description {
+  #content section.blurb .description, #content section.vevent .description {
     position:absolute;
     top:145px;
     left:815px;
@@ -553,18 +565,26 @@
     font-size:120%;
   }
 
-  #content section.profile nav {
+  #content section.profile nav#event-buttons {
     margin-top:1em;
     height:20px;
     max-width:200px;
   }
 
-  #content section.profile nav .button {
+  #content section.profile nav#event-buttons .button {
     display:block;
     float:left;
     height:20px;
     margin-right:5px;
     line-height:20px;
+  }
+  
+  #content section.profile nav#features {
+    float:right;
+  }
+  
+  #content section.profile nav#features .button {
+    background:yellow;
   }
 
   #content section.profile nav .sharethis {

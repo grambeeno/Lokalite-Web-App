@@ -28,9 +28,14 @@
 
         <% if editor %>
           &nbsp;
-          <a href='<%= edit_url %>' class='admin'>edit!</a>
+        <!-- <a href='<%= edit_url %>' class='admin button'>edit!</a> TTD removed paul -->
+         <nav id="features">
+          <%= link_to('Edit', edit_url, :class=> :button) %>
+          <%= link_to('Delete', static_path(:coming_soon), :class=>:button) %>
+         </nav>
         <% end %>
         </span>
+        
       </h1>
  
       <h2 class="location vcard">
@@ -69,15 +74,16 @@
 
     <nav id="event-buttons">
       <%= link_to("More", event_path(:id => event.id, :slug => event.slug), :class=>:button) %>
-
+    
+    <!-- TTD Twitter and facebook removed paul 
       <%=
-        st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
-        st_title = "#{ App.url } [#{ event.name.ellipsis(64) }]"
+        st_url = fullpath
+        st_title = "#{ App.url } [#{ organization.name.ellipsis(64) }]"
         share_this(:st_url => st_url, :st_title => st_title)
       %>
+    -->
       
     </nav>
-
 
   </div>
 
