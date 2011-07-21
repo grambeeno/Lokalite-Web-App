@@ -936,7 +936,7 @@
   form.app {
     background-color: #eeeeee;
     text-align: left;
-    padding: 0em;
+    padding: 1em 2em;
     margin: 0em;
     margin-top: 0em;
 /*
@@ -1032,36 +1032,21 @@
     color: #666;
   }
   form.app input.text,
-  form.app input.password
-	
-  {
+  form.app input.password {
     margin-top: 4.2px;
     padding: 4.2px;
     width: 45%;
   }
 
-  form.app .description-field {
-   float:left;
-   margin-top:-500px;
-   margin-left:600px;
-  }
-  
   form.app .description-field textarea {
    resize:none;
    width:300px;
    height:300px;
   }
 
-  form.app .image-field {
-   float:left;
-   margin-top:-150px;
-   margin-left:600px;
-  }
-  
-  form.app .end-time {
-   position:relative;
-   top:-59px;
-   left:200px;
+  form.app .inline {
+    float: left;
+    margin-right: 16px;
   }
   
   form.app hr {
@@ -1069,7 +1054,7 @@
     border-bottom: 1px solid #999;
   }
   
-  form.app hr#line {
+  form.app hr.line {
     position:relative;
     margin:0px;
     left: 20px;
@@ -1153,3 +1138,11 @@
     font-style: italic;
     width: 100%;
   } 
+
+  .clear {
+    width: 100%;
+    height: 1px;
+    margin: 0 0 -1px;
+    clear: both;
+  }
+
