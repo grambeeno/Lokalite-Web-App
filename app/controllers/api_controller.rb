@@ -10,7 +10,8 @@ class APIController < ApplicationController
   WhiteList = ['ping',
                'events/browse',
                'events/show',
-               'events/recommended'
+               'events/recommended',
+               'organizations/browse'
   ]
 
   ### skip_before_filter :set_current_user if Rails.env.production?

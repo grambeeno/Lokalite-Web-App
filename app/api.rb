@@ -407,6 +407,27 @@ Api =
       end
     end
 
+    interface('/organizations/browse') do
+
+      read do
+        joins = []
+        #TTD - fix hack forcing location to united_states for now
+        params[:location]     = '/united_states' unless params.has_key?(:location)
+        params[:category]     = '' unless params.has_key?(:category)
+        params[:per_page]     = 20 unless params.has_key?(:per_page)
+        params[:organization] = Organization.find(params[:organization_id]) if params.has_key?(:organization_id)
+
+       organizations = Organization.browse(params)
+
+        unless organizations.empty?
+          args = Organization.to_dao + [:status]
+          list = organizations.to_dao(*args)
+
+          data!(:list => list)
+        end
+      end
+    end
+
   # events/
   #
     interface('/events/browse') do
@@ -423,7 +444,7 @@ Api =
 
         unless events.empty?
           args = Event.to_dao + [:featured?, :venue, :category, :image, {:venue => :location}, {:organization => Organization.to_dao + [:status]}]
-          list = events.map{|event| event.to_dao(*args)}
+          list = events.to_dao(*args)
 
           data!(:list => list)
         end
