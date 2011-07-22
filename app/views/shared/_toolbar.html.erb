@@ -3,17 +3,20 @@
   css = raw(nav.empty? ? 'full-width' : 'fluid-right')
 %>
 
-  <% unless nav.empty? %>
+<% unless ['/', '/business'].any?{|path| path == fullpath } %>
 
-    <hgroup id="navigation-links" class="fixed-left">
-      <%= nav %>
+  <header id="toolbar" class="full-width">
+    <% unless nav.empty? %>
+      <hgroup id="navigation-links" class="fixed-left">
+        <%= nav %>
+      </hgroup>
+    <% end %>
+
+    <hgroup id="context-titles" class="<%= css %>">
+      <h3 class="context-message"><span style="margin-left:10px;"><%= context_for_request %></span></h3>
+      <h3 class="identification"><%= authinfo_for_request %></h3>
     </hgroup>
+  </header>
 
-  <% end %>
+<% end %>
 
-  <hgroup id="context-titles" class="<%= css %>">
-
-    <h3 class="context-message"><span style="margin-left:10px;"><%= context_for_request %></span></h3>
-
-    <h3 class="identification"><%= authinfo_for_request %></h3>
-  </hgroup>

@@ -64,7 +64,6 @@ class Organization < ActiveRecord::Base
 #
   before_validation(:on => :create) do |organization|
     organization.uuid ||= App.uuid
-
     if organization.address and not organization.location
       location = Location.for(organization.address)
       organization.location = location if location
@@ -255,6 +254,9 @@ class Organization < ActiveRecord::Base
     "/directory/location#{ location.prefix }/#{ Slug.for(name) }/#{ id }"
   end
 
+  def self.to_dao(*args)
+    super(*args).reject{|arg| arg == 'search'} << :status
+  end
 
 =begin
   def to_dao(*args)
@@ -291,3 +293,23 @@ class Organization < ActiveRecord::Base
 =end
 
 end
+
+# == Schema Information
+#
+# Table name: organizations
+#
+#  id          :integer         not null, primary key
+#  uuid        :string(255)
+#  name        :string(255)
+#  description :text
+#  address     :string(255)
+#  email       :string(255)
+#  url         :string(255)
+#  phone       :string(255)
+#  category    :string(255)
+#  image       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  search      :text
+#
+

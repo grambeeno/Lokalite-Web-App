@@ -1,6 +1,7 @@
-<a id="home-link" href="/" title="Home" class="fixed-left"><h1 class="visuallyhidden">lokalite</h1></a>
+<header id="page-top" class="full-width">
+  <a id="home-link" href="/" title="Home" class="fixed-left"><h1 class="visuallyhidden">lokalite</h1></a>
 
-<div class="fluid-right">
+  <div class="fluid-right">
     <nav id="location-nav" class="location-context">
       <%
         if params[:location]
@@ -16,17 +17,19 @@
       <a title="Change Location" href="<%= href %>" style="<%= style %>" class="button" rel="facebox"><%= content %></a>
     </nav>
 
-  <h2 class="tagline">
-    <%= possessive(current_location_name_robust.humanize) %> Event Directory
-  </h2>
+    <h2 class="tagline">
+      <%= possessive(current_location_name_robust.humanize) %> Event Directory
+    </h2>
 
-  <nav id="account-nav" class="main-buttons">
-    <a href="mailto:feedback@lokalite.com" class="button">send feedback!</a> 
-    <a href="<%= my_organizations_path %>" class="button">organize events</a> 
-    <% if current_user %>
-      <a href="/logout" class="button">logout</a>
-    <% else %>
-      <a href="/login" class="button">login</a>  <a href="/signup" class="button">signup</a>
-    <% end %>
-  </nav>
-</div>
+    <nav id="account-nav" class="main-buttons">
+      <a href="mailto:feedback@lokalite.com" class="button">send feedback!</a> 
+      <% if current_user %>
+        <!-- Adding back organize events button for ease of navigation Paul July 2011 -->
+        <a href="<%= my_organizations_path %>" class="button">organize events</a>
+        <a href="/logout" class="button">logout</a>
+      <% else %>
+        <a href="/login" class="button">login</a>  <a href="/signup" class="button">signup</a>
+      <% end %>
+    </nav>
+  </div>
+</header>

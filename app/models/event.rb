@@ -66,7 +66,6 @@ class Event < ActiveRecord::Base
 
   def Event.browse(*args)
     options = Map.extract_options!(args)
-
     prefix = options[:location] || options[:prefix]
     prefix = prefix.prefix if prefix.respond_to?(:prefix)
     prefix = Location.absolute_path_for(prefix)
@@ -112,19 +111,22 @@ class Event < ActiveRecord::Base
         location = locations.last
       end
       raise "no location for #{ prefix.inspect }" unless location
+    else
+      location = options[:organization].location
     end
 
     date = options[:date]
     dates = nil
     if date
       dates = location.date_range_for(date)
+    else
+      #default date_range scope will be today
+      #TTD - make date_range scope 24 hours ASAP?   russ 1107
+      dates = location.date_range_for('today')  
     end
 
-    # Not sure why all these joins were necessary;
-    # It should be sufficient to join only tables needed for sorting
-    # joins = [:categories, :image, :venue, {:venue => :location}]
-
-    includes = [:categories, :image, :venue]
+    joins = [:categories, :image, :venue, :organization, {:venue => :location}]
+    includes = [:categories, :image, :venue, :organization]
 
     results = relation
     if organization.blank?
@@ -235,9 +237,23 @@ class Event < ActiveRecord::Base
     end
   end
   alias_method('time_for', 'venue_time')
-
+  
+  #TTD Original method for time format Paul 
   def venue_time_formatted(*args)
     venue_time(*args).strftime("%A, %b. %e, %Y %l:%M%p (%Z)")
+  end
+  
+  #TTD new methods for time format Paul
+  def venue_time_formatted_date(*args)
+    venue_time(*args).strftime("%A, %B %e")
+  end
+
+  def venue_time_formatted_start(*args)
+    venue_time(starts_at).strftime("%l:%M%p")
+  end
+  
+  def venue_time_formatted_end(*args)
+    venue_time(ends_at).strftime("%l:%M%p")
   end
 
   def duration
@@ -361,6 +377,10 @@ class Event < ActiveRecord::Base
     categories.include?(featured)
   end
 
+  def self.to_dao(*args)
+    super(*args) + [:featured?, :venue, :category, :image, {:venue => :location}, :organization]
+  end
+
   scope(:after, lambda{|*args|
     options = args.extract_options!
     after = options[:after] || Date.today
@@ -380,3 +400,25 @@ class Event < ActiveRecord::Base
     order('random()')
   })
 end
+
+# == Schema Information
+#
+# Table name: events
+#
+#  id              :integer         not null, primary key
+#  uuid            :string(255)
+#  organization_id :integer
+#  name            :string(255)
+#  description     :text
+#  starts_at       :datetime
+#  ends_at         :datetime
+#  all_day         :boolean
+#  repeating       :boolean
+#  prototype_id    :integer
+#  search          :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  clone_count     :integer         default(0)
+#  repeats         :string(255)
+#
+

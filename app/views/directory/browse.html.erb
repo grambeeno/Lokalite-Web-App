@@ -19,8 +19,12 @@
 
   <section style="display:none" class="profile blurb vcard" id="organization-<%= organization.id %>">
 
-    <a href="<%= organization.image.url(:medium) %>" rel="facebox"><%= image_tag(organization.image.url(:small), :class=>'float-left') %></a>
-
+    <a href="<%= organization.image.url(:medium) %>" rel="facebox"><%= image_tag(organization.image.url(:medium), :class=>'float-left') %></a>
+    
+    <nav id="features">
+      <%= link_to('Add to Favorites', static_path(:coming_soon), :class=>:button) %>
+    </nav>
+    
     <div id="event-data" class="fill-right">
     <hgroup>
       <h1>
@@ -39,26 +43,27 @@
             <dt>Address</dt>
             <dd><%= c organization.address %></dd>
           <% end %>
-
+       
+         
+         <div class="description-org">
           <% unless organization.description.blank? %>
-            <dt>Description</dt>
-            <dd><%= c organization.description.ellipsis(256) %></dd>
-          <% end %>
-        </dl>
-
-        <!--
-        <div class="description">
-        </div>
-        -->
+          <!--  <dt>Description</dt> TTD keep or remove -paul -->
+          <%= c organization.description %>
+            <!-- <dd><%= c organization.description.ellipsis(256) %></dd> TTD  removed by Paul-->
+         </div>
+         </dl>
+         <% end %>
 
     <nav id="event-buttons">
       <%= link_to("Events at #{ organization.name }", organization_url, :class=>:button) %>
-
+   
+    <!-- TTD Twitter and facebook removed paul 
       <%=
         st_url = fullpath
         st_title = "#{ App.url } [#{ organization.name.ellipsis(64) }]"
         share_this(:st_url => st_url, :st_title => st_title)
       %>
+    -->
     </nav>
 
 

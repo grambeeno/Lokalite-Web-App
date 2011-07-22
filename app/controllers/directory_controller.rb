@@ -102,56 +102,7 @@ protected
   end
 
   def browse_path(options = {})
-    options.to_options!
-    context = (defined?(@context) ? @context : {}).to_options!
-
-    query = {}
-
-    organization = options[:organization] || context[:organization]
-    if organization
-      organization = Organization.find(organization) unless organization.is_a?(Organization)
-    end
-
-    location = options[:location] || context[:location] || (organization ? organization.location : default_location)
-    location = location.prefix if location.respond_to?(:prefix)
-
-    category = options[:category] || context[:category]
-    category = category.name if category.respond_to?(:name)
-    category = Slug.for(category) if category
-    #date = options[:date] || context[:date]
-
-
-    keywords = options[:keywords]
-    order = options[:order]
-    page = options[:page]
-    per_page = options[:per_page]
-
-    #organization = organization.id if organization.is_a?(Organization)
-    #date = Slug.for(date) if date
-
-    path = []
-    path.push("/directory")
-
-    #if(location and options[:location] != false)
-    if(organization.blank?)
-      path.push("/location/#{ location }") unless location.blank?
-      path.push("/category/#{ category }") unless(category.blank? or category =~ /^All$/i)
-      #path.push("/date/#{ date }") unless(date.blank? or date =~ /^All$/i)
-    else
-      path.push("/location/#{ location }") unless location.blank?
-      path.push("/#{ Slug.for(organization.name) }/#{ organization.id }") unless organization.blank?
-    end
-
-    query[:keywords] = keywords unless keywords.blank?
-    query[:order] = order unless order.blank?
-    query[:page] = page unless page.blank?
-    query[:per_page] = per_page unless per_page.blank?
-
-    query_string = query.query_string
-
-    url = path.join('/').squeeze('/')
-    url += "?#{ query_string }" unless query_string.blank?
-    url
+    browse_directory_path(options)
   end
   helper_method(:browse_path)
 
@@ -200,9 +151,4 @@ protected
   end
   helper_method(:paginate)
 
-  def default_location
-    Location.absolute_path_for(
-      session[:location].blank? ? Location.default.prefix : session[:location]
-    )
-  end
 end

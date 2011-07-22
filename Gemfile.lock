@@ -6,6 +6,12 @@ GIT
       geokit (~> 1.5.0)
       rails (~> 3.0.0)
 
+GIT
+  remote: git://github.com/johnbintz/silent-postgres.git
+  revision: 22b767853d9375f2fe3d88e3833eb37e3796520d
+  specs:
+    silent-postgres (0.0.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -36,10 +42,19 @@ GEM
       activemodel (= 3.0.1)
       activesupport (= 3.0.1)
     activesupport (3.0.1)
+    annotate (2.4.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    capistrano (2.6.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano-ext (1.2.1)
+      capistrano (>= 1.0.0)
     carrierwave (0.5.1)
       activesupport (~> 3.0)
     chronic (0.3.0)
@@ -52,6 +67,7 @@ GEM
       i18n (~> 0.4)
     fattr (2.2.0)
     geokit (1.5.0)
+    highline (1.6.2)
     i18n (0.4.2)
     jquery-rails (0.2.6)
       rails (~> 3.0)
@@ -70,6 +86,13 @@ GEM
     mime-types (1.16)
     mini_magick (3.2)
       subexec (~> 0.0.4)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.1.4)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
     pg (0.10.1)
     polyglot (0.3.1)
@@ -98,7 +121,6 @@ GEM
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
     shared (1.1.0)
-    silent-postgres (0.0.7)
     subexec (0.0.4)
     tagz (8.2.0)
     texticle (1.0.4.20101004123327)
@@ -115,7 +137,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bcrypt-ruby
+  capistrano
+  capistrano-ext
   carrierwave
   chronic
   earth-tools
@@ -131,7 +156,7 @@ DEPENDENCIES
   rails (= 3.0.1)
   ruby-debug
   shared
-  silent-postgres
+  silent-postgres!
   tagz (~> 8.2.0)
   texticle
   tzinfo

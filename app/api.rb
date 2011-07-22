@@ -34,8 +34,7 @@ Api =
        # validates_as_phone(:phone)
         validates_presence_of(:address)
         validates_presence_of(:category)
-        validates_presence_of(:image)
-        validates_presence_of(:status)
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
 
         validate!
 
@@ -54,15 +53,13 @@ Api =
           organization.save!
           organization.reload
 
-          organization.set_status!(data.status) unless data.status.blank?
-
           category = Category.for(data.category)
 
           venue = Organization.default_venue_for(organization)
           venue.save!
 
-          image = Image.for(data.image)
-          image.save!
+          image = Image.for(data.image)  
+          image.save! unless image.nil?
 
           organization.category = category
           organization.venue = venue
@@ -78,7 +75,6 @@ Api =
   #
     interface('/organizations/edit') do
       require_user!
-
       id = parameter(:organization_id, :or => :id)
 
       read do
@@ -87,13 +83,14 @@ Api =
           data.update(organization.to_dao)
           data.update(:category => organization.category.to_dao)
           data.update(:venue => organization.venue.to_dao)
-          data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          if data.has_key?'image' and !data['image'].nil?
+            data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          end 
         end
       end
 
       write do
         apply(params)
-
         validates_length_of(:name, :in => (2..64))
         validates_word_count_of(:description, :in => (4..420))
         validates_as_location(:address)
@@ -102,10 +99,13 @@ Api =
        # validates_as_phone(:phone)
         validates_presence_of(:address)
         validates_presence_of(:category)
-        #validates_presence_of(:image)
+        #Given:must be an image to do initial save, so there IS an image.
+        #Unless user clicks accept/Choose button during EDIT, nothing comes back in params, 
+        #so ignore the absence of image during EDIT.
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false) if data.has_key?'image'
 
         validate!
-        #ensure_io_or_url!(:image)
+        ensure_io_or_url!(:image) if data.has_key?'image'
 
         transaction do
           organization = Organization.find(id)
@@ -128,7 +128,7 @@ Api =
           organization.category = category
           organization.save!
 
-          unless data.get(:image).blank?
+          if data.has_key?'image'
             image = Image.for(data.image)
             image.save!
             organization.image = image
@@ -138,7 +138,9 @@ Api =
           data.update(organization.to_dao)
           data.update(:category => organization.category.to_dao)
           data.update(:venue => organization.venue.to_dao)
-          data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          if data.has_key?'image' and !data['image'].nil?
+            data.update(:image => organization.image.to_dao(:id, :basename, :url))
+          end
         end
       end
     end
@@ -190,7 +192,9 @@ Api =
         validates_word_count_of(:description, :in => (4..420))
         validates_presence_of(:starts_at)
         validates_presence_of(:category)
-        validates_presence_of(:image)
+        #TTD should probably use the org's image if empty?
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
+        
         validates(:venue) do |value|
           if value.blank?(:id)
             if value.blank?(:name) and value.blank?(:address)
@@ -205,7 +209,7 @@ Api =
 
 
         validate!
-        ensure_io_or_url!(:image)
+        ensure_io_or_url!(:image) 
 
         transaction do
           venue =
@@ -233,8 +237,8 @@ Api =
 
           category = Category.for(data.category)
 
-          image = Image.for(data.image)
-          image.save!
+          image = Image.for(data.image) 
+          image.save! if !image.nil?
 
           event = Event.new
           event.name = data.name
@@ -247,7 +251,7 @@ Api =
 
           event.organization = organization
           event.category = category
-          event.image = image
+          event.image = image if !image.nil?
           event.venue = venue
           
           event.save!
@@ -255,11 +259,12 @@ Api =
 
           dao = event.to_dao
  
-          #unless data.blank?(:repeats)
-          #  frequency = data.get(:repeats)
-          #  events = event.repeat!(frequency)
-          #  dao.update(:clone_count => events.size)
-          #end
+          # Causing a PROD crash - June 10, '11
+          # unless data.blank?(:repeats)
+          #   frequency = data.get(:repeats)
+          #   events = event.repeat!(frequency)
+          #   dao.update(:clone_count => events.size)
+          # end
 
           data!(dao)
         end
@@ -292,7 +297,7 @@ Api =
           data.update(:category => @organization.category.to_dao)
           data.update(:organization => @organization.to_dao)
           data.update(:venue => @organization.venue.to_dao(:id))
-          data.update(:image => @event.image.to_dao(:id, :basename, :url))
+          data.update(:image => @event.image.to_dao(:id, :basename, :url)) 
         end
       end
 
@@ -304,10 +309,10 @@ Api =
         validates_word_count_of(:description, :in => (4..420))
         validates_presence_of(:starts_at)
         #validates_presence_of(:category)
-        #validates_presence_of(:image)
+        validates_presence_of(:image, :allow_nil => false, :allow_blank => false)
 
-        #validate!
-        #ensure_io_or_url!(:image)
+        validate!
+        ensure_io_or_url!(:image)
         #
 
 
@@ -349,7 +354,7 @@ Api =
           category = Category.for(data.category)
 
           image = nil
-          unless data.get(:image).blank?
+          if data.has_key?'image'
             ensure_io_or_url!(:image)
             image = Image.for(data.image)
             image.save!
@@ -373,12 +378,12 @@ Api =
           @event.save!
           @event.index!
 
-          #unless data.blank?(:repeats)
-          #  frequency = data.get(:repeats)
-          #  events = @event.repeat!(frequency)
-          #  data.update(:clone_count => events.size)
-          #end
-
+          # Causing a PROD crash - June 10, '11
+          # unless data.blank?(:repeats)
+          #   frequency = data.get(:repeats)
+          #   events = @event.repeat!(frequency)
+          #   data.update(:clone_count => events.size)
+          # end
 
           data.update(@event.to_dao)
 
@@ -394,10 +399,48 @@ Api =
           data.update(:category => @organization.category.to_dao)
           data.update(:organization => @organization.to_dao)
           data.update(:venue => @organization.venue.to_dao(:id))
-          data.update(:image => @organization.image.to_dao(:id, :basename, :url))
+          if data.has_key?'image' and !data['image'].nil?
+            data.update(:image => @organization.image.to_dao(:id, :basename, :url))
+          end
 
           validate!
         end
+      end
+    end
+
+    interface('/organizations/browse') do
+
+      read do
+        joins = []
+        #TTD - fix hack forcing location to united_states for now
+        params[:location]     = '/united_states' unless params.has_key?(:location)
+        params[:category]     = '' unless params.has_key?(:category)
+        params[:per_page]     = 20 unless params.has_key?(:per_page)
+        params[:organization] = Organization.find(params[:organization_id]) if params.has_key?(:organization_id)
+
+       organizations = Organization.browse(params)
+
+        unless organizations.empty?
+          data!(:list => organizations.to_dao)
+        end
+      end
+    end
+
+  # events/
+  #
+    interface('/events/browse') do
+
+      read do
+        joins = []
+        #TTD - fix hack forcing location to united_states for now
+        params[:location]     = '/united_states' unless params.has_key?(:location)
+        params[:category]     = 'Featured' unless params.has_key?(:category)
+        params[:per_page]     = 20 unless params.has_key?(:per_page)
+        params[:organization] = Organization.find(params[:organization_id]) if params.has_key?(:organization_id)
+
+        events = Event.browse(params)
+
+        data!(:list => events.to_dao) unless events.empty?
       end
     end
 
@@ -412,10 +455,7 @@ Api =
         event = Event.where(:id => params[:id]).joins(joins).includes(includes).first
 
         if event
-          args = Event.to_dao + [:venue, :category, :image, :organization, {:venue => :location}]
-          dao = event.to_dao(*args)
-
-          data!(dao)
+          data!(event.to_dao)
         else
           status(404)
         end
@@ -426,18 +466,10 @@ Api =
   #
     interface('/events/recommended') do
       read do
-        joins = []
         includes = [:venue, {:venue => :location}, :category, :image, :organization]
-        events = Event.where(:id => params[:id]).joins(joins).includes(includes).limit(3).order('random()')
+        events = Event.featured.includes(includes).random.limit(20).all
 
-        unless events.empty?
-          args = Event.to_dao + [:venue, :category, :image, :organization, {:venue => :location}]
-          list = events.map{|event| event.to_dao(*args)}
-
-          data!(:list => list)
-        else
-          status(404)
-        end
+        data!(:list => events.to_dao) unless events.empty?
       end
     end
 

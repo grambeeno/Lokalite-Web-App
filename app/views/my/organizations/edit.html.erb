@@ -4,6 +4,14 @@
   name = @result.data.name
   category = @result.data.category
   image = @result.data.image
+
+  locals = {
+    :accept => accept,
+    :id => id,
+    :name => name,
+    :category => category,
+    :image => image
+  }
 %>
 
 
@@ -17,70 +25,7 @@
 <%= form do %>
 <% context "Editing #{ raw @result.data.name.inspect }" %>
 
-  <%= @result.errors %>
+  <%= render :partial => 'fields', :locals => locals %>
 
-  <%= @result.form.label(:name) %>&mdash; <span class='hint'>name of the organization</span>
-  <br />
-  <%= @result.form.input(:name, :class => :focus) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:description) %> &mdash; <span class='hint'>tell us about the organization</span>
-  <br />
-  <%= @result.form.textarea(:description) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:email) %> &mdash; <span class='hint'>an email where we can contact you</span>
-  <br />
-  <%= @result.form.input(:email) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:url) %> &mdash; <span class='hint'>your organizations website, facebook, or twitter url</span>
-  <br />
-  <%= @result.form.input(:url) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:phone) %> &mdash; <span class='hint'>the organization's phone number</span>
-  <br />
-  <%= @result.form.input(:phone) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:address) %> &mdash; <span class='hint'>the organization's street address</span>
-  <br />
-  <%= @result.form.input(:address) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:category) %> &mdash; <span class='hint'>pick a category for the organization</span>
-  <br />
-  <%= @result.form.select(:category, :options => Category.options_for_select, :selected => category.id) %>
-  <br />
-  <br />
-
-  <%= @result.form.label(:image) %> &mdash; <span class='hint'>a <em>square</em> image of the organization (300x300px is best / <%= accept %>)</span>
-  <br />
-  <%= @result.form.input(:image, :type => :file, :accept => accept) %>
-  <br />
-  <br />
-
-  <%= @image_cache %>
-
-  <% if url = @image_cache.url %>
-
-    <br /> <label>Uploaded: <%= raw(@image_cache.basename.inspect) %></label> <br />
-    <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:600px; max-height:600px' /> <br />
-
-  <% else %>
-
-    <br /> <label>Uploaded: <%= raw(image.basename.inspect) %></label> <br />
-    <img src='<%= raw(image.url) %>' alt='<%= raw(image.url) %>' style='max-width:600px; max-height:600px' /> <br />
-
-  <% end %>
-
-  <hr />
-  <%= submit_tag('Update Organization!') %>
+  <%= submit_tag('Update Organization') %>
 <% end %>

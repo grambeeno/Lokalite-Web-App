@@ -4,8 +4,25 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+one:
+  context_type: Organization
+  context_id: 1
+  content: Tacos Tacos Tacos - get the best deal in town on the Hill.
+
+two:
+  context_type: Organization
+  context_id: 1
+  content: Margs Margs Margs - get the best takillya deal in town on the Hill.
+
+# == Schema Information
 #
-two: {}
-#  column: value
+# Table name: statuses
+#
+#  id           :integer         not null, primary key
+#  context_type :string(255)
+#  context_id   :integer
+#  content      :text
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

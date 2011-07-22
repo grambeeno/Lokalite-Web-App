@@ -5,4 +5,10 @@ class RootControllerTest < ActionController::TestCase
   test "the truth" do
     assert true
   end
+  
+  test "should get Lokalite Landing Page" do
+    get :index
+    assert_response :redirect    #index goes to events_path - for now
+  end
+
 end

@@ -1,199 +1,193 @@
-<!--
-  left sidebar
--->
-  <%= render :partial => 'sidebar' %>
+<%
+  event = @event
+  context_for_request('Events in ' + event.venue.location.locality.humanize)
+  hours = event.duration / 1.hour
+%>
 
-  <% 
-    event = @event 
-    context_for_request('Events in ' + event.venue.location.locality.humanize)
-    hours = event.duration / 1.hour
-  %>
+<section class="profile vevent" id="event-<%= event.id %>">
 
+  <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:small), :class=>'float-left') %></a>
 
-<!--
-  main content
--->
-  <section class="profile vevent" id="event-<%= event.id %>">
+  <div id="event-data" class="fill-right">
+  <hgroup>
+    <h1>
+      <span class="summary"><%= event.name %></span>
 
-    <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:small), :class=>'float-left') %></a>
+      <%
+        admin = (current_user and current_user.admin?)
+        editor = (current_user and current_user.can_edit_event?(event))
+        if editor
+          organization = editor # HACK
+          edit_url = my_organization_path(:id => organization.id, :action => :edit_event, :event_id => event.id)
+        end
+      %>
 
-    <div id="event-data" class="fill-right">
-    <hgroup>
-      <h1>
-        <span class="summary"><%= event.name %></span>
+      <% if admin or editor %>
+        &nbsp;
+      <% end %>
 
-        <%
-          admin = (current_user and current_user.admin?)
-          editor = (current_user and current_user.can_edit_event?(event))
-          if editor
-            organization = editor # HACK
-            edit_url = my_organization_path(:id => organization.id, :action => :edit_event, :event_id => event.id)
-          end
-        %>
+      <% if editor %>
+       <nav id="features">
+        <%= link_to('Edit', edit_url, :class=> :button) %>
+        <%= link_to('Delete', static_path(:coming_soon), :class=>:button) %>
+       </nav>
+      <% end %>
 
-        <% if admin or editor %>
-          &nbsp;
-        <% end %>
+      <% if admin %>
+        <span class='admin'>featured?</span>
+        <input
+          <%= 'checked=true' if event.featured? %>
+          style='vertical-align:middle'
+          class='formlet'
+          type='checkbox'
+          data-id='<%= event.id %>'
+          data-url='<%= url_for(:action => :feature, :id => event.id) %>'/>
 
-        <% if editor %>
-          <a href='<%= edit_url %>' class='admin'>edit!</a>
-        <% end %>
+        <script type='text/javascript'>
+          jq(function(){
+            var formlet = jq('.formlet');
 
-        <% if admin %>
-          <span class='admin'>featured?</span>
-          <input 
-            <%= 'checked=true' if event.featured? %>
-            style='vertical-align:middle'
-            class='formlet'
-            type='checkbox'
-            data-id='<%= event.id %>'
-            data-url='<%= url_for(:action => :feature, :id => event.id) %>'/>
+            formlet.click(function(){
+              var f = jq(this);
+              var url = f.attr('data-url');
+              var id = f.attr('data-id');
+              var val = f.val();
+              var checked = f.attr('checked');
 
-          <script type='text/javascript'>
-            jq(function(){
-              var formlet = jq('.formlet');
+              var data = {};
+              data.id = id;
+              data.featured = checked;
 
-              formlet.click(function(){
-                var f = jq(this);
-                var url = f.attr('data-url');
-                var id = f.attr('data-id');
-                var val = f.val();
-                var checked = f.attr('checked');
-
-                var data = {};
-                data.id = id;
-                data.featured = checked;
-
-                var options = {};
-                options.url = url;
-                options.data = data;
-                options.success = function(){
-                  if(checked){
-                    App.flash('Event featured!');
-                  } else {
-                    App.flash('Event un-featured!');
-                  };
+              var options = {};
+              options.url = url;
+              options.data = data;
+              options.success = function(){
+                if(checked){
+                  App.flash('Event featured!');
+                } else {
+                  App.flash('Event un-featured!');
                 };
-                App.ajax.post(options);
-              });
+              };
+              App.ajax.post(options);
             });
-          </script>
-        <% end %>
+          });
+        </script>
+      <% end %>
 
-      </h1>
+    </h1>
 
-      <h2>
-        <time class="dtstart" datetime="<%= event.starts_at.strftime("%Y-%m-%dT%H:%M:00") %>">
-          <%= event.venue_time_formatted %>
-        </time>
-        <time class="dtend" datetime="<%= event.ends_at.strftime("%Y-%m-%dT%H:%M:00") %>">
-          <em class='hint'>for <%= pluralize(hours, 'hour', 'hours') %></em>
-        </time>
-      </h2>
-
-      <h3 class="location vcard">
-        <span class="fn"><a class="fn url" target="_blank" href="<%= event.venue.url %>"><%= event.venue.name %></a></span>
-        <div class="adr">
-          <div class="street-address"><%= event.venue.location.address %></div>
-          <span class="locality"><%= event.venue.location.locality %></span>,  
-          <span class="region"><%= event.venue.location.administrative_area_level_1 %></span>
-          <span class="postal-code visuallyhidden"><%= event.venue.location.postal_code %></span>
-          <span class="country-name visuallyhidden"><%= event.venue.location.country %></span>
-          <div class="geo visuallyhidden">
-           <span class="latitude"><%= event.venue.location.lat %></span>, 
-           <span class="longitude"><%= event.venue.location.lng %></span>
-          </div>
-
+    <h2 class="location vcard">
+      <span class="fn org"><a class="fn org url" target="blank" href="<%= event.venue.url %>"><%= event.venue.name %></a></span>
+      <div class="adr">
+        <div class="street-address"><%= event.venue.location.address %></div>
+        <!-- TTD Changed locality and region to visuallyhidden, not removing b/c may be needed. Paul July 2011 -->
+        <span class="locality visuallyhidden"><%= event.venue.location.locality %></span>
+        <abbr class="region visuallyhidden"><%= event.venue.location.administrative_area_level_1 %></abbr>
+        <span class="postal-code visuallyhidden"><%= event.venue.location.postal_code %></span>
+        <span class="country-name visuallyhidden"><%= event.venue.location.country %></span>
+        <div class="geo visuallyhidden">
+        <span class="latitude"><%= event.venue.location.lat %></span>,
+        <span class="longitude"><%= event.venue.location.lng %></span>
         </div>
+       </div>
+      <br />
+      <time class="dtstart" datetime="<%= event.starts_at.iso8601 %>">
+      <%= event.venue_time_formatted_date %> <br />
+      <%= event.venue_time_formatted_start %>
+      <span class="dtstart"> - </span>
+      </time>
 
-      </h3>
-    </hgroup>
+      <time class="dtend" datetime="<%= event.ends_at.iso8601 %>">
+      <%= event.venue_time_formatted_end %>
+      <!-- TTD commenting out lasting field Paul -->
+      <!-- <em class='hint'>lasting <%= pluralize(hours, 'hour', 'hours') %></em> -->
+      </time>
+    </h2>
+    <br />
 
-    <div class="description">
-      <%= c event.description %>
-    </div>
+ <!-- TTD h3 has been removed in browse, show, and org view for events paul -->
+  </hgroup>
 
-    <div style="display:none;" id="event-map">
-      <% maps_url = gmaps_url_for(event) %>
-      <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%= maps_url %>"></iframe><br />
-      <small><a href="<%= maps_url %>" style="color:#0000FF;text-align:left">View Larger Map</a></small>
-    </div>
+  <div class="description">
+    <%= c event.description %>
+  </div>
 
+  <div style="display:none;" id="event-map">
+    <% maps_url = gmaps_url_for(event) %>
+    <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%= maps_url %>"></iframe><br />
+    <small><a href="<%= maps_url %>" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+  </div>
+
+  <nav>
+    <a href="#event-map" class="button" rel="facebox">Map!</a>
+    <%=
+      st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
+      st_title = "#{ App.url } [#{ event.name.ellipsis(64) }]"
+      share_this(:st_url => st_url, :st_title => st_title)
+    %>
+  </nav>
+
+</div><!-- end event-data -->
+
+</section>
+
+<table class="recommended-events">
+
+  <tr>
+    <th colspan="3"><h4>You might also like</h4></th>
+  </tr>
+
+  <tr>
+  <% @recommended.each do |r| %>
+    <td>
+      <%= link_to( image_tag(r.image.url(:thumb)), event_path(:slug => r.slug, :id => r.id) ) %>
+
+      <header>
+        <h5><%= r.name %></h5>
+        <h6>
+          <%= r.venue.name %><br />
+          <time datetime="<%= r.starts_at.strftime("%Y-%m-%dT%H:%M:00") %>">
+            <%= r.venue_time_formatted %>
+          </time>
+        </h6>
+      </header>
+    </td>
+  <% end %>
+  </tr>
+
+</table>
+
+<section class="profile" id="organization-<%= event.organization.id %>">
+  <h4>About the Organizer</h4>
+
+  <article>
+    <a href="<%= event.organization.image.url(:medium) %>" rel="facebox"><%= image_tag(event.organization.image.url(:small), :class=>'float-left') %></a>
+
+    <div class="fill-right clearfix">
+      <h1 class="smaller"><a href="<%= "/directory/#{ event.organization.id }" %>"><%= event.organization.name %></a></h1>
+
+      <% unless event.organization.status.nil? %>
+      <div class="status">
+        <%= c event.organization.status %>
+      </div>
+      <% end %>
+
+      <div class="description">
+        <%= c event.organization.description %>
+      </div>
 
     <nav>
-      <a href="#event-map" class="button" rel="facebox">Map It!</a>
+      <a href="<%= event.organization.url %>" target="_blank" class="button"><%= event.organization.name %>'s web site</a>
       <%=
-        st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
-        st_title = "#{ App.url } [#{ event.name.ellipsis(64) }]"
-        share_this(:st_url => st_url, :st_title => st_title)
+        link_to(
+          raw("More by &ldquo;#{ h event.organization.name }&rdquo;"),
+          browse_path(:organization => event.organization.id, :location => false), :class=>'button'
+        )
       %>
     </nav>
 
+    </div><!-- end fill-right -->
 
-  </div><!-- end event-data -->
+  </article>
 
-  </section>
-
-  <table class="recommended-events">
-
-    <tr>
-      <th colspan="3"><h4>You might also like</h4></th>
-    </tr>
-
-    <tr>
-    <% @recommended.each do |r| %>
-      <td>
-        <%= link_to( image_tag(r.image.url(:thumb)), event_path(:slug => r.slug, :id => r.id) ) %>
-
-        <header>  
-          <h5><%= r.name %></h5>
-          <h6>
-            <%= r.venue.name %><br />
-            <time datetime="<%= r.starts_at.strftime("%Y-%m-%dT%H:%M:00") %>">
-              <%= r.venue_time_formatted %>
-            </time>
-          </h6>
-        </header>
-      </td>
-    <% end %>
-    </tr>
-
-  </table>
-
-  <section class="profile" id="organization-<%= event.organization.id %>">
-    <h4>About the Organizer</h4>
-
-    <article>
-      <a href="<%= event.organization.image.url(:medium) %>" rel="facebox"><%= image_tag(event.organization.image.url(:small), :class=>'float-left') %></a>
-
-      <div class="fill-right clearfix">
-        <h1 class="smaller"><a href="<%= "/directory/#{ event.organization.id }" %>"><%= event.organization.name %></a></h1>
-
-        <% unless event.organization.status.nil? %>
-        <div class="status">
-          <%= c event.organization.status %>
-        </div>
-        <% end %>
-
-        <div class="description">
-          <%= c event.organization.description %>
-        </div>
-
-
-      <nav>
-        <a href="<%= event.organization.url %>" target="_blank" class="button"><%= event.organization.name %>'s web site</a>
-        <%= 
-          link_to(
-            raw("More by &ldquo;#{ h event.organization.name }&rdquo;"),
-            browse_path(:organization => event.organization.id, :location => false), :class=>'button'
-          )
-        %>
-      </nav>
-
-      </div><!-- end fill-right -->
-
-    </article>
-
-  </section>
-
-
+</section>

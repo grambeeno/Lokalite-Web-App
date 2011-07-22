@@ -15,6 +15,18 @@ class Location < ActiveRecord::Base
 
   validates_uniqueness_of :address
 
+  def Location.assemble_address(params)
+    return nil unless !params["addr_street"].nil? \
+                    && !params["addr_city"].nil? \
+                    && !params["addr_state"].nil? \
+                    && !params["addr_zip"].nil? 
+    addr = params["addr_street"]
+    addr += ', ' + params["addr_city"]
+    addr += ', ' + params["addr_state"]
+    addr += ', ' + params["addr_zip"]
+    return addr
+  end
+
   def Location.for(address)
     location = Location.locate(address)
     raise(ArgumentError, address.inspect) unless(location and location.valid?)
@@ -373,7 +385,9 @@ class Location < ActiveRecord::Base
   end
 
   def Location.date_range_name_for(location, date)
-    ranges = %w( today tomorrow this_weekend this_week this_month this_year all ).map{|name| date_range_for(location, name)}
+    #remove ALL as a possible query value - russ 1107 
+    #ranges = %w( today tomorrow this_weekend this_week this_month this_year all).map{|name| date_range_for(location, name)}
+    ranges = %w( today tomorrow this_weekend this_week this_month this_year).map{|name| date_range_for(location, name)}
     time = date.to_time
     range = ranges.detect{|r| r.include?(time)}
     range.name
@@ -406,3 +420,26 @@ class Location < ActiveRecord::Base
   end
 =end
 end
+
+# == Schema Information
+#
+# Table name: locations
+#
+#  id                          :integer         not null, primary key
+#  uuid                        :string(255)
+#  address                     :string(255)
+#  formatted_address           :string(255)
+#  country                     :string(255)
+#  administrative_area_level_1 :string(255)
+#  administrative_area_level_2 :string(255)
+#  locality                    :string(255)
+#  prefix                      :string(255)
+#  postal_code                 :string(255)
+#  lat                         :float
+#  lng                         :float
+#  utc_offset                  :float
+#  json                        :text
+#  created_at                  :datetime
+#  updated_at                  :datetime
+#
+

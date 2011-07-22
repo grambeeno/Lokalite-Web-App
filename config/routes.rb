@@ -1,8 +1,8 @@
+# See how all your routes lay out with "rake routes"
 Lokalite::Application.routes.draw do
 # event routes
 #
   match 'event(/*slug)/:id', :as => :event, :controller => :events, :constraints => {:id => /\d+/}, :action => :show
-
 
   match 'events/location/*location/category/:category/date/:date', :controller => :events, :action => :browse
   match 'events/location/*location/category/:category', :controller => :events, :action => :browse
@@ -18,7 +18,6 @@ Lokalite::Application.routes.draw do
 
   match 'events(/:action(/:id(.:format)))', :as => :events, :controller => :events
 
-
 # directory routes
 #
   match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}
@@ -27,7 +26,6 @@ Lokalite::Application.routes.draw do
   match 'directory/:id', :controller => :directory, :action => :browse
 
   match 'directory(/:action(/:id(.:format)))', :as => :directory, :controller => :directory
-
 
   #match 'account(/:action(/:id(.:format)))', :as => :account, :controller => :account
 
@@ -39,52 +37,6 @@ Lokalite::Application.routes.draw do
   match 'api' => 'api#index', :as => 'api_index'
   match 'api/*path' => 'api#call', :as => 'api'
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 
   #StaticController.pages.each do |page|
     #match "static/:page(.:format)", :controller => 'static', :action => :method_missing, :as => 'static'
@@ -92,14 +44,9 @@ Lokalite::Application.routes.draw do
   match 'static(/:action(.:format))', :controller => 'static', :as => 'static'
   #match "static/:page(.:format)", :controller => 'static', :action => 'compile_page', :as => 'static'
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => "root#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  match '/auth/:action(/:token)', :controller => 'auth', :as => 'auth'
+  match '/business' => 'auth#signup', :business => true, :as => 'business_signup'
   match '/signup(/:token)' => 'auth#signup', :as => 'signup'
+  match '/auth/:action(/:token)', :controller => 'auth', :as => 'auth'
   match '/activate(/:token)' => 'auth#activate', :as => 'activate'
   match '/login(/:token)' => 'auth#login', :as => 'login'
   match '/logout' => 'auth#logout', :as => 'logout'
@@ -117,4 +64,55 @@ Lokalite::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   match ':controller(/:action(/:id(.:format)))'
+
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  root :to => "auth#signup"
 end
+
+# The priority is based upon order of creation:
+# first created -> highest priority.
+
+# Sample of regular route:
+#   match 'products/:id' => 'catalog#view'
+# Keep in mind you can assign values other than :controller and :action
+
+# Sample of named route:
+#   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+# This route can be invoked with purchase_url(:id => product.id)
+
+# Sample resource route (maps HTTP verbs to controller actions automatically):
+#   resources :products
+
+# Sample resource route with options:
+#   resources :products do
+#     member do
+#       get 'short'
+#       post 'toggle'
+#     end
+#
+#     collection do
+#       get 'sold'
+#     end
+#   end
+
+# Sample resource route with sub-resources:
+#   resources :products do
+#     resources :comments, :sales
+#     resource :seller
+#   end
+
+# Sample resource route with more complex sub-resources
+#   resources :products do
+#     resources :comments
+#     resources :sales do
+#       get 'recent', :on => :collection
+#     end
+#   end
+
+# Sample resource route within a namespace:
+#   namespace :admin do
+#     # Directs /admin/products/* to Admin::ProductsController
+#     # (app/controllers/admin/products_controller.rb)
+#     resources :products
+#   end

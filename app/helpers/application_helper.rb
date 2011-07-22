@@ -273,11 +273,11 @@ module ApplicationHelper
     end
 
     raw(
-      'http://maps.google.com/maps?f=q&amp;source=s_q&amp;q=' + 
-      URI.escape(options[:formatted_address]) + 
-      '&amp;hl=en&amp;sll=' + 
+      'http://maps.google.com/maps?f=q&amp;source=s_q&amp;q=' +
+      URI.escape(options[:formatted_address]) +
+      '&amp;hl=en&amp;sll=' +
       options[:ll] +
-      '&amp;ie=UTF8&amp;t=h&amp;z=12&amp;ll=' + 
+      '&amp;ie=UTF8&amp;z=12&amp;ll=' +
       options[:ll] +
       '&amp;output=embed&amp;iwloc=do_not_open'
     )

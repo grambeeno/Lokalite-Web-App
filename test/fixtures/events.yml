@@ -1,27 +1,24 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  organization_id: 1
-  name: MyString
-  description: MyText
-  address: MyString
-  starts_at: 2011-02-09 12:52:09
-  all_day: false
-  ends_at: 2011-02-09 12:52:09
-  other: MyText
-  image: MyString
-  repeating: false
-  prototype_id: 1
 
-two:
-  organization_id: 1
-  name: MyString
-  description: MyText
-  address: MyString
-  starts_at: 2011-02-09 12:52:09
-  all_day: false
-  ends_at: 2011-02-09 12:52:09
-  other: MyText
-  image: MyString
-  repeating: false
-  prototype_id: 1
+# == Schema Information
+#
+# Table name: events
+#
+#  id              :integer         not null, primary key
+#  uuid            :string(255)
+#  organization_id :integer
+#  name            :string(255)
+#  description     :text
+#  starts_at       :datetime
+#  ends_at         :datetime
+#  all_day         :boolean
+#  repeating       :boolean
+#  prototype_id    :integer
+#  search          :text
+#  created_at      :datetime
+#  updated_at      :datetime
+#  clone_count     :integer         default(0)
+#  repeats         :string(255)
+#
+
