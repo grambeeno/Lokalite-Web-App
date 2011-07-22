@@ -420,10 +420,7 @@ Api =
        organizations = Organization.browse(params)
 
         unless organizations.empty?
-          args = Organization.to_dao + [:status]
-          list = organizations.to_dao(*args)
-
-          data!(:list => list)
+          data!(:list => organizations.to_dao)
         end
       end
     end
@@ -442,12 +439,7 @@ Api =
 
         events = Event.browse(params)
 
-        unless events.empty?
-          args = Event.to_dao + [:featured?, :venue, :category, :image, {:venue => :location}, {:organization => Organization.to_dao + [:status]}]
-          list = events.to_dao(*args)
-
-          data!(:list => list)
-        end
+        data!(:list => events.to_dao) unless events.empty?
       end
     end
 
@@ -462,10 +454,7 @@ Api =
         event = Event.where(:id => params[:id]).joins(joins).includes(includes).first
 
         if event
-          args = Event.to_dao + [:venue, :category, :image, :organization, {:venue => :location}]
-          dao = event.to_dao(*args)
-
-          data!(dao)
+          data!(event.to_dao)
         else
           status(404)
         end
@@ -479,12 +468,7 @@ Api =
         includes = [:venue, {:venue => :location}, :category, :image, :organization]
         events = Event.featured.includes(includes).random.limit(20).all
 
-        unless events.empty?
-          args = Event.to_dao + [:venue, :category, :image, :organization, {:venue => :location}]
-          list = events.map{|event| event.to_dao(*args)}
-
-          data!(:list => list)
-        end
+        data!(:list => events.to_dao) unless events.empty?
       end
     end
 

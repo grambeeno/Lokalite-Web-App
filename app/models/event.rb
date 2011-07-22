@@ -377,6 +377,10 @@ class Event < ActiveRecord::Base
     categories.include?(featured)
   end
 
+  def self.to_dao(*args)
+    super(*args) + [:featured?, :venue, :category, :image, {:venue => :location}, :organization]
+  end
+
   scope(:after, lambda{|*args|
     options = args.extract_options!
     after = options[:after] || Date.today

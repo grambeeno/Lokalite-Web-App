@@ -254,6 +254,9 @@ class Organization < ActiveRecord::Base
     "/directory/location#{ location.prefix }/#{ Slug.for(name) }/#{ id }"
   end
 
+  def self.to_dao(*args)
+    super(*args).reject{|arg| arg == 'search'} << :status
+  end
 
 =begin
   def to_dao(*args)
