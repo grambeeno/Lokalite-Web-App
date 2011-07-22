@@ -12,7 +12,6 @@ set :user, "lokalitedev"
 set :use_sudo, false
 
 set :scm, :git
-set :branch, "dev"
 set :repository,  "git@github.com:grambeeno/Lokalite-Web-App.git"
 set :deploy_to, "/home/#{user}/#{application}"
 set :deploy_via, :remote_cache
