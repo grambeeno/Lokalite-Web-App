@@ -52,8 +52,8 @@
     
     <nav class="event-buttons">
       <% if logged_in? %>
-        <% trend_class = current_user.events.include?(event) ? :trended : :trend  -%>
-        <%= link_to('Trend', "#trend_event/#{event.id}", :class => [:button, trend_class]) %>
+        <% trend_state = current_user.events.include?(event) ? :trended : :trend  -%>
+        <%= link_to(trend_state.to_s.titleize, "#trend_event/#{event.id}", :class => [:button, trend_state]) %>
       <% end %>
       (<%= pluralize event.users_count, 'trend' %>)
     </nav>

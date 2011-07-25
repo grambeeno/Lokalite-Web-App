@@ -384,6 +384,15 @@ class Event < ActiveRecord::Base
     super(*args) + [:featured?, :venue, :category, :image, {:venue => :location}, :organization]
   end
 
+  def to_dao(*args)
+    options = args.dup.extract_options!
+    user = options.delete(:for_user)
+    extras = {}
+    extras[:trended?] = user.events.include?(self) if user
+    super(*options).push(extras)
+  end
+
+
   scope(:after, lambda{|*args|
     options = args.extract_options!
     after = options[:after] || Date.today

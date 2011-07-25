@@ -254,6 +254,7 @@ class User < ActiveRecord::Base
   def self.to_dao(*args)
     super(*args).reject{|arg| %w[password].include?(arg)}
   end
+  
 end
 
 

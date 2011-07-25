@@ -458,7 +458,8 @@ Api =
 
         events = Event.browse(params)
 
-        data!(:list => events.to_dao) unless events.empty?
+        list = events.to_dao(:for_user => current_user)
+        data!(:list => list) unless events.empty?
       end
     end
 

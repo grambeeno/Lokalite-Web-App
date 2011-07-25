@@ -347,25 +347,31 @@ jq(function($){
       success: function(response, status, request) {
         link.removeClass('trend');
         link.addClass('trended');
+        link.text('Trended')
         link.attr('href', link.attr('href').replace('trend', 'untrend'));
       }
     });
   });
-  $('.trended').live('click', function(event) {
-    event.preventDefault();
-    var link = $(this);
-    var event_id = idFromString(link.attr('href'));
-    App.ajax({
-      url: '/api/events/untrend?event_id=' + event_id,
-      type: 'post',
-      success: function(response, status, request) {
-        link.removeClass('trended');
-        link.addClass('trend');
-        link.attr('href', link.attr('href').replace('untrend', 'trend'));
-      }
-    });
+  $('.trended').live({
+    mouseenter: function(event) { $(this).text('Untrend'); },
+    mouseleave: function(event) { $(this).text('Trended'); },
+    click:      function(event) {
+      event.preventDefault();
+      console.log('untrend');
+      var link = $(this);
+      var event_id = idFromString(link.attr('href'));
+      App.ajax({
+        url: '/api/events/untrend?event_id=' + event_id,
+        type: 'post',
+        success: function(response, status, request) {
+          link.removeClass('trended');
+          link.addClass('trend');
+          link.text('Trend')
+          link.attr('href', link.attr('href').replace('untrend', 'trend'));
+        }
+      });
+    }
   });
-
 });
 
 function idFromString(string) {
