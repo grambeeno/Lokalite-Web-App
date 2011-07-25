@@ -7,6 +7,10 @@ Api =
       data.update :time => Time.now
     end
 
+    interface('/profile') do
+      data(current_user.to_dao)
+    end
+
   # organization/new
   #
     interface('/organizations/new') do

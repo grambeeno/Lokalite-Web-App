@@ -235,6 +235,10 @@ class User < ActiveRecord::Base
     event = Event.find(event) unless event.is_a?(Event)
     organizations.detect{|organization| event.organization_id == organization.id}
   end
+
+  def self.to_dao(*args)
+    super(*args).reject{|arg| %w[password].include?(arg)}
+  end
 end
 
 
