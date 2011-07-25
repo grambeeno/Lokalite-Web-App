@@ -72,6 +72,7 @@ protected
   def logged_in?
     session[:real_user]
   end
+  helper_method(:logged_in?)
 
 # api support
 #

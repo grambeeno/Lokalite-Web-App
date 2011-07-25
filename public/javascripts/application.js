@@ -339,13 +339,36 @@ jq(function($){
 
   $('.trend').live('click', function(event) {
     event.preventDefault();
-    var event_id = $(this).attr('href').match(/\d*$/)[0];
-    console.log('the URL', event_id);
-    App.ajax('/api/events/' + event_id + '/trend', function() {
-      alert('called trend API');
+    var link = $(this);
+    var event_id = idFromString(link.attr('href'));
+    App.ajax({
+      url: '/api/events/trend?event_id=' + event_id,
+      type: 'post',
+      success: function(response, status, request) {
+        link.removeClass('trend');
+        link.addClass('trended');
+        link.attr('href', link.attr('href').replace('trend', 'untrend'));
+      }
+    });
+  });
+  $('.trended').live('click', function(event) {
+    event.preventDefault();
+    var link = $(this);
+    var event_id = idFromString(link.attr('href'));
+    App.ajax({
+      url: '/api/events/untrend?event_id=' + event_id,
+      type: 'post',
+      success: function(response, status, request) {
+        link.removeClass('trended');
+        link.addClass('trend');
+        link.attr('href', link.attr('href').replace('untrend', 'trend'));
+      }
     });
   });
 
 });
 
+function idFromString(string) {
+  return string.match(/\d*$/)[0];
+}
 

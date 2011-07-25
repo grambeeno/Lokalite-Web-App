@@ -50,12 +50,10 @@
 
     <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:medium), :class=>'float-left') %></a>
     
-    <nav id="features">
-      <% if current_user.events.include?(event) %>
-        Already trended
-        <%#= link_to('Trend', "#trend_event/#{event.id}", :class => [:button, :trend]) %>
-      <% else %>
-        <%= link_to('Trend', "#trend_event/#{event.id}", :class => [:button, :trend]) %>
+    <nav class="event-buttons">
+      <% if logged_in? %>
+        <% trend_class = current_user.events.include?(event) ? :trended : :trend  -%>
+        <%= link_to('Trend', "#trend_event/#{event.id}", :class => [:button, trend_class]) %>
       <% end %>
       (<%= pluralize event.users_count, 'trend' %>)
     </nav>
@@ -101,7 +99,7 @@
     
     <div style="display:none;" id="event-map">
       <% maps_url = gmaps_url_for(event) %>
-      <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%= maps_url %>"></iframe><br />
+      <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%#= maps_url %>"></iframe><br />
       <small><a href="<%= maps_url %>" style="color:#0000FF;text-align:left">View Larger Map</a></small>
     </div>
 

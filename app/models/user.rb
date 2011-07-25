@@ -5,7 +5,22 @@ class User < ActiveRecord::Base
   has_many(:organizations, :through => :user_organization_joins)
 
   has_many :user_event_joins
-  has_many :events, :through => :user_event_joins
+  has_many :events, :through => :user_event_joins do
+    def << event
+      super unless include?(event)
+      self
+    end
+
+    def remove(event)
+      event.user_event_joins.find_by_user_id(proxy_owner.id).try('destroy')
+      self
+    end
+  end
+
+  def has_event?(event_id)
+    self.user_event_joins.find_by_event_id(event_id)
+  end
+
 
   has_many(:user_role_joins, :dependent => :destroy)
   has_many(:roles, :through => :user_role_joins) do

@@ -579,11 +579,11 @@
     line-height:20px;
   }
   
-  #content section.profile nav#features {
+  #content section.profile nav.event-buttons {
     float:right;
   }
   
-  #content section.profile nav#features .button {
+  #content section.profile nav.event-buttons .button {
     background:yellow;
   }
 
@@ -1146,3 +1146,6 @@
     clear: both;
   }
 
+  a.button.trended {
+    color: red;
+  }

@@ -428,20 +428,20 @@ Api =
 
   # events/
   #
-
-    interface('/events/:event_id/trend/') do
-      read do
+    # the dao router has a problem with taking more than one route with an embeded param
+    # I looked into it but it was taking too long, so we'll just pass ?event_id= instead
+    interface('/events/trend/') do
+      write do
         event = Event.find(params[:event_id])
         current_user.events << event
         data(event.to_dao)
       end
     end
     
-    interface('/events/:event_id/untrend/') do
-      read do
+    interface('/events/untrend/') do
+      write do
         event = Event.find(params[:event_id])
-        RAILS_DEFAULT_LOGGER.debug { "----- event: #{event.inspect}" }
-        # event.user_event_joins.find_by_user_id(current_user.id).destroy
+        current_user.events.remove(event)
         data(event.to_dao)
       end
     end
