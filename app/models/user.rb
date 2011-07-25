@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many(:user_organization_joins, :dependent => :destroy)
   has_many(:organizations, :through => :user_organization_joins)
 
+  has_many :user_event_joins
+  has_many :events, :through => :user_event_joins
+
   has_many(:user_role_joins, :dependent => :destroy)
   has_many(:roles, :through => :user_role_joins) do
     def user

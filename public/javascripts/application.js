@@ -4,11 +4,11 @@
 
 if(!window.jq && window.jQuery){
   var jq = jQuery;
-};
+}
 
 if(!window.App){
   window.App = {};
-};
+}
 
 App.log = function(){
   try {
@@ -21,7 +21,7 @@ App.log = function(){
 };
 
 
-jq(function(){
+jq(function($){
 // _.templateSettings = { start : '{{', end : '}}', interpolate : /{{(.+?)}}/g };
 //
 
@@ -34,7 +34,7 @@ jq(function(){
         return new Date(matches[1], matches[2] - 1, matches[3]);
       } else {
         return null;
-      };
+      }
     },
     dateToString: function(date) {
       var month = (date.getMonth() + 1).toString();
@@ -69,7 +69,7 @@ jq(function(){
 
     var dismiss = message.find('.dismiss');
 
-    dismiss.click(function(){ message.remove() });
+    dismiss.click(function(){ message.remove(); });
 
     message.addClass(options['class'] || 'info');
     flash.append(message);
@@ -123,7 +123,7 @@ jq(function(){
 
 // facebox shit yo!
 //
-  jq('a[rel*=facebox]').facebox()
+  jq('a[rel*=facebox]').facebox();
   jq(document).bind(
     'afterReveal.facebox',
     function(){
@@ -191,7 +191,7 @@ jq(function(){
 //console.log(delta);
 //console.log(traditional_box_model_width);
           element.data('traditional_box_model_width', traditional_box_model_width);
-        };
+        }
 
         list.push([element, traditional_box_model_width]);
         //element.width(traditional_box_model_width);
@@ -203,14 +203,14 @@ jq(function(){
       var element = pair[0];
       var width = pair[1];
       element.width(width);
-    };
+    }
   };
 
   App.initialize_form_hints = function(){
     var scope = arguments[0];
     scope = scope ? jq(scope) : jq('html');
     toggleformtext();
-  }
+  };
 
   App.initialize_focus = function(){
     var scope = arguments[0];
@@ -289,7 +289,7 @@ jq(function(){
       ajax.data = jQuery.toJSON(options.data || {});
     } else {
       ajax.data = (options.data || {});
-    };
+    }
 
     ajax.contentType = (options.contentType || 'application/json; charset=utf-8');
 
@@ -306,8 +306,8 @@ jq(function(){
           App.ajax.results.push(result);
           App.ajax.result = result;
         };
-      };
-    };
+      }
+    }
 
     jQuery.ajax(ajax);
     return(result);
@@ -336,4 +336,16 @@ jq(function(){
       };
     })();
   }
+
+  $('.trend').live('click', function(event) {
+    event.preventDefault();
+    var event_id = $(this).attr('href').match(/\d*$/)[0];
+    console.log('the URL', event_id);
+    App.ajax('/api/events/' + event_id + '/trend', function() {
+      alert('called trend API');
+    });
+  });
+
 });
+
+

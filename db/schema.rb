@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522201653) do
+ActiveRecord::Schema.define(:version => 20110723005119) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20110522201653) do
     t.datetime "updated_at"
     t.integer  "clone_count",     :default => 0
     t.string   "repeats"
+    t.integer  "users_count",     :default => 0
   end
 
   add_index "events", ["all_day"], :name => "index_events_on_all_day"
@@ -129,9 +130,9 @@ ActiveRecord::Schema.define(:version => 20110522201653) do
     t.string   "phone"
     t.string   "category"
     t.string   "image"
-    t.text     "search"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "search"
   end
 
   add_index "organizations", ["category"], :name => "index_organizations_on_category"
@@ -198,6 +199,13 @@ ActiveRecord::Schema.define(:version => 20110522201653) do
   add_index "tokens", ["expires_at"], :name => "index_tokens_on_expires_at"
   add_index "tokens", ["kind"], :name => "index_tokens_on_kind"
   add_index "tokens", ["uuid"], :name => "index_tokens_on_uuid", :unique => true
+
+  create_table "user_event_joins", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_organization_joins", :force => true do |t|
     t.integer  "user_id"

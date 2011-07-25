@@ -59,6 +59,7 @@ GEM
       activesupport (~> 3.0)
     chronic (0.3.0)
     columnize (0.3.2)
+    dao (3.3.0)
     earth-tools (0.1.0)
       nokogiri (>= 1.2.3)
     erubis (2.6.6)
@@ -82,7 +83,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    map (2.7.1)
+    map (4.2.0)
     mime-types (1.16)
     mini_magick (3.2)
       subexec (~> 0.0.4)
@@ -122,7 +123,7 @@ GEM
       linecache (>= 0.3)
     shared (1.1.0)
     subexec (0.0.4)
-    tagz (8.2.0)
+    tagz (9.0.0)
     texticle (1.0.4.20101004123327)
     thor (0.14.6)
     treetop (1.4.9)
@@ -143,6 +144,7 @@ DEPENDENCIES
   capistrano-ext
   carrierwave
   chronic
+  dao
   earth-tools
   faker
   fattr
@@ -150,14 +152,14 @@ DEPENDENCIES
   jquery-rails (>= 0.2.6)
   lockfile
   logging
-  map (~> 2.7.1)
+  map (~> 4.2.0)
   mini_magick
   pg
   rails (= 3.0.1)
   ruby-debug
   shared
   silent-postgres!
-  tagz (~> 8.2.0)
+  tagz (~> 9.0.0)
   texticle
   tzinfo
   unidecode

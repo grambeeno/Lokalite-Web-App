@@ -4,6 +4,9 @@ class Event < ActiveRecord::Base
   belongs_to(:prototype, :class_name => 'Event', :counter_cache => :clone_count)
   has_many(:clones, :class_name => 'Event', :foreign_key => :prototype_id, :inverse_of => :prototype)
 
+  has_many :user_event_joins
+  has_many :users, :through => :user_event_joins
+
 # organization relationships
 #
   belongs_to(:organization)

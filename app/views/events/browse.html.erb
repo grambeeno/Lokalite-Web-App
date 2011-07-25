@@ -51,8 +51,13 @@
     <a href="<%= event.image.url(:medium) %>" rel="facebox"><%= image_tag(event.image.url(:medium), :class=>'float-left') %></a>
     
     <nav id="features">
-      <%= link_to('Trend', static_path(:coming_soon), :class=>:button) %>
-      <%= link_to('Add to Q', static_path(:coming_soon), :class=>:button) %>
+      <% if current_user.events.include?(event) %>
+        Already trended
+        <%#= link_to('Trend', "#trend_event/#{event.id}", :class => [:button, :trend]) %>
+      <% else %>
+        <%= link_to('Trend', "#trend_event/#{event.id}", :class => [:button, :trend]) %>
+      <% end %>
+      (<%= pluralize event.users_count, 'trend' %>)
     </nav>
   
     <div id="event-data" class="fill-right">

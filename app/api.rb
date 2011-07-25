@@ -12,20 +12,14 @@ Api =
     interface('/organizations/new') do
       require_user!
 
-      apply(params)
-
-      default(:name => '')
-      default(:description => '')
-      default(:email => (current_user ? current_user.email : ''))
-      default(:url => '')
-      default(:phone => '')
-      default(:address => '')
-      default(:category => '')
+      params[:email] = current_user ? current_user.email : ''
       
       read do
       end
 
       write do
+        data(params)
+
         validates_length_of(:name, :in => (2..64))
         validates_word_count_of(:description, :in => (4..420))
         validates_as_location(:address)
@@ -44,12 +38,12 @@ Api =
 
           organization = Organization.new
           organization.users.add(current_user)
-          organization.name = data.name
+          organization.name        = data.name
           organization.description = data.description
-          organization.email = data.email
-          organization.url = data.url
-          organization.phone = data.phone
-          organization.address = data.address
+          organization.email       = data.email
+          organization.url         = data.url
+          organization.phone       = data.phone
+          organization.address     = data.address
           organization.save!
           organization.reload
 
@@ -90,7 +84,7 @@ Api =
       end
 
       write do
-        apply(params)
+        data(params)
         validates_length_of(:name, :in => (2..64))
         validates_word_count_of(:description, :in => (4..420))
         validates_as_location(:address)
@@ -169,18 +163,19 @@ Api =
       require_user!
       require_organization!
 
-      apply(params)
+      data(params)
 
       today = Date.today
       tomorrow = today + 1
 
-      default(:name => '')
-      default(:description => '')
-      default(:starts_at, :date, tomorrow)
-      default(:starts_at, :time, '6pm')
-      default(:ends_at, :date, tomorrow)
-      default(:ends_at, :time, '10pm')
-      default(:category => '')
+      params[:starts_at] = {
+        :date => tomorrow,
+        :time => '6pm'
+      }
+      params[:ends_at] = {
+        :date => tomorrow,
+        :time => '10pm'
+      }
 
       data.update(:organization => organization)
 
@@ -285,6 +280,7 @@ Api =
       read do
         transaction do
           data.update(@event.to_dao)
+          params.merge!(@event.to_dao)
 
           date = @event.venue_time(:starts_at).to_date.to_s
           time =  @event.venue_time(:starts_at).strftime('%H:%M')
@@ -303,7 +299,7 @@ Api =
 
 
       write do
-        apply(params)
+        data(params)
 
         validates_length_of(:name, :in => (2..64))
         validates_word_count_of(:description, :in => (4..420))
@@ -428,6 +424,24 @@ Api =
 
   # events/
   #
+
+    interface('/events/:event_id/trend/') do
+      read do
+        event = Event.find(params[:event_id])
+        current_user.events << event
+        data(event.to_dao)
+      end
+    end
+    
+    interface('/events/:event_id/untrend/') do
+      read do
+        event = Event.find(params[:event_id])
+        RAILS_DEFAULT_LOGGER.debug { "----- event: #{event.inspect}" }
+        # event.user_event_joins.find_by_user_id(current_user.id).destroy
+        data(event.to_dao)
+      end
+    end
+  
     interface('/events/browse') do
 
       read do

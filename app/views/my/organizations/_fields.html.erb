@@ -32,7 +32,7 @@
 
 <%= @result.form.label(:address) %>* &mdash; <span class='hint'>the organization's street address</span>
 <br />
-	<% if @result.form.data.address.empty? %>
+	<% if false && @result.form.data.address.empty? %>
 		<%= text_field_tag 'addr_street','', :placeholder => 'street'  %>
 	  <br />
 		<%= text_field_tag 'addr_city','', :placeholder => 'city'  %>

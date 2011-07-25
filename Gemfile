@@ -15,8 +15,8 @@ gem 'fattr'
 #gem 'tagz'
 gem 'shared'
 
-gem 'map', '~> 2.7.1'
-gem 'tagz', '~> 8.2.0'
+gem 'map', '~> 4.2.0'
+gem 'tagz', '~> 9.0.0'
 
 gem 'geokit-rails3', :git => 'git://github.com/jlecour/geokit-rails3.git'
 gem 'chronic'
@@ -38,7 +38,7 @@ gem 'texticle'
 
 gem "will_paginate", '~> 3.0.beta'
 
-#gem 'dao', :path => 'vendor/gems/dao-2.0.0'
+gem 'dao'
 
 group :development, :test do
   gem 'capistrano'

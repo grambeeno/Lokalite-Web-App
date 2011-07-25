@@ -7,12 +7,12 @@ class APIController < ApplicationController
   before_filter :setup_path
   before_filter :setup_api
 
-  WhiteList = ['ping',
-               'events/browse',
-               'events/show',
-               'events/recommended',
-               'organizations/browse'
-  ]
+  WhiteList = %w[ ping
+                  events/browse
+                  events/show
+                  events/recommended
+                  organizations/browse
+                ]
 
   ### skip_before_filter :set_current_user if Rails.env.production?
 
@@ -90,10 +90,9 @@ protected
   end
 
   def self.white_listed?(path)
-    @white_listed ||= ( WhiteList.inject(Hash.new){|hash, white_list_path| hash.update(white_list_path.to_s => true)} )
-    @white_listed[path.to_s]
+    WhiteList.include?(path.to_s)
   end
-
+  
   def white_listed?(path)
     self.class.white_listed?(path)
   end
