@@ -29,6 +29,7 @@ gem 'tzinfo'
 
 gem 'earth-tools'
 
+gem 'formtastic'
 gem 'annotate'
 
 # Grab it from a git fork to fix problem when running via Pow
