@@ -481,18 +481,6 @@ Api =
       end
     end
 
-  # events/recommended
-  #
-    interface('/events/recommended') do
-      read do
-        includes = [:venue, {:venue => :location}, :category, :image, :organization]
-        events = Event.featured.includes(includes).random.limit(20).all
-
-        data!(:list => events.to_dao) unless events.empty?
-      end
-    end
-
-
   # utils
   #
     def parameter(name, options = {})
