@@ -8,10 +8,6 @@ class CreateCategories < ActiveRecord::Migration
     end
     add_index :categories, [:name], :unique => true
 
-    Category.categories.each do |category|
-      Category.add!(category)
-    end
-
     create_table :category_context_joins, :force => true do |t|
       t.integer :category_id
       t.string :context_type
