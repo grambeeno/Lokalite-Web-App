@@ -10,10 +10,6 @@
 
 <script type='text/javascript'>
   jq(function(){
-    var show_movie = <%= show_movie? ? true : false %> ;
-
-    var movie = jq('#movie');
-
     jq(document).bind(
       'afterClose.facebox',
 
@@ -22,9 +18,5 @@
         facebox.find('.content').empty();
       }
     );
-
-    if(show_movie){
-      movie.click();
-    };
   });
 </script>

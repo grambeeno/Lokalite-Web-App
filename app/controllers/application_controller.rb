@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_current_controller!
   before_filter :configure_default_url_options!
-  before_filter :show_movie_iff_first_time
 
 protected
 # navigation support - RAILS_ROOT/app/shared/navigation.rb
@@ -350,22 +349,6 @@ protected
     options[:layout] = 'application' unless options.has_key?(:layout)
     render(options)
   end
-
-# hack-ass support for showing the movie the first time..
-#
-  def show_movie_iff_first_time
-    if cookies[:shown_movie].blank?
-      cookies[:shown_movie] = true
-      @show_movie = true
-    else
-      @show_movie = false
-    end
-  end
-
-  def show_movie?
-    @show_movie == true
-  end
-  helper_method :show_movie?
 
 # path helpers
 #
