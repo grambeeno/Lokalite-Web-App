@@ -384,6 +384,8 @@ class Event < ActiveRecord::Base
     super(*args) + [:featured?, :venue, :category, :image, {:venue => :location}, :organization]
   end
 
+  # This works, but only for the first object if called on an array.
+  # not sure how to fix that, so for now I'll just do the map myself.
   def to_dao(*args)
     options = args.dup.extract_options!
     user = options.delete(:for_user)

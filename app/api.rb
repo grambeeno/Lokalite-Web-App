@@ -458,7 +458,7 @@ Api =
 
         events = Event.browse(params)
 
-        list = events.to_dao(:for_user => current_user)
+        list = events.map{|event| event.to_dao(:for_user => current_user)}
         data!(:list => list) unless events.empty?
       end
     end
