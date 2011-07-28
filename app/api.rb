@@ -434,7 +434,14 @@ Api =
       write do
         event = Event.find(params[:event_id])
         current_user.events << event
-        data(event.to_dao)
+
+        # for some reason passing the current user was returning
+        # "trended": null in the json. I tried reloading the event and user
+        # but it didn't seem to help. We'll merge in the hardcoded value instead.
+        #
+        # data(event.to_dao(:for_user => current_user))
+
+        data(event.to_dao.merge(:trended? => true))
       end
     end
     
@@ -442,12 +449,12 @@ Api =
       write do
         event = Event.find(params[:event_id])
         current_user.events.remove(event)
-        data(event.to_dao)
+        # data(event.to_dao(:for_user => current_user))
+        data(event.to_dao.merge(:trended? => false))
       end
     end
   
     interface('/events/browse') do
-
       read do
         joins = []
         #TTD - fix hack forcing location to united_states for now
