@@ -58,7 +58,12 @@ GEM
     carrierwave (0.5.1)
       activesupport (~> 3.0)
     chronic (0.3.0)
+    chunky_png (1.2.0)
     columnize (0.3.2)
+    compass (0.11.5)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     dao (3.3.0)
     earth-tools (0.1.0)
       nokogiri (>= 1.2.3)
@@ -71,6 +76,7 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    fssm (0.2.7)
     geokit (1.5.0)
     highline (1.6.2)
     i18n (0.4.2)
@@ -125,6 +131,7 @@ GEM
       ruby-debug-base (~> 0.10.4.0)
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
+    sass (3.1.5)
     shared (1.1.0)
     subexec (0.0.4)
     tagz (9.0.0)
@@ -148,6 +155,7 @@ DEPENDENCIES
   capistrano-ext
   carrierwave
   chronic
+  compass
   dao
   earth-tools
   faker

@@ -1,0 +1,74 @@
+/*
+  Welcome to Compass.
+  In this file you should write your main styles. (or centralize your imports)
+  Import this file using the following HTML or equivalent:
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+// @import compass/reset
+
+@import compass
+
+
+$light-grey: #999
+
+$blue: #3298CF
+// $blue: #2B7BFF
+
+body
+  font-family: Helvetica, Arial, Verdana, sans-serif
+
+
+$margin: 12px
+.event
+  +clearfix
+  padding: 4px $margin
+  // text-shadow: white 1px 1px 1px
+  a
+    +link-colors($blue, darken($blue, 7))
+  .image
+    +float('left')
+    margin-top: 4px 
+    margin-right: $margin
+    width: 150px 
+    img
+      border: 1px solid $light-grey
+  .detail
+    +float('left')
+    width: 460px 
+    margin-right: $margin
+    h1
+      font-size: 22px
+      margin-bottom: 4px 
+    h2
+      font-size: 18px
+      time
+        font-size: 16px
+        font-weight: normal
+    .description
+      +float('left')
+      margin: 12px 0
+
+      font-size: 14px
+      line-height: 1.6em
+  .location
+    +float('left')
+    // margin-top: 80px 
+    width: 240px
+    .map_link
+      display: block
+      margin-top: 12px
+      img
+        border: 1px solid $light-grey
+        border-radius: 5px
+
+      // background-color: red
+      // width: 240px 
+      // height: 76px 
+      
+
+
+
+
+
+
+

@@ -29,6 +29,7 @@ gem 'tzinfo'
 
 gem 'earth-tools'
 
+gem 'compass'
 gem 'formtastic'
 gem 'annotate'
 

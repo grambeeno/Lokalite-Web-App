@@ -1,0 +1,16 @@
+/* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+
+.event { overflow: hidden; *zoom: 1; padding: 4px 12px; }
+.event a { color: #3298cf; }
+.event a:hover { color: #2a83b3; }
+.event .image { display: inline; float: left; margin-top: 4px; margin-right: 12px; width: 150px; }
+.event .image img { border: 1px solid #999999; }
+.event .detail { display: inline; float: left; width: 460px; margin-right: 12px; }
+.event .detail h1 { font-size: 22px; margin-bottom: 4px; }
+.event .detail h2 { font-size: 18px; }
+.event .detail h2 time { font-size: 16px; font-weight: normal; }
+.event .detail .description { display: inline; float: left; margin: 12px 0; font-size: 14px; line-height: 1.6em; }
+.event .location { display: inline; float: left; width: 240px; }
+.event .location .map_link { display: block; margin-top: 12px; }
+.event .location .map_link img { border: 1px solid #999999; border-radius: 5px; }
