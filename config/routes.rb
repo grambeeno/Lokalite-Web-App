@@ -18,9 +18,12 @@ Lokalite::Application.routes.draw do
 
   match 'events(/:action(/:id(.:format)))', :as => :events, :controller => :events
 
+
+  match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
+
 # directory routes
 #
-  match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}
+  # match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\\d+/}
   match 'directory/location/*location/category/:category', :controller => :directory, :action => :browse
   match 'directory/location/*location', :controller => :directory, :action => :browse
   match 'directory/:id', :controller => :directory, :action => :browse

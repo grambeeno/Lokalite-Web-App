@@ -435,14 +435,6 @@ module ApplicationHelper
     at_least_one_error ? to_html : '' 
   end
 
-  def time_format(time, options = {})
-    options.to_options!
-    format = options[:format] || "%m/%e/%Y %I:%M %p"
-    time = Time.parse(time.to_s) unless time.is_a?(Time)
-    time.strftime(format)
-  end
-
-
 # sharethis link generator
 #
   def share_this(*args)

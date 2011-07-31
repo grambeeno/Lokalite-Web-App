@@ -1,0 +1,36 @@
+<section class='event'>
+  <div class='image'>
+    <%= image_tag(event.image.url(:small)) %>
+  </div>
+  <div class='detail'>
+    <h1><%= event.name %></h1>
+    <h2>
+      <time><%= event.time_span %></time>
+      <br />
+      <%= link_to "@ #{event.organization.name}", organization_path(event.organization.slug, event.organization.id) %>
+    </h2>
+    <p class='description'><%= truncate event.description, :length => 140 %></p>
+    <div class="buttons">
+      <%= link_to 'Share', '#' %>
+      &nbsp;
+      <% if logged_in? %>
+        <% trend_state = current_user.events.include?(event) ? :trended : :trend  -%>
+        <%= link_to(trend_state.to_s.titleize, "#trend_event/#{event.id}", :class => [trend_state]) %>
+      <% end %>
+      (<%= pluralize event.users_count, 'trend' %>)
+    </div>
+  </div>
+  <div class="location">
+    <strong><%= event.venue.name %></strong>
+    <br />
+    <%= address_for(event) %>
+    <br />
+
+    <%#= link_to 'Hey there', gmaps_url_for(event), :target => '_blank', :class => 'map_link' %>
+    <%= link_to google_maps_image(event), gmaps_url_for(event), :target => '_blank', :class => 'map_link' %>
+  </div>
+</section>
+
+<hr />
+
+
