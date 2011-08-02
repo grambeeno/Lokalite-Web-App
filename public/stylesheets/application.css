@@ -237,7 +237,7 @@
     white-space:nowrap;
     overflow:hidden;
     text-transform:uppercase;
-    font-family:"deva-ideal-1",arial,sans-serif;
+    font-family:helvetica,arial,sans-serif;
     text-shadow:#fdfdfd 1px 1px 1px;
     font-weight:100;
   }
@@ -350,7 +350,7 @@
     font-size:115%;
     padding:4px 0 0 24px;
     color:#8d8d8d;
-    font-family:"deva-ideal-1",arial,sans-serif;
+    font-family:helvetica,arial,sans-serif;
     -webkit-appearance:textfield; /* get rid of webkit default search styles */
     -moz-box-sizing: content-box;
     -webkit-box-sizing: content-box;
