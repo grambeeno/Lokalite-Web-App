@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
   # include CarrierWave::ImageScience
-    include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   Dir = "system/images/uploads"
 

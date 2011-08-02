@@ -1,40 +1,28 @@
 class Event < ActiveRecord::Base
-# prototype
-#
-  belongs_to(:prototype, :class_name => 'Event', :counter_cache => :clone_count)
-  has_many(:clones, :class_name => 'Event', :foreign_key => :prototype_id, :inverse_of => :prototype)
+  belongs_to :prototype, :class_name => 'Event', :counter_cache => :clone_count
+  has_many :clones, :class_name => 'Event', :foreign_key => :prototype_id, :inverse_of => :prototype
 
   has_many :user_event_joins
   has_many :users, :through => :user_event_joins
 
-# organization relationships
-#
-  belongs_to(:organization)
+  belongs_to :organization
+  belongs_to :location
 
-# category relationships
-#
-  has_one(:category_context_join, :as => :context, :dependent => :destroy, :conditions => {:kind => 'primary'})
-  has_one(:category, :through => :category_context_join)
-  has_many(:category_context_joins, :as => :context, :dependent => :destroy)
-  has_many(:categories, :through => :category_context_joins)
+  acts_as_taggable_on :categories
+
+  # has_one(:category_context_join, :as => :context, :dependent => :destroy, :conditions => {:kind => 'primary'})
+  # has_one(:category, :through => :category_context_join)
+  # has_many(:category_context_joins, :as => :context, :dependent => :destroy)
+  # has_many(:categories, :through => :category_context_joins)
 
   #has_one(:category_context_join, :as => :context, :dependent => :destroy)
   #has_one(:category, :through => :category_context_join, :conditions => {'category_context_joins.kind' => 'primary'})
   #has_one(:category_context_join, :as => :context, :dependent => :destroy, :conditions => {'category_context_joins.kind' => 'primary'})
 
 
-# image relationships
-#
   has_one(:image_context_join, :as => :context, :dependent => :destroy)
   has_one(:image, :through => :image_context_join)
 
-# venue relationships
-#
-  has_one(:venue_context_join, :as => :context, :dependent => :destroy)
-  has_one(:venue, :through => :venue_context_join, :include => :location)
-
-# lifecycle hooks
-#
   before_validation(:on => :create) do |event|
     event.uuid ||= App.uuid
   end
@@ -43,14 +31,16 @@ class Event < ActiveRecord::Base
     event.index! rescue nil
   end
 
-# validations
-#
   validates_presence_of :uuid
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :starts_at
   validates_presence_of :ends_at
-  validates_inclusion_of :all_day, :in => [true, false]
+
+  validates_presence_of :organization
+  validates_presence_of :location
+
+  validates_length_of :description, :maximum => 140
 
 # full-text
 #
@@ -65,6 +55,12 @@ class Event < ActiveRecord::Base
         Event.update_counters event.id, :clone_count => event.clones.count
       end
     end
+  end
+
+  def image_file=(arg)
+    image = arg.is_a?(Image) ? arg : Image.for(arg)
+    image.save
+    self.image = image
   end
 
   def Event.browse(*args)
@@ -128,8 +124,8 @@ class Event < ActiveRecord::Base
       dates = location.date_range_for('today')  
     end
 
-    joins = [:categories, :image, :venue, :organization, {:venue => :location}]
-    includes = [:categories, :image, :venue, :organization]
+    joins = [:categories, :image, :organization]
+    includes = [:categories, :image, :organization]
 
     results = relation
     if organization.blank?
@@ -140,7 +136,7 @@ class Event < ActiveRecord::Base
     end
     results = results.search(keywords.join(' ')) unless keywords.blank?
     results = results.order(order)
-    results = results.joins(joins) # uncommented to fix sorting bug
+    # results = results.joins(joins) # uncommented to fix sorting bug
     results = results.includes(includes)
 
     if dates
@@ -183,14 +179,14 @@ class Event < ActiveRecord::Base
   end
 
   def index!
-    includes = joins = [:organization, {:venue => :location}]
+    includes = joins = [:organization]
     #event = Event.where(:id => id).includes(includes).joins(joins).first 
     #raise self.inspect unless event
     event = self
 
     organization = event.organization
-    venue = event.venue
-    location = venue.location
+    # venue = event.venue
+    location = organization.location
 
     prefixes = Location.prefixes_for(location.prefix)
     location_search = prefixes.map{|prefix| Event.normalize_search_term("/location/#{ prefix }")}.join(' ')
@@ -203,7 +199,7 @@ class Event < ActiveRecord::Base
       organization_search,
       event.name, event.description,
       organization.name, organization.description, organization.url, organization.email, organization.phone,
-      venue.name, venue.description, venue.url, venue.email, venue.phone,
+      # venue.name, venue.description, venue.url, venue.email, venue.phone,
       location.country, location.administrative_area_level_1, location.administrative_area_level_2, location.locality
     ]
 
@@ -229,17 +225,17 @@ class Event < ActiveRecord::Base
     parts.join('/')
   end
 
-  def venue_time(t = :starts_at)
+  def location_time(t = :starts_at)
     case t
       when :starts_at, 'starts_at'
-        venue.time_for(starts_at)
+        location.time_for(starts_at)
       when :ends_at, 'ends_at'
-        venue.time_for(ends_at)
+        location.time_for(ends_at)
       else
-        venue.time_for(t)
+        location.time_for(t)
     end
   end
-  alias_method('time_for', 'venue_time')
+  alias_method('time_for', 'location_time')
   
   #TTD Original method for time format Paul 
   def venue_time_formatted(*args)
@@ -260,8 +256,8 @@ class Event < ActiveRecord::Base
   end
 
   def time_span
-    start_time = venue_time(starts_at)
-    end_time   = venue_time(ends_at)
+    start_time = location_time(starts_at)
+    end_time   = location_time(ends_at)
 
     time = {}
     suffix = ''
@@ -368,7 +364,7 @@ class Event < ActiveRecord::Base
         repeated.category = prototype.category
         repeated.image = prototype.image
         repeated.organization = prototype.organization
-        repeated.venue = prototype.venue
+        # repeated.venue = prototype.venue
         repeated.save!
 
         repeated.index!
@@ -399,7 +395,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.to_dao(*args)
-    super(*args) + [:featured?, :venue, :category, :image, {:venue => :location}, :organization]
+    super(*args) + [:featured?, :category, :image, :organization]
   end
 
   # This works, but only for the first object if called on an array.
@@ -433,6 +429,7 @@ class Event < ActiveRecord::Base
   })
 end
 
+
 # == Schema Information
 #
 # Table name: events
@@ -444,7 +441,6 @@ end
 #  description     :text
 #  starts_at       :datetime
 #  ends_at         :datetime
-#  all_day         :boolean
 #  repeating       :boolean
 #  prototype_id    :integer
 #  search          :text
@@ -452,5 +448,7 @@ end
 #  updated_at      :datetime
 #  clone_count     :integer         default(0)
 #  repeats         :string(255)
+#  users_count     :integer         default(0)
+#  location_id     :integer
 #
 
