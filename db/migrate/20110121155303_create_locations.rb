@@ -30,18 +30,18 @@ class CreateLocations < ActiveRecord::Migration
     add_index :locations, [:lat]
     add_index :locations, [:lng]
 
-    create_table :location_context_joins, :force => true do |t|
-      t.integer :location_id
-      t.string :context_type
-      t.integer :context_id
-      t.string :kind
-    end
-    add_index :location_context_joins, [:location_id]
-    add_index :location_context_joins, [:context_type]
-    add_index :location_context_joins, [:context_id]
-    add_index :location_context_joins, [:kind]
-    add_index :location_context_joins, [:location_id, :context_type, :context_id], :unique => true
-    add_index :location_context_joins, [:location_id, :context_type, :context_id, :kind], :unique => true
+    # create_table :location_context_joins, :force => true do |t|
+    #   t.integer :location_id
+    #   t.string :context_type
+    #   t.integer :context_id
+    #   t.string :kind
+    # end
+    # add_index :location_context_joins, [:location_id]
+    # add_index :location_context_joins, [:context_type]
+    # add_index :location_context_joins, [:context_id]
+    # add_index :location_context_joins, [:kind]
+    # add_index :location_context_joins, [:location_id, :context_type, :context_id], :unique => true
+    # add_index :location_context_joins, [:location_id, :context_type, :context_id, :kind], :unique => true
   end
 
   def self.down

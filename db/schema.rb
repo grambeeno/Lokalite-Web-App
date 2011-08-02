@@ -10,28 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110723005119) do
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
-
-  create_table "category_context_joins", :force => true do |t|
-    t.integer "category_id"
-    t.string  "context_type"
-    t.string  "kind"
-    t.integer "context_id"
-  end
-
-  add_index "category_context_joins", ["category_id"], :name => "index_category_context_joins_on_category_id"
-  add_index "category_context_joins", ["context_id"], :name => "index_category_context_joins_on_context_id"
-  add_index "category_context_joins", ["context_type"], :name => "index_category_context_joins_on_context_type"
-  add_index "category_context_joins", ["kind"], :name => "index_category_context_joins_on_kind"
+ActiveRecord::Schema.define(:version => 20110801165656) do
 
   create_table "events", :force => true do |t|
     t.string   "uuid"
@@ -40,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
     t.text     "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean  "all_day"
     t.boolean  "repeating"
     t.integer  "prototype_id"
     t.text     "search"
@@ -49,9 +27,9 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
     t.integer  "clone_count",     :default => 0
     t.string   "repeats"
     t.integer  "users_count",     :default => 0
+    t.integer  "location_id"
   end
 
-  add_index "events", ["all_day"], :name => "index_events_on_all_day"
   add_index "events", ["description"], :name => "index_events_on_description"
   add_index "events", ["ends_at"], :name => "index_events_on_ends_at"
   add_index "events", ["name"], :name => "index_events_on_name"
@@ -68,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
   end
 
   add_index "image_context_joins", ["context_id"], :name => "index_image_context_joins_on_context_id"
+  add_index "image_context_joins", ["context_type", "context_id", "image_id"], :name => "image_context_type_with_ids", :unique => true
+  add_index "image_context_joins", ["context_type", "context_id", "kind", "image_id"], :name => "image_context_type_with_kind_and_ids", :unique => true
   add_index "image_context_joins", ["context_type"], :name => "index_image_context_joins_on_context_type"
   add_index "image_context_joins", ["image_id"], :name => "index_image_context_joins_on_image_id"
   add_index "image_context_joins", ["kind"], :name => "index_image_context_joins_on_kind"
@@ -78,22 +58,8 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
     t.datetime "updated_at"
   end
 
-  create_table "location_context_joins", :force => true do |t|
-    t.integer "location_id"
-    t.string  "context_type"
-    t.integer "context_id"
-    t.string  "kind"
-  end
-
-  add_index "location_context_joins", ["context_id"], :name => "index_location_context_joins_on_context_id"
-  add_index "location_context_joins", ["context_type"], :name => "index_location_context_joins_on_context_type"
-  add_index "location_context_joins", ["id"], :name => "index_location_context_joins_on_id"
-  add_index "location_context_joins", ["kind"], :name => "index_location_context_joins_on_kind"
-  add_index "location_context_joins", ["location_id"], :name => "index_location_context_joins_on_location_id"
-
   create_table "locations", :force => true do |t|
     t.string   "uuid"
-    t.string   "address"
     t.string   "formatted_address"
     t.string   "country"
     t.string   "administrative_area_level_1"
@@ -107,9 +73,10 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
     t.text     "json"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "organization_id"
   end
 
-  add_index "locations", ["address"], :name => "index_locations_on_address", :unique => true
   add_index "locations", ["administrative_area_level_1"], :name => "index_locations_on_administrative_area_level_1"
   add_index "locations", ["administrative_area_level_2"], :name => "index_locations_on_administrative_area_level_2"
   add_index "locations", ["country"], :name => "index_locations_on_country"
@@ -124,15 +91,14 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
     t.string   "uuid"
     t.string   "name"
     t.text     "description"
-    t.string   "address"
     t.string   "email"
     t.string   "url"
     t.string   "phone"
     t.string   "category"
     t.string   "image"
+    t.text     "search"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "search"
   end
 
   add_index "organizations", ["category"], :name => "index_organizations_on_category"
@@ -180,6 +146,23 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
   add_index "statuses", ["context_id"], :name => "index_statuses_on_context_id"
   add_index "statuses", ["context_type"], :name => "index_statuses_on_context_type"
   add_index "statuses", ["created_at"], :name => "index_statuses_on_created_at"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "tokens", :force => true do |t|
     t.string   "uuid"
@@ -246,29 +229,5 @@ ActiveRecord::Schema.define(:version => 20110723005119) do
   add_index "users", ["password"], :name => "index_users_on_password"
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
   add_index "users", ["uuid"], :name => "index_users_on_uuid", :unique => true
-
-  create_table "venue_context_joins", :force => true do |t|
-    t.integer "venue_id"
-    t.string  "context_type"
-    t.integer "context_id"
-    t.string  "kind"
-  end
-
-  add_index "venue_context_joins", ["context_id"], :name => "index_venue_context_joins_on_context_id"
-  add_index "venue_context_joins", ["context_type"], :name => "index_venue_context_joins_on_context_type"
-  add_index "venue_context_joins", ["kind"], :name => "index_venue_context_joins_on_kind"
-  add_index "venue_context_joins", ["venue_id"], :name => "index_venue_context_joins_on_venue_id"
-
-  create_table "venues", :force => true do |t|
-    t.string   "uuid"
-    t.string   "name"
-    t.text     "description"
-    t.string   "address"
-    t.string   "email"
-    t.string   "url"
-    t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

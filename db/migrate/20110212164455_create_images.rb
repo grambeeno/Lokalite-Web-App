@@ -15,8 +15,8 @@ class CreateImages < ActiveRecord::Migration
     add_index :image_context_joins, [:context_id]
     add_index :image_context_joins, [:image_id]
     add_index :image_context_joins, [:kind]
-    add_index :image_context_joins, [:context_type, :context_id, :image_id], :unique => true
-    add_index :image_context_joins, [:context_type, :context_id, :kind, :image_id], :unique => true
+    add_index :image_context_joins, [:context_type, :context_id, :image_id], :unique => true, :name => 'image_context_type_with_ids'
+    add_index :image_context_joins, [:context_type, :context_id, :kind, :image_id], :unique => true, :name => 'image_context_type_with_kind_and_id'
   end
 
   def self.down
