@@ -1,3 +1,5 @@
+# Directory is now publicly known as "Places"
+# May want to rename if this change sticks
 class DirectoryController < ApplicationController
   before_filter :ensure_location_or_organization, :only => :browse
   before_filter :redirect_when_location_is_being_set
@@ -11,6 +13,13 @@ class DirectoryController < ApplicationController
 
   def browse
     @organizations = Organization.browse(@context)
+  end
+
+  def random_organization
+    # size = Organization.all.size
+    organization = Organization.order('random()').first
+    redirect_to organization_path(organization.slug, organization.id)
+    # render :action => 'organization', :id => organization.id
   end
 
   def organization

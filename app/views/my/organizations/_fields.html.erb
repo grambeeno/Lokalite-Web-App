@@ -1,76 +1,22 @@
-<%= @result.errors %>
-
-<%= @result.form.label(:name) %>* &mdash; <span class='hint'>name of the organization</span>
-<br />
-<%= @result.form.input(:name, :class => :focus, :autofocus => 'autofocus') %>
-<br />
-<br />
-
-<%= @result.form.label(:description) %>* &mdash; <span class='hint'>tell us about the organization</span>
-<br />
-<%= @result.form.textarea(:description) %>
-<br />
-<br />
-
-<%= @result.form.label(:email) %>* &mdash; <span class='hint'>an email where we can contact you</span>
-<br />
-<%= @result.form.input(:email) %>
-<br />
-<br />
-
-<%= @result.form.label(:url, :content => 'Website') %>* &mdash; <span class='hint'>your organization's website, facebook, or twitter url</span>
-<br />
-<%= @result.form.input(:url) %>
-<br />
-<br />
-
-<%= @result.form.label(:phone) %> &mdash; <span class='hint'>the organization's phone number</span>
-<br />
-<%= @result.form.input(:phone) %>
-<br />
-<br />
-
-<%= @result.form.label(:address) %>* &mdash; <span class='hint'>the organization's street address</span>
-<br />
-	<% if false && @result.form.data.address.empty? %>
-		<%= text_field_tag 'addr_street','', :placeholder => 'street'  %>
-	  <br />
-		<%= text_field_tag 'addr_city','', :placeholder => 'city'  %>
-	  <br />
-		<%= text_field_tag 'addr_state','', :placeholder => 'state'  %>
-	  <br />
-		<%= text_field_tag 'addr_zip','', :placeholder => 'zip/(post) code'  %>
-	<% else %>
-	  <%= @result.form.input(:address) %>
-	<% end %>
-<br />
-<br />
-
-<%= @result.form.label(:category) %>* &mdash; <span class='hint'>pick a category for the organization</span>
-<br />
-<%- category_id = defined?(category) ? category.id : nil %>
-<%= @result.form.select(:category, :options => Category.options_for_select, :selected => category_id) %>
-<br />
-<br />
-
-<%= @result.form.label(:image) %>* &mdash; <span class='hint'>a <em>square</em> image of the organization (300x300px is best / <%= accept %>)</span>
-<br />
-<%= @result.form.input(:image, :type => :file, :accept => accept) %>
-<br />
-<br />
-
-<%= @image_cache %>
-
-<% if url = @image_cache.url %>
-
-  <br /> <label>Uploaded: <%= raw(@image_cache.basename.inspect) %></label> <br />
-  <img src='<%= raw(url) %>' alt='<%= raw(url) %>' style='max-width:300px; max-height:300px' /> <br />
-<!--June 2011: Changed max-dimensions to 300x300-->
-<% elsif defined?(image) %>
-  <br /> <label>Uploaded: <%= raw(image.basename.inspect) %></label> <br />
-  <img src='<%= raw(image.url) %>' alt='<%= raw(image.url) %>' style='max-width:300px; max-height:300px' /> <br />
-
+<%= form.inputs do %>
+  <%= form.input :name %>
+  <%= form.input :description %>
+  <%= form.input :email %>
+  <%= form.input :url, :label => 'Website'%>
+  <%= form.input :phone %>
+  <%#= form.input :category %>
+  <%= form.input :image_file, :as => :file, :label => 'Image (300px square)' %>
+  <%= form.semantic_fields_for :locations do |location| %>
+    <% 
+      # why doesn't this work when done in the controller?
+      # location.object.set_address_components_for_editing unless location.object.new_record?
+    %>
+    <%= location.input :address_line_one %>
+    <%= location.input :address_line_two %>
+    <%= location.input :address_city, :label => 'City' %>
+    <%= location.input :address_state, :label => 'State', :as => :select, :collection => US_STATES %>
+    <%= location.input :address_zip, :label => 'Zip Code' %>
+  <% end %>
 <% end %>
-
-<hr />
+<%= form.buttons %>
 

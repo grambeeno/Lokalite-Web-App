@@ -13,11 +13,12 @@
       link_to('All', send("browse_#{active_tab}_path", :category => 'All'), :class => (activated ? 'activated' : '')) 
     %>
 
-    <% Category.list.each do |category| 
-      activated = Slug.for(category.name) == params[:category]
+    <%
+      # Category.list.each do |category|
+      # activated = Slug.for(category.name) == params[:category]
     %>
-      <%= link_to(category.name, send("browse_#{active_tab}_path", :category => category), :class => (activated ? 'activated' : '')) %>
-    <% end %>
+      <%#= link_to(category.name, send("browse_#{active_tab}_path", :category => category), :class => (activated ? 'activated' : '')) %>
+    <%# end %>
 
     <% if active_tab == 'events' %>
       <h3>Dates</h3>

@@ -7,10 +7,12 @@
       #blueprint/src/liquid.css
 
       stylesheets = %w(
-        html5boilerplate.css
-        /facebox/facebox.css
-        jquery.date_input.css
-        application.css
+        html5boilerplate
+        /facebox/facebox
+        jquery.date_input
+        formtastic
+        formtastic_changes
+        application
         screen.css
       )
       stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")

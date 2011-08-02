@@ -154,7 +154,7 @@ protected
   def layout_for_request(*layout)
     @layout_for_request ||= default_layout_for_request
     unless layout.empty?
-      @layout_for_request = layout.first.to_s 
+      @layout_for_request = layout.first.to_s
     end
     @layout_for_request
   end
@@ -454,9 +454,11 @@ protected
   helper_method(:browse_events_path)
 
   def default_location
-    Location.absolute_path_for(
-      session[:location].blank? ? Location.default.prefix : session[:location]
-    )
+    if session[:location].blank?
+      '/colorado'
+    else
+      Location.absolute_path_for(session[:location])
+    end
   end
 
 

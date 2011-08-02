@@ -1,31 +1,23 @@
 <%
-  accept = raw(ImageUploader.accepts.join(', '))
-  id = @result.data.id
-  name = @result.data.name
-  category = @result.data.category
-  image = @result.data.image
-
-  locals = {
-    :accept => accept,
-    :id => id,
-    :name => name,
-    :category => category,
-    :image => image
-  }
+#  accept = raw(ImageUploader.accepts.join(', '))
+#  id = @result.data.id
+#  name = @result.data.name
+#  category = @result.data.category
+#  image = @result.data.image
+#
+#  locals = {
+#    :accept => accept,
+#    :id => id,
+#    :name => name,
+#    :category => category,
+#    :image => image
+#  }
 %>
 
+<% context "Editing #{@organization.name}" %>
 
-<% if false %>
-<pre>
-  <%= JSON.pretty_generate(@result, :max_nesting => 0) %>
-  <% debugger if false %>
-</pre>
+<%= semantic_form_for @organization, :url => my_organization_path(@organization), :html => { :method => 'put' } do |form| %>
+  <%= render :partial => 'fields', :locals => { :form => form } %>
 <% end %>
 
-<%= form do %>
-<% context "Editing #{ raw @result.data.name.inspect }" %>
 
-  <%= render :partial => 'fields', :locals => locals %>
-
-  <%= submit_tag('Update Organization') %>
-<% end %>

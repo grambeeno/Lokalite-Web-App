@@ -1,7 +1,7 @@
 module EventsHelper
 
   def address_for(event)
-    location = event.venue.location
+    location = event.location
     parts = location.formatted_address.split(', ')
 
     result = ''
@@ -13,7 +13,7 @@ module EventsHelper
   end
 
   def google_maps_image(event, options = {})
-    location = event.venue.location
+    location = event.location
     url = 'http://maps.googleapis.com/maps/api/staticmap?'
 
     options.reverse_merge!({
@@ -24,7 +24,7 @@ module EventsHelper
     })
 
     url << options.map{|key, value| key.to_s + '=' + value.to_s }.join('&')
-    image_tag url, :alt => event.venue.name
+    image_tag url, :alt => location.name
   end
 
 end

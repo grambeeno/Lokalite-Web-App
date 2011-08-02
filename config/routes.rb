@@ -18,9 +18,6 @@ Lokalite::Application.routes.draw do
 
   match 'events(/:action(/:id(.:format)))', :as => :events, :controller => :events
 
-
-  match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
-
 # directory routes
 #
   # match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\\d+/}
@@ -32,9 +29,19 @@ Lokalite::Application.routes.draw do
 
   #match 'account(/:action(/:id(.:format)))', :as => :account, :controller => :account
 
+  match 'places/random', :controller => :directory, :action => :random_organization, :as => :random_organization
+  match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
+
+  namespace :my do
+    resources :organizations do
+      match 'statuses' => 'organizations#statuses'
+    end
+    resources :events
+  end
+
   match 'my/events/(:action(/:id(.:format)))', :controller => 'my/events', :as => 'my_events'
-  match 'my/organizations/:id/(:action)', :controller => 'my/organizations', :as => 'my_organization', :constraints => {:id => /\d+/}
-  match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
+  # match 'my/organizations/:id/(:action)', :controller => 'my/organizations', :as => 'my_organization', :constraints => {:id => /\\d+/}
+  # match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
   match 'my/(:action(/:id(.:format)))', :controller => 'my', :as => 'my'
 
   match 'api' => 'api#index', :as => 'api_index'

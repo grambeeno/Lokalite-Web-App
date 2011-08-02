@@ -264,8 +264,8 @@ module ApplicationHelper
 
     case event
       when Event
-        options[:formatted_address] = event.venue.location.formatted_address
-        options[:ll] = event.venue.location.ll
+        options[:formatted_address] = event.location.formatted_address
+        options[:ll] = event.location.ll
       when Hash
         hash.to_options!
         options[:formatted_address] = hash[:formatted_address]
@@ -475,11 +475,11 @@ module ApplicationHelper
     if params[:location]
       current_location_name
     elsif @event
-      @event.venue.location.locality
+      @event.location.locality
     else
       # copied from EventsController
       default_location = Location.absolute_path_for(
-        session[:location].blank? ? Location.default.prefix : session[:location]
+        session[:location].blank? ? Location.default : session[:location]
       )
       (default_location.split('/').last || '').titleize
     end
