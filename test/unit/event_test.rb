@@ -7,6 +7,7 @@ class EventTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: events
@@ -26,5 +27,7 @@ end
 #  updated_at      :datetime
 #  clone_count     :integer         default(0)
 #  repeats         :string(255)
+#  users_count     :integer         default(0)
+#  location_id     :integer
 #
 
