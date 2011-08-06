@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20110801165656) do
 
   add_index "image_context_joins", ["context_id"], :name => "index_image_context_joins_on_context_id"
   add_index "image_context_joins", ["context_type", "context_id", "image_id"], :name => "image_context_type_with_ids", :unique => true
-  add_index "image_context_joins", ["context_type", "context_id", "kind", "image_id"], :name => "image_context_type_with_kind_and_ids", :unique => true
+  add_index "image_context_joins", ["context_type", "context_id", "kind", "image_id"], :name => "image_context_type_with_kind_and_id", :unique => true
   add_index "image_context_joins", ["context_type"], :name => "index_image_context_joins_on_context_type"
   add_index "image_context_joins", ["image_id"], :name => "index_image_context_joins_on_image_id"
   add_index "image_context_joins", ["kind"], :name => "index_image_context_joins_on_kind"

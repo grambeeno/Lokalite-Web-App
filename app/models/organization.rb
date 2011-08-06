@@ -79,7 +79,7 @@ class Organization < ActiveRecord::Base
   def Organization.browse(*args)
     options = Map.extract_options!(args)
 
-    prefix = options[:location] || options[:prefix]
+    prefix = options[:location] || options[:prefix] || 'colorado'
     prefix = prefix.prefix if prefix.respond_to?(:prefix)
     prefix = Location.absolute_path_for(prefix)
 
@@ -95,22 +95,18 @@ class Organization < ActiveRecord::Base
     page = [Integer(page), 1].max
     per_page = [Integer(per_page), 42].min
 
-    per_page = 3 if Rails.env.development?
-
-    order = options[:order]
-    order =
-      case order.to_s
-        when 'name'
-          'organizations.name'
-        when 'date'
-          'organizations.starts_at'
-        when 'category'
-          'categories.name'
-        when 'location'
-          'locations.prefix'
-        else
-          'organizations.updated_at DESC'
-      end
+    case options[:order].to_s
+      when 'name'
+        order = 'organizations.name'
+      when 'date'
+        order = 'organizations.starts_at'
+      when 'category'
+        order = 'categories.name'
+      when 'location'
+        order = 'locations.prefix'
+      else
+        order = 'organizations.updated_at DESC'
+    end
 
     location = Location.find_by_prefix(prefix)
     unless location
@@ -121,14 +117,20 @@ class Organization < ActiveRecord::Base
 
     # joins = [:categories, :images, :statuses, {:venues => :location}]
     # includes = [:categories, :images, :statuses]
-    joins = [:images, :statuses, :location]
-    includes = [:images, :statuses, :location]
+    joins = [:statuses, :locations]
+    # includes = [:image, :statuses, :locations]
+    includes = [:statuses, :locations]
 
     results = relation
-    results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
-    results = results.search(normalize_search_term("/category/#{ category }")) unless category.blank?
-    results = results.search(keywords.join(' ')) unless keywords.blank?
-    #results = results.joins(joins)
+    # TODO - organization filtering is pretty broken, refactor and fix
+
+    # results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
+    prefix = '/colorado/boulder'
+    # results = results.where(:locations => {:prefix => '/colorado/boulder'})
+    results = results.where(:locations => ['prefix like ?', "#{prefix}"])
+    # results = results.search(normalize_search_term("/category/#{ category }")) unless category.blank?
+    # results = results.search(keywords.join(' ')) unless keywords.blank?
+    # results = results.joins(joins)
     results = results.includes(includes)
     results = results.order(order)
 
@@ -163,7 +165,7 @@ class Organization < ActiveRecord::Base
       category_searches,
       organization.name, organization.description,
       organization.name, organization.description, organization.url, organization.email, organization.phone,
-      location.country, location.administrative_area_level_1, location.administrative_area_level_2, location.locality
+      location.name, location.country, location.administrative_area_level_1, location.administrative_area_level_2, location.locality
     ]
 
     search = terms.flatten.compact.join(' ')
@@ -198,8 +200,10 @@ class Organization < ActiveRecord::Base
     "/directory/location#{ location.prefix }/#{ Slug.for(name) }/#{ id }"
   end
 
-  def self.to_dao(*args)
-    super(*args).reject{|arg| arg == 'search'} << :status
+  def Organization.to_dao(*args)
+    remove = %w[search]
+    add    = %w[status location]
+    super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
 =begin

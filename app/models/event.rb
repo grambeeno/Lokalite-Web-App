@@ -7,18 +7,9 @@ class Event < ActiveRecord::Base
 
   belongs_to :organization
   belongs_to :location
+  acts_as_mappable :through => :location
 
   acts_as_taggable_on :categories
-
-  # has_one(:category_context_join, :as => :context, :dependent => :destroy, :conditions => {:kind => 'primary'})
-  # has_one(:category, :through => :category_context_join)
-  # has_many(:category_context_joins, :as => :context, :dependent => :destroy)
-  # has_many(:categories, :through => :category_context_joins)
-
-  #has_one(:category_context_join, :as => :context, :dependent => :destroy)
-  #has_one(:category, :through => :category_context_join, :conditions => {'category_context_joins.kind' => 'primary'})
-  #has_one(:category_context_join, :as => :context, :dependent => :destroy, :conditions => {'category_context_joins.kind' => 'primary'})
-
 
   has_one(:image_context_join, :as => :context, :dependent => :destroy)
   has_one(:image, :through => :image_context_join)
@@ -65,45 +56,30 @@ class Event < ActiveRecord::Base
 
   def Event.browse(*args)
     options = Map.extract_options!(args)
-    prefix = options[:location] || options[:prefix]
+    prefix = options[:location] || options[:prefix] || 'colorado'
     prefix = prefix.prefix if prefix.respond_to?(:prefix)
     prefix = Location.absolute_path_for(prefix)
 
-    category = options[:category]
-    category = category.name if category.respond_to?(:name)
-    category = Slug.for(category)
-
-    organization = options[:organization]
-    organization = organization.id if organization.is_a?(Organization) 
+    organization_id = options[:organization_id]
 
     keywords = args + Array(options[:keywords])
     keywords = Array(keywords).flatten.compact
 
-    page = options[:page] || 1
-    per_page = options[:per_page] || 20 
-    page = [Integer(page), 1].max
+    page     = options[:page] || 1
+    per_page = options[:per_page] || 20
+    page     = [Integer(page), 1].max
     per_page = [Integer(per_page), 42].min
 
-    ### per_page = 3 if Rails.env.development?
+    case options[:order].to_s
+      when 'name'
+        order = 'events.name'
+      when 'date'
+        order = 'events.starts_at asc'
+      else
+        order = 'events.starts_at asc'
+    end
 
-    order = options[:order]
-    order, joins =
-      case order.to_s
-        when 'name'
-          ['events.name', []]
-        when 'date'
-          ['events.starts_at', []]
-        when 'category'
-          ['categories.name', [:categories]]
-        when 'venue'
-          ['venues.name', [:venue]]
-        when 'location'
-          ['locations.locality', [{:venue => :location}]]
-        else
-          ['events.starts_at asc', []]
-      end
-
-    if organization.blank?
+    if organization_id.blank?
       location = Location.find_by_prefix(prefix)
       unless location
         locations = Location.where('prefix like ?', "#{ prefix }%").order('prefix')
@@ -111,7 +87,8 @@ class Event < ActiveRecord::Base
       end
       raise "no location for #{ prefix.inspect }" unless location
     else
-      location = options[:organization].location
+      organization = Organization.find(organization_id)
+      location = organization.location
     end
 
     date = options[:date]
@@ -128,11 +105,13 @@ class Event < ActiveRecord::Base
     includes = [:categories, :image, :organization]
 
     results = relation
-    if organization.blank?
+
+
+    if organization_id.blank?
       results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
-      results = results.search(normalize_search_term("/category/#{ category }")) unless category.blank?
+      results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
     else
-      results = results.search(normalize_search_term("/organization/#{ organization }")) unless organization.blank?
+      results = results.search(normalize_search_term("/organization/#{ organization_id }")) unless organization_id.blank?
     end
     results = results.search(keywords.join(' ')) unless keywords.blank?
     results = results.order(order)
@@ -151,6 +130,9 @@ class Event < ActiveRecord::Base
       cutoff = location.time_for(cutoff) if location
       results = results.where('events.ends_at >= ?', cutoff)
     end
+
+    # results = results.includes(:location).geo_scope(:within => 5, :origin => [40.014781,-105.186989])
+    # logger.debug { "----------------- results: #{results.inspect}" }
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
@@ -214,9 +196,9 @@ class Event < ActiveRecord::Base
     if venue and venue.location
       parts.push("location#{ venue.location.prefix }")
     end
-    if category
-      parts.push("category/#{ Slug.for(category.name) }")
-    end
+    # if category
+    #   parts.push("category/#{ Slug.for(category.name) }")
+    # end
     if venue and venue.location
       parts.push("date/#{ venue_time.to_date }")
     else
@@ -390,12 +372,13 @@ class Event < ActiveRecord::Base
   end
 
   def featured?
-    featured = Category.for('Featured')
-    categories.include?(featured)
+    categories.any?{|c| c.name.downcase == 'featured' }
   end
 
-  def self.to_dao(*args)
-    super(*args) + [:featured?, :category, :image, :organization]
+  def Event.to_dao(*args)
+    remove = %w[search]
+    add    = %w[featured? categories image organization location]
+    super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
   # This works, but only for the first object if called on an array.

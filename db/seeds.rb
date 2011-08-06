@@ -2,9 +2,6 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 
-require 'open-uri'
-
-
 User.destroy_all
 Organization.destroy_all
 Location.destroy_all
