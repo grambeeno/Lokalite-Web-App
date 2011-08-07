@@ -16,9 +16,12 @@ $blue: #607890
 $green: #7DA762
 // $blue: #2B7BFF
 
+$grey: #5d5d5d
+
+
 =centered-on-page
-  width: 1080px 
-  margin: 0 auto 
+  width: 1080px
+  margin: 0 auto
   // background-color: white
 
 =sidebars
@@ -46,7 +49,7 @@ body
         +float('right')
         ul
           +horizontal-list(8px)
-          margin-top: 32px 
+          margin-top: 32px
           a
             +link-colors(white, $green)
             text-decoration: none
@@ -60,7 +63,7 @@ body
       nav ul
         +horizontal-list
       .copyright
-        +float('right') 
+        +float('right')
 
   #main
     +centered-on-page
@@ -87,13 +90,13 @@ $sidebar-width: 160px - $sidebar-padding
 #right-sidebar
   width: $sidebar-width
   padding-left: $sidebar-padding
-  
+
   ul
-    margin: 0 
+    margin: 0
     +no-bullets
     li
       +clearfix
-      margin-bottom: 10px 
+      margin-bottom: 10px
       a
         text-decoration: none
         +link-colors(black, $blue)
@@ -101,23 +104,21 @@ $sidebar-width: 160px - $sidebar-padding
         +float('left')
         img
           // done in CSS for now, probably want to get an image at this scale
-          width: 30px 
+          width: 30px
       .details
         +float('left')
         // font-weight: bold
-        width: 110px 
-        padding-left: 10px 
+        width: 110px
+        padding-left: 10px
         font-size: 12px
         .organization
           font-size: 10px
 
 #middle
-  width: 760px 
+  width: 760px
   +single-box-shadow(#333333, 0, 0, 8px)
-  margin-bottom: 10px 
+  margin-bottom: 25px
   +border-bottom-radius(8px)
-
-$grey: #5d5d5d
 
 $event-spacing: 25px
 
@@ -125,6 +126,10 @@ $event-spacing: 25px
   background:
     image: image-url('transparent-black.png')
     repeat: repeat
+
+=foreground
+  background-color: white
+  +single-box-shadow
 
 .events
   font-size: 12px
@@ -141,7 +146,7 @@ $event-spacing: 25px
   // a
   //   +link-colors($blue, darken($blue, 7))
   li
-    background-color: white
+    +foreground
     +float('left')
     width: 200px
     padding: 10px 10px 4px
@@ -154,13 +159,12 @@ $event-spacing: 25px
       //   color: $blue
     a
       +unstyled-link
-    
+
     // +single-box-shadow(black, 0, 0, 4px)
-    +single-box-shadow
     // text-shadow: white 1px 1px 1px
     .image
       position: relative
-      width: 202px 
+      width: 202px
       img
         border: 1px solid black
       .description
@@ -171,7 +175,7 @@ $event-spacing: 25px
         line-height: 1.6em
         +transparent-black
         color: white
-        padding: 2px 
+        padding: 2px
         display: none
 
       .trend-button
@@ -196,7 +200,7 @@ $event-spacing: 25px
           color: white
           position: absolute
           left: 23px
-          top: 2px          
+          top: 2px
 
     .detail
       h1
@@ -208,33 +212,58 @@ $event-spacing: 25px
         // height: 1em
         // overflow: hidden
       table.times
-        margin-top: 10px 
+        margin-top: 10px
         font-size: 10px
         text-align: left
         tr
-          height: 12px 
+          height: 12px
         th
           font-style: italic
           font-weight: normal
           color: $grey
-          // width: 38px 
+          // width: 38px
         .time
           font-weight: bold
           text-align: right
-          // width: 60px 
-          padding: 0 12px 
-        .date
+          // width: 60px
+          padding: 0 12px
 
-    .location
-      // margin-top: 80px 
-      width: 240px
+.event
+  +foreground
+  +clearfix
+  padding: 10px
+  margin: 0 25px
+  .image
+    +float('right')
+    img
+      border: 1px solid black
+  .detail
+    +float('left')
+    width: 378px
+    padding-right: 10px
 
-      // background-color: red
-      // width: 240px 
-      // height: 76px 
-      
+    h1
+      font-size: 22px
+    h2
+      font-size: 18px
+    .description
+      margin: 1em 0
+
+  .location
+    .map img
+      border: 1px solid #ddd
+      +border-radius(5px)
+  // .location
+  //   // margin-top: 80px
+  //   width: 240px
 
 
+
+.clear
+  width: 100%
+  height: 1px
+  margin: 0 0 -1px
+  clear: both
 
 
 

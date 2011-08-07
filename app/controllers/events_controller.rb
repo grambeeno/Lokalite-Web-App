@@ -16,7 +16,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    includes = [:category, :image, :organization]
+    includes = [:categories, :image, :organization]
     @event = Event.where(:id => params[:id]).includes(includes).first
 
     redirect_to('/404.html') and return unless @event

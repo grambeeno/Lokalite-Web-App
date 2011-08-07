@@ -12,19 +12,19 @@ module EventsHelper
     raw result.chomp('<br />')
   end
 
-  # def google_maps_image(event, options = {})
-  #   location = event.location
-  #   url = 'http://maps.googleapis.com/maps/api/staticmap?'
-  # 
-  #   options.reverse_merge!({
-  #     :markers => "#{location.lat},#{location.lng}",
-  #     :zoom   => 13,
-  #     :size   => '240x100',
-  #     :sensor => false
-  #   })
-  # 
-  #   url << options.map{|key, value| key.to_s + '=' + value.to_s }.join('&')
-  #   image_tag url, :alt => location.name
-  # end
+  def google_maps_image(event, options = {})
+    location = event.location
+    url = 'http://maps.googleapis.com/maps/api/staticmap?'
+  
+    options.reverse_merge!({
+      :markers => "#{location.lat},#{location.lng}",
+      :zoom   => 13,
+      :size   => '378x378',
+      :sensor => false
+    })
+  
+    url << options.map{|key, value| key.to_s + '=' + value.to_s }.join('&')
+    image_tag url, :alt => location.name
+  end
 
 end

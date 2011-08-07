@@ -1,6 +1,7 @@
 <h3>Top Trending Events</h3>
 
 <ul>
+  <%# TODO - this is a prime canditate for fragment cacheing %>
   <% for event in Event.trending.limit(10) -%>
     <li>
       <%= link_to event_path(event.slug, event.id) do %>

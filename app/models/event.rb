@@ -45,8 +45,7 @@ class Event < ActiveRecord::Base
   })
 
   scope(:featured, lambda{|*args|
-    featured = Category.for('Featured')
-    joins(:categories).includes(:categories).where('category_id = ?', featured.id)
+    joins(:categories).includes(:categories).tagged_with('featured', :on => :categories)
   })
 
   scope(:random, lambda{|*args|
