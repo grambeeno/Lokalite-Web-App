@@ -44,6 +44,8 @@ Lokalite::Application.routes.draw do
   # match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
   match 'my/(:action(/:id(.:format)))', :controller => 'my', :as => 'my'
 
+  match 'my/profile', :controller => 'my', :action => 'profile', :as => 'edit_profile'
+
   match 'api' => 'api#index', :as => 'api_index'
   match 'api/*path' => 'api#call', :as => 'api'
 

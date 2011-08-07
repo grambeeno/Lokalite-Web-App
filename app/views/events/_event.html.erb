@@ -1,45 +1,48 @@
 <li>
-  <div class='image'>
-    <%= image_tag(event.image.url(:medium)) %>
-    <div class='description'><%= event.description %></div>
+    <div class='image'>
+      <%= link_to event_path(event.slug, event.id) do %>
+        <%= image_tag(event.image.url(:medium)) %>
+        <div class='description'><%= event.description %></div>
+      <% end %>
 
-    <%
-        if logged_in?
-          trend_state = current_user.events.include?(event) ? :trended : :trend 
-        else
-          trend_state = :trend 
-        end
-    -%>
-
-    <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
-      <div class="trend-count">
-        <%= event.users_count %>
-      </div>
-    <% end %>
-  </div>
-  <div class='detail'>
-    <h1><%= truncate event.name, :length => 28 %></h1>
-    
-    <div class="organization">
-      @ <%= event.organization.name %>
+      <%
+          if logged_in?
+            trend_state = current_user.events.include?(event) ? :trended : :trend 
+          else
+            trend_state = :trend 
+          end
+      -%>
+      <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
+        <div class="trend-count">
+          <%#= rand(300) %>
+          <%= event.users_count %>
+        </div>
+      <% end %>
     </div>
 
-
-    <table class="times">
-      <tr>
-        <th>Starts</th>
-        <td class="time"><%= event.starts_at.strftime("%l:%m%p").downcase %></td>
-        <td class="date"><%= event.starts_at.strftime("%a, %B %e") %></td>
-      </tr>
-      <tr>
-        <th>Ends</th>
-        <td class="time"><%= event.ends_at.strftime("%l:%m%p").downcase %></td>
-        <td class="date"><%= event.ends_at.strftime("%a, %B %e") %></td>
-      </tr>
-    </table>
+  <%= link_to event_path(event.slug, event.id) do %>
+    <div class='detail'>
+      <h1><%= truncate event.name, :length => 28 %></h1>
+      
+      <div class="organization">
+        @ <%= event.organization.name %>
+      </div>
 
 
-  </div>
+      <table class="times">
+        <tr>
+          <th>Starts</th>
+          <td class="time"><%= event.starts_at.strftime("%l:%m%p").downcase %></td>
+          <td class="date"><%= event.starts_at.strftime("%a, %B %e") %></td>
+        </tr>
+        <tr>
+          <th>Ends</th>
+          <td class="time"><%= event.ends_at.strftime("%l:%m%p").downcase %></td>
+          <td class="date"><%= event.ends_at.strftime("%a, %B %e") %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
 </li>
 
 

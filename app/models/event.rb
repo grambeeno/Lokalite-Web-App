@@ -33,6 +33,28 @@ class Event < ActiveRecord::Base
 
   validates_length_of :description, :maximum => 140
 
+
+  scope(:after, lambda{|*args|
+    options = args.extract_options!
+    after = options[:after] || Date.today
+    where('ends_at > ?', after)
+  })
+
+  scope(:prototypes, lambda{|*args|
+    where('prototype_id is null')
+  })
+
+  scope(:featured, lambda{|*args|
+    featured = Category.for('Featured')
+    joins(:categories).includes(:categories).where('category_id = ?', featured.id)
+  })
+
+  scope(:random, lambda{|*args|
+    order('random()')
+  })
+
+  scope :trending, includes(:organization)
+
 # full-text
 #
   index do
@@ -193,15 +215,14 @@ class Event < ActiveRecord::Base
   def slug
     parts = []
     parts.push(Slug.for(name))
-    if venue and venue.location
-      parts.push("location#{ venue.location.prefix }")
+    if location
+      parts.push("location#{ location.prefix }")
+      parts.push("date/#{ location_time.to_date }")
     end
     # if category
     #   parts.push("category/#{ Slug.for(category.name) }")
     # end
-    if venue and venue.location
-      parts.push("date/#{ venue_time.to_date }")
-    else
+    unless location
       parts.push("date/#{ starts_at.to_date }")
     end
     parts.join('/')
@@ -390,26 +411,6 @@ class Event < ActiveRecord::Base
     extras[:trended?] = user.events.include?(self) if user
     super(*options).push(extras)
   end
-
-
-  scope(:after, lambda{|*args|
-    options = args.extract_options!
-    after = options[:after] || Date.today
-    where('ends_at > ?', after)
-  })
-
-  scope(:prototypes, lambda{|*args|
-    where('prototype_id is null')
-  })
-
-  scope(:featured, lambda{|*args|
-    featured = Category.for('Featured')
-    joins(:categories).includes(:categories).where('category_id = ?', featured.id)
-  })
-
-  scope(:random, lambda{|*args|
-    order('random()')
-  })
 end
 
 

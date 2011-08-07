@@ -26,19 +26,30 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar { width: 150px; padding-right: 10px; }
 
 #right-sidebar { width: 150px; padding-left: 10px; }
+#right-sidebar ul { margin: 0; list-style: none; }
+#right-sidebar ul li { list-style-image: none; list-style-type: none; margin-left: 0px; }
+#right-sidebar ul li { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
+#right-sidebar ul li a { text-decoration: none; color: black; }
+#right-sidebar ul li a:hover { color: #607890; }
+#right-sidebar ul li .image { display: inline; float: left; }
+#right-sidebar ul li .image img { width: 30px; }
+#right-sidebar ul li .details { display: inline; float: left; width: 110px; padding-left: 10px; font-size: 12px; }
+#right-sidebar ul li .details .organization { font-size: 10px; }
 
 #middle { width: 760px; -moz-box-shadow: 0 0 8px #333333; -webkit-box-shadow: 0 0 8px #333333; -o-box-shadow: 0 0 8px #333333; box-shadow: 0 0 8px #333333; margin-bottom: 10px; -moz-border-radius-bottomleft: 8px; -webkit-border-bottom-left-radius: 8px; -o-border-bottom-left-radius: 8px; -ms-border-bottom-left-radius: 8px; -khtml-border-bottom-left-radius: 8px; border-bottom-left-radius: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-right-radius: 8px; -o-border-bottom-right-radius: 8px; -ms-border-bottom-right-radius: 8px; -khtml-border-bottom-right-radius: 8px; border-bottom-right-radius: 8px; }
 
 .events { font-size: 12px; overflow: hidden; *zoom: 1; margin: 0; margin-top: -25px; padding-bottom: 10px; }
 .events li { background-color: white; display: inline; float: left; width: 200px; padding: 10px 10px 4px; margin-top: 25px; margin-left: 25px; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; }
+.events li a { color: inherit; text-decoration: inherit; cursor: inherit; }
+.events li a:active, .events li a:focus { outline: none; }
 .events li .image { position: relative; width: 202px; }
 .events li .image img { border: 1px solid black; }
 .events li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312687675'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1312690841'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1312700576'); background-position: top; width: 52px; height: 52px; }
 .events li .image .trend-button:hover { background-position: bottom; }
 .events li .image .trend-button.trended { background-position: bottom; }
 .events li .image .trend-button.trended:hover { background-position: top; }
-.events li .image .trend-button .trend-count { font-style: italic; font-size: 10px; color: white; position: absolute; left: 26px; top: 3px; }
+.events li .image .trend-button .trend-count { font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
 .events li .detail h1 { font-size: 14px; }
 .events li .detail .organization { font-size: 12px; }
 .events li .detail table.times { margin-top: 10px; font-size: 10px; text-align: left; }

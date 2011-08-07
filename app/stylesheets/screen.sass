@@ -10,7 +10,9 @@
 
 
 
-$blue: #3298CF
+// $blue: #3298CF
+$blue: #607890
+
 $green: #7DA762
 // $blue: #2B7BFF
 
@@ -85,6 +87,29 @@ $sidebar-width: 160px - $sidebar-padding
 #right-sidebar
   width: $sidebar-width
   padding-left: $sidebar-padding
+  
+  ul
+    margin: 0 
+    +no-bullets
+    li
+      +clearfix
+      margin-bottom: 10px 
+      a
+        text-decoration: none
+        +link-colors(black, $blue)
+      .image
+        +float('left')
+        img
+          // done in CSS for now, probably want to get an image at this scale
+          width: 30px 
+      .details
+        +float('left')
+        // font-weight: bold
+        width: 110px 
+        padding-left: 10px 
+        font-size: 12px
+        .organization
+          font-size: 10px
 
 #middle
   width: 760px 
@@ -119,10 +144,16 @@ $event-spacing: 25px
     background-color: white
     +float('left')
     width: 200px
-    // +clearfix
     padding: 10px 10px 4px
     margin-top: $event-spacing
     margin-left: $event-spacing
+
+    // &:hover
+    //   background-color: darken(white, 5%)
+      // .detail
+      //   color: $blue
+    a
+      +unstyled-link
     
     // +single-box-shadow(black, 0, 0, 4px)
     +single-box-shadow
@@ -164,9 +195,8 @@ $event-spacing: 25px
           font-size: 10px
           color: white
           position: absolute
-          left: 26px
-          top: 3px
-          
+          left: 23px
+          top: 2px          
 
     .detail
       h1

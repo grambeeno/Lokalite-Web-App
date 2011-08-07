@@ -1,1 +1,21 @@
-<%= render :partial => '/layouts/left_sidebar' %>
+<h3>Top Trending Events</h3>
+
+<ul>
+  <% for event in Event.trending.limit(10) -%>
+    <li>
+      <%= link_to event_path(event.slug, event.id) do %>
+        <div class="image">
+          <%= image_tag(event.image.url(:thumb)) %>
+        </div>
+        <div class="details">
+          <%= truncate event.name, :length => 19 %>
+          <div class="organization">
+            <%= truncate event.organization.name, :length => 22 %>
+          </div>
+        </div>
+      <% end %>
+    </li>
+  <% end -%>
+</ul>
+
+
