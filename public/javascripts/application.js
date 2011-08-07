@@ -102,7 +102,6 @@ jq(function($){
     App.initialize_type_classes(scope);
     //App.initialize_traditional_box_model(scope);
     App.initialize_form_hints(scope); 
-    App.initialize_password(scope); 
     App.initialize_date_inputs(scope);
     App.initialize_submits(scope);
     App.initialize_focus(scope);
@@ -219,12 +218,6 @@ jq(function($){
     scope.find('#focus:first').focus().click();
   };
 
-  App.initialize_password = function(){
-    var scope = arguments[0];
-    scope = scope ? jq(scope) : jq('html');
-    scope.find('.dPassword').dPassword();
-  };
-
   App.initialize_date_inputs = function(){
     var scope = arguments[0];
     scope = scope ? jq(scope) : jq('html');
@@ -337,6 +330,7 @@ jq(function($){
     })();
   }
 
+
   $('.trend').live('click', function(event) {
     event.preventDefault();
     var link = $(this);
@@ -345,33 +339,45 @@ jq(function($){
       url: '/api/events/trend?event_id=' + event_id,
       type: 'post',
       success: function(response, status, request) {
+        var counter = link.find('.trend-count');
+        counter.text( parseInt(counter.text(), 10) + 1 )
+      
         link.removeClass('trend');
         link.addClass('trended');
-        link.text('Trended')
         link.attr('href', link.attr('href').replace('trend', 'untrend'));
       }
     });
   });
-  $('.trended').live({
-    mouseenter: function(event) { $(this).text('Untrend'); },
-    mouseleave: function(event) { $(this).text('Trended'); },
-    click:      function(event) {
-      event.preventDefault();
-      console.log('untrend');
-      var link = $(this);
-      var event_id = idFromString(link.attr('href'));
-      App.ajax({
-        url: '/api/events/untrend?event_id=' + event_id,
-        type: 'post',
-        success: function(response, status, request) {
-          link.removeClass('trended');
-          link.addClass('trend');
-          link.text('Trend')
-          link.attr('href', link.attr('href').replace('untrend', 'trend'));
-        }
-      });
+
+  $('.trended').live('click', function(event) {
+    event.preventDefault();
+    console.log('untrend');
+    var link = $(this);
+    var event_id = idFromString(link.attr('href'));
+    App.ajax({
+      url: '/api/events/untrend?event_id=' + event_id,
+      type: 'post',
+      success: function(response, status, request) {
+        var counter = link.find('.trend-count');
+        counter.text( parseInt(counter.text(), 10) - 1 )
+
+        link.removeClass('trended');
+        link.addClass('trend');
+        link.attr('href', link.attr('href').replace('untrend', 'trend'));
+      }
+    });
+  });
+
+
+  $('.events li').live({
+    mouseenter: function() {
+      $(this).find('.description').show("slide", { direction: "down" }, 200);
+    },
+    mouseleave: function() {
+      $(this).find('.description').hide("slide", { direction: "down" }, 400);
     }
   });
+
 });
 
 function idFromString(string) {

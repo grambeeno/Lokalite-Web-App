@@ -9,57 +9,195 @@
 @import compass
 
 
-$light-grey: #999
 
 $blue: #3298CF
+$green: #7DA762
 // $blue: #2B7BFF
+
+=centered-on-page
+  width: 1080px 
+  margin: 0 auto 
+  // background-color: white
+
+=sidebars
+  nav ul
 
 body
   font-family: Helvetica, Arial, Verdana, sans-serif
 
+  > header
+    height: image-height('header-bg.png')
+    background:
+      color: black
+      image: image-url('header-bg.png')
+      repeat: repeat-x
+    .content
+      +centered-on-page
+      +clearfix
 
-$margin: 12px
-.event
+      .logo
+        +float('left')
+        display: block
+        +replace-text-with-dimensions('header-logo.png')
+
+      nav
+        +float('right')
+        ul
+          +horizontal-list(8px)
+          margin-top: 32px 
+          a
+            +link-colors(white, $green)
+            text-decoration: none
+            font-size: 14px
+            font-weight: bold
+
+
+  > footer
+    .content
+      +centered-on-page
+      nav ul
+        +horizontal-list
+      .copyright
+        +float('right') 
+
+  #main
+    +centered-on-page
+    +clearfix
+    #middle
+      background:
+        color: white
+        image: image-url('main-bg.png')
+        repeat: repeat
+
+#left-sidebar,
+#right-sidebar,
+#middle
+  +float('left')
+  padding: 16px 0
+
+$sidebar-padding: 10px
+$sidebar-width: 160px - $sidebar-padding
+
+#left-sidebar
+  width: $sidebar-width
+  padding-right: $sidebar-padding
+
+#right-sidebar
+  width: $sidebar-width
+  padding-left: $sidebar-padding
+
+#middle
+  width: 760px 
+  +single-box-shadow(#333333, 0, 0, 8px)
+  margin-bottom: 10px 
+  +border-bottom-radius(8px)
+
+$grey: #5d5d5d
+
+$event-spacing: 25px
+
+=transparent-black
+  background:
+    image: image-url('transparent-black.png')
+    repeat: repeat
+
+.events
+  font-size: 12px
   +clearfix
-  padding: 4px $margin
-  // text-shadow: white 1px 1px 1px
-  a
-    +link-colors($blue, darken($blue, 7))
-  .image
-    +float('left')
-    margin-top: 4px 
-    margin-right: $margin
-    width: 150px 
-    img
-      border: 1px solid $light-grey
-  .detail
-    +float('left')
-    width: 460px 
-    margin-right: $margin
-    h1
-      font-size: 22px
-      margin-bottom: 4px 
-    h2
-      font-size: 18px
-      time
-        font-size: 16px
-        font-weight: normal
-    .description
-      +float('left')
-      margin: 12px 0
+  margin: 0
 
-      font-size: 14px
-      line-height: 1.6em
-  .location
+  // In order to get the top border of the box-shadow to be displayed
+  // we need to give it a top margin, so here we pull the container up
+  // by the same amount.
+  // We also give some padding-bottom so the bottom box-shadow border appears
+  margin-top: -$event-spacing
+  padding-bottom: 10px
+
+  // a
+  //   +link-colors($blue, darken($blue, 7))
+  li
+    background-color: white
     +float('left')
-    // margin-top: 80px 
-    width: 240px
-    .map_link
-      display: block
-      margin-top: 12px
+    width: 200px
+    // +clearfix
+    padding: 10px 10px 4px
+    margin-top: $event-spacing
+    margin-left: $event-spacing
+    
+    // +single-box-shadow(black, 0, 0, 4px)
+    +single-box-shadow
+    // text-shadow: white 1px 1px 1px
+    .image
+      position: relative
+      width: 202px 
       img
-        border: 1px solid $light-grey
-        border-radius: 5px
+        border: 1px solid black
+      .description
+        position: absolute
+        bottom: 4px
+        right: 1px
+        left: 1px
+        line-height: 1.6em
+        +transparent-black
+        color: white
+        padding: 2px 
+        display: none
+
+      .trend-button
+        text-decoration: none
+        position: absolute
+        top: 0
+        left: 0
+        background:
+          image: image-url('trend-corner.png')
+          position: top
+        width: image-width('trend-corner.png')
+        height: image-height('trend-corner.png')/2
+        &:hover
+          background-position: bottom
+        &.trended
+          background-position: bottom
+          &:hover
+            background-position: top
+        .trend-count
+          font-style: italic
+          font-size: 10px
+          color: white
+          position: absolute
+          left: 26px
+          top: 3px
+          
+
+    .detail
+      h1
+        font-size: 14px
+        // height: 1em
+        // overflow: hidden
+      .organization
+        font-size: 12px
+        // height: 1em
+        // overflow: hidden
+      table.times
+        margin-top: 10px 
+        font-size: 10px
+        text-align: left
+        tr
+          height: 12px 
+        th
+          font-style: italic
+          font-weight: normal
+          color: $grey
+          // width: 38px 
+        .time
+          font-weight: bold
+          text-align: right
+          // width: 60px 
+          padding: 0 12px 
+        .date
+
+    .location
+      // margin-top: 80px 
+      width: 240px
 
       // background-color: red
       // width: 240px 

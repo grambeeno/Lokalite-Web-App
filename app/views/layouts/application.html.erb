@@ -1,14 +1,4 @@
-<!doctype html>  
-
-<% 
-  content = Map.new
-
-  content.main = raw content_for(:main)
-  content.aside = render(:partial => '/layouts/sidebar')
-
-  content.main = yield if content.main.blank?
-  content.aside = false if content.aside.blank?
-%>
+<!doctype html>
 
   <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
   <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
@@ -41,36 +31,36 @@
 
     <!--[if !IE 7]> <style type="text/css"> #wrap {display:table;height:100%} </style> <![endif]-->
 
+    <%= render :partial => '/layouts/google_analytics' %>
   </head>
 
-  <body<% if content.aside %> class="has-sidebar"<% end %>>
-    <div id="wrap" class="full-width">
+  <body>
+    <header>
+      <div class="content">
+        <%= render :partial => '/layouts/header' %>
+      </div>
+    </header>
 
-      <%= render :partial => 'shared/header' %>
-      <%= render :partial => 'shared/toolbar' %>
+    <div id="main">
+      <div id="left-sidebar">
+        <%= render(:partial => '/layouts/left_sidebar') %>
+      </div>
 
-      <div id="main" class="full-width">
-        <% if content.aside %>
-          <div id="sidebar" class="fixed-left">
-            <%= search_form %>
-            <%= content.aside %>
-          </div>
-        <% end %>
+      <div id="middle">
+        <%= render :partial => '/layouts/flash' %>
+        <%= yield %>
+      </div><!-- end content -->
 
-        <div id="content" class="<% if content.aside %>fluid-right<% else %>full-width<% end %>">
-          <%= render :partial => 'shared/flash' %>
+      <div id="right-sidebar">
+        <h1>Hey There</h1>
+        <%= render(:partial => '/layouts/right_sidebar') %>
+      </div>
+    </div><!-- end main -->
 
-          <%= content.main %>
-        </div><!-- end content -->
-      </div><!-- end main -->
-
-    </div><!-- end wrap -->
-
-    <footer id="page-bottom" class="container span-24 last block">
-      <%= render :partial => 'shared/footer' %>
+    <footer>
+      <div class="content">
+        <%= render :partial => '/layouts/footer' %>
+      </div>
     </footer>
-
-    <%= render :partial => 'shared/google_analytics' %>
-
   </body>
 </html>

@@ -1,0 +1,46 @@
+<% unless ['/login', '/signup', '/business', '/static'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+  <%#= search_form %>
+
+  <% 
+    if params[:controller] == 'directory'
+      active_tab = 'directory'
+    else
+      active_tab = 'events'
+    end
+  -%>
+
+  <nav>
+    <ul>
+      <li>
+        <%=
+          activated = params[:category].blank? || params[:category] =~ %r/^all$/i
+          link_to('All', send("browse_#{active_tab}_path", :category => 'All'), :class => (activated ? 'activated' : '')) 
+        %>
+      </li>
+
+      <%
+        # Category.list.each do |category|
+        # activated = Slug.for(category.name) == params[:category]
+      %>
+        <%#= link_to(category.name, send("browse_#{active_tab}_path", :category => category), :class => (activated ? 'activated' : '')) %>
+      <%# end %>
+    </ul>
+
+    <% if active_tab == 'events' %>
+      <h3>Dates</h3>
+
+      <ul>
+        <% ['Today', 'Tomorrow', 'This Week', 'This Weekend', 'This Month', 'This Year'].each do |date|
+          activated = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
+        %>
+          <li>
+            <%= link_to(date, browse_events_path(:date => date), :class => (activated ? 'activated' : '')) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
+  </nav>
+
+<% end %>
+

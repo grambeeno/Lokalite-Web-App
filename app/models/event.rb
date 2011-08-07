@@ -237,23 +237,23 @@ class Event < ActiveRecord::Base
     venue_time(ends_at).strftime("%l:%M%p")
   end
 
-  def time_span
-    start_time = location_time(starts_at)
-    end_time   = location_time(ends_at)
-
-    time = {}
-    suffix = ''
-
-    if start_time.strftime('%p') == end_time.strftime('%p')
-      time[:start]  = start_time.strftime('%l:%M')
-    else
-      time[:start]  = start_time.strftime('%l:%M %p')
-    end
-    time[:end]      = end_time.strftime('%l:%M %p')
-    time[:suffix]   = '' #end_time.to_date
-
-    "#{time[:start]} - #{time[:end]} #{time[:suffix]}".strip
-  end
+  # def time_span
+  #   start_time = location_time(starts_at)
+  #   end_time   = location_time(ends_at)
+  # 
+  #   time = {}
+  #   suffix = ''
+  # 
+  #   if start_time.strftime('%p') == end_time.strftime('%p')
+  #     time[:start]  = start_time.strftime('%l:%M')
+  #   else
+  #     time[:start]  = start_time.strftime('%l:%M %p')
+  #   end
+  #   time[:end]      = end_time.strftime('%l:%M %p')
+  #   time[:suffix]   = '' #end_time.to_date
+  # 
+  #   "#{time[:start]} - #{time[:end]} #{time[:suffix]}".strip
+  # end
 
   def duration
     (ends_at.to_i - starts_at.to_i).abs

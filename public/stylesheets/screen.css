@@ -1,16 +1,48 @@
 /* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312671208'); background-repeat: repeat-x; }
+body > header .content { width: 1080px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312684180'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
+body > header .content nav { display: inline; float: right; }
+body > header .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-top: 32px; }
+body > header .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
+body > header .content nav ul li:first-child, body > header .content nav ul li.first { padding-left: 0; }
+body > header .content nav ul li:last-child { padding-right: 0; }
+body > header .content nav ul li.last { padding-right: 0; }
+body > header .content nav ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
+body > header .content nav ul a:hover { color: #7da762; }
+body > footer .content { width: 1080px; margin: 0 auto; }
+body > footer .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; }
+body > footer .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
+body > footer .content nav ul li:first-child, body > footer .content nav ul li.first { padding-left: 0; }
+body > footer .content nav ul li:last-child { padding-right: 0; }
+body > footer .content nav ul li.last { padding-right: 0; }
+body > footer .content .copyright { display: inline; float: right; }
+body #main { width: 1080px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1312672428'); background-repeat: repeat; }
 
-.event { overflow: hidden; *zoom: 1; padding: 4px 12px; }
-.event a { color: #3298cf; }
-.event a:hover { color: #2a83b3; }
-.event .image { display: inline; float: left; margin-top: 4px; margin-right: 12px; width: 150px; }
-.event .image img { border: 1px solid #999999; }
-.event .detail { display: inline; float: left; width: 460px; margin-right: 12px; }
-.event .detail h1 { font-size: 22px; margin-bottom: 4px; }
-.event .detail h2 { font-size: 18px; }
-.event .detail h2 time { font-size: 16px; font-weight: normal; }
-.event .detail .description { display: inline; float: left; margin: 12px 0; font-size: 14px; line-height: 1.6em; }
-.event .location { display: inline; float: left; width: 240px; }
-.event .location .map_link { display: block; margin-top: 12px; }
-.event .location .map_link img { border: 1px solid #999999; border-radius: 5px; }
+#left-sidebar, #right-sidebar, #middle { display: inline; float: left; padding: 16px 0; }
+
+#left-sidebar { width: 150px; padding-right: 10px; }
+
+#right-sidebar { width: 150px; padding-left: 10px; }
+
+#middle { width: 760px; -moz-box-shadow: 0 0 8px #333333; -webkit-box-shadow: 0 0 8px #333333; -o-box-shadow: 0 0 8px #333333; box-shadow: 0 0 8px #333333; margin-bottom: 10px; -moz-border-radius-bottomleft: 8px; -webkit-border-bottom-left-radius: 8px; -o-border-bottom-left-radius: 8px; -ms-border-bottom-left-radius: 8px; -khtml-border-bottom-left-radius: 8px; border-bottom-left-radius: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-right-radius: 8px; -o-border-bottom-right-radius: 8px; -ms-border-bottom-right-radius: 8px; -khtml-border-bottom-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+.events { font-size: 12px; overflow: hidden; *zoom: 1; margin: 0; margin-top: -25px; padding-bottom: 10px; }
+.events li { background-color: white; display: inline; float: left; width: 200px; padding: 10px 10px 4px; margin-top: 25px; margin-left: 25px; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; }
+.events li .image { position: relative; width: 202px; }
+.events li .image img { border: 1px solid black; }
+.events li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312687675'); background-repeat: repeat; color: white; padding: 2px; display: none; }
+.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1312690841'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button:hover { background-position: bottom; }
+.events li .image .trend-button.trended { background-position: bottom; }
+.events li .image .trend-button.trended:hover { background-position: top; }
+.events li .image .trend-button .trend-count { font-style: italic; font-size: 10px; color: white; position: absolute; left: 26px; top: 3px; }
+.events li .detail h1 { font-size: 14px; }
+.events li .detail .organization { font-size: 12px; }
+.events li .detail table.times { margin-top: 10px; font-size: 10px; text-align: left; }
+.events li .detail table.times tr { height: 12px; }
+.events li .detail table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
+.events li .detail table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
+.events li .location { width: 240px; }

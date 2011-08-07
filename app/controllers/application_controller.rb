@@ -7,14 +7,6 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
 
 protected
-# navigation support - RAILS_ROOT/app/shared/navigation.rb
-#
-  if Rails.env.development?
-    load 'app/shared/navigation.rb'
-  else
-    require 'app/shared/navigation.rb'
-  end
-  include Shared(:navigation)
 
   include Tagz.globally
 
@@ -114,17 +106,6 @@ protected
     last.titleize if last
   end
   helper_method :current_location_name
-
-
-
-# navigation rendering
-#
-  def render_navigation(navigation)
-    locals = {:navigation => navigation}
-    #render(:partial => 'shared/navigation', :locals => locals)
-    render_to_string(:partial => 'shared/navigation', :locals => locals)
-  end
-  helper_method(:render_navigation)
 
 # setup default_url_options
 #

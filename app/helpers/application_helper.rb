@@ -62,24 +62,6 @@ module ApplicationHelper
     fullpath[1..-1].split(%r|[?]|).first.split(%r|/|).map{|word| Slug.for(word)}.join(sep)
   end
 
-  def authinfo_for_request
-    if current_user
-      if(session[:real_user] != session[:effective_user] and real_user.admin?)
-        raw(
-          current_user.email + ' ' + a_(:href => '/admin/users/unsudo'){ small_{ "[#{ real_user.email }]" } } 
-        )
-      else
-        if session[:admin]
-          raw(
-            current_user.email + ' ' + a_(:href => '/admin'){ small_{ "[admin]" } } 
-          )
-        else
-          current_user.email
-        end
-      end
-    end
-  end
-
   def title(*args)
     if args.empty?
       default_content_for(:title){ [App.name, 'Life Outside the Box '].join(' | ') }

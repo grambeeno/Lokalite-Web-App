@@ -61,7 +61,7 @@ Lokalite::Application.routes.draw do
   match '/login(/:token)' => 'auth#login', :as => 'login'
   match '/logout' => 'auth#logout', :as => 'logout'
   match '/password(/:token)' => 'auth#password', :as => 'password'
-  match '/set_location/(*prefix)' => 'root#set_location', :as => 'set_location'
+  # match '/set_location/(*prefix)' => 'root#set_location', :as => 'set_location'
 
   match 'test(/:action(/:id(.:format)))', :controller => 'test', :as => 'test'
 
