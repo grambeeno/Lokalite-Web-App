@@ -202,7 +202,7 @@ class Organization < ActiveRecord::Base
 
   def Organization.to_dao(*args)
     remove = %w[search]
-    add    = %w[status location]
+    add    = %w[status location categories]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
