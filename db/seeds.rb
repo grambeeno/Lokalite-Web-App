@@ -10,6 +10,7 @@ Event.destroy_all
 
 
 User.create! :email => 'admin@lokalite.com', :password => 'password'
+User.create! :email => 'lokalite@lokalite.com', :password => 'LokalBluePedia!123'
 User.create! :email => 'zef@madebykiwi.com', :password => 'password'
 
 locations = [
@@ -108,44 +109,67 @@ locations = [
 ]
 
 
+class Array
+  def rand
+    self[super(self.length)]
+  end
+end
 
 def random_image
   images = Dir.glob(File.join(Rails.root, "public/images/seed/*.jpeg"))
   File.new images[rand(images.size)]
 end
 
-10.times do |index|
+50.times do |index|
   user = User.create! :email => Faker::Internet.email, :password => 'password'
 
+  location = locations.rand
+  org_name = Faker::Company.name
+  location[:name] = org_name
+
   attributes = {
-    :name        => Faker::Company.name,
+    :name        => org_name,
     :description => Faker::Company.catch_phrase,
     :email       => user.email,
     :image_file  => random_image,
-    :locations_attributes => {'0' => locations.pop}
+    :locations_attributes => {'0' => location}
   }
 
   attributes[:phone] = Faker::PhoneNumber.phone_number if rand(2) == 1
 
-  org = user.organizations.build(attributes)
+  org = Organization.new(attributes)
 
   org.save
 
-  event = org.events.build
+  # puts "Address   #{location[:address_line_one]}"
+  # puts "Formatted #{org.location.formatted_address}"
+  # puts '---------------------------------------------'
 
-  event.name = Faker::Company.bs
-  event.description = Faker::Lorem.sentences(rand(3)+1).join(' ')[0...140]
+  user.organizations << org
 
-  event.location = org.location
+  (rand(5) + 1).times do
+    event = org.events.build
 
-  start_time      = Time.now + rand(24).hours
-  event.starts_at = start_time
-  event.ends_at   = start_time + (1 + rand(14)).hours
+    event.name = Faker::Company.bs
+    event.description = Faker::Lorem.sentences(rand(3)+1).join(' ')[0...140]
 
-  event.image_file = random_image
-  
-  event.save
+    event.location = org.location
 
+    start_time      = Time.now + rand(24).hours
+    event.starts_at = start_time
+    event.ends_at   = start_time + (1 + rand(14)).hours
+
+    event.image_file = random_image
+
+    categories = []
+    categories << EVENT_CATEGORIES.rand
+    categories << EVENT_CATEGORIES.rand if rand(4) == 1
+    categories << 'Featured' if rand(4) == 1
+
+    event.category_list = categories.join(', ')
+
+    event.save
+  end
 end
 
 
