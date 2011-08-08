@@ -18,9 +18,17 @@ $green: #7DA762
 
 $grey: #5d5d5d
 
+$event-categories: 'all', 'featured', 'happy-hour', 'campus', 'food-and-dining', 'music-and-the-arts', 'nightlife', 'shopping', 'restaurants-and-bars', 'coffee-and-tea', 'arts-and-entertainment', 'services', 'beer-wine-and-spirits', 'sports-and-fitness', 'health-and-beauty', 'community', 'non-profit', 'tours-and-tastings', 'learn-something-new', 'mmj'
+
+
+$site-width: 1120px
+$content-width: 760px
+$sidebar-padding: 10px
+$sidebar-width: ($site-width - $content-width)/2 - $sidebar-padding
+
 
 =centered-on-page
-  width: 1080px
+  width: $site-width
   margin: 0 auto
   // background-color: white
 
@@ -80,15 +88,36 @@ body
   +float('left')
   padding: 16px 0
 
-$sidebar-padding: 10px
-$sidebar-width: 160px - $sidebar-padding
-
-#left-sidebar
-  width: $sidebar-width
-  padding-right: $sidebar-padding
-
+#left-sidebar,
 #right-sidebar
   width: $sidebar-width
+  h3
+    font-size: 14px
+    margin-bottom: 6px 
+
+#left-sidebar
+  padding-right: $sidebar-padding
+
+  ul.categories
+    li
+      font-size: 12px
+      padding-top: 4px 
+      padding-left: 24px 
+      margin-bottom: 8px 
+      height: 16px 
+      background-position: left top
+      background-repeat: no-repeat
+      &:hover
+        background-position: left bottom
+      &.active
+        background-position: left bottom
+        
+    @each $category in $event-categories
+      .#{$category}
+        background:
+          image: image-url("category-icons/#{$category}.png")
+
+#right-sidebar
   padding-left: $sidebar-padding
 
   ul
@@ -108,14 +137,14 @@ $sidebar-width: 160px - $sidebar-padding
       .details
         +float('left')
         // font-weight: bold
-        width: 110px
+        width: 130px
         padding-left: 10px
         font-size: 12px
         .organization
           font-size: 10px
 
 #middle
-  width: 760px
+  width: $content-width
   +single-box-shadow(#333333, 0, 0, 8px)
   margin-bottom: 25px
   +border-bottom-radius(8px)
@@ -228,11 +257,13 @@ $event-spacing: 25px
           // width: 60px
           padding: 0 12px
 
-.event
+#middle > .content
   +foreground
   +clearfix
   padding: 10px
   margin: 0 25px
+
+.event
   .image
     +float('right')
     img

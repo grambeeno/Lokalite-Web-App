@@ -10,23 +10,33 @@
   -%>
 
   <nav>
-    <ul>
-      <li>
-        <%=
-          activated = params[:category].blank? || params[:category] =~ %r/^all$/i
-          link_to('All', send("browse_#{active_tab}_path", :category => 'All'), :class => (activated ? 'activated' : '')) 
-        %>
-      </li>
-
+    <h3>Event Categories</h3>
+    <ul class='categories'>
       <%
-        # Category.list.each do |category|
-        # activated = Slug.for(category.name) == params[:category]
+         EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+         activated = Slug.for(category) == params[:category]
       %>
-        <%#= link_to(category.name, send("browse_#{active_tab}_path", :category => category), :class => (activated ? 'activated' : '')) %>
-      <%# end %>
+        <li class="<%= category.parameterize %>">
+          <%= link_to(category, browse_events_path(:category => category), :class => (activated ? 'activated' : '')) %>
+        </li>
+      <% end %>
     </ul>
 
-    <% if active_tab == 'events' %>
+    <br />
+
+    <h3>Business Categories</h3>
+    <ul class='categories'>
+      <%
+         ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+         activated = category.parameterize == params[:category]
+      %>
+        <li class="<%= category.parameterize %>">
+          <%= link_to(category, browse_directory_path(:category => category), :class => (activated ? 'activated' : '')) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if false && active_tab == 'events' %>
       <h3>Dates</h3>
 
       <ul>

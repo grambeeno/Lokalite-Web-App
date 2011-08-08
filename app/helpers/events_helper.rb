@@ -19,7 +19,7 @@ module EventsHelper
     options.reverse_merge!({
       :markers => "#{location.lat},#{location.lng}",
       :zoom   => 13,
-      :size   => '378x378',
+      :size   => '640x320',
       :sensor => false
     })
   

@@ -1,6 +1,10 @@
 module ApplicationHelper
   include Tagz.globally
 
+  def single_bg_for_middle?
+    !(params[:controller] == 'events' and params[:action] == 'browse')
+  end
+
   def browse_context_for(options = {})
     options.to_options!
     browse_context = OpenStruct.new

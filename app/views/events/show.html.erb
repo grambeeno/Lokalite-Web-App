@@ -7,6 +7,13 @@
 
     <p class='description'><%= @event.description %></p>
 
+    <% for category in @event.categories -%>
+      <%#= image_tag "category-icons/#{category.name.parameterize}.png" %>
+      <%= category %>
+    <% end -%>
+
+    <br />
+
     <div class="buttons">
       <%= link_to 'Share', '#' %>
       &nbsp;
@@ -24,14 +31,14 @@
   <div class="clear"></div>
 
   <div class="location">
-    <div class="map">
-      <%= link_to google_maps_image(@event), gmaps_url_for(@event), :target => '_blank', :class => 'map_link' %>
-    </div>
-  
     <div class="organization">
       <strong><%= @event.location.name %></strong>
       <br />
       <%= address_for(@event) %>
+    </div>
+
+    <div class="map">
+      <%= link_to google_maps_image(@event), gmaps_url_for(@event), :target => '_blank', :class => 'map_link' %>
     </div>
   </div>
 </div>

@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   def browse 
     logger.debug { "---- context #{@context.inspect}" }
+    @context[:per_page] = 12
     @events = Event.browse(@context)
   end
 
