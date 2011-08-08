@@ -132,7 +132,8 @@ end
     :description => Faker::Company.catch_phrase,
     :email       => user.email,
     :image_file  => random_image,
-    :locations_attributes => {'0' => location}
+    :locations_attributes => {'0' => location},
+    :category_list => ORGANIZATION_CATEGORIES.rand
   }
 
   attributes[:phone] = Faker::PhoneNumber.phone_number if rand(2) == 1

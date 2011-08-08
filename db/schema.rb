@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110801165656) do
+ActiveRecord::Schema.define(:version => 20110808232325) do
 
   create_table "events", :force => true do |t|
     t.string   "uuid"
@@ -94,14 +94,12 @@ ActiveRecord::Schema.define(:version => 20110801165656) do
     t.string   "email"
     t.string   "url"
     t.string   "phone"
-    t.string   "category"
     t.string   "image"
     t.text     "search"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "organizations", ["category"], :name => "index_organizations_on_category"
   add_index "organizations", ["name"], :name => "index_organizations_on_name"
   add_index "organizations", ["uuid"], :name => "index_organizations_on_uuid", :unique => true
 
