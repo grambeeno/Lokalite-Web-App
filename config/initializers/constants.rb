@@ -2,31 +2,30 @@ US_STATES = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Co
 
 EVENT_CATEGORIES = [
   'Happy Hour',
-  'Music & The Arts',
+  'Music and The Arts',
   'Nightlife',
   'Shopping',
-  'Food & Dining',
-  'Sports & Fitness',
-  'Health & Beauty',
+  'Food and Dining',
+  'Sports and Fitness',
+  'Health and Beauty',
   'Learn Something New',
   'Campus',
   'Community',
-  'Tours & Tastings',
+  'Tours and Tastings',
   'MMJ'
 ]
 
 ORGANIZATION_CATEGORIES = [
   'Shopping',
-  'Food',
-  'Restaurants & Bars',
-  'Coffee & Tea',
-  'Arts & Entertainment',
+  'Restaurants and Bars',
+  'Coffee and Tea',
+  'Arts and Entertainment',
   'Services',
   'Campus',
-  'Beer, Wine & Spirits',
-  'Sports & Fitness',
-  'Health & Beauty',
-  'Community & Non-profit',
+  'Beer, Wine and Spirits',
+  'Sports and Fitness',
+  'Health and Beauty',
+  'Non-Profit',
   'MMJ'
 ]
 
