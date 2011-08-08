@@ -2,6 +2,7 @@
 
 
 
+
 # == Schema Information
 #
 # Table name: events
@@ -13,7 +14,6 @@
 #  description     :text
 #  starts_at       :datetime
 #  ends_at         :datetime
-#  all_day         :boolean
 #  repeating       :boolean
 #  prototype_id    :integer
 #  search          :text

@@ -30,6 +30,7 @@ class OrganizationTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: organizations
@@ -41,7 +42,6 @@ end
 #  email       :string(255)
 #  url         :string(255)
 #  phone       :string(255)
-#  category    :string(255)
 #  image       :string(255)
 #  search      :text
 #  created_at  :datetime

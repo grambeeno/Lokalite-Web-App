@@ -8,6 +8,7 @@ class EventTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: events
@@ -19,7 +20,6 @@ end
 #  description     :text
 #  starts_at       :datetime
 #  ends_at         :datetime
-#  all_day         :boolean
 #  repeating       :boolean
 #  prototype_id    :integer
 #  search          :text
