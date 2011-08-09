@@ -128,7 +128,7 @@ class Event < ActiveRecord::Base
 
 
     if organization_id.blank?
-      results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
+      # results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
       results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
     else
       results = results.search(normalize_search_term("/organization/#{ organization_id }")) unless organization_id.blank?
