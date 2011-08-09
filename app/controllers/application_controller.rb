@@ -349,9 +349,8 @@ protected
 
     category = options[:category] || context[:category]
     category = category.name if category.respond_to?(:name)
-    category = Slug.for(category) if category
+    category = category.parameterize('_') if category
     #date = options[:date] || context[:date]
-
 
     keywords = options[:keywords]
     order = options[:order]
@@ -407,7 +406,7 @@ protected
     location = location.prefix if location.respond_to?(:prefix)
     category = category.name if category.respond_to?(:name)
     organization = organization.id if organization.is_a?(Organization)
-    category = Slug.for(category)
+    category = category.parameterize('_') if category
     date = Slug.for(date) if date
 
     path = []
@@ -442,7 +441,6 @@ protected
     end
   end
 
-
 =begin
   def ApplicationController.ver()
     git_ver = server_info['git_rev']
@@ -453,6 +451,5 @@ protected
   end
   helper_method :ver
 =end
-
 
 end

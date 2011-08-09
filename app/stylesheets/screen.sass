@@ -18,14 +18,30 @@ $green: #7DA762
 
 $grey: #5d5d5d
 
-$event-categories: 'all', 'featured', 'happy-hour', 'campus', 'food-and-dining', 'music-and-the-arts', 'nightlife', 'shopping', 'restaurants-and-bars', 'coffee-and-tea', 'arts-and-entertainment', 'services', 'beer-wine-and-spirits', 'sports-and-fitness', 'health-and-beauty', 'community', 'non-profit', 'tours-and-tastings', 'learn-something-new', 'mmj'
+$event_categories: 'all', 'featured', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
 
+// setting width with variables for everything may seem like overkill but will be worth it in the end :)
 $site-width: 1120px
-$content-width: 760px
+$content-outer-width: 760px
 $sidebar-padding: 10px
-$sidebar-width: ($site-width - $content-width)/2 - $sidebar-padding
+$sidebar-width: ($site-width - $content-outer-width)/2 - $sidebar-padding
 
+$content-bg-padding: 25px
+$content-inner-padding: 10px
+$content-inner-width: $content-outer-width - (2*($content-bg-padding + $content-inner-padding))
+
+
+
+
+=transparent-black
+  background:
+    image: image-url('transparent-black.png')
+    repeat: repeat
+
+=foreground
+  background-color: white
+  +single-box-shadow
 
 =centered-on-page
   width: $site-width
@@ -110,6 +126,7 @@ body
       &:hover
         background-position: left bottom
       &.active
+        background-color: black
         background-position: left bottom
         
     @each $category in $event-categories
@@ -144,21 +161,16 @@ body
           font-size: 10px
 
 #middle
-  width: $content-width
+  width: $content-outer-width
   +single-box-shadow(#333333, 0, 0, 8px)
-  margin-bottom: 25px
+  margin-bottom: $content-bg-padding
   +border-bottom-radius(8px)
 
-$event-spacing: 25px
-
-=transparent-black
-  background:
-    image: image-url('transparent-black.png')
-    repeat: repeat
-
-=foreground
-  background-color: white
-  +single-box-shadow
+#middle > .content
+  +foreground
+  +clearfix
+  padding: $content-inner-padding
+  margin: 0 $content-bg-padding
 
 .events
   font-size: 12px
@@ -169,8 +181,8 @@ $event-spacing: 25px
   // we need to give it a top margin, so here we pull the container up
   // by the same amount.
   // We also give some padding-bottom so the bottom box-shadow border appears
-  margin-top: -$event-spacing
-  padding-bottom: 10px
+  margin-top: -$content-bg-padding
+  padding-bottom: $content-inner-padding
 
   // a
   //   +link-colors($blue, darken($blue, 7))
@@ -179,8 +191,8 @@ $event-spacing: 25px
     +float('left')
     width: 200px
     padding: 10px 10px 4px
-    margin-top: $event-spacing
-    margin-left: $event-spacing
+    margin-top: $content-bg-padding
+    margin-left: $content-bg-padding
 
     // &:hover
     //   background-color: darken(white, 5%)
@@ -230,7 +242,6 @@ $event-spacing: 25px
           position: absolute
           left: 23px
           top: 2px
-
     .detail
       h1
         font-size: 14px
@@ -240,30 +251,27 @@ $event-spacing: 25px
         font-size: 12px
         // height: 1em
         // overflow: hidden
-      table.times
-        margin-top: 10px
-        font-size: 10px
-        text-align: left
-        tr
-          height: 12px
-        th
-          font-style: italic
-          font-weight: normal
-          color: $grey
-          // width: 38px
-        .time
-          font-weight: bold
-          text-align: right
-          // width: 60px
-          padding: 0 12px
 
-#middle > .content
-  +foreground
-  +clearfix
-  padding: 10px
-  margin: 0 25px
+table.times
+  margin-top: 10px
+  font-size: 10px
+  text-align: left
+  tr
+    height: 12px
+  th
+    font-style: italic
+    font-weight: normal
+    color: $grey
+    // width: 38px
+  .time
+    font-weight: bold
+    text-align: right
+    // width: 60px
+    padding: 0 12px
 
-.event
+
+
+.event, .organization
   .image
     +float('right')
     img
@@ -280,13 +288,28 @@ $event-spacing: 25px
     .description
       margin: 1em 0
 
+    table.times
+      font-size: 13px
+
   .location
     .map img
       border: 1px solid #ddd
       +border-radius(5px)
+      width: 688px
   // .location
   //   // margin-top: 80px
-  //   width: 240px
+
+ul.event-previews
+  +no-bullets
+  +clearfix
+  margin: 0px 
+  margin-left: -10px 
+  li
+    +foreground
+    +float('left')
+    width: $content-inner-width/2 - 40px
+    padding: 4px 10px
+    margin: 6px 10px
 
 
 
@@ -295,8 +318,5 @@ $event-spacing: 25px
   height: 1px
   margin: 0 0 -1px
   clear: both
-
-
-
 
 

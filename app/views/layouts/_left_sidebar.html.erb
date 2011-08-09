@@ -13,11 +13,12 @@
     <h3>Event Categories</h3>
     <ul class='categories'>
       <%
-         EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-         activated = Slug.for(category) == params[:category]
+        EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+        classes = [category.parameterize('_')]
+        classes << 'active' if classes.first == params[:category]
       %>
-        <li class="<%= category.parameterize %>">
-          <%= link_to(category, browse_events_path(:category => category), :class => (activated ? 'activated' : '')) %>
+        <li class="<%= classes.join(' ') %>">
+          <%= link_to(category, browse_events_path(:category => category)) %>
         </li>
       <% end %>
     </ul>
@@ -27,11 +28,12 @@
     <h3>Business Categories</h3>
     <ul class='categories'>
       <%
-         ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-         activated = category.parameterize == params[:category]
+        ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+        classes = [category.parameterize('_')]
+        classes << 'active' if classes.first == params[:category]
       %>
-        <li class="<%= category.parameterize %>">
-          <%= link_to(category, browse_directory_path(:category => category), :class => (activated ? 'activated' : '')) %>
+        <li class="<%= classes.join(' ') %>">
+          <%= link_to(category, browse_directory_path(:category => category)) %>
         </li>
       <% end %>
     </ul>
@@ -41,10 +43,10 @@
 
       <ul>
         <% ['Today', 'Tomorrow', 'This Week', 'This Weekend', 'This Month', 'This Year'].each do |date|
-          activated = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
+          active = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
         %>
           <li>
-            <%= link_to(date, browse_events_path(:date => date), :class => (activated ? 'activated' : '')) %>
+            <%= link_to(date, browse_events_path(:date => date), :class => (active ? 'active' : '')) %>
           </li>
         <% end %>
       </ul>

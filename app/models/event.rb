@@ -52,7 +52,7 @@ class Event < ActiveRecord::Base
     order('random()')
   })
 
-  scope :trending, includes(:organization)
+  scope :trending, includes(:organization).order('users_count DESC, starts_at')
 
 # full-text
 #
