@@ -125,9 +125,10 @@ class Organization < ActiveRecord::Base
     # TODO - organization filtering is pretty broken, refactor and fix
 
     # results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
-    prefix = '/colorado/boulder'
+    # prefix = '/colorado/boulder'
     # results = results.where(:locations => {:prefix => '/colorado/boulder'})
-    results = results.where(:locations => ['prefix like ?', "#{prefix}"])
+    # results = results.where(:locations => ['prefix like ?', "#{prefix}"])
+
     # results = results.search(normalize_search_term("/category/#{ category }")) unless category.blank?
     # results = results.search(keywords.join(' ')) unless keywords.blank?
     # results = results.joins(joins)

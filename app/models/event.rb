@@ -122,8 +122,7 @@ class Event < ActiveRecord::Base
       dates = location.date_range_for('today')  
     end
 
-    joins = [:categories, :image, :organization]
-    includes = [:categories, :image, :organization]
+    joins = [:categories, :image, :organization, :location]
 
     results = relation
 
@@ -137,7 +136,7 @@ class Event < ActiveRecord::Base
     results = results.search(keywords.join(' ')) unless keywords.blank?
     results = results.order(order)
     # results = results.joins(joins) # uncommented to fix sorting bug
-    results = results.includes(includes)
+    results = results.includes(:categories, :image, :location, :organization => [:categories, :statuses, :locations])
 
     if dates
       a = location.time_for(dates.first)

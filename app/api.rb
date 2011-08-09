@@ -406,7 +406,7 @@ Api =
     #   end
     # end
 
-    interface('/organizations/browse') do
+    interface('/places/') do
 
       read do
         organizations = Organization.browse(params)
@@ -414,7 +414,7 @@ Api =
       end
     end
 
-    interface('/events/browse') do
+    interface('/events/') do
       read do
         events = Event.browse(params)
         list = events.map{|event| event.to_dao(:for_user => current_user)}
@@ -427,7 +427,7 @@ Api =
 
       read do
         joins = []
-        includes = [:venue, {:venue => :location}, :category, :image, :organization]
+        includes = [:categories, :image, :organization]
         event = Event.where(:id => params[:id]).joins(joins).includes(includes).first
 
         if event
