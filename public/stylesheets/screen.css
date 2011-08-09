@@ -1,0 +1,96 @@
+/* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+body { font-family: Helvetica, Arial, Verdana, sans-serif; }
+body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312671208'); background-repeat: repeat-x; }
+body > header .content { width: 1120px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312684180'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
+body > header .content nav { display: inline; float: right; }
+body > header .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-top: 32px; }
+body > header .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
+body > header .content nav ul li:first-child, body > header .content nav ul li.first { padding-left: 0; }
+body > header .content nav ul li:last-child { padding-right: 0; }
+body > header .content nav ul li.last { padding-right: 0; }
+body > header .content nav ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
+body > header .content nav ul a:hover { color: #7da762; }
+body > footer .content { width: 1120px; margin: 0 auto; }
+body > footer .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; }
+body > footer .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
+body > footer .content nav ul li:first-child, body > footer .content nav ul li.first { padding-left: 0; }
+body > footer .content nav ul li:last-child { padding-right: 0; }
+body > footer .content nav ul li.last { padding-right: 0; }
+body > footer .content .copyright { display: inline; float: right; }
+body #main { width: 1120px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1312672428'); background-repeat: repeat; }
+
+#left-sidebar, #right-sidebar, #middle { display: inline; float: left; padding: 16px 0; }
+
+#left-sidebar, #right-sidebar { width: 170px; }
+#left-sidebar h3, #right-sidebar h3 { font-size: 14px; margin-bottom: 6px; }
+
+#left-sidebar { padding-right: 10px; }
+#left-sidebar ul.categories li { font-size: 12px; padding-top: 4px; padding-left: 24px; margin-bottom: 8px; height: 16px; background-position: left top; background-repeat: no-repeat; }
+#left-sidebar ul.categories li:hover { background-position: left bottom; }
+#left-sidebar ul.categories li.active { background-position: left bottom; }
+#left-sidebar ul.categories .all { background-image: url('/images/category-icons/all.png?1312741068'); }
+#left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1312741069'); }
+#left-sidebar ul.categories .happy-hour { background-image: url('/images/category-icons/happy-hour.png?1312741069'); }
+#left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1312741068'); }
+#left-sidebar ul.categories .food-and-dining { background-image: url('/images/category-icons/food-and-dining.png?1312741064'); }
+#left-sidebar ul.categories .music-and-the-arts { background-image: url('/images/category-icons/music-and-the-arts.png?1312741070'); }
+#left-sidebar ul.categories .nightlife { background-image: url('/images/category-icons/nightlife.png?1312741070'); }
+#left-sidebar ul.categories .shopping { background-image: url('/images/category-icons/shopping.png?1312741071'); }
+#left-sidebar ul.categories .restaurants-and-bars { background-image: url('/images/category-icons/restaurants-and-bars.png?1312741064'); }
+#left-sidebar ul.categories .coffee-and-tea { background-image: url('/images/category-icons/coffee-and-tea.png?1312741068'); }
+#left-sidebar ul.categories .arts-and-entertainment { background-image: url('/images/category-icons/arts-and-entertainment.png?1312741070'); }
+#left-sidebar ul.categories .services { background-image: url('/images/category-icons/services.png?1312741071'); }
+#left-sidebar ul.categories .beer-wine-and-spirits { background-image: url('/images/category-icons/beer-wine-and-spirits.png?1312741071'); }
+#left-sidebar ul.categories .sports-and-fitness { background-image: url('/images/category-icons/sports-and-fitness.png?1312836677'); }
+#left-sidebar ul.categories .health-and-beauty { background-image: url('/images/category-icons/health-and-beauty.png?1312741071'); }
+#left-sidebar ul.categories .community { background-image: url('/images/category-icons/community.png?1312741069'); }
+#left-sidebar ul.categories .non-profit { background-image: url('/images/category-icons/non-profit.png?1312741071'); }
+#left-sidebar ul.categories .tours-and-tastings { background-image: url('/images/category-icons/tours-and-tastings.png?1312741071'); }
+#left-sidebar ul.categories .learn-something-new { background-image: url('/images/category-icons/learn-something-new.png?1312741069'); }
+#left-sidebar ul.categories .mmj { background-image: url('/images/category-icons/mmj.png?1312741070'); }
+
+#right-sidebar { padding-left: 10px; }
+#right-sidebar ul { margin: 0; list-style: none; }
+#right-sidebar ul li { list-style-image: none; list-style-type: none; margin-left: 0px; }
+#right-sidebar ul li { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
+#right-sidebar ul li a { text-decoration: none; color: black; }
+#right-sidebar ul li a:hover { color: #607890; }
+#right-sidebar ul li .image { display: inline; float: left; }
+#right-sidebar ul li .image img { width: 30px; }
+#right-sidebar ul li .details { display: inline; float: left; width: 130px; padding-left: 10px; font-size: 12px; }
+#right-sidebar ul li .details .organization { font-size: 10px; }
+
+#middle { width: 760px; -moz-box-shadow: 0 0 8px #333333; -webkit-box-shadow: 0 0 8px #333333; -o-box-shadow: 0 0 8px #333333; box-shadow: 0 0 8px #333333; margin-bottom: 25px; -moz-border-radius-bottomleft: 8px; -webkit-border-bottom-left-radius: 8px; -o-border-bottom-left-radius: 8px; -ms-border-bottom-left-radius: 8px; -khtml-border-bottom-left-radius: 8px; border-bottom-left-radius: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-right-radius: 8px; -o-border-bottom-right-radius: 8px; -ms-border-bottom-right-radius: 8px; -khtml-border-bottom-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+.events { font-size: 12px; overflow: hidden; *zoom: 1; margin: 0; margin-top: -25px; padding-bottom: 10px; }
+.events li { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; width: 200px; padding: 10px 10px 4px; margin-top: 25px; margin-left: 25px; }
+.events li a { color: inherit; text-decoration: inherit; cursor: inherit; }
+.events li a:active, .events li a:focus { outline: none; }
+.events li .image { position: relative; width: 202px; }
+.events li .image img { border: 1px solid black; }
+.events li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312687675'); background-repeat: repeat; color: white; padding: 2px; display: none; }
+.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1312700576'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button:hover { background-position: bottom; }
+.events li .image .trend-button.trended { background-position: bottom; }
+.events li .image .trend-button.trended:hover { background-position: top; }
+.events li .image .trend-button .trend-count { font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
+.events li .detail h1 { font-size: 14px; }
+.events li .detail .organization { font-size: 12px; }
+.events li .detail table.times { margin-top: 10px; font-size: 10px; text-align: left; }
+.events li .detail table.times tr { height: 12px; }
+.events li .detail table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
+.events li .detail table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
+
+#middle > .content { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; overflow: hidden; *zoom: 1; padding: 10px; margin: 0 25px; }
+
+.event .image { display: inline; float: right; }
+.event .image img { border: 1px solid black; }
+.event .detail { display: inline; float: left; width: 378px; padding-right: 10px; }
+.event .detail h1 { font-size: 22px; }
+.event .detail h2 { font-size: 18px; }
+.event .detail .description { margin: 1em 0; }
+.event .location .map img { border: 1px solid #dddddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
+
+.clear { width: 100%; height: 1px; margin: 0 0 -1px; clear: both; }

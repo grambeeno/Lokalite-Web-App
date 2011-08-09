@@ -1,6 +1,10 @@
 module ApplicationHelper
   include Tagz.globally
 
+  def single_bg_for_middle?
+    !(params[:controller] == 'events' and params[:action] == 'browse')
+  end
+
   def browse_context_for(options = {})
     options.to_options!
     browse_context = OpenStruct.new
@@ -60,24 +64,6 @@ module ApplicationHelper
   def context_for_fullpath
     sep = ' | '
     fullpath[1..-1].split(%r|[?]|).first.split(%r|/|).map{|word| Slug.for(word)}.join(sep)
-  end
-
-  def authinfo_for_request
-    if current_user
-      if(session[:real_user] != session[:effective_user] and real_user.admin?)
-        raw(
-          current_user.email + ' ' + a_(:href => '/admin/users/unsudo'){ small_{ "[#{ real_user.email }]" } } 
-        )
-      else
-        if session[:admin]
-          raw(
-            current_user.email + ' ' + a_(:href => '/admin'){ small_{ "[admin]" } } 
-          )
-        else
-          current_user.email
-        end
-      end
-    end
   end
 
   def title(*args)
@@ -264,8 +250,8 @@ module ApplicationHelper
 
     case event
       when Event
-        options[:formatted_address] = event.venue.location.formatted_address
-        options[:ll] = event.venue.location.ll
+        options[:formatted_address] = event.location.formatted_address
+        options[:ll] = event.location.ll
       when Hash
         hash.to_options!
         options[:formatted_address] = hash[:formatted_address]
@@ -435,14 +421,6 @@ module ApplicationHelper
     at_least_one_error ? to_html : '' 
   end
 
-  def time_format(time, options = {})
-    options.to_options!
-    format = options[:format] || "%m/%e/%Y %I:%M %p"
-    time = Time.parse(time.to_s) unless time.is_a?(Time)
-    time.strftime(format)
-  end
-
-
 # sharethis link generator
 #
   def share_this(*args)
@@ -483,11 +461,11 @@ module ApplicationHelper
     if params[:location]
       current_location_name
     elsif @event
-      @event.venue.location.locality
+      @event.location.locality
     else
       # copied from EventsController
       default_location = Location.absolute_path_for(
-        session[:location].blank? ? Location.default.prefix : session[:location]
+        session[:location].blank? ? Location.default : session[:location]
       )
       (default_location.split('/').last || '').titleize
     end

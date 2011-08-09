@@ -10,7 +10,6 @@ class APIController < ApplicationController
   WhiteList = %w[ ping
                   events/browse
                   events/show
-                  events/recommended
                   organizations/browse
                 ]
 

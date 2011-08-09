@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+    <li>
+      <%= link_to 'About', static_path(:about) %>
+    </li>
+    <li>
+      <%= link_to 'Terms', static_path(:terms_of_service) %>
+    </li>
+    <li>
+      <%= link_to 'Contact', static_path(:contact) %>
+    </li>
+    <li>
+      <%= link_to 'Locations', static_path(:locations) %>
+    </li>
+    <li>
+      <%= link_to 'Movie', static_path(:movie, :layout => :facebox), :id => :movie, :rel => :facebox %>
+    </li>
+  </ul>
+</nav>
+
+
+<div class='copyright'>Copyright &copy; <%= Time.now.year %> lokalite.com</div>

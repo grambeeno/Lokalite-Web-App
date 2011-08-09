@@ -20,7 +20,7 @@ Lokalite::Application.routes.draw do
 
 # directory routes
 #
-  match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}
+  # match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\\d+/}
   match 'directory/location/*location/category/:category', :controller => :directory, :action => :browse
   match 'directory/location/*location', :controller => :directory, :action => :browse
   match 'directory/:id', :controller => :directory, :action => :browse
@@ -29,10 +29,22 @@ Lokalite::Application.routes.draw do
 
   #match 'account(/:action(/:id(.:format)))', :as => :account, :controller => :account
 
+  match 'places/random', :controller => :directory, :action => :random_organization, :as => :random_organization
+  match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
+
+  namespace :my do
+    resources :organizations do
+      match 'statuses' => 'organizations#statuses'
+    end
+    resources :events
+  end
+
   match 'my/events/(:action(/:id(.:format)))', :controller => 'my/events', :as => 'my_events'
-  match 'my/organizations/:id/(:action)', :controller => 'my/organizations', :as => 'my_organization', :constraints => {:id => /\d+/}
-  match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
+  # match 'my/organizations/:id/(:action)', :controller => 'my/organizations', :as => 'my_organization', :constraints => {:id => /\\d+/}
+  # match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
   match 'my/(:action(/:id(.:format)))', :controller => 'my', :as => 'my'
+
+  match 'my/profile', :controller => 'my', :action => 'profile', :as => 'edit_profile'
 
   match 'api' => 'api#index', :as => 'api_index'
   match 'api/*path' => 'api#call', :as => 'api'
@@ -51,7 +63,7 @@ Lokalite::Application.routes.draw do
   match '/login(/:token)' => 'auth#login', :as => 'login'
   match '/logout' => 'auth#logout', :as => 'logout'
   match '/password(/:token)' => 'auth#password', :as => 'password'
-  match '/set_location/(*prefix)' => 'root#set_location', :as => 'set_location'
+  # match '/set_location/(*prefix)' => 'root#set_location', :as => 'set_location'
 
   match 'test(/:action(/:id(.:format)))', :controller => 'test', :as => 'test'
 

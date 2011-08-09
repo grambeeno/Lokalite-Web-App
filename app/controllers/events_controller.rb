@@ -11,11 +11,13 @@ class EventsController < ApplicationController
   end
 
   def browse 
+    logger.debug { "---- context #{@context.inspect}" }
+    @context[:per_page] = 12
     @events = Event.browse(@context)
   end
 
   def show
-    includes = [:venue, {:venue => :location}, :category, :image, :organization]
+    includes = [:categories, :image, :organization]
     @event = Event.where(:id => params[:id]).includes(includes).first
 
     redirect_to('/404.html') and return unless @event

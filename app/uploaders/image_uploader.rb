@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
   # include CarrierWave::ImageScience
-    include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   Dir = "system/images/uploads"
 
@@ -51,6 +51,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
+    process :resize_to_fit => [200, 200]
+  end
+
+  version :large do
     process :resize_to_fit => [300, 300]
   end
 

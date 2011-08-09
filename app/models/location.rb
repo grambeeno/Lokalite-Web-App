@@ -1,133 +1,155 @@
 class Location < ActiveRecord::Base
-  has_many(:location_context_joins, :dependent => :destroy)
+
+  acts_as_mappable :default_units => :miles,
+                   :default_formula => :sphere,
+                   :distance_field_name => :distance,
+                   :lat_column_name => :lat,
+                   :lng_column_name => :lng
+
+
+  belongs_to :organization
 
   before_validation(:on => :create) do |location|
     location.uuid ||= App.uuid
   end
 
   validates_presence_of :uuid
-  validates_presence_of :address
   validates_presence_of :prefix
-  validates_presence_of :address
   validates_presence_of :country
   validates_presence_of :lat
   validates_presence_of :lng
 
-  validates_uniqueness_of :address
-
-  def Location.assemble_address(params)
-    return nil unless !params["addr_street"].nil? \
-                    && !params["addr_city"].nil? \
-                    && !params["addr_state"].nil? \
-                    && !params["addr_zip"].nil? 
-    addr = params["addr_street"]
-    addr += ', ' + params["addr_city"]
-    addr += ', ' + params["addr_state"]
-    addr += ', ' + params["addr_zip"]
-    return addr
+  validate :validate!
+  def validate!
+    if data
+      formatted_addresses = Location.formatted_addresses_for(data)
+      if formatted_addresses.size > 1
+        message = "ambiguous location: " + formatted_addresses.join(' | ')
+        errors.add(:base, message)
+      end
+    end
   end
 
-  def Location.for(address)
-    location = Location.locate(address)
-    raise(ArgumentError, address.inspect) unless(location and location.valid?)
-    return location unless location.new_record?
-    location.save!
-    location
+  before_validation :verify_and_normalize_user_given_address
+  attr_accessor :address_line_one, :address_line_two, :address_city, :address_state, :address_zip
+
+  def state
+    administrative_area_level_1
+  end
+  def county
+    administrative_area_level_2
+  end
+  def city
+    locality
   end
 
-  def Location.locate(address)
-    location = Location.where('address=?', address).first
-    return location if location
+  def Location.to_dao(*args)
+    remove = %w[json administrative_area_level_1 administrative_area_level_2 locality]
+    add    = %w[state city]
+    super(*args).reject{|arg| remove.include?(arg)} + add
+  end
 
-    data = GGeocode(address)
 
-    unless data
-      location = Location.new
-      location.errors.add(:base, "#{ address.inspect } not found")
-      return location
+  def verify_and_normalize_user_given_address
+    suffix  = [address_state, address_zip].compact.join(' ').strip
+    address = [address_line_one, address_line_two, address_city, suffix].compact.reject{|e| e.empty? }.join(', ').strip
+
+    return self unless address.present?
+
+    response = GGeocode(address)
+    unless response
+      errors.add(:base, "#{ address.inspect } not found")
+      return false
     end
 
-    attributes = parse_data(data) || Map.new
-    attributes[:address] = address
-    attributes[:json] = data.json
-    location = new(attributes)
-    location.calculate_utc_offset!
-    location.validate!
-    location
+    self.json = response.json
+
+    persist_data_from_json!
   end
 
-  def Location.pinpoint(string)
-    data = GGeocode(string)
-    Location.formatted_addresses_for(data)
+  def set_address_components_for_editing
+    self.address_line_one = "#{extract_address_component('street_number')} #{extract_address_component('route')}"
+    self.address_line_two = extract_address_component('subpremise')
+    self.address_city     = city
+    self.address_state    = state
+    self.address_zip      = postal_code
+    self
   end
 
-  def Location.pinpoint?(string)
-    Location.pinpoint(string).size == 1
+
+  def address_json
+    # validation fails elsewhere if there are multiple results, just take the first
+    data['results'].first
   end
 
-  def Location.geocode(string)
-    GGeocode.geocode(string)
+  def data
+    @data ||= (
+      if json
+        JSON.parse(json)
+      end
+    )
   end
 
-  def Location.reverse_geocode(string)
-    GGeocode.reverse_geocode(srting)
+  def json=(json)
+    json_will_change!
+    write_attribute(:json, json)
+  ensure
+    @data = json ? JSON.parse(json) : nil
   end
 
-  def Location.rgeocode(string)
-    GGeocode.reocode(srting)
+  def data=(data)
+    @data = data
+    json_will_change!
+    write_attribute(:json, data ? data.to_json : nil)
+    @data
   end
 
-  def Location.parse_data(data)
-    data = Map.for(data)
-    parsed = Map.new
-
-    results = data['results']
-    return nil unless results
-
-    result = results.first
-    return nil unless result
-
-    address_components = result['address_components']
-    return nil unless address_components
-
-    geometry = result['geometry']
-    return nil unless geometry 
-
-    location = geometry['location']
-    return nil unless location 
-
-    component_for = lambda{|target| address_components.detect{|component| (component['types'] & target).sort == target.sort}}
-    [
-      %w( political country ),
-      %w( political administrative_area_level_1 ),
-      %w( political administrative_area_level_2 ),
-      %w( political locality ),
-      %w( postal_code ),
-    ].each do |target|
-      component = component_for[target]
-      break unless component
-      long_name = component['long_name']
-      break unless long_name
-      key = target.last
-      parsed[key] = long_name
+  def persist_data_from_json!
+    begin
+      @address_components = address_json['address_components']
+      location            = address_json['geometry']['location']
+    rescue NoMethodError
+      errors.add(:base, "Results from Google Maps could not be parsed.")
+      return false
     end
 
-    prefix =
-      absolute_path_for(
-        parsed['country'],
-        parsed['administrative_area_level_1'],
-        parsed['administrative_area_level_2'],
-        parsed['locality']
-      )
+    parsed = {}
 
-    parsed['prefix'] = prefix
-    parsed['formatted_address'] = result['formatted_address']
-    parsed['lat'] = location['lat']
-    parsed['lng'] = location['lng']
+    for field in %w[country administrative_area_level_1 administrative_area_level_2 locality postal_code]
+      parsed[field] = extract_address_component(field)
+    end
+
+    prefix = Location.absolute_path_for(parsed['administrative_area_level_1'], parsed['locality'])
+
+    parsed['prefix']            = prefix
+    parsed['formatted_address'] = address_json['formatted_address']
+    parsed['lat']               = location['lat']
+    parsed['lng']               = location['lng']
 
     return nil if parsed.empty?
-    parsed
+    self.attributes = parsed
+    calculate_utc_offset!
+    self
   end
+
+  def extract_address_component(name)
+    begin
+      @address_components ||= data['results'].first['address_components']
+      @address_components.find{|component| component['types'].include?(name) }['long_name']
+    rescue NoMethodError
+      nil
+    end
+  end
+
+  # def Location.pinpoint(string)
+  #   data = GGeocode(string)
+  #   Location.formatted_addresses_for(data)
+  # end
+
+  # def Location.pinpoint?(string)
+  #   Location.pinpoint(string).size == 1
+  # end
+
 
   def Location.formatted_addresses_for(data)
     return [] unless data
@@ -173,39 +195,35 @@ class Location < ActiveRecord::Base
 
 # TODO - this doesn't *quite* work
 #
-  def Location.ensure_parents_exist!(location)
-    prefix = location.prefix
-    parts = [location.country, location.administrative_area_level_1, location.administrative_area_level_2, location.locality].compact
-    parts.pop
+  # def Location.ensure_parents_exist!(location)
+  #   prefix = location.prefix
+  #   parts = [location.administrative_area_level_1, location.locality].compact
+  #   parts.pop
 
-    locations = []
+  #   locations = []
 
-    until parts.empty?
-      address = parts.join(', ')
-      parts.pop
-      location = Location.locate(address)
-      break unless(location and location.valid?)
-      next unless prefix.index(location.prefix) == 0
-      location.save! if location.new_record?
-      locations.push(location)
-    end
+  #   until parts.empty?
+  #     address = parts.join(', ')
+  #     parts.pop
+  #     location = Location.locate(address)
+  #     break unless(location and location.valid?)
+  #     next unless prefix.index(location.prefix) == 0
+  #     location.save! if location.new_record?
+  #     locations.push(location)
+  #   end
 
-    locations
-  end
+  #   locations
+  # end
 
-  def ensure_parents_exist!
-    Location.ensure_parents_exist!(location=self)
-  end
+  # def ensure_parents_exist!
+  #   Location.ensure_parents_exist!(location=self)
+  # end
 
-  after_save(:on => :create) do |location|
-    location.ensure_parents_exist!
-  end
+  # after_save(:on => :create) do |location|
+  #   location.ensure_parents_exist!
+  # end
 
-  def Location.default
-    @default ||= Location.where('prefix = ?', '/united_states').first
-  end
-
-  scope(:prefixed_by, 
+  scope(:prefixed_by,
     lambda do |prefix|
       prefix = Location.absolute_path_for(prefix)
       stem = prefix + '/%'
@@ -219,42 +237,8 @@ class Location < ActiveRecord::Base
     where('(prefix = ? or prefix like ?)', prefix, stem).count != 0
   end
 
-  validate :validate!
-  def validate!
-    if data
-      formatted_addresses = Location.formatted_addresses_for(data)
-      if formatted_addresses.size > 1
-        message = "ambiguous location: " + formatted_addresses.join(' | ')
-        errors.add(:base, message)
-      end
-    end
-  end
-
   def to_s
     prefix
-  end
-
-  def data
-    @data ||= (
-      if json
-        json_will_change!
-        JSON.parse(json)
-      end
-    )
-  end
-
-  def json=(json)
-    json_will_change!
-    write_attribute(:json, json)
-  ensure
-    @data = json ? JSON.parse(json) : nil
-  end
-
-  def data=(data)
-    @data = data
-    json_will_change!
-    write_attribute(:json, data ? data.to_json : nil)
-    @data
   end
 
   def basename
@@ -266,15 +250,15 @@ class Location < ActiveRecord::Base
   end
   alias_method(:ll, :latlng)
 
-  def same
-    Location.new(
-      :lat => lat,
-      :lng => lng,
-      :prefix => prefix,
-      :address => address,
-      :json => json
-    )
-  end
+  # def same
+  #   Location.new(
+  #     :lat => lat,
+  #     :lng => lng,
+  #     :prefix => prefix,
+  #     :address => address,
+  #     :json => json
+  #   )
+  # end
 
   def calculate_utc_offset!
     n = 42
@@ -385,7 +369,7 @@ class Location < ActiveRecord::Base
   end
 
   def Location.date_range_name_for(location, date)
-    #remove ALL as a possible query value - russ 1107 
+    #remove ALL as a possible query value - russ 1107
     #ranges = %w( today tomorrow this_weekend this_week this_month this_year all).map{|name| date_range_for(location, name)}
     ranges = %w( today tomorrow this_weekend this_week this_month this_year).map{|name| date_range_for(location, name)}
     time = date.to_time
@@ -409,7 +393,6 @@ class Location < ActiveRecord::Base
     end
   end
 
-
 =begin
   http://www.earthtools.org/timezone/40.71417/-74.00639
 
@@ -421,13 +404,13 @@ class Location < ActiveRecord::Base
 =end
 end
 
+
 # == Schema Information
 #
 # Table name: locations
 #
 #  id                          :integer         not null, primary key
 #  uuid                        :string(255)
-#  address                     :string(255)
 #  formatted_address           :string(255)
 #  country                     :string(255)
 #  administrative_area_level_1 :string(255)
@@ -441,5 +424,7 @@ end
 #  json                        :text
 #  created_at                  :datetime
 #  updated_at                  :datetime
+#  name                        :string(255)
+#  organization_id             :integer
 #
 

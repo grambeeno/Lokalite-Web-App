@@ -1,11 +1,9 @@
 <%
-  accept = raw(ImageUploader.accepts.join(', '))
+  #accept = raw(ImageUploader.accepts.join(', '))
 %>
+<% context 'Create A New Organization' %>
 
-<%= form do %>
-  <% context 'Create A New Organization' %>
-
-  <%= render :partial => 'fields', :locals => {:accept => accept} %>
-
-  <%= submit_tag('Create Organization') %>
+<%= semantic_form_for @organization, :url => my_organizations_path(), :method => 'POST' do |form| %>
+  <%= render :partial => 'fields', :locals => { :form => form } %>
 <% end %>
+

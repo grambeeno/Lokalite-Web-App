@@ -1,17 +1,13 @@
     <%=
-      #blueprint/src/reset.css
-      #blueprint/src/typography.css
-      #blueprint/src/grid.css
-      #blueprint/src/forms.css
-      #blueprint/src/forms.css
-      #blueprint/src/liquid.css
-
       stylesheets = %w(
-        html5boilerplate.css
-        /facebox/facebox.css
-        jquery.date_input.css
-        application.css
+        html5boilerplate
+        smoothness/jquery-ui-1.8.14.custom
+        formtastic
+        formtastic_changes
+        screen
       )
+      # jquery.date_input
+
       stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")
     %>
     <% default_content_for(:style){} %>

@@ -1,0 +1,22 @@
+<a href="/" class="logo" title="Lokalite Home">lokalite</a>
+
+<nav class='user-navigation'>
+<ul>
+  <% if current_user %>
+    <li>
+      <%= link_to current_user.email, edit_profile_path %>
+    </li>
+    <li>
+      <%= link_to 'Logout', logout_path %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to 'Sign Up', signup_path %>
+    </li>
+    <li>
+      <%= link_to 'Login', login_path %>
+    </li>
+  <% end %>
+</ul>
+</nav>
+

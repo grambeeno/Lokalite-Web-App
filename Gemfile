@@ -4,7 +4,7 @@ gem 'bcrypt-ruby'
 gem 'pg'
 gem 'yajl-ruby', '0.8.1'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.9'
 gem 'jquery-rails', '>= 0.2.6'
 
 gem 'logging'
@@ -29,7 +29,11 @@ gem 'tzinfo'
 
 gem 'earth-tools'
 
+gem 'compass'
+gem 'formtastic'
 gem 'annotate'
+
+gem 'acts-as-taggable-on'
 
 # Grab it from a git fork to fix problem when running via Pow
 gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'

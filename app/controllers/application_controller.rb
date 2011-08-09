@@ -5,17 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_current_controller!
   before_filter :configure_default_url_options!
-  before_filter :show_movie_iff_first_time
 
 protected
-# navigation support - RAILS_ROOT/app/shared/navigation.rb
-#
-  if Rails.env.development?
-    load 'app/shared/navigation.rb'
-  else
-    require 'app/shared/navigation.rb'
-  end
-  include Shared(:navigation)
 
   include Tagz.globally
 
@@ -116,17 +107,6 @@ protected
   end
   helper_method :current_location_name
 
-
-
-# navigation rendering
-#
-  def render_navigation(navigation)
-    locals = {:navigation => navigation}
-    #render(:partial => 'shared/navigation', :locals => locals)
-    render_to_string(:partial => 'shared/navigation', :locals => locals)
-  end
-  helper_method(:render_navigation)
-
 # setup default_url_options
 #
    def configure_default_url_options!
@@ -155,7 +135,7 @@ protected
   def layout_for_request(*layout)
     @layout_for_request ||= default_layout_for_request
     unless layout.empty?
-      @layout_for_request = layout.first.to_s 
+      @layout_for_request = layout.first.to_s
     end
     @layout_for_request
   end
@@ -351,22 +331,6 @@ protected
     render(options)
   end
 
-# hack-ass support for showing the movie the first time..
-#
-  def show_movie_iff_first_time
-    if cookies[:shown_movie].blank?
-      cookies[:shown_movie] = true
-      @show_movie = true
-    else
-      @show_movie = false
-    end
-  end
-
-  def show_movie?
-    @show_movie == true
-  end
-  helper_method :show_movie?
-
 # path helpers
 #
   def browse_directory_path(options = {})
@@ -471,9 +435,11 @@ protected
   helper_method(:browse_events_path)
 
   def default_location
-    Location.absolute_path_for(
-      session[:location].blank? ? Location.default.prefix : session[:location]
-    )
+    if session[:location].blank?
+      '/colorado'
+    else
+      Location.absolute_path_for(session[:location])
+    end
   end
 
 

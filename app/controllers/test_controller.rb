@@ -85,9 +85,6 @@ class TestController < ApplicationController
     show(session)
   end
 
-  def a_formtastic_form
-  end
-
   def show_api
     show(api)
   end

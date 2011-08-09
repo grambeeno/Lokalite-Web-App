@@ -1,0 +1,302 @@
+/*
+  Welcome to Compass.
+  In this file you should write your main styles. (or centralize your imports)
+  Import this file using the following HTML or equivalent:
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+// @import compass/reset
+
+@import compass
+
+
+
+// $blue: #3298CF
+$blue: #607890
+
+$green: #7DA762
+// $blue: #2B7BFF
+
+$grey: #5d5d5d
+
+$event-categories: 'all', 'featured', 'happy-hour', 'campus', 'food-and-dining', 'music-and-the-arts', 'nightlife', 'shopping', 'restaurants-and-bars', 'coffee-and-tea', 'arts-and-entertainment', 'services', 'beer-wine-and-spirits', 'sports-and-fitness', 'health-and-beauty', 'community', 'non-profit', 'tours-and-tastings', 'learn-something-new', 'mmj'
+
+
+$site-width: 1120px
+$content-width: 760px
+$sidebar-padding: 10px
+$sidebar-width: ($site-width - $content-width)/2 - $sidebar-padding
+
+
+=centered-on-page
+  width: $site-width
+  margin: 0 auto
+  // background-color: white
+
+=sidebars
+  nav ul
+
+body
+  font-family: Helvetica, Arial, Verdana, sans-serif
+
+  > header
+    height: image-height('header-bg.png')
+    background:
+      color: black
+      image: image-url('header-bg.png')
+      repeat: repeat-x
+    .content
+      +centered-on-page
+      +clearfix
+
+      .logo
+        +float('left')
+        display: block
+        +replace-text-with-dimensions('header-logo.png')
+
+      nav
+        +float('right')
+        ul
+          +horizontal-list(8px)
+          margin-top: 32px
+          a
+            +link-colors(white, $green)
+            text-decoration: none
+            font-size: 14px
+            font-weight: bold
+
+
+  > footer
+    .content
+      +centered-on-page
+      nav ul
+        +horizontal-list
+      .copyright
+        +float('right')
+
+  #main
+    +centered-on-page
+    +clearfix
+    #middle
+      background:
+        color: white
+        image: image-url('main-bg.png')
+        repeat: repeat
+
+#left-sidebar,
+#right-sidebar,
+#middle
+  +float('left')
+  padding: 16px 0
+
+#left-sidebar,
+#right-sidebar
+  width: $sidebar-width
+  h3
+    font-size: 14px
+    margin-bottom: 6px 
+
+#left-sidebar
+  padding-right: $sidebar-padding
+
+  ul.categories
+    li
+      font-size: 12px
+      padding-top: 4px 
+      padding-left: 24px 
+      margin-bottom: 8px 
+      height: 16px 
+      background-position: left top
+      background-repeat: no-repeat
+      &:hover
+        background-position: left bottom
+      &.active
+        background-position: left bottom
+        
+    @each $category in $event-categories
+      .#{$category}
+        background:
+          image: image-url("category-icons/#{$category}.png")
+
+#right-sidebar
+  padding-left: $sidebar-padding
+
+  ul
+    margin: 0
+    +no-bullets
+    li
+      +clearfix
+      margin-bottom: 10px
+      a
+        text-decoration: none
+        +link-colors(black, $blue)
+      .image
+        +float('left')
+        img
+          // done in CSS for now, probably want to get an image at this scale
+          width: 30px
+      .details
+        +float('left')
+        // font-weight: bold
+        width: 130px
+        padding-left: 10px
+        font-size: 12px
+        .organization
+          font-size: 10px
+
+#middle
+  width: $content-width
+  +single-box-shadow(#333333, 0, 0, 8px)
+  margin-bottom: 25px
+  +border-bottom-radius(8px)
+
+$event-spacing: 25px
+
+=transparent-black
+  background:
+    image: image-url('transparent-black.png')
+    repeat: repeat
+
+=foreground
+  background-color: white
+  +single-box-shadow
+
+.events
+  font-size: 12px
+  +clearfix
+  margin: 0
+
+  // In order to get the top border of the box-shadow to be displayed
+  // we need to give it a top margin, so here we pull the container up
+  // by the same amount.
+  // We also give some padding-bottom so the bottom box-shadow border appears
+  margin-top: -$event-spacing
+  padding-bottom: 10px
+
+  // a
+  //   +link-colors($blue, darken($blue, 7))
+  li
+    +foreground
+    +float('left')
+    width: 200px
+    padding: 10px 10px 4px
+    margin-top: $event-spacing
+    margin-left: $event-spacing
+
+    // &:hover
+    //   background-color: darken(white, 5%)
+      // .detail
+      //   color: $blue
+    a
+      +unstyled-link
+
+    // +single-box-shadow(black, 0, 0, 4px)
+    // text-shadow: white 1px 1px 1px
+    .image
+      position: relative
+      width: 202px
+      img
+        border: 1px solid black
+      .description
+        position: absolute
+        bottom: 4px
+        right: 1px
+        left: 1px
+        line-height: 1.6em
+        +transparent-black
+        color: white
+        padding: 2px
+        display: none
+
+      .trend-button
+        text-decoration: none
+        position: absolute
+        top: 0
+        left: 0
+        background:
+          image: image-url('trend-corner.png')
+          position: top
+        width: image-width('trend-corner.png')
+        height: image-height('trend-corner.png')/2
+        &:hover
+          background-position: bottom
+        &.trended
+          background-position: bottom
+          &:hover
+            background-position: top
+        .trend-count
+          font-style: italic
+          font-size: 10px
+          color: white
+          position: absolute
+          left: 23px
+          top: 2px
+
+    .detail
+      h1
+        font-size: 14px
+        // height: 1em
+        // overflow: hidden
+      .organization
+        font-size: 12px
+        // height: 1em
+        // overflow: hidden
+      table.times
+        margin-top: 10px
+        font-size: 10px
+        text-align: left
+        tr
+          height: 12px
+        th
+          font-style: italic
+          font-weight: normal
+          color: $grey
+          // width: 38px
+        .time
+          font-weight: bold
+          text-align: right
+          // width: 60px
+          padding: 0 12px
+
+#middle > .content
+  +foreground
+  +clearfix
+  padding: 10px
+  margin: 0 25px
+
+.event
+  .image
+    +float('right')
+    img
+      border: 1px solid black
+  .detail
+    +float('left')
+    width: 378px
+    padding-right: 10px
+
+    h1
+      font-size: 22px
+    h2
+      font-size: 18px
+    .description
+      margin: 1em 0
+
+  .location
+    .map img
+      border: 1px solid #ddd
+      +border-radius(5px)
+  // .location
+  //   // margin-top: 80px
+  //   width: 240px
+
+
+
+.clear
+  width: 100%
+  height: 1px
+  margin: 0 0 -1px
+  clear: both
+
+
+
+
+

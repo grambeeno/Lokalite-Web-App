@@ -39,6 +39,7 @@ test:
   database: lokalite_test
   template: template0
   pool: 5
+  host: localhost
   username: lokalite
   password:
 
