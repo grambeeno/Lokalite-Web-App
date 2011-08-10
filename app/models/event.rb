@@ -34,11 +34,10 @@ class Event < ActiveRecord::Base
   validates_length_of :description, :maximum => 140
 
 
-  scope(:after, lambda{|*args|
-    options = args.extract_options!
-    after = options[:after] || Date.today
-    where('ends_at > ?', after)
+  scope(:after, lambda{|time|
+    where('ends_at > ?', time)
   })
+  scope :upcoming, after(Time.now)
 
   scope(:prototypes, lambda{|*args|
     where('prototype_id is null')
@@ -52,7 +51,7 @@ class Event < ActiveRecord::Base
     order('random()')
   })
 
-  scope :trending, includes(:organization).order('users_count DESC, starts_at')
+  scope :trending, upcoming.includes(:organization).order('users_count DESC, starts_at')
 
 # full-text
 #
