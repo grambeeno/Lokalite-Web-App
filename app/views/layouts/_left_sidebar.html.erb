@@ -9,50 +9,52 @@
     end
   -%>
 
-  <nav>
-    <h3>Event Categories</h3>
+<nav>
+  <a href="#event-categories">Events</a>
+  <a href="#business-categories">Places</a>
+
+  <div id="event-categories">
     <ul class='categories'>
       <%
-        EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+          EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
         classes = [category.parameterize('_')]
         classes << 'active' if classes.first == params[:category]
       %>
-        <li class="<%= classes.join(' ') %>">
-          <%= link_to(category, browse_events_path(:category => category)) %>
-        </li>
-      <% end %>
-    </ul>
+    <li class="<%= classes.join(' ') %>">
+      <%= link_to(category, browse_events_path(:category => category)) %>
+    </li>
+  <% end %>
+        </ul>
+      </div>
 
-    <br />
-
-    <h3>Business Categories</h3>
-    <ul class='categories'>
-      <%
-        ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-        classes = [category.parameterize('_')]
-        classes << 'active' if classes.first == params[:category]
-      %>
+      <div id="business-categories">
+        <ul class='categories'>
+          <%
+              ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+            classes = [category.parameterize('_')]
+            classes << 'active' if classes.first == params[:category]
+          %>
         <li class="<%= classes.join(' ') %>">
           <%= link_to(category, browse_directory_path(:category => category)) %>
         </li>
       <% end %>
     </ul>
+  </div>
 
-    <% if false && active_tab == 'events' %>
-      <h3>Dates</h3>
+  <% if false && active_tab == 'events' %>
+    <h3>Dates</h3>
 
-      <ul>
-        <% ['Today', 'Tomorrow', 'This Week', 'This Weekend', 'This Month', 'This Year'].each do |date|
-          active = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
-        %>
-          <li>
-            <%= link_to(date, browse_events_path(:date => date), :class => (active ? 'active' : '')) %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-
-  </nav>
+    <ul>
+      <% ['Today', 'Tomorrow', 'This Week', 'This Weekend', 'This Month', 'This Year'].each do |date|
+        active = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
+      %>
+        <li>
+          <%= link_to(date, browse_events_path(:date => date), :class => (active ? 'active' : '')) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</nav>
 
 <% end %>
 

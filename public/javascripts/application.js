@@ -378,6 +378,8 @@ jq(function($){
     }
   });
 
+  // $('#category-tabs').tabs();
+
 });
 
 function idFromString(string) {

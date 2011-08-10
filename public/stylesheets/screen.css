@@ -1,7 +1,7 @@
 /* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
 body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312841450'); background-repeat: repeat-x; }
-body > header .content { width: 1120px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; }
 body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312841450'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
 body > header .content nav { display: inline; float: right; }
 body > header .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-top: 32px; }
@@ -11,14 +11,14 @@ body > header .content nav ul li:last-child { padding-right: 0; }
 body > header .content nav ul li.last { padding-right: 0; }
 body > header .content nav ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
 body > header .content nav ul a:hover { color: #7da762; }
-body > footer .content { width: 1120px; margin: 0 auto; }
+body > footer .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
 body > footer .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; }
 body > footer .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
 body > footer .content nav ul li:first-child, body > footer .content nav ul li.first { padding-left: 0; }
 body > footer .content nav ul li:last-child { padding-right: 0; }
 body > footer .content nav ul li.last { padding-right: 0; }
 body > footer .content .copyright { display: inline; float: right; }
-body #main { width: 1120px; margin: 0 auto; overflow: hidden; *zoom: 1; }
+body #main { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; }
 body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1312841450'); background-repeat: repeat; }
 
 #left-sidebar, #right-sidebar, #middle { display: inline; float: left; padding: 16px 0; }
