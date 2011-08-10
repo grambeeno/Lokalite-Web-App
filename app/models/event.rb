@@ -135,7 +135,6 @@ class Event < ActiveRecord::Base
     results = results.search(keywords.join(' ')) unless keywords.blank?
     results = results.order(order)
     # results = results.joins(joins) # uncommented to fix sorting bug
-    results = results.includes(:categories, :image, :location, :organization => [:categories, :statuses, :locations])
 
     if dates
       a = location.time_for(dates.first)
@@ -150,8 +149,11 @@ class Event < ActiveRecord::Base
       results = results.where('events.ends_at >= ?', cutoff)
     end
 
-    # results = results.includes(:location).geo_scope(:within => 5, :origin => [40.014781,-105.186989])
-    # logger.debug { "----------------- results: #{results.inspect}" }
+    # for some reason including :categories here is returning weird results
+    # when used with geo_scope
+    # results = results.includes(:categories, :location, :image, :organization => [:categories, :statuses, :locations])
+    results = results.includes(:location, :image, :organization => [:categories, :statuses, :locations])
+    # results = results.geo_scope(:within => 5, :origin => [40.014781,-105.186989])
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
