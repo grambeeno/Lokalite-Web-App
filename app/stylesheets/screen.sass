@@ -24,13 +24,13 @@ $event_categories: 'all', 'featured', 'happy_hour', 'campus', 'food_and_dining',
 // setting width with variables for everything may seem like overkill but will be worth it in the end :)
 $site-width: 1120px
 $content-outer-width: 760px
-$sidebar-padding: 10px
-$sidebar-width: ($site-width - $content-outer-width)/2 - $sidebar-padding
 
 $content-bg-padding: 25px
 $content-inner-padding: 10px
 $content-inner-width: $content-outer-width - (2*($content-bg-padding + $content-inner-padding))
 
+$sidebar-padding: 10px
+$sidebar-width: ($site-width - $content-outer-width)/2 - $sidebar-padding
 
 
 
@@ -43,13 +43,15 @@ $content-inner-width: $content-outer-width - (2*($content-bg-padding + $content-
   background-color: white
   +single-box-shadow
 
-=centered-on-page
-  width: $site-width
-  margin: 0 auto
-  // background-color: white
+// add some padding to sides so smaller browser windows
+// still have a nice edge with space before content
+$site-padding: 10px
 
-=sidebars
-  nav ul
+=centered-on-page
+  width: $site-width + ($site-padding * 2)
+  margin: 0 auto
+  padding: 0 $site-padding
+  // background-color: white
 
 body
   font-family: Helvetica, Arial, Verdana, sans-serif
@@ -113,7 +115,6 @@ body
 
 #left-sidebar
   padding-right: $sidebar-padding
-
   ul.categories
     li
       font-size: 12px
@@ -136,7 +137,6 @@ body
 
 #right-sidebar
   padding-left: $sidebar-padding
-
   ul
     margin: 0
     +no-bullets
