@@ -10,35 +10,39 @@
   -%>
 
 <nav>
-  <a href="#event-categories">Events</a>
-  <a href="#business-categories">Places</a>
-
-  <div id="event-categories">
-    <ul class='categories'>
-      <%
-          EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-        classes = [category.parameterize('_')]
-        classes << 'active' if classes.first == params[:category]
-      %>
-    <li class="<%= classes.join(' ') %>">
-      <%= link_to(category, browse_events_path(:category => category)) %>
-    </li>
-  <% end %>
-        </ul>
-      </div>
-
-      <div id="business-categories">
-        <ul class='categories'>
-          <%
-              ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-            classes = [category.parameterize('_')]
-            classes << 'active' if classes.first == params[:category]
-          %>
-        <li class="<%= classes.join(' ') %>">
-          <%= link_to(category, browse_directory_path(:category => category)) %>
-        </li>
-      <% end %>
+  <div id="category-tabs">
+    <ul>
+      <li><a href="#event-categories">Events</a></li>
+      <li><a href="#places-categories">Places</a></li>
     </ul>
+
+    <div id="event-categories">
+      <ul class='categories'>
+        <%
+          EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+          classes = [category.parameterize('_')]
+          classes << 'active' if classes.first == params[:category]
+        %>
+          <li class="<%= classes.join(' ') %>">
+            <%= link_to(category, browse_events_path(:category => category)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div id="places-categories">
+      <ul class='categories'>
+        <%
+          ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
+          classes = [category.parameterize('_')]
+          classes << 'active' if classes.first == params[:category]
+        %>
+          <li class="<%= classes.join(' ') %>">
+            <%= link_to(category, browse_directory_path(:category => category)) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 
   <% if false && active_tab == 'events' %>

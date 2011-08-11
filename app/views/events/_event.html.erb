@@ -13,10 +13,7 @@
           end
       -%>
       <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
-        <div class="trend-count">
-          <%#= rand(300) %>
-          <%= event.users_count %>
-        </div>
+        <div class="trend-count"><%= event.users_count %></div>
       <% end %>
     </div>
 

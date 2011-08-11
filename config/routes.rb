@@ -21,11 +21,10 @@ Lokalite::Application.routes.draw do
 # directory routes
 #
   # match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\\d+/}
-  match 'directory/location/*location/category/:category', :controller => :directory, :action => :browse
-  match 'directory/location/*location', :controller => :directory, :action => :browse
-  match 'directory/:id', :controller => :directory, :action => :browse
-
-  match 'directory(/:action(/:id(.:format)))', :as => :directory, :controller => :directory
+  # match 'directory/location/*location/category/:category', :controller => :directory, :action => :browse
+  # match 'directory/location/*location', :controller => :directory, :action => :browse
+  # match 'directory/:id', :controller => :directory, :action => :browse
+  # match 'directory(/:action(/:id(.:format)))', :as => :directory, :controller => :directory
 
   #match 'account(/:action(/:id(.:format)))', :as => :account, :controller => :account
 

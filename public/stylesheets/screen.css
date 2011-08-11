@@ -1,16 +1,27 @@
 /* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+a { color: #607890; }
+a:visited { color: #607890; }
+a:hover { color: #52667b; }
+a:active { color: #435465; }
+
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
 body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312841450'); background-repeat: repeat-x; }
-body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; }
+body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
 body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312841450'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
 body > header .content nav { display: inline; float: right; }
-body > header .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-top: 32px; }
-body > header .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
-body > header .content nav ul li:first-child, body > header .content nav ul li.first { padding-left: 0; }
-body > header .content nav ul li:last-child { padding-right: 0; }
-body > header .content nav ul li.last { padding-right: 0; }
-body > header .content nav ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
-body > header .content nav ul a:hover { color: #7da762; }
+body > header .content nav > ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; overflow: visible; margin-top: 32px; }
+body > header .content nav > ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
+body > header .content nav > ul li:first-child, body > header .content nav > ul li.first { padding-left: 0; }
+body > header .content nav > ul li:last-child { padding-right: 0; }
+body > header .content nav > ul li.last { padding-right: 0; }
+body > header .content nav > ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
+body > header .content nav > ul a:hover { color: #7da762; }
+body > header .content nav > ul li { position: relative; }
+body > header .content nav > ul li ul { list-style: none; display: none; position: absolute; top: 20px; right: 0; background-color: black; }
+body > header .content nav > ul li ul li { list-style-image: none; list-style-type: none; margin-left: 0px; }
+body > header .content nav > ul li ul li { display: block; }
+body > header .content nav > ul li ul li a { padding: 4px; }
+body > header .content nav > ul li:hover ul { display: block; }
 body > footer .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
 body > footer .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; }
 body > footer .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
@@ -73,11 +84,11 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .events li .image { position: relative; width: 202px; }
 .events li .image img { border: 1px solid black; }
 .events li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312841451'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1312841451'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1313104392'); background-position: top; width: 52px; height: 52px; }
 .events li .image .trend-button:hover { background-position: bottom; }
 .events li .image .trend-button.trended { background-position: bottom; }
 .events li .image .trend-button.trended:hover { background-position: top; }
-.events li .image .trend-button .trend-count { font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
+.events li .image .trend-button .trend-count { display: none; font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
 .events li .detail h1 { font-size: 14px; }
 .events li .detail .organization { font-size: 12px; }
 
@@ -98,5 +109,13 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 ul.event-previews { list-style: none; overflow: hidden; *zoom: 1; margin: 0px; margin-left: -10px; }
 ul.event-previews li { list-style-image: none; list-style-type: none; margin-left: 0px; }
 ul.event-previews li { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; width: 305px; padding: 4px 10px; margin: 6px 10px; }
+
+#category-tabs > ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-bottom: 10px; }
+#category-tabs > ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
+#category-tabs > ul li:first-child, #category-tabs > ul li.first { padding-left: 0; }
+#category-tabs > ul li:last-child { padding-right: 0; }
+#category-tabs > ul li.last { padding-right: 0; }
+
+.ui-tabs-hide { display: none; }
 
 .clear { width: 100%; height: 1px; margin: 0 0 -1px; clear: both; }

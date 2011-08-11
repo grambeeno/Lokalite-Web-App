@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
     end
 
     def remove(event)
-      event.user_event_joins.find_by_user_id(proxy_owner.id).try('destroy')
+      user = proxy_owner
+      event.user_event_joins.find_by_user_id(user.id).try('destroy')
       self
     end
   end

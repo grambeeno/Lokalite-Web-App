@@ -378,7 +378,7 @@ jq(function($){
     }
   });
 
-  // $('#category-tabs').tabs();
+  $('#category-tabs').tabs();
 
 });
 
