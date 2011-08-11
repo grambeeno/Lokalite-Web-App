@@ -15,96 +15,83 @@ User.create! :email => 'zef@madebykiwi.com', :password => 'password'
 
 locations = [
   {
-    :address_line_one => '417 Harvard Ln.',
-    :address_line_two => '',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80305'
+    :street      => '417 Harvard Ln.',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80305'
+    },
+  {
+    :street      => '1226 Pennsylvania Ave. suite 2',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80302'
   },
   {
-    :address_line_one => '1226 Pennsylvania Ave.',
-    :address_line_two => '#2',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80302'
+    :street      => '1320 Pearl St. Suite 110',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80302'
   },
   {
-    :address_line_one => '1320 Pearl St.',
-    :address_line_two => 'Suite 110',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80302'
+    :street      => '2218 Edgewood Dr.',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80302'
   },
   {
-    :address_line_one => '2218 Edgewood Dr.',
-    :address_line_two => '',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80302'
+    :street      => '454 Arapahoe Ave. appt. #3',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80302'
   },
   {
-    :address_line_one => '454 Arapahoe Ave.',
-    :address_line_two => '#3',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80302'
+    :street      => '1145 Pennsylvania Ave #5',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80302'
   },
   {
-    :address_line_one => '1145 Pennsylvania Ave',
-    :address_line_two => '#5',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80302'
+    :street      => '3000 Center Green Dr Suite 140',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80301'
   },
   {
-    :address_line_one => '3000 Center Green Dr',
-    :address_line_two => 'Suite 140',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80301'
+    :street      => ' 3198 Broadway',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80304'
   },
   {
-    :address_line_one => ' 3198 Broadway',
-    :address_line_two => '',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80304'
+    :street      => '3600 Table Mesa Drive',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80305'
   },
   {
-    :address_line_one => '3600 Table Mesa Drive',
-    :address_line_two => '',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80305'
-  },
-  {
-    :address_line_one => '2735 Iris Ave',
-    :address_line_two => '#A',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80304'
+    :street      => '2735 Iris Ave #A',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80304'
   },
   # Campus
   {
-    :address_line_one => 'University of Colorado Boulder',
-    :address_line_two => 'Math 100',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80309'
+    :street      => 'University of Colorado Boulder, Math 100',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80309'
   },
   {
-    :address_line_one => 'University of Colorado',
-    :address_line_two => 'UMC 212',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80309'
+    :street      => 'University of Colorado University Memorial Center 212',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80309'
   },
   {
-    :address_line_one => 'University of Colorado',
-    :address_line_two => 'Chem 140',
-    :address_city     => 'Boulder',
-    :address_state    => 'Colorado',
-    :address_zip      => '80309'
+    :street      => 'University of Colorado Chem 140',
+    :locality    => 'Boulder',
+    :region      => 'Colorado',
+    :postal_code => '80309'
   }
 ]
 
@@ -139,10 +126,9 @@ end
   attributes[:phone] = Faker::PhoneNumber.phone_number if rand(2) == 1
 
   org = Organization.new(attributes)
-
   org.save
 
-  # puts "Address   #{location[:address_line_one]}"
+  # puts "Address   #{location[:street]}"
   # puts "Formatted #{org.location.formatted_address}"
   # puts '---------------------------------------------'
 

@@ -10,33 +10,65 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110808232325) do
+ActiveRecord::Schema.define(:version => 20110810170350) do
 
   create_table "events", :force => true do |t|
     t.string   "uuid"
     t.integer  "organization_id"
     t.string   "name"
-    t.text     "description"
+    t.string   "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "repeating"
     t.integer  "prototype_id"
-    t.text     "search"
+    t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "search"
     t.integer  "clone_count",     :default => 0
     t.string   "repeats"
     t.integer  "users_count",     :default => 0
-    t.integer  "location_id"
   end
 
   add_index "events", ["description"], :name => "index_events_on_description"
   add_index "events", ["ends_at"], :name => "index_events_on_ends_at"
+  add_index "events", ["location_id"], :name => "index_events_on_location_id"
   add_index "events", ["name"], :name => "index_events_on_name"
   add_index "events", ["organization_id"], :name => "index_events_on_organization_id"
   add_index "events", ["prototype_id"], :name => "index_events_on_event_id"
   add_index "events", ["repeating"], :name => "index_events_on_repeating"
   add_index "events", ["starts_at"], :name => "index_events_on_starts_at"
+
+  create_table "geocodes", :force => true do |t|
+    t.decimal "latitude",    :precision => 15, :scale => 12
+    t.decimal "longitude",   :precision => 15, :scale => 12
+    t.string  "query"
+    t.string  "street"
+    t.string  "locality"
+    t.string  "region"
+    t.string  "postal_code"
+    t.string  "country"
+    t.string  "precision"
+  end
+
+  add_index "geocodes", ["country"], :name => "geocodes_country_index"
+  add_index "geocodes", ["latitude"], :name => "geocodes_latitude_index"
+  add_index "geocodes", ["locality"], :name => "geocodes_locality_index"
+  add_index "geocodes", ["longitude"], :name => "geocodes_longitude_index"
+  add_index "geocodes", ["postal_code"], :name => "geocodes_postal_code_index"
+  add_index "geocodes", ["precision"], :name => "geocodes_precision_index"
+  add_index "geocodes", ["query"], :name => "geocodes_query_index", :unique => true
+  add_index "geocodes", ["region"], :name => "geocodes_region_index"
+
+  create_table "geocodings", :force => true do |t|
+    t.integer "geocodable_id"
+    t.integer "geocode_id"
+    t.string  "geocodable_type"
+  end
+
+  add_index "geocodings", ["geocodable_id"], :name => "geocodings_geocodable_id_index"
+  add_index "geocodings", ["geocodable_type"], :name => "geocodings_geocodable_type_index"
+  add_index "geocodings", ["geocode_id"], :name => "geocodings_geocode_id_index"
 
   create_table "image_context_joins", :force => true do |t|
     t.integer "image_id"
@@ -60,42 +92,31 @@ ActiveRecord::Schema.define(:version => 20110808232325) do
 
   create_table "locations", :force => true do |t|
     t.string   "uuid"
-    t.string   "formatted_address"
-    t.string   "country"
-    t.string   "administrative_area_level_1"
-    t.string   "administrative_area_level_2"
+    t.string   "name"
+    t.string   "street"
     t.string   "locality"
-    t.string   "prefix"
+    t.string   "region"
     t.string   "postal_code"
-    t.float    "lat"
-    t.float    "lng"
+    t.string   "country"
+    t.integer  "organization_id"
     t.float    "utc_offset"
-    t.text     "json"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "organization_id"
   end
 
-  add_index "locations", ["administrative_area_level_1"], :name => "index_locations_on_administrative_area_level_1"
-  add_index "locations", ["administrative_area_level_2"], :name => "index_locations_on_administrative_area_level_2"
-  add_index "locations", ["country"], :name => "index_locations_on_country"
-  add_index "locations", ["lat"], :name => "index_locations_on_lat"
-  add_index "locations", ["lng"], :name => "index_locations_on_lng"
   add_index "locations", ["locality"], :name => "index_locations_on_locality"
+  add_index "locations", ["name"], :name => "index_locations_on_name"
   add_index "locations", ["postal_code"], :name => "index_locations_on_postal_code"
-  add_index "locations", ["prefix"], :name => "index_locations_on_prefix"
   add_index "locations", ["uuid"], :name => "index_locations_on_uuid", :unique => true
 
   create_table "organizations", :force => true do |t|
     t.string   "uuid"
     t.string   "name"
-    t.text     "description"
+    t.string   "description"
     t.string   "email"
     t.string   "url"
     t.string   "phone"
     t.string   "image"
-    t.text     "search"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

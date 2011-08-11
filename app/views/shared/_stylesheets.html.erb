@@ -1,11 +1,11 @@
     <%=
       stylesheets = %w(
         html5boilerplate
-        smoothness/jquery-ui-1.8.14.custom
         formtastic
         formtastic_changes
         screen
       )
+      # smoothness/jquery-ui-1.8.14.custom
       # jquery.date_input
 
       stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")

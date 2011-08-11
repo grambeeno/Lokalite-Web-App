@@ -18,7 +18,6 @@ gem 'shared'
 gem 'map', '~> 4.2.0'
 gem 'tagz', '~> 9.0.0'
 
-gem 'geokit-rails3', :git => 'git://github.com/jlecour/geokit-rails3.git'
 gem 'chronic'
 gem 'unidecode'
 gem 'carrierwave'
@@ -38,7 +37,9 @@ gem 'acts-as-taggable-on'
 # Grab it from a git fork to fix problem when running via Pow
 gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
 
-gem 'texticle'
+# I forked this to add support for "acts_as_geocodable :through => :location"
+gem 'acts_as_geocodable', :git => 'git://github.com/zef/acts_as_geocodable.git'
+gem 'pg_search'
 
 gem "will_paginate", '~> 3.0.beta'
 

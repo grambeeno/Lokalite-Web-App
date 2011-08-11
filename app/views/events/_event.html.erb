@@ -29,18 +29,7 @@
       </div>
 
 
-      <table class="times">
-        <tr>
-          <th>Starts</th>
-          <td class="time"><%= event.starts_at.strftime("%l:%m%p").downcase %></td>
-          <td class="date"><%= event.starts_at.strftime("%a, %B %e") %></td>
-        </tr>
-        <tr>
-          <th>Ends</th>
-          <td class="time"><%= event.ends_at.strftime("%l:%m%p").downcase %></td>
-          <td class="date"><%= event.ends_at.strftime("%a, %B %e") %></td>
-        </tr>
-      </table>
+      <%= render :partial => 'time_span', :locals => {:event => event} %>
     </div>
   <% end %>
 </li>

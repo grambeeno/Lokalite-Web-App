@@ -9,6 +9,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: events
@@ -17,17 +18,17 @@ end
 #  uuid            :string(255)
 #  organization_id :integer
 #  name            :string(255)
-#  description     :text
+#  description     :string(255)
 #  starts_at       :datetime
 #  ends_at         :datetime
 #  repeating       :boolean
 #  prototype_id    :integer
-#  search          :text
+#  location_id     :integer
 #  created_at      :datetime
 #  updated_at      :datetime
+#  search          :text
 #  clone_count     :integer         default(0)
 #  repeats         :string(255)
 #  users_count     :integer         default(0)
-#  location_id     :integer
 #
 

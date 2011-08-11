@@ -40,13 +40,6 @@
     <br />
     <br />
 
-    <%= @result.form.label(:all_day, :content => 'All day?') %> &mdash; <span class='hint'>going to be a long day!</span>
-    <br />
-    <%= @result.form.input(:all_day, :type => :checkbox,
-      :checked => data.get(:all_day).to_s=='true' ? true : nil) %>
-    <br />
-    <br />
-
     <%= @result.form.label(:category) %> &mdash; <span class='hint'>pick a category for the event</span>
     <br />
     <%= @result.form.select(:category, :options => Category.options_for_select, :selected => category.id) %>

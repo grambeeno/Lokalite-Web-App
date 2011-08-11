@@ -1,50 +1,46 @@
-<%
-  context("Events by #{ @organization.name }")
-%>
-
 <section class="organization">
-  <h1><%= @organization.name %></h1>
-  <p>
-    <%= @organization.category_list %>
-  </p>
-  <p>
-    <%= image_tag @organization.image.url(:medium) %>
-  </p>
+  <div class="detail">
+    <h1><%= @organization.name %></h1>
+    <p>
+      <%= @organization.category_list %>
+    </p>
 
-  <p>
-    <%= @organization.status %>
-  </p>
+    <p>
+      <%= @organization.status %>
+    </p>
 
-  <dl>
-    <% unless @organization.status.blank? %>
-      <dt>Status</dt>
-      <dd>&ldquo;<%= c @organization.status %>&rdquo;</dd>
-    <% end %>
+    <dl>
+      <% unless @organization.status.blank? %>
+        <dt>Status</dt>
+        <dd>&ldquo;<%= c @organization.status %>&rdquo;</dd>
+      <% end %>
 
-    <% unless @organization.phone.blank? %>
-      <dt>Phone</dt>
-      <dd><%= c @organization.phone %></dd>
-    <% end %>
+      <% unless @organization.phone.blank? %>
+        <dt>Phone</dt>
+        <dd><%= c @organization.phone %></dd>
+      <% end %>
 
-    <% unless @organization.address.blank? %>
-      <dt>Address</dt>
-      <dd><%= c @organization.address %></dd>
-    <% end %>
+      <% unless @organization.address.blank? %>
+        <dt>Address</dt>
+        <dd><%= c @organization.address %></dd>
+      <% end %>
 
-    <% unless @organization.description.blank? %>
-      <dt>Description</dt>
-      <dd><%= c @organization.description %></dd>
-    <% end %>
-  </dl>
+      <% unless @organization.description.blank? %>
+        <dt>Description</dt>
+        <dd><%= c @organization.description %></dd>
+      <% end %>
+    </dl>
+  </div>
 
-  <div class="events">
-    <ul>
-      <% for event in @organization.events -%>
-        <li>
-          <%= event.name %>
-        </li>
-      <% end -%>
-    </ul>
+  <div class='image'>
+    <%= image_tag(@organization.image.url(:large)) %>
+  </div>
+
+  <div class="clear"></div>
+
+  <div class="organization-events">
+    <h2>Upcoming Events</h2>
+    <%= render :partial => '/events/event_previews', :locals => {:events => @organization.events} %>
   </div>
 </section>
 

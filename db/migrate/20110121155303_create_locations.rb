@@ -2,33 +2,23 @@ class CreateLocations < ActiveRecord::Migration
   def self.up
     create_table :locations, :force => true do |t|
       t.string :uuid
-      t.string :address
-      t.string :formatted_address
-      t.string :country
-      t.string :administrative_area_level_1
-      t.string :administrative_area_level_2
+      t.string :name
+      t.string :street
       t.string :locality
-      t.string :prefix
+      t.string :region
       t.string :postal_code
-      t.float :lat
-      t.float :lng
-      t.float :utc_offset
+      t.string :country
+      t.integer :organization_id
 
-      t.text :json
+      t.float :utc_offset
 
       t.timestamps
     end
 
     add_index :locations, [:uuid], :unique => true
-    add_index :locations, [:address], :unique => true
-    add_index :locations, [:prefix]
-    add_index :locations, [:country]
-    add_index :locations, [:administrative_area_level_1]
-    add_index :locations, [:administrative_area_level_2]
+    add_index :locations, [:name]
     add_index :locations, [:locality]
     add_index :locations, [:postal_code]
-    add_index :locations, [:lat]
-    add_index :locations, [:lng]
 
     # create_table :location_context_joins, :force => true do |t|
     #   t.integer :location_id
