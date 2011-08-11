@@ -99,7 +99,6 @@
       require 'lockfile' unless defined?(Lockfile)
       require 'map' unless defined?(Map)
       require 'fattr' unless defined?(Fattr)
-      # require 'ggeocode' unless defined?(GGeocode)
       require 'earth_tools' unless defined?(EarthTools)
       require 'ostruct' unless defined?(OpenStruct)
 
@@ -125,8 +124,7 @@
         require 'carrierwave' unless defined?(CarrierWave)
         require 'mini_magick' unless defined?(MiniMagick)
         require 'image_cache' unless defined?(ImageCache)
-        require 'pg_search' unless defined?(Texticle)
-        # require 'pg_search' unless defined?(Texticle)
+        require 'pg_search' unless defined?(PgSearch)
         require 'will_paginate' unless defined?(WillPaginate)
       end
 
