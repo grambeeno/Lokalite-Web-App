@@ -15,32 +15,8 @@ class My::OrganizationsController < My::Controller
 ##
 #
   def new
-    # @organization = Organization.new
     @organization = current_user.organizations.build
     @organization.email = current_user.email
-    # @organization.image = Image.new
-
-    # interface = '/organizations/new'
-    # @image_cache = ImageCache.for(request.params, Dao.name_for(interface, :image))
-
-    # if request.get?
-    #   @result = api.read(interface, params)
-    #   render_dao(@result)
-    # else
-    #   if params['/organizations/new(address)'].nil?  || params['/organizations/new(address)'].empty?
-    #     params['/organizations/new(address)'] = Location.assemble_address(params)
-    #   end
-    #   @result = api.write(interface, params)
-
-    #   if @result.valid?
-    #     @image_cache.clear!
-    #     message("Yay - You're ready to create an event!", :class => :success)
-    #     id = @result.data.id
-    #     redirect_to(my_organization_path(:id => id, :action => :new_event))
-    #   else
-    #     render_dao(@result)
-    #   end
-    # end
   end
 
   def edit
@@ -86,7 +62,6 @@ class My::OrganizationsController < My::Controller
   #     render_dao(@result)
   #   else
   #     @result = api.write(interface, params)
-
   #     if @result.valid?
   #       @image_cache.clear!
   #       name = @result.data.name
@@ -133,8 +108,6 @@ class My::OrganizationsController < My::Controller
     end
   end
 
-##
-#
   def edit_event
     interface = '/organizations/edit/event'
     @image_cache = ImageCache.for(request.params, Dao.name_for(interface, :image))
@@ -168,8 +141,6 @@ class My::OrganizationsController < My::Controller
     end
   end
 
-##
-#
   def statuses
     @organization = Organization.find(@organization_id)
     @statuses = @organization.statuses.limit(10).order('created_at desc')
