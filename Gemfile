@@ -34,6 +34,9 @@ gem 'annotate'
 
 gem 'acts-as-taggable-on'
 
+# New Relic Monitors Server Usage
+gem 'newrelic_rpm'
+
 # Grab it from a git fork to fix problem when running via Pow
 gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
 
