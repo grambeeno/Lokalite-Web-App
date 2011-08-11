@@ -24,7 +24,7 @@ class Organization < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :email
 
-  validates_length_of :description, :maximum => 140
+  validates_length_of :description, :maximum => 500
 
   before_validation(:on => :create) do |organization|
     organization.uuid ||= App.uuid

@@ -3,7 +3,7 @@ class CreateOrganizations < ActiveRecord::Migration
     create_table :organizations, :force => true do |t|
       t.string :uuid
       t.string :name
-      t.string :description
+      t.text   :description
       t.string :email
       t.string :url
       t.string :phone
