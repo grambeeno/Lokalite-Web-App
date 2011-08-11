@@ -4,13 +4,12 @@ class CreateEvents < ActiveRecord::Migration
       t.string :uuid
       t.integer :organization_id
       t.string :name
-      t.text :description
+      t.string :description
       t.timestamp :starts_at
       t.timestamp :ends_at
-      t.boolean :all_day
       t.boolean :repeating
       t.integer :event_id
-      t.text :search
+      t.integer :location_id
 
       t.timestamps
     end
@@ -20,9 +19,9 @@ class CreateEvents < ActiveRecord::Migration
     add_index :events, [:description]
     add_index :events, [:starts_at]
     add_index :events, [:ends_at]
-    add_index :events, [:all_day]
     add_index :events, [:repeating]
     add_index :events, [:event_id]
+    add_index :events, [:location_id]
   end
 
   def self.down

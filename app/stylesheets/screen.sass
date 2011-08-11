@@ -271,15 +271,18 @@ table.times
 
 
 
+
+
 .event, .organization
   .image
-    +float('right')
+    +float('left')
     img
       border: 1px solid black
   .detail
     +float('left')
-    width: 378px
-    padding-right: 10px
+    // 302 == image with border
+    width: $content-inner-width - 302 - 10
+    padding-left: 10px
 
     h1
       font-size: 22px
@@ -295,7 +298,7 @@ table.times
     .map img
       border: 1px solid #ddd
       +border-radius(5px)
-      width: 688px
+      // width: 688px
   // .location
   //   // margin-top: 80px
 

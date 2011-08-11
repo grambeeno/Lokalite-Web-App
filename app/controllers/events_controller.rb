@@ -11,7 +11,6 @@ class EventsController < ApplicationController
   end
 
   def browse 
-    logger.debug { "---- context #{@context.inspect}" }
     @context[:per_page] = 12
     @events = Event.browse(@context)
   end
@@ -76,7 +75,7 @@ private
   def set_context
     @context = Map[
       #:location     , session[:location], 
-      :location     , (params.has_key?(:location) ? Location.absolute_path_for(params[:location]) : nil),
+      :location     , (params.has_key?(:location) ? params[:location] : nil),
       :organization , params[:organization],
       :category     , params[:category],
       :date         , params[:date],

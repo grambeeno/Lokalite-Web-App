@@ -86,14 +86,14 @@ table.times tr { height: 12px; }
 table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
 table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
-.event .image, .organization .image { display: inline; float: right; }
+.event .image, .organization .image { display: inline; float: left; }
 .event .image img, .organization .image img { border: 1px solid black; }
-.event .detail, .organization .detail { display: inline; float: left; width: 378px; padding-right: 10px; }
+.event .detail, .organization .detail { display: inline; float: left; width: 378px; padding-left: 10px; }
 .event .detail h1, .organization .detail h1 { font-size: 22px; }
 .event .detail h2, .organization .detail h2 { font-size: 18px; }
 .event .detail .description, .organization .detail .description { margin: 1em 0; }
 .event .detail table.times, .organization .detail table.times { font-size: 13px; }
-.event .location .map img, .organization .location .map img { border: 1px solid #dddddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 688px; }
+.event .location .map img, .organization .location .map img { border: 1px solid #dddddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 
 ul.event-previews { list-style: none; overflow: hidden; *zoom: 1; margin: 0px; margin-left: -10px; }
 ul.event-previews li { list-style-image: none; list-style-type: none; margin-left: 0px; }

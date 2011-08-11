@@ -1,23 +1,11 @@
 module EventsHelper
 
-  def address_for(event)
-    location = event.location
-    parts = location.formatted_address.split(', ')
-
-    result = ''
-    for line in parts.reject{|p| p == 'USA'}
-      separator = line.start_with?(location.locality) ? ', ' : '<br />'
-      result << line + separator
-    end
-    raw result.chomp('<br />')
-  end
-
   def google_maps_image(event, options = {})
     location = event.location
     url = 'http://maps.googleapis.com/maps/api/staticmap?'
   
     options.reverse_merge!({
-      :markers => "#{location.lat},#{location.lng}",
+      :markers => "#{location.latitude},#{location.longitude}",
       :zoom   => 13,
       :size   => '640x320',
       :sensor => false

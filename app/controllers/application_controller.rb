@@ -437,7 +437,7 @@ protected
     if session[:location].blank?
       '/colorado'
     else
-      Location.absolute_path_for(session[:location])
+      session[:location]
     end
   end
 

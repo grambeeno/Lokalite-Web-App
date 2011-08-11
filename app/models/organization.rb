@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+  include PgSearch
 # user/member relationships
 #
   has_many(:user_organization_joins, :dependent => :destroy)
@@ -13,7 +14,7 @@ class Organization < ActiveRecord::Base
   end
 
   has_many :events, :dependent => :destroy
-  has_many :locations, :dependent => :destroy
+
   has_many(:statuses, :as => :context, :dependent => :destroy, :order => 'created_at desc')
 
   acts_as_taggable_on :categories
@@ -28,7 +29,6 @@ class Organization < ActiveRecord::Base
   before_validation(:on => :create) do |organization|
     organization.uuid ||= App.uuid
   end
-
 
   # has_many(:image_context_joins, :as => :context, :dependent => :destroy)
   # has_many(:images, :through => :image_context_joins)
@@ -46,6 +46,9 @@ class Organization < ActiveRecord::Base
     self.image = image
   end
 
+  has_many :locations, :dependent => :destroy, :include => :geocoding
+  # still need to enable this for has_many associations
+  # acts_as_geocodable :through => :locations
   accepts_nested_attributes_for :locations
   validates_presence_of :locations
   validates_associated  :locations
@@ -61,31 +64,16 @@ class Organization < ActiveRecord::Base
   after_initialize :build_default_location
 
   def build_default_location
-    self.locations.build(:address_state => 'Colorado')
+    # self.locations.build(:region => 'Colorado')
     # self.image = Image.new
   end
 
-
-  # after_save(:on => :create) do |organization|
-  #   organization.index! rescue nil
-  # end
-
-# full-text
-#
-  index do
-    search
-  end
+  pg_search_scope :search, :against => [[:name, 'A'], [:description, 'B']]
 
   def Organization.browse(*args)
     options = Map.extract_options!(args)
 
-    prefix = options[:location] || options[:prefix] || 'colorado'
-    prefix = prefix.prefix if prefix.respond_to?(:prefix)
-    prefix = Location.absolute_path_for(prefix)
-
-    category = options[:category]
-    category = category.name rescue category
-    category = Slug.for(category) if category
+    location = options[:location] || 'Boulder, CO'
 
     keywords = args + Array(options[:keywords])
     keywords = Array(keywords).flatten.compact
@@ -98,41 +86,22 @@ class Organization < ActiveRecord::Base
     case options[:order].to_s
       when 'name'
         order = 'organizations.name'
-      when 'date'
-        order = 'organizations.starts_at'
       when 'category'
         order = 'categories.name'
-      when 'location'
-        order = 'locations.prefix'
       else
         order = 'organizations.updated_at DESC'
     end
 
-    location = Location.find_by_prefix(prefix)
-    unless location
-      locations = Location.where('prefix like ?', "#{ prefix }%").order('prefix')
-      location = locations.last
-    end
-    raise "no location for #{ prefix.inspect }" unless location
-
-    # joins = [:categories, :images, :statuses, {:venues => :location}]
-    # includes = [:categories, :images, :statuses]
-    joins = [:statuses, :locations]
-    # includes = [:image, :statuses, :locations]
-    includes = [:statuses, :locations]
-
     results = relation
-    # TODO - organization filtering is pretty broken, refactor and fix
+    results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
 
-    # results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
-    # prefix = '/colorado/boulder'
-    # results = results.where(:locations => {:prefix => '/colorado/boulder'})
-    # results = results.where(:locations => ['prefix like ?', "#{prefix}"])
+    results = results.search(keywords.join(' ')) unless keywords.blank?
 
-    # results = results.search(normalize_search_term("/category/#{ category }")) unless category.blank?
-    # results = results.search(keywords.join(' ')) unless keywords.blank?
-    # results = results.joins(joins)
-    results = results.includes(includes)
+    # TODO - filter by location
+    # results = results.origin([40.014781,-105.186989], :within => 3.5)
+
+    # results = results.joins(:statuses, :locations)
+    results = results.includes(:image, :statuses, :locations)
     results = results.order(order)
 
     results.paginate(:page => page, :per_page => per_page)
@@ -140,38 +109,6 @@ class Organization < ActiveRecord::Base
 
   def Organization.normalize_search_term(term)
     '/' + term.to_s.scan(/[a-zA-Z0-9]+/).join('/').downcase
-  end
-
-  def Organization.index!
-    Organization.find_in_batches do |organizations|
-      organizations.each do |organization|
-        organization.index! rescue next
-      end
-    end
-  end
-
-  def index!
-    organization = self
-
-    location_searches = []
-    category_searches = []
-
-    organization.categories.each do |category|
-      category_search =  Organization.normalize_search_term("/category/#{ category.name }")
-      category_searches.push(category_search)
-    end
-
-    terms = [
-      location_searches,
-      category_searches,
-      organization.name, organization.description,
-      organization.name, organization.description, organization.url, organization.email, organization.phone,
-      location.name, location.country, location.administrative_area_level_1, location.administrative_area_level_2, location.locality
-    ]
-
-    search = terms.flatten.compact.join(' ')
-
-    Organization.base.update(organization.id, :search => search)
   end
 
   def Organization.named?(name)
@@ -202,7 +139,7 @@ class Organization < ActiveRecord::Base
   end
 
   def Organization.to_dao(*args)
-    remove = %w[search]
+    remove = %w[]
     add    = %w[status location categories]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
@@ -245,6 +182,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: organizations
@@ -252,12 +190,11 @@ end
 #  id          :integer         not null, primary key
 #  uuid        :string(255)
 #  name        :string(255)
-#  description :text
+#  description :string(255)
 #  email       :string(255)
 #  url         :string(255)
 #  phone       :string(255)
 #  image       :string(255)
-#  search      :text
 #  created_at  :datetime
 #  updated_at  :datetime
 #

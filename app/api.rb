@@ -407,7 +407,6 @@ Api =
     # end
 
     interface('/places/') do
-
       read do
         organizations = Organization.browse(params)
         data!(:list => organizations.to_dao) unless organizations.empty?

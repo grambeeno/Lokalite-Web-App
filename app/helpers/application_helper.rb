@@ -251,7 +251,7 @@ module ApplicationHelper
     case event
       when Event
         options[:formatted_address] = event.location.formatted_address
-        options[:ll] = event.location.ll
+        options[:ll] = event.location.coordinates
       when Hash
         hash.to_options!
         options[:formatted_address] = hash[:formatted_address]

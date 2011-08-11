@@ -3,15 +3,12 @@ class CreateOrganizations < ActiveRecord::Migration
     create_table :organizations, :force => true do |t|
       t.string :uuid
       t.string :name
-      t.text :description
-      t.string :address
+      t.string :description
       t.string :email
       t.string :url
       t.string :phone
       t.string :category
       t.string :image
-
-      t.text :search
 
       t.timestamps
     end
