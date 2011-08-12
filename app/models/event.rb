@@ -347,7 +347,7 @@ class Event < ActiveRecord::Base
 
   def Event.to_dao(*args)
     remove = %w[]
-    add    = %w[distance featured? categories image organization location]
+    add    = %w[featured? categories image organization location]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
