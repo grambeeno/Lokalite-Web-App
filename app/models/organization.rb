@@ -33,8 +33,8 @@ class Organization < ActiveRecord::Base
   # has_many(:image_context_joins, :as => :context, :dependent => :destroy)
   # has_many(:images, :through => :image_context_joins)
 
-  has_one(:image_context_join, :as => :context, :dependent => :destroy, :conditions => {:kind => :primary})
-  has_one(:image, :through => :image_context_join)
+  has_one :image_context_join, :as => :context, :dependent => :destroy
+  has_one :image, :through => :image_context_join
 
   # accepts_nested_attributes_for :image
   validates_presence_of :image
