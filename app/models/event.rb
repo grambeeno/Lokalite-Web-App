@@ -83,14 +83,6 @@ class Event < ActiveRecord::Base
     page     = [Integer(page), 1].max
     per_page = [Integer(per_page), 42].min
 
-    case options[:order].to_s
-      when 'name'
-        order = 'events.name'
-      when 'date'
-        order = 'events.starts_at asc'
-      else
-        order = 'events.starts_at asc'
-    end
 
     if organization_id.present?
       organization = Organization.find(organization_id)
@@ -115,7 +107,6 @@ class Event < ActiveRecord::Base
 
     results = relation
 
-
     if organization_id.blank?
       # results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
       results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
@@ -123,7 +114,6 @@ class Event < ActiveRecord::Base
       # results = results.search(normalize_search_term("/organization/#{ organization_id }")) unless organization_id.blank?
     end
     results = results.search(keywords.join(' ')) unless keywords.blank?
-    results = results.order(order)
     # results = results.joins(joins) # uncommented to fix sorting bug
 
     if dates
@@ -139,11 +129,21 @@ class Event < ActiveRecord::Base
       results = results.where('events.ends_at >= ?', cutoff)
     end
 
-    # for some reason including :categories here is returning weird results
-    # when used with geo_scope
     results = results.includes(:categories, :location, :image, :organization => [:categories, :statuses, :locations])
-    # results = results.origin([40.014781,-105.186989], :within => 3.5)
-    # results = results.origin('Boulder, CO', :within => 10)
+
+    origin   = options[:origin]
+    within  = options[:within] || 20
+    results = results.origin(origin, :within => within) if origin.present?
+
+    case options[:order].to_s
+      when 'name'
+        order = 'events.name'
+      when 'date'
+        order = 'events.starts_at asc'
+      else
+        order = 'events.starts_at asc'
+    end
+    results = results.order(order)
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
