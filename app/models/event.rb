@@ -100,7 +100,7 @@ class Event < ActiveRecord::Base
     else
       #default date_range scope will be today
       #TTD - make date_range scope 24 hours ASAP?   russ 1107
-      dates = location.date_range_for('today')  
+      dates = location.date_range_for('today')
     end
 
     joins = [:categories, :image, :organization, :location]
@@ -131,19 +131,17 @@ class Event < ActiveRecord::Base
 
     results = results.includes(:categories, :location, :image, :organization => [:categories, :statuses, :locations])
 
-    origin   = options[:origin]
+    origin  = options[:origin]
     within  = options[:within] || 20
     results = results.origin(origin, :within => within) if origin.present?
 
-    case options[:order].to_s
-      when 'name'
-        order = 'events.name'
-      when 'date'
-        order = 'events.starts_at asc'
-      else
-        order = 'events.starts_at asc'
+    if options[:order] == 'distance' && origin.present?
+      results = results.near
+    elsif options[:order] == 'name'
+      results = results.order('events.name ASC')
+    else
+      results = results.order('events.starts_at ASC')
     end
-    results = results.order(order)
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
@@ -349,7 +347,7 @@ class Event < ActiveRecord::Base
 
   def Event.to_dao(*args)
     remove = %w[]
-    add    = %w[featured? categories image organization location]
+    add    = %w[distance featured? categories image organization location]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 

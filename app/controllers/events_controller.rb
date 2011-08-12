@@ -79,6 +79,8 @@ private
       :organization , params[:organization],
       :category     , params[:category],
       :date         , params[:date],
+      :origin       , params[:origin],
+      :within       , params[:within],
       :keywords     , params[:keywords],
       :order        , params[:order],
       :page         , params[:page],
