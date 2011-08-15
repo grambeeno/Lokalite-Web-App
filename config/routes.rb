@@ -32,9 +32,7 @@ Lokalite::Application.routes.draw do
   match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
 
   namespace :my do
-    resources :organizations do
-      match 'statuses' => 'organizations#statuses'
-    end
+    resources :organizations
     resources :events
   end
 

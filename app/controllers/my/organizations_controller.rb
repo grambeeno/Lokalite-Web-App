@@ -141,19 +141,6 @@ class My::OrganizationsController < My::Controller
     end
   end
 
-  def statuses
-    @organization = Organization.find(@organization_id)
-    @statuses = @organization.statuses.limit(10).order('created_at desc')
-
-    if request.post?
-      status = params[:status]
-      @organization.set_status!(status) unless status.blank?
-      message('New status set!', :class => :success)
-      #redirect_to(:action => :status)
-      #return
-    end
-  end
-
 ##
 #
 # TODO - support pagination here...

@@ -129,7 +129,7 @@ class Event < ActiveRecord::Base
       results = results.where('events.ends_at >= ?', cutoff)
     end
 
-    results = results.includes(:categories, :location, :image, :organization => [:categories, :statuses, :locations])
+    results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
 
     origin  = options[:origin]
     within  = options[:within] || 20

@@ -122,16 +122,6 @@ class Organization < ActiveRecord::Base
     parts.join('/')
   end
 
-  def set_status!(content)
-    statuses.create!(:content => content)
-  ensure
-    touch
-  end
-
-  def status
-    statuses.order('created_at desc').first
-  end
-
 # HACK
 #
   def directory_path
@@ -140,43 +130,9 @@ class Organization < ActiveRecord::Base
 
   def Organization.to_dao(*args)
     remove = %w[]
-    add    = %w[status location categories]
+    add    = %w[location categories]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
-
-=begin
-  def to_dao(*args)
-    if args.empty?
-      map = Map.new
-      map[:id] = id
-      map[:name] = name
-      map[:description] = description
-      map[:url] = url
-      map[:email] = email
-      map[:phone] = phone
-      map[:address] = address
-      map[:category] = category
-
-      if location
-        map[:location] = Map[:prefix, location.prefix, :ll, location.ll, :address, location.address]
-      end
-
-      map[:categories] = categories.map{|category| category.name}
-
-      if image
-        map[:image] = App.url(image.url)
-      end
-
-      unless venues.blank?
-        map[:venues] = venues.map{|venue| Map.for(venue.attributes)}
-      end
-      
-      map
-    else
-      Organization.to_dao(record=self, *args)
-    end
-  end
-=end
 
 end
 

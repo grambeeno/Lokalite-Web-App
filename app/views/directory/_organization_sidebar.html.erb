@@ -15,11 +15,6 @@
 
   <div class="description">
     <dl class='app'>
-      <% unless organization.status.blank? %>
-        <dt>Status</dt>
-        <dd>&ldquo;<%= c organization.status %>&rdquo;</dd>
-      <% end %>
-
       <% unless organization.phone.blank? %>
         <dt>Phone</dt>
         <dd><%= c organization.phone %></dd>

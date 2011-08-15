@@ -166,12 +166,6 @@
     <div class="fill-right clearfix">
       <h1 class="smaller"><a href="<%= "/directory/#{ event.organization.id }" %>"><%= event.organization.name %></a></h1>
 
-      <% unless event.organization.status.nil? %>
-      <div class="status">
-        <%= c event.organization.status %>
-      </div>
-      <% end %>
-
       <div class="description">
         <%= c event.organization.description %>
       </div>
