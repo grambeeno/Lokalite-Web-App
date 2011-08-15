@@ -64,8 +64,6 @@ Lokalite::Application.routes.draw do
 
   match 'test(/:action(/:id(.:format)))', :controller => 'test', :as => 'test'
 
-  match 'raptcha(/:action)', :controller => 'raptcha'
-
   namespace(:admin) do
     match 'users(/:action(/:id(.:format)))', :controller => 'users'
   end
