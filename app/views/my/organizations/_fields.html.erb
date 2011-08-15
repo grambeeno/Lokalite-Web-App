@@ -4,18 +4,25 @@
   <%= form.input :email %>
   <%= form.input :url, :label => 'Website'%>
   <%= form.input :phone %>
-  <%#= form.input :category %>
-  <%= form.input :image_file, :as => :file, :label => 'Image (300px square)' %>
+  <%= form.input :category_list, :label => 'Category', :as => :select, :collection => ORGANIZATION_CATEGORIES, :prompt => 'Select a Category' %>
+
+  <%= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>
+  <li class='existing-image'>
+    <%= image_tag(form.object.image_url(:small)) if form.object.image? %>
+  </li>
+  <%= form.hidden_field :image_cache %>
+  
+
   <%= form.semantic_fields_for :locations do |location| %>
     <% 
       # why doesn't this work when done in the controller?
       # location.object.set_address_components_for_editing unless location.object.new_record?
     %>
-    <%= location.input :address_line_one %>
-    <%= location.input :address_line_two %>
-    <%= location.input :address_city, :label => 'City' %>
-    <%= location.input :address_state, :label => 'State', :as => :select, :collection => US_STATES %>
-    <%= location.input :address_zip, :label => 'Zip Code' %>
+    <%= location.input :name %>
+    <%= location.input :street %>
+    <%= location.input :locality, :label => 'City' %>
+    <%= location.input :region, :label => 'State', :as => :select, :collection => US_STATES %>
+    <%= location.input :postal_code, :label => 'Zip Code', :as => :numeric %>
   <% end %>
 <% end %>
 <%= form.buttons %>

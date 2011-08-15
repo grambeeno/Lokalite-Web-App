@@ -119,7 +119,6 @@
         require 'railsext' unless defined?(RailsExt)
         require 'tagz' unless defined?(Tagz)
         require 'yajl/json_gem' unless defined?(Yajl)
-        require 'raptcha' unless defined?(Raptcha)
         require 'dao' unless defined?(Dao)
         require 'carrierwave' unless defined?(CarrierWave)
         require 'mini_magick' unless defined?(MiniMagick)

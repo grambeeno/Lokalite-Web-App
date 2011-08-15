@@ -8,8 +8,6 @@
 
 @import compass
 
-
-
 // $blue: #3298CF
 $blue: #607890
 
@@ -17,6 +15,7 @@ $green: #7DA762
 // $blue: #2B7BFF
 
 $grey: #5d5d5d
+$light-grey: #808080
 
 $event_categories: 'all', 'featured', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
@@ -109,8 +108,10 @@ body
   > footer
     .content
       +centered-on-page
-      nav ul
-        +horizontal-list
+      nav
+        +float('left')
+        ul
+          +horizontal-list
       .copyright
         +float('right')
 
@@ -189,11 +190,18 @@ body
   margin-bottom: $content-bg-padding
   +border-bottom-radius(8px)
 
-#middle > .content
-  +foreground
+=content-with-margin
   +clearfix
-  padding: $content-inner-padding
   margin: 0 $content-bg-padding
+
+#middle
+  > .content
+    +content-with-margin
+  > .content-with-foreground
+    +content-with-margin
+    padding: $content-inner-padding
+    +foreground
+  
 
 .events
   font-size: 12px
@@ -350,4 +358,5 @@ ul.event-previews
   margin: 0 0 -1px
   clear: both
 
+@import forms
 

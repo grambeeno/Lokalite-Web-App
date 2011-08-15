@@ -1,33 +1,35 @@
-<% form_tag(request.fullpath, form_attrs(:half, :signup, :style => 'margin:1em auto')) do %>
-  <%= errors_for(@errors) %>
+<div class='content-with-foreground'>
+  <% form_tag(request.fullpath, form_attrs(:half, :signup, :style => 'margin:1em auto')) do %>
+    <%= errors_for(@errors) %>
 
-  <div class='instructions'>
-    Login!
-  </div>
+    <div class='instructions'>
+      Login!
+    </div>
 
-  <%= label_tag 'Email' %>
-  <br />
-  <%= text_field_tag :email, @email, :class => :focus, :style => 'width:232px' %>
-  <br />
+    <%= label_tag 'Email' %>
+    <br />
+    <%= text_field_tag :email, @email, :class => :focus, :style => 'width:232px' %>
+    <br />
 
-  <%= label_tag 'Password' %>
-  <br />
-  <%= password_field_tag :password, @password, :style => 'width:232px' %>
-  <br />
+    <%= label_tag 'Password' %>
+    <br />
+    <%= password_field_tag :password, @password, :style => 'width:232px' %>
+    <br />
 
-  <br />
-  <br />
-  <table class='layout' style='width:100%'>
-    <tr>
-      <td style='text-align:left;vertical-align:bottom;'>
-        <%= submit_tag :Login %>
-      </td>
-      <td style='text-align:right;vertical-align:bottom;'>
-        <%= link_to 'need to signup instead?', signup_path %>
-        |
-        <%= link_to 'forgot your password?', password_path %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+    <br />
+    <br />
+    <table class='layout' style='width:100%'>
+      <tr>
+        <td style='text-align:left;vertical-align:bottom;'>
+          <%= submit_tag :Login %>
+        </td>
+        <td style='text-align:right;vertical-align:bottom;'>
+          <%= link_to 'need to signup instead?', signup_path %>
+          |
+          <%= link_to 'forgot your password?', password_path %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 
+</div>

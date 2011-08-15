@@ -1,0 +1,29 @@
+$form-grey: #f1f1f1
+
+.form
+  +content-with-margin
+  h1, h2
+    text-align: center
+  h1
+    font-size: 50px
+    margin-bottom: 10px 
+  h2
+    font-size: 20px
+    font-weight: normal
+    color: $light-grey
+    margin-bottom: 20px 
+    
+  // hr
+
+form.formtastic
+  input, textarea
+    background-color: $form-grey
+    border: none
+    padding: 10px
+    
+    &.file
+      background-color: transparent
+      padding: 0
+
+  .existing-image
+    padding-left: 177px 

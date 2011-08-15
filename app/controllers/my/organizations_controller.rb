@@ -17,6 +17,7 @@ class My::OrganizationsController < My::Controller
   def new
     @organization = current_user.organizations.build
     @organization.email = current_user.email
+    # @organization.locations.build(:region => 'Colorado')
   end
 
   def edit
@@ -32,6 +33,7 @@ class My::OrganizationsController < My::Controller
       flash[:notice] = 'Organization was successfully created.'
       redirect_to(organization_path(@organization.slug, @organization.id))
     else
+      logger.debug { "----------------- @organization #{@organization.errors.inspect}" }
       render :action => "new"
     end
   end
@@ -139,22 +141,6 @@ class My::OrganizationsController < My::Controller
         render_dao(@result)
       end
     end
-  end
-
-##
-#
-# TODO - support pagination here...
-#
-  def manage
-    @organization = Organization.find(@organization_id)
-    @events = @organization.events.limit(100).order('created_at desc')
-
-    unless params[:status].blank?
-      @organization.set_status!(params[:status])
-      redirect_to(fullpath) and return
-    end
-
-    @statuses = @organization.statuses.limit(100).order('created_at desc')
   end
 
 private

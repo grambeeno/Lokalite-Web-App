@@ -1,50 +1,52 @@
-<section class='event'>
-  <div class='image'>
-    <%= image_tag(@event.image.url(:large)) %>
-  </div>
-
-  <div class='detail'>
-    <h1><%= @event.name %></h1>
-    <h2>
-      <%= link_to "@ #{@event.organization.name}", organization_path(@event.organization.slug, @event.organization.id) %>
-    </h2>
-
-    <p class='description'><%= @event.description %></p>
-
-    <%= render :partial => 'time_span', :locals => {:event => @event} %>
-
-    <% for category in @event.categories -%>
-      <%#= image_tag "category-icons/#{category.name.parameterize}.png" %>
-      <%#= category %>
-    <% end -%>
-
-    <br />
-
-    <!--
-    <div class="buttons">
-      <%= link_to 'Share', '#' %>
-      &nbsp;
-      <% if logged_in? %>
-        <% trend_state = current_user.events.include?(@event) ? :trended : :trend  -%>
-        <%= link_to(trend_state.to_s.titleize, "#trend_event/#{@event.id}", :class => [trend_state]) %>
-      <% end %>
-      (<%= pluralize @event.users_count, 'trend' %>)
+<div class='content-with-foreground'>
+  <section class='event'>
+    <div class='image'>
+      <%= image_tag(@event.image.url(:large)) %>
     </div>
-    -->
 
-    <div class="location">
-      <div class="organization">
-        <strong><%= @event.location.name %></strong>
-        <br />
-        <%= raw @event.location.formatted_address %>
+    <div class='detail'>
+      <h1><%= @event.name %></h1>
+      <h2>
+        <%= link_to "@ #{@event.organization.name}", organization_path(@event.organization.slug, @event.organization.id) %>
+      </h2>
+
+      <p class='description'><%= @event.description %></p>
+
+      <%= render :partial => 'time_span', :locals => {:event => @event} %>
+
+      <% for category in @event.categories -%>
+        <%#= image_tag "category-icons/#{category.name.parameterize}.png" %>
+        <%#= category %>
+      <% end -%>
+
+      <br />
+
+      <!--
+      <div class="buttons">
+        <%= link_to 'Share', '#' %>
+        &nbsp;
+        <% if logged_in? %>
+          <% trend_state = current_user.events.include?(@event) ? :trended : :trend  -%>
+          <%= link_to(trend_state.to_s.titleize, "#trend_event/#{@event.id}", :class => [trend_state]) %>
+        <% end %>
+        (<%= pluralize @event.users_count, 'trend' %>)
       </div>
+      -->
 
-      <div class="map">
-        <%= link_to google_maps_image(@event, :size => '376x140'), gmaps_url_for(@event), :target => '_blank', :class => 'map_link' %>
+      <div class="location">
+        <div class="organization-info">
+          <strong><%= @event.location.name %></strong>
+          <br />
+          <%= raw @event.location.formatted_address %>
+        </div>
+
+        <div class="map">
+          <%= link_to google_maps_image(@event, :size => '376x140'), gmaps_url_for(@event), :target => '_blank', :class => 'map_link' %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="clear"></div>
+    <div class="clear"></div>
+  </section>
+</div>
 
-</section>

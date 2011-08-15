@@ -1,9 +1,17 @@
 <%
   #accept = raw(ImageUploader.accepts.join(', '))
 %>
-<% context 'Create A New Organization' %>
 
-<%= semantic_form_for @organization, :url => my_organizations_path(), :method => 'POST' do |form| %>
-  <%= render :partial => 'fields', :locals => { :form => form } %>
-<% end %>
+<div class='form'>
+  <h1>Create an Organization</h1>
+  <h2>
+    Then you can begin creating events!
+  </h2>
+
+  <hr />
+
+  <%= semantic_form_for @organization, :url => my_organizations_path(), :method => 'POST', :html => {:multipart => true} do |form| %>
+    <%= render :partial => 'fields', :locals => { :form => form } %>
+  <% end %>
+</div>
 

@@ -18,23 +18,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :s3
 
-  def uuid
-    @uuid ||= App.uuid
-  end
-
+  # def uuid
+  #   @uuid ||= App.uuid
+  # end
   
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    if model
-      if model.is_a?(Image)
-        "#{ Dir }/#{ model.id }"
-      else
-        "#{ Dir }/#{ model.class.to_s.underscore }/#{ mounted_as }/#{ model.id }"
-      end
-    else
-      "#{ Dir }/#{ uuid }"
-    end
+    "#{ Dir }/#{ model.class.to_s.underscore }/#{ mounted_as }/#{ model.id }"
   end
 
   def cache_dir

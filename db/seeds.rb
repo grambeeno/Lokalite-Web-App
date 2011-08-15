@@ -5,7 +5,7 @@
 User.destroy_all
 Organization.destroy_all
 Location.destroy_all
-Image.destroy_all
+EventImage.destroy_all
 Event.destroy_all
 
 
@@ -107,7 +107,7 @@ def random_image
   File.new images[rand(images.size)]
 end
 
-50.times do |index|
+10.times do |index|
   user = User.create! :email => Faker::Internet.email, :password => 'password'
 
   location = locations.rand
@@ -115,12 +115,12 @@ end
   location[:name] = org_name
 
   attributes = {
-    :name        => org_name,
-    :description => Faker::Company.catch_phrase,
-    :email       => user.email,
-    :image_file  => random_image,
-    :locations_attributes => {'0' => location},
-    :category_list => ORGANIZATION_CATEGORIES.rand
+    :name                 => org_name,
+    :description          => Faker::Company.catch_phrase,
+    :email                => user.email,
+    :image                => random_image,
+    :locations_attributes => {'0'                         => location},
+    :category_list        => ORGANIZATION_CATEGORIES.rand
   }
 
   attributes[:phone] = Faker::PhoneNumber.phone_number if rand(2) == 1
@@ -146,7 +146,7 @@ end
     event.starts_at = start_time
     event.ends_at   = start_time + (1 + rand(14)).hours
 
-    event.image_file = random_image
+    event.image_attributes = {:image => random_image}
 
     categories = []
     categories << EVENT_CATEGORIES.rand

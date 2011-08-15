@@ -1,27 +1,27 @@
 <li>
-    <div class='image'>
-      <%= link_to event_path(event.slug, event.id) do %>
-        <%= image_tag(event.image.url(:medium)) %>
-        <div class='description'><%= event.description %></div>
-      <% end %>
+  <div class='image'>
+    <%= link_to event_path(event.slug, event.id) do %>
+      <%= image_tag(event.image.url(:medium)) %>
+      <div class='description'><%= event.description %></div>
+    <% end %>
 
-      <%
-          if logged_in?
-            trend_state = current_user.events.include?(event) ? :trended : :trend 
-          else
-            trend_state = :trend 
-          end
-      -%>
-      <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
-        <div class="trend-count"><%= event.users_count %></div>
-      <% end %>
-    </div>
+    <%
+        if logged_in?
+          trend_state = current_user.events.include?(event) ? :trended : :trend 
+        else
+          trend_state = :trend 
+        end
+    -%>
+    <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
+      <div class="trend-count"><%= event.users_count %></div>
+    <% end %>
+  </div>
 
   <%= link_to event_path(event.slug, event.id) do %>
     <div class='detail'>
       <h1><%= truncate event.name, :length => 26 %></h1>
       
-      <div class="organization">
+      <div class="organization-name">
         @ <%= event.organization.name %>
       </div>
 

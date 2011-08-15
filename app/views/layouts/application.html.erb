@@ -48,14 +48,7 @@
 
       <div id="middle">
         <%= render :partial => '/layouts/flash' %>
-
-        <% if single_bg_for_middle? %>
-          <div class="content">
-            <%= yield %>
-          </div>
-        <% else %>
-          <%= yield %>
-        <% end %>
+        <%= yield %>
       </div>
 
       <div id="right-sidebar">

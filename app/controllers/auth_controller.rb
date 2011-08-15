@@ -28,11 +28,6 @@ class AuthController < ApplicationController
       @errors.push "Wow, that is a really short password!"
     end
 
-    #unless Raptcha.valid?(params)
-    #  @errors.push "Sorry to ask, are you *really* human?"
-    #  return
-    #end
-
     begin
       signup = Signup.signup!(:email => email, :password => password, :deliver => false)
 

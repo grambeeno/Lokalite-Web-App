@@ -1,8 +1,8 @@
 module ApplicationHelper
   include Tagz.globally
 
-  def single_bg_for_middle?
-    !(params[:controller] == 'events' and params[:action] == 'browse')
+  def tile_main_content?
+    params[:controller] == 'events' and params[:action] == 'browse'
   end
 
   def browse_context_for(options = {})
@@ -44,10 +44,6 @@ module ApplicationHelper
 
   def css_for(options = {})
     options.to_css
-  end
-
-  def image_accepts
-    raw(ImageUploader.accepts.join(', '))
   end
 
   def context_for_request(*args)

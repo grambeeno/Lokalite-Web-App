@@ -9,14 +9,12 @@ class Event < ActiveRecord::Base
 
   belongs_to :organization
   belongs_to :location, :include => :geocoding
+  belongs_to :image, :class_name => 'EventImage'
+  accepts_nested_attributes_for :image
 
   acts_as_geocodable :through => :location
 
   acts_as_taggable_on :categories
-
-
-  has_one(:image_context_join, :as => :context, :dependent => :destroy)
-  has_one(:image, :through => :image_context_join)
 
   before_validation(:on => :create) do |event|
     event.uuid ||= App.uuid
@@ -30,6 +28,7 @@ class Event < ActiveRecord::Base
 
   validates_presence_of :organization
   validates_presence_of :location
+  validates_presence_of :image
 
   validates_length_of :description, :maximum => 140
 
@@ -63,15 +62,9 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def image_file=(arg)
-    image = arg.is_a?(Image) ? arg : Image.for(arg)
-    image.save
-    self.image = image
-  end
-
   def Event.browse(*args)
     options = Map.extract_options!(args)
-    location = options[:location] || 'Boulder, CO'
+    location_string = options[:location] || 'Boulder, CO'
 
     organization_id = options[:organization_id]
 
@@ -89,8 +82,10 @@ class Event < ActiveRecord::Base
       location = organization.location
     else
       # TODO refactor to scope for locations properly
-      location = Location.first
-      raise "no location for #{ prefix.inspect }" unless location
+      # the purpose of having a location is to determine a date range
+      # in the correct time zone.
+      location = Location.new
+      raise "no location for: #{ location_string }" unless location
     end
 
     date = options[:date]
@@ -108,7 +103,6 @@ class Event < ActiveRecord::Base
     results = relation
 
     if organization_id.blank?
-      # results = results.search(normalize_search_term("/location/#{ prefix }")) unless prefix.blank?
       results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
     else
       # results = results.search(normalize_search_term("/organization/#{ organization_id }")) unless organization_id.blank?
@@ -229,103 +223,103 @@ class Event < ActiveRecord::Base
     (ends_at.to_i - starts_at.to_i).abs
   end
 
-  def repeat!(frequency = :weekly, options = {})
-    options.to_options!
+  # def repeat!(frequency = :weekly, options = {})
+  #   options.to_options!
 
-    stop = options[:stop] || options[:until] || (ends_at + 3.months)
-    stop_date = stop.to_date
+  #   stop = options[:stop] || options[:until] || (ends_at + 3.months)
+  #   stop_date = stop.to_date
 
-    dates = []
-    starts_at_date = starts_at.to_date
-    starts_at_time = starts_at.strftime('%H:%M:%S')
-    delta = ends_at - starts_at
-    
-    case frequency.to_s
-      when /daily/
-        until starts_at_date >= stop_date
-          starts_at_date += 1
-          a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
-          b = a + delta
-          dates.push((a .. b))
-        end
+  #   dates = []
+  #   starts_at_date = starts_at.to_date
+  #   starts_at_time = starts_at.strftime('%H:%M:%S')
+  #   delta = ends_at - starts_at
+  #   
+  #   case frequency.to_s
+  #     when /daily/
+  #       until starts_at_date >= stop_date
+  #         starts_at_date += 1
+  #         a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
+  #         b = a + delta
+  #         dates.push((a .. b))
+  #       end
 
-      when /weekdays/
-        until starts_at_date >= stop_date
-          starts_at_date += 1
-          a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
-          b = a + delta
-          dates.push((a .. b))
-        end
-        dates.delete_if{|r| [6,0].include?(r.first.wday)}
+  #     when /weekdays/
+  #       until starts_at_date >= stop_date
+  #         starts_at_date += 1
+  #         a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
+  #         b = a + delta
+  #         dates.push((a .. b))
+  #       end
+  #       dates.delete_if{|r| [6,0].include?(r.first.wday)}
 
-      when /weekends/
-        until starts_at_date >= stop_date
-          starts_at_date += 1
-          a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
-          b = a + delta
-          dates.push((a .. b))
-        end
-        dates.delete_if{|r| ![6,0].include?(r.first.wday)}
+  #     when /weekends/
+  #       until starts_at_date >= stop_date
+  #         starts_at_date += 1
+  #         a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
+  #         b = a + delta
+  #         dates.push((a .. b))
+  #       end
+  #       dates.delete_if{|r| ![6,0].include?(r.first.wday)}
 
-      when /weekly/
-        until starts_at_date >= stop_date
-          starts_at_date += 7
-          a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
-          b = a + delta
-          dates.push((a .. b))
-        end
+  #     when /weekly/
+  #       until starts_at_date >= stop_date
+  #         starts_at_date += 7
+  #         a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
+  #         b = a + delta
+  #         dates.push((a .. b))
+  #       end
 
-      when /monthly/
-        until starts_at_date >= stop_date
-          current_month = starts_at_date.month
-          starts_at_date += 1 until starts_at_date.month != current_month
-          a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
-          b = a + delta
-          dates.push((a .. b))
-        end
+  #     when /monthly/
+  #       until starts_at_date >= stop_date
+  #         current_month = starts_at_date.month
+  #         starts_at_date += 1 until starts_at_date.month != current_month
+  #         a = Time.parse("#{ starts_at_date }T#{ starts_at_time }")
+  #         b = a + delta
+  #         dates.push((a .. b))
+  #       end
 
-      else
-        raise(ArgumentError, frequency.inspect)
-    end
+  #     else
+  #       raise(ArgumentError, frequency.inspect)
+  #   end
 
-  # ensure we didn't leak past stop date...
-  #
-    until dates.empty? or dates.last.first < stop
-      dates.pop
-    end
+  # # ensure we didn't leak past stop date...
+  # #
+  #   until dates.empty? or dates.last.first < stop
+  #     dates.pop
+  #   end
 
-  # ensure we didn't leak before start date
-  #
-    while dates.first and dates.first.first <= starts_at
-      dates.shift
-    end
+  # # ensure we didn't leak before start date
+  # #
+  #   while dates.first and dates.first.first <= starts_at
+  #     dates.shift
+  #   end
 
-  # okay - make a bunch-o events!
-  #
-    prototype = self
-    list = []
+  # # okay - make a bunch-o events!
+  # #
+  #   prototype = self
+  #   list = []
 
-    transaction do
-      dates.each do |pair|
-        repeated = Event.new(prototype.attributes)
-        repeated.starts_at = pair.first
-        repeated.ends_at = pair.last
-        repeated.prototype = prototype
-        repeated.save!
+  #   transaction do
+  #     dates.each do |pair|
+  #       repeated = Event.new(prototype.attributes)
+  #       repeated.starts_at = pair.first
+  #       repeated.ends_at = pair.last
+  #       repeated.prototype = prototype
+  #       repeated.save!
 
-        repeated.category = prototype.category
-        repeated.image = prototype.image
-        repeated.organization = prototype.organization
-        # repeated.venue = prototype.venue
-        repeated.save!
+  #       repeated.category = prototype.category
+  #       repeated.image = prototype.image
+  #       repeated.organization = prototype.organization
+  #       # repeated.venue = prototype.venue
+  #       repeated.save!
 
-        repeated.index!
-        list.push(repeated)
-      end
-    end
+  #       repeated.index!
+  #       list.push(repeated)
+  #     end
+  #   end
 
-    list
-  end
+  #   list
+  # end
 
   def featured!(boolean=true)
     featured = Category.for('Featured')
@@ -345,9 +339,26 @@ class Event < ActiveRecord::Base
     categories.any?{|c| c.name.downcase == 'featured' }
   end
 
+  # the following are needed for to_dao
+  def image_full
+    image.image_url
+  end
+  def image_large
+    image.image_url(:large)
+  end
+  def image_medium
+    image.image_url(:medium)
+  end
+  def image_small
+    image.image_url(:small)
+  end
+  def image_thumb
+    image.image_url(:thumb)
+  end
+
   def Event.to_dao(*args)
     remove = %w[]
-    add    = %w[featured? categories image organization location]
+    add    = %w[featured? categories organization location image_thumb image_small image_medium image_large image_full]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 

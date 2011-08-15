@@ -1,7 +1,6 @@
 class Organization < ActiveRecord::Base
   include PgSearch
-# user/member relationships
-#
+
   has_many(:user_organization_joins, :dependent => :destroy)
   has_many(:users, :through => :user_organization_joins) do
     def organization() proxy_owner end
@@ -14,8 +13,6 @@ class Organization < ActiveRecord::Base
   end
 
   has_many :events, :dependent => :destroy
-
-  has_many(:statuses, :as => :context, :dependent => :destroy, :order => 'created_at desc')
 
   acts_as_taggable_on :categories
 
@@ -30,27 +27,16 @@ class Organization < ActiveRecord::Base
     organization.uuid ||= App.uuid
   end
 
-  # has_many(:image_context_joins, :as => :context, :dependent => :destroy)
-  # has_many(:images, :through => :image_context_joins)
+  has_many :event_images, :dependent => :destroy
+  mount_uploader :image, ImageUploader
 
-  has_one :image_context_join, :as => :context, :dependent => :destroy
-  has_one :image, :through => :image_context_join
-
-  # accepts_nested_attributes_for :image
   validates_presence_of :image
-  # validates_associated :image
-
-  def image_file=(arg)
-    image = arg.is_a?(Image) ? arg : Image.for(arg)
-    image.save
-    self.image = image
-  end
 
   has_many :locations, :dependent => :destroy, :include => :geocoding
   # still need to enable this for has_many associations
   # acts_as_geocodable :through => :locations
   accepts_nested_attributes_for :locations
-  validates_presence_of :locations
+  # validates_presence_of :locations
   validates_associated  :locations
 
   def location
@@ -58,14 +44,7 @@ class Organization < ActiveRecord::Base
   end
 
   def address
-    location.formatted_address
-  end
-
-  after_initialize :build_default_location
-
-  def build_default_location
-    # self.locations.build(:region => 'Colorado')
-    # self.image = Image.new
+    location && location.formatted_address
   end
 
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'B']]
@@ -100,8 +79,8 @@ class Organization < ActiveRecord::Base
     # TODO - filter by location
     # results = results.origin([40.014781,-105.186989], :within => 3.5)
 
-    # results = results.joins(:statuses, :locations)
-    results = results.includes(:image, :statuses, :locations)
+    # results = results.joins(:locations)
+    results = results.includes(:locations)
     results = results.order(order)
 
     results.paginate(:page => page, :per_page => per_page)
@@ -122,15 +101,31 @@ class Organization < ActiveRecord::Base
     parts.join('/')
   end
 
-# HACK
-#
   def directory_path
     "/directory/location#{ location.prefix }/#{ Slug.for(name) }/#{ id }"
   end
 
+  # the following are needed for to_dao
+  def image_full
+    image_url
+  end
+  def image_large
+    image_url(:large)
+  end
+  def image_medium
+    image_url(:medium)
+  end
+  def image_small
+    image_url(:small)
+  end
+  def image_thumb
+    image_url(:thumb)
+  end
+
+
   def Organization.to_dao(*args)
-    remove = %w[]
-    add    = %w[location categories]
+    remove = %w[image]
+    add    = %w[location categories image_thumb image_small image_medium image_large image_full]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 

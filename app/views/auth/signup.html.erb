@@ -1,35 +1,36 @@
-<% form_tag(request.fullpath, form_attrs(:half, :signup, :style => 'margin:1em auto')) do %>
-  <%= errors_for(@errors) %>
+<div class='content'>
+  <% form_tag(request.fullpath, form_attrs(:half, :signup, :style => 'margin:1em auto')) do %>
+    <%= errors_for(@errors) %>
 
-  <div>
-    <% if params[:business] %>
-      <h1>Sign up now to promote your events!</h1>
-      <p>
-        Sign up now and promote your events on the front page of lokalite in minutes.
-      </p>
-    <% else %>
-      <h1>Find life in your community</h1>
-      <p>
-        With lokalite, finding something to do has never been so easy. Whether at home or traveling around, you'll always feel like a lokal.
-      </p>
-      <p>
-        Get started, fun's right around the corner.
-      </p>
-    <% end %>
-  </div>
+    <div>
+      <% if params[:business] %>
+        <h1>Sign up now to promote your events!</h1>
+        <p>
+          Sign up now and promote your events on the front page of lokalite in minutes.
+        </p>
+      <% else %>
+        <h1>Find life in your community</h1>
+        <p>
+          With lokalite, finding something to do has never been so easy. Whether at home or traveling around, you'll always feel like a lokal.
+        </p>
+        <p>
+          Get started, fun's right around the corner.
+        </p>
+      <% end %>
+    </div>
 
-  <%= render :partial => 'signup_fields' %>
+    <%= render :partial => 'signup_fields' %>
 
-  <br />
-  <table class='layout' style='width:100%'>
-    <tr>
-      <td style='text-align:left;vertical-align:bottom;'>
-        <%= submit_tag :Signup %>
-      </td>
-      <td style='text-align:right;vertical-align:bottom;'>
-        <%= link_to 'need to login instead?', login_path %>
-      </td>
-    </tr>
-  </table>
-<% end %>
-
+    <br />
+    <table class='layout' style='width:100%'>
+      <tr>
+        <td style='text-align:left;vertical-align:bottom;'>
+          <%= submit_tag :Signup %>
+        </td>
+        <td style='text-align:right;vertical-align:bottom;'>
+          <%= link_to 'need to login instead?', login_path %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

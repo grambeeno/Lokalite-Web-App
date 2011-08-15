@@ -2,13 +2,14 @@ class CreateEvents < ActiveRecord::Migration
   def self.up
     create_table :events, :force => true do |t|
       t.string :uuid
-      t.integer :organization_id
       t.string :name
       t.string :description
       t.timestamp :starts_at
       t.timestamp :ends_at
       t.boolean :repeating
       t.integer :event_id
+      t.integer :organization_id
+      t.integer :image_id
       t.integer :location_id
 
       t.timestamps
@@ -22,6 +23,7 @@ class CreateEvents < ActiveRecord::Migration
     add_index :events, [:repeating]
     add_index :events, [:event_id]
     add_index :events, [:location_id]
+    add_index :events, [:image_id]
   end
 
   def self.down

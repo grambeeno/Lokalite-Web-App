@@ -12,15 +12,23 @@
 
 ActiveRecord::Schema.define(:version => 20110810170350) do
 
+  create_table "event_images", :force => true do |t|
+    t.string   "image"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "uuid"
-    t.integer  "organization_id"
     t.string   "name"
     t.string   "description"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "repeating"
     t.integer  "prototype_id"
+    t.integer  "organization_id"
+    t.integer  "image_id"
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -31,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20110810170350) do
 
   add_index "events", ["description"], :name => "index_events_on_description"
   add_index "events", ["ends_at"], :name => "index_events_on_ends_at"
+  add_index "events", ["image_id"], :name => "index_events_on_image_id"
   add_index "events", ["location_id"], :name => "index_events_on_location_id"
   add_index "events", ["name"], :name => "index_events_on_name"
   add_index "events", ["organization_id"], :name => "index_events_on_organization_id"
@@ -68,26 +77,6 @@ ActiveRecord::Schema.define(:version => 20110810170350) do
   add_index "geocodings", ["geocodable_id"], :name => "geocodings_geocodable_id_index"
   add_index "geocodings", ["geocodable_type"], :name => "geocodings_geocodable_type_index"
   add_index "geocodings", ["geocode_id"], :name => "geocodings_geocode_id_index"
-
-  create_table "image_context_joins", :force => true do |t|
-    t.integer "image_id"
-    t.string  "context_type"
-    t.integer "context_id"
-    t.string  "kind"
-  end
-
-  add_index "image_context_joins", ["context_id"], :name => "index_image_context_joins_on_context_id"
-  add_index "image_context_joins", ["context_type", "context_id", "image_id"], :name => "image_context_type_with_ids", :unique => true
-  add_index "image_context_joins", ["context_type", "context_id", "kind", "image_id"], :name => "image_context_type_with_kind_and_id", :unique => true
-  add_index "image_context_joins", ["context_type"], :name => "index_image_context_joins_on_context_type"
-  add_index "image_context_joins", ["image_id"], :name => "index_image_context_joins_on_image_id"
-  add_index "image_context_joins", ["kind"], :name => "index_image_context_joins_on_kind"
-
-  create_table "images", :force => true do |t|
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "locations", :force => true do |t|
     t.string   "uuid"
@@ -152,18 +141,6 @@ ActiveRecord::Schema.define(:version => 20110810170350) do
   add_index "signups", ["delivery_count"], :name => "index_signups_on_delivery_count"
   add_index "signups", ["email"], :name => "index_signups_on_email", :unique => true
   add_index "signups", ["user_id"], :name => "index_signups_on_user_id"
-
-  create_table "statuses", :force => true do |t|
-    t.string   "context_type"
-    t.integer  "context_id"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "statuses", ["context_id"], :name => "index_statuses_on_context_id"
-  add_index "statuses", ["context_type"], :name => "index_statuses_on_context_type"
-  add_index "statuses", ["created_at"], :name => "index_statuses_on_created_at"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
