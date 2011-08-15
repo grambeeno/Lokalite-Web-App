@@ -107,7 +107,7 @@ def random_image
   File.new images[rand(images.size)]
 end
 
-10.times do |index|
+50.times do |index|
   user = User.create! :email => Faker::Internet.email, :password => 'password'
 
   location = locations.rand
