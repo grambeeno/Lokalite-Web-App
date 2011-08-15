@@ -131,6 +131,8 @@ class Event < ActiveRecord::Base
 
     if options[:order] == 'distance' && origin.present?
       results = results.near
+    elsif options[:order] == 'trending'
+      results = results.order('events.users_count DESC')
     elsif options[:order] == 'name'
       results = results.order('events.name ASC')
     else
