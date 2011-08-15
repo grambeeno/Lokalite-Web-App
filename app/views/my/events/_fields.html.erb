@@ -1,19 +1,19 @@
 <%= form.inputs do %>
   <%= form.input :name %>
   <%= form.input :description %>
-  <%= form.input :email %>
-  <%= form.input :url, :label => 'Website'%>
-  <%= form.input :phone %>
-  <%= form.input :category_list, :label => 'Category', :as => :select, :collection => ORGANIZATION_CATEGORIES, :prompt => 'Select a Category' %>
+  <%= form.input :category_list, :label => 'Category', :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
 
-  <%= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>
+
+  <%= form.input :image, :as => :radio, :collection => @organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
+
+  <%#= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>
   <li class='align-with-fields'>
-    <%= image_tag(form.object.image_url(:small)) if form.object.image? %>
+    <%#= image_tag(form.object.image_url(:small)) if form.object.image? %>
   </li>
-  <%= form.hidden_field :image_cache %>
+  <%#= form.hidden_field :image_cache %>
   
 
-  <%= form.semantic_fields_for :locations do |location| %>
+  <%= form.semantic_fields_for :location do |location| %>
     <% 
       # why doesn't this work when done in the controller?
       # location.object.set_address_components_for_editing unless location.object.new_record?

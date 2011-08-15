@@ -8,6 +8,7 @@ class My::EventsController < My::Controller
       return
     end
 
-    render(:text => 'new', :layout => 'application')
+    @organization = Organization.find(params[:organization_id])
+    @event = Event.new
   end
 end

@@ -134,6 +134,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: organizations
@@ -141,7 +142,7 @@ end
 #  id          :integer         not null, primary key
 #  uuid        :string(255)
 #  name        :string(255)
-#  description :string(255)
+#  description :text
 #  email       :string(255)
 #  url         :string(255)
 #  phone       :string(255)

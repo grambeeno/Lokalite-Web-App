@@ -146,7 +146,7 @@ end
     event.starts_at = start_time
     event.ends_at   = start_time + (1 + rand(14)).hours
 
-    event.image_attributes = {:image => random_image}
+    event.image_attributes = {:image => random_image, :organization_id => org.id}
 
     categories = []
     categories << EVENT_CATEGORIES.rand

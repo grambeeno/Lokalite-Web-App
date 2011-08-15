@@ -20,7 +20,7 @@
     Editing <%= @organization.name %>
   </h1>
 
-  <%= semantic_form_for @organization, :url => my_organization_path(@organization), :html => { :method => 'put' }, :html => {:multipart => true} do |form| %>
+  <%= semantic_form_for @organization, :url => my_organization_path(@organization), :method => 'PUT', :html => {:multipart => true} do |form| %>
     <%= render :partial => 'fields', :locals => { :form => form } %>
   <% end %>
 </div>

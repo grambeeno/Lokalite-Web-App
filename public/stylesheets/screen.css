@@ -129,4 +129,11 @@ ul.event-previews li { background-color: white; -moz-box-shadow: 0px 0px 5px #33
 
 form.formtastic input, form.formtastic textarea { background-color: #f1f1f1; border: none; padding: 10px; }
 form.formtastic input.file, form.formtastic textarea.file { background-color: transparent; padding: 0; }
-form.formtastic .existing-image { padding-left: 177px; }
+form.formtastic .align-with-fields { padding-left: 177px; }
+
+#event_image_input ol { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; padding-left: 177px; }
+#event_image_input ol li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 10px; padding-right: 10px; }
+#event_image_input ol li:first-child, #event_image_input ol li.first { padding-left: 0; }
+#event_image_input ol li:last-child { padding-right: 0; }
+#event_image_input ol li.last { padding-right: 0; }
+#event_image_input ol input { margin-bottom: 18px; }
