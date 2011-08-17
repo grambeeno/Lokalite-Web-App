@@ -17,8 +17,7 @@ $green: #7DA762
 $grey: #5d5d5d
 $light-grey: #808080
 
-$event_categories: 'all', 'featured', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
-
+$event-categories: 'all', 'featured', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
 // setting width with variables for everything may seem like overkill but will be worth it in the end :)
 $site-width: 1120px
@@ -165,6 +164,17 @@ body
         background:
           image: image-url("category-icons/#{$category}.png")
 
+@each $category in $event-categories
+  .icon-#{$category}
+    +float('left')
+    +replace-text-with-dimensions("category-icons/#{$category}.png")
+    background-position: left top
+    display: block
+    margin-right: 12px
+    height: 20px
+    margin-bottom: 12px
+
+
 #right-sidebar
   padding-left: $sidebar-padding
   ul
@@ -196,15 +206,15 @@ body
   margin-bottom: $content-bg-padding
   +border-bottom-radius(8px)
 
-=content-with-margin
+=content-with-padding
   +clearfix
-  margin: 0 $content-bg-padding
+  padding: 0 $content-bg-padding 10px
 
 #middle
   > .content
-    +content-with-margin
+    +content-with-padding
   > .content-with-foreground
-    +content-with-margin
+    +content-with-padding
     padding: $content-inner-padding
     +foreground
 
@@ -305,38 +315,60 @@ table.times
     // width: 60px
     padding: 0 12px
 
-
-
-
-
 .event, .organization
+  +content-with-padding
   .image
+    +foreground
     +float('left')
+    padding: 10px
     img
       border: 1px solid black
-  .detail
-    +float('left')
-    // 302 == image with border
-    width: $content-inner-width - 302 - 10
-    padding-left: 10px
-
-    h1
-      font-size: 22px
-    h2
-      font-size: 18px
-    .description
-      margin: 1em 0
-
-    table.times
-      font-size: 13px
 
   .location
+    .info
+      display: none
     .map img
       border: 1px solid #ddd
       +border-radius(5px)
       // width: 688px
   // .location
   //   // margin-top: 80px
+.event
+  .title
+    +clearfix
+    margin-bottom: 10px
+    .organization-image
+      +float('left')
+      margin-right: 10px
+    .text
+      +float('left')
+    h1
+      font-size: 24px
+    h2
+      font-size: 16px
+      a
+        font-weight: normal
+        +unstyled-link
+        +link-colors(#555, $blue)
+
+  .detail
+    +float('left')
+    // 302 == image with border
+    width: $content-inner-width - 302 - $content-bg-padding
+    padding-left: $content-bg-padding
+
+    .description
+      line-height: 1.1em
+      height: 3.3em
+      margin: 0 0 10px
+
+    table.times
+      font-size: 13px
+      margin: 0 0 1em
+  h3
+    font-size: 14px
+    border-bottom: 1px solid #ccc
+    margin-bottom: 4px
 
 ul.event-previews
   +no-bullets
