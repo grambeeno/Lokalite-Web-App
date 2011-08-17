@@ -12,14 +12,17 @@
   <%= form.input :ends_at %>
   <%= form.input :category_list, :label => 'Category', :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
 
-  <% if organization.event_images.any? %>
-    <%= form.input :image, :as => :radio, :collection => organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
-    <script type="text/javascript">
-      $('#event_image_input ol').append(
-          '<li><label for="new_event_image"><input id="new_event_image" name="event[image_id]" type="radio" value="new" /> <img alt="New Image" src="/images/upload-new-image.png" /></label></li>'
-      );
-    </script>
-  <% end %>
+  <%= form.input :image, :as => :radio, :collection => organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
+  <script type="text/javascript">
+    $('#event_image_input ol').append(
+        '<li><label for="new_event_image"><input id="new_event_image" name="event[image_id]" type="radio" value="new" /> <img alt="New Image" src="/images/upload-new-image.png" /></label></li>'
+    );
+    <% if organization.event_images.any? %>
+      $('#event_image_attributes_image_input').hide()
+    <% else -%>
+      $('#new_event_image').click();
+    <% end %>
+  </script>
 
   <%= form.semantic_fields_for :image, EventImage.new do |image| %>
     <%= image.hidden_field :organization_id, :value => organization.id %>
@@ -46,7 +49,6 @@
 <script type="text/javascript">
   jQuery(document).ready(function($) {
 
-    $('#event_image_attributes_image_input').hide()
     $('#event_image_input :radio').change(function(){
       if ($(this).val() === 'new') {
         $('#event_image_attributes_image_input').slideDown()
