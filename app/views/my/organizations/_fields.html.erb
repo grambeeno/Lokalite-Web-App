@@ -1,28 +1,26 @@
 <%= form.inputs do %>
+  <li>
+    <%= form.error_messages %>
+  </li>
+
   <%= form.input :name %>
   <%= form.input :description %>
   <%= form.input :email %>
   <%= form.input :url, :label => 'Website'%>
   <%= form.input :phone %>
-  <%= form.input :category_list, :label => 'Category', :as => :select, :collection => ORGANIZATION_CATEGORIES, :prompt => 'Select a Category' %>
+  <%= form.input :category_list, :label => 'Category', :as => :select, :required => true, :collection => ORGANIZATION_CATEGORIES, :prompt => 'Select a Category' %>
 
   <%= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>
   <li class='align-with-fields'>
     <%= image_tag(form.object.image_url(:small)) if form.object.image? %>
   </li>
   <%= form.hidden_field :image_cache %>
-  
 
+  <hr />
+  <h2>Where will your events be held?</h2>
   <%= form.semantic_fields_for :locations do |location| %>
-    <% 
-      # why doesn't this work when done in the controller?
-      # location.object.set_address_components_for_editing unless location.object.new_record?
-    %>
-    <%= location.input :name %>
-    <%= location.input :street %>
-    <%= location.input :locality, :label => 'City' %>
-    <%= location.input :region, :label => 'State', :as => :select, :collection => US_STATES %>
-    <%= location.input :postal_code, :label => 'Zip Code', :as => :numeric %>
+    <hr />
+    <%= render :partial => '/shared/location_fields', :locals => {:form => location} %>
   <% end %>
 <% end %>
 <%= form.buttons %>

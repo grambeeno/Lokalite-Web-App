@@ -101,7 +101,7 @@ jq(function($){
 
     App.initialize_type_classes(scope);
     //App.initialize_traditional_box_model(scope);
-    App.initialize_form_hints(scope); 
+    App.initialize_form_hints(scope);
     App.initialize_date_inputs(scope);
     App.initialize_submits(scope);
     App.initialize_focus(scope);
@@ -156,7 +156,7 @@ jq(function($){
       selectors = args;
     }
 
-    var list = []; 
+    var list = [];
 
     jq.each(selectors, function(index, selector){
       scope.find(selector).each(function(){
@@ -341,7 +341,7 @@ jq(function($){
       success: function(response, status, request) {
         var counter = link.find('.trend-count');
         counter.text( parseInt(counter.text(), 10) + 1 )
-      
+
         link.removeClass('trend');
         link.addClass('trended');
         link.attr('href', link.attr('href').replace('trend', 'untrend'));
@@ -379,6 +379,12 @@ jq(function($){
   });
 
   $('#category-tabs').tabs();
+
+  $('#new_organization #organization_name').keyup(function() {
+    $('#organization_locations_attributes_0_name').val($(this).val());
+  });
+
+
 
 });
 

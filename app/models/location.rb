@@ -19,6 +19,10 @@ class Location < ActiveRecord::Base
   validates_presence_of :uuid
   validates_presence_of :name
 
+  def short_identifier
+    "#{name} - #{formatted_address}"
+  end
+
   def latitude
     geocode.latitude
   end
@@ -168,6 +172,14 @@ class Location < ActiveRecord::Base
       super(a, b)
       self.name = Slug.for(name)
     end
+  end
+
+  def Location.state_options
+    US_STATES.to_a.sort.map{|a| a.reverse}
+  end
+
+  def Location.full_state_name(abbreviation)
+    US_STATES[abbreviation]
   end
 
 =begin

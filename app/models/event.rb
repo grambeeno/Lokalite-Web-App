@@ -8,9 +8,8 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :user_event_joins
 
   belongs_to :organization
-  belongs_to :location, :include => :geocoding
   belongs_to :image, :class_name => 'EventImage'
-  accepts_nested_attributes_for :image
+  belongs_to :location, :include => :geocoding
 
   acts_as_geocodable :through => :location
 
@@ -32,7 +31,19 @@ class Event < ActiveRecord::Base
 
   validates_length_of :description, :maximum => 140
 
+  accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :image
+  validates_associated :image
+
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
+
+
+  after_initialize :set_default_values
+
+  def set_default_values
+    self.starts_at = Date.today + 18.hours
+    self.ends_at   = Date.today + 22.hours
+  end
 
   scope(:after, lambda{|time|
     where('ends_at > ?', time)
@@ -184,12 +195,12 @@ class Event < ActiveRecord::Base
     end
   end
   alias_method('time_for', 'location_time')
-  
-  #TTD Original method for time format Paul 
+
+  #TTD Original method for time format Paul
   def venue_time_formatted(*args)
     venue_time(*args).strftime("%A, %b. %e, %Y %l:%M%p (%Z)")
   end
-  
+
   #TTD new methods for time format Paul
   def venue_time_formatted_date(*args)
     venue_time(*args).strftime("%A, %B %e")
@@ -198,7 +209,7 @@ class Event < ActiveRecord::Base
   def venue_time_formatted_start(*args)
     venue_time(starts_at).strftime("%l:%M%p")
   end
-  
+
   def venue_time_formatted_end(*args)
     venue_time(ends_at).strftime("%l:%M%p")
   end
@@ -206,10 +217,10 @@ class Event < ActiveRecord::Base
   # def time_span
   #   start_time = location_time(starts_at)
   #   end_time   = location_time(ends_at)
-  # 
+  #
   #   time = {}
   #   suffix = ''
-  # 
+  #
   #   if start_time.strftime('%p') == end_time.strftime('%p')
   #     time[:start]  = start_time.strftime('%l:%M')
   #   else
@@ -217,7 +228,7 @@ class Event < ActiveRecord::Base
   #   end
   #   time[:end]      = end_time.strftime('%l:%M %p')
   #   time[:suffix]   = '' #end_time.to_date
-  # 
+  #
   #   "#{time[:start]} - #{time[:end]} #{time[:suffix]}".strip
   # end
 
@@ -235,7 +246,7 @@ class Event < ActiveRecord::Base
   #   starts_at_date = starts_at.to_date
   #   starts_at_time = starts_at.strftime('%H:%M:%S')
   #   delta = ends_at - starts_at
-  #   
+  #
   #   case frequency.to_s
   #     when /daily/
   #       until starts_at_date >= stop_date

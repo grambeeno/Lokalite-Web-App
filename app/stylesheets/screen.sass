@@ -91,16 +91,22 @@ body
           li
             position: relative
             ul
-              +no-bullets
+              // +no-bullets
               display: none
               position: absolute
-              top: 20px
-              right: 0
-              background-color: black
-              li
+              top: 0
+              padding-top: 20px
+              right: 12px
+              width: 140px
+              li, li:first-child, li:last-child
+                white-space: normal
+                background-color: black
+                width: 100%
                 display: block
+                padding: 8px
                 a
-                  padding: 4px
+                  display: block
+                  width: 100%
             &:hover ul
               display: block
 
@@ -201,7 +207,7 @@ body
     +content-with-margin
     padding: $content-inner-padding
     +foreground
-  
+
 
 .events
   font-size: 12px

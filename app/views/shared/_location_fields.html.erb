@@ -1,0 +1,5 @@
+<%= form.input :name, :label => 'Location name' %>
+<%= form.input :street %>
+<%= form.input :locality, :label => 'City' %>
+<%= form.input :region, :label => 'State', :as => :select, :collection => Location.state_options %>
+<%= form.input :postal_code, :label => 'Zip Code', :as => :numeric %>
