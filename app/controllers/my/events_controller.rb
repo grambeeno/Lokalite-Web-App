@@ -14,7 +14,7 @@ class My::EventsController < My::Controller
       redirect_to new_my_event_path(:organization_id => current_user.organizations.first.id) and return
     end
 
-    @event = @organization.events.new
+    @event = @organization.events.new(:starts_at => Date.today + 18.hours, :ends_at => Date.today + 22.hours)
   end
 
   def edit

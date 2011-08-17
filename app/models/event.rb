@@ -38,13 +38,6 @@ class Event < ActiveRecord::Base
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
 
 
-  after_initialize :set_default_values
-
-  def set_default_values
-    self.starts_at = Date.today + 18.hours
-    self.ends_at   = Date.today + 22.hours
-  end
-
   scope(:after, lambda{|time|
     where('ends_at > ?', time)
   })
