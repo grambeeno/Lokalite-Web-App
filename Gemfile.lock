@@ -87,7 +87,7 @@ GEM
     linecache (0.43)
     little-plugger (1.1.2)
     lockfile (1.4.3)
-    logging (1.4.3)
+    logging (1.5.2)
       little-plugger (>= 1.1.2)
     mail (2.2.19)
       activesupport (>= 2.3.6)
