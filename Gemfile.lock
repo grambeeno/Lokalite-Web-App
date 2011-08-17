@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/johnbintz/silent-postgres.git
-  revision: 22b767853d9375f2fe3d88e3833eb37e3796520d
-  specs:
-    silent-postgres (0.0.7)
-
-GIT
   remote: git://github.com/zef/acts_as_geocodable.git
   revision: 1562d24d7283d4f91f3d1b796db3ee9bb09d20b0
   specs:
@@ -185,7 +179,6 @@ DEPENDENCIES
   rails (= 3.0.9)
   ruby-debug
   shared
-  silent-postgres!
   tagz (~> 9.0.0)
   tzinfo
   unidecode

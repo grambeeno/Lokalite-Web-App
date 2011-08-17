@@ -37,8 +37,6 @@ gem 'acts-as-taggable-on'
 # New Relic Monitors Server Usage
 gem 'newrelic_rpm'
 
-# Grab it from a git fork to fix problem when running via Pow
-gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
 
 # I forked this to add support for "acts_as_geocodable :through => :location"
 gem 'acts_as_geocodable', :git => 'git://github.com/zef/acts_as_geocodable.git'
@@ -49,6 +47,8 @@ gem "will_paginate", '~> 3.0.beta'
 gem 'dao'
 
 group :development, :test do
+  # Grab it from a git fork to fix problem when running via Pow
+  # gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
   gem 'capistrano'
   gem 'capistrano-ext'
 end
