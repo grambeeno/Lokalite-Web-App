@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::Controller
   def index
     page = params[:page] || 1
-    per_page = params[:per_page] || (Rails.env.development? ? 2 : 10 )
+    per_page = params[:per_page] || 20
     order = params[:order] || 'created_at desc'
     options = params.reverse_merge(:per_page => 42, :page => 1)
 

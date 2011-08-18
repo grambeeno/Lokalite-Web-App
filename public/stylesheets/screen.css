@@ -5,9 +5,9 @@ a:hover { color: #52667b; }
 a:active { color: #435465; }
 
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
-body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312841450'); background-repeat: repeat-x; }
+body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312841450'); background-repeat: repeat-x; color: white; }
 body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
-body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312684180'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
+body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312841450'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
 body > header .content nav { display: inline; float: right; }
 body > header .content nav > ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; overflow: visible; margin-top: 32px; }
 body > header .content nav > ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }

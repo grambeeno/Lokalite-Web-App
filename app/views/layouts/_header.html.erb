@@ -3,6 +3,12 @@
 <nav class='user-navigation'>
   <ul>
     <% if logged_in? %>
+      <% if user_sudoing? %>
+        <li>
+          Acting like <%= effective_user.email %>.
+          <%= link_to '[x]', :controller => 'admin/users', :action => :unsudo %>
+        </li>
+      <% end %>
       <li>
         <%= link_to "Account", '#my_account' %>
         <ul>

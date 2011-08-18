@@ -50,6 +50,11 @@ protected
   end
   helper_method(:current_user)
 
+  def user_sudoing?
+    real_user != effective_user
+  end
+  helper_method(:user_sudoing?)
+
   def require_current_user
     unless current_user
       message("Sorry, you must be logged in to view #{ h(request.fullpath) }", :class => :error)
