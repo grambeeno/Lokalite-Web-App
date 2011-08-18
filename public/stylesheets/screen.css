@@ -17,7 +17,7 @@ body > header .content nav > ul li.last { padding-right: 0; }
 body > header .content nav > ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
 body > header .content nav > ul a:hover { color: #7da762; }
 body > header .content nav > ul li { position: relative; }
-body > header .content nav > ul li ul { display: none; position: absolute; top: 0; padding-top: 20px; right: 12px; width: 140px; }
+body > header .content nav > ul li ul { display: none; position: absolute; z-index: 10000; top: 0; padding-top: 20px; right: 12px; width: 140px; }
 body > header .content nav > ul li ul li, body > header .content nav > ul li ul li:first-child, body > header .content nav > ul li ul li:last-child { white-space: normal; background-color: black; width: 100%; display: block; padding: 8px; }
 body > header .content nav > ul li ul li a, body > header .content nav > ul li ul li:first-child a, body > header .content nav > ul li ul li:last-child a { display: block; width: 100%; }
 body > header .content nav > ul li:hover ul { display: block; }

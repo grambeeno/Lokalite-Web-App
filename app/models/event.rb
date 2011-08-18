@@ -92,19 +92,9 @@ class Event < ActiveRecord::Base
       raise "no location for: #{ location_string }" unless location
     end
 
-    date = options[:date]
-    dates = nil
-    if date
-      dates = location.date_range_for(date)
-    else
-      #default date_range scope will be today
-      #TTD - make date_range scope 24 hours ASAP?   russ 1107
-      dates = location.date_range_for('today')
-    end
+    start_time = options[:after] || Time.now
 
-    joins = [:categories, :image, :organization, :location]
-
-    results = relation
+    results = Event.after(start_time)
 
     if organization_id.blank?
       results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
@@ -112,20 +102,7 @@ class Event < ActiveRecord::Base
       # results = results.search(normalize_search_term("/organization/#{ organization_id }")) unless organization_id.blank?
     end
     results = results.search(keywords.join(' ')) unless keywords.blank?
-    # results = results.joins(joins) # uncommented to fix sorting bug
-
-    if dates
-      a = location.time_for(dates.first)
-      b = location.time_for(dates.last)
-      results = results.where('events.ends_at >= ?', a)
-      results = results.where('events.starts_at <= ?', b)
-    end
-
-    if Rails.env.production?
-      cutoff = Time.now.utc - 1.hours
-      cutoff = location.time_for(cutoff) if location
-      results = results.where('events.ends_at >= ?', cutoff)
-    end
+    # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
 
     results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
 
@@ -153,59 +130,43 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def Event.time_without_timezone(time)
-    time.to_time.strftime(@time_without_timezone_format ||= '%Y-%m-%dT%H:%M:%S')
-  end
-
   def Event.normalize_search_term(term)
     '/' + term.to_s.scan(/[a-zA-Z0-9]+/).join('/').downcase
   end
 
   def slug
-    parts = []
-    parts.push(Slug.for(name))
-    if location
-      # parts.push("location#{ location.prefix }")
-      parts.push("date/#{ location_time.to_date }")
-    end
-    # if category
-    #   parts.push("category/#{ Slug.for(category.name) }")
-    # end
-    unless location
-      parts.push("date/#{ starts_at.to_date }")
-    end
-    parts.join('/')
+    Slug.for(name)
   end
 
-  def location_time(t = :starts_at)
-    case t
-      when :starts_at, 'starts_at'
-        location.time_for(starts_at)
-      when :ends_at, 'ends_at'
-        location.time_for(ends_at)
-      else
-        location.time_for(t)
-    end
-  end
-  alias_method('time_for', 'location_time')
+  # def location_time(t = :starts_at)
+  #   case t
+  #     when :starts_at, 'starts_at'
+  #       location.time_for(starts_at)
+  #     when :ends_at, 'ends_at'
+  #       location.time_for(ends_at)
+  #     else
+  #       location.time_for(t)
+  #   end
+  # end
+  # alias_method('time_for', 'location_time')
 
-  #TTD Original method for time format Paul
-  def venue_time_formatted(*args)
-    venue_time(*args).strftime("%A, %b. %e, %Y %l:%M%p (%Z)")
-  end
-
-  #TTD new methods for time format Paul
-  def venue_time_formatted_date(*args)
-    venue_time(*args).strftime("%A, %B %e")
-  end
-
-  def venue_time_formatted_start(*args)
-    venue_time(starts_at).strftime("%l:%M%p")
-  end
-
-  def venue_time_formatted_end(*args)
-    venue_time(ends_at).strftime("%l:%M%p")
-  end
+  # #TTD Original method for time format Paul
+  # def venue_time_formatted(*args)
+  #   venue_time(*args).strftime("%A, %b. %e, %Y %l:%M%p (%Z)")
+  # end
+  # 
+  # #TTD new methods for time format Paul
+  # def venue_time_formatted_date(*args)
+  #   venue_time(*args).strftime("%A, %B %e")
+  # end
+  # 
+  # def venue_time_formatted_start(*args)
+  #   venue_time(starts_at).strftime("%l:%M%p")
+  # end
+  # 
+  # def venue_time_formatted_end(*args)
+  #   venue_time(ends_at).strftime("%l:%M%p")
+  # end
 
   # def time_span
   #   start_time = location_time(starts_at)
