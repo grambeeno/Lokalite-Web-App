@@ -21,7 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def uuid
   #   @uuid ||= App.uuid
   # end
-  
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -31,22 +31,21 @@ class ImageUploader < CarrierWave::Uploader::Base
   def cache_dir
     "#{ Dir }/tmp"
   end
-  #changed from resize_to_fill to resize_to_fit June 2011 Paul
-  #there may be problems with this due to keeping the aspect ratio
+
   version :thumb do
-    process :resize_to_fit => [50, 50] 
+    process :resize_to_fill => [50, 50]
   end
 
   version :small do
-    process :resize_to_fit => [150, 150]
+    process :resize_to_fill => [150, 150]
   end
 
   version :medium do
-    process :resize_to_fit => [200, 200]
+    process :resize_to_fill => [200, 200]
   end
 
   version :large do
-    process :resize_to_fit => [300, 300]
+    process :resize_to_fill => [300, 300]
   end
 
   ExtensionWhiteList = %w( jpg jpeg gif png )

@@ -7,16 +7,14 @@
   <!-- app scripts -->
     <%=
       javascripts = %w(
-        libs/modernizr-1.6.min.js
+        modernizr-1.6.min.js
         /facebox/facebox.js
         rails.js
+        jquery.qtip.min
         jquery-ui-1.8.14.custom.min
-        jquery.gradient.js
         jquery.sizes.min.js
-        jquery.corner.js
         jquery.form.js
         jquery.toggleformtext.js
-        jquery.expandable.js
         jquery.date_input.js
         underscore.min.js
         sprintf.js
@@ -42,8 +40,8 @@
     %>
     <% default_content_for(:script){} %>
 
-  
+
     <!--[if lt IE 7 ]>
-      <script src="/javascripts/libs/dd_belatedpng.js"></script>
-      <script> DD_belatedPNG.fix('img, .png_bg');                //fix any <img> or .png_bg background-images </script>
+      <script src="/javascripts/dd_belatedpng.js"></script>
+      <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
     <![endif]-->

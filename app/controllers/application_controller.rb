@@ -1,14 +1,20 @@
 class ApplicationController < ActionController::Base
+  include Tagz.globally
+
   protect_from_forgery
 
   layout :layout_for_request
 
   before_filter :set_current_controller!
   before_filter :configure_default_url_options!
+  before_filter :set_user_time_zone
+
 
 protected
 
-  include Tagz.globally
+  def set_user_time_zone
+    Time.zone = current_user.time_zone if logged_in?
+  end
 
 # be sure to keep flash on redirects
 #

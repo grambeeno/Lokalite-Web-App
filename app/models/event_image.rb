@@ -4,6 +4,9 @@ class EventImage < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  validates_presence_of :image
+  validates_presence_of :organization
+
   def url(*args)
     image.url(*args)
   end

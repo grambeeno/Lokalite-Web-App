@@ -12,7 +12,7 @@
 # Formtastic::SemanticFormBuilder.default_text_field_size = 50
 
 # Set the default text area height when input is a text. Default is 20.
-# Formtastic::SemanticFormBuilder.default_text_area_height = 5
+Formtastic::SemanticFormBuilder.default_text_area_height = 6
 
 # Set the default text area width when input is a text. Default is nil.
 # Formtastic::SemanticFormBuilder.default_text_area_width = 50
@@ -41,6 +41,8 @@
 # Defaults to :sentence, valid options are :sentence, :list, :first and :none
 # Formtastic::SemanticFormBuilder.inline_errors = :sentence
 # Formtastic uses the following classes as default for hints, inline_errors and error list
+Formtastic::SemanticFormBuilder.inline_errors = :none
+
 
 # If you override the class here, please ensure to override it in your formtastic_changes.css stylesheet as well
 # Formtastic::SemanticFormBuilder.default_hint_class = "inline-hints"

@@ -71,7 +71,8 @@
 
       # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
       # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-      # config.time_zone = 'Central Time (US & Canada)'
+      config.time_zone = 'Mountain Time (US & Canada)'
+      ActiveSupport.use_standard_json_time_format = false
 
       # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
       # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -79,9 +80,6 @@
 
       # JavaScript files you want as :defaults (application.js is always included).
       # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-      #
-      #config.action_view.javascript_expansions[:defaults] = %w( jquery rails )
-       
 
       # Configure the default encoding used in templates for Ruby 1.9.
       config.encoding = "utf-8"

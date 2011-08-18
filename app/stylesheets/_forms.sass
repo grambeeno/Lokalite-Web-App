@@ -1,7 +1,8 @@
 $form-grey: #f1f1f1
+$error-red: #cc0000
 
 .form
-  +content-with-margin
+  +content-with-padding
   h1, h2
     text-align: center
   h1
@@ -27,6 +28,19 @@ form.formtastic
 
   .align-with-fields
     padding-left: 177px
+
+  .errorExplanation
+    border-bottom: 1px solid #CCC
+    padding-bottom: 1em
+    margin-bottom: 1em
+    h2
+      color: $error-red
+    p
+      font-weight: bold
+
+    ul
+      margin-top: 1em
+      list-style: inside disc
 
 #event_image_input
   ol

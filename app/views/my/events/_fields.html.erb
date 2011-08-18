@@ -1,29 +1,75 @@
+<% organization = form.object.organization %>
+
 <%= form.inputs do %>
+  <li>
+    <%= form.error_messages %>
+  </li>
+
+  <%= form.hidden_field :organization_id, :value => organization.id %>
   <%= form.input :name %>
-  <%= form.input :description %>
+  <%= form.input :description, :as => :text, :input_html => {:rows => 2, :maxlength => 140} %>
+  <%= form.input :starts_at %>
+  <%= form.input :ends_at %>
   <%= form.input :category_list, :label => 'Category', :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
 
+  <%= form.input :image, :as => :radio, :collection => organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
+  <script type="text/javascript">
+    $('#event_image_input ol').append(
+        '<li><label for="new_event_image"><input id="new_event_image" name="event[image_id]" type="radio" value="new" /> <img alt="New Image" src="/images/upload-new-image.png" /></label></li>'
+    );
+    <% if organization.event_images.any? %>
+      $('#event_image_attributes_image_input').hide()
+    <% else -%>
+      $('#new_event_image').click();
+    <% end %>
+  </script>
 
-  <%= form.input :image, :as => :radio, :collection => @organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
+  <%= form.semantic_fields_for :image, EventImage.new do |image| %>
+    <%= image.hidden_field :organization_id, :value => organization.id %>
+    <%= image.input :image, :as => :file, :hint => 'Square, at least 300x300', :label => '&nbsp;', :required => false %>
+  <% end %>
 
   <%#= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>
   <li class='align-with-fields'>
-    <%#= image_tag(form.object.image_url(:small)) if form.object.image? %>
   </li>
   <%#= form.hidden_field :image_cache %>
-  
 
-  <%= form.semantic_fields_for :location do |location| %>
-    <% 
-      # why doesn't this work when done in the controller?
-      # location.object.set_address_components_for_editing unless location.object.new_record?
-    %>
-    <%= location.input :name %>
-    <%= location.input :street %>
-    <%= location.input :locality, :label => 'City' %>
-    <%= location.input :region, :label => 'State', :as => :select, :collection => US_STATES %>
-    <%= location.input :postal_code, :label => 'Zip Code', :as => :numeric %>
+  <%= form.input :location, :collection => organization.locations, :label_method => :short_identifier, :include_blank => false %>
+<% end %>
+
+<%= form.inputs :class => 'new-location' do %>
+  <%= form.semantic_fields_for :location, Location.new(:region => 'CO', :organization_id => organization.id), :class => 'new-location' do |location| %>
+    <%= location.hidden_field :organization_id, :value => organization.id %>
+    <%= render :partial => '/shared/location_fields', :locals => {:form => location} %>
   <% end %>
 <% end %>
+
 <%= form.buttons %>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+
+    $('#event_image_input :radio').change(function(){
+      if ($(this).val() === 'new') {
+        $('#event_image_attributes_image_input').slideDown()
+      } else {
+        $('#event_image_attributes_image_input').slideUp()
+      }
+    });
+
+    ////////
+    $('#event_location_id').append('<option value="new">Create a new location</option>');
+
+    $('.new-location').hide()
+    $('#event_location_id').change(function(){
+      if ($(this).val() === 'new') {
+        $('.new-location').slideDown()
+      } else {
+        $('.new-location').slideUp()
+      }
+    });
+
+
+  });
+</script>
 

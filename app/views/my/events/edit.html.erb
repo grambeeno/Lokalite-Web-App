@@ -3,7 +3,7 @@
 
   <hr />
 
-  <%= semantic_form_for @event, :url => my_events_path(@event), :method => 'PUT', :html => {:multipart => true} do |form| %>
+  <%= semantic_form_for @event, :url => my_events_path(@event.id), :method => 'PUT', :html => {:multipart => true} do |form| %>
     <%= render :partial => 'fields', :locals => { :form => form } %>
   <% end %>
 </div>

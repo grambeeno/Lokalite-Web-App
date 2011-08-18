@@ -1,19 +1,20 @@
-    <%=
-      stylesheets = %w(
-        html5boilerplate
-        formtastic
-        screen
-      )
-      # smoothness/jquery-ui-1.8.14.custom
-      # jquery.date_input
+<%=
+  stylesheets = %w(
+    html5boilerplate
+    jquery.qtip
+    formtastic
+    screen
+  )
+  # smoothness/jquery-ui-1.8.14.custom
+  # jquery.date_input
 
-      stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")
-    %>
-    <% default_content_for(:style){} %>
+  stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")
+%>
+<% default_content_for(:style){} %>
 
-    <style>
-      <%= css_for(style) %>
-    </style>
+<style>
+  <%= css_for(style) %>
+</style>
 
 <% if false %>
     <!--[if lt IE 8]>

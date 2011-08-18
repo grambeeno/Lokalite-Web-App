@@ -150,7 +150,7 @@ App.singleton_class do
           json = App.decode(token)
           hash = App.parse_json(json)
           token.data = hash['data']
-          token.expires = Time.parse(hash['expires'] || Timw.now.iso8601)
+          token.expires = Time.parse(hash['expires'] || Time.now.iso8601)
           token.expired = Time.now >= token.expires
         rescue
           nil
