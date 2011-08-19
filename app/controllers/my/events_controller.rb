@@ -1,12 +1,12 @@
 class My::EventsController < My::Controller
   before_filter :set_organization
+  before_filter :find_event_and_authorize
 
   def index
     @events = Event.all
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def new
@@ -18,13 +18,10 @@ class My::EventsController < My::Controller
   end
 
   def edit
-    @event = Event.find(params[:id])
-    authorize
   end
 
   def create
     clean_attributes
-    @event = Event.new(params[:event])
 
     if @event.save
       flash[:notice] = 'Event was successfully created.'
@@ -36,8 +33,6 @@ class My::EventsController < My::Controller
 
   def update
     clean_attributes
-    @event = Event.find(params[:id])
-    authorize
 
     if @event.update_attributes(params[:event])
       flash[:notice] = 'Event was successfully updated.'
@@ -48,7 +43,6 @@ class My::EventsController < My::Controller
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     redirect_to(events_url)
@@ -56,10 +50,10 @@ class My::EventsController < My::Controller
 
   private
 
-  def authorize
-    unless current_user.organizations.include?(@event.organization)
-      flash[:notice] = "Sorry, you don't have access to that event."
-      redirect_to root_path and return
+  def find_event_and_authorize
+    @event = Event.find(params[:id]) if params[:id]
+    if @event
+      permission_denied unless current_user.organizations.include?(@event.organization)
     end
   end
 

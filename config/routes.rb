@@ -1,7 +1,5 @@
 # See how all your routes lay out with "rake routes"
 Lokalite::Application.routes.draw do
-# event routes
-#
   match 'event(/*slug)/:id', :as => :event, :controller => :events, :constraints => {:id => /\d+/}, :action => :show
 
   match 'events/location/*location/category/:category/date/:date', :controller => :events, :action => :browse

@@ -13,10 +13,10 @@
           <%= link_to('New Event', new_my_event_path(:organization_id => organization.id)) %>
         </li>
         <li>
-          <%= link_to('All Events', organization_path(organization.slug, organization.id)) %>
+          <%= link_to('All My Events', my_organization_path(organization)) %>
         </li>
         <li>
-          <%= link_to('Edit', edit_my_organization_path(organization)) %>
+          <%= link_to('Edit Organization Info', edit_my_organization_path(organization)) %>
         </li>
       </ul>
 

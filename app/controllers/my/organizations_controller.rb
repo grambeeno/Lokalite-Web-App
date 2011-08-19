@@ -1,5 +1,10 @@
 class My::OrganizationsController < My::Controller
 
+  before_filter :find_organization_and_authorize
+
+  def show
+  end
+
   def index
     @organizations = current_user.organizations.order('name')
 
@@ -16,7 +21,6 @@ class My::OrganizationsController < My::Controller
   end
 
   def edit
-    @organization = Organization.find(params[:id])
   end
 
   def create
@@ -33,8 +37,6 @@ class My::OrganizationsController < My::Controller
   end
 
   def update
-    @organization = Organization.find(params[:id])
-
     if @organization.update_attributes(params[:organization])
       flash[:notice] = 'Organization was successfully updated.'
       redirect_to(organization_path(@organization.slug, @organization.id))
@@ -44,10 +46,18 @@ class My::OrganizationsController < My::Controller
   end
 
   def destroy
-    @organization = Organization.find(params[:id])
     @organization.destroy
 
     redirect_to(organizations_url)
+  end
+
+  private
+
+  def find_organization_and_authorize
+    @organization = Organization.find(params[:id]) if params[:id]
+    if @organization
+      permission_denied unless @organization.users.include?(current_user)
+    end
   end
 
 end

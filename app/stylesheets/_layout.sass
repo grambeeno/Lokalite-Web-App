@@ -1,0 +1,137 @@
+// setting width with variables for everything may seem like overkill but will be worth it in the end :)
+$site-width: 1120px
+$content-outer-width: 760px
+
+$content-bg-padding: 25px
+$content-inner-padding: 10px
+$content-inner-width: $content-outer-width - (2*($content-bg-padding + $content-inner-padding))
+
+$sidebar-padding: 10px
+$sidebar-width: ($site-width - $content-outer-width)/2 - $sidebar-padding
+
+// add some padding to sides so smaller browser windows
+// still have a nice edge with space before content
+$site-padding: 10px
+
+
+=centered-on-page
+  width: $site-width + ($site-padding * 2)
+  margin: 0 auto
+  padding: 0 $site-padding
+  // background-color: white
+
+$header-height: image-height('header-bg.png')
+body
+  font-family: Helvetica, Arial, Verdana, sans-serif
+
+  > header
+    height: $header-height
+    background:
+      color: black
+      image: image-url('header-bg.png')
+      repeat: repeat-x
+    color: white
+    .content
+      +centered-on-page
+      // +clearfix
+
+      .logo
+        +float('left')
+        display: block
+        +replace-text-with-dimensions('header-logo.png')
+
+      nav
+        +float('right')
+        > ul
+          +horizontal-list(8px)
+          overflow: visible
+          margin-top: 32px
+          a
+            +link-colors(white, $green)
+            text-decoration: none
+            font-size: 14px
+            font-weight: bold
+            &.create-event
+              // +replace-text-with-dimensions('create-event-button.png')
+              // margin-top: -12px
+              // display: block
+          li
+            position: relative
+            ul
+              // +no-bullets
+              display: none
+              position: absolute
+              z-index: 10000
+              top: 0
+              padding-top: 20px
+              right: 12px
+              width: 140px
+              li, li:first-child, li:last-child
+                white-space: normal
+                background-color: black
+                width: 100%
+                display: block
+                padding: 8px
+                a
+                  display: block
+                  width: 100%
+            &:hover ul
+              display: block
+
+
+  > footer
+    .content
+      +centered-on-page
+      +clearfix
+      padding-bottom: 10px
+      nav
+        +float('left')
+        ul
+          +horizontal-list
+      .copyright
+        +float('right')
+
+  #main
+    +centered-on-page
+    +clearfix
+    #middle
+      background:
+        color: white
+        image: image-url('main-bg.png')
+        repeat: repeat
+
+#left-sidebar,
+#right-sidebar,
+#middle
+  +float('left')
+  padding: 16px 0
+
+#left-sidebar,
+#right-sidebar
+  width: $sidebar-width
+  h3
+    font-size: 14px
+    margin-bottom: 6px
+
+#left-sidebar
+  padding-right: $sidebar-padding
+  ul.categories
+    li
+      font-size: 12px
+      padding-top: 4px
+      padding-left: 24px
+      margin-bottom: 8px
+      height: 16px
+      background-position: left top
+      background-repeat: no-repeat
+      &:hover
+        background-position: left bottom
+      &.active
+        background-color: black
+        background-position: left bottom
+
+    @each $category in $event-categories
+      .#{$category}
+        background:
+          image: image-url("category-icons/#{$category}.png")
+

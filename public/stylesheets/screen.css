@@ -1,4 +1,16 @@
 /* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+h1.big, h2.big { text-align: center; }
+
+h1.big { font-size: 46px; margin-bottom: 10px; }
+
+h2.big { font-size: 20px; font-weight: normal; color: gray; margin-bottom: 20px; }
+
+h1 { font-size: 24px; }
+
+h2 { font-size: 20px; }
+
+h3 { font-size: 16px; }
+
 a { color: #607890; }
 a:visited { color: #607890; }
 a:hover { color: #52667b; }
@@ -21,7 +33,7 @@ body > header .content nav > ul li ul { display: none; position: absolute; z-ind
 body > header .content nav > ul li ul li, body > header .content nav > ul li ul li:first-child, body > header .content nav > ul li ul li:last-child { white-space: normal; background-color: black; width: 100%; display: block; padding: 8px; }
 body > header .content nav > ul li ul li a, body > header .content nav > ul li ul li:first-child a, body > header .content nav > ul li ul li:last-child a { display: block; width: 100%; }
 body > header .content nav > ul li:hover ul { display: block; }
-body > footer .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
+body > footer .content { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; padding-bottom: 10px; }
 body > footer .content nav { display: inline; float: left; }
 body > footer .content nav ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; }
 body > footer .content nav ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
@@ -166,13 +178,18 @@ ul.event-previews li { background-color: white; -moz-box-shadow: 0px 0px 5px #33
 #category-tabs > ul li:last-child { padding-right: 0; }
 #category-tabs > ul li.last { padding-right: 0; }
 
-.ui-tabs-hide { display: none; }
+.static-controller h1, .static-controller h2 { text-align: center; }
+.static-controller h1 { font-size: 46px; margin-bottom: 10px; }
+.static-controller h2 { font-size: 20px; font-weight: normal; color: gray; margin-bottom: 20px; }
+.static-controller p { padding: 0.5em 0; }
+
+.my-organizations-controller table.times { font-size: 13px; margin: 0 0 1em; }
 
 .clear { width: 100%; height: 1px; margin: 0 0 -1px; clear: both; }
 
 .form { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
 .form h1, .form h2 { text-align: center; }
-.form h1 { font-size: 50px; margin-bottom: 10px; }
+.form h1 { font-size: 46px; margin-bottom: 10px; }
 .form h2 { font-size: 20px; font-weight: normal; color: gray; margin-bottom: 20px; }
 
 form.formtastic input, form.formtastic textarea { background-color: #f1f1f1; border: none; padding: 10px; }

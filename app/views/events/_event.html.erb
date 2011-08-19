@@ -7,9 +7,9 @@
 
     <%
         if logged_in?
-          trend_state = current_user.events.include?(event) ? :trended : :trend 
+          trend_state = current_user.events.include?(event) ? :trended : :trend
         else
-          trend_state = :trend 
+          trend_state = :trend
         end
     -%>
     <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
@@ -20,7 +20,7 @@
   <%= link_to event_path(event.slug, event.id) do %>
     <div class='detail'>
       <h1><%= truncate event.name, :length => 26 %></h1>
-      
+
       <div class="organization-name">
         @ <%= truncate event.organization.name, :length => 30 %>
       </div>

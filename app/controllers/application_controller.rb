@@ -9,8 +9,12 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
 
-
 protected
+
+  def permission_denied
+    flash[:notice] = "Sorry, you don't have access to that page."
+    redirect_to root_path and return
+  end
 
   def set_user_time_zone
     Time.zone = current_user.time_zone if logged_in?
@@ -31,7 +35,6 @@ protected
     options[:text] ||= text
     render(options)
   end
-
 
 # current user support
 #

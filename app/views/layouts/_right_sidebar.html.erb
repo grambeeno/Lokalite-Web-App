@@ -2,7 +2,7 @@
 
 <ul>
   <%# TODO - this is a prime canditate for fragment cacheing %>
-  <% for event in Event.trending.limit(10) -%>
+  <% for event in Event.trending.limit(10).includes(:image) -%>
     <li>
       <%= link_to event_path(event.slug, event.id) do %>
         <div class="image">
