@@ -8,8 +8,8 @@
   <%= form.hidden_field :organization_id, :value => organization.id %>
   <%= form.input :name %>
   <%= form.input :description, :as => :text, :input_html => {:rows => 2, :maxlength => 140} %>
-  <%= form.input :starts_at %>
-  <%= form.input :ends_at %>
+  <%= form.input :starts_at, :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
+  <%= form.input :ends_at,   :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
   <%= form.input :category_list, :label => 'Category', :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
 
   <%= form.input :image, :as => :radio, :collection => organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>

@@ -24,7 +24,7 @@
 
     <h3>Tags</h3>
     <% for category in @event.categories -%>
-      <%= content_tag :span, category.name, :class => "icon-#{category.name.parameterize('_')}" %>
+      <%= content_tag :span, category.name, :class => "icon-#{category.name.parameterize('_')} tooltip", :title => category.name %>
     <% end -%>
 
     <br />
@@ -42,12 +42,6 @@
     -->
 
     <div class="location">
-      <div class="info">
-        <strong><%= @event.location.name %></strong>
-        <br />
-        <%= raw @event.location.formatted_address %>
-      </div>
-
       <div class="map">
         <%= link_to google_maps_image(@event, :size => '363x130'), gmaps_url_for(@event), :target => '_blank', :class => 'map_link' %>
       </div>
@@ -56,4 +50,5 @@
 
   <div class="clear"></div>
 </section>
+
 

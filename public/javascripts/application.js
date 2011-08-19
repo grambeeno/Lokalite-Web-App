@@ -25,26 +25,6 @@ jq(function($){
 // _.templateSettings = { start : '{{', end : '}}', interpolate : /{{(.+?)}}/g };
 //
 
-// customize date_input formats
-//
-  jq.extend(DateInput.DEFAULT_OPTS, {
-    stringToDate: function(string) {
-      var matches;
-      if (matches = string.match(/^(\d{4,4})-(\d{2,2})-(\d{2,2})$/)) {
-        return new Date(matches[1], matches[2] - 1, matches[3]);
-      } else {
-        return null;
-      }
-    },
-    dateToString: function(date) {
-      var month = (date.getMonth() + 1).toString();
-      var dom = date.getDate().toString();
-      if (month.length == 1) month = "0" + month;
-      if (dom.length == 1) dom = "0" + dom;
-      return date.getFullYear() + "-" + month + "-" + dom;
-    }
-  });
-
 // find and pre-compile all jquery templates on the page. cache them by name.
 //
   var templates = {};
@@ -102,7 +82,6 @@ jq(function($){
     App.initialize_type_classes(scope);
     //App.initialize_traditional_box_model(scope);
     App.initialize_form_hints(scope);
-    App.initialize_date_inputs(scope);
     App.initialize_submits(scope);
     App.initialize_focus(scope);
   };
@@ -218,16 +197,9 @@ jq(function($){
     scope.find('#focus:first').focus().click();
   };
 
-  App.initialize_date_inputs = function(){
-    var scope = arguments[0];
-    scope = scope ? jq(scope) : jq('html');
-    scope.find('.date').date_input();
-  };
-
   App.initialize_submits = function(){
     var scope = arguments[0];
     scope = scope ? jq(scope) : jq('html');
-    scope.find('.date').date_input();
 
     scope.find('input[type=submit]').click(function(){
       if(jQuery.data(this, 'clicked')){
@@ -378,13 +350,38 @@ jq(function($){
     }
   });
 
-  $('#category-tabs').tabs();
+  // rolling our own simple tabs here because it's
+  // easier than un-styling the jQueryUI tabs
+  $("#places-categories").hide();
+
+  $('a[href="#event-categories"]').click(function() {
+    $("#places-categories").hide();
+    $("#event-categories").show();
+  });
+  $('a[href="#places-categories"]').click(function() {
+    $("#event-categories").hide();
+    $("#places-categories").show();
+  });
+
+
+  $('.datetimepicker').datetimepicker({
+    ampm: true,
+    stepMinute: 15
+  });
 
   $('#new_organization #organization_name').keyup(function() {
     $('#organization_locations_attributes_0_name').val($(this).val());
   });
 
-
+  $('.tooltip').qtip({
+    position: {
+      my: 'bottom middle',
+      at: 'top middle'
+    },
+    style: {
+      classes: 'ui-tooltip-youtube'
+    }
+  });
 
 });
 

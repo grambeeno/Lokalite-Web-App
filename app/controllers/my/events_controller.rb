@@ -19,6 +19,7 @@ class My::EventsController < My::Controller
 
   def edit
     @event = Event.find(params[:id])
+    authorize
   end
 
   def create
@@ -36,6 +37,7 @@ class My::EventsController < My::Controller
   def update
     clean_attributes
     @event = Event.find(params[:id])
+    authorize
 
     if @event.update_attributes(params[:event])
       flash[:notice] = 'Event was successfully updated.'
@@ -53,6 +55,13 @@ class My::EventsController < My::Controller
   end
 
   private
+
+  def authorize
+    unless current_user.organizations.include?(@event.organization)
+      flash[:notice] = "Sorry, you don't have access to that event."
+      redirect_to root_path and return
+    end
+  end
 
   def clean_attributes
     params[:event].delete(:image_attributes)    unless params[:event][:image_id]    == 'new'
