@@ -1,5 +1,10 @@
 <nav>
   <ul>
+    <% if logged_in? and current_user.admin? %>
+      <li>
+        <%= link_to 'Admin', admin_path %>
+      </li>
+    <% end %>
     <li>
       <%= link_to 'About', static_path(:about) %>
     </li>
