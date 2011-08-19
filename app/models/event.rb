@@ -113,7 +113,7 @@ class Event < ActiveRecord::Base
     if options[:order] == 'distance' && origin.present?
       results = results.near
     elsif options[:order] == 'trending'
-      results = results.order('events.users_count DESC')
+      results = results.trending
     elsif options[:order] == 'name'
       results = results.order('events.name ASC')
     else
@@ -154,16 +154,16 @@ class Event < ActiveRecord::Base
   # def venue_time_formatted(*args)
   #   venue_time(*args).strftime("%A, %b. %e, %Y %l:%M%p (%Z)")
   # end
-  # 
+  #
   # #TTD new methods for time format Paul
   # def venue_time_formatted_date(*args)
   #   venue_time(*args).strftime("%A, %B %e")
   # end
-  # 
+  #
   # def venue_time_formatted_start(*args)
   #   venue_time(starts_at).strftime("%l:%M%p")
   # end
-  # 
+  #
   # def venue_time_formatted_end(*args)
   #   venue_time(ends_at).strftime("%l:%M%p")
   # end
