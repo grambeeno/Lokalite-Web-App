@@ -28,6 +28,7 @@ body > header .content nav > ul li:last-child { padding-right: 0; }
 body > header .content nav > ul li.last { padding-right: 0; }
 body > header .content nav > ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
 body > header .content nav > ul a:hover { color: #7da762; }
+body > header .content nav > ul a.create-event { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/create-event-button.png?1313100145'); background-repeat: no-repeat; background-position: 50% 50%; width: 141px; height: 28px; margin-top: -12px; display: block; }
 body > header .content nav > ul li { position: relative; }
 body > header .content nav > ul li ul { display: none; position: absolute; z-index: 10000; top: 0; padding-top: 20px; right: 12px; width: 140px; }
 body > header .content nav > ul li ul li, body > header .content nav > ul li ul li:first-child, body > header .content nav > ul li ul li:last-child { white-space: normal; background-color: black; width: 100%; display: block; padding: 8px; }

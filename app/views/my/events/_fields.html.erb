@@ -26,7 +26,7 @@
 
   <%= form.semantic_fields_for :image, EventImage.new do |image| %>
     <%= image.hidden_field :organization_id, :value => organization.id %>
-    <%= image.input :image, :as => :file, :hint => 'Square, at least 300x300', :label => '&nbsp;', :required => false %>
+    <%= image.input :image, :as => :file, :hint => 'Square, at least 300x300. Non-square images will be cropped.', :label => '&nbsp;', :required => false %>
   <% end %>
 
   <%#= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>

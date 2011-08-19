@@ -22,6 +22,7 @@ class My::EventsController < My::Controller
 
   def create
     clean_attributes
+    @event = Event.new(params[:event])
 
     if @event.save
       flash[:notice] = 'Event was successfully created.'

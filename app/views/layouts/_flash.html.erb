@@ -1,4 +1,4 @@
-<% 
+<%
 unless @flash_has_already_been_rendered
 
 flash = self.flash  ### see http://groups.google.ca/group/rubyonrails-talk/browse_thread/thread/8e54e4bc3c2b4366
@@ -26,7 +26,7 @@ keys.each{|key| self.flash[key] = nil}
 
   <script>
     jQuery(function(){
-      <%= raw(javascript.join("\n")) %>
+      <%#= raw(javascript.join("\n")) %>
     });
   </script>
 </ul>
@@ -39,7 +39,7 @@ keys.each{|key| self.flash[key] = nil}
   </ul>
 </noscript>
 
-<% 
+<%
 end
 
 @flash_has_already_been_rendered = true

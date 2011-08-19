@@ -10,7 +10,7 @@
   <%= form.input :phone %>
   <%= form.input :category_list, :label => 'Category', :as => :select, :required => true, :collection => ORGANIZATION_CATEGORIES, :prompt => 'Select a Category' %>
 
-  <%= form.input :image, :as => :file, :hint => 'Square, at least 300x300' %>
+  <%= form.input :image, :as => :file, :hint => 'Square, at least 300x300. Non-square images will be cropped.' %>
   <li class='align-with-fields'>
     <%= image_tag(form.object.image_url(:small)) if form.object.image? %>
   </li>
