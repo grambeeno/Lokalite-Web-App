@@ -22,56 +22,6 @@ App.log = function(){
 
 
 jq(function($){
-// _.templateSettings = { start : '{{', end : '}}', interpolate : /{{(.+?)}}/g };
-//
-
-// find and pre-compile all jquery templates on the page. cache them by name.
-//
-  var templates = {};
-  App.templates = templates;
-  jq('script.template').each(function(){
-    var j = jq(this);
-    var name = j.attr('name');
-    var html = j.html();
-    templates[name] = jq.template(name, html);
-  });
-
-
-// flash message support
-//
-  App.flash = function(msg, options){
-    options = options || {};
-    var flash = jq('.flash');
-
-    var template = App.templates['flash-list-item'];
-    var data = {'message' : msg};
-    var message = jq.tmpl(template, data);
-
-    var dismiss = message.find('.dismiss');
-
-    dismiss.click(function(){ message.remove(); });
-
-    message.addClass(options['class'] || 'info');
-    flash.append(message);
-    App.blink(message);
-    return(message);
-  };
-
-// new skool <blink>
-//
-  App.blink = function(){
-    var element = arguments[0];
-    var options = arguments[1] || {};
-    var n = options.n || App.blink.n;
-    var speed = options.speed || App.blink.speed;
-    element = jq(element);
-    element.fadeout = function(){ element.fadeTo(speed, 0.50, element.fadein); };
-    element.fadein = function(){ element.fadeTo(speed, 1.00); --n > 0 && element.fadeout(); };
-    var id = setTimeout( element.fadeout, speed );
-    return(id);
-  };
-  App.blink.n = 2;
-  App.blink.speed = 2000;
 
 // initializers
 //

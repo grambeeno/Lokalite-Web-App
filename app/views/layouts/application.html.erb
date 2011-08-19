@@ -47,7 +47,10 @@
       </div>
 
       <div id="middle">
-        <%= render :partial => '/layouts/flash' %>
+        <% flash.each do |kind, message| %>
+          <%= content_tag :div, message, :class => "flash #{kind}" %>
+        <% end %>
+
         <%= yield %>
       </div>
 

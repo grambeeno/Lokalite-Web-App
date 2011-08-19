@@ -17,6 +17,7 @@ protected
   end
 
   def set_user_time_zone
+    flash[:notice] = 'hi there'
     Time.zone = current_user.time_zone if logged_in?
   end
 

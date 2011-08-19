@@ -14,11 +14,11 @@
 
   <%= form.input :image, :as => :radio, :collection => organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
   <script type="text/javascript">
-    $('#event_image_input ol').append(
+    $('#event_image_input ol').prepend(
         '<li><label for="new_event_image"><input id="new_event_image" name="event[image_id]" type="radio" value="new" /> <img alt="New Image" src="/images/upload-new-image.png" /></label></li>'
     );
-    <% if organization.event_images.any? %>
-      $('#event_image_attributes_image_input').hide()
+    <% if organization.event_images.any? && !form.object.new_record? %>
+      $('#event_image_attributes_image_input').hide();
     <% else -%>
       $('#new_event_image').click();
     <% end %>
