@@ -68,7 +68,7 @@ class Event < ActiveRecord::Base
 
   def Event.browse(*args)
     options = Map.extract_options!(args)
-    location_string = options[:location] || 'Boulder, CO'
+    # location_string = options[:location] || 'Boulder, CO'
 
     organization_id = options[:organization_id]
 
@@ -80,18 +80,6 @@ class Event < ActiveRecord::Base
     page     = [Integer(page), 1].max
     per_page = [Integer(per_page), 42].min
 
-
-    if organization_id.present?
-      organization = Organization.find(organization_id)
-      location = organization.location
-    else
-      # TODO refactor to scope for locations properly
-      # the purpose of having a location is to determine a date range
-      # in the correct time zone.
-      location = Location.new
-      raise "no location for: #{ location_string }" unless location
-    end
-
     start_time = options[:after] || Time.now
 
     results = Event.after(start_time)
@@ -99,7 +87,7 @@ class Event < ActiveRecord::Base
     if organization_id.blank?
       results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
     else
-      # results = results.search(normalize_search_term("/organization/#{ organization_id }")) unless organization_id.blank?
+      results = results.where(:organization_id => organization_id)
     end
     results = results.search(keywords.join(' ')) unless keywords.blank?
     # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
