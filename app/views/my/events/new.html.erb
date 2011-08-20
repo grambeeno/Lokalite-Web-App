@@ -1,11 +1,21 @@
 <div class='form'>
-  <h1>New Event</h1>
-  <h2>At <%= @organization.name %></h2>
+  <% if @organization %>
+      <h1>New Event</h1>
+      <h2>At <%= @organization.name %></h2>
 
-  <hr />
+      <hr />
 
-  <%= semantic_form_for @event, :url => my_events_path(), :method => 'POST', :html => {:multipart => true} do |form| %>
-    <%= render :partial => 'fields', :locals => { :form => form } %>
+      <%= semantic_form_for @event, :url => my_events_path(), :method => 'POST', :html => {:multipart => true} do |form| %>
+        <%= render :partial => 'fields', :locals => { :form => form } %>
+      <% end %>
+  <% else %>
+    <h1>New Event</h1>
+    <h2>Please select an organization</h2>
+    <% for organization in current_user.organizations -%>
+      <%= link_to(organization.name, new_my_event_path(:organization_id => organization.id)) %>
+      <br />
+    <% end -%>
   <% end %>
 </div>
+
 

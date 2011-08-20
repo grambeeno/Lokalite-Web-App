@@ -48,7 +48,12 @@
 
       <div id="middle">
         <% flash.each do |kind, message| %>
-          <%= content_tag :div, message, :class => "flash #{kind}" %>
+          <%= content_tag :div, :class => "flash #{kind}" do %>
+            <a href="#dismiss" class='dismiss'>×</a>
+            <p>
+              <%= raw message %>
+            </p>
+          <% end %>
         <% end %>
 
         <%= yield %>

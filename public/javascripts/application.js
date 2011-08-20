@@ -291,6 +291,12 @@ jq(function($){
   });
 
 
+  $('.flash a.dismiss').live('click', function(event) {
+    event.preventDefault();
+    $(this).closest('.flash').hide(400);
+  });
+
+
   $('.events li').live({
     mouseenter: function() {
       $(this).find('.description').show("slide", { direction: "down" }, 200);
