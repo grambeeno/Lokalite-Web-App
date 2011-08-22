@@ -6,7 +6,7 @@
     <div class="text">
       <h1><%= @event.name %></h1>
       <h2>
-        <%= link_to "@ #{@event.organization.name}", organization_path(@event.organization.slug, @event.organization.id) %>
+        <%= link_to "@ #{@event.location.name}", organization_path(@event.organization.slug, @event.organization.id) %>
       </h2>
     </div>
   </div>

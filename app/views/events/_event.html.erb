@@ -22,7 +22,7 @@
       <h1><%= truncate event.name, :length => 26 %></h1>
 
       <div class="organization-name">
-        @ <%= truncate event.organization.name, :length => 30 %>
+        @ <%= truncate event.location.name, :length => 30 %>
       </div>
 
       <%= render :partial => 'time_span', :locals => {:event => event} %>
