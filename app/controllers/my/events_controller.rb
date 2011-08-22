@@ -63,6 +63,7 @@ class My::EventsController < My::Controller
   def clean_attributes
     params[:event].delete(:image_attributes)    unless params[:event][:image_id]    == 'new'
     params[:event].delete(:location_attributes) unless params[:event][:location_id] == 'new'
+    params[:event][:category_list] = [params[:event].delete(:first_category), params[:event].delete(:second_category)].join(', ')
   end
 
   def set_organization

@@ -15,6 +15,15 @@ class Event < ActiveRecord::Base
 
   acts_as_taggable_on :categories
 
+  def first_category
+    category_list.split(', ').first.first
+  end
+  def second_category
+    if categories.size > 1
+      category_list.split(', ').first.last
+    end
+  end
+
   before_validation(:on => :create) do |event|
     event.uuid ||= App.uuid
   end
