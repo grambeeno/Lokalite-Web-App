@@ -8,7 +8,7 @@ class AuthController < ApplicationController
 
     @errors = []
     flash.keep(:return_to)
-    return_to = flash[:return_to] || '/'
+    return_to = flash[:return_to] || login_path
 
     @email = email = params[:email]
     @email_confirmation = email_confirmation = params[:email_confirmation]
@@ -20,7 +20,7 @@ class AuthController < ApplicationController
       @errors.push "Hrm, that doesn't look like a valid email."
     end
 
-    unless @email === @email_confirmation 
+    unless @email === @email_confirmation
       @errors.push "Email and Email Confirmation must be identical."
     end
 
@@ -97,7 +97,7 @@ class AuthController < ApplicationController
 
     @email = email = params[:email]
     @password = password = params[:password]
-    
+
     return if request.get?
 
     @user = User.authenticate(:email => @email, :password => @password)

@@ -1,36 +1,25 @@
 <div class='content'>
-  <% form_tag(request.fullpath, form_attrs(:half, :signup, :style => 'margin:1em auto')) do %>
+  <% form_tag signup_path, :class => 'formtastic' do %>
     <%= errors_for(@errors) %>
 
     <div>
       <% if params[:business] %>
-        <h1>Sign up now to promote your events!</h1>
-        <p>
-          Sign up now and promote your events on the front page of lokalite in minutes.
-        </p>
+        <h1 class='big'>Sign up now to promote your events!</h1>
+        <h2 class='big'>
+          Promote your events on the front page of lokalite in minutes.
+        </h2>
       <% else %>
-        <h1>Find life in your community</h1>
-        <p>
+        <h1 class='big'>Find life in your community</h1>
+        <h2 class='big'>
           With lokalite, finding something to do has never been so easy. Whether at home or traveling around, you'll always feel like a lokal.
-        </p>
-        <p>
+        </h2>
+        <h2 class='big'>
           Get started, fun's right around the corner.
-        </p>
+        </h2>
       <% end %>
     </div>
 
     <%= render :partial => 'signup_fields' %>
 
-    <br />
-    <table class='layout' style='width:100%'>
-      <tr>
-        <td style='text-align:left;vertical-align:bottom;'>
-          <%= submit_tag :Signup %>
-        </td>
-        <td style='text-align:right;vertical-align:bottom;'>
-          <%= link_to 'need to login instead?', login_path %>
-        </td>
-      </tr>
-    </table>
   <% end %>
 </div>

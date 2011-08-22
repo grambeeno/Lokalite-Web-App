@@ -1,21 +1,23 @@
-<h3>Top Trending Events</h3>
+<% unless ['/login', '/signup', '/business', '/static'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+  <h3>Top Trending Events</h3>
 
-<ul>
-  <%# TODO - this is a prime canditate for fragment cacheing %>
-  <% for event in Event.trending.limit(10).includes(:image) -%>
-    <li>
-      <%= link_to event_path(event.slug, event.id) do %>
-        <div class="image">
-          <%= image_tag(event.image.url(:thumb)) %>
-        </div>
-        <div class="details">
-          <%= truncate event.name, :length => 22 %>
-          <div class="organization-name">
-            <%= truncate event.organization.name, :length => 25 %>
+  <ul>
+    <%# TODO - this is a prime canditate for fragment cacheing %>
+    <% for event in Event.trending.limit(10).includes(:image) -%>
+      <li>
+        <%= link_to event_path(event.slug, event.id) do %>
+          <div class="image">
+            <%= image_tag(event.image.url(:thumb)) %>
           </div>
-        </div>
-      <% end %>
-    </li>
-  <% end -%>
-</ul>
+          <div class="details">
+            <%= truncate event.name, :length => 22 %>
+            <div class="organization-name">
+              <%= truncate event.organization.name, :length => 25 %>
+            </div>
+          </div>
+        <% end %>
+      </li>
+    <% end -%>
+  </ul>
+<% end -%>
 
