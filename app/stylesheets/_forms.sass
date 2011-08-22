@@ -16,6 +16,15 @@ form.formtastic
     &.file
       background-color: transparent
       padding: 0
+  input[type=submit]
+    border: 1px solid #ccc
+    +border-radius(6px)
+    +linear-gradient(color-stops(white, darken(white, 8)))
+    text-shadow: white 1px 1px 1px
+    font-size: 14px
+    &:hover
+      +linear-gradient(color-stops(white, darken(white, 14)))
+
 
   .align-with-fields
     padding-left: 177px

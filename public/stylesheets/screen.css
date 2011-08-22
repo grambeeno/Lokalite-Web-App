@@ -207,6 +207,8 @@ ul.event-previews li { background-color: white; -moz-box-shadow: 0px 0px 5px #33
 
 form.formtastic input, form.formtastic textarea { background-color: #f1f1f1; border: none; padding: 10px; }
 form.formtastic input.file, form.formtastic textarea.file { background-color: transparent; padding: 0; }
+form.formtastic input[type=submit] { border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background-image: -webkit-linear-gradient(top, #ffffff, #ebebeb); background-image: -moz-linear-gradient(top, #ffffff, #ebebeb); background-image: -o-linear-gradient(top, #ffffff, #ebebeb); background-image: -ms-linear-gradient(top, #ffffff, #ebebeb); background-image: linear-gradient(top, #ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; }
+form.formtastic input[type=submit]:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background-image: -webkit-linear-gradient(top, #ffffff, #dbdbdb); background-image: -moz-linear-gradient(top, #ffffff, #dbdbdb); background-image: -o-linear-gradient(top, #ffffff, #dbdbdb); background-image: -ms-linear-gradient(top, #ffffff, #dbdbdb); background-image: linear-gradient(top, #ffffff, #dbdbdb); }
 form.formtastic .align-with-fields { padding-left: 177px; }
 form.formtastic .errorExplanation { border-bottom: 1px solid #cccccc; padding-bottom: 1em; margin-bottom: 1em; }
 form.formtastic .errorExplanation h2 { color: #cc0000; }
