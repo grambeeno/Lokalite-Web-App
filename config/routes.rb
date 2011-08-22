@@ -28,6 +28,7 @@ Lokalite::Application.routes.draw do
 
   match 'places/random', :controller => :directory, :action => :random_organization, :as => :random_organization
   match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
+  match 'places/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}
 
   namespace :my do
     resources :organizations
