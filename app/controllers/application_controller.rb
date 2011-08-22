@@ -9,7 +9,15 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
 
+  before_filter :show_holding_page
+
 protected
+
+  def show_holding_page
+    unless logged_in? || params[:controller] == 'auth'
+      render :file => 'public/holding-page.html', :layout => false
+    end
+  end
 
   def permission_denied
     flash[:notice] = "Sorry, you don't have access to that page."
