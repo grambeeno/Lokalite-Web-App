@@ -339,6 +339,20 @@ jq(function($){
     }
   });
 
+  // https://github.com/aaronrussell/jquery-simply-countable
+  // for some reason it doesn't fail silently when the element doesn't exist...
+  if ($('#organization_description').length) {
+    $('#organization_description').simplyCountable({
+      maxCount: 500
+    });
+  }
+
+  if ($('#event_description').length) {
+    $('#event_description').simplyCountable({
+      maxCount: 140
+    });
+  }
+
 });
 
 function idFromString(string) {
