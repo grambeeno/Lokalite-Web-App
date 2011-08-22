@@ -1,4 +1,4 @@
-<% 
+<%
   if params[:organization]
     context("Events by #{ Organization.find(params[:organization]).name.inspect }")
   else
@@ -14,7 +14,7 @@
   end
 %>
 
-<% if session[:splash] === true %>
+<% if session[:splash] === true && false %>
   <section class="profile blurb vevent" id="welcome">
     <p class="visuallyhidden">Welcome to lokalite, your event directory. Use the categories at left to find what you're in the mood for. Browse below. Up above, sign up to start listing your own events. Share with your friends!</p>
 
@@ -26,14 +26,14 @@
 
       <%=
         st_url = App.url
-        st_title = App.url 
+        st_title = App.url
         share_this(:st_url => st_url, :st_title => st_title)
       %>
     </nav>
   </section>
-<% 
+<%
   session[:splash] = false
-  end 
+  end
 %>
 
   <ul class="events">

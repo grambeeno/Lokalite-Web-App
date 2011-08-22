@@ -1,4 +1,4 @@
-<% unless ['/login', '/signup', '/business', '/static'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+<% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
   <h3>Top Trending Events</h3>
 
   <ul>

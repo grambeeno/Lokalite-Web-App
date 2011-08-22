@@ -1,11 +1,16 @@
-<%= form(@user, :class => 'medium centered') do |f| %>
+<div class='form'>
+  <h1>Edit Your Profile</h1>
 
-  <%= f.text_field(:email) %>
-  <br />
+  <%= semantic_form_for @user, :url => edit_profile_path do |form| %>
+    <%= form.inputs do %>
+      <li>
+        <%= form.error_messages %>
+      </li>
+      <%= form.input :email %>
+      <%= form.input :password, :input_html => {:value => ''} %>
+      <%#= form.input :time_zone %>
 
-  <%= f.time_zone_select(:time_zone) %>
-  <br />
-
-  <br />
-  <%= f.submit %>
-<% end %>
+      <%= form.submit 'Update Profile' %>
+    <% end %>
+  <% end %>
+</div>

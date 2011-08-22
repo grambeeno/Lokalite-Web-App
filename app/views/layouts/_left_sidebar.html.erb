@@ -1,7 +1,7 @@
-<% unless ['/login', '/signup', '/business', '/static'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+<% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
   <%#= search_form %>
 
-  <% 
+  <%
     if params[:controller] == 'directory'
       active_tab = 'directory'
     else
