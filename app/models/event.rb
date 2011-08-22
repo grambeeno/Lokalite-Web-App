@@ -285,19 +285,33 @@ class Event < ActiveRecord::Base
   #   list
   # end
 
-  def featured!(boolean=true)
-    featured = Category.for('Featured')
-
-    if boolean.to_s =~ /t/
-      categories.push(featured) unless categories.include?(featured)
-      true
-    else
-      categories.delete(featured) if categories.include?(featured)
-      false
-    end
-  ensure
-    index!
+  def clone?
+    prototype_id.present?
   end
+
+  def clone_with_date(date)
+    offset = (date.to_date - starts_at.to_date).days
+    cleaned_attributes = attributes.reject{|key, value| %w[id clone_count users_count].include?(key) }
+    clone  = Event.new(cleaned_attributes)
+    clone.starts_at = starts_at + offset
+    clone.ends_at   = ends_at + offset
+    clone.prototype = self
+    clone.save
+  end
+
+  # def featured!(boolean=true)
+  #   featured = Category.for('Featured')
+
+  #   if boolean.to_s =~ /t/
+  #     categories.push(featured) unless categories.include?(featured)
+  #     true
+  #   else
+  #     categories.delete(featured) if categories.include?(featured)
+  #     false
+  #   end
+  # ensure
+  #   index!
+  # end
 
   def featured?
     categories.any?{|c| c.name.downcase == 'featured' }

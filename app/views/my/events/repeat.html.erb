@@ -1,0 +1,19 @@
+<div class="form">
+  <h1>Manage Repeating Event</h1>
+  <h2><%= @event.name %></h2>
+
+  <hr />
+
+
+  <h2>Click on the dates below to create copies of this event.</h2>
+
+  <div id="repeat-calendar"></div>
+
+  <%= form_tag my_event_repeat_path(@event), :method => 'POST', :class => 'formtastic' do %>
+    <h3>Copies of this event will be created on the following dates:</h3>
+    <br />
+    <ul id="event-repeats"></ul>
+    <%= submit_tag 'Create Events', :class => 'submit-repeats', :style => 'display:none;' %>
+  <% end %>
+
+</div>

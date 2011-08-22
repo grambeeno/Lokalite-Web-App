@@ -353,6 +353,29 @@ jq(function($){
     });
   }
 
+  // repeating events
+  $('#repeat-calendar').datepicker({
+    minDate: new Date(),
+    numberOfMonths: 3,
+    onSelect: function(dateText, instance) {
+      // console.log(dateText);
+      console.log(new Date(dateText));
+      var template = $('<li><div class="event-repeat"><input class="date" id="event_dates_" name="event_dates[]" type="text" /><a href="#remove" class="remove-repeat">Remove</a></div></li>');
+      template.find('.date').val(dateText);
+      $('#event-repeats').append( template );
+      // $('#event-repeats').append( new Date(dateText) );
+      $('.submit-repeats').show();
+
+    }
+  });
+
+  $('.remove-repeat').live('click', function(event) {
+    $(this).closest('.event-repeat').remove();
+  });
+
+  ////////////////////////////////////////////////////
+
+
 });
 
 function idFromString(string) {

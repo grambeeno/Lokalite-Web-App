@@ -63,6 +63,31 @@ h3
 a
   +link-colors($blue, darken($blue, 7), darken($blue, 14), $blue)
 
+
+=button
+  +unstyled-link
+  border: 1px solid #ccc
+  +border-radius(6px)
+  +linear-gradient(color-stops(white, darken(white, 8)))
+  text-shadow: white 1px 1px 1px
+  font-size: 14px
+  padding: 8px 10px
+  margin-right: 6px
+
+  &:hover
+    +linear-gradient(color-stops(white, darken(white, 14)))
+
+ul.buttons
+  +horizontal-list(10px)
+  margin-top: 10px
+  li
+    padding: 10px
+    a
+      +button
+
+a.button
+  +button
+
 @import layout
 
 

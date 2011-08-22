@@ -1,4 +1,5 @@
 <div class='content'>
+  <br />
   <%= link_to('Add a new organization', new_my_organization_path, :class => 'yellow button') %>
   <br /><br />
 
@@ -6,9 +7,8 @@
   <% @organizations.each_with_index do |organization, index| %>
     <div>
       <h1><%= organization.name %></h1>
-      <%= link_to('View public page', organization_path(organization.slug, organization.id)) %>
 
-      <ul>
+      <ul class="buttons">
         <li>
           <%= link_to('New Event', new_my_event_path(:organization_id => organization.id)) %>
         </li>
@@ -17,6 +17,9 @@
         </li>
         <li>
           <%= link_to('Edit Organization Info', edit_my_organization_path(organization)) %>
+        </li>
+        <li>
+          <%= link_to('View public page', organization_path(organization.slug, organization.id)) %>
         </li>
       </ul>
 

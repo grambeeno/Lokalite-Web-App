@@ -5,12 +5,22 @@
     <h2 class='big'>Upcoming Events</h2>
     <% for event in @organization.events.upcoming -%>
       <h2><%= event.name %></h2>
-      <%= link_to "(edit)", edit_my_event_path(event) %>
       <%= render :partial => '/events/time_span', :locals => {:event => event} %>
+      <ul class="buttons">
+        <li><%= link_to "Edit", edit_my_event_path(event) %></li>
+        <% if event.repeating? %>
+          <li><%= link_to "Create Repeating Events", my_event_repeat_path(event) %></li>
+        <% end %>
+      </ul>
+      <br />
       <br />
       <br />
     <% end -%>
 
+    <br />
+    <br />
+    <br />
+    <br />
     <ul>
       <li>
         <%= link_to('View public page', organization_path(@organization.slug, @organization.id)) %>

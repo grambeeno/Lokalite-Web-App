@@ -51,10 +51,23 @@ class My::EventsController < My::Controller
     redirect_to(events_url)
   end
 
+  def repeat
+    if request.post?
+      dates = params[:event_dates].uniq
+      for date in dates
+        @event.clone_with_date(Chronic.parse(date))
+      end
+      flash[:success] = "Successfully created #{dates.size} copies of this event."
+      redirect_to event_path(@event.slug, @event.id)
+    end
+  end
+
+
   private
 
   def find_event_and_authorize
-    @event = Event.find(params[:id]) if params[:id]
+    id = params[:id] || params[:event_id]
+    @event = Event.find(id) if id
     if @event
       permission_denied unless current_user.organizations.include?(@event.organization)
     end

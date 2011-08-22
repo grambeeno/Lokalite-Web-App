@@ -31,7 +31,9 @@ Lokalite::Application.routes.draw do
 
   namespace :my do
     resources :organizations
-    resources :events
+    resources :events do
+      match 'repeat', :action => 'repeat', :as => :repeat
+    end
   end
 
   match 'my/events/(:action(/:id(.:format)))', :controller => 'my/events', :as => 'my_events'

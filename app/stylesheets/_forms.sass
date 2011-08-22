@@ -17,14 +17,7 @@ form.formtastic
       background-color: transparent
       padding: 0
   input[type=submit]
-    border: 1px solid #ccc
-    +border-radius(6px)
-    +linear-gradient(color-stops(white, darken(white, 8)))
-    text-shadow: white 1px 1px 1px
-    font-size: 14px
-    &:hover
-      +linear-gradient(color-stops(white, darken(white, 14)))
-
+    +button
 
   .align-with-fields
     padding-left: 177px
@@ -50,4 +43,19 @@ form.formtastic
       margin-bottom: 18px
     img
 
+#repeat-calendar
+  margin-left: -12px
+  margin-bottom: 2em
+
+form.formtastic
+  .event-repeat
+    +foreground
+    margin-bottom: 1em
+    +border-radius(6px)
+    display: inline-block
+    padding: 10px
+    input
+      background-color: transparent
+      width: 74px
+      padding: 0
 
