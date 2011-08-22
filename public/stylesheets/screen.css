@@ -91,6 +91,24 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories .learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1312910369'); }
 #left-sidebar ul.categories .mmj { background-image: url('/images/category-icons/mmj.png?1312910369'); }
 
+#business-signup { text-align: center; font-size: 14px; margin-bottom: 60px; }
+#business-signup h1 { margin: 14px auto; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1314051786'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
+#business-signup h2 { font-size: 24px; font-weight: normal; }
+#business-signup h3 { font-size: 18px; color: black; }
+#business-signup a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1314052378'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; }
+#business-signup .centered { margin: 30px auto; display: inline-block; }
+#business-signup .create, #business-signup .share, #business-signup .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
+#business-signup .create { margin-right: 40px; background-image: url('/images/business/create.png?1314046887'); }
+#business-signup .share { margin-right: 40px; background-image: url('/images/business/share.png?1314046886'); }
+#business-signup .grow { background-image: url('/images/business/grow.png?1314051785'); }
+#business-signup .bottom { margin-top: 40px; text-align: left; }
+#business-signup .bottom h2 { font-size: 30px; color: black; margin-bottom: 14px; }
+#business-signup .bottom p { padding: 6px 0; width: 280px; }
+#business-signup .bottom section { background-repeat: no-repeat; margin-bottom: 60px; }
+#business-signup .bottom .lokalite-is { background-image: url('/images/business/lokalite-is.png?1314051792'); height: 380px; padding-left: 680px; }
+#business-signup .bottom .spend-less { background-image: url('/images/business/spend-less.png?1314051786'); background-position: 420px 40px; padding-left: 100px; height: 290px; }
+#business-signup .bottom .gain-more { background-image: url('/images/business/gain-more.png?1314051789'); height: 313px; padding-left: 680px; }
+
 .icon-all { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/all.png?1312910366'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 62px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 12px; }
 
 .icon-featured { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/featured.png?1312910368'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 62px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 12px; }

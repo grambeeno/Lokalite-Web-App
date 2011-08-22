@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 protected
 
   def show_holding_page
-    unless logged_in? || params[:controller] == 'auth'
+    unless logged_in? || params[:controller] == 'auth' || params[:action] == 'business'
       render :file => 'public/holding-page.html', :layout => false
     end
   end

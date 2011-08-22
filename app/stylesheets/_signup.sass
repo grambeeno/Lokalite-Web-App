@@ -1,0 +1,73 @@
+#business-signup
+  text-align: center
+  font-size: 14px
+  margin-bottom: 60px
+  h1
+    margin: 14px auto
+    +replace-text-with-dimensions("business/main-title.png")
+  h2
+    font-size: 24px
+    font-weight: normal
+  h3
+    font-size: 18px
+    color: black
+
+  a.get-started
+    +replace-text-with-dimensions("business/get-started.png")
+    display: block
+    margin: 20px auto 10px
+
+  .centered
+    margin: 30px auto
+    display: inline-block
+  .create,
+  .share,
+  .grow
+    +float('left')
+
+    width: image-width('/business/create.png') + 40px
+    padding-top: image-height('/business/create.png')
+    background-repeat: no-repeat
+    background-position: top center
+
+  .create
+    margin-right: 40px
+    background-image: image_url('business/create.png')
+  .share
+    margin-right: 40px
+    background-image: image_url('business/share.png')
+  .grow
+    background-image: image_url('business/grow.png')
+
+  .bottom
+    margin-top: 40px
+    text-align: left
+    h2
+      font-size: 30px
+      color: black
+      margin-bottom: 14px
+    p
+      padding: 6px 0
+      width: 280px
+
+    section
+      background-repeat: no-repeat
+      margin-bottom: 60px
+
+    $left-padding: 680px
+    .lokalite-is
+      background-image: image_url('business/lokalite-is.png')
+      height: image-height('/business/lokalite-is.png')
+      padding-left: $left-padding
+    .spend-less
+      background-image: image_url('business/spend-less.png')
+      background-position: 420px 40px
+      padding-left: 100px
+      height: 290px
+
+    .gain-more
+      background-image: image_url('business/gain-more.png')
+      height: image-height('/business/gain-more.png')
+      padding-left: $left-padding
+
+

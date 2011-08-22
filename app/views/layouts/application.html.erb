@@ -42,26 +42,30 @@
     </header>
 
     <div id="main">
-      <div id="left-sidebar">
-        <%= render(:partial => '/layouts/left_sidebar') %>
-      </div>
-
-      <div id="middle">
-        <% flash.each do |kind, message| %>
-          <%= content_tag :div, :class => "flash #{kind}" do %>
-            <a href="#dismiss" class='dismiss'>×</a>
-            <p>
-              <%= raw message %>
-            </p>
-          <% end %>
-        <% end %>
-
+      <% if params[:controller] == 'root' && params[:action] == 'business' %>
         <%= yield %>
-      </div>
+      <% else %>
+        <div id="left-sidebar">
+          <%= render(:partial => '/layouts/left_sidebar') %>
+        </div>
 
-      <div id="right-sidebar">
-        <%= render(:partial => '/layouts/right_sidebar') %>
-      </div>
+        <div id="middle">
+          <% flash.each do |kind, message| %>
+            <%= content_tag :div, :class => "flash #{kind}" do %>
+              <a href="#dismiss" class='dismiss'>×</a>
+              <p>
+                <%= raw message %>
+              </p>
+            <% end %>
+          <% end %>
+
+          <%= yield %>
+        </div>
+
+        <div id="right-sidebar">
+          <%= render(:partial => '/layouts/right_sidebar') %>
+        </div>
+      <% end %>
     </div>
 
     <footer>
