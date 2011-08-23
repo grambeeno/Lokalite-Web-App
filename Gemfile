@@ -42,7 +42,8 @@ gem 'newrelic_rpm'
 gem 'acts_as_geocodable', :git => 'git://github.com/zef/acts_as_geocodable.git'
 gem 'pg_search'
 
-gem "will_paginate", '~> 3.0.beta'
+gem 'will_paginate', '~> 3.0.0'
+
 
 gem 'dao'
 

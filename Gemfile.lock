@@ -183,5 +183,5 @@ DEPENDENCIES
   tzinfo
   unidecode
   uuidtools
-  will_paginate (~> 3.0.beta)
+  will_paginate (~> 3.0.0)
   yajl-ruby (= 0.8.1)
