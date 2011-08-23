@@ -67,8 +67,8 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar h3, #right-sidebar h3 { font-size: 14px; margin-bottom: 6px; }
 
 #left-sidebar { padding-right: 10px; }
-#left-sidebar ul.categories li { font-size: 12px; padding-top: 2px; padding-left: 26px; margin-bottom: 8px; height: 18px; background-position: 2px top; background-repeat: no-repeat; }
-#left-sidebar ul.categories li a { text-decoration: none; }
+#left-sidebar ul.categories li { font-size: 12px; margin-bottom: 8px; background-position: 2px top; background-repeat: no-repeat; }
+#left-sidebar ul.categories li a { text-decoration: none; display: block; width: 100%; padding-top: 2px; height: 18px; padding-left: 26px; }
 #left-sidebar ul.categories li:hover { background-position: 2px bottom; }
 #left-sidebar ul.categories li.active { background-color: black; background-position: 2px bottom; }
 #left-sidebar ul.categories li.active a { color: white; }
@@ -188,6 +188,8 @@ table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
 table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
 .tiled-title { margin: 0 25px; margin-bottom: 12px; }
+
+.tiled-pagination { margin: 0 25px; }
 
 .event, .organization { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
 .event .title, .organization .title { overflow: hidden; *zoom: 1; margin-bottom: 10px; }

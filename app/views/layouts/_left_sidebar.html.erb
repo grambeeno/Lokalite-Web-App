@@ -20,11 +20,15 @@
       <ul class='categories'>
         <%
           EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-          classes = [category.parameterize('_')]
+          classes = [category.slug]
           classes << 'active' if classes.first == params[:category]
         %>
           <li class="<%= classes.join(' ') %>">
-            <%= link_to(category, browse_events_path(:category => category)) %>
+            <%
+              options = {:origin => params[:origin]}
+              options[:category] = category.slug unless category == 'All'
+            %>
+            <%= link_to(category, events_path(options)) %>
           </li>
         <% end %>
       </ul>
@@ -38,7 +42,7 @@
           classes << 'active' if classes.first == params[:category]
         %>
           <li class="<%= classes.join(' ') %>">
-            <%= link_to(category, browse_directory_path(:category => category)) %>
+            <%= link_to(category, places_path(:origin => params[:origin], :category => category.slug)) %>
           </li>
         <% end %>
       </ul>
@@ -53,7 +57,7 @@
         active = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
       %>
         <li>
-          <%= link_to(date, browse_events_path(:date => date), :class => (active ? 'active' : '')) %>
+          <%= link_to(date, events_path(:date => date), :class => (active ? 'active' : '')) %>
         </li>
       <% end %>
     </ul>

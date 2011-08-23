@@ -45,7 +45,7 @@
 #
   module Lokalite
     class Application < Rails::Application
-  
+
         config.after_initialize do
           require 'app/api.rb'
           require 'yajl/json_gem'
@@ -100,7 +100,7 @@
       require 'earth_tools' unless defined?(EarthTools)
       require 'ostruct' unless defined?(OpenStruct)
 
-   
+
     # local libs/gems that can/must be loaded *inside* rails initializer
     #
       require 'uuidtools' unless defined?(UUID)
@@ -112,7 +112,7 @@
 
     # local libs/gems that can/must be loaded *after* rails initializer
     #
-      config.autoload_paths += Dir.glob("vendor/gems/dao-*/lib") 
+      config.autoload_paths += Dir.glob("vendor/gems/dao-*/lib")
       config.after_initialize do
         require 'railsext' unless defined?(RailsExt)
         require 'tagz' unless defined?(Tagz)
@@ -122,7 +122,7 @@
         require 'mini_magick' unless defined?(MiniMagick)
         require 'image_cache' unless defined?(ImageCache)
         require 'pg_search' unless defined?(PgSearch)
-        require 'will_paginate' unless defined?(WillPaginate)
+        # require 'will_paginate' unless defined?(WillPaginate)
       end
 
     # do the actual logging configuration - this one will keep 7 log files of

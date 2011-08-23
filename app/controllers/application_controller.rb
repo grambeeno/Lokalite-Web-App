@@ -8,13 +8,19 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_controller!
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
+  before_filter :set_origin
 
   before_filter :show_holding_page
 
 protected
 
+  def set_origin
+    origin = session[:origin] || 'boulder-colorado'
+    params[:origin] = origin if params[:origin].blank?
+  end
+
   def show_holding_page
-    unless logged_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business'# || Rails.env == 'development'
+    unless logged_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'
       render :file => 'public/holding-page.html', :layout => false
     end
   end
@@ -351,116 +357,6 @@ protected
     options[:text] = json
     options[:layout] = 'application' unless options.has_key?(:layout)
     render(options)
-  end
-
-# path helpers
-#
-  def browse_directory_path(options = {})
-    options.to_options!
-    context = (defined?(@context) ? @context : {}).to_options!
-
-    query = {}
-
-    organization = options[:organization] || context[:organization]
-    if organization
-      organization = Organization.find(organization) unless organization.is_a?(Organization)
-    end
-
-    location = options[:location] || context[:location] || (organization ? organization.location : default_location)
-    location = location.prefix if location.respond_to?(:prefix)
-
-    category = options[:category] || context[:category]
-    category = category.name if category.respond_to?(:name)
-    category = category.parameterize('_') if category
-    #date = options[:date] || context[:date]
-
-    keywords = options[:keywords]
-    order = options[:order]
-    page = options[:page]
-    per_page = options[:per_page]
-
-    #organization = organization.id if organization.is_a?(Organization)
-    #date = Slug.for(date) if date
-
-    path = []
-    path.push("/places")
-
-    #if(location and options[:location] != false)
-    if(organization.blank?)
-      path.push("/location/#{ location }") unless location.blank?
-      path.push("/category/#{ category }") unless(category.blank? or category =~ /^All$/i)
-      #path.push("/date/#{ date }") unless(date.blank? or date =~ /^All$/i)
-    else
-      path.push("/location/#{ location }") unless location.blank?
-      path.push("/#{ Slug.for(organization.name) }/#{ organization.id }") unless organization.blank?
-    end
-
-    query[:keywords] = keywords unless keywords.blank?
-    query[:order] = order unless order.blank?
-    query[:page] = page unless page.blank?
-    query[:per_page] = per_page unless per_page.blank?
-
-    query_string = query.query_string
-
-    url = path.join('/').squeeze('/')
-    url += "?#{ query_string }" unless query_string.blank?
-    url
-  end
-  helper_method(:browse_directory_path)
-
-  def browse_events_path(options = {})
-    options.to_options!
-    context = (defined?(@context) ? @context : {}).to_options!
-
-    query = {}
-
-    location = options[:location] || context[:location] || default_location
-    category = options[:category] || context[:category]
-    date = options[:date] || context[:date]
-
-    organization = options[:organization] || context[:organization]
-
-    keywords = options[:keywords]
-    order = options[:order]
-    page = options[:page]
-    per_page = options[:per_page]
-
-    location = location.prefix if location.respond_to?(:prefix)
-    category = category.name if category.respond_to?(:name)
-    organization = organization.id if organization.is_a?(Organization)
-    category = category.parameterize('_') if category
-    date = Slug.for(date) if date
-
-    path = []
-    path.push("/events")
-
-    if(location and options[:location] != false)
-      path.push("/location/#{ location }") unless location.blank?
-      path.push("/category/#{ category }") unless(category.blank? or category =~ /^All$/i)
-      path.push("/date/#{ date }") unless(date.blank? or date =~ /^All$/i)
-    else
-      path.push("/organization/#{ organization }") unless organization.blank?
-    end
-
-    query[:keywords] = keywords unless keywords.blank?
-    query[:order] = order unless order.blank?
-    query[:page] = page unless page.blank?
-    query[:per_page] = per_page unless per_page.blank?
-
-    query_string = query.query_string
-
-    url = path.join('/').squeeze('/')
-    url += "?#{ query_string }" unless query_string.blank?
-    url
-  end
-  helper_method(:browse_events_path)
-
-  def default_location
-    if session[:location].blank?
-      '/colorado'
-    else
-      session[:location]
-    end
   end
 
 =begin

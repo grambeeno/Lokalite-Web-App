@@ -1,6 +1,20 @@
 module ApplicationHelper
   include Tagz.globally
 
+  def google_maps_image(location, options = {})
+    url = 'http://maps.googleapis.com/maps/api/staticmap?'
+
+    options.reverse_merge!({
+      :markers => "#{location.latitude},#{location.longitude}",
+      :zoom   => 13,
+      :size   => '640x320',
+      :sensor => false
+    })
+
+    url << options.map{|key, value| key.to_s + '=' + value.to_s }.join('&')
+    image_tag url, :alt => '', :title => location.formatted_address, :class => 'tooltip'
+  end
+
   def tile_main_content?
     params[:controller] == 'events' and params[:action] == 'browse'
   end
@@ -219,47 +233,33 @@ module ApplicationHelper
 
 # keeps paragraphs and linebreaks
 #
-  def simple_format(string, options = {})
-    content = string.to_s.strip
-    return content unless(content =~ %r/\n/)
-    content.gsub!(/\r\n?/, "\n")                     # \r\n and \r -> \n
-    content.gsub!(/\n\n+/, "</p>\n\n<p>")            # 2+ newline  -> paragraph
-    content.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />')  # 1 newline   -> br
-    raw("<p>#{ content }</p>")
-  end
+  # def simple_format(string, options = {})
+  #   content = string.to_s.strip
+  #   return content unless(content =~ %r/\\n/)
+  #   content.gsub!(/\\r\\n?/, "\\n")                     # \\r\\n and \\r -> \\n
+  #   content.gsub!(/\\n\\n+/, "</p>\\n\\n<p>")            # 2+ newline  -> paragraph
+  #   content.gsub!(/([^\\n]\\n)(?=[^\\n])/, '\\1<br />')  # 1 newline   -> br
+  #   raw("<p>#{ content }</p>")
+  # end
 
-# keeps paragraphs, linebreaks, internal spaces.  sanitizes js/html.  and hyperlinks linky looking stuff
-#
+  # keeps paragraphs, linebreaks.  sanitizes js/html.  and hyperlinks linky looking stuff
+  #
   def clean_format(string, options = {})
     options.to_options!
     target = options[:target] || '_blank'
     content = sanitize(string.to_s)
     content = auto_link(content, :all, :target => target)
-    content = content.gsub(%r/([\ ]{2,})/){'&nbsp;' * $1.size}  ### keep spaces
     content = simple_format(content, options)
   end
-  alias_method('c', 'clean_format')
 
-  def gmaps_url_for(event)
-    options = {}
-
-    case event
-      when Event
-        options[:formatted_address] = event.location.formatted_address
-        options[:ll] = event.location.coordinates
-      when Hash
-        hash.to_options!
-        options[:formatted_address] = hash[:formatted_address]
-        options[:ll] = hash[:ll]
-    end
-
+  def gmaps_url_for(location)
     raw(
       'http://maps.google.com/maps?f=q&amp;source=s_q&amp;q=' +
-      URI.escape(options[:formatted_address]) +
+      URI.escape(location.formatted_address) +
       '&amp;hl=en&amp;sll=' +
-      options[:ll] +
+      location.coordinates +
       '&amp;ie=UTF8&amp;z=12&amp;ll=' +
-      options[:ll] +
+      location.coordinates +
       '&amp;output=embed&amp;iwloc=do_not_open'
     )
   end
@@ -317,38 +317,6 @@ module ApplicationHelper
     controller.send(:render_to_string, *args, &block)
   end
 
-# helper for paginating hashish objects
-#
-  def will_paginate_hashish(collection = nil, options = {})
-    #options, collection = collection, nil if collection.is_a? Hash
-    unless collection or !controller
-      collection_name = "@#{controller.controller_name}"
-      collection = instance_variable_get(collection_name)
-      raise ArgumentError, "The #{collection_name} variable appears to be empty. Did you " +
-        "forget to pass the collection object for will_paginate?" unless collection
-    end
-    # early exit if there is nothing to render
-    return nil unless WillPaginate::ViewHelpers.total_pages_for_collection(collection) > 1
-
-    options = options.symbolize_keys.reverse_merge WillPaginate::ViewHelpers.pagination_options
-    if options[:prev_label]
-      WillPaginate::Deprecation::warn(":prev_label view parameter is now :previous_label; the old name has been deprecated", caller)
-      options[:previous_label] = options.delete(:prev_label)
-    end
-
-    # get the renderer instance
-    renderer = case options[:renderer]
-    when String
-      options[:renderer].to_s.constantize.new
-    when Class
-      options[:renderer].new
-    else
-      options[:renderer]
-    end
-    # render HTML for pagination
-    renderer.prepare collection, options, self
-    renderer.to_html
-  end
 
 # hms(61) #=> 00:01:01
 #

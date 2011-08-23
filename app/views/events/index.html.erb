@@ -36,13 +36,21 @@
   end
 %>
 
-  <ul class="events">
-    <% @events.each do |event| %>
-      <%= render :partial => 'event', :locals => { :event => event } %>
-    <% end %>
-  </ul>
+<h1 class='tiled-title'>
+  <% if params[:category] %>
+    <%= params[:category].titleize %>
+  <% else %>
+    All Events
+  <% end %>
+</h1>
 
+<ul class="events">
+  <% @events.each do |event| %>
+    <%= render :partial => 'event', :locals => { :event => event } %>
+  <% end %>
+</ul>
 
-  <nav id="pagination">
-    <%= paginate @events %>
-  </nav>
+<div class="tiled-pagination">
+  <%= will_paginate @events %>
+</div>
+

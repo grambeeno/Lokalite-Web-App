@@ -16,27 +16,26 @@
   </div>
 
   <div class="detail">
-    <h1><%= @organization.name %></h1>
-    <p>
-      <%= @organization.category_list %>
-    </p>
-
     <dl>
-      <% unless @organization.phone.blank? %>
+      <dt>Description</dt>
+      <dd><%= clean_format @organization.description %></dd>
+
+      <% if @organization.phone.present? %>
         <dt>Phone</dt>
-        <dd><%= c @organization.phone %></dd>
+        <dd><%= number_to_phone @organization.phone, :area_code => true %></dd>
       <% end %>
 
-      <% unless @organization.address.blank? %>
-        <dt>Address</dt>
-        <dd><%= c @organization.address %></dd>
-      <% end %>
-
-      <% unless @organization.description.blank? %>
-        <dt>Description</dt>
-        <dd><%= c @organization.description %></dd>
+      <% if @organization.url.present? %>
+        <dt>Website</dt>
+        <dd><%= link_to @organization.url, @organization.url, :target => 'blank' %></dd>
       <% end %>
     </dl>
+
+    <div class="location">
+      <div class="map">
+        <%= link_to google_maps_image(@organization.location, :size => '363x130'), gmaps_url_for(@organization.location), :target => '_blank', :class => 'map_link' %>
+      </div>
+    </div>
   </div>
 
 

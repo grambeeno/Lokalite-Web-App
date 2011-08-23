@@ -16,17 +16,20 @@
   </div>
 
   <div class='detail'>
-    <h3>Time</h3>
-    <%= render :partial => 'time_span', :locals => {:event => @event} %>
+    <dl>
+      <dt>Time</dt>
+      <dd><%= render :partial => 'time_span', :locals => {:event => @event} %></dd>
 
-    <h3>Description</h3>
-    <p class='description'><%= @event.description %></p>
+      <dt>Description</dt>
+      <dd class='description'><%= @event.description %></dd>
 
-    <h3>Tags</h3>
-    <% for category in @event.categories -%>
-      <%= content_tag :span, category.name, :class => "icon-#{category.name.parameterize('_')} tooltip", :title => category.name %>
-    <% end -%>
-
+      <dt>Tags</dt>
+      <dd>
+        <% for category in @event.categories -%>
+          <%= content_tag :span, category.name, :class => "icon-#{category.name.parameterize('_')} tooltip", :title => category.name %>
+        <% end -%>
+      </dd>
+    </dl>
     <br />
 
     <!--
@@ -43,12 +46,11 @@
 
     <div class="location">
       <div class="map">
-        <%= link_to google_maps_image(@event, :size => '363x130'), gmaps_url_for(@event), :target => '_blank', :class => 'map_link' %>
+        <%= link_to google_maps_image(@event.location, :size => '363x130'), gmaps_url_for(@event.location), :target => '_blank', :class => 'map_link' %>
       </div>
     </div>
   </div>
 
   <div class="clear"></div>
 </section>
-
 

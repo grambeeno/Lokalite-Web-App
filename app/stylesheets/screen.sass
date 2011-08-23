@@ -246,6 +246,15 @@ table.times
     // width: 60px
     padding: 0 12px
 
+
+.tiled-title
+  margin: 0 $content-bg-padding
+  margin-bottom: 12px
+
+.tiled-pagination
+  margin: 4px $content-bg-padding
+
+
 .event, .organization
   +content-with-padding
   .title
@@ -278,10 +287,15 @@ table.times
     width: $content-inner-width - 302 - $content-bg-padding
     padding-left: $content-bg-padding
 
-    .description
-      line-height: 1.1em
-      height: 3.3em
-      margin: 0 0 10px
+  dt
+    font-weight: bold
+    font-size: 14px
+    border-bottom: 1px solid #ccc
+    margin-bottom: 4px
+  dd
+    margin-bottom: 10px
+    p
+      padding-bottom: 8px
 
   .location
     .map img
@@ -294,11 +308,10 @@ table.times
   .detail
     table.times
       font-size: 13px
-      margin: 0 0 1em
-  h3
-    font-size: 14px
-    border-bottom: 1px solid #ccc
-    margin-bottom: 4px
+
+    .description
+      line-height: 1.1em
+      height: 3.3em
 
 ul.event-previews
   +no-bullets
@@ -347,7 +360,6 @@ ul.event-previews
     +opacity(0.5)
   p
     margin-right: 30px
-
 
   &.error
     background-color: #F8DCDA

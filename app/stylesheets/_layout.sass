@@ -118,17 +118,24 @@ body
   ul.categories
     li
       font-size: 12px
-      padding-top: 4px
-      padding-left: 24px
       margin-bottom: 8px
-      height: 16px
-      background-position: left top
+      background-position: 2px top
       background-repeat: no-repeat
+      a
+        text-decoration: none
+        display: block
+        width: 100%
+        padding-top: 2px
+        height: 18px
+        padding-left: 26px
       &:hover
-        background-position: left bottom
+        background-position: 2px bottom
       &.active
         background-color: black
-        background-position: left bottom
+        background-position: 2px bottom
+        a
+          color: white
+
 
     @each $category in $event-categories
       .#{$category}

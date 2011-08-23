@@ -46,11 +46,12 @@ class Event < ActiveRecord::Base
 
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
 
+  scope :by_date, order('starts_at')
 
   scope(:after, lambda{|time|
     where('ends_at > ?', time)
   })
-  scope :upcoming, after(Time.now)
+  scope :upcoming, by_date().after(Time.now)
 
   scope(:prototypes, lambda{|*args|
     where('prototype_id is null')
@@ -63,6 +64,7 @@ class Event < ActiveRecord::Base
   scope(:random, lambda{|*args|
     order('random()')
   })
+
 
   scope :trending, upcoming.includes(:organization).order('users_count DESC, starts_at')
 
@@ -103,7 +105,7 @@ class Event < ActiveRecord::Base
 
     results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
 
-    origin  = options[:origin]
+    origin  = options[:origin].humanize
     within  = options[:within] || 20
     results = results.origin(origin, :within => within) if origin.present?
 
