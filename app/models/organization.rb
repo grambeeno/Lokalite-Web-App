@@ -25,6 +25,12 @@ class Organization < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :email
 
+  validates_format_of :url, :with => URI::regexp(%w(http https))
+  before_validation :preprocess_url
+  def preprocess_url
+    self.url = "http://#{url}" unless url.start_with?('http')
+  end
+
   validates_length_of :description, :maximum => 500
 
   before_validation(:on => :create) do |organization|
@@ -134,9 +140,6 @@ class Organization < ActiveRecord::Base
   end
 
 end
-
-
-
 
 
 # == Schema Information
