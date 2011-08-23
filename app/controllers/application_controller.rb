@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 protected
 
   def show_holding_page
-    unless logged_in? || params[:controller] == 'auth' || params[:action] == 'business'
+    unless logged_in? || params[:controller] == 'auth' || params[:action] == 'business' || Rails.env == 'development'
       render :file => 'public/holding-page.html', :layout => false
     end
   end
@@ -383,7 +383,7 @@ protected
     #date = Slug.for(date) if date
 
     path = []
-    path.push("/directory")
+    path.push("/places")
 
     #if(location and options[:location] != false)
     if(organization.blank?)

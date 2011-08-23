@@ -248,21 +248,6 @@ table.times
 
 .event, .organization
   +content-with-padding
-  .image
-    +foreground
-    +float('left')
-    padding: 10px
-    img
-      border: 1px solid black
-
-  .location
-    .map img
-      border: 1px solid #ddd
-      +border-radius(5px)
-      // width: 688px
-  // .location
-  //   // margin-top: 80px
-.event
   .title
     +clearfix
     margin-bottom: 10px
@@ -280,6 +265,13 @@ table.times
         +unstyled-link
         +link-colors(#555, $blue)
 
+  .image
+    +foreground
+    +float('left')
+    padding: 10px
+    img
+      border: 1px solid black
+
   .detail
     +float('left')
     // 302 == image with border
@@ -291,6 +283,15 @@ table.times
       height: 3.3em
       margin: 0 0 10px
 
+  .location
+    .map img
+      border: 1px solid #ddd
+      +border-radius(5px)
+      // width: 688px
+  // .location
+  //   // margin-top: 80px
+.event
+  .detail
     table.times
       font-size: 13px
       margin: 0 0 1em

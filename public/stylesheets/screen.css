@@ -186,20 +186,20 @@ table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
 table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
 .event, .organization { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
+.event .title, .organization .title { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
+.event .title .title-image, .organization .title .title-image { display: inline; float: left; margin-right: 10px; }
+.event .title .text, .organization .title .text { display: inline; float: left; }
+.event .title h1, .organization .title h1 { font-size: 24px; }
+.event .title h2, .organization .title h2 { font-size: 16px; }
+.event .title h2 a, .organization .title h2 a { font-weight: normal; color: inherit; text-decoration: inherit; cursor: inherit; color: #555555; }
+.event .title h2 a:active, .event .title h2 a:focus, .organization .title h2 a:active, .organization .title h2 a:focus { outline: none; }
+.event .title h2 a:hover, .organization .title h2 a:hover { color: #607890; }
 .event .image, .organization .image { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; padding: 10px; }
 .event .image img, .organization .image img { border: 1px solid black; }
+.event .detail, .organization .detail { display: inline; float: left; width: 363px; padding-left: 25px; }
+.event .detail .description, .organization .detail .description { line-height: 1.1em; height: 3.3em; margin: 0 0 10px; }
 .event .location .map img, .organization .location .map img { border: 1px solid #dddddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 
-.event .title { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
-.event .title .title-image { display: inline; float: left; margin-right: 10px; }
-.event .title .text { display: inline; float: left; }
-.event .title h1 { font-size: 24px; }
-.event .title h2 { font-size: 16px; }
-.event .title h2 a { font-weight: normal; color: inherit; text-decoration: inherit; cursor: inherit; color: #555555; }
-.event .title h2 a:active, .event .title h2 a:focus { outline: none; }
-.event .title h2 a:hover { color: #607890; }
-.event .detail { display: inline; float: left; width: 363px; padding-left: 25px; }
-.event .detail .description { line-height: 1.1em; height: 3.3em; margin: 0 0 10px; }
 .event .detail table.times { font-size: 13px; margin: 0 0 1em; }
 .event h3 { font-size: 14px; border-bottom: 1px solid #cccccc; margin-bottom: 4px; }
 

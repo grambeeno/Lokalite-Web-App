@@ -16,6 +16,10 @@ class Organization < ActiveRecord::Base
 
   acts_as_taggable_on :categories
 
+  def category
+    categories.first
+  end
+
   validates_presence_of :uuid
   validates_presence_of :name
   validates_presence_of :description
@@ -58,7 +62,7 @@ class Organization < ActiveRecord::Base
     keywords = Array(keywords).flatten.compact
 
     page = options[:page] || 1
-    per_page = options[:per_page] || 20 
+    per_page = options[:per_page] || 20
     page = [Integer(page), 1].max
     per_page = [Integer(per_page), 42].min
 
