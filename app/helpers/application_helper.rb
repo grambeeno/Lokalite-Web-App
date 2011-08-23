@@ -62,13 +62,11 @@ module ApplicationHelper
     fullpath[1..-1].split(%r|[?]|).first.split(%r|/|).map{|word| Slug.for(word)}.join(sep)
   end
 
-  def title(*args)
-    if args.empty?
-      default_content_for(:title){ [App.name, 'Life Outside the Box '].join(' | ') }
-    else
-      content_for(:title){ [App.name, *args.join(' ')].join(' | ') }
-      content_for(:title)
-    end
+  def title
+    title = 'lokalite'
+    title << " | #{@event.name}" if @event
+    title << " | #{@organization.name}" if @organization
+    title
   end
 
   def default_content_for(name, &block)
@@ -117,7 +115,7 @@ module ApplicationHelper
 
       options[:url] = url
       options[:html] = html.dup
-      
+
       form_for(model, options, &block)
     else
       args.push(request.fullpath) if args.empty?
@@ -127,7 +125,7 @@ module ApplicationHelper
   end
 
   alias_method 'form_on', 'form'
-  
+
 
 # merge default with specified form options.  recognizes some special form
 # classes like 'small' 'medium', etc...
@@ -414,7 +412,7 @@ module ApplicationHelper
           }
         end
       }
-    at_least_one_error ? to_html : '' 
+    at_least_one_error ? to_html : ''
   end
 
 # sharethis link generator
@@ -424,7 +422,7 @@ module ApplicationHelper
     arg = args.first
 
     case arg
-      when NilClass 
+      when NilClass
         st_url = options[:st_url] || options[:url]
         st_title = options[:st_title] || options[:title]
 
@@ -437,7 +435,7 @@ module ApplicationHelper
         st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
         st_title = "#{ App.url } (#{ event.name.ellipsis(64) })"
 
-      else 
+      else
         raise(ArgumentError, args.inspect)
     end
 
