@@ -60,13 +60,6 @@ jq(function($){
     }
   );
 
-// make tds clickable in the "you might like" table
-//
-  jq('.recommended-events td').click(function() {
-    window.location.href = $('a', this).first().attr('href');
-  });
-
-
   App.initialize_traditional_box_model = function(){
     var args = Array.prototype.slice.call(arguments);
     var scope = args.shift();
@@ -310,11 +303,13 @@ jq(function($){
   // easier than un-styling the jQueryUI tabs
   $("#places-categories").hide();
 
-  $('a[href="#event-categories"]').click(function() {
+  $('a[href="#event-categories"]').click(function(event) {
+    event.preventDefault();
     $("#places-categories").hide();
     $("#event-categories").show();
   });
-  $('a[href="#places-categories"]').click(function() {
+  $('a[href="#places-categories"]').click(function(event) {
+    event.preventDefault();
     $("#event-categories").hide();
     $("#places-categories").show();
   });

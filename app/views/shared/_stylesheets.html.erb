@@ -2,7 +2,6 @@
   stylesheets = %w(
     html5boilerplate
     jquery.qtip
-    smoothness/jquery-ui-1.8.14.custom
     jquery-ui-timepicker-addon
     formtastic
     screen
@@ -11,6 +10,8 @@
 
   stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }")
 %>
+
+<%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.14.custom' %>
 <% default_content_for(:style){} %>
 
 <style>
