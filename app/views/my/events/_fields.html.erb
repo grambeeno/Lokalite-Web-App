@@ -10,7 +10,7 @@
   <%= form.input :description, :as => :text, :hint => raw('<span id="counter"></span>'), :input_html => {:rows => 2} %>
   <%= form.input :starts_at, :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
   <%= form.input :ends_at,   :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
-  <%= form.input :repeating, :label => 'This event will repeat' %>
+  <%= form.input :repeating, :label => 'This is a repeating event', :hint => raw('<br />Set repeat dates after you submit this form') %>
   <%= form.input :first_category, :label => 'Categories', :required => true, :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
   <%= form.input :second_category, :label => '&nbsp;', :as => :select, :collection => EVENT_CATEGORIES, :include_blank => 'Second Category (optional)' %>
 

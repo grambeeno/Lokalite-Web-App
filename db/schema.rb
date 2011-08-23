@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(:version => 20110810170350) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "clone_count",     :default => 0
-    t.string   "repeats"
     t.integer  "users_count",     :default => 0
   end
 

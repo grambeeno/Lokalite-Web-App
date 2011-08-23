@@ -66,6 +66,7 @@ module ApplicationHelper
     title = 'lokalite'
     title << " | #{@event.name}" if @event
     title << " | #{@organization.name}" if @organization
+    title << ' |' + ' Promote your business' if signup_path
     title
   end
 
