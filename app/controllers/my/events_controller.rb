@@ -52,7 +52,7 @@ class My::EventsController < My::Controller
   def destroy
     @event.destroy
 
-    redirect_to(events_url)
+    redirect_to(my_organization_path(@event.organization))
   end
 
   def repeat
