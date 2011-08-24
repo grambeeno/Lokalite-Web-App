@@ -78,8 +78,8 @@ module ApplicationHelper
 
   def title
     parts = []
-    parts << "{@event.name}" if @event
-    parts << "{@organization.name}" if @organization
+    parts << @event.name if @event
+    parts << @organization.name if @organization
     parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_signup_path)
     parts <<  params[:category].titleize if params[:category]
     parts << "lokalite"
