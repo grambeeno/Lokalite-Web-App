@@ -1,8 +1,8 @@
 <p>
-  <%= form_tag events_path() do %>
+  <%= form_tag :controller => :events, :action => :index do %>
     <%
-        value = params[:keywords] || ''
-      -%>
+      value = params[:keywords] || ''
+    -%>
     <%= text_field_tag :keywords, value, :type => 'search', :placeholder => 'search' %>
     <%= hidden_field_tag(:category, params[:category]) if params[:category] %>
     <br />
