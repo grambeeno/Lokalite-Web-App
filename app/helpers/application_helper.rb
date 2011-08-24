@@ -81,7 +81,13 @@ module ApplicationHelper
     parts << @event.name if @event
     parts << @organization.name if @organization
     parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_signup_path)
-    parts <<  params[:category].titleize if params[:category]
+    if params[:category]
+      if params[:category] == 'mmj'
+        parts <<  params[:category].titleize.upcase
+      else
+        parts <<  params[:category].titleize 
+      end
+    end
     parts << "lokalite"
     parts.join(' | ')
   end
