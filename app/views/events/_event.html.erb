@@ -6,11 +6,11 @@
     <% end %>
 
     <%
-        if logged_in?
-          trend_state = current_user.events.include?(event) ? :trended : :trend
-        else
-          trend_state = :trend
-        end
+      if logged_in?
+        trend_state = current_user.events.include?(event) ? :trended : :trend
+      else
+        trend_state = :trend
+      end
     -%>
     <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
       <div class="trend-count"><%= event.users_count %></div>

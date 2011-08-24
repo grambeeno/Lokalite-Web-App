@@ -1,0 +1,12 @@
+<p>
+  <%= form_tag events_path() do %>
+    <%
+        value = params[:keywords] || ''
+      -%>
+    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => 'search' %>
+    <%= hidden_field_tag(:category, params[:category]) if params[:category] %>
+    <br />
+    <br />
+  <% end %>
+</p>
+

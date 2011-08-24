@@ -9,6 +9,10 @@
 
   <div id="repeat-calendar"></div>
 
+  <h3>Original event times:</h3>
+  <%= render :partial => '/events/time_span', :locals => {:event => @event} %>
+  <br />
+
   <%= form_tag my_event_repeat_path(@event), :method => 'POST', :class => 'formtastic' do %>
     <h3>Copies of this event will be created on the following dates:</h3>
     <br />

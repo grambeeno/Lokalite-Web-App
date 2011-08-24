@@ -17,6 +17,9 @@
     </ul>
 
     <div id="event-categories">
+
+      <%= render :partial => '/static/search' %>
+
       <ul class='categories'>
         <%
           EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|

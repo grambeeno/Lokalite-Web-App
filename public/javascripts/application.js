@@ -334,6 +334,12 @@ jq(function($){
     }
   });
 
+  // $('#search_events').keyup(function(event) {
+  //   if (event.keyCode == 13) {
+  //     window.location = window.location + '/search/' + $(this).val()
+  //   }
+  // });
+
   // https://github.com/aaronrussell/jquery-simply-countable
   // for some reason it doesn't fail silently when the element doesn't exist...
   if ($('#organization_description').length) {

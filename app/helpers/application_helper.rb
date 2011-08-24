@@ -257,12 +257,12 @@ module ApplicationHelper
   def gmaps_url_for(location)
     raw(
       'http://maps.google.com/maps?f=q&amp;source=s_q&amp;q=' +
-      URI.escape(location.formatted_address) +
+      URI.escape(location.formatted_address.gsub(/\D+/, '+')) +
       '&amp;hl=en&amp;sll=' +
       location.coordinates +
       '&amp;ie=UTF8&amp;z=12&amp;ll=' +
       location.coordinates +
-      '&amp;output=embed&amp;iwloc=do_not_open'
+      '&amp;iwloc=do_not_open'
     )
   end
 

@@ -43,6 +43,8 @@
     <% else %>
       <%= params[:category].titleize %>
     <% end %>
+  <% elsif params[:keywords] %>
+    Search results: <%= params[:keywords] %>
   <% else %>
     All Events
   <% end %>

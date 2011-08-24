@@ -4,6 +4,11 @@ class EventsController < ApplicationController
   before_filter :remember_location
 
   def index
+    if request.post?
+      options = {:keywords => params[:keywords]}
+      options[:category] = params[:category] if params[:category]
+      redirect_to events_path(options) and return
+    end
     @context[:per_page] = 12
     @events = Event.browse(@context)
   end
