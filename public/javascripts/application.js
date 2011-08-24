@@ -31,7 +31,6 @@ jq(function($){
 
     App.initialize_type_classes(scope);
     //App.initialize_traditional_box_model(scope);
-    App.initialize_form_hints(scope);
     App.initialize_submits(scope);
     App.initialize_focus(scope);
   };
@@ -59,79 +58,6 @@ jq(function($){
       App.initialize(facebox);
     }
   );
-
-  App.initialize_traditional_box_model = function(){
-    var args = Array.prototype.slice.call(arguments);
-    var scope = args.shift();
-    scope = scope ? jq(scope) : jq('html');
-
-    var selectors;
-
-    if(args.length==0){
-      selectors = [
-        'textarea',
-        'input[type=text]',
-        'input[type=password]',
-        'input'
-      ];
-    } else {
-      selectors = args;
-    }
-
-    var list = [];
-
-    jq.each(selectors, function(index, selector){
-      scope.find(selector).each(function(){
-        var element = jq(this);
-
-        var traditional_box_model_width =
-          element.data('traditional_box_model_width');
-
-        if(!traditional_box_model_width){
-          var width =
-            element.data('width');
-          if(!width){
-            width = element.width();
-            element.data('width', width);
-          }
-
-          var padding =
-            element.data('padding');
-          if(!padding){
-            padding = element.padding();
-            element.data('padding', padding);
-          }
-
-          traditional_box_model_width = Math.floor(width - padding.left - padding.right - 1);
-          //var delta = (element.outerWidth() - element.width()) / 2;
-          //traditional_box_model_width = element.width() - delta;
-//console.log('---');
-//console.log(element);
-//console.log(element.outerWidth());
-//console.log(element.width());
-//console.log(delta);
-//console.log(traditional_box_model_width);
-          element.data('traditional_box_model_width', traditional_box_model_width);
-        }
-
-        list.push([element, traditional_box_model_width]);
-        //element.width(traditional_box_model_width);
-      });
-    });
-
-    for(var i = 0; i < list.length; i++){
-      var pair = list[i];
-      var element = pair[0];
-      var width = pair[1];
-      element.width(width);
-    }
-  };
-
-  App.initialize_form_hints = function(){
-    var scope = arguments[0];
-    scope = scope ? jq(scope) : jq('html');
-    toggleformtext();
-  };
 
   App.initialize_focus = function(){
     var scope = arguments[0];
@@ -245,6 +171,8 @@ jq(function($){
     })();
   }
 
+
+  $('input, textarea').placeholder();
 
   $('.trend').live('click', function(event) {
     event.preventDefault();
