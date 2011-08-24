@@ -167,20 +167,20 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #middle > .content { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
 #middle > .content-with-foreground { overflow: hidden; *zoom: 1; padding: 0 25px 10px; padding: 10px; background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; }
 
-.events { font-size: 12px; overflow: hidden; *zoom: 1; margin: 0; margin-top: -25px; padding-bottom: 10px; }
-.events li { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; width: 200px; padding: 10px 10px 4px; margin-top: 25px; margin-left: 25px; }
-.events li a { color: inherit; text-decoration: inherit; cursor: inherit; }
-.events li a:active, .events li a:focus { outline: none; }
-.events li .image { position: relative; width: 202px; }
-.events li .image img { border: 1px solid black; }
-.events li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312841451'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1313104392'); background-position: top; width: 52px; height: 52px; }
-.events li .image .trend-button:hover { background-position: bottom; }
-.events li .image .trend-button.trended { background-position: bottom; }
-.events li .image .trend-button.trended:hover { background-position: top; }
-.events li .image .trend-button .trend-count { display: none; font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
-.events li .detail h1 { font-size: 14px; }
-.events li .detail .organization { font-size: 12px; }
+.events, .organizations { font-size: 12px; overflow: hidden; *zoom: 1; margin: 0; margin-top: -25px; padding-bottom: 10px; }
+.events li, .organizations li { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; width: 200px; padding: 10px 10px 4px; margin-top: 25px; margin-left: 25px; }
+.events li a, .organizations li a { color: inherit; text-decoration: inherit; cursor: inherit; }
+.events li a:active, .events li a:focus, .organizations li a:active, .organizations li a:focus { outline: none; }
+.events li .image, .organizations li .image { position: relative; width: 202px; }
+.events li .image img, .organizations li .image img { border: 1px solid black; }
+.events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312841451'); background-repeat: repeat; color: white; padding: 2px; display: none; }
+.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1313104392'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button:hover, .organizations li .image .trend-button:hover { background-position: bottom; }
+.events li .image .trend-button.trended, .organizations li .image .trend-button.trended { background-position: bottom; }
+.events li .image .trend-button.trended:hover, .organizations li .image .trend-button.trended:hover { background-position: top; }
+.events li .image .trend-button .trend-count, .organizations li .image .trend-button .trend-count { display: none; font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
+.events li .detail h1, .organizations li .detail h1 { font-size: 14px; }
+.events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
 
 table.times { margin-top: 10px; font-size: 10px; text-align: left; }
 table.times tr { height: 12px; }
@@ -275,3 +275,5 @@ form.formtastic .event-repeat input { background-color: transparent; width: 74px
 form.formtastic .signup-fields, form.formtastic .login-fields { text-align: center; }
 form.formtastic .signup-fields input[type="text"], form.formtastic .signup-fields input[type="password"], form.formtastic .login-fields input[type="text"], form.formtastic .login-fields input[type="password"] { width: 100%; }
 form.formtastic .signup-fields div, form.formtastic .login-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
+
+input.placeholder, textarea.placeholder { color: #aaaaaa; }

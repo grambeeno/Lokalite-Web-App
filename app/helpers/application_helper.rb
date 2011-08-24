@@ -1,6 +1,13 @@
 module ApplicationHelper
   include Tagz.globally
 
+
+  def title_for_category(category)
+    category = category.titleize
+    category = category.upcase if category.upcase == 'MMJ'
+    category
+  end
+
   def google_maps_image(location, options = {})
     url = 'http://maps.googleapis.com/maps/api/staticmap?'
 
@@ -81,13 +88,7 @@ module ApplicationHelper
     parts << @event.name if @event
     parts << @organization.name if @organization
     parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_signup_path)
-    if params[:category]
-      if params[:category] == 'mmj'
-        parts <<  params[:category].titleize.upcase
-      else
-        parts <<  params[:category].titleize 
-      end
-    end
+    parts << title_for_category(params[:category]) if params[:category]
     parts << "lokalite"
     parts.join(' | ')
   end

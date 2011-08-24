@@ -218,7 +218,7 @@ jq(function($){
   });
 
 
-  $('.events li').live({
+  $('.events li, .organizations li').live({
     mouseenter: function() {
       $(this).find('.description').show("slide", { direction: "down" }, 200);
     },
@@ -229,7 +229,14 @@ jq(function($){
 
   // rolling our own simple tabs here because it's
   // easier than un-styling the jQueryUI tabs
-  $("#places-categories").hide();
+  //
+  // alert(window.location.match(/places/g));
+  console.log(window.location.pathname);
+  if (window.location.pathname.match(/\/places\//g)) {
+    $("#event-categories").hide();
+  } else {
+    $("#places-categories").hide();
+  }
 
   $('a[href="#event-categories"]').click(function(event) {
     event.preventDefault();

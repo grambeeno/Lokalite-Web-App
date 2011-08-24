@@ -24,7 +24,7 @@
         <%
           EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
           classes = [category.slug]
-          classes << 'active' if classes.first == params[:category]
+          classes << 'active' if params[:controller] == 'events' and classes.first == params[:category]
         %>
           <li class="<%= classes.join(' ') %>">
             <%
@@ -42,7 +42,7 @@
         <%
           ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
           classes = [category.parameterize('_')]
-          classes << 'active' if classes.first == params[:category]
+          classes << 'active' if params[:controller] == 'places' and classes.first == params[:category]
         %>
           <li class="<%= classes.join(' ') %>">
             <%= link_to(category, places_path(:origin => params[:origin], :category => category.slug)) %>

@@ -1,0 +1,20 @@
+<li>
+  <div class='image'>
+    <%= link_to organization_path(organization.slug, organization.id) do %>
+      <%= image_tag(organization.image.url(:medium)) %>
+      <div class='description'><%= organization.description %></div>
+    <% end %>
+  </div>
+
+  <%= link_to organization_path(organization.slug, organization.id) do %>
+    <div class='detail'>
+      <h1><%= truncate organization.name, :length => 26 %></h1>
+
+      <div class="organization-name">
+        @ <%= truncate organization.location.name, :length => 28 %>
+      </div>
+    </div>
+  <% end %>
+</li>
+
+

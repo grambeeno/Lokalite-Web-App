@@ -7,22 +7,12 @@ Lokalite::Application.routes.draw do
 
   # match 'events(/:action(/:id(.:format)))', :as => :events, :controller => :events
 
-  # directory routes
-  #
-  # match 'directory/location/*location/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\\d+/}
-  # match 'directory/location/*location/category/:category', :controller => :directory, :action => :browse
-  # match 'directory/location/*location', :controller => :directory, :action => :browse
-  # match 'directory/:id', :controller => :directory, :action => :browse
-  # match 'directory(/:action(/:id(.:format)))', :as => :directory, :controller => :directory
+  match 'places/random', :controller => :places, :action => :random_organization, :as => :random_organization
+  match 'places/:name/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
+  match 'places/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}
 
-  # match 'account(/:action(/:id(.:format)))', :as => :account, :controller => :account
-
-  match 'places/random', :controller => :directory, :action => :random_organization, :as => :random_organization
-  match 'places/:name/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
-  match 'places/:id', :controller => :directory, :action => :organization, :constraints => {:id => /\d+/}
-
-  match 'places/:origin', :controller => :directory, :action => :index, :as => :places
-  match 'places/:origin/category/:category', :controller => :directory, :action => :index, :as => :places
+  match 'places/:origin', :controller => :places, :action => :index, :as => :places
+  match 'places/:origin/category/:category', :controller => :places, :action => :index, :as => :places
 
   namespace :my do
     resources :organizations

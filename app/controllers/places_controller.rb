@@ -1,6 +1,4 @@
-# Directory is now publicly known as "Places"
-# May want to rename if this change sticks
-class DirectoryController < ApplicationController
+class PlacesController < ApplicationController
   before_filter :set_context
   before_filter :remember_location
 
@@ -39,7 +37,7 @@ protected
 
   def set_context
     @context = Map[
-      #:location     , session[:location], 
+      #:location     , session[:location],
       :location     , (params.has_key?(:location) ? Location.absolute_path_for(params[:location]) : nil),
       :organization , params[:organization],
       :category     , params[:category],
