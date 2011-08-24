@@ -11,6 +11,7 @@
         <% if event.repeating? %>
           <li><%= link_to "Create Repeating Events", my_event_repeat_path(event) %></li>
         <% end %>
+        <li><%= link_to "Delete", my_event_path(event), :confirm => "Are you sure you want to delete this event?", :method => :delete %></li>
       </ul>
       <br />
       <br />
