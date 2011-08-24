@@ -38,7 +38,11 @@
 
 <h1 class='tiled-title'>
   <% if params[:category] %>
-    <%= params[:category].titleize %>
+    <% if params[:category] == 'mmj' %>
+      <%= params[:category].titleize.upcase %>
+    <% else %>
+      <%= params[:category].titleize %>
+    <% end %>
   <% else %>
     All Events
   <% end %>

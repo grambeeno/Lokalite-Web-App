@@ -77,11 +77,13 @@ module ApplicationHelper
   end
 
   def title
-    title = 'lokalite'
-    title << " | #{@event.name}" if @event
-    title << " | #{@organization.name}" if @organization
-    title << ' |' + ' Promote your business' if signup_path
-    title
+    parts = []
+    parts << "{@event.name}" if @event
+    parts << "{@organization.name}" if @organization
+    parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_signup_path)
+    parts <<  params[:category].titleize if params[:category]
+    parts << "lokalite"
+    parts.join(' | ')
   end
 
   def default_content_for(name, &block)
