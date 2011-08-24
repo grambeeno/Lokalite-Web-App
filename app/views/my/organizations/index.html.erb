@@ -3,7 +3,7 @@
   <%= link_to('Add a new organization', new_my_organization_path, :class => 'yellow button') %>
   <br /><br />
 
-  <nav id="organizations-nav">
+  <div id="organizations-nav">
   <% @organizations.each_with_index do |organization, index| %>
     <div>
       <h1><%= organization.name %></h1>
@@ -25,8 +25,10 @@
 
       <%#= raw organization.locations.map{|l| l.formatted_address }.join('<br />') %>
     </div>
+    <br />
+    <br />
   <% end %>
 
-  </nav>
+  </div>
 </div>
 

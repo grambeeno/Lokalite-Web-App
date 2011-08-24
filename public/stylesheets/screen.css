@@ -227,6 +227,8 @@ ul.event-previews li { background-color: white; -moz-box-shadow: 0px 0px 5px #33
 .static-controller p { padding: 0.5em 0; }
 
 .my-organizations-controller table.times { font-size: 13px; margin: 0 0 1em; }
+.my-organizations-controller .organization-buttons { text-align: center; }
+.my-organizations-controller .organization-buttons ul.buttons { margin: 0 auto 18px; display: inline-block; }
 
 .flash { margin: 0 25px 10px; font-size: 14px; padding: 1em; line-height: 1.4em; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; border-style: solid; border-width: 1px; }
 .flash .dismiss { color: inherit; text-decoration: inherit; cursor: inherit; display: inline; float: right; font-size: 20px; font-weight: bold; color: #777777; color: rgba(0, 0, 0, 0.5); filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity: 0.5; }

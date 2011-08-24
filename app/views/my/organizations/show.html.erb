@@ -2,7 +2,21 @@
   <div>
     <h1 class='big'><%= @organization.name %></h1>
 
-    <h2 class='big'>Upcoming Events</h2>
+    <div class="organization-buttons">
+      <ul class='buttons'>
+        <li>
+          <%= link_to('New Event', new_my_event_path(:organization_id => @organization.id)) %>
+        </li>
+        <li>
+          <%= link_to('Edit Organization Info', edit_my_organization_path(@organization)) %>
+        </li>
+        <li>
+          <%= link_to('View public page', organization_path(@organization.slug, @organization.id)) %>
+        </li>
+      </ul>
+    </div>
+
+    <h2 class='big'>Events</h2>
     <% for event in @organization.events.by_date -%>
       <h2><%= event.name %></h2>
       <%= render :partial => '/events/time_span', :locals => {:event => event} %>
@@ -15,24 +29,7 @@
       </ul>
       <br />
       <br />
-      <br />
     <% end -%>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <ul>
-      <li>
-        <%= link_to('View public page', organization_path(@organization.slug, @organization.id)) %>
-      </li>
-      <li>
-        <%= link_to('New Event', new_my_event_path(:organization_id => @organization.id)) %>
-      </li>
-      <li>
-        <%= link_to('Edit Organization Info', edit_my_organization_path(@organization)) %>
-      </li>
-    </ul>
 
   </div>
 
