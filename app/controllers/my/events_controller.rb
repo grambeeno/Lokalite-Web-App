@@ -67,7 +67,7 @@ class My::EventsController < My::Controller
   end
 
   def feature
-    if current_user.admin?
+    if real_user.admin?
       @event.feature!
       redirect_to :back
     else

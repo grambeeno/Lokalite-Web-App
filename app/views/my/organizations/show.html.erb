@@ -31,7 +31,7 @@
           <li><%= link_to "Create Repeating Events", my_event_repeat_path(event) %></li>
         <% end %>
         <li><%= link_to "Delete", my_event_path(event), :confirm => "Are you sure you want to delete this event?", :method => :delete %></li>
-        <% if current_user.admin? && !event.featured? %>
+        <% if real_user.admin? && !event.featured? %>
           <li><%= link_to "Feature", my_event_feature_path(event) %></li>
         <% end %>
       </ul>
