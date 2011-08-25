@@ -301,6 +301,12 @@ class Event < ActiveRecord::Base
     clone.save
   end
 
+  def feature!
+    list = category_list
+    list << 'Featured'
+    self.category_list = list.uniq
+    self.save
+  end
   # def featured!(boolean=true)
   #   featured = Category.for('Featured')
 

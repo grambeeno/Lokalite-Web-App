@@ -31,7 +31,6 @@ class My::OrganizationsController < My::Controller
       flash[:notice] = 'Organization was successfully created.'
       redirect_to(organization_path(@organization.slug, @organization.id))
     else
-      logger.debug { "----------------- @organization #{@organization.errors.inspect}" }
       render :action => "new"
     end
   end

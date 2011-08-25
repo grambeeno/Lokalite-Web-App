@@ -66,6 +66,14 @@ class My::EventsController < My::Controller
     end
   end
 
+  def feature
+    if current_user.admin?
+      @event.feature!
+      redirect_to :back
+    else
+      permission_denied
+    end
+  end
 
   private
 

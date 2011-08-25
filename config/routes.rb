@@ -18,6 +18,7 @@ Lokalite::Application.routes.draw do
     resources :organizations
     resources :events do
       match 'repeat', :action => 'repeat', :as => :repeat
+      match 'feature', :action => 'feature', :as => :feature
     end
   end
 

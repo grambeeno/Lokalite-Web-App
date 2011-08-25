@@ -19,6 +19,11 @@
     <h2 class='big'>Events</h2>
     <% for event in @organization.events.by_date -%>
       <h2><%= event.name %></h2>
+      <% if event.featured? %>
+        <p>
+          Featured
+        </p>
+      <% end %>
       <%= render :partial => '/events/time_span', :locals => {:event => event} %>
       <ul class="buttons">
         <li><%= link_to "Edit", edit_my_event_path(event) %></li>
@@ -26,6 +31,9 @@
           <li><%= link_to "Create Repeating Events", my_event_repeat_path(event) %></li>
         <% end %>
         <li><%= link_to "Delete", my_event_path(event), :confirm => "Are you sure you want to delete this event?", :method => :delete %></li>
+        <% if current_user.admin? && !event.featured? %>
+          <li><%= link_to "Feature", my_event_feature_path(event) %></li>
+        <% end %>
       </ul>
       <br />
       <br />
