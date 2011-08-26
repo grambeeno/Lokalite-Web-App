@@ -1,7 +1,7 @@
 <section class="organization">
   <div class='title'>
     <div class="title-image">
-      <%= image_tag @organization.image.url(:thumb) %>
+      <%= image_tag "category-icons/50px/#{@organization.category.name.parameterize('_')}.png" %>
     </div>
     <div class="text">
       <h1><%= @organization.name %></h1>
