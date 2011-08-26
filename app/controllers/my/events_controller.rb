@@ -27,6 +27,7 @@ class My::EventsController < My::Controller
     @event = Event.new(params[:event])
 
     if @event.save
+      Mailer.new_event_notification(@event).deliver
       flash[:notice] = 'Event was successfully created.'
       if @event.repeating
         redirect_to my_event_repeat_path(@event)
