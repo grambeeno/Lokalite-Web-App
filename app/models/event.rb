@@ -24,6 +24,10 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def normal_categories
+    categories.reject{|c| c.name == 'Featured'}
+  end
+
   before_validation(:on => :create) do |event|
     event.uuid ||= App.uuid
   end
