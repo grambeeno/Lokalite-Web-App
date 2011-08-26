@@ -12,6 +12,7 @@
 $blue: #607890
 
 $green: #7DA762
+$light-green: #96d2a5
 // $blue: #2B7BFF
 
 $grey: #5d5d5d
@@ -79,6 +80,13 @@ a
 
   &:hover
     +linear-gradient(color-stops(white, darken(white, 14)))
+  &.active
+    +linear-gradient(color-stops($light-green, darken($light-green, 8)))
+    border-color: #83cb4d
+    color: black
+    text-shadow: none
+    &:hover
+      +linear-gradient(color-stops($light-green, darken($light-green, 16)))
 
 ul.buttons
   +horizontal-list(10px)
@@ -95,15 +103,20 @@ a.button
 @import signup
 
 
-@each $category in $event-categories
-  .icon-#{$category}
-    +float('left')
-    +replace-text-with-dimensions("category-icons/#{$category}.png")
-    background-position: left top
-    display: block
-    margin-right: 12px
-    height: 20px
-    margin-bottom: 12px
+.category-icon
+  +float('left')
+  +replace-text-with-dimensions("category-icons/featured.png")
+  background-position: left top
+  display: block
+  margin-right: 12px
+  height: 20px
+  margin-bottom: 12px
+  &:hover
+    background-position: left bottom
+
+  @each $category in $event-categories
+    &.#{$category}
+      background-image: image_url("category-icons/#{$category}.png")
 
 
 #right-sidebar

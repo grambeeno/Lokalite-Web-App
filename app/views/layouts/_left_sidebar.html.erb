@@ -10,26 +10,27 @@
   -%>
 
 <nav>
+  <%= render :partial => '/shared/search' %>
   <div id="category-tabs">
-    <ul>
+    <ul class='buttons'>
       <li><a href="#event-categories">Events</a></li>
       <li><a href="#places-categories">Places</a></li>
     </ul>
 
     <div id="event-categories">
 
-      <%= render :partial => '/static/search' %>
 
       <ul class='categories'>
         <%
           EVENT_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-          classes = [category.slug]
-          classes << 'active' if params[:controller] == 'events' and classes.first == params[:category]
+            slug = category.parameterize('_')
+            classes = [slug]
+            classes << 'active' if params[:controller] == 'events' and classes.first == params[:category]
         %>
           <li class="<%= classes.join(' ') %>">
             <%
               options = {:origin => params[:origin]}
-              options[:category] = category.slug unless category == 'All'
+              options[:category] = slug unless category == 'All'
             %>
             <%= link_to(category, events_path(options)) %>
           </li>
@@ -40,12 +41,18 @@
     <div id="places-categories">
       <ul class='categories'>
         <%
-          ORGANIZATION_CATEGORIES.dup.unshift('All', 'Featured').each do |category|
-          classes = [category.parameterize('_')]
+          # not including Featured for places yet, but might want to add that in sometime
+          ORGANIZATION_CATEGORIES.dup.unshift('All').each do |category|
+          slug = category.parameterize('_')
+          classes = [slug]
           classes << 'active' if params[:controller] == 'places' and classes.first == params[:category]
         %>
           <li class="<%= classes.join(' ') %>">
-            <%= link_to(category, places_path(:origin => params[:origin], :category => category.slug)) %>
+            <%
+              options = {:origin => params[:origin]}
+              options[:category] = slug unless category == 'All'
+            %>
+            <%= link_to(category, places_path(options)) %>
           </li>
         <% end %>
       </ul>

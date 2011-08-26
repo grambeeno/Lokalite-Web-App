@@ -116,24 +116,24 @@ protected
 
 # location support
 #
-  def current_location
-    Location.where('prefix=?', current_location_prefix).first
-  end
-  helper_method :current_location
+  # def current_location
+  #   Location.where('prefix=?', current_location_prefix).first
+  # end
+  # helper_method :current_location
 
-  def current_location_prefix
-    #session[:location] = Location.default.prefix if session[:location].blank?
-    #session[:location]
-    @current_location_prefix ||= Location.absolute_path_for(params[:location])
-  end
-  helper_method :current_location_prefix
+  # def current_location_prefix
+  #   #session[:location] = Location.default.prefix if session[:location].blank?
+  #   #session[:location]
+  #   @current_location_prefix ||= Location.absolute_path_for(params[:location])
+  # end
+  # helper_method :current_location_prefix
 
-  def current_location_name
-    parts = current_location_prefix.split('/')
-    last = parts.last
-    last.titleize if last
-  end
-  helper_method :current_location_name
+  # def current_location_name
+  #   parts = current_location_prefix.split('/')
+  #   last = parts.last
+  #   last.titleize if last
+  # end
+  # helper_method :current_location_name
 
 # setup default_url_options
 #

@@ -1,10 +1,9 @@
-<% browse_context = browse_context_for(params) %>
-
-Uh oh, there are no
-<%=
-  browse_context.category.titleize + ' events ' +
-  browse_context.keywords + ' ' +
-  browse_context.date + ' in ' +
-  browse_context.location.titleize
-%>.<br />
-<%= link_to('Create the first one!', my_organizations_path) %>
+<div class="flash error">
+  <% if params[:category].present? %>
+    Uh oh, there are no events in the "<%= title_for_category(params[:category]) %>" category.
+  <% elsif params[:keywords].present? %>
+    Sorry, we didn't find any events for the searrch "<%= params[:keywords] %>".
+  <% else%>
+    Sorry, we don't have any upcoming events for this location!
+  <% end %>
+</div>

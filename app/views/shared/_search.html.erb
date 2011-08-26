@@ -3,7 +3,7 @@
     <%
       value = params[:keywords] || ''
     -%>
-    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => 'search' %>
+    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => 'Search Events' %>
     <%= hidden_field_tag(:category, params[:category]) if params[:category] %>
     <br />
     <br />

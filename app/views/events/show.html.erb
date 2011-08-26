@@ -26,7 +26,7 @@
       <dt>Tags</dt>
       <dd>
         <% for category in @event.categories -%>
-          <%= content_tag :span, category.name, :class => "icon-#{category.name.parameterize('_')} tooltip", :title => category.name %>
+          <%= link_to category.name, events_path(:origin => params[:origin], :category => category.name.parameterize('_')), :class => "category-icon #{category.name.parameterize('_')} tooltip", :title => category.name %>
         <% end -%>
       </dd>
     </dl>

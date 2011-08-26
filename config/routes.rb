@@ -11,8 +11,7 @@ Lokalite::Application.routes.draw do
   match 'places/:name/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
   match 'places/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}
 
-  match 'places/:origin', :controller => :places, :action => :index, :as => :places
-  match 'places/:origin/category/:category', :controller => :places, :action => :index, :as => :places
+  match 'places/:origin(/category/:category)', :controller => :places, :action => :index, :as => :places
 
   namespace :my do
     resources :organizations

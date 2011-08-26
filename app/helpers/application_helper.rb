@@ -5,6 +5,7 @@ module ApplicationHelper
   def title_for_category(category)
     category = category.titleize
     category = category.upcase if category.upcase == 'MMJ'
+    category = category.gsub(/ And /, ' and ')
     category
   end
 

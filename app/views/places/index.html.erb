@@ -1,19 +1,24 @@
-<h1 class='tiled-title'>
-  <% if params[:category] %>
-    Places: <%= title_for_category(params[:category]) %>
-  <% elsif params[:keywords] %>
-    Search results: <%= params[:keywords] %>
-  <% else %>
-    All Places
-  <% end %>
-</h1>
+<% if @organizations.any? %>
+  <h1 class='tiled-title'>
+    <% if params[:category] %>
+      Places: <%= title_for_category(params[:category]) %>
+    <% elsif params[:keywords] %>
+      Search results: <%= params[:keywords] %>
+    <% else %>
+      All Places
+    <% end %>
+  </h1>
 
-<ul class="organizations">
-  <% @organizations.each do |organization| %>
-    <%= render :partial => 'organization', :locals => { :organization => organization } %>
-  <% end %>
-</ul>
+  <ul class="organizations">
+    <% @organizations.each do |organization| %>
+      <%= render :partial => 'organization', :locals => { :organization => organization } %>
+    <% end %>
+  </ul>
 
-<div class="tiled-pagination">
-  <%= will_paginate @organizations %>
-</div>
+  <div class="tiled-pagination">
+    <%= will_paginate @organizations %>
+  </div>
+<% else %>
+  <%= render :partial => "no_results" %>
+<% end %>
+
