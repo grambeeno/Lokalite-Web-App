@@ -58,7 +58,7 @@ class Event < ActiveRecord::Base
   })
 
   scope(:featured, lambda{|*args|
-    includes(:categories).tagged_with('featured', :on => :categories)
+    upcoming().includes(:categories).tagged_with('featured', :on => :categories)
   })
 
   scope(:random, lambda{|*args|

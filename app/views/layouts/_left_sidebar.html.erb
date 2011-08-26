@@ -12,13 +12,12 @@
 <nav>
   <%= render :partial => '/shared/search' %>
   <div id="category-tabs">
-    <ul class='buttons'>
+    <ul class='category-tab-buttons'>
       <li><a href="#event-categories">Events</a></li>
       <li><a href="#places-categories">Places</a></li>
     </ul>
 
     <div id="event-categories">
-
       <%
         options = {:origin => params[:origin]}
         options[:category] = params[:category] if params[:category].present?

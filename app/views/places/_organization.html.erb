@@ -2,7 +2,7 @@
   <div class='image'>
     <%= link_to organization_path(organization.slug, organization.id) do %>
       <%= image_tag(organization.image.url(:medium)) %>
-      <div class='description'><%= organization.description %></div>
+      <div class='description'><%= truncate organization.description, :length => 260 %></div>
     <% end %>
   </div>
 

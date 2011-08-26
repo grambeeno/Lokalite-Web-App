@@ -80,13 +80,13 @@ a
 
   &:hover
     +linear-gradient(color-stops(white, darken(white, 14)))
-  &.active
-    +linear-gradient(color-stops($light-green, darken($light-green, 8)))
-    border-color: #83cb4d
-    color: black
-    text-shadow: none
-    &:hover
-      +linear-gradient(color-stops($light-green, darken($light-green, 16)))
+  // &.active
+  //   +linear-gradient(color-stops($light-green, darken($light-green, 8)))
+  //   border-color: #83cb4d
+  //   color: black
+  //   text-shadow: none
+  //   &:hover
+  //     +linear-gradient(color-stops($light-green, darken($light-green, 16)))
 
 ul.buttons
   +horizontal-list(10px)
@@ -102,6 +102,22 @@ a.button
 @import layout
 @import signup
 
+.category-tab-buttons
+  +horizontal-list(4px)
+  margin-bottom: 6px
+  li
+    padding: 8px 4px
+    a
+      text-decoration: none
+      border: 1px solid #ddd
+      padding: 8px 16px
+      background-color: #ddd
+      color: #666
+      &.active
+        color: black
+        border-color: #83cb4d
+        background-color: $light-green
+        font-weight: bold
 
 .category-icon
   +float('left')
@@ -373,12 +389,6 @@ ul.event-previews
     width: $content-inner-width/2 - 40px
     padding: 4px 10px
     margin: 6px 10px
-
-#category-tabs
-  > ul
-    +horizontal-list(8px)
-    margin-bottom: 10px
-
 
 .static-controller
   +huge-headers
