@@ -234,10 +234,10 @@ jq(function($){
 
   if (window.location.pathname.match(/\/places\//g)) {
     $("#event-categories").hide();
-    $('a[href="#event-categories"]').addClass('active');
+    $('a[href="#places-categories"]').addClass('active');
   } else {
     $("#places-categories").hide();
-    $('a[href="#places-categories"]').addClass('active');
+    $('a[href="#event-categories"]').addClass('active');
   }
 
   $('a[href="#event-categories"]').click(function(event) {
