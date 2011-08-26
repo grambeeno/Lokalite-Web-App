@@ -37,9 +37,9 @@ a.button.active { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, c
 a.button.active:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #96d2a5), color-stop(100%, #5dba74)); background-image: -webkit-linear-gradient(top, #96d2a5, #5dba74); background-image: -moz-linear-gradient(top, #96d2a5, #5dba74); background-image: -o-linear-gradient(top, #96d2a5, #5dba74); background-image: -ms-linear-gradient(top, #96d2a5, #5dba74); background-image: linear-gradient(top, #96d2a5, #5dba74); }
 
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
-body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1312841450'); background-repeat: repeat-x; color: white; }
+body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1314342292'); background-repeat: repeat-x; color: white; }
 body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
-body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1312684180'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
+body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1314342293'); background-repeat: no-repeat; background-position: 50% 50%; width: 222px; height: 53px; }
 body > header .content nav { display: inline; float: right; }
 body > header .content nav > ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; overflow: visible; margin-top: 32px; }
 body > header .content nav > ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
@@ -48,7 +48,7 @@ body > header .content nav > ul li:last-child { padding-right: 0; }
 body > header .content nav > ul li.last { padding-right: 0; }
 body > header .content nav > ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
 body > header .content nav > ul a:hover { color: #7da762; }
-body > header .content nav > ul a.create-event { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/create-event-button.png?1313100145'); background-repeat: no-repeat; background-position: 50% 50%; width: 141px; height: 28px; margin-top: -12px; display: block; }
+body > header .content nav > ul a.create-event { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/create-event-button.png?1314342293'); background-repeat: no-repeat; background-position: 50% 50%; width: 141px; height: 28px; margin-top: -12px; display: block; }
 body > header .content nav > ul li { position: relative; }
 body > header .content nav > ul li ul { display: none; position: absolute; z-index: 10000; top: 0; padding-top: 20px; right: 12px; width: 140px; }
 body > header .content nav > ul li ul li, body > header .content nav > ul li ul li:first-child, body > header .content nav > ul li ul li:last-child { white-space: normal; background-color: black; width: 100%; display: block; padding: 8px; }
@@ -63,7 +63,7 @@ body > footer .content nav ul li:last-child { padding-right: 0; }
 body > footer .content nav ul li.last { padding-right: 0; }
 body > footer .content .copyright { display: inline; float: right; }
 body #main { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; }
-body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1312841450'); background-repeat: repeat; }
+body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1314342292'); background-repeat: repeat; }
 
 #left-sidebar, #right-sidebar, #middle { display: inline; float: left; padding: 16px 0; }
 
@@ -72,36 +72,37 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 
 #left-sidebar { padding-right: 10px; }
 #left-sidebar ul.categories li { font-size: 12px; margin-bottom: 8px; background-position: 2px top; background-repeat: no-repeat; }
-#left-sidebar ul.categories li a { text-decoration: none; display: block; width: 100%; padding-top: 2px; height: 18px; padding-left: 26px; }
+#left-sidebar ul.categories li a { text-decoration: none; display: block; width: 100%; padding-top: 3px; height: 17px; padding-left: 26px; }
 #left-sidebar ul.categories li:hover { background-position: 2px bottom; }
 #left-sidebar ul.categories li.active { background-color: black; background-position: 2px bottom; }
 #left-sidebar ul.categories li.active a { color: white; }
-#left-sidebar ul.categories .all { background-image: url('/images/category-icons/all.png?1314136644'); }
-#left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1314136644'); }
-#left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314136644'); }
-#left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1314136644'); }
-#left-sidebar ul.categories .food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314136644'); }
-#left-sidebar ul.categories .music_and_the_arts { background-image: url('/images/category-icons/music_and_the_arts.png?1314136644'); }
-#left-sidebar ul.categories .nightlife { background-image: url('/images/category-icons/nightlife.png?1314136644'); }
-#left-sidebar ul.categories .shopping { background-image: url('/images/category-icons/shopping.png?1314136644'); }
-#left-sidebar ul.categories .restaurants_and_bars { background-image: url('/images/category-icons/restaurants_and_bars.png?1314136644'); }
-#left-sidebar ul.categories .coffee_and_tea { background-image: url('/images/category-icons/coffee_and_tea.png?1314136644'); }
-#left-sidebar ul.categories .arts_and_entertainment { background-image: url('/images/category-icons/arts_and_entertainment.png?1314136644'); }
-#left-sidebar ul.categories .services { background-image: url('/images/category-icons/services.png?1314136644'); }
-#left-sidebar ul.categories .beer_wine_and_spirits { background-image: url('/images/category-icons/beer_wine_and_spirits.png?1314136644'); }
-#left-sidebar ul.categories .sports_and_fitness { background-image: url('/images/category-icons/sports_and_fitness.png?1314136644'); }
-#left-sidebar ul.categories .health_and_beauty { background-image: url('/images/category-icons/health_and_beauty.png?1314136644'); }
-#left-sidebar ul.categories .community { background-image: url('/images/category-icons/community.png?1314136644'); }
-#left-sidebar ul.categories .non-profit { background-image: url('/images/category-icons/non-profit.png?1314136644'); }
-#left-sidebar ul.categories .tours_and_tastings { background-image: url('/images/category-icons/tours_and_tastings.png?1314136644'); }
-#left-sidebar ul.categories .learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1314136644'); }
-#left-sidebar ul.categories .mmj { background-image: url('/images/category-icons/mmj.png?1314136644'); }
+#left-sidebar ul.categories .all_events { background-image: url('/images/category-icons/all_events.png?1314340163'); }
+#left-sidebar ul.categories .all_places { background-image: url('/images/category-icons/all_places.png?1314340163'); }
+#left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1314340163'); }
+#left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314340163'); }
+#left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1314340163'); }
+#left-sidebar ul.categories .food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314340163'); }
+#left-sidebar ul.categories .music_and_the_arts { background-image: url('/images/category-icons/music_and_the_arts.png?1314340163'); }
+#left-sidebar ul.categories .nightlife { background-image: url('/images/category-icons/nightlife.png?1314340163'); }
+#left-sidebar ul.categories .shopping { background-image: url('/images/category-icons/shopping.png?1314340163'); }
+#left-sidebar ul.categories .restaurants_and_bars { background-image: url('/images/category-icons/restaurants_and_bars.png?1314340163'); }
+#left-sidebar ul.categories .coffee_and_tea { background-image: url('/images/category-icons/coffee_and_tea.png?1314340163'); }
+#left-sidebar ul.categories .arts_and_entertainment { background-image: url('/images/category-icons/arts_and_entertainment.png?1314340163'); }
+#left-sidebar ul.categories .services { background-image: url('/images/category-icons/services.png?1314340163'); }
+#left-sidebar ul.categories .beer_wine_and_spirits { background-image: url('/images/category-icons/beer_wine_and_spirits.png?1314340163'); }
+#left-sidebar ul.categories .sports_and_fitness { background-image: url('/images/category-icons/sports_and_fitness.png?1314340163'); }
+#left-sidebar ul.categories .health_and_beauty { background-image: url('/images/category-icons/health_and_beauty.png?1314340163'); }
+#left-sidebar ul.categories .community { background-image: url('/images/category-icons/community.png?1314340163'); }
+#left-sidebar ul.categories .non-profit { background-image: url('/images/category-icons/non-profit.png?1314340163'); }
+#left-sidebar ul.categories .tours_and_tastings { background-image: url('/images/category-icons/tours_and_tastings.png?1314340163'); }
+#left-sidebar ul.categories .learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1314340163'); }
+#left-sidebar ul.categories .mmj { background-image: url('/images/category-icons/mmj.png?1314340163'); }
 
 #business-signup { text-align: center; font-size: 14px; margin-bottom: 60px; }
 #business-signup h1 { margin: 14px auto; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1314051786'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
 #business-signup h2 { font-size: 24px; font-weight: normal; }
 #business-signup h3 { font-size: 18px; color: black; }
-#business-signup a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1314052378'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; }
+#business-signup a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1314342295'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; }
 #business-signup .centered { margin: 30px auto; display: inline-block; }
 #business-signup .create, #business-signup .share, #business-signup .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
 #business-signup .create { margin-right: 40px; background-image: url('/images/business/create.png?1314046887'); }
@@ -111,32 +112,33 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #business-signup .bottom h2 { font-size: 30px; color: black; margin-bottom: 14px; }
 #business-signup .bottom p { padding: 6px 0; width: 280px; }
 #business-signup .bottom section { background-repeat: no-repeat; margin-bottom: 60px; }
-#business-signup .bottom .lokalite-is { background-image: url('/images/business/lokalite-is.png?1314051792'); height: 380px; padding-left: 680px; }
+#business-signup .bottom .lokalite-is { background-image: url('/images/business/lokalite-is.png?1314342305'); height: 380px; padding-left: 680px; }
 #business-signup .bottom .spend-less { background-image: url('/images/business/spend-less.png?1314051786'); background-position: 420px 40px; padding-left: 100px; height: 290px; }
 #business-signup .bottom .gain-more { background-image: url('/images/business/gain-more.png?1314051789'); height: 313px; padding-left: 680px; }
 
-.category-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/featured.png?1314136644'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 40px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 12px; }
+.category-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/featured.png?1314340163'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 40px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 12px; }
 .category-icon:hover { background-position: left bottom; }
-.category-icon.all { background-image: url('/images/category-icons/all.png?1314136644'); }
-.category-icon.featured { background-image: url('/images/category-icons/featured.png?1314136644'); }
-.category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314136644'); }
-.category-icon.campus { background-image: url('/images/category-icons/campus.png?1314136644'); }
-.category-icon.food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314136644'); }
-.category-icon.music_and_the_arts { background-image: url('/images/category-icons/music_and_the_arts.png?1314136644'); }
-.category-icon.nightlife { background-image: url('/images/category-icons/nightlife.png?1314136644'); }
-.category-icon.shopping { background-image: url('/images/category-icons/shopping.png?1314136644'); }
-.category-icon.restaurants_and_bars { background-image: url('/images/category-icons/restaurants_and_bars.png?1314136644'); }
-.category-icon.coffee_and_tea { background-image: url('/images/category-icons/coffee_and_tea.png?1314136644'); }
-.category-icon.arts_and_entertainment { background-image: url('/images/category-icons/arts_and_entertainment.png?1314136644'); }
-.category-icon.services { background-image: url('/images/category-icons/services.png?1314136644'); }
-.category-icon.beer_wine_and_spirits { background-image: url('/images/category-icons/beer_wine_and_spirits.png?1314136644'); }
-.category-icon.sports_and_fitness { background-image: url('/images/category-icons/sports_and_fitness.png?1314136644'); }
-.category-icon.health_and_beauty { background-image: url('/images/category-icons/health_and_beauty.png?1314136644'); }
-.category-icon.community { background-image: url('/images/category-icons/community.png?1314136644'); }
-.category-icon.non-profit { background-image: url('/images/category-icons/non-profit.png?1314136644'); }
-.category-icon.tours_and_tastings { background-image: url('/images/category-icons/tours_and_tastings.png?1314136644'); }
-.category-icon.learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1314136644'); }
-.category-icon.mmj { background-image: url('/images/category-icons/mmj.png?1314136644'); }
+.category-icon.all_events { background-image: url('/images/category-icons/all_events.png?1314340163'); }
+.category-icon.all_places { background-image: url('/images/category-icons/all_places.png?1314340163'); }
+.category-icon.featured { background-image: url('/images/category-icons/featured.png?1314340163'); }
+.category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314340163'); }
+.category-icon.campus { background-image: url('/images/category-icons/campus.png?1314340163'); }
+.category-icon.food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314340163'); }
+.category-icon.music_and_the_arts { background-image: url('/images/category-icons/music_and_the_arts.png?1314340163'); }
+.category-icon.nightlife { background-image: url('/images/category-icons/nightlife.png?1314340163'); }
+.category-icon.shopping { background-image: url('/images/category-icons/shopping.png?1314340163'); }
+.category-icon.restaurants_and_bars { background-image: url('/images/category-icons/restaurants_and_bars.png?1314340163'); }
+.category-icon.coffee_and_tea { background-image: url('/images/category-icons/coffee_and_tea.png?1314340163'); }
+.category-icon.arts_and_entertainment { background-image: url('/images/category-icons/arts_and_entertainment.png?1314340163'); }
+.category-icon.services { background-image: url('/images/category-icons/services.png?1314340163'); }
+.category-icon.beer_wine_and_spirits { background-image: url('/images/category-icons/beer_wine_and_spirits.png?1314340163'); }
+.category-icon.sports_and_fitness { background-image: url('/images/category-icons/sports_and_fitness.png?1314340163'); }
+.category-icon.health_and_beauty { background-image: url('/images/category-icons/health_and_beauty.png?1314340163'); }
+.category-icon.community { background-image: url('/images/category-icons/community.png?1314340163'); }
+.category-icon.non-profit { background-image: url('/images/category-icons/non-profit.png?1314340163'); }
+.category-icon.tours_and_tastings { background-image: url('/images/category-icons/tours_and_tastings.png?1314340163'); }
+.category-icon.learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1314340163'); }
+.category-icon.mmj { background-image: url('/images/category-icons/mmj.png?1314340163'); }
 
 #right-sidebar { padding-left: 10px; }
 #right-sidebar ul { margin: 0; list-style: none; }
@@ -160,8 +162,8 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .events li a:active, .events li a:focus, .organizations li a:active, .organizations li a:focus { outline: none; }
 .events li .image, .organizations li .image { position: relative; width: 202px; }
 .events li .image img, .organizations li .image img { border: 1px solid black; }
-.events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1312841451'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1313104392'); background-position: top; width: 52px; height: 52px; }
+.events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1314342292'); background-repeat: repeat; color: white; padding: 2px; display: none; }
+.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1314342293'); background-position: top; width: 52px; height: 52px; }
 .events li .image .trend-button:hover, .organizations li .image .trend-button:hover { background-position: bottom; }
 .events li .image .trend-button.trended, .organizations li .image .trend-button.trended { background-position: bottom; }
 .events li .image .trend-button.trended:hover, .organizations li .image .trend-button.trended:hover { background-position: top; }
