@@ -1,25 +1,32 @@
 <% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
-  <h3>Top Trending Events</h3>
 
-  <ul>
-    <%# TODO - this is a prime canditate for fragment cacheing %>
-    <% for event in Event.trending.limit(10).includes(:image) -%>
-      <li>
-        <%= link_to event_path(event.slug, event.id) do %>
-          <div class="image">
-            <%= image_tag(event.image.url(:thumb)) %>
-          </div>
-          <div class="details">
-            <div class='truncate'>
-              <%= event.name %>
+
+
+  <% {
+       'Top Trending Events' => Event.trending,
+       'Top Featured Events' => Event.featured
+     }.each_pair do |title, events| -%>
+    <h3><%= title %></h3>
+    <ul>
+      <%# TODO - this is a prime canditate for fragment cacheing %>
+      <% for event in events.limit(6).includes(:image) -%>
+        <li>
+          <%= link_to event_path(event.slug, event.id) do %>
+            <div class="image">
+              <%= image_tag(event.image.url(:thumb)) %>
             </div>
-            <div class="organization-name truncate">
-              <%= event.organization.name %>
+            <div class="details">
+              <div class='truncate'>
+                <%= event.name %>
+              </div>
+              <div class="organization-name truncate">
+                <%= event.organization.name %>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </li>
-    <% end -%>
-  </ul>
+          <% end %>
+        </li>
+      <% end -%>
+    </ul>
+  <% end -%>
 <% end -%>
 

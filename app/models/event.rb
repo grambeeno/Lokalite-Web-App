@@ -58,7 +58,7 @@ class Event < ActiveRecord::Base
   })
 
   scope(:featured, lambda{|*args|
-    joins(:categories).includes(:categories).tagged_with('featured', :on => :categories)
+    includes(:categories).tagged_with('featured', :on => :categories)
   })
 
   scope(:random, lambda{|*args|
