@@ -1,0 +1,41 @@
+<script type="text/javascript">
+  jQuery(function($){
+
+    var myLatlng = new google.maps.LatLng(40.023868,-105.269194);
+    var myOptions = {
+      zoom: 13,
+      center: myLatlng,
+      // mapTypeId: google.maps.MapTypeId.TERRAIN,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    // maintain a single instance of the infowindow
+    // each marker is responsible for setting the content.
+    var infowindow = new google.maps.InfoWindow({
+        maxWidth: 380
+    });
+
+    var markers = <%= markers_for_events(@events) %>;
+
+    $.each(markers, function(index, myEvent){
+      var coordinates = new google.maps.LatLng(myEvent.lat, myEvent.lng);
+      var marker = new google.maps.Marker({
+          position: coordinates,
+          map: map,
+          title: myEvent.name
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.close();
+        infowindow.setContent(myEvent.infoWindow);
+        infowindow.open(map,marker);
+      });
+    });
+
+
+
+ })
+</script>
+
+<div id="map_canvas"></div>

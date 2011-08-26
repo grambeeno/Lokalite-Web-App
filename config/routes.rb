@@ -3,7 +3,7 @@ Lokalite::Application.routes.draw do
   match 'events(/*slug)/:id', :as => :event, :controller => :events, :constraints => {:id => /\d+/}, :action => :show
 
   # match 'events/:origin(/category/:category)(/search/:keywords)', :controller => :events, :action => :index, :as => :events
-  match 'events/:origin(/category/:category)(/search/:keywords)', :as => :events, :controller => :events, :action => :index
+  match 'events(/:view_type)/:origin(/category/:category)(/search/:keywords)', :as => :events, :controller => :events, :action => :index, :constraints => {:view_type => /map/}
 
   # match 'events(/:action(/:id(.:format)))', :as => :events, :controller => :events
 

@@ -1,0 +1,43 @@
+
+    <% if session[:splash] === true && false %>
+      <section class="profile blurb vevent" id="welcome">
+        <p class="visuallyhidden">Welcome to lokalite, your event directory. Use the categories at left to find what you're in the mood for. Browse below. Up above, sign up to start listing your own events. Share with your friends!</p>
+
+        <img src="/images/landing_page.png" width="680" />
+
+        <nav style="margin:-15px 0 0 270px;">
+          <%= link_to 'promo video', static_path(:movie, :layout => :facebox), :rel => :facebox, :class => :button %>
+          <%= link_to 'about lokalite', static_path(:about), :class => :button %>
+
+          <%=
+            st_url = App.url
+            st_title = App.url
+            share_this(:st_url => st_url, :st_title => st_title)
+          %>
+        </nav>
+      </section>
+    <%
+      session[:splash] = false
+      end
+    %>
+
+    <h1 class='tiled-title'>
+      <% if params[:category] %>
+        <%= title_for_category(params[:category]) %> Events
+      <% elsif params[:keywords] %>
+        Search results: <%= params[:keywords] %>
+      <% else %>
+        All Events
+      <% end %>
+    </h1>
+
+    <ul class="events">
+      <% @events.each do |event| %>
+        <%= render :partial => 'event', :locals => { :event => event } %>
+      <% end %>
+    </ul>
+
+    <div class="tiled-pagination">
+      <%= will_paginate @events %>
+    </div>
+

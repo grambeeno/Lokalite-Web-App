@@ -65,7 +65,7 @@ h3
   font-size: 16px
 
 a
-  +link-colors($blue, darken($blue, 7), darken($blue, 14), $blue)
+  +link-colors($blue, darken($blue, 12), darken($blue, 20), $blue)
 
 
 =button
@@ -110,7 +110,7 @@ a.button
   display: block
   margin-right: 12px
   height: 20px
-  margin-bottom: 12px
+  margin-bottom: 4px
   &:hover
     background-position: left bottom
 
@@ -162,6 +162,11 @@ a.button
     padding: $content-inner-padding
     +foreground
 
+#map_canvas
+  margin-top: -16px
+  margin-bottom: -16px
+  width: 100%
+  height: 800px
 
 .events, .organizations
   font-size: 12px
@@ -242,6 +247,36 @@ a.button
         // height: 1em
         // overflow: hidden
 
+
+$info-window-width: 380px
+.google_maps_info_window
+  // max width is also set in the js
+  // need to set this here so it doesn't get too small
+  width: $info-window-width
+  h1
+    font-size: 20px
+    a
+      text-decoration: none
+  .image
+    +float('left')
+    padding-left: 8px
+    img
+      border: 1px solid black
+  .info
+    +float('left')
+    width: $info-window-width - 150 - 2 - 8
+    margin-top: 24px
+    .description
+      line-height: 1.2em
+      height: 4.8em
+    .address
+      font-size: 11px
+      font-weight: bold
+    table.times
+      font-size: 11px
+      margin: 18px 0
+
+
 table.times
   margin-top: 10px
   font-size: 10px
@@ -311,6 +346,7 @@ table.times
       padding-bottom: 8px
 
   .location
+    margin-top: 8px
     .map img
       border: 1px solid #ddd
       +border-radius(5px)

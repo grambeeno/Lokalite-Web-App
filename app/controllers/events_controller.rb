@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   before_filter :remember_location
 
   def index
-    @context[:per_page] = 12
+    if params[:view_type] == 'map'
+      @context[:per_page] = 24
+    else
+      @context[:per_page] = 12
+    end
     @events = Event.browse(@context)
   end
 
