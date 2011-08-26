@@ -112,7 +112,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #business-signup .bottom .spend-less { background-image: url('/images/business/spend-less.png?1314051786'); background-position: 420px 40px; padding-left: 100px; height: 290px; }
 #business-signup .bottom .gain-more { background-image: url('/images/business/gain-more.png?1314051789'); height: 313px; padding-left: 680px; }
 
-.category-tab-buttons { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-bottom: 6px; }
+.category-tab-buttons { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 .category-tab-buttons li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
 .category-tab-buttons li:first-child, .category-tab-buttons li.first { padding-left: 0; }
 .category-tab-buttons li:last-child { padding-right: 0; }
@@ -218,14 +218,12 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 .event .detail table.times { font-size: 13px; }
 .event .detail .description { line-height: 1.1em; height: 3.3em; }
 
-ul.event-previews { list-style: none; overflow: hidden; *zoom: 1; margin: 0px; margin-left: -10px; }
-ul.event-previews li { list-style-image: none; list-style-type: none; margin-left: 0px; }
-ul.event-previews li { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; width: 305px; padding: 4px 10px; margin: 6px 10px; }
-
 .static-controller h1, .static-controller h2 { text-align: center; }
 .static-controller h1 { font-size: 46px; margin-bottom: 10px; }
 .static-controller h2 { font-size: 20px; font-weight: normal; color: gray; margin-bottom: 20px; }
 .static-controller p { padding: 0.5em 0; }
+
+.organization-events { margin-top: 1em; }
 
 .my-organizations-controller table.times { font-size: 13px; margin: 0 0 1em; }
 .my-organizations-controller .organization-buttons { text-align: center; }

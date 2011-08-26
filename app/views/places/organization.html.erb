@@ -6,7 +6,7 @@
     <div class="text">
       <h1><%= @organization.name %></h1>
       <h2>
-        <%= link_to @organization.category, '#' %>
+        <%= link_to @organization.category, places_path(:origin => params[:origin], :category => @organization.category.name.parameterize('_')) %>
       </h2>
     </div>
   </div>
@@ -38,12 +38,15 @@
     </div>
   </div>
 
-
   <div class="clear"></div>
-
-  <div class="organization-events">
-    <h2>Upcoming Events</h2>
-    <%= render :partial => '/events/event_previews', :locals => {:events => @organization.events} %>
-  </div>
 </section>
 
+<div class="organization-events">
+  <hr />
+  <h2 class='big'>Upcoming Events</h2>
+  <ul class="events">
+    <% @organization.events.upcoming.limit(12).each do |event| %>
+      <%= render :partial => '/events/event', :locals => { :event => event } %>
+    <% end %>
+  </ul>
+</div>

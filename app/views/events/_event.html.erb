@@ -21,11 +21,13 @@
     <div class='detail'>
       <h1 class='truncate'><%= event.name %></h1>
 
-      <div class="organization-name truncate">
-        @ <%= event.location.name %>
-      </div>
+      <% unless @organization %>
+        <div class="organization-name truncate">
+          @ <%= event.location.name %>
+        </div>
+      <% end %>
 
-      <%= render :partial => 'time_span', :locals => {:event => event} %>
+      <%= render :partial => '/events/time_span', :locals => {:event => event} %>
     </div>
   <% end %>
 </li>
