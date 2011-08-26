@@ -10,9 +10,11 @@
             <%= image_tag(event.image.url(:thumb)) %>
           </div>
           <div class="details">
-            <%= truncate event.name, :length => 22 %>
-            <div class="organization-name">
-              <%= truncate event.organization.name, :length => 22 %>
+            <div class='truncate'>
+              <%= event.name %>
+            </div>
+            <div class="organization-name truncate">
+              <%= event.organization.name %>
             </div>
           </div>
         <% end %>

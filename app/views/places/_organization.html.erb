@@ -8,10 +8,10 @@
 
   <%= link_to organization_path(organization.slug, organization.id) do %>
     <div class='detail'>
-      <h1><%= truncate organization.name, :length => 26 %></h1>
+      <h1 class='truncate'><%= organization.name %></h1>
 
-      <div class="organization-name">
-        @ <%= truncate organization.location.name, :length => 28 %>
+      <div class="organization-name truncate">
+        @ <%= organization.location.name %>
       </div>
     </div>
   <% end %>

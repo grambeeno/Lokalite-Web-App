@@ -282,7 +282,6 @@ jq(function($){
       maxCount: 500
     });
   }
-
   if ($('#event_description').length) {
     $('#event_description').simplyCountable({
       maxCount: 140
@@ -311,6 +310,7 @@ jq(function($){
 
   ////////////////////////////////////////////////////
 
+  $('.truncate').truncate();
 
 });
 
