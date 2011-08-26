@@ -37,6 +37,12 @@ class Mailer < ActionMailer::Base
     mail(:to => @email, :subject => @subject)
   end
 
+  def new_user_notification(signup)
+    @user    = signup.email
+    @subject = subject_for("New user signed up")
+    mail(:to => 'lokalite@lokalite.com', :subject => @subject)
+  end
+
   def test(email)
     mail(:to => email, :subject => 'test')
   end
@@ -49,5 +55,5 @@ protected
   def signature
     "-- Thanks from the #{ App.domain } team."
   end
-  helper_method :signature 
+  helper_method :signature
 end

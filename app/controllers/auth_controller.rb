@@ -50,6 +50,7 @@ class AuthController < ApplicationController
         redirect_to('/')
         return
       end
+      Mailer.new_user_notification(signup).deliver
     rescue
       raise unless Rails.env.production?
       @errors.push "Eeeks! Something went wrong on our end!? Please try again later."
