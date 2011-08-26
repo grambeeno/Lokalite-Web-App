@@ -82,7 +82,7 @@ ORGANIZATION_CATEGORIES = [
   'Arts and Entertainment',
   'Services',
   'Campus',
-  'Beer, Wine and Spirits',
+  'Beer Wine and Spirits',
   'Sports and Fitness',
   'Health and Beauty',
   'Non-Profit',
