@@ -59,7 +59,7 @@
     <hr />
     <h2 class='big'>Other Events in <%= category.name %></h2>
     <ul class="events">
-      <% Event.where('events.id != ?', @event.id).tagged_with(category.name).upcoming.limit(3).each do |event| %>
+      <% Event.where('events.id != ?', @event.id).includes(:organization, :categories, :image).tagged_with(category.name).upcoming.limit(3).each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>
       <% end %>
     </ul>

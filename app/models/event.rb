@@ -68,8 +68,6 @@ class Event < ActiveRecord::Base
   scope(:random, lambda{|*args|
     order('random()')
   })
-
-
   scope :trending, upcoming.includes(:organization).order('users_count DESC, starts_at')
 
   def Event.update_clone_counts!

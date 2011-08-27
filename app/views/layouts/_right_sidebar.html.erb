@@ -2,14 +2,14 @@
 
 
 
+  <%# TODO - this is a prime canditate for fragment cacheing %>
   <% {
        'Top Trending Events' => Event.trending,
        'Top Featured Events' => Event.featured
      }.each_pair do |title, events| -%>
     <h3><%= title %></h3>
     <ul>
-      <%# TODO - this is a prime canditate for fragment cacheing %>
-      <% for event in events.limit(6).includes(:image) -%>
+      <% for event in events.limit(6).includes(:image, :organization) -%>
         <li>
           <%= link_to event_path(event.slug, event.id) do %>
             <div class="image">

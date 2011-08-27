@@ -13,7 +13,9 @@
     // maintain a single instance of the infowindow
     // each marker is responsible for setting the content.
     var infowindow = new google.maps.InfoWindow({
-        maxWidth: 380
+      maxWidth: 380,
+
+
     });
 
     var markers = <%= markers_for_events(@events) %>;
@@ -26,6 +28,7 @@
           title: myEvent.name
       });
 
+
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.close();
         infowindow.setContent(myEvent.infoWindow);
@@ -33,6 +36,11 @@
       });
     });
 
+    google.maps.event.addListener(map, 'click', function(event) {
+      if (infowindow) {
+        infowindow.close();
+      };
+    })
 
 
  })
