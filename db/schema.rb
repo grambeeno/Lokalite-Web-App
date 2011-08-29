@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810170350) do
+ActiveRecord::Schema.define(:version => 20110829162125) do
 
   create_table "event_images", :force => true do |t|
     t.string   "image"
@@ -32,8 +32,11 @@ ActiveRecord::Schema.define(:version => 20110810170350) do
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "clone_count",     :default => 0
-    t.integer  "users_count",     :default => 0
+    t.integer  "clone_count",           :default => 0
+    t.string   "repeats"
+    t.integer  "users_count",           :default => 0
+    t.decimal  "trend_weight",          :default => 0.0
+    t.integer  "anonymous_users_count", :default => 0
   end
 
   add_index "events", ["description"], :name => "index_events_on_description"

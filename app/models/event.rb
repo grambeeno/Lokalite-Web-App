@@ -139,6 +139,10 @@ class Event < ActiveRecord::Base
     Slug.for(name)
   end
 
+  def set_trend_weight
+    self.trend_weight = users_count.to_i + anonymous_users_count.to_i
+  end
+
   # def location_time(t = :starts_at)
   #   case t
   #     when :starts_at, 'starts_at'
