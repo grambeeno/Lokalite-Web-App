@@ -202,10 +202,9 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 .event .title .title-image, .organization .title .title-image { display: inline; float: left; margin-right: 10px; }
 .event .title .text, .organization .title .text { display: inline; float: left; }
 .event .title h1, .organization .title h1 { font-size: 24px; }
-.event .title h2, .organization .title h2 { font-size: 16px; }
-.event .title h2 a, .organization .title h2 a { font-weight: normal; color: inherit; text-decoration: inherit; cursor: inherit; color: #555555; }
-.event .title h2 a:active, .event .title h2 a:focus, .organization .title h2 a:active, .organization .title h2 a:focus { outline: none; }
-.event .title h2 a:hover, .organization .title h2 a:hover { color: #607890; }
+.event .title h2, .organization .title h2 { font-size: 16px; font-weight: normal; }
+.event .title h2 a, .organization .title h2 a { text-decoration: none; }
+.event .title h2 a:hover, .organization .title h2 a:hover { text-decoration: underline; }
 .event .image, .organization .image { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; padding: 10px; }
 .event .image img, .organization .image img { border: 1px solid black; }
 .event .detail, .organization .detail { display: inline; float: left; width: 363px; padding-left: 25px; }

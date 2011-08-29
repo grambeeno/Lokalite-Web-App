@@ -6,7 +6,7 @@
     <div class="text">
       <h1><%= @event.name %></h1>
       <h2>
-        <%= link_to "@ #{@event.location.name}", organization_path(@event.organization.slug, @event.organization.id) %>
+        <%= event_location_string(@event) %>
       </h2>
     </div>
   </div>
@@ -56,12 +56,15 @@
 
 <div class="more-events">
   <% for category in @event.normal_categories %>
-    <hr />
-    <h2 class='big'>Other Events in <%= category.name %></h2>
-    <ul class="events">
-      <% Event.where('events.id != ?', @event.id).includes(:organization, :categories, :image).tagged_with(category.name).upcoming.limit(3).each do |event| %>
-        <%= render :partial => '/events/event', :locals => { :event => event } %>
-      <% end %>
-    </ul>
+    <% events = Event.where('events.id != ?', @event.id).includes(:organization, :categories, :image).tagged_with(category.name).upcoming.limit(3) %>
+    <% if events.any? %>
+      <hr />
+      <h2 class='big'>Other Events in <%= category.name %></h2>
+      <ul class="events">
+        <% events.each do |event| %>
+          <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
 </div>
