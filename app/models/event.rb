@@ -48,6 +48,8 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :image
   validates_associated :image
 
+  before_save :set_trend_weight
+
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
 
   scope :by_date, order('starts_at')
@@ -68,7 +70,7 @@ class Event < ActiveRecord::Base
   scope(:random, lambda{|*args|
     order('random()')
   })
-  scope :trending, upcoming.includes(:organization).order('users_count DESC, starts_at').limit(12)
+  scope :trending, upcoming.includes(:organization).order('trend_weight DESC, starts_at').limit(12)
 
   def Event.update_clone_counts!
     Event.reset_column_information
