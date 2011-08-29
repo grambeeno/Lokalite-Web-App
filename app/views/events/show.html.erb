@@ -21,7 +21,7 @@
       <dd><%= render :partial => 'time_span', :locals => {:event => @event} %></dd>
 
       <dt>Description</dt>
-      <dd class='description'><%= @event.description %></dd>
+      <dd class='description'><%= clean_format @event.description %></dd>
 
       <dt>Tags</dt>
       <dd>
