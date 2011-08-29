@@ -6,7 +6,11 @@
   <%= form.input :name %>
   <%= form.input :description, :hint => raw('<span id="counter"></span>') %>
   <%= form.input :email %>
-  <%= form.input :url, :label => 'Website'%>
+  <%#
+    We are making the URL a string instead of website because chrome enforces validation if you leave it set as a url
+    However, we want to let people put in their URL without http:// and we insert it server-side.
+  %>
+  <%= form.input :url, :label => 'Website', :as => :string %>
   <%= form.input :phone %>
   <%= form.input :category_list, :label => 'Category', :as => :select, :required => true, :collection => ORGANIZATION_CATEGORIES, :prompt => 'Select a Category' %>
 
