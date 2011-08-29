@@ -70,7 +70,7 @@ class Event < ActiveRecord::Base
   scope(:random, lambda{|*args|
     order('random()')
   })
-  scope :trending, upcoming.includes(:organization).order('trend_weight DESC, starts_at').limit(12)
+  scope :trending, order('trend_weight DESC').upcoming.includes(:organization).limit(12)
 
   def Event.update_clone_counts!
     Event.reset_column_information
@@ -142,7 +142,7 @@ class Event < ActiveRecord::Base
   end
 
   def set_trend_weight
-    self.trend_weight = users_count.to_i + anonymous_users_count.to_i
+    self.trend_weight = users_count.to_i + anonymous_trend_count.to_i
   end
 
   # def location_time(t = :starts_at)
@@ -301,7 +301,7 @@ class Event < ActiveRecord::Base
 
   def clone_with_date(date)
     offset = (date.to_date - starts_at.to_date).days
-    cleaned_attributes = attributes.reject{|key, value| %w[id clone_count users_count].include?(key) }
+    cleaned_attributes = attributes.reject{|key, value| %w[id clone_count trend_weight users_count anonymous_trend_count].include?(key) }
     clone  = Event.new(cleaned_attributes)
     clone.starts_at = starts_at + offset
     clone.ends_at   = ends_at + offset
@@ -370,25 +370,28 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: events
 #
-#  id              :integer         not null, primary key
-#  uuid            :string(255)
-#  name            :string(255)
-#  description     :string(255)
-#  starts_at       :datetime
-#  ends_at         :datetime
-#  repeating       :boolean
-#  prototype_id    :integer
-#  organization_id :integer
-#  image_id        :integer
-#  location_id     :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#  clone_count     :integer         default(0)
-#  repeats         :string(255)
-#  users_count     :integer         default(0)
+#  id                    :integer         not null, primary key
+#  uuid                  :string(255)
+#  name                  :string(255)
+#  description           :string(255)
+#  starts_at             :datetime
+#  ends_at               :datetime
+#  repeating             :boolean
+#  prototype_id          :integer
+#  organization_id       :integer
+#  image_id              :integer
+#  location_id           :integer
+#  created_at            :datetime
+#  updated_at            :datetime
+#  clone_count           :integer         default(0)
+#  repeats               :string(255)
+#  users_count           :integer         default(0)
+#  trend_weight          :decimal(, )     default(0.0)
+#  anonymous_users_count :integer         default(0)
 #
 

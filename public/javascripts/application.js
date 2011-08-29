@@ -179,36 +179,33 @@ jq(function($){
     var link = $(this);
     var event_id = idFromString(link.attr('href'));
     App.ajax({
-      url: '/api/events/trend?event_id=' + event_id,
+      url: '/api/1/events/trend?event_id=' + event_id,
       type: 'post',
       success: function(response, status, request) {
-        var counter = link.find('.trend-count');
-        counter.text( parseInt(counter.text(), 10) + 1 )
-
-        link.removeClass('trend');
-        link.addClass('trended');
-        link.attr('href', link.attr('href').replace('trend', 'untrend'));
+        // nothing anymore, we'll just ignore if the request was
+        // successful and give the user immediate feedback instead
       }
     });
+    link.removeClass('trend');
+    link.addClass('trended');
+    link.attr('href', link.attr('href').replace('trend', 'untrend'));
   });
 
   $('.trended').live('click', function(event) {
     event.preventDefault();
-    console.log('untrend');
     var link = $(this);
     var event_id = idFromString(link.attr('href'));
     App.ajax({
-      url: '/api/events/untrend?event_id=' + event_id,
+      url: '/api/1/events/untrend?event_id=' + event_id,
       type: 'post',
       success: function(response, status, request) {
-        var counter = link.find('.trend-count');
-        counter.text( parseInt(counter.text(), 10) - 1 )
-
-        link.removeClass('trended');
-        link.addClass('trend');
-        link.attr('href', link.attr('href').replace('untrend', 'trend'));
+        // nothing anymore, we'll just ignore if the request was
+        // successful and give the user immediate feedback instead
       }
     });
+    link.removeClass('trended');
+    link.addClass('trend');
+    link.attr('href', link.attr('href').replace('untrend', 'trend'));
   });
 
 
@@ -299,8 +296,6 @@ jq(function($){
     minDate: new Date(),
     numberOfMonths: 3,
     onSelect: function(dateText, instance) {
-      // console.log(dateText);
-      console.log(new Date(dateText));
       var template = $('<li><div class="event-repeat"><input class="date" id="event_dates_" name="event_dates[]" type="text" /><a href="#remove" class="remove-repeat">Remove</a></div></li>');
       template.find('.date').val(dateText);
       $('#event-repeats').append( template );

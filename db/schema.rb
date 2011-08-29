@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110829162125) do
     t.string   "repeats"
     t.integer  "users_count",           :default => 0
     t.decimal  "trend_weight",          :default => 0.0
-    t.integer  "anonymous_users_count", :default => 0
+    t.integer  "anonymous_trend_count", :default => 0
   end
 
   add_index "events", ["description"], :name => "index_events_on_description"

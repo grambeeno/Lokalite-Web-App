@@ -11,25 +11,28 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: events
 #
-#  id              :integer         not null, primary key
-#  uuid            :string(255)
-#  name            :string(255)
-#  description     :string(255)
-#  starts_at       :datetime
-#  ends_at         :datetime
-#  repeating       :boolean
-#  prototype_id    :integer
-#  organization_id :integer
-#  image_id        :integer
-#  location_id     :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#  clone_count     :integer         default(0)
-#  repeats         :string(255)
-#  users_count     :integer         default(0)
+#  id                    :integer         not null, primary key
+#  uuid                  :string(255)
+#  name                  :string(255)
+#  description           :string(255)
+#  starts_at             :datetime
+#  ends_at               :datetime
+#  repeating             :boolean
+#  prototype_id          :integer
+#  organization_id       :integer
+#  image_id              :integer
+#  location_id           :integer
+#  created_at            :datetime
+#  updated_at            :datetime
+#  clone_count           :integer         default(0)
+#  repeats               :string(255)
+#  users_count           :integer         default(0)
+#  trend_weight          :decimal(, )     default(0.0)
+#  anonymous_users_count :integer         default(0)
 #
 

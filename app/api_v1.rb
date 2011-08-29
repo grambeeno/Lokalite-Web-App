@@ -48,8 +48,8 @@ ApiV1 =
         if logged_in?
           current_user.events << event
         else
-          # event.trend_count += 1
-          # event.save
+          event.anonymous_trend_count = event.anonymous_trend_count.to_i + 1
+          event.save
         end
 
         # for some reason passing the current user was returning
@@ -65,8 +65,13 @@ ApiV1 =
     interface('/events/untrend/') do
       write do
         event = Event.find(params[:event_id])
-        current_user.events.remove(event)
-        # data(event.to_dao(:for_user => current_user))
+        if logged_in?
+          current_user.events.remove(event)
+        else
+          event.anonymous_trend_count = event.anonymous_trend_count.to_i - 1
+          event.save
+        end
+
         data(event.to_dao.merge(:trended? => false))
       end
     end

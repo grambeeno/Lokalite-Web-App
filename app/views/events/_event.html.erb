@@ -12,9 +12,7 @@
         trend_state = :trend
       end
     -%>
-    <%= link_to "#trend_event/#{event.id}", :class => ['trend-button', trend_state] do %>
-      <div class="trend-count"><%= event.users_count %></div>
-    <% end %>
+    <%= link_to ' ', "#trend_event/#{event.id}", :class => ['trend-button', trend_state] %>
   </div>
 
   <%= link_to event_path(event.slug, event.id) do %>
