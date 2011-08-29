@@ -48,8 +48,6 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :image
   validates_associated :image
 
-  before_save :set_trend_weight
-
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
 
   scope :by_date, order('starts_at')
@@ -141,6 +139,9 @@ class Event < ActiveRecord::Base
     Slug.for(name)
   end
 
+  # remember that users_count is a counter_cache column and will
+  # not invoke before_save callbacks when it gets updated
+  before_save :set_trend_weight
   def set_trend_weight
     self.trend_weight = users_count.to_i + anonymous_trend_count.to_i
   end

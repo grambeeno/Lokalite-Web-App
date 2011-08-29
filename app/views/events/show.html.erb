@@ -37,8 +37,7 @@
       <%= link_to 'Share', '#' %>
       &nbsp;
       <% if logged_in? %>
-        <% trend_state = current_user.events.include?(@event) ? :trended : :trend  -%>
-        <%= link_to(trend_state.to_s.titleize, "#trend_event/#{@event.id}", :class => [trend_state]) %>
+        <%= link_to(trend_state.to_s.titleize, "#trend_event/#{@event.id}", :class => [trend_class(@event)]) %>
       <% end %>
       (<%= pluralize @event.users_count, 'trend' %>)
     </div>

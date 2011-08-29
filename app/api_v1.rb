@@ -42,15 +42,17 @@ ApiV1 =
 
     # the dao router has a problem with taking more than one route with an embeded param
     # I looked into it but it was taking too long, so we'll just pass ?event_id= instead
-    interface('/events/trend/') do
+    interface('/events/trend') do
       write do
         event = Event.find(params[:event_id])
         if logged_in?
           current_user.events << event
         else
+          @session[:trended_events] = [] unless @session[:trended_events]
+          @session[:trended_events] << event.id
           event.anonymous_trend_count = event.anonymous_trend_count.to_i + 1
-          event.save
         end
+        event.save
 
         # for some reason passing the current user was returning
         # "trended": null in the json. I tried reloading the event and user
@@ -62,15 +64,16 @@ ApiV1 =
       end
     end
 
-    interface('/events/untrend/') do
+    interface('/events/untrend') do
       write do
         event = Event.find(params[:event_id])
         if logged_in?
           current_user.events.remove(event)
         else
+          @session[:trended_events].delete(event.id) if @session[:trended_events]
           event.anonymous_trend_count = event.anonymous_trend_count.to_i - 1
-          event.save
         end
+        event.save
 
         data(event.to_dao.merge(:trended? => false))
       end
@@ -113,6 +116,8 @@ ApiV1 =
     attr_accessor :real_user
 
     def initialize(options = {})
+      @session = options[:session]
+
       effective_user  = options[:effective_user] || options[:user]
       real_user       = options[:real_user]      || effective_user
       @effective_user = user_for(effective_user) if effective_user

@@ -11,6 +11,7 @@ class APIController < ApplicationController
                   events
                   events/show
                   events/trend
+                  events/untrend
                   places
                 ]
 
@@ -81,11 +82,11 @@ protected
     end
 
     if user
-      @api = api_class.new(:user => user)
+      @api = api_class.new(:user => user, :session => session)
       return
     else
       if white_listed?(path)
-        @api = api_class.new
+        @api = api_class.new(:session => session)
       else
         render(:nothing => true, :status => :unauthorized)
       end

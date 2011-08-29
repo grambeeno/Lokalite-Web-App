@@ -5,14 +5,7 @@
       <div class='description'><%= event.description %></div>
     <% end %>
 
-    <%
-      if logged_in?
-        trend_state = current_user.events.include?(event) ? :trended : :trend
-      else
-        trend_state = :trend
-      end
-    -%>
-    <%= link_to ' ', "#trend_event/#{event.id}", :class => ['trend-button', trend_state] %>
+    <%= link_to ' ', "#trend_event/#{event.id}", :class => ['trend-button', trend_class(event)] %>
   </div>
 
   <%= link_to event_path(event.slug, event.id) do %>
