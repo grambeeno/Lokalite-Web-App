@@ -10,12 +10,13 @@ $error-red: #cc0000
 form.formtastic
   input, textarea
     background-color: $form-grey
-    border: none
+    border: 1px solid darken($form-grey, 25)
     padding: 10px
 
     &.file
       background-color: transparent
       padding: 0
+      border: none
   input[type=submit]
     +button
 
