@@ -21,7 +21,7 @@
       <dd><%= render :partial => 'time_span', :locals => {:event => @event} %></dd>
 
       <dt>Description</dt>
-      <dd class='description'><%= clean_format @event.description %></dd>
+      <dd class='description'><%= auto_link @event.description, :all, :html => {:target => '_blank'} %></dd>
 
       <dt>Tags</dt>
       <dd>
