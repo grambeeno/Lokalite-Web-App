@@ -28,8 +28,8 @@ Lokalite::Application.routes.draw do
 
   match 'my/profile', :controller => 'my', :action => 'profile', :as => 'edit_profile'
 
-  match 'api' => 'api#index', :as => 'api_index'
-  match 'api/*path' => 'api#call', :as => 'api'
+  match 'api/:api_version' => 'api#index', :as => 'api_index', :constraints => {:api_version => /\d+/}
+  match 'api/:api_version/*path' => 'api#call', :as => 'api', :constraints => {:api_version => /\d+/}
 
 
   #StaticController.pages.each do |page|

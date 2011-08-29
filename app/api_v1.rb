@@ -1,4 +1,4 @@
-Api = 
+ApiV1 =
   Dao.api do
 
     interface('/ping') do
@@ -45,7 +45,12 @@ Api =
     interface('/events/trend/') do
       write do
         event = Event.find(params[:event_id])
-        current_user.events << event
+        if logged_in?
+          current_user.events << event
+        else
+          # event.trend_count += 1
+          # event.save
+        end
 
         # for some reason passing the current user was returning
         # "trended": null in the json. I tried reloading the event and user
@@ -56,7 +61,7 @@ Api =
         data(event.to_dao.merge(:trended? => true))
       end
     end
-    
+
     interface('/events/untrend/') do
       write do
         event = Event.find(params[:event_id])
@@ -65,13 +70,13 @@ Api =
         data(event.to_dao.merge(:trended? => false))
       end
     end
-  
+
 
   # utils
   #
     def parameter(name, options = {})
       options = Map.options(options)
-      
+
       keys = [options[:key], options[:keys], options[:or]].compact
       keys.push(Array(name)) if keys.empty?
 
@@ -102,12 +107,11 @@ Api =
     attr_accessor :effective_user
     attr_accessor :real_user
 
-    def initialize(*args)
-      options = args.extract_options!.to_options!
-      effective_user = args.shift || options[:effective_user] || options[:user]
-      real_user = args.shift || options[:real_user] || effective_user
+    def initialize(options = {})
+      effective_user  = options[:effective_user] || options[:user]
+      real_user       = options[:real_user]      || effective_user
       @effective_user = user_for(effective_user) if effective_user
-      @real_user = user_for(real_user) if real_user
+      @real_user      = user_for(real_user) if real_user
       @real_user ||= @effective_user
     end
 
@@ -192,8 +196,8 @@ Api =
   end
 
 
-unloadable(Api)
+unloadable(ApiV1)
 
-def api(*args, &block)
-  Api.new(*args, &block)
-end
+# def api(*args, &block)
+#   Api.new(*args, &block)
+# end

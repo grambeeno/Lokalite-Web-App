@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
 
   ### PasswordReset = '________PASSWORD_RESET________'
   #
-  
+
   def add_role(role)
     roles.push(role) unless roles.include?(role)
     save!
@@ -119,10 +119,6 @@ class User < ActiveRecord::Base
 
   def session
     @session ||= (Session.find(:first, :conditions => {:user_id => id}) || Session.create!(:user_id => id))
-  end
-
-  def api
-    Api.new(user=self)
   end
 
   def default_handle
@@ -243,10 +239,6 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(password) if password
   end
 
-  def api
-    Api.new(self)
-  end
-
   def can_edit_event?(event)
     event = Event.find(event) unless event.is_a?(Event)
     organizations.detect{|organization| event.organization_id == organization.id}
@@ -255,7 +247,7 @@ class User < ActiveRecord::Base
   def self.to_dao(*args)
     super(*args).reject{|arg| %w[password].include?(arg)}
   end
-  
+
 end
 
 

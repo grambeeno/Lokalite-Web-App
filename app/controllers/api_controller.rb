@@ -10,6 +10,7 @@ class APIController < ApplicationController
   WhiteList = %w[ ping
                   events
                   events/show
+                  events/trend
                   places
                 ]
 
@@ -72,12 +73,19 @@ protected
       User.authenticate(:email => email, :password => password)
     end
 
+    case params[:api_version].to_i
+    when 1
+      api_class = ApiV1
+    else
+      render :json => {:error => "No API version #{params[:api_version]}", :status => 404}, :status => 404 and return
+    end
+
     if user
-      @api = user.api
+      @api = api_class.new(:user => user)
       return
     else
       if white_listed?(path)
-        @api = Api.new
+        @api = api_class.new
       else
         render(:nothing => true, :status => :unauthorized)
       end
@@ -91,7 +99,7 @@ protected
   def self.white_listed?(path)
     WhiteList.include?(path.to_s)
   end
-  
+
   def white_listed?(path)
     self.class.white_listed?(path)
   end

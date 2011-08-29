@@ -47,7 +47,7 @@
     class Application < Rails::Application
 
         config.after_initialize do
-          require 'app/api.rb'
+          require 'app/api_v1.rb'
           require 'yajl/json_gem'
         end
 
