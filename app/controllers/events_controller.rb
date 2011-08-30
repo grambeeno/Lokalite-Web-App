@@ -1,15 +1,14 @@
 class EventsController < ApplicationController
   # before_filter :show_splash_to_new_visitors
-  before_filter :set_context
   before_filter :remember_location
 
   def index
     if params[:view_type] == 'map'
-      @context[:per_page] = 24
+      params[:per_page] = 24
     else
-      @context[:per_page] = 12
+      params[:per_page] = 12
     end
-    @events = Event.browse(@context)
+    @events = Event.browse(params)
   end
 
   def show
@@ -35,25 +34,8 @@ class EventsController < ApplicationController
 
 private
 
-
-  def set_context
-    @context = Map[
-      #:location     , session[:location],
-      :location     , (params.has_key?(:location) ? params[:location] : nil),
-      :organization , params[:organization],
-      :category     , params[:category],
-      :date         , params[:date],
-      :origin       , params[:origin],
-      :within       , params[:within],
-      :keywords     , params[:keywords],
-      :order        , params[:order],
-      :page         , params[:page],
-      :per_page     , params[:per_page]
-    ]
-  end
-
   def remember_location
-    session[:location] = @context[:location]
+    session[:location] = params[:location]
   end
 
   def show_splash_to_new_visitors

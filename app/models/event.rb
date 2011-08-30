@@ -55,6 +55,9 @@ class Event < ActiveRecord::Base
   scope(:after, lambda{|time|
     where('ends_at > ?', time)
   })
+  scope(:before, lambda{|time|
+    where('starts_at < ?', time)
+  })
   scope :upcoming, by_date().after(Time.now)
 
   scope(:prototypes, lambda{|*args|
@@ -93,9 +96,27 @@ class Event < ActiveRecord::Base
     page     = [Integer(page), 1].max
     per_page = [Integer(per_page), 42].min
 
-    start_time = options[:after] || Time.now
+    start_time = if options[:after]
+      begin
+        options[:after].to_time
+      rescue
+        Chronic.parse(options[:after].humanize)
+      end
+    else
+      Time.now
+    end
+
+    latest_start = if options[:before]
+      begin
+        options[:before].to_time
+      rescue
+        Chronic.parse(options[:before].humanize)
+      end
+    end
+
 
     results = Event.after(start_time)
+    results = results.before(latest_start) if latest_start
 
     if organization_id.blank?
       results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
