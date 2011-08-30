@@ -269,7 +269,7 @@ form.formtastic .errorExplanation ul { margin-top: 1em; list-style: inside disc;
 #repeat-calendar { margin-left: -12px; margin-bottom: 2em; }
 
 form.formtastic .event-repeat { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; margin-bottom: 1em; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; display: inline-block; padding: 10px; }
-form.formtastic .event-repeat input { background-color: transparent; width: 74px; padding: 0; }
+form.formtastic .event-repeat input { background-color: transparent; border: none; width: 74px; padding: 0; }
 
 form.formtastic .signup-fields, form.formtastic .login-fields { text-align: center; }
 form.formtastic .signup-fields input[type="text"], form.formtastic .signup-fields input[type="password"], form.formtastic .login-fields input[type="text"], form.formtastic .login-fields input[type="password"] { width: 100%; }

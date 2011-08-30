@@ -326,6 +326,7 @@ class Event < ActiveRecord::Base
     offset = (date.to_date - starts_at.to_date).days
     cleaned_attributes = attributes.reject{|key, value| %w[id clone_count trend_weight users_count anonymous_trend_count].include?(key) }
     clone  = Event.new(cleaned_attributes)
+    clone.category_list = category_list.reject{|c| c == 'Featured'}
     clone.starts_at = starts_at + offset
     clone.ends_at   = ends_at + offset
     clone.prototype = self
