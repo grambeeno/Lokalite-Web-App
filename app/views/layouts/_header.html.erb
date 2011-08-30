@@ -12,9 +12,13 @@
       <li>
         <%= link_to "Account", '#my_account' %>
         <ul>
-          <% if current_user.organizations.any? %>
+          <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>
+            </li>
+          <% elsif current_user.organizations.any? %>
+            <li>
+              <%= link_to('My Business', my_organization_path(current_user.organizations.first)) %>
             </li>
           <% end %>
           <li>

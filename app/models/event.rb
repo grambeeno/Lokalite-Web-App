@@ -16,11 +16,11 @@ class Event < ActiveRecord::Base
   acts_as_taggable_on :categories
 
   def first_category
-    category_list.split(', ').first.first
+    normal_categories.first
   end
   def second_category
-    if categories.size > 1
-      category_list.split(', ').first.last
+    if normal_categories.size > 1
+      normal_categories.last
     end
   end
 
