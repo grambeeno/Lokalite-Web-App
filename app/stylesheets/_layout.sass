@@ -57,13 +57,20 @@ body
               display: block
           li
             position: relative
+            a.with-arrow
+              background-image: image_url('down-arrow.png')
+              background-repeat: no-repeat
+              background-position: right 4px
+              padding-right: 18px
+
+
             ul
               // +no-bullets
-              display: none
               position: absolute
+              display: none
               z-index: 10000
-              top: 0
-              padding-top: 20px
+              top: 15px
+              // padding-top: 20px
               right: 12px
               width: 140px
               background-color: black
