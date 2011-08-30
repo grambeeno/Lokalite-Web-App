@@ -107,10 +107,6 @@ class Event < ActiveRecord::Base
 
     results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
 
-    origin  = options[:origin].humanize
-    within  = options[:within] || 20
-    results = results.origin(origin, :within => within) if origin.present?
-
     if options[:order] == 'distance' && origin.present?
       results = results.near
     elsif options[:order] == 'trending'
@@ -120,6 +116,10 @@ class Event < ActiveRecord::Base
     else
       results = results.order('events.starts_at ASC')
     end
+
+    origin  = options[:origin].humanize
+    within  = options[:within] || 20
+    results = results.origin(origin, :within => within) if origin.present?
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
