@@ -33,7 +33,7 @@
 
       <ul class='categories'>
         <%
-          EVENT_CATEGORIES.dup.unshift('All Events', 'Featured').each do |category|
+          EVENT_CATEGORIES.dup.unshift('Featured', 'Trending').push('All Events').each do |category|
             slug = category.parameterize('_')
             classes = [slug]
             if params[:controller] == 'events' and params[:action] == 'index'
@@ -56,7 +56,7 @@
       <ul class='categories'>
         <%
           # not including Featured for places yet, but might want to add that in sometime
-          ORGANIZATION_CATEGORIES.dup.unshift('All Places').each do |category|
+          ORGANIZATION_CATEGORIES.dup.push('All Places').each do |category|
           slug = category.parameterize('_')
           classes = [slug]
           if params[:controller] == 'places' and params[:action] == 'index'

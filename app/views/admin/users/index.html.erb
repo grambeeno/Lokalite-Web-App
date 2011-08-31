@@ -12,16 +12,16 @@
   <table style='width:100%'>
     <tr>
       <th>
-        email
+        Email
       </th>
       <th>
-        created_at
+        Created At
       </th>
       <th>
-        sudo
+        Sudo
       </th>
       <th>
-        admin?
+        Admin?
       </th>
     </tr>
 
@@ -32,7 +32,7 @@
           <%= link_to user.email, :action => :edit, :id => user.id %> <br />
         </td>
         <td style='padding:0.5em'>
-          <%= user.created_at.iso8601 %> <br />
+          <%= user.created_at.to_s(:datetimepicker) %> <br />
         </td>
         <td style='padding:0.5em'>
           <%= link_to 'sudo', :action => :sudo, :id => user.id %> <br />

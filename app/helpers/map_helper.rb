@@ -17,7 +17,7 @@ module MapHelper
   def gmaps_url_for(location)
     raw(
       'http://maps.google.com/maps?f=q&amp;source=s_q&amp;q=' +
-      URI.escape(location.formatted_address.gsub(/\D+/, '+')) +
+      URI.escape(location.formatted_address.gsub(/\s+/, '+')) +
       '&amp;hl=en&amp;sll=' +
       location.coordinates +
       '&amp;ie=UTF8&amp;z=12&amp;ll=' +

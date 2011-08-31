@@ -17,8 +17,10 @@ $light-green: #96d2a5
 
 $grey: #5d5d5d
 $light-grey: #808080
+$header-grey: #444
 
-$event-categories: 'all_events', 'all_places', 'featured', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
+
+$event-categories: 'all_events', 'all_places', 'featured', 'trending', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
 =transparent-black
   background:
@@ -56,17 +58,18 @@ h2.big
   color: $light-grey
   margin-bottom: 20px
 
+h1, h2, h3
+  color: $header-grey
+
 h1
   font-size: 24px
 h2
   font-size: 20px
-
 h3
   font-size: 16px
 
 a
   +link-colors($blue, darken($blue, 12), darken($blue, 20), $blue)
-
 
 =button
   +unstyled-link
@@ -137,6 +140,10 @@ a.button
 
 #right-sidebar
   padding-left: $sidebar-padding
+  h3 a
+    +hover-link
+    +link-colors($header-grey, $blue)
+    // +unstyled-link
   ul
     margin: 0
     +no-bullets
@@ -398,6 +405,36 @@ table.times
     ul.buttons
       margin: 0 auto 18px
       display: inline-block
+
+// based on Apple pagination code here: http://mislav.uniqpath.com/will_paginate/
+.pagination
+  // background: #f1f1f1
+  // border: 1px solid #e5e5e5
+  text-align: center
+  padding: 1em
+  cursor: default
+  font-size: 1.2em
+  a, span
+    padding: 0.2em 0.3em
+  .disabled
+    color: #aaaaaa
+  .current, em
+    font-style: normal
+    font-weight: bold
+    background-color: darken(#f1f1f1, 20)
+    display: inline-block
+    width: 1.4em
+    height: 1.4em
+    line-height: 1.5
+    -moz-border-radius: 1em
+    -webkit-border-radius: 1em
+    border-radius: 1em
+    text-shadow: rgba(white, .8) 1px 1px 1px
+  a
+    text-decoration: none
+    color: black
+    &:hover, &:focus
+      text-decoration: underline
 
 
 .flash

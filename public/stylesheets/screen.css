@@ -7,6 +7,8 @@ h1.big { font-size: 38px; margin-bottom: 10px; }
 
 h2.big { font-size: 20px; font-weight: normal; color: gray; margin-bottom: 20px; }
 
+h1, h2, h3 { color: #444444; }
+
 h1 { font-size: 24px; }
 
 h2 { font-size: 20px; }
@@ -76,6 +78,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories .all_events { background-image: url('/images/category-icons/all_events.png?1314340163'); }
 #left-sidebar ul.categories .all_places { background-image: url('/images/category-icons/all_places.png?1314340163'); }
 #left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1314340163'); }
+#left-sidebar ul.categories .trending { background-image: url('/images/category-icons/trending.png?1314814929'); }
 #left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314340163'); }
 #left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1314340163'); }
 #left-sidebar ul.categories .food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314340163'); }
@@ -127,6 +130,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .category-icon.all_events { background-image: url('/images/category-icons/all_events.png?1314340163'); }
 .category-icon.all_places { background-image: url('/images/category-icons/all_places.png?1314340163'); }
 .category-icon.featured { background-image: url('/images/category-icons/featured.png?1314340163'); }
+.category-icon.trending { background-image: url('/images/category-icons/trending.png?1314814929'); }
 .category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314340163'); }
 .category-icon.campus { background-image: url('/images/category-icons/campus.png?1314340163'); }
 .category-icon.food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314340163'); }
@@ -147,6 +151,9 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .category-icon.mmj { background-image: url('/images/category-icons/mmj.png?1314340163'); }
 
 #right-sidebar { padding-left: 10px; }
+#right-sidebar h3 a { text-decoration: none; color: #444444; }
+#right-sidebar h3 a:hover { text-decoration: underline; }
+#right-sidebar h3 a:hover { color: #607890; }
 #right-sidebar ul { margin: 0; list-style: none; }
 #right-sidebar ul li { list-style-image: none; list-style-type: none; margin-left: 0px; }
 #right-sidebar ul li { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
@@ -228,6 +235,13 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 .my-organizations-controller table.times { font-size: 13px; margin: 0 0 1em; }
 .my-organizations-controller .organization-buttons { text-align: center; }
 .my-organizations-controller .organization-buttons ul.buttons { margin: 0 auto 18px; display: inline-block; }
+
+.pagination { text-align: center; padding: 1em; cursor: default; font-size: 1.2em; }
+.pagination a, .pagination span { padding: 0.2em 0.3em; }
+.pagination .disabled { color: #aaaaaa; }
+.pagination .current, .pagination em { font-style: normal; font-weight: bold; background-color: #bebebe; display: inline-block; width: 1.4em; height: 1.4em; line-height: 1.5; -moz-border-radius: 1em; -webkit-border-radius: 1em; border-radius: 1em; text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+.pagination a { text-decoration: none; color: black; }
+.pagination a:hover, .pagination a:focus { text-decoration: underline; }
 
 .flash { margin: 0 25px 10px; font-size: 14px; padding: 1em; line-height: 1.4em; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; border-style: solid; border-width: 1px; }
 .flash .dismiss { color: inherit; text-decoration: inherit; cursor: inherit; display: inline; float: right; font-size: 20px; font-weight: bold; color: #777777; color: rgba(0, 0, 0, 0.5); filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity: 0.5; }

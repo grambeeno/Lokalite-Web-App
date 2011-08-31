@@ -119,7 +119,13 @@ class Event < ActiveRecord::Base
     results = results.before(latest_start) if latest_start
 
     if organization_id.blank?
-      results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
+      if options[:category].present?
+        if options[:category] == 'trending'
+          results = results.trending
+        else
+          results = results.tagged_with(options[:category], :on => 'categories')
+        end
+      end
     else
       results = results.where(:organization_id => organization_id)
     end
