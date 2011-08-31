@@ -239,10 +239,14 @@ jq(function($){
 
   $('a[href="#event-categories"]').click(function(event) {
     event.preventDefault();
-    $(this).closest('ul').find('.active').removeClass('active');
-    $(this).addClass('active');
-    $("#places-categories").hide();
-    $("#event-categories").show();
+    if ($(this).hasClass('active')) {
+      window.location = '/events/boulder-colorado/category/featured';
+    } else {
+      $(this).closest('ul').find('.active').removeClass('active');
+      $(this).addClass('active');
+      $("#places-categories").hide();
+      $("#event-categories").show();
+    }
   });
   $('a[href="#places-categories"]').click(function(event) {
     event.preventDefault();
