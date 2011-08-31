@@ -1,4 +1,34 @@
 <script type="text/javascript">
+
+  <%
+    options = {:origin => params[:origin]}
+    options[:category] = params[:category] if params[:category].present?
+  %>
+  var tile_view_path = "<%= events_path(options) %>";
+
+  function TileViewSwitcher(controlDiv, map) {
+
+    // Setting padding to 5 px will offset the control
+    // from the edge of the map
+    controlDiv.style.padding = '6px';
+
+    // Set CSS for the control border
+    var controlUI = document.createElement('DIV');
+    controlUI.className = 'google-maps-custom-button';
+    controlUI.title = 'View Events in Tile View';
+    controlDiv.appendChild(controlUI);
+
+    // Set CSS for the control interior
+    var controlText = document.createElement('DIV');
+    controlText.innerHTML = 'Switch to Tile View';
+    controlUI.appendChild(controlText);
+
+    // Setup the click event listeners: simply set the map to Chicago
+    google.maps.event.addDomListener(controlUI, 'click', function() {
+      window.location = tile_view_path;
+    });
+  }
+
   jQuery(function($){
 
     var myLatlng = new google.maps.LatLng(40.023868,-105.269194);
@@ -9,6 +39,11 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     }
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    var tileViewDiv = document.createElement('DIV');
+    var tileView = new TileViewSwitcher(tileViewDiv, map);
+    tileViewDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(tileViewDiv);
 
     // maintain a single instance of the infowindow
     // each marker is responsible for setting the content.

@@ -17,9 +17,11 @@
     <li>
       <%= link_to 'Privacy Policy', static_path(:privacy_policy) %>
     </li>
-    <li>
-      <%= link_to 'Movie', static_path(:movie, :layout => :facebox), :id => :movie, :rel => :facebox %>
-    </li>
+    <% if false %>
+      <li>
+        <%= link_to 'Movie', static_path(:movie, :layout => :facebox), :id => :movie, :rel => :facebox %>
+      </li>
+    <% end %>
     <li>
       <%= link_to 'Business', business_promo_path %>
     </li>

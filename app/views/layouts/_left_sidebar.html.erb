@@ -18,18 +18,6 @@
     </ul>
 
     <div id="event-categories">
-      <%
-        options = {:origin => params[:origin]}
-        options[:category] = params[:category] if params[:category].present?
-      %>
-      <% if params[:view_type] == 'map' %>
-        <%= link_to 'Switch to Tile View', events_path(options) %>
-      <% else %>
-        <% options[:view_type] = 'map' %>
-        <%= link_to 'Switch to Map View', events_path(options) %>
-      <% end %>
-      <br />
-      <br />
 
       <ul class='categories'>
         <%

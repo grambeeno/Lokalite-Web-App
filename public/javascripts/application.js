@@ -254,6 +254,7 @@ jq(function($){
 
 
   $('.datetimepicker').datetimepicker({
+    minDate: new Date(),
     ampm: true,
     stepMinute: 15
   });

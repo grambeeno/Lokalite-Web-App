@@ -78,7 +78,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories .all_events { background-image: url('/images/category-icons/all_events.png?1314340163'); }
 #left-sidebar ul.categories .all_places { background-image: url('/images/category-icons/all_places.png?1314340163'); }
 #left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1314340163'); }
-#left-sidebar ul.categories .trending { background-image: url('/images/category-icons/trending.png?1314814929'); }
+#left-sidebar ul.categories .trending { background-image: url('/images/category-icons/trending.png?1314815212'); }
 #left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314340163'); }
 #left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1314340163'); }
 #left-sidebar ul.categories .food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314340163'); }
@@ -130,7 +130,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .category-icon.all_events { background-image: url('/images/category-icons/all_events.png?1314340163'); }
 .category-icon.all_places { background-image: url('/images/category-icons/all_places.png?1314340163'); }
 .category-icon.featured { background-image: url('/images/category-icons/featured.png?1314340163'); }
-.category-icon.trending { background-image: url('/images/category-icons/trending.png?1314814929'); }
+.category-icon.trending { background-image: url('/images/category-icons/trending.png?1314815212'); }
 .category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1314340163'); }
 .category-icon.campus { background-image: url('/images/category-icons/campus.png?1314340163'); }
 .category-icon.food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1314340163'); }
@@ -171,6 +171,8 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 
 #map_canvas { margin-top: -16px; margin-bottom: -16px; width: 100%; height: 800px; }
 
+.google-maps-custom-button { direction: ltr; overflow: hidden; text-align: center; position: relative; font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 12px; line-height: 160%; padding: 0px 6px; -webkit-box-shadow: rgba(0, 0, 0, 0.348) 2px 2px 3px; box-shadow: rgba(0, 0, 0, 0.348) 2px 2px 3px; min-width: 26px; color: black; border: 1px solid #a9bbdf; padding-left: 6px; font-weight: normal; -moz-border-radius: 2px; -webkit-border-radius: 2px; -o-border-radius: 2px; -ms-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f3f3f3)); background-image: -webkit-linear-gradient(top, #fefefe, #f3f3f3); background-image: -moz-linear-gradient(top, #fefefe, #f3f3f3); background-image: -o-linear-gradient(top, #fefefe, #f3f3f3); background-image: -ms-linear-gradient(top, #fefefe, #f3f3f3); background-image: linear-gradient(top, #fefefe, #f3f3f3); background-position: initial initial; background-repeat: initial initial; cursor: pointer; cursor: hand; }
+
 .events, .organizations { font-size: 12px; overflow: hidden; *zoom: 1; margin: 0; margin-top: -25px; padding-bottom: 10px; }
 .events li, .organizations li { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; display: inline; float: left; width: 200px; padding: 10px 10px 4px; margin-top: 25px; margin-left: 25px; }
 .events li a, .organizations li a { color: inherit; text-decoration: inherit; cursor: inherit; }
@@ -201,7 +203,9 @@ table.times tr { height: 12px; }
 table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
 table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
-.tiled-title { margin: 0 25px; margin-bottom: 12px; }
+header.index { overflow: hidden; *zoom: 1; }
+header.index h1 { margin: 0 25px; margin-bottom: 12px; display: inline; float: left; }
+header.index .switch-to-map-view { display: inline; float: right; margin-top: 10px; margin-right: 25px; }
 
 .tiled-pagination { margin: 4px 25px; }
 

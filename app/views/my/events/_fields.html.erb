@@ -8,9 +8,10 @@
   <%= form.hidden_field :organization_id, :value => organization.id %>
   <%= form.input :name %>
   <%= form.input :description, :as => :text, :hint => raw('<span id="counter"></span>'), :input_html => {:rows => 2} %>
-  <%= form.input :starts_at, :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
-  <%= form.input :ends_at,   :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
-  <%= form.input :repeating, :label => 'This is a repeating event', :hint => raw('<br />Set repeat dates after you submit this form') %>
+
+  <%= form.input :repeating, :label => 'Event occurs more than one time', :hint => raw('<br />You will add more dates on the next page') %>
+  <%= form.input :starts_at, :label => 'Event Start Time', :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
+  <%= form.input :ends_at,   :label => 'Event End Time', :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
   <%= form.input :first_category, :label => 'Categories', :required => true, :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
   <%= form.input :second_category, :label => '&nbsp;', :as => :select, :collection => EVENT_CATEGORIES, :include_blank => 'Second Category (optional)' %>
 

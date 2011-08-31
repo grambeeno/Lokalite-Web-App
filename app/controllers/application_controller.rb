@@ -10,19 +10,19 @@ class ApplicationController < ActionController::Base
   before_filter :set_user_time_zone
   before_filter :set_origin
 
-  before_filter :show_holding_page
+  # before_filter :show_holding_page
 
 protected
+
+  # def show_holding_page
+  #   unless logged_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'
+  #     render :file => 'public/holding-page.html', :layout => false
+  #   end
+  # end
 
   def set_origin
     origin = session[:origin] || 'boulder-colorado'
     params[:origin] = origin if params[:origin].blank?
-  end
-
-  def show_holding_page
-    unless logged_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'
-      render :file => 'public/holding-page.html', :layout => false
-    end
   end
 
   def permission_denied

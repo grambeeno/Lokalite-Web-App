@@ -11,6 +11,12 @@
     </div>
   </div>
 
+  <% if false %>
+    <div class="social-links">
+      <%= link_to 'Twitter', '#', :class => 'twitter' %>
+      <%= link_to 'Facebook', '#', :class => 'facebook' %>
+    </div>
+  <% end %>
   <div class='image'>
     <%= image_tag(@event.image.url(:large)) %>
   </div>
