@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::Controller
     order = params[:order] || 'created_at desc'
     options = params.reverse_merge(:per_page => 42, :page => 1)
 
-    @users = User.paginate(:page => page, :per_page => per_page, :order => order)
+    @users = User.includes(:roles).paginate(:page => page, :per_page => per_page, :order => order)
   end
 
   def edit
