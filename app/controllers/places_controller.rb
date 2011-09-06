@@ -1,9 +1,9 @@
 class PlacesController < ApplicationController
-  before_filter :set_context
   before_filter :remember_location
 
   def index
-    @organizations = Organization.browse(@context)
+    params[:per_page] = 12
+    @organizations = Organization.browse(params)
   end
 
   def random_organization
@@ -27,32 +27,16 @@ class PlacesController < ApplicationController
     query = query.includes(includes)
     query = query.order(order)
 
-    page = @context[:page]
-    per_page = @context[:per_page] || (Rails.env.development? ? 3 : 20)
+    page = params[:page]
+    per_page = params[:per_page] || (Rails.env.development? ? 3 : 20)
 
     @events = query.paginate(:page => page, :per_page => per_page)
   end
 
 protected
 
-  def set_context
-    @context = Map[
-      #:location     , session[:location],
-      :location     , (params.has_key?(:location) ? Location.absolute_path_for(params[:location]) : nil),
-      :organization , params[:organization],
-      :category     , params[:category],
-      #:date         , params[:date],
-      :keywords     , params[:keywords],
-      :order        , params[:order],
-      :page         , params[:page],
-      :per_page     , params[:per_page]
-    ]
-  ensure
-    @context[:organization] = Organization.find(params[:id]) if params[:id]
-  end
-
   def remember_location
-    session[:location] = @context[:location]
+    session[:location] = params[:location]
   end
 
 end
