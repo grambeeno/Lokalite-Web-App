@@ -28,6 +28,11 @@ class Event < ActiveRecord::Base
     categories.reject{|c| c.name == 'Featured'}
   end
 
+  validate :category_is_present
+  def category_is_present
+    errors.add_to_base "Category can't be blank" unless category_list.present?
+  end
+
   before_validation(:on => :create) do |event|
     event.uuid ||= App.uuid
   end
