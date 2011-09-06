@@ -28,6 +28,11 @@ class Event < ActiveRecord::Base
     categories.reject{|c| c.name == 'Featured'}
   end
 
+  validate :category_is_present
+  def category_is_present
+    errors.add_to_base "Category can't be blank" unless category_list.present?
+  end
+
   before_validation(:on => :create) do |event|
     event.uuid ||= App.uuid
   end
@@ -114,14 +119,16 @@ class Event < ActiveRecord::Base
       end
     end
 
-
     results = Event.after(start_time)
     results = results.before(latest_start) if latest_start
 
     if organization_id.blank?
       if options[:category].present?
         if options[:category] == 'trending'
-          results = results.trending
+          results  = results.trending
+          # Want to limit at 12 trending results
+          # don't override what we set in the named scope by setting it here too
+          per_page = 12
         else
           results = results.tagged_with(options[:category], :on => 'categories')
         end
@@ -134,7 +141,8 @@ class Event < ActiveRecord::Base
 
     results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
 
-    origin  = options[:origin].humanize
+    origin  = options[:origin]
+    origin  = origin.humanize if origin
 
     if options[:order] == 'distance' && origin.present?
       results = results.near

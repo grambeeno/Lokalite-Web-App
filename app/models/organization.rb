@@ -15,9 +15,14 @@ class Organization < ActiveRecord::Base
   has_many :events, :dependent => :destroy
 
   acts_as_taggable_on :categories
-
   def category
     categories.first
+  end
+
+  validate :category_is_present
+
+  def category_is_present
+    errors.add_to_base "Category can't be blank" unless category_list.present?
   end
 
   validates_presence_of :uuid

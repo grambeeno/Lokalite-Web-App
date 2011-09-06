@@ -4,7 +4,9 @@
       value = params[:keywords] || ''
     -%>
     <%= text_field_tag :keywords, value, :type => 'search', :placeholder => 'Search Events' %>
-    <%= hidden_field_tag(:category, params[:category]) if params[:category] %>
+    <%# Scope search to selected category if desired %>
+    <%#= hidden_field_tag(:category, params[:category]) if params[:category] %>
+    <%= hidden_field_tag(:category, 'All') %>
     <br />
     <br />
   <% end %>
