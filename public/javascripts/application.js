@@ -224,41 +224,8 @@ jq(function($){
     }
   });
 
-  // rolling our own simple tabs here because it's
-  // easier than un-styling the jQueryUI tabs
-  //
-  // alert(window.location.match(/places/g));
-
-  if (window.location.pathname.match(/\/places\//g)) {
-    $("#event-categories").hide();
-    $('a[href="#places-categories"]').addClass('active');
-  } else {
-    $("#places-categories").hide();
-    $('a[href="#event-categories"]').addClass('active');
-  }
-
-  $('a[href="#event-categories"]').click(function(event) {
-    event.preventDefault();
-    if ($(this).hasClass('active')) {
-      window.location = '/events/boulder-colorado/category/featured';
-    } else {
-      $(this).closest('ul').find('.active').removeClass('active');
-      $(this).addClass('active');
-      $("#places-categories").hide();
-      $("#event-categories").show();
-    }
-  });
-  $('a[href="#places-categories"]').click(function(event) {
-    event.preventDefault();
-    $(this).closest('ul').find('.active').removeClass('active');
-    $(this).addClass('active');
-    $("#event-categories").hide();
-    $("#places-categories").show();
-  });
-
-
   $('.datetimepicker').datetimepicker({
-    minDate: new Date(),
+    minDate: new Date().getDay(),
     ampm: true,
     stepMinute: 15
   });
