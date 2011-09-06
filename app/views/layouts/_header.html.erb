@@ -12,6 +12,11 @@
       <li>
         <%= link_to raw("Account &nbsp;&#9662;"), '#my_account' %>
         <ul>
+          <% if current_user.organizations.size == 0 %>
+            <li>
+              <%= link_to "Create Organization", new_my_organization_path %>
+            </li>
+            <% end %>  
           <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>
