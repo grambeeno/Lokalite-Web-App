@@ -89,12 +89,6 @@ class Event < ActiveRecord::Base
 
   def Event.browse(*args)
     options = Map.extract_options!(args)
-    # location_string = options[:location] || 'Boulder, CO'
-
-    organization_id = options[:organization_id]
-
-    keywords = args + Array(options[:keywords])
-    keywords = Array(keywords).flatten.compact
 
     page     = options[:page] || 1
     per_page = options[:per_page] || 20
@@ -122,6 +116,8 @@ class Event < ActiveRecord::Base
     results = Event.after(start_time)
     results = results.before(latest_start) if latest_start
 
+    organization_id = options[:organization_id]
+
     if organization_id.blank?
       if options[:category].present?
         if options[:category] == 'trending'
@@ -136,9 +132,13 @@ class Event < ActiveRecord::Base
     else
       results = results.where(:organization_id => organization_id)
     end
-    results = results.search(keywords.join(' ')) unless keywords.blank?
-    # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
 
+    if options[:keywords].present?
+      keywords = Array(options[:keywords]).flatten.compact
+      results  = results.search(keywords.join(' '))
+    end
+
+    # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
     results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
 
     origin  = options[:origin]

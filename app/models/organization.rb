@@ -20,7 +20,6 @@ class Organization < ActiveRecord::Base
   end
 
   validate :category_is_present
-
   def category_is_present
     errors.add_to_base "Category can't be blank" unless category_list.present?
   end

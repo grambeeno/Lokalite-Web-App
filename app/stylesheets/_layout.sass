@@ -7,7 +7,7 @@ $content-inner-padding: 10px
 $content-inner-width: $content-outer-width - (2*($content-bg-padding + $content-inner-padding))
 
 $sidebar-padding: 10px
-$sidebar-width: ($site-width - $content-outer-width)/2 - $sidebar-padding
+$sidebar-width: ($site-width - $content-outer-width)/2
 
 // add some padding to sides so smaller browser windows
 // still have a nice edge with space before content
@@ -33,7 +33,7 @@ body
     color: white
     .content
       +centered-on-page
-      // +clearfix
+      +clearfix
 
       .logo
         +float('left')

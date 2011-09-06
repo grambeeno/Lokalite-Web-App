@@ -36,7 +36,7 @@ a.button:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, co
 
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
 body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1314342292'); background-repeat: repeat-x; color: white; }
-body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
+body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; }
 body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1315342944'); background-repeat: no-repeat; background-position: 50% 50%; width: 124px; height: 53px; }
 body > header .content nav { display: inline; float: right; }
 body > header .content nav > ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; overflow: visible; margin-top: 32px; }
@@ -66,7 +66,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 
 #left-sidebar, #right-sidebar, #middle { display: inline; float: left; padding: 16px 0; }
 
-#left-sidebar, #right-sidebar { width: 170px; }
+#left-sidebar, #right-sidebar { width: 180px; }
 #left-sidebar h3, #right-sidebar h3 { font-size: 14px; margin-bottom: 6px; }
 
 #left-sidebar { padding-right: 10px; }
@@ -117,12 +117,12 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #business-signup .bottom .gain-more { background-image: url('/images/business/gain-more.png?1314051789'); height: 313px; padding-left: 680px; }
 
 .category-tab-buttons { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-bottom: 12px; }
-.category-tab-buttons li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 4px; padding-right: 4px; }
+.category-tab-buttons li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 6px; padding-right: 6px; }
 .category-tab-buttons li:first-child, .category-tab-buttons li.first { padding-left: 0; }
 .category-tab-buttons li:last-child { padding-right: 0; }
 .category-tab-buttons li.last { padding-right: 0; }
-.category-tab-buttons li { padding: 8px 4px; }
-.category-tab-buttons li a { text-decoration: none; border: 1px solid #dddddd; padding: 8px 16px; background-color: #dddddd; color: #666666; }
+.category-tab-buttons li { width: 84px; }
+.category-tab-buttons li a { text-align: center; display: block; width: 100%; height: 100%; padding: 8px 0; text-decoration: none; border: 1px solid #dddddd; background-color: #dddddd; color: #666666; }
 .category-tab-buttons li a.active { color: black; border-color: #83cb4d; background-color: #96d2a5; font-weight: bold; }
 
 .category-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/featured.png?1314340163'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 40px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 4px; }
@@ -294,3 +294,5 @@ form.formtastic .signup-fields input[type="text"], form.formtastic .signup-field
 form.formtastic .signup-fields div, form.formtastic .login-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
 
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
+
+#keywords { width: 100%; }

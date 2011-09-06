@@ -1,9 +1,9 @@
 <div class="flash error">
-  <% if params[:category].present? %>
-    Uh oh, there are no events in the "<%= title_for_category(params[:category]) %>" category.
-  <% elsif params[:keywords].present? %>
-    Sorry, we didn't find any events for the searrch "<%= params[:keywords] %>".
+  <% if params[:keywords].present? %>
+    Sorry, we didn't find any events for the search "<%= params[:keywords] %>" in your location.
+  <% elsif params[:category].present? %>
+    Uh oh, there are no events in the "<%= title_for_category(params[:category]) %>" category in your location.
   <% else%>
-    Sorry, we don't have any upcoming events for this location!
+    Sorry, we don't have any upcoming events for your location!
   <% end %>
 </div>
