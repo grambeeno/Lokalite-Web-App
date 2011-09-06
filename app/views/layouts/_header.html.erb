@@ -18,11 +18,11 @@
             </li>
           <% elsif current_user.organizations.any? %>
             <li>
-              <%= link_to('My Business', my_organization_path(current_user.organizations.first)) %>
-            </li>
+              <%= link_to('Edit My Events', my_organization_path(current_user.organizations.first)) %>
+            </li>              
           <% end %>
           <li>
-            <%= link_to "My Profile", edit_profile_path %>
+            <%= link_to "Settings", edit_profile_path %>
           </li>
           <li>
             <%= link_to 'Logout', logout_path %>
