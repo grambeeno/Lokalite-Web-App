@@ -16,8 +16,6 @@ class PlacesController < ApplicationController
   def organization
     @organization = Organization.find(params[:id])
 
-    #joins = [:venues, {:venue => :location}]
-    #includes = [:venues, {:venue => :location}]
     joins = []
     includes = []
     order = 'events.name'
