@@ -45,7 +45,7 @@ body > header .content nav > ul li:first-child, body > header .content nav > ul 
 body > header .content nav > ul li:last-child { padding-right: 0; }
 body > header .content nav > ul li.last { padding-right: 0; }
 body > header .content nav > ul a { color: white; text-decoration: none; font-size: 14px; font-weight: bold; }
-body > header .content nav > ul a:hover { color: #7da762; }
+body > header .content nav > ul a:hover { color: #96d2a5; }
 body > header .content nav > ul a.create-event { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/create-event-button.png?1314342293'); background-repeat: no-repeat; background-position: 50% 50%; width: 141px; height: 28px; margin-top: -12px; display: block; }
 body > header .content nav > ul li { position: relative; }
 body > header .content nav > ul li a.with-arrow { background-image: url('/images/down-arrow.png'); background-repeat: no-repeat; background-position: right 4px; padding-right: 18px; }

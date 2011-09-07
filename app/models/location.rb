@@ -32,7 +32,7 @@ class Location < ActiveRecord::Base
   end
 
   def coordinates
-    [latitude, longitude].join(',')
+    geocode.coordinates
   end
 
   def Location.to_dao(*args)
@@ -82,13 +82,13 @@ class Location < ActiveRecord::Base
   #     @time_zone ||= ActiveSupport::TimeZone[ utc_offset ]
   #   end
   # end
-  # 
+  #
   # def time
   #   Time.use_zone( time_zone ) do
   #     Time.zone.now
   #   end
   # end
-  # 
+  #
   # def time_for(t)
   #   t =
   #     case t
@@ -99,21 +99,21 @@ class Location < ActiveRecord::Base
   #     end
   #   time_zone.parse(t.to_s)
   # end
-  # 
+  #
   # def date_for(d)
   #   time_for(d).to_date
   # end
-  # 
+  #
   # def date
   #   date_for(Date.today)
   # end
-# 
+#
 #   def Location.date_range_for(location, date_range_name)
 #     today = Date.today
 #     date_a = nil
 #     date_b = nil
 #     name = nil
-# 
+#
 #     case date_range_name.to_s
 #       when 'today'
 #         name = 'today'
@@ -148,14 +148,14 @@ class Location < ActiveRecord::Base
 #         date_a = Time.starts_at
 #         date_b = Time.ends_at
 #     end
-# 
+#
 #     DateRange.new(date_a, date_b, name)
 #   end
-# 
+#
 #   def date_range_for(date_range_name)
 #     Location.date_range_for(location=self, date_range_name)
 #   end
-# 
+#
 #   def Location.date_range_name_for(location, date)
 #     #remove ALL as a possible query value - russ 1107
 #     #ranges = %w( today tomorrow this_weekend this_week this_month this_year all).map{|name| date_range_for(location, name)}
@@ -164,14 +164,14 @@ class Location < ActiveRecord::Base
 #     range = ranges.detect{|r| r.include?(time)}
 #     range.name
 #   end
-# 
+#
 #   def date_range_name_for(date)
 #     Location.date_range_name_for(location=self, date)
 #   end
-# 
+#
 #   class DateRange < ::Range
 #     attr_accessor :name
-# 
+#
 #     def initialize(a, b, name)
 #       a ||= Time.starts_at
 #       b ||= Time.ends_at

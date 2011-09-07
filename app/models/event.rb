@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   has_many :user_event_joins
   has_many :users, :through => :user_event_joins
 
-  belongs_to :organization
+  belongs_to :organization, :touch => true
   belongs_to :image, :class_name => 'EventImage'
   belongs_to :location, :include => :geocoding
 
@@ -145,11 +145,11 @@ class Event < ActiveRecord::Base
     origin  = origin.humanize if origin
 
     if options[:order] == 'distance' && origin.present?
-      results = results.near
-    elsif options[:order] == 'trending'
-      results = results.trending
+      results = results.near.order('events.starts_at ASC').order('events.name ASC')
     elsif options[:order] == 'name'
       results = results.order('events.name ASC')
+    elsif options[:order] == 'starts_at'
+      results = results.order('events.starts_at ASC')
     else
       results = results.order('events.starts_at ASC')
     end

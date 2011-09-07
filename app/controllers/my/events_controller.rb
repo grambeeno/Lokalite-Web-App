@@ -44,7 +44,11 @@ class My::EventsController < My::Controller
 
     if @event.update_attributes(params[:event])
       flash[:notice] = 'Event was successfully updated.'
-      redirect_to event_path(@event.slug, @event.id)
+      if @event.repeating
+        redirect_to my_event_repeat_path(@event)
+      else
+        redirect_to event_path(@event.slug, @event.id)
+      end
     else
       render :action => "edit"
     end
