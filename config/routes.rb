@@ -14,7 +14,9 @@ Lokalite::Application.routes.draw do
   match 'places/:origin(/category/:category)', :controller => :places, :action => :index, :as => :places
 
   namespace :my do
-    resources :organizations
+    resources :organizations do
+      match 'add_user', :action => 'add_user', :as => :add_user
+    end
     resources :events do
       match 'repeat', :action => 'repeat', :as => :repeat
       match 'feature', :action => 'feature', :as => :feature

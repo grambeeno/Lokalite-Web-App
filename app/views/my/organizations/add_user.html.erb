@@ -1,0 +1,32 @@
+<div class='form'>
+  <h1>Add User For</h1>
+  <h2>
+    <%= @organization.name %>
+  </h2>
+
+  <hr />
+
+  <%= form_tag my_organization_add_user_path(@organization), :method => 'POST', :class => 'formtastic' do %>
+    <h2>
+      Please enter the email address for the user you would like to add.
+    </h2>
+    <div class='centered'>
+      <%= text_field_tag :email_address, nil, :size => 30 %>
+      <br />
+      <br />
+      <%= submit_tag 'Add User' %>
+      <br />
+      <br />
+      <p>*The user must already have an account with Lokalite.</p>
+    </div>
+  <% end %>
+
+
+  <% if false %>
+    <p>
+      The following accounts have access to this organization:
+      <%= @organization.users.map(&:email).join  %>
+    </p>
+  <% end %>
+
+</div>

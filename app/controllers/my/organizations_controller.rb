@@ -50,10 +50,26 @@ class My::OrganizationsController < My::Controller
     redirect_to(organizations_url)
   end
 
+  def add_user
+    if request.post?
+      address = params[:email_address].strip
+      if  address.present? && user = User.find_by_email(address)
+        @organization.users << user
+
+        flash[:success] = "#{address} now has access to this organization."
+        redirect_to organization_path(@organization.slug, @organization.id)
+      else
+        flash[:error] = "Sorry, we couldn't find an account for \"#{address}\". Please make sure they are signed up and enter their email address exactly."
+        redirect_to :back
+      end
+    end
+  end
+
   private
 
   def find_organization_and_authorize
-    @organization = Organization.find(params[:id]) if params[:id]
+    id = params[:id] || params[:organization_id]
+    @organization = Organization.find(id) if id
     if @organization
       permission_denied unless @organization.users.include?(current_user)
     end
