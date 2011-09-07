@@ -225,7 +225,7 @@ jq(function($){
   });
 
   $('.datetimepicker').datetimepicker({
-    minDate: new Date().getDay(),
+    minDate: 0,
     ampm: true,
     stepMinute: 15
   });
