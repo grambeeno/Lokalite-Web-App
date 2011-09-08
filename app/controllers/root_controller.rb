@@ -1,7 +1,7 @@
 class RootController < ApplicationController
 
   def index
-    redirect_to events_path(:origin => params[:origin], :category => 'featured')
+    # redirect_to events_path(:origin => params[:origin], :category => 'featured')
   end
 
   # def set_location

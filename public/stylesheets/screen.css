@@ -98,17 +98,51 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories .learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1314340163'); }
 #left-sidebar ul.categories .mmj { background-image: url('/images/category-icons/mmj.png?1314340163'); }
 
-#business-signup { text-align: center; font-size: 14px; margin-bottom: 60px; }
-#business-signup h1 { margin: 14px auto; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1314051786'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
-#business-signup h2 { font-size: 24px; font-weight: normal; }
-#business-signup h3 { font-size: 18px; color: black; }
+#splash { text-align: center; }
+
+#business-signup, #public-landing { text-align: center; font-size: 14px; margin-bottom: 60px; }
+#business-signup h1, #business-signup h2, #business-signup h3, #public-landing h1, #public-landing h2, #public-landing h3 { color: black; }
+#business-signup h1, #public-landing h1 { margin: 14px auto; }
+#business-signup h2, #public-landing h2 { font-size: 24px; font-weight: normal; }
+#business-signup h3, #public-landing h3 { font-size: 18px; margin-top: 24px; }
+#business-signup .centered, #public-landing .centered { margin: 30px auto; display: inline-block; }
+#business-signup .bottom, #public-landing .bottom { margin: 40px auto 0; text-align: left; }
+#business-signup .checkered, #public-landing .checkered { background-color: white; background-image: url('/images/main-bg.png?1314342292'); background-repeat: repeat; }
+#business-signup .checkered .shadow-top, #business-signup .checkered .shadow-bottom, #public-landing .checkered .shadow-top, #public-landing .checkered .shadow-bottom { background-repeat: repeat-x; height: 10px; width: 100%; }
+#business-signup .checkered .shadow-top, #public-landing .checkered .shadow-top { background-image: url('/images/landing/shadow-top.png?1315520849'); margin-bottom: 40px; }
+#business-signup .checkered .shadow-bottom, #public-landing .checkered .shadow-bottom { background-image: url('/images/landing/shadow-bottom.png?1315520849'); margin: 30px 0; }
+
+#public-landing h1.main-title { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/main-title.png?1315507552'); background-repeat: no-repeat; background-position: 50% 50%; width: 820px; height: 150px; }
+#public-landing h1.info { font-size: 46px; font-weight: normal; text-align: center; margin-top: 50px; margin-bottom: 18px; line-height: 1.8em; }
+#public-landing h2 { text-align: center; font-size: 40px; margin-top: 14px; }
+#public-landing h3 { text-align: center; font-weight: normal; }
+#public-landing a.enter { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/enter.png?1315525604'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; }
+#public-landing .browse, #public-landing .share, #public-landing .attend { display: inline; float: left; width: 340px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
+#public-landing .browse { margin-right: 20px; background-image: url('/images/landing/browse.png?1315507552'); }
+#public-landing .share { margin-right: 20px; background-image: url('/images/landing/share.png?1315507553'); }
+#public-landing .attend { background-image: url('/images/landing/attend.png?1315507553'); }
+#public-landing .events { margin: 10px auto; width: 765px; }
+#public-landing .note { font-size: 12px; line-height: 16px; }
+#public-landing .checkered .inside { margin: 0 auto; position: relative; width: 1120px; }
+
+#more-added-daily, #of-your-favorite, #our-favorites, #your-favorites { position: absolute; }
+
+.relative-container { position: relative; }
+
+#more-added-daily { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/more-added-daily.png?1315523542'); background-repeat: no-repeat; background-position: 50% 50%; width: 368px; height: 50px; top: -45px; left: -200px; }
+
+#of-your-favorite { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/of-your-favorite.png?1315523543'); background-repeat: no-repeat; background-position: 50% 50%; width: 260px; height: 64px; top: -40px; left: -96px; }
+
+#our-favorites { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/our-favorites.png?1315523543'); background-repeat: no-repeat; background-position: 50% 50%; width: 350px; height: 100px; top: -60px; left: 0px; }
+
+#your-favorites { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/your-favorites.png?1315523543'); background-repeat: no-repeat; background-position: 50% 50%; width: 420px; height: 82px; top: -36px; left: 800px; }
+
+#business-signup h1 { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1314051786'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
 #business-signup a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1314342295'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; }
-#business-signup .centered { margin: 30px auto; display: inline-block; }
 #business-signup .create, #business-signup .share, #business-signup .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
 #business-signup .create { margin-right: 40px; background-image: url('/images/business/create.png?1314046887'); }
 #business-signup .share { margin-right: 40px; background-image: url('/images/business/share.png?1314046886'); }
 #business-signup .grow { background-image: url('/images/business/grow.png?1314051785'); }
-#business-signup .bottom { margin-top: 40px; text-align: left; }
 #business-signup .bottom h2 { font-size: 30px; color: black; margin-bottom: 14px; }
 #business-signup .bottom p { padding: 6px 0; width: 280px; }
 #business-signup .bottom section { background-repeat: no-repeat; margin-bottom: 60px; }

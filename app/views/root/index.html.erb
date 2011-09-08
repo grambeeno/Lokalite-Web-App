@@ -1,37 +1,91 @@
-<pre id='dojo4' style='color:white; background-color:black; margin:auto; margin-top:10em; font:monospace; white-space:pre; width:50%;'>
+<div id="public-landing">
+  <h1 class='main-title'>
+    Looking for something to do? You've come to the right place.
+  </h1>
+  <h2>(trust us, you'll never be bored again)</h2>
 
-                               _ooooo888888888ooooo._
-     _____      ___         ,d888888888888888888888888L
-    ][''''Yp  ,P'''`Y.     ,888888888888888888888888888b
-    ][     8  d     `b     d8888888888888888888888888888.
-    ][     d  8      b     88888888888' d88  Y8888888888b
-    ][     8  Y     ,b    ]8888888888', d88 ,.Y8888888888
-    ]L___,dP  `h.__,P'    d88888888P,d8 d88 ]8L`888888888
-     '''''      `[[       d8888888P,888 d88 ]88b.Y8888888
-        ]b    ,P'''`o.    d888888' """" dP" `"""' Y888888
-        ]b    d'    ]b    ]888888booooo d8o ,ooooo8888888
-        ]b    8      b    `888888888888 Y8" ]88888888888P
-        ]b    Y     ,b     Y88888888888od8oo888888888888'
-    __ _d'    `b_  ,d'     `888888888888888888888888888P
-     '''        ''''        `Y888888888888888888888888P
-                              ``"YPP888888888888PP""'
 
-</pre>
+  <div class='centered'>
+    <div class="browse">
+      <h3>Browse</h3>
+      We’ve got a huge gallery of events
+      <br />
+      that’s only getting bigger.
+    </div>
+    <div class="share">
+      <h3>Share</h3>
+      Events are always more fun with friends.
+      <br />
+      So spread the word. They’ll be sure to thank you.
+    </div>
+    <div class="attend">
+      <h3>Attend</h3>
+      This parts up to you. Go ahead. Get away from
+      <br />
+      this screen. It’s time to have fun!
+    </div>
+  </div>
 
-<script type='text/javascript'>
-  jq(function(){
-    var opacities = [0.25, 1.00];
+  <div class="clear"></div>
 
-    opacities.next = function(){
-      var opacity = opacities.shift();
-      opacities.push(opacity);
-      return(opacity);
-    };
+  <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
 
-    var blink = function(){
-      jq('#dojo4').animate({'opacity' : opacities.next()}, 10000, blink);
-    };
+  <div class="bottom checkered">
+    <div class="shadow-top"></div>
 
-    blink();
-  });
-</script>
+    <div class='inside'>
+      <h1 class='info'>
+        There are currently
+        <strong>
+          <%= Event.upcoming.size %>
+          events
+        </strong>
+
+        <span class='relative-container'><div id="more-added-daily">(more added daily)</div></span>
+
+        <br />
+        put on by
+        <strong>
+          <%= Organization.all.size %>
+          <span class='relative-container'><div id="of-your-favorite">of your favorite</div></span>
+          companies
+        </strong>
+        in Boulder, Co.
+      </h1>
+
+      <h3>check out some of the</h3>
+      <h2>Featured Events</h2>
+      <span class='relative-container'><div id="our-favorites">our favorites. hopefully yours as well</div></span>
+
+      <ul class="events">
+        <% Event.featured.limit(3).each do |event| %>
+          <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <% end %>
+      </ul>
+
+      <h3>as well as the</h3>
+      <h2>Top Trending Events</h2>
+
+      <span class='relative-container'><div id="your-favorites">your favorites. keep 'em coming</div></span>
+
+      <ul class="events">
+        <% Event.trending.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
+          <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <% end %>
+      </ul>
+
+      <h3>and remember, with lokalite by your side, you'll</h3>
+      <h2>Never Be Bored Again</h2>
+    </div>
+
+    <div class="shadow-bottom"></div>
+  </div>
+
+  <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
+  <p class='note'>
+    click to enter - trust us:
+    <br />
+    the grass is much greener on the other side
+  </p>
+</div>
+

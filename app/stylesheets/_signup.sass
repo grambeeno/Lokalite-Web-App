@@ -1,25 +1,143 @@
-#business-signup
+#splash
+  text-align: center
+
+#business-signup,
+#public-landing
   text-align: center
   font-size: 14px
   margin-bottom: 60px
+  h1, h2, h3
+    color: black
   h1
     margin: 14px auto
-    +replace-text-with-dimensions("business/main-title.png")
   h2
     font-size: 24px
     font-weight: normal
   h3
     font-size: 18px
-    color: black
+    margin-top: 24px
+  .centered
+    margin: 30px auto
+    display: inline-block
+
+  .bottom
+    margin: 40px auto 0
+    text-align: left
+    // width: 1020px
+
+  .checkered
+    background:
+      color: white
+      image: image-url('main-bg.png')
+      repeat: repeat
+    .shadow-top, .shadow-bottom
+      background-repeat: repeat-x
+      height: image_height('landing/shadow-top.png')
+      width: 100%
+
+    .shadow-top
+      background-image: image_url('landing/shadow-top.png')
+      margin-bottom: 40px
+    .shadow-bottom
+      background-image: image_url('landing/shadow-bottom.png')
+      margin: 30px 0
+
+
+
+#public-landing
+  h1.main-title
+    +replace-text-with-dimensions("landing/main-title.png")
+  h1.info
+    font-size: 46px
+    font-weight: normal
+    text-align: center
+    margin-top: 50px
+    margin-bottom: 18px
+    line-height: 1.8em
+  h2
+    text-align: center
+    font-size: 40px
+    margin-top: 14px
+  h3
+    text-align: center
+    font-weight: normal
+
+  a.enter
+    +replace-text-with-dimensions("landing/enter.png")
+    display: block
+    margin: 20px auto 10px
+
+  .browse,
+  .share,
+  .attend
+    +float('left')
+
+    width: image-width('/landing/browse.png')
+    padding-top: image-height('/landing/browse.png')
+    background-repeat: no-repeat
+    background-position: top center
+
+  .browse
+    margin-right: 20px
+    background-image: image_url('landing/browse.png')
+  .share
+    margin-right: 20px
+    background-image: image_url('landing/share.png')
+  .attend
+    background-image: image_url('landing/attend.png')
+
+  .events
+    margin: 10px auto
+    width: (220px + 10 + 25) * 3
+
+  .note
+    font-size: 12px
+    line-height: 16px
+
+  .checkered .inside
+    margin: 0 auto
+    position: relative
+    width: 1120px
+
+#more-added-daily,
+#of-your-favorite,
+#our-favorites,
+#your-favorites
+  position: absolute
+
+.relative-container
+  position: relative
+
+
+#more-added-daily
+  +replace-text-with-dimensions("landing/more-added-daily.png")
+  top: -45px
+  left: -200px
+
+#of-your-favorite
+  +replace-text-with-dimensions("landing/of-your-favorite.png")
+  top: -40px
+  left: -96px
+
+#our-favorites
+  +replace-text-with-dimensions("landing/our-favorites.png")
+  top: -60px
+  left: 0px
+#your-favorites
+  +replace-text-with-dimensions("landing/your-favorites.png")
+  top: -36px
+  left: 800px
+
+
+#business-signup
+  h1
+    +replace-text-with-dimensions("business/main-title.png")
 
   a.get-started
     +replace-text-with-dimensions("business/get-started.png")
     display: block
     margin: 20px auto 10px
 
-  .centered
-    margin: 30px auto
-    display: inline-block
   .create,
   .share,
   .grow
@@ -40,8 +158,6 @@
     background-image: image_url('business/grow.png')
 
   .bottom
-    margin-top: 40px
-    text-align: left
     h2
       font-size: 30px
       color: black
