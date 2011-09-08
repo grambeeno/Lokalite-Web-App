@@ -1,9 +1,9 @@
 <p>
-  <%= form_tag :controller => :events, :action => :index do %>
+  <%= form_tag :controller => active_tab, :action => :index do %>
     <%
       value = params[:keywords] || ''
     -%>
-    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => 'Search Events' %>
+    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}" %>
     <%# Scope search to selected category if desired %>
     <%#= hidden_field_tag(:category, params[:category]) if params[:category] %>
     <br />

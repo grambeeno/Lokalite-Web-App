@@ -53,7 +53,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :image
   validates_associated :image
 
-  pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
+  pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']]
 
   scope :by_date, order('starts_at')
 

@@ -10,7 +10,7 @@
   -%>
 
 <nav>
-  <%= render :partial => '/shared/search' %>
+  <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
   <ul class='category-tab-buttons'>
     <li>
       <% class_names = active_tab == 'events' ? 'active' : nil %>
