@@ -1,5 +1,5 @@
 <p>
-  <%= form_tag :controller => active_tab, :action => :index do %>
+  <%= form_tag send("#{active_tab}_path", :origin => params[:origin]), :method => :get do %>
     <%
       value = params[:keywords] || ''
     -%>

@@ -36,6 +36,7 @@
   <%
     options = {:origin => params[:origin]}
     options[:category] = params[:category] if params[:category].present?
+    options[:keywords] = params[:keywords] if params[:keywords].present?
     options[:view_type] = 'map'
   %>
   <%= link_to 'Switch to Map View', events_path(options), :class => 'switch-to-map-view' %>
