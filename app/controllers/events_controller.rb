@@ -3,8 +3,7 @@ class EventsController < ApplicationController
   before_filter :remember_location
 
   def index
-    if params[:utf8]
-    # if params.delete(:utf8)
+    if params.delete(:utf8)
       redirect_to events_path(params)
     end
     if params[:view_type] == 'map'
