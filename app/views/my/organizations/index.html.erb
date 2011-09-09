@@ -19,7 +19,7 @@
           <%= link_to('Edit Organization Info', edit_my_organization_path(organization)) %>
         </li>
         <li>
-          <%= link_to('Add user', my_organization_add_user_path(@organization)) %>
+          <%= link_to('Add user', my_organization_add_user_path(organization)) %>
         </li>
         <li>
           <%= link_to('View public page', organization_path(organization.slug, organization.id)) %>
