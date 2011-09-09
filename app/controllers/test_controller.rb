@@ -54,6 +54,11 @@ class TestController < ApplicationController
     show(session)
   end
 
+  def clear_session
+    reset_session
+    redirect_to :action => :show_session
+  end
+
   def show_params
     show(params)
   end
