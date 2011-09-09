@@ -35,7 +35,16 @@ class Organization < ActiveRecord::Base
     self.url = "http://#{url}" unless url.blank? or url.start_with?('http')
   end
 
-  validates_length_of :description, :maximum => 500
+  # We would use:
+  # validates_length_of :description, :maximum => 500
+  # but it counts line breaks as 2 chars. Need to do it ourselves.
+  validate :check_description_length
+  def check_description_length
+    stripped = description.gsub /\r\n/, ' '
+    if stripped.length > 500
+      errors.add(:description, 'is too long (maximum is 500 characters)')
+    end
+  end
 
   before_validation(:on => :create) do |organization|
     organization.uuid ||= App.uuid

@@ -47,7 +47,16 @@ class Event < ActiveRecord::Base
   validates_presence_of :location
   validates_presence_of :image
 
-  validates_length_of :description, :maximum => 140
+  # We would use:
+  # validates_length_of :description, :maximum => 140
+  # but it counts line breaks as 2 chars. Need to do it ourselves.
+  validate :check_description_length
+  def check_description_length
+    stripped = description.gsub /\r\n/, ' '
+    if stripped.length > 140
+      errors.add(:description, 'is too long (maximum is 140 characters)')
+    end
+  end
 
   accepts_nested_attributes_for :location
   accepts_nested_attributes_for :image
