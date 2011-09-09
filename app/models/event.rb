@@ -156,8 +156,13 @@ class Event < ActiveRecord::Base
       results = results.order('events.starts_at ASC')
     end
 
-    within  = options[:within] || 20
-    results = results.origin(origin, :within => within) if origin.present?
+    # We're ready for scoping by location, but don't want to enable it yet
+    # because we want iPhone users and people in other locations to see data
+    #
+    # within  = options[:within] || 20
+    # results = results.origin(origin, :within => within) if origin.present?
+
+    results = results.origin(origin) if origin.present?
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
