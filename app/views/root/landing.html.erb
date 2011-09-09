@@ -1,34 +1,37 @@
 <div id="public-landing">
-  <h1 class='main-title'>
-    Looking for something to do? You've come to the right place.
-  </h1>
-  <h2>(trust us, you'll never be bored again)</h2>
+  <div class='top'>
+
+    <h1 class='main-title'>
+      Looking for something to do? You've come to the right place.
+    </h1>
+    <h2>(trust us, you'll never be bored again)</h2>
 
 
-  <div class='centered'>
-    <div class="browse">
-      <h3>Browse</h3>
-      We’ve got a huge gallery of events
-      <br />
-      that’s only getting bigger.
+    <div class='centered'>
+      <div class="browse">
+        <h3>Browse</h3>
+        We’ve got a huge gallery of events
+        <br />
+        that’s only getting bigger.
+      </div>
+      <div class="share">
+        <h3>Share</h3>
+        Events are always more fun with friends.
+        <br />
+        So spread the word. They’ll be sure to thank you.
+      </div>
+      <div class="attend">
+        <h3>Attend</h3>
+        This parts up to you. Go ahead. Get away from
+        <br />
+        this screen. It’s time to have fun!
+      </div>
     </div>
-    <div class="share">
-      <h3>Share</h3>
-      Events are always more fun with friends.
-      <br />
-      So spread the word. They’ll be sure to thank you.
-    </div>
-    <div class="attend">
-      <h3>Attend</h3>
-      This parts up to you. Go ahead. Get away from
-      <br />
-      this screen. It’s time to have fun!
-    </div>
+
+    <div class="clear"></div>
+
+    <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
   </div>
-
-  <div class="clear"></div>
-
-  <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
 
   <div class="bottom checkered">
     <div class="shadow-top"></div>
@@ -81,11 +84,13 @@
     <div class="shadow-bottom"></div>
   </div>
 
-  <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
-  <p class='note'>
-    click to enter - trust us:
-    <br />
-    the grass is much greener on the other side
-  </p>
+  <div class='content-width'>
+    <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
+    <p class='note'>
+      click to enter - trust us:
+      <br />
+      the grass is much greener on the other side
+    </p>
+  </div>
 </div>
 

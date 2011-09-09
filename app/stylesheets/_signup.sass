@@ -1,6 +1,8 @@
 #splash
   text-align: center
 
+$splash-width: 1120px
+
 #business-signup,
 #public-landing
   text-align: center
@@ -42,6 +44,9 @@
       background-image: image_url('landing/shadow-bottom.png')
       margin: 30px 0
 
+  .top
+    margin: 0 auto
+    width: $splash-width
 
 
 #public-landing
@@ -66,6 +71,10 @@
     +replace-text-with-dimensions("landing/enter.png")
     display: block
     margin: 20px auto 10px
+
+  .content-width
+    width: $splash-width
+    margin: 0 auto
 
   .browse,
   .share,
@@ -97,7 +106,7 @@
   .checkered .inside
     margin: 0 auto
     position: relative
-    width: 1120px
+    width: $splash-width
 
 #more-added-daily,
 #of-your-favorite,
@@ -137,9 +146,10 @@
     +replace-text-with-dimensions("business/get-started.png")
     display: block
     margin: 20px auto 10px
+    width: $splash-width
 
   .bottom
-    width: 1020px
+    width: $splash-width
 
   .create,
   .share,

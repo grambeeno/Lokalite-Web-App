@@ -95,7 +95,7 @@ class My::EventsController < My::Controller
     params[:event].delete(:location_attributes) unless params[:event][:location_id] == 'new'
 
     categories = [params[:event].delete(:first_category), params[:event].delete(:second_category)]
-    categories << 'Featured' if @event.featured?
+    categories << 'Featured' if @event and @event.featured?
     params[:event][:category_list] = categories.join(', ')
   end
 
