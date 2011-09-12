@@ -40,13 +40,13 @@ class Mailer < ActionMailer::Base
   def new_user_notification(signup)
     @user    = signup.email
     @subject = subject_for("New user signed up")
-    mail(:to => 'lokalite@lokalite.com', :subject => @subject)
+    mail(:to => 'content@lokalite.com', :subject => @subject)
   end
 
   def new_event_notification(event)
     @event   = event
     @subject = subject_for("New event!")
-    mail(:to => 'lokalite@lokalite.com', :subject => @subject)
+    mail(:to => 'content@lokalite.com', :subject => @subject)
   end
 
   def test(email)
