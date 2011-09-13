@@ -47,36 +47,4 @@ private
     end
   end
 
-
-=begin
-  def ensure_params_update_location
-    if params.has_key?(:location) and Location.absolute_path_for(params[:location]) != Location.absolute_path_for(session[:location])
-      session[:location] = params[:location]
-      url =
-        browse_path(
-          :location => session[:location],
-          :keywords => params[:keywords],
-          :order => params[:order],
-          :page => params[:page]
-        )
-      redirect_to(url)
-    end
-  end
-
-  def ensure_browsing_by_location_or_organization
-    if params[:location].blank? and params[:organization].blank?
-      url =
-        browse_path(
-          :location => Location.default.prefix,
-          :keywords => params[:keywords],
-          :order => params[:order],
-          :page => params[:page]
-        )
-      redirect_to(url)
-      return
-    end
-  end
-
-=end
-
 end

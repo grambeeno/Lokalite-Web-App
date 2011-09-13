@@ -40,6 +40,7 @@ class Organization < ActiveRecord::Base
   # but it counts line breaks as 2 chars. Need to do it ourselves.
   validate :check_description_length
   def check_description_length
+    return if description.blank?
     stripped = description.gsub /\r\n/, ' '
     if stripped.length > 500
       errors.add(:description, 'is too long (maximum is 500 characters)')
