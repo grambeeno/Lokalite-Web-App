@@ -3,10 +3,10 @@ class Location < ActiveRecord::Base
   # pg_search_scope :search, :against => [:name, :address_line_one]
 
   acts_as_geocodable :normalize_address => true
-  validates_as_geocodable :precision => 'address'
+  validates_as_geocodable
 
   def formatted_address(line_break = ', ')
-    "#{street}#{line_break}#{locality}, #{region} #{postal_code}"
+    "#{best_street}#{line_break}#{locality}, #{region} #{postal_code}"
   end
 
   belongs_to :organization
@@ -18,6 +18,28 @@ class Location < ActiveRecord::Base
 
   validates_presence_of :uuid
   validates_presence_of :name
+
+  # user_given_street is a workaround to deal with less than precise
+  # addresses that are returned from the Google maps API.
+  # Here we'll reassign 'street' whenever 'user_given_street' is updated
+  # and allow Google to deal with it accordingly
+  def user_given_street=(_street)
+    self.street = _street
+    write_attribute(:user_given_street, _street)
+  end
+
+  # We added support for user_given_street and suites after the API was public
+  # Suites used to be part of the 'street' string
+  # use this method to reprocude that format for the street
+  def best_street(with_suite = true)
+    if precise?
+      string = street
+    else
+      string = user_given_street
+    end
+    string << ", #{suite}" if with_suite and suite.present?
+    string
+  end
 
   def short_identifier
     "#{name} - #{formatted_address}"
@@ -35,17 +57,27 @@ class Location < ActiveRecord::Base
     geocode.coordinates
   end
 
-  def Location.to_dao(*args)
-    remove = %w[]
+  def precise?
+    geocode and geocode.precision >= Graticule::Precision.new(:address)
+  end
+
+  def to_dao
+    hash = super
+    hash[:street] = best_street
+    hash
+  end
+
+  def self.to_dao(*args)
+    remove = %w[user_given_street]
     add    = %w[formatted_address latitude longitude]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
-  def Location.state_options
+  def self.state_options
     US_STATES.to_a.sort.map{|a| a.reverse}
   end
 
-  def Location.full_state_name(abbreviation)
+  def self.full_state_name(abbreviation)
     US_STATES[abbreviation]
   end
 
@@ -195,21 +227,24 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: locations
 #
-#  id              :integer         not null, primary key
-#  uuid            :string(255)
-#  name            :string(255)
-#  street          :string(255)
-#  locality        :string(255)
-#  region          :string(255)
-#  postal_code     :string(255)
-#  country         :string(255)
-#  organization_id :integer
-#  utc_offset      :float
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id                :integer         not null, primary key
+#  uuid              :string(255)
+#  name              :string(255)
+#  street            :string(255)
+#  locality          :string(255)
+#  region            :string(255)
+#  postal_code       :string(255)
+#  country           :string(255)
+#  organization_id   :integer
+#  utc_offset        :float
+#  created_at        :datetime
+#  updated_at        :datetime
+#  suite             :string(255)
+#  user_given_street :string(255)
 #
 

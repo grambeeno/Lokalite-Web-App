@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110829162125) do
+ActiveRecord::Schema.define(:version => 20110913202911) do
 
   create_table "event_images", :force => true do |t|
     t.string   "image"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(:version => 20110829162125) do
     t.float    "utc_offset"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "suite"
+    t.string   "user_given_street"
   end
 
   add_index "locations", ["locality"], :name => "index_locations_on_locality"

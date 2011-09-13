@@ -426,6 +426,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: events
@@ -444,9 +445,8 @@ end
 #  created_at            :datetime
 #  updated_at            :datetime
 #  clone_count           :integer         default(0)
-#  repeats               :string(255)
 #  users_count           :integer         default(0)
 #  trend_weight          :decimal(, )     default(0.0)
-#  anonymous_users_count :integer         default(0)
+#  anonymous_trend_count :integer         default(0)
 #
 
