@@ -1,3 +1,9 @@
 <div class="flash error">
-  Uh oh, there are no places in the "<%= title_for_category(params[:category]) %>" category.
+  <% if params[:keywords].present? %>
+    Sorry, we didn't find any places for the search "<%= params[:keywords] %>" in your location.
+  <% elsif params[:category].present? %>
+    Uh oh, there are no places in the "<%= title_for_category(params[:category]) %>" category.
+  <% else%>
+    Sorry, we can't find any places in your location!
+  <% end %>
 </div>
