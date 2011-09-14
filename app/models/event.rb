@@ -151,7 +151,10 @@ class Event < ActiveRecord::Base
     end
 
     # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
-    results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
+
+    # turns out to be much faster when we don't eager load organization categories
+    # results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
+    results = results.includes(:categories, :location, :image, :organization => [:locations])
 
     origin  = options[:origin]
     origin  = origin.humanize if origin

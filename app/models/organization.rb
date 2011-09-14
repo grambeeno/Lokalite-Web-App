@@ -64,7 +64,7 @@ class Organization < ActiveRecord::Base
   validates_associated  :locations
 
   def location
-    locations.order('created_at').first
+    locations.first
   end
 
   def address
@@ -73,7 +73,7 @@ class Organization < ActiveRecord::Base
 
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'B']]
 
-  def Organization.browse(*args)
+  def self.browse(*args)
     options = Map.extract_options!(args)
 
     location = options[:location] || 'Boulder, CO'
@@ -104,17 +104,17 @@ class Organization < ActiveRecord::Base
     # results = results.origin([40.014781,-105.186989], :within => 3.5)
 
     # results = results.joins(:locations)
-    results = results.includes(:locations)
+    results = results.includes(:locations, :categories)
     results = results.order(order)
 
     results.paginate(:page => page, :per_page => per_page)
   end
 
-  def Organization.normalize_search_term(term)
+  def self.normalize_search_term(term)
     '/' + term.to_s.scan(/[a-zA-Z0-9]+/).join('/').downcase
   end
 
-  def Organization.named?(name)
+  def self.named?(name)
     return false if name.nil?
     where('name=?', name).first
   end
@@ -147,7 +147,7 @@ class Organization < ActiveRecord::Base
   end
 
 
-  def Organization.to_dao(*args)
+  def self.to_dao(*args)
     remove = %w[image]
     add    = %w[location categories image_thumb image_small image_medium image_large image_full]
     super(*args).reject{|arg| remove.include?(arg)} + add
