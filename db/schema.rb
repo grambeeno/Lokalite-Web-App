@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110913202911) do
+ActiveRecord::Schema.define(:version => 20110914161056) do
 
   create_table "event_images", :force => true do |t|
     t.string   "image"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20110913202911) do
   create_table "locations", :force => true do |t|
     t.string   "uuid"
     t.string   "name"
-    t.string   "street"
+    t.string   "geocoded_street"
     t.string   "locality"
     t.string   "region"
     t.string   "postal_code"

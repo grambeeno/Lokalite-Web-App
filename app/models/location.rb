@@ -2,11 +2,13 @@ class Location < ActiveRecord::Base
   # include PgSearch
   # pg_search_scope :search, :against => [:name, :address_line_one]
 
-  acts_as_geocodable :normalize_address => true
+  acts_as_geocodable :normalize_address => true,
+                     :address => { :street => :geocoded_street, :locality => :locality, :region => :region, :postal_code => :postal_code, :country => :country }
+
   validates_as_geocodable
 
   def formatted_address(line_break = ', ')
-    "#{best_street}#{line_break}#{locality}, #{region} #{postal_code}"
+    "#{street}#{line_break}#{locality}, #{region} #{postal_code}"
   end
 
   belongs_to :organization
@@ -21,24 +23,28 @@ class Location < ActiveRecord::Base
 
   # user_given_street is a workaround to deal with less than precise
   # addresses that are returned from the Google maps API.
-  # Here we'll reassign 'street' whenever 'user_given_street' is updated
+  # Here we'll reassign 'geocoded_street' whenever 'user_given_street' is updated
   # and allow Google to deal with it accordingly
   def user_given_street=(_street)
-    self.street = _street
+    self.geocoded_street = _street
     write_attribute(:user_given_street, _street)
   end
 
   # We added support for user_given_street and suites after the API was public
   # Suites used to be part of the 'street' string
-  # use this method to reprocude that format for the street
-  def best_street(with_suite = true)
+  # this method to reproduces that format for the street
+  def street(with_suite = true)
     if precise?
-      string = street
+      string = geocoded_street
     else
       string = user_given_street
     end
-    string << ", #{suite}" if with_suite and suite.present?
-    string
+
+    if with_suite and suite.present?
+      "#{string}, #{suite}"
+    else
+      string
+    end
   end
 
   def short_identifier
@@ -61,15 +67,10 @@ class Location < ActiveRecord::Base
     geocode and geocode.precision >= Graticule::Precision.new(:address)
   end
 
-  def to_dao
-    hash = super
-    hash[:street] = best_street
-    hash
-  end
-
   def self.to_dao(*args)
-    remove = %w[user_given_street]
-    add    = %w[formatted_address latitude longitude]
+    # api v1 includes 'suite' in 'street'
+    remove = %w[user_given_street geocoded_street suite]
+    add    = %w[street formatted_address latitude longitude]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
@@ -228,6 +229,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: locations
@@ -235,7 +237,7 @@ end
 #  id                :integer         not null, primary key
 #  uuid              :string(255)
 #  name              :string(255)
-#  street            :string(255)
+#  geocoded_street   :string(255)
 #  locality          :string(255)
 #  region            :string(255)
 #  postal_code       :string(255)

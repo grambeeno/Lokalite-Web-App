@@ -11,6 +11,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: locations
@@ -18,7 +19,7 @@ end
 #  id                :integer         not null, primary key
 #  uuid              :string(255)
 #  name              :string(255)
-#  street            :string(255)
+#  geocoded_street   :string(255)
 #  locality          :string(255)
 #  region            :string(255)
 #  postal_code       :string(255)
