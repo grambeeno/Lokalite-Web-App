@@ -16,13 +16,11 @@ module MapHelper
 
   def gmaps_url_for(location)
     raw(
-      'http://maps.google.com/maps?f=q&amp;source=s_q&amp;q=' +
+      'http://maps.google.com/maps?f=q&amp;q=' +
       URI.escape(location.formatted_address.gsub(/\s+/, '+')) +
       '&amp;hl=en&amp;sll=' +
       location.coordinates +
-      '&amp;ie=UTF8&amp;z=12&amp;ll=' +
-      location.coordinates +
-      '&amp;iwloc=do_not_open'
+      '&amp;ie=UTF8&amp;z=17&amp;iwloc=do_not_open'
     )
   end
 
