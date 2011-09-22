@@ -32,6 +32,7 @@ protected
 
   def set_user_time_zone
     Time.zone = current_user.time_zone if logged_in?
+    Chronic.time_class = Time.zone
   end
 
 # be sure to keep flash on redirects
