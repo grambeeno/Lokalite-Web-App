@@ -55,11 +55,24 @@ form.formtastic
     +border-radius(6px)
     display: inline-block
     padding: 10px
-    input
+    input[type="text"]
       background-color: transparent
-      border: none
-      width: 74px
-      padding: 0
+      // border: none
+      width: 135px
+      padding: 4px
+    span.for-text
+      display: inline-block
+      margin: 0 8px
+    span.checkbox-wrapper
+      position: relative
+      margin-left: 10px
+      width: 12px
+      height: 12px
+      display: inline-block
+      input[type="checkbox"]
+        position: absolute
+        top: 4px
+        // margin-top: -20px
 
 form.formtastic
   .signup-fields,

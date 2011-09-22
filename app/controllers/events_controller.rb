@@ -19,8 +19,6 @@ class EventsController < ApplicationController
     @event = Event.where(:id => params[:id]).includes(includes).first
 
     redirect_to('/404.html') and return unless @event
-
-    @recommended = ( Event.featured.random.limit(3) + Event.prototypes.random.limit(3) ).first(3)
   end
 
 # TODO - render :nothing doesn't trigger success in jq... why?

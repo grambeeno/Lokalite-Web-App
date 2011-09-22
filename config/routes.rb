@@ -18,8 +18,10 @@ Lokalite::Application.routes.draw do
       match 'add_user', :action => 'add_user', :as => :add_user
     end
     resources :events do
+      put  'update_multiple', :action => 'update_multiple', :as => :update_multiple
       match 'repeat', :action => 'repeat', :as => :repeat
       match 'feature', :action => 'feature', :as => :feature
+      match 'unfeature', :action => 'unfeature', :as => :unfeature
     end
   end
 

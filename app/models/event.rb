@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   include PgSearch
 
   belongs_to :prototype, :class_name => 'Event', :counter_cache => :clone_count
-  has_many :clones, :class_name => 'Event', :foreign_key => :prototype_id, :inverse_of => :prototype
+  has_many :clones, :class_name => 'Event', :foreign_key => :prototype_id, :inverse_of => :prototype, :dependent => :destroy
 
   has_many :user_event_joins
   has_many :users, :through => :user_event_joins
@@ -77,9 +77,9 @@ class Event < ActiveRecord::Base
   })
   scope :upcoming, by_date().after(Time.now)
 
-  scope(:prototypes, lambda{|*args|
-    where('prototype_id is null')
-  })
+  scope :repeating,  where(:repeating => true)
+  scope :one_time,   where(:repeating => false)
+  scope :prototypes, where(:prototype_id => nil)
 
   scope(:featured, lambda{|*args|
     upcoming().includes(:categories).tagged_with('featured', :on => :categories)
@@ -202,6 +202,20 @@ class Event < ActiveRecord::Base
     self.trend_weight = users_count.to_i + anonymous_trend_count.to_i
   end
 
+  # in seconds
+  def duration
+    (ends_at.to_i - starts_at.to_i).abs
+  end
+
+  # The annoying part about this is we need to make sure starts_at
+  # exists and is updated before calling self.duration=
+  # we'll just have to do that manually where needed and not through mass assignment
+  def duration=(seconds)
+    self.ends_at = seconds.to_i.seconds.from_now(self.starts_at)
+  rescue
+    raise 'starts_at must be set before assigning duration.'
+  end
+
   # def location_time(t = :starts_at)
   #   case t
   #     when :starts_at, 'starts_at'
@@ -249,10 +263,6 @@ class Event < ActiveRecord::Base
   #
   #   "#{time[:start]} - #{time[:end]} #{time[:suffix]}".strip
   # end
-
-  def duration
-    (ends_at.to_i - starts_at.to_i).abs
-  end
 
   # def repeat!(frequency = :weekly, options = {})
   #   options.to_options!
@@ -352,40 +362,33 @@ class Event < ActiveRecord::Base
   #   list
   # end
 
+  def prototype?
+    repeating? and not clone?
+  end
+
   def clone?
     prototype_id.present?
   end
 
-  def clone_with_date(date)
-    offset = (date.to_date - starts_at.to_date).days
-    cleaned_attributes = attributes.reject{|key, value| %w[id clone_count trend_weight users_count anonymous_trend_count].include?(key) }
+  def clone(start_time, duration)
+    cleaned_attributes = attributes.reject{|key, value| %w[id clone_count trend_weight users_count anonymous_trend_count starts_at ends_at].include?(key) }
     clone  = Event.new(cleaned_attributes)
     clone.category_list = category_list.reject{|c| c == 'Featured'}
-    clone.starts_at = starts_at + offset
-    clone.ends_at   = ends_at + offset
+    clone.starts_at = start_time
+    clone.duration  = duration
     clone.prototype = self
     clone.save
   end
 
   def feature!
-    list = category_list
-    list << 'Featured'
-    self.category_list = list.uniq
+    self.category_list.add('Featured')
     self.save
   end
-  # def featured!(boolean=true)
-  #   featured = Category.for('Featured')
 
-  #   if boolean.to_s =~ /t/
-  #     categories.push(featured) unless categories.include?(featured)
-  #     true
-  #   else
-  #     categories.delete(featured) if categories.include?(featured)
-  #     false
-  #   end
-  # ensure
-  #   index!
-  # end
+  def unfeature!
+    self.category_list.remove('Featured')
+    self.save
+  end
 
   def featured?
     categories.any?{|c| c.name.downcase == 'featured' }

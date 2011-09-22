@@ -278,6 +278,12 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 .my-organizations-controller .organization-buttons { text-align: center; }
 .my-organizations-controller .organization-buttons ul.buttons { margin: 0 auto 18px; display: inline-block; }
 
+table.event-picker { margin-bottom: 6px; }
+table.event-picker td { padding: 6px 4px; }
+table.event-picker input[type='checkbox'] { background-color: red; }
+
+.repeating-event-fields { display: none; }
+
 .pagination { text-align: center; padding: 1em; cursor: default; font-size: 1.2em; }
 .pagination a, .pagination span { padding: 0.2em 0.3em; }
 .pagination .disabled { color: #aaaaaa; }
@@ -327,7 +333,10 @@ form.formtastic .errorExplanation ul { margin-top: 1em; list-style: inside disc;
 #repeat-calendar { margin-left: -12px; margin-bottom: 2em; }
 
 form.formtastic .event-repeat { background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; margin-bottom: 1em; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; display: inline-block; padding: 10px; }
-form.formtastic .event-repeat input { background-color: transparent; border: none; width: 74px; padding: 0; }
+form.formtastic .event-repeat input[type="text"] { background-color: transparent; width: 135px; padding: 4px; }
+form.formtastic .event-repeat span.for-text { display: inline-block; margin: 0 8px; }
+form.formtastic .event-repeat span.checkbox-wrapper { position: relative; margin-left: 10px; width: 12px; height: 12px; display: inline-block; }
+form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { position: absolute; top: 4px; }
 
 form.formtastic .signup-fields, form.formtastic .login-fields { text-align: center; }
 form.formtastic .signup-fields input[type="text"], form.formtastic .signup-fields input[type="password"], form.formtastic .login-fields input[type="text"], form.formtastic .login-fields input[type="password"] { width: 100%; }

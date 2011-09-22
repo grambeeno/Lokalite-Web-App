@@ -3,6 +3,8 @@ class My::OrganizationsController < My::Controller
   before_filter :find_organization_and_authorize
 
   def show
+    @repeating_events = @organization.events.repeating.prototypes.by_date
+    @one_time_events = @organization.events.upcoming.one_time
   end
 
   def index

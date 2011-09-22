@@ -9,9 +9,14 @@
   <%= form.input :name %>
   <%= form.input :description, :as => :text, :hint => raw('<span id="counter"></span>'), :input_html => {:rows => 2} %>
 
-  <%= form.input :repeating, :label => 'Event occurs more than one time', :hint => raw('<br />You will add more dates on the next page') %>
-  <%= form.input :starts_at, :label => 'Event Start Time', :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
-  <%= form.input :ends_at,   :label => 'Event End Time', :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
+  <% if form.object.new_record? or !form.object.prototype? %>
+    <%= form.input :repeating, :label => 'Event occurs more than one time', :hint => raw('<br />You will add more dates on the next page') %>
+    <%= form.input :starts_at, :label => 'Event Start Time', :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
+    <%#= form.input :ends_at,   :label => 'Event End Time', :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
+  <% end %>
+
+  <%= form.input :duration, :label => 'Duration in Hours', :as => :select, :collection => DURATIONS, :include_blank => false, :required => true %>
+
   <%= form.input :first_category, :label => 'Categories', :required => true, :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
   <%= form.input :second_category, :label => '&nbsp;', :as => :select, :collection => EVENT_CATEGORIES, :include_blank => 'Second Category (optional)' %>
 

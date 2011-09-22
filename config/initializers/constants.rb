@@ -9,7 +9,7 @@ US_STATES = {
   'CT' => 'Connecticut',
   'DE' => 'Delaware',
   'DC' => 'District of Columbia',
-  'FM' => 'Micronesia1',
+  'FM' => 'Micronesia',
   'FL' => 'Florida',
   'GA' => 'Georgia',
   'GU' => 'Guam',
@@ -88,4 +88,34 @@ ORGANIZATION_CATEGORIES = [
   'Non-Profit',
   'MMJ'
 ]
+
+
+# an array of pairs for a select
+# [human_pickable_time, seconds]
+DURATIONS = []
+96.times do |index|
+  count   = index + 1
+  seconds = count * 15.minutes
+  string  = (count/4).to_s
+
+  case count % 4
+  when 0
+    string << '.00'
+  when 1
+    string << '.25'
+  when 2
+    string << '.50'
+  when 3
+    string << '.75'
+  end
+
+  if string == '1.00'
+    string << ' Hour'
+  else
+    string << ' Hours'
+  end
+
+  DURATIONS << [string, seconds]
+end
+
 

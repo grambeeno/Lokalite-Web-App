@@ -1,6 +1,10 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-//
+var dateTimePickerOptions = {
+  minDate: 0,
+  ampm: true,
+  timeFormat: 'h:mm tt',
+  stepMinute: 15
+}
+
 
 if(!window.jq && window.jQuery){
   var jq = jQuery;
@@ -224,11 +228,7 @@ jq(function($){
     }
   });
 
-  $('.datetimepicker').datetimepicker({
-    minDate: 0,
-    ampm: true,
-    stepMinute: 15
-  });
+  $('.datetimepicker').datetimepicker(dateTimePickerOptions);
 
   $('#new_organization #organization_name').keyup(function() {
     $('#organization_locations_attributes_0_name').val($(this).val());
@@ -264,23 +264,20 @@ jq(function($){
   }
 
   // repeating events
-  $('#repeat-calendar').datepicker({
-    minDate: new Date(),
-    numberOfMonths: 3,
-    onSelect: function(dateText, instance) {
-      var template = $('<li><div class="event-repeat"><input class="date" id="event_dates_" name="event_dates[]" type="text" /><a href="#remove" class="remove-repeat">Remove</a></div></li>');
-      template.find('.date').val(dateText);
-      $('#event-repeats').append( template );
-      // $('#event-repeats').append( new Date(dateText) );
-      $('.submit-repeats').show();
-
+  $('#toggle_all_events').change(function() {
+    var boxes = $('.event-checkbox');
+    if ($(this).attr('checked') === 'checked') {
+      boxes.attr('checked', 'checked');
+    } else {
+      boxes.attr('checked', null);
     }
   });
 
-  $('.remove-repeat').live('click', function(event) {
-    $(this).closest('.event-repeat').remove();
+  $('.event-checkbox').change(function() {
+    if ($(this).attr('checked') !== 'checked') {
+      $('#toggle_all_events').attr('checked', null);
+    }
   });
-
   ////////////////////////////////////////////////////
 
   $('.truncate').truncate();
@@ -289,5 +286,9 @@ jq(function($){
 
 function idFromString(string) {
   return string.match(/\d*$/)[0];
+}
+
+function unique_id() {
+  return new Date().getTime();
 }
 

@@ -4,20 +4,60 @@
 
   <hr />
 
-
   <h2>Click on the dates below to create copies of this event.</h2>
 
   <div id="repeat-calendar"></div>
 
-  <h3>Original event times:</h3>
-  <%= render :partial => '/events/time_span', :locals => {:event => @event} %>
+  <h3>Original event:</h3>
   <br />
 
   <%= form_tag my_event_repeat_path(@event), :method => 'POST', :class => 'formtastic' do %>
-    <h3>Copies of this event will be created on the following dates:</h3>
-    <br />
-    <ul id="event-repeats"></ul>
-    <%= submit_tag 'Create Events', :class => 'submit-repeats', :style => 'display:none;' %>
+    <ul id="event-repeats">
+      <% for event in @clones -%>
+        <%=
+          render :partial => 'event_repeat_fields',
+                 :locals => {
+                   :can_remove_event => event != @event,
+                   :id => event.id, :duration => event.duration,
+                   :date => event.starts_at.to_s(:datetimepicker).downcase
+                 }
+        %>
+        <% if event == @event %>
+          <br />
+          <h3>Copies of event occur at the following times:</h3>
+          <br />
+        <% end %>
+      <% end -%>
+    </ul>
+    <%= submit_tag 'Save Changes', :class => 'submit-repeats' %>
   <% end %>
 
 </div>
+
+<script type="text/javascript">
+  jQuery(function($) {
+
+    $('#repeat-calendar').datepicker({
+      minDate: new Date(),
+      numberOfMonths: 3,
+      onSelect: function(dateText, instance) {
+        var templateString = '<%= escape_javascript render(:partial => "event_repeat_fields", :locals => { :can_remove_event => true, :id => "INDEX", :duration => @event.duration, :date => @event.starts_at.to_s(:datetimepicker).downcase }) %>';
+        var template = $(templateString.replace(/INDEX/g, unique_id()));
+        var originalStartTime = template.find('.datetimepicker').val();
+        var newTime = originalStartTime.replace(/^\S+/i, dateText);
+        template.find('.datetimepicker').val(newTime);
+        $('#event-repeats').append( template );
+        $('.datetimepicker').datetimepicker('destroy');
+        $('.datetimepicker').datetimepicker(dateTimePickerOptions);
+        $('.submit-repeats').show();
+      }
+    });
+
+    $('.remove-repeat').live('click', function(event) {
+      $(this).closest('.event-repeat').remove();
+    });
+
+  });
+</script>
+
+

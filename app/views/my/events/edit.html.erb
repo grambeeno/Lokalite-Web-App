@@ -1,10 +1,64 @@
 <div class='form'>
-  <h1>Editing <%= @event.name %></h1>
+  <h1>
+    Editing info for
+    <br />
+    <%= @event.name %>
+  </h1>
 
   <hr />
 
-  <%= semantic_form_for @event, :url => my_events_path(@event.id), :method => 'PUT', :html => {:multipart => true} do |form| %>
-    <%= render :partial => 'fields', :locals => { :form => form } %>
+  <% if @event.repeating? %>
+    <%= semantic_form_for @event, :url => my_event_update_multiple_path(@event.id), :method => 'PUT', :html => {:multipart => true} do |form| %>
+      <h2>What Events would you like to edit?</h2>
+      <table class='event-picker'>
+        <tr>
+          <td>
+            <%= check_box_tag :toggle_all_events, 1, true %>
+          </td>
+          <td>
+            <%= label_tag :toggle_all_events, 'Select All' %>
+            or
+            <%= link_to 'Manage when this event repeats', my_event_repeat_path(@event) %>
+          </td>
+        </tr>
+
+        <% for clone in @event.clones.upcoming.unshift(@event) -%>
+          <% tag_id = "select-event-#{clone.id}" %>
+          <tr>
+            <td>
+              <%= check_box_tag 'events[]', clone.id, true, :id => tag_id, :class => 'event-checkbox' %>
+            </td>
+            <td>
+              <%= label_tag tag_id, clone.starts_at.to_s(:full) %>
+              <% if clone == @event %>
+                (Original)
+              <% end %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+
+      <!--
+        <ul class="buttons">
+          <li>
+            <%= link_to 'Edit Selected Events', '#' %>
+          </li>
+          <li>
+            <%= submit_tag 'Delete Selected Events' %>
+          </li>
+        </ul>
+      -->
+
+      <br />
+      <h2>The data below will be applied to all checked events</h2>
+      <%= render :partial => 'fields', :locals => { :form => form } %>
+
+    <% end %>
+
+  <% else -%>
+    <%= semantic_form_for @event, :url => my_events_path(@event.id), :method => 'PUT', :html => {:multipart => true} do |form| %>
+      <%= render :partial => 'fields', :locals => { :form => form } %>
+    <% end %>
   <% end %>
 </div>
 

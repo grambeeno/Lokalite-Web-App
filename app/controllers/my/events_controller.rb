@@ -22,9 +22,12 @@ class My::EventsController < My::Controller
   def edit
   end
 
+
   def create
-    clean_attributes
-    @event = Event.new(params[:event])
+    attributes = clean_attributes(@event)
+    duration = attributes.delete(:duration)
+    @event = Event.new(attributes)
+    @event.duration = duration
 
     if @event.save
       Mailer.new_event_notification(@event).deliver
@@ -35,14 +38,46 @@ class My::EventsController < My::Controller
         redirect_to event_path(@event.slug, @event.id)
       end
     else
-      render :action => "new"
+      render :action => 'new'
     end
   end
 
-  def update
-    clean_attributes
+  def update_multiple
+		previous_event = nil
+    for event_id in params[:events]
+      event = @event.organization.events.find(event_id)
+      attributes = clean_attributes(event)
 
-    if @event.update_attributes(params[:event])
+      # in the case that the user is creating a new image or location
+      # we need to make sure that we don't create a copy for each event
+      # store the previous_event and use its location and image instead
+      if previous_event.is_a?(Event)
+        attributes.delete(:location_attributes)
+        attributes.delete(:image_attributes)
+				event.location = previous_event.location
+				event.image    = previous_event.image
+      end
+
+      event.duration   = attributes.delete(:duration)
+      event.attributes = attributes
+
+      if event.save
+				previous_event = event
+			else
+        render :action => 'edit' and return
+      end
+    end
+    flash[:success] = "Successfully updated #{params[:events].size} copies of this event."
+    redirect_to my_organization_path(@event.organization)
+  end
+
+  def update
+    attributes        = clean_attributes(@event)
+    duration          = attributes.delete(:duration)
+    @event.attributes = attributes
+    @event.duration   = duration
+
+    if @event.save
       flash[:notice] = 'Event was successfully updated.'
       if @event.repeating
         redirect_to my_event_repeat_path(@event)
@@ -50,30 +85,61 @@ class My::EventsController < My::Controller
         redirect_to event_path(@event.slug, @event.id)
       end
     else
-      render :action => "edit"
+      render :action => 'edit'
     end
   end
 
   def destroy
     @event.destroy
 
-    redirect_to(my_organization_path(@event.organization))
+    redirect_to my_organization_path(@event.organization)
   end
 
   def repeat
     if request.post?
-      dates = params[:event_dates].uniq
-      for date in dates
-        @event.clone_with_date(Chronic.parse(date))
+      events = params['events'].first
+      events.each_pair do |id, attributes|
+        date     = Chronic.parse(attributes[:date])
+        duration = attributes[:duration]
+
+        begin
+          event = @event.clones.find(id)
+
+          if attributes[:remove]
+            event.destroy
+            next
+          end
+
+          event.starts_at = date
+          event.duration  = duration
+          event.save if event.changed?
+        rescue ActiveRecord::RecordNotFound
+          next if attributes[:remove]
+          @event.clone(date, duration)
+        end
       end
-      flash[:success] = "Successfully created #{dates.size} copies of this event."
-      redirect_to event_path(@event.slug, @event.id)
+
+      flash[:success] = "Successfully edited this event."
+      redirect_to my_organization_path(@event.organization)
+		else
+			@clones = @event.clones.upcoming.unshift(@event)
     end
   end
 
   def feature
     if real_user.admin?
       @event.feature!
+      flash[:success] = "#{@event.name} has been featured!"
+      redirect_to :back
+    else
+      permission_denied
+    end
+  end
+
+  def unfeature
+    if real_user.admin?
+      @event.unfeature!
+      flash[:notice] = "#{@event.name} is no longer a featured event."
       redirect_to :back
     else
       permission_denied
@@ -90,13 +156,16 @@ class My::EventsController < My::Controller
     end
   end
 
-  def clean_attributes
-    params[:event].delete(:image_attributes)    unless params[:event][:image_id]    == 'new'
-    params[:event].delete(:location_attributes) unless params[:event][:location_id] == 'new'
+  def clean_attributes(event)
+    attributes = params[:event].dup
+    # remove attributes hash unless we want to actually create a new image or location
+    attributes.delete(:image_attributes)    unless attributes[:image_id]    == 'new'
+    attributes.delete(:location_attributes) unless attributes[:location_id] == 'new'
 
-    categories = [params[:event].delete(:first_category), params[:event].delete(:second_category)]
-    categories << 'Featured' if @event and @event.featured?
-    params[:event][:category_list] = categories.join(', ')
+    categories = [attributes.delete(:first_category), attributes.delete(:second_category)]
+    categories << 'Featured' if event and event.featured?
+    attributes[:category_list] = categories.join(', ')
+    attributes
   end
 
   def set_organization
