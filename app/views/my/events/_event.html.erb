@@ -21,7 +21,21 @@
 </ul>
 
 <% if event.prototype? %>
-  <%= pluralize event.clone_count, 'more event' %>
+  <% clones = event.clones.upcoming %>
+  <%= pluralize clones.size, 'more upcoming event' %>:
+  <%#= link_to '(show)', '#show_repeating_events' %>
+  <ul>
+    <% for clone in clones -%>
+      <li>
+        <%= clone.starts_at.to_s(:full) %>
+        <% if clone.featured? %>
+          <%= link_to "Unfeature", my_event_unfeature_path(clone) %>
+        <% else %>
+          <%= link_to "Feature", my_event_feature_path(clone) %>
+        <% end %>
+      </li>
+    <% end -%>
+  </ul>
 <% end %>
 
 <br />
