@@ -8,7 +8,7 @@ if Rails.env.production? or ENV['RAILS_EMAIL']
     #:user_name            => 'lokalite@lokalite.com',
     #:password             => 'Lokalblue!',
     :user_name            => 'info@lokalite.com',
-    :password             => 'Lokalblue@',
+    :password             => 'y_E:$dx0!:@H',
     :domain               => 'gmail.com',
 
     :address              => 'smtp.gmail.com',
