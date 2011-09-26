@@ -323,11 +323,8 @@ form.formtastic .errorExplanation h2 { color: #cc0000; }
 form.formtastic .errorExplanation p { font-weight: bold; }
 form.formtastic .errorExplanation ul { margin-top: 1em; list-style: inside disc; }
 
-#event_image_input ol { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; padding-left: 177px; }
-#event_image_input ol li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 10px; padding-right: 10px; }
-#event_image_input ol li:first-child, #event_image_input ol li.first { padding-left: 0; }
-#event_image_input ol li:last-child { padding-right: 0; }
-#event_image_input ol li.last { padding-right: 0; }
+#event_image_input ol { padding-left: 177px; }
+#event_image_input ol li { display: inline; float: left; margin-right: 18px; margin-bottom: 10px; }
 #event_image_input ol input { margin-bottom: 18px; }
 
 #repeat-calendar { margin-left: -12px; margin-bottom: 2em; }

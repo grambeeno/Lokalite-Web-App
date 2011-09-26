@@ -101,13 +101,17 @@ class My::EventsController < My::Controller
       events.each_pair do |id, attributes|
         date     = Chronic.parse(attributes[:date])
         duration = attributes[:duration]
+        id = id.to_i
 
         begin
-          event = @event.clones.find(id)
-
-          if attributes[:remove]
-            event.destroy
-            next
+          if @event.id == id
+            event = @event
+          else
+            event = @event.clones.find(id)
+            if attributes[:remove]
+              event.destroy
+              next
+            end
           end
 
           event.starts_at = date
