@@ -45,7 +45,11 @@ class My::EventsController < My::Controller
   def update_multiple
 		previous_event = nil
     for event_id in params[:events]
-      event = @event.organization.events.find(event_id)
+      if @event.id == event_id
+        event = @event
+      else
+        event = @event.organization.events.find(event_id)
+      end
       attributes = clean_attributes(event)
 
       # in the case that the user is creating a new image or location
@@ -64,6 +68,7 @@ class My::EventsController < My::Controller
       if event.save
 				previous_event = event
 			else
+        @event = event # so error form gets displayed
         render :action => 'edit' and return
       end
     end

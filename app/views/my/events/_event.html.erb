@@ -6,9 +6,9 @@
 <% end %>
 <%= render :partial => '/events/time_span', :locals => {:event => event} %>
 <ul class="buttons">
-  <li><%= link_to "Edit", edit_my_event_path(event) %></li>
+  <li><%= link_to "Edit Event Info", edit_my_event_path(event) %></li>
   <% if event.repeating? && !event.clone? %>
-    <li><%= link_to "Manage Repeating Events", my_event_repeat_path(event) %></li>
+    <li><%= link_to "Edit Event Dates and Times", my_event_repeat_path(event) %></li>
   <% end %>
   <li><%= link_to "Delete", my_event_path(event), :confirm => "Are you sure you want to delete this event?\n\n Any copies of this event will also be deleted.", :method => :delete %></li>
   <% if real_user.admin? %>
