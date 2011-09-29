@@ -10,15 +10,60 @@
   <%= form.input :description, :as => :text, :hint => raw('<span id="counter"></span>'), :input_html => {:rows => 2} %>
 
   <% if form.object.new_record? or !form.object.prototype? %>
-    <%= form.input :repeating, :label => 'Event occurs more than one time', :hint => raw('<br />You will add more dates on the next page') %>
-    <%= form.input :starts_at, :label => 'Event Start Time', :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
-    <%#= form.input :ends_at,   :label => 'Event End Time', :as => :string, :input_html => {:value => form.object.ends_at.to_s(:datetimepicker), :class => 'datetimepicker'} %>
+    <%= form.input :starts_at, :label => 'Event Start Time', :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker master-start-time'} %>
   <% end %>
 
-  <%= form.input :duration, :label => 'Duration in Hours', :as => :select, :collection => DURATIONS, :include_blank => false, :required => true %>
+  <%= form.input :duration, :label => 'Duration in Hours', :as => :select, :collection => DURATIONS, :include_blank => false, :required => true, :input_html => {:class => 'master-duration'} %>
 
-  <%= form.input :first_category, :label => 'Categories', :required => true, :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category' %>
-  <%= form.input :second_category, :label => '&nbsp;', :as => :select, :collection => EVENT_CATEGORIES, :include_blank => 'Second Category (optional)' %>
+  <% if form.object.new_record? or !form.object.prototype? %>
+    <%= form.input :repeating, :label => 'Event occurs more than one time' %>
+
+    <div id='repeat-form' style='display:none;'>
+      <h2>Click on the dates below to create copies of this event.</h2>
+      <div id="repeat-calendar"></div>
+      <ul class='align-with-fields' id="event-repeats">
+        <li class='event-copy-title' style='display:none;'>
+          <h3>Copies of event occur at the following times:</h3>
+          <br />
+        </li>
+
+        <% if params[:event_repeats] %>
+          <% for repeat in params[:event_repeats] -%>
+            <%= render(:partial => "event_repeat_fields", :locals => { :original_event => false, :id => "INDEX", :duration => repeat[:duration], :date => repeat[:date] }) %>
+          <% end -%>
+        <% end %>
+      </ul>
+      <hr />
+    </div>
+
+    <script type="text/javascript">
+      jQuery(function($) {
+        $('#event_repeating_input input').change(function(event) {
+          if ($(this).attr('checked')) {
+            $('#repeat-form').show('blind', 'fast');
+          } else {
+            $('#repeat-form').hide('blind', 'fast');
+          }
+        });
+
+        var templateString = '<%= escape_javascript render(:partial => "event_repeat_fields", :locals => { :original_event => false, :id => "INDEX", :duration => @event.duration, :date => @event.starts_at.to_s(:datetimepicker).downcase }) %>';
+        manageRepeatingEvents(templateString);
+      });
+    </script>
+  <% end %>
+
+
+  <%
+    if params.key?(:event)
+      first  = params[:event][:first_category]
+      second = params[:event][:second_category]
+    else
+      first  = form.object.first_category
+      second = form.object.second_category
+    end
+  %>
+  <%= form.input :first_category, :label => 'Categories', :required => true, :as => :select, :collection => EVENT_CATEGORIES, :prompt => 'Select a Category', :selected => first %>
+  <%= form.input :second_category, :label => '&nbsp;', :as => :select, :collection => EVENT_CATEGORIES, :include_blank => 'Second Category (optional)', :selected => second %>
 
   <%= form.input :image, :as => :radio, :collection => organization.event_images, :label_method => Proc.new {|image| image_tag(image.url(:thumb)) } %>
   <script type="text/javascript">
@@ -68,7 +113,6 @@
       }
     });
 
-    ////////
     $('#event_location_id').append('<option value="new">Create a new location</option>');
 
     $('.new-location').hide()
@@ -79,7 +123,6 @@
         $('.new-location').slideUp()
       }
     });
-
 
   });
 </script>

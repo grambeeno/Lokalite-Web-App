@@ -17,7 +17,7 @@
         <%=
           render :partial => 'event_repeat_fields',
                  :locals => {
-                   :can_remove_event => event != @event,
+                   :original_event => event == @event,
                    :id => event.id, :duration => event.duration,
                    :date => event.starts_at.to_s(:datetimepicker).downcase
                  }
@@ -36,28 +36,8 @@
 
 <script type="text/javascript">
   jQuery(function($) {
-
-    $('#repeat-calendar').datepicker({
-      minDate: new Date(),
-      numberOfMonths: 3,
-      onSelect: function(dateText, instance) {
-        var templateString = '<%= escape_javascript render(:partial => "event_repeat_fields", :locals => { :can_remove_event => true, :id => "INDEX", :duration => @event.duration, :date => @event.starts_at.to_s(:datetimepicker).downcase }) %>';
-        var template = $(templateString.replace(/INDEX/g, unique_id()));
-        var originalStartTime = template.find('.datetimepicker').val();
-        var newTime = originalStartTime.replace(/^\S+/i, dateText);
-        template.find('.datetimepicker').val(newTime);
-        $('#event-repeats').append( template );
-        $('.datetimepicker').datetimepicker('destroy');
-        $('.datetimepicker').datetimepicker(dateTimePickerOptions);
-        $('.submit-repeats').show();
-      }
-    });
-
-    $('.remove-repeat').live('click', function(event) {
-      $(this).closest('.event-repeat').remove();
-    });
-
+    var templateString = '<%= escape_javascript render(:partial => "event_repeat_fields", :locals => { :original_event => false, :id => "INDEX", :duration => @event.duration, :date => @event.starts_at.to_s(:datetimepicker).downcase }) %>';
+    manageRepeatingEvents(templateString);
   });
 </script>
-
 

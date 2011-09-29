@@ -1,13 +1,21 @@
 <li>
   <div class="event-repeat">
-    <%= text_field_tag "events[][#{id}]date", date, :class => 'datetimepicker' %>
+    <%
+      text_field_class = 'datetimepicker'
+      duration_class   = 'duration-picker'
+      if original_event
+        text_field_class << ' master-start-time'
+        duration_class   << ' master-duration'
+      end
+    %>
+    <%= text_field_tag "event_repeats[][#{id}]date", date, :class => text_field_class %>
     <span class="for-text">
       for
     </span>
-    <%= select_tag "events[][#{id}]duration", options_for_select(DURATIONS, duration), :include_blank => false %>
+    <%= select_tag "event_repeats[][#{id}]duration", options_for_select(DURATIONS, duration), :include_blank => false, :class => duration_class %>
 
-    <% if can_remove_event %>
-      <%- check_box_id = "events[][#{id}]remove" %>
+    <% unless original_event %>
+      <%- check_box_id = "event_repeats[][#{id}]remove" %>
       <span class="checkbox-wrapper">
         <%= check_box_tag check_box_id %>
       </span>

@@ -292,3 +292,30 @@ function unique_id() {
   return new Date().getTime();
 }
 
+function manageRepeatingEvents(templateString) {
+  $('#repeat-calendar').datepicker({
+    minDate: new Date(),
+    numberOfMonths: 3,
+    onSelect: function(dateText, instance) {
+      var template = $(templateString.replace(/INDEX/g, unique_id()));
+      var originalStartTime = $('.master-start-time').val();
+      var newTime = originalStartTime.replace(/^\S+/i, dateText);
+      template.find('.datetimepicker').val(newTime);
+
+      var duration = $('.master-duration').val();
+      template.find('.duration-picker').val(duration);
+
+      $('#event-repeats').append( template );
+      $('.datetimepicker').datetimepicker('destroy');
+      $('.datetimepicker').datetimepicker(dateTimePickerOptions);
+      $('.submit-repeats').show();
+      $('.event-copy-title').show();
+    }
+  });
+
+  $('.remove-repeat').live('click', function(event) {
+    $(this).closest('.event-repeat').remove();
+  });
+}
+
+

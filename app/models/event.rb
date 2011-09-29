@@ -370,6 +370,33 @@ class Event < ActiveRecord::Base
     prototype_id.present?
   end
 
+  def update_repeating_events(event_hash)
+    event_hash.each_pair do |key, values|
+      key       = key.to_i
+      date     = Chronic.parse(values[:date])
+      duration = values[:duration]
+
+      begin
+        if self.id == key
+          event = self
+        else
+          event = self.clones.find(key)
+          if values[:remove]
+            event.destroy
+            next
+          end
+        end
+
+        event.starts_at = date
+        event.duration  = duration
+        event.save if event.changed?
+      rescue ActiveRecord::RecordNotFound
+        next if values[:remove]
+        self.clone(date, duration)
+      end
+    end
+  end
+
   def clone(start_time, duration)
     cleaned_attributes = attributes.reject{|key, value| %w[id clone_count trend_weight users_count anonymous_trend_count starts_at ends_at].include?(key) }
     clone  = Event.new(cleaned_attributes)

@@ -30,15 +30,33 @@ class My::EventsController < My::Controller
     @event.duration = duration
 
     if @event.save
+      if @event.repeating and params.key?(:event_repeats)
+        @event.update_repeating_events(params['event_repeats'].first)
+      end
+
       Mailer.new_event_notification(@event).deliver
       flash[:notice] = 'Event was successfully created.'
-      if @event.repeating
-        redirect_to my_event_repeat_path(@event)
-      else
-        redirect_to event_path(@event.slug, @event.id)
-      end
+      redirect_to event_path(@event.slug, @event.id)
     else
       render :action => 'new'
+    end
+  end
+
+  def update
+    attributes        = clean_attributes(@event)
+    duration          = attributes.delete(:duration)
+    @event.attributes = attributes
+    @event.duration   = duration
+
+    if @event.save
+      if @event.repeating and params.key?(:event_repeats)
+        @event.update_repeating_events(params['event_repeats'].first)
+      end
+
+      flash[:notice] = 'Event was successfully updated.'
+      redirect_to event_path(@event.slug, @event.id)
+    else
+      render :action => 'edit'
     end
   end
 
@@ -76,24 +94,6 @@ class My::EventsController < My::Controller
     redirect_to my_organization_path(@event.organization)
   end
 
-  def update
-    attributes        = clean_attributes(@event)
-    duration          = attributes.delete(:duration)
-    @event.attributes = attributes
-    @event.duration   = duration
-
-    if @event.save
-      flash[:notice] = 'Event was successfully updated.'
-      if @event.repeating
-        redirect_to my_event_repeat_path(@event)
-      else
-        redirect_to event_path(@event.slug, @event.id)
-      end
-    else
-      render :action => 'edit'
-    end
-  end
-
   def destroy
     @event.destroy
 
@@ -102,31 +102,7 @@ class My::EventsController < My::Controller
 
   def repeat
     if request.post?
-      events = params['events'].first
-      events.each_pair do |id, attributes|
-        date     = Chronic.parse(attributes[:date])
-        duration = attributes[:duration]
-        id = id.to_i
-
-        begin
-          if @event.id == id
-            event = @event
-          else
-            event = @event.clones.find(id)
-            if attributes[:remove]
-              event.destroy
-              next
-            end
-          end
-
-          event.starts_at = date
-          event.duration  = duration
-          event.save if event.changed?
-        rescue ActiveRecord::RecordNotFound
-          next if attributes[:remove]
-          @event.clone(date, duration)
-        end
-      end
+      @event.update_repeating_events(params['event_repeats'].first)
 
       flash[:success] = "Successfully edited this event."
       redirect_to my_organization_path(@event.organization)
