@@ -18,7 +18,7 @@
   <% if form.object.new_record? or !form.object.prototype? %>
     <%= form.input :repeating, :label => 'Event occurs more than one time' %>
 
-    <div id='repeat-form' style='display:none;'>
+    <div id='repeat-form'<%= " style='display:none;'" unless form.object.repeating? -%>>
       <h2>Click on the dates below to create copies of this event.</h2>
       <div id="repeat-calendar"></div>
       <ul class='align-with-fields' id="event-repeats">
@@ -28,8 +28,9 @@
         </li>
 
         <% if params[:event_repeats] %>
-          <% for repeat in params[:event_repeats] -%>
-            <%= render(:partial => "event_repeat_fields", :locals => { :original_event => false, :id => "INDEX", :duration => repeat[:duration], :date => repeat[:date] }) %>
+          <% params[:event_repeats].first.each_pair do |key, repeat| -%>
+            <%- next if repeat[:remove] == '1' %>
+            <%= render(:partial => "event_repeat_fields", :locals => { :original_event => false, :id => key, :duration => repeat[:duration], :date => repeat[:date] }) %>
           <% end -%>
         <% end %>
       </ul>
