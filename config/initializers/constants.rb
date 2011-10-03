@@ -118,4 +118,10 @@ DURATIONS = []
   DURATIONS << [string, seconds]
 end
 
+if Rails.env == 'production'
+  REPORT_GRID_TOKEN = 'D90AEC76-FAC1-4591-8726-2126832BD18D'
+else
+  REPORT_GRID_TOKEN = 'FD2973F7-A5E1-4692-B9C8-111D0E62CB78'
+end
+
 
