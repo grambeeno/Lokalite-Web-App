@@ -22,6 +22,7 @@
         jquery.json-2.2.min.js
         dao.js
         application.js
+        coffeescript/analytics
       )
 
       if !!session['firebug']
@@ -41,6 +42,14 @@
     <% default_content_for(:script){} %>
 
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <% if Rails.env == 'production' %>
+      <script type="text/javascript" src="http://api.reportgrid.com/js/reportgrid-core.js?tokenId=D90AEC76-FAC1-4591-8726-2126832BD18D"></script>
+    <% else %>
+      <script type="text/javascript" src="http://api.reportgrid.com/js/reportgrid-core.js?tokenId=FD2973F7-A5E1-4692-B9C8-111D0E62CB78"></script>
+    <% end %>
+    <script type="text/javascript" src="http://api.reportgrid.com/js/reportgrid-viz.js"></script>
+
 
     <!--[if lt IE 7 ]>
       <script src="/javascripts/dd_belatedpng.js"></script>

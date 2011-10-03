@@ -16,6 +16,10 @@
       </ul>
     </div>
 
+    <h2 class='big'>Your Event Views</h2>
+    <div class="organization_stats chart" id="organization-<%= @organization.id %>"></div>
+    <hr />
+
     <% if @repeating_events.any? %>
       <h2 class='big'>Repeating Events</h2>
       <%= render :partial => '/my/events/event', :collection => @repeating_events %>

@@ -342,3 +342,5 @@ form.formtastic .signup-fields div, form.formtastic .login-fields div { width: 3
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
 #keywords { width: 100%; }
+
+.chart { background-color: white; border: 1px solid gray; margin-bottom: 2em; }

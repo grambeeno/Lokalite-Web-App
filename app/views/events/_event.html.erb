@@ -1,4 +1,4 @@
-<li>
+<li<%= report_grid_tracker(event, :type => 'Tile') %>>
   <div class='image'>
     <%= link_to event_path(event.slug, event.id) do %>
       <%= image_tag(event.image.url(:medium)) %>
