@@ -35,3 +35,4 @@ trackImpressions = ->
 # id='organization-4' returns 4
 extractObjectId = (element) ->
   element.attr('id').split('-').pop()
+
