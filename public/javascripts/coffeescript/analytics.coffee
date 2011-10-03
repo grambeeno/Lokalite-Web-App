@@ -7,7 +7,6 @@ displayOrganizationChart = ->
   $('.organization_stats').each ->
     target = "##{$(this).attr('id')}"
     id = extractObjectId($(this))
-    console.log target, id
     path = "/organizations/#{id}/"
 
     ReportGrid.barChart target,

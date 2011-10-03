@@ -9,7 +9,6 @@
       var id, path, target;
       target = "#" + ($(this).attr('id'));
       id = extractObjectId($(this));
-      console.log(target, id);
       path = "/organizations/" + id + "/";
       return ReportGrid.barChart(target, {
         path: path,
