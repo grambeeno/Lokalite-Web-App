@@ -23,6 +23,10 @@ module EventsHelper
     raw string
   end
 
+  def complex_dom_id(*args)
+    args.map{|o| dom_id(o) }.join('-')
+  end
+
   # object can be an event or organization
   def report_grid_tracker(object, options = {})
     if object.is_a? Organization

@@ -218,16 +218,6 @@ jq(function($){
     $(this).closest('.flash').hide(400);
   });
 
-
-  $('.events li, .organizations li').live({
-    mouseenter: function() {
-      $(this).find('.description').show("slide", { direction: "down" }, 200);
-    },
-    mouseleave: function() {
-      $(this).find('.description').hide("slide", { direction: "down" }, 400);
-    }
-  });
-
   $('.datetimepicker').datetimepicker(dateTimePickerOptions);
 
   $('#new_organization #organization_name').keyup(function() {
