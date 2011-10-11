@@ -24,7 +24,7 @@ namespace :backup do
 
   desc "Backup production db to the server"
   task :backup do
-    run "pg_dump -O -f #{destination} #{application}_production"
+    run "pg_dump --clean -O -f #{destination} #{application}_production"
     # run "gzip #{destination}"
   end
 
@@ -36,9 +36,7 @@ namespace :backup do
 
   desc "Imports production db into development"
   task :import do
-    # get most recent backup, imports locally without doing the sync again
-    # DB needs to be manually dropped and created first, I'd like to solve that soon.
-    # system "psql -c 'DROP SCHEMA public CASCADE;' lokalite_development lokalite
+    # identify most recent local backup and import it
     system "recent_db_backup=`ls -1 db_dumps/ | tail -1`
     psql -f db_dumps/`echo $recent_db_backup` lokalite_development lokalite"
   end
