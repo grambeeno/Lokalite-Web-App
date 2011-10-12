@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  name: MyString
+  description: 
+  date: 2011-10-10 19:49:33
+
+two:
+  user: 
+  name: MyString
+  description: 
+  date: 2011-10-10 19:49:33
+
+# == Schema Information
+#
+# Table name: plans
+#
+#  id          :integer         not null, primary key
+#  user_id     :integer
+#  name        :string(255)
+#  description :text
+#  date        :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

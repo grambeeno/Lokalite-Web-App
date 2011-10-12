@@ -1,0 +1,24 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  plan: 
+  accepted: false
+
+two:
+  user: 
+  plan: 
+  accepted: false
+
+# == Schema Information
+#
+# Table name: plan_user_invitations
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  plan_id    :integer
+#  accepted   :boolean
+#  created_at :datetime
+#  updated_at :datetime
+#
+

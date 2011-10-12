@@ -5,8 +5,9 @@
     var active_hover_id;
     trackImpressions();
     displayOrganizationChart();
+    $('.truncate').truncate();
     active_hover_id = '';
-    return $('.events li, .organizations li').live({
+    $('.events li, .organizations li').live({
       mouseenter: function() {
         $(this).find('.description').show("slide", {
           direction: "down"
@@ -34,6 +35,54 @@
         return active_hover_id = '';
       }
     });
+    $('li', '.datebook .events').draggable({
+      revert: 'invalid',
+      cursorAt: {
+        top: 12,
+        right: 18
+      }
+    });
+    $('#selected-event-list').droppable({
+      tolerance: 'touch',
+      drop: function(event, ui) {
+        ui.draggable.removeAttr('style').addClass('without-image');
+        return $(this).append(ui.draggable);
+      }
+    });
+    $('#selected-event-list a').live('click', function(event) {
+      return event.preventDefault();
+    });
+    $('#plan-form').submit(function(event) {
+      var event_ids, event_string;
+      event_ids = [];
+      $('#selected-event-list li[id]').each(function(index) {
+        return event_ids.push(extractObjectId($(this)));
+      });
+      event_string = event_ids.join(', ');
+      if (event_string !== '') {
+        $('#plan_event_ids').val(event_string);
+        return true;
+      } else {
+        alert('Please add an event to your plan!');
+        $(this).find('input[type=submit]').data('clicked', false);
+        return false;
+      }
+    });
+    if ($('#organization_description').length) {
+      $('#organization_description').simplyCountable({
+        maxCount: 500
+      });
+    }
+    if ($('#event_description').length) {
+      $('#event_description').simplyCountable({
+        maxCount: 140
+      });
+    }
+    if ($('#plan_description').length) {
+      return $('#plan_description').simplyCountable({
+        maxCount: 140
+      });
+    }
   });
   displayOrganizationChart = function() {
     return $('.organization_stats').each(function() {

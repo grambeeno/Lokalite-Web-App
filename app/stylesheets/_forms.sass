@@ -7,16 +7,20 @@ $error-red: #cc0000
 
   // hr
 
+=input-base
+  background-color: $form-grey
+  border: 1px solid darken($form-grey, 10)
+  padding: 10px
+
+  &.file
+    background-color: transparent
+    padding: 0
+    border: none
+
 form.formtastic
   input, textarea
-    background-color: $form-grey
-    border: 1px solid darken($form-grey, 10)
-    padding: 10px
+    +input-base
 
-    &.file
-      background-color: transparent
-      padding: 0
-      border: none
   input[type=submit]
     +button
 
@@ -90,6 +94,50 @@ form.formtastic
       display: block
       text-align: left
 
+
+
+$plan-form-width: 320px
+$plan-form-inner-width: 320px - 20px
+
+.new-plan-container
+  width: $plan-form-width
+  background-color: $form-grey
+  padding: 10px
+  border: 1px solid #ccc
+  +border-radius(5px)
+
+  div
+    margin-bottom: 1em
+
+  .events li
+    // get the listings centered
+    margin-left: ($plan-form-width - $tile-width) / 2
+
+    // this is the text under the dropzone
+    div
+      margin-bottom: 0
+    p
+      padding: 6px 10px 4px
+      line-height: 16px
+      color: $grey
+
+
+
+  form
+    input[type="text"], textarea
+      +input-base
+      background-color: white
+      width: $plan-form-inner-width
+      +box-shadow(#ddd 0 4px 6px)
+    textarea
+      height: 70px
+
+#selected-event-list
+  +clearfix
+
+#drag-target
+  +replace-text-with-dimensions('dropzone.png')
+  // background-color: $light-green
 
 input.placeholder,
 textarea.placeholder

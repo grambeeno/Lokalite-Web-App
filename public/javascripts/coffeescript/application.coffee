@@ -1,6 +1,11 @@
+# compiling this manually for now
+# had trouble upgrading to rails 3.1
+# don't want to deal with barista or another external gem right now...
 $ ->
   trackImpressions()
   displayOrganizationChart()
+
+  $('.truncate').truncate()
 
   # store the active_hover_id so we can track hovers that last over 1 second
   active_hover_id = ''
@@ -25,6 +30,62 @@ $ ->
     mouseleave: ->
       $(this).find('.description').hide("slide", { direction: "down" }, 400)
       active_hover_id = ''
+
+  # event plans
+  $('li', '.datebook .events').draggable
+    revert: 'invalid'
+    cursorAt:
+      top: 12
+      right: 18
+
+  $('#selected-event-list').droppable
+    tolerance: 'touch'
+    drop: (event, ui) ->
+      # remove positioning set by drag event so the list flows naturally
+      ui.draggable.removeAttr('style')
+        .addClass('without-image')
+      $(this).append(ui.draggable)
+
+  # disable links once they're added to the selected events
+  $('#selected-event-list a').live 'click', (event) ->
+    event.preventDefault()
+
+  # serialize event ids before submitting form
+  $('#plan-form').submit (event) ->
+    event_ids = []
+
+    $('#selected-event-list li[id]').each (index) ->
+      event_ids.push extractObjectId($(this))
+
+    event_string = event_ids.join(', ')
+
+    if event_string != ''
+      $('#plan_event_ids').val(event_string)
+      return true
+    else
+      alert 'Please add an event to your plan!'
+      # unset clicked data on button so user doesn't get asked if they want to submit again
+      $(this).find('input[type=submit]').data('clicked', false)
+      return false
+
+
+  #---------------------------------------------------#
+
+  # https://github.com/aaronrussell/jquery-simply-countable
+  # for some reason it doesn't fail silently when the element doesn't exist...
+  if $('#organization_description').length
+    $('#organization_description').simplyCountable
+      maxCount: 500
+
+  if $('#event_description').length
+    $('#event_description').simplyCountable
+      maxCount: 140
+
+  if $('#plan_description').length
+    $('#plan_description').simplyCountable
+      maxCount: 140
+
+
 
 
 displayOrganizationChart = ->

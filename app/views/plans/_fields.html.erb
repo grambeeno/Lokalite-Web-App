@@ -1,0 +1,46 @@
+<%= form_for @plan, :html => {:id => 'plan-form'} do |f| -%>
+  <%= f.error_messages %>
+
+  <%= f.hidden_field :event_ids %>
+
+  <div>
+    <%= f.text_field :title, :placeholder => 'Title' %>
+  </div>
+
+  <div>
+    <%= f.text_area :description, :placeholder => 'Description' %>
+    <span id="counter"></span>
+  </div>
+
+  <div>
+    <%= f.check_box :public %>
+    <%= f.label :public, "Plan is public?" %>
+  </div>
+
+  <%# <div>%>
+    <%#=  f.text_field :start_date, :placeholder => 'Start Date', :class => 'datepicker' %>
+  <%# </div>%>
+
+  <ul id='selected-event-list' class='events'>
+    <%# does not yet allow for editing of events in plan %>
+    <% if f.object.new_record? %>
+      <li>
+        <div id='drag-target'></div>
+        <p class='centered'>
+          Drag and drop events here to add them to your plan.
+        </p>
+      </li>
+    <% else %>
+      <% f.object.events.each do |event| %>
+        <%= render :partial => '/events/event', :locals => { :event => event } %>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <div class="clear"></div>
+
+  <div class="centered">
+    <%= f.submit %>
+  </div>
+<% end -%>
+

@@ -219,6 +219,9 @@ jq(function($){
   });
 
   $('.datetimepicker').datetimepicker(dateTimePickerOptions);
+  $('.datepicker').datepicker({
+    minDate: 0
+  });
 
   $('#new_organization #organization_name').keyup(function() {
     $('#organization_locations_attributes_0_name').val($(this).val());
@@ -240,19 +243,6 @@ jq(function($){
   //   }
   // });
 
-  // https://github.com/aaronrussell/jquery-simply-countable
-  // for some reason it doesn't fail silently when the element doesn't exist...
-  if ($('#organization_description').length) {
-    $('#organization_description').simplyCountable({
-      maxCount: 500
-    });
-  }
-  if ($('#event_description').length) {
-    $('#event_description').simplyCountable({
-      maxCount: 140
-    });
-  }
-
   // repeating events
   $('#toggle_all_events').change(function() {
     var boxes = $('.event-checkbox');
@@ -269,8 +259,6 @@ jq(function($){
     }
   });
   ////////////////////////////////////////////////////
-
-  $('.truncate').truncate();
 
 });
 

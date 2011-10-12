@@ -11,7 +11,7 @@
 // $blue: #3298CF
 $blue: #607890
 
-$light-green: #96d2a5
+$light-green: #99cc99
 // $blue: #2B7BFF
 
 $grey: #5d5d5d
@@ -221,10 +221,17 @@ a.button
   cursor: hand
 
 
+
+$tile-inner-width: 200px
+$tile-padding: 10px
+$tile-width: $tile-inner-width + ($tile-padding * 2)
+
 .events, .organizations
   font-size: 12px
-  +clearfix
   margin: 0
+
+  // instead of the following clear manually since overflow: hidden screws up some other stuff.
+  // +clearfix
 
   // In order to get the top border of the box-shadow to be displayed
   // we need to give it a top margin, so here we pull the container up
@@ -236,10 +243,14 @@ a.button
   li
     +foreground
     +float('left')
-    width: 200px
-    padding: 10px 10px 4px
+    width: $tile-inner-width
+    padding: $tile-padding $tile-padding 4px
     margin-top: $content-bg-padding
     margin-left: $content-bg-padding
+
+    &.without-image, &.ui-draggable-dragging
+      .image
+        display: none
 
     // &:hover
     //   background-color: darken(white, 5%)
@@ -252,7 +263,7 @@ a.button
     // text-shadow: white 1px 1px 1px
     .image
       position: relative
-      width: 202px
+      width: $tile-inner-width + 2
       img
         border: 1px solid black
       .description
@@ -299,6 +310,31 @@ a.button
         font-size: 12px
         // height: 1em
         // overflow: hidden
+
+.help-bubble
+  background:
+    color: black
+    image: image-url('header-bg.png')
+    repeat: repeat-x
+  color: white
+  border: 1px solid #ccc
+  font-weight: bold
+  line-height: 1.6em
+  padding: 6px 10px
+  +border-radius(5px)
+
+.datebook
+  width: $tile-width + ($content-bg-padding * 2)
+  h3
+    margin-left: $content-bg-padding
+  .help-bubble
+    width: $tile-width - 20
+    margin-left: $content-bg-padding
+
+.datebook, .new-plan-container
+  +float('left')
+  h3
+    margin-bottom: 10px
 
 
 $info-window-width: 380px

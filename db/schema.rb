@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914161056) do
+ActiveRecord::Schema.define(:version => 20111011174441) do
 
   create_table "event_images", :force => true do |t|
     t.string   "image"
@@ -114,6 +114,32 @@ ActiveRecord::Schema.define(:version => 20110914161056) do
 
   add_index "organizations", ["name"], :name => "index_organizations_on_name"
   add_index "organizations", ["uuid"], :name => "index_organizations_on_uuid", :unique => true
+
+  create_table "plan_user_invitations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "plan_id"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plan_user_invitations", ["accepted"], :name => "index_plan_user_invitations_on_accepted"
+  add_index "plan_user_invitations", ["plan_id"], :name => "index_plan_user_invitations_on_plan_id"
+  add_index "plan_user_invitations", ["user_id"], :name => "index_plan_user_invitations_on_user_id"
+
+  create_table "plans", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "uuid"
+    t.string   "title"
+    t.boolean  "public",      :default => false
+    t.text     "description"
+    t.text     "event_list"
+    t.datetime "start_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plans", ["user_id"], :name => "index_plans_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

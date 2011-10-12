@@ -1,0 +1,22 @@
+<div class="datebook">
+  <h3>Datebook</h3>
+
+  <% if @saved_events.any? %>
+    <ul class="events">
+      <% @saved_events.each do |event| %>
+        <%= render :partial => '/events/event', :locals => { :event => event } %>
+      <% end %>
+    </ul>
+    <div class="clear"></div>
+  <% else %>
+    <div class="help-bubble">
+      Add events to your Datebook by pressing the heart on the upper-left corner of an event tile.
+    </div>
+  <% end %>
+</div>
+
+<div class="new-plan-container">
+  <h3>Create A Plan</h3>
+  <%= render :partial => '/plans/fields' %>
+</div>
+
