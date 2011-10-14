@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   layout :layout_for_request
 
-  before_filter :set_current_controller!
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
   before_filter :set_origin
@@ -15,7 +14,7 @@ class ApplicationController < ActionController::Base
 protected
 
   # def show_holding_page
-  #   unless logged_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'
+  #   unless user_signed_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'
   #     render :file => 'public/holding-page.html', :layout => false
   #   end
   # end
@@ -31,7 +30,7 @@ protected
   end
 
   def set_user_time_zone
-    Time.zone = current_user.time_zone if logged_in?
+    Time.zone = current_user.time_zone if user_signed_in?
     Chronic.time_class = Time.zone
   end
 
@@ -53,67 +52,33 @@ protected
 
 # current user support
 #
-  def effective_user
-    @effective_user ||= User.where(:uuid => session[:effective_user]).first
-  end
-  helper_method(:effective_user)
+  # def effective_user
+  #   @effective_user ||= User.where(:uuid => session[:effective_user]).first
+  # end
+  # helper_method(:effective_user)
 
-  def real_user
-    @real_user ||= User.where(:uuid => session[:real_user]).first
-  end
-  helper_method(:real_user)
+  # def real_user
+  #   @real_user ||= User.where(:uuid => session[:real_user]).first
+  # end
+  # helper_method(:real_user)
 
-  def current_user
-    effective_user
-  end
-  helper_method(:current_user)
+  # def current_user
+  #   effective_user
+  # end
+  # helper_method(:current_user)
 
   def user_sudoing?
-    real_user != effective_user
+    # real_user != effective_user
   end
   helper_method(:user_sudoing?)
 
-  def require_current_user
-    unless current_user
-      message("Sorry, you must be logged in to view #{ h(request.fullpath) }", :class => :error)
-      redirect_to(login_path)
-      return
-    end
-  end
-
-  def require_admin_user
-    unless real_user and real_user.admin?
+  def require_admin
+    unless current_user.admin?
       message("Sorry, you must be logged as an *admin* in to view #{ h(request.fullpath) }", :class => :error)
-      redirect_to(login_path)
+      redirect_to(root_path)
       return
     end
   end
-
-  def logged_in?
-    session[:real_user]
-  end
-  helper_method(:logged_in?)
-
-# api support
-#
-  def api
-    @api ||= Api.new(effective_user, real_user)
-  end
-
-# current controller support
-#
-  def set_current_controller!
-    ApplicationController.current = self
-  end
-  def current_controller
-    ApplicationController.current
-  end
-  helper_method(:current_controller)
-
-  def current_action
-    action_name
-  end
-  helper_method(:current_action)
 
 # location support
 #
@@ -226,40 +191,6 @@ protected
     send_file(path, options)
   end
 
-# server info support
-#
-# server info support
-#
-  def ApplicationController.server_info
-    @@server_info_cache ||= {
-      'hostname' => Socket.gethostname.strip,
-      'git_rev' => `git rev-parse HEAD 2>/dev/null`.to_s.strip,
-      'rails_env' => RAILS_ENV,
-      'rails_stage' => defined?(RAILS_STAGE)&&RAILS_STAGE,
-    }
-=begin
-    @@server_info_cache.merge(
-      :controller => current_controller.class.name.underscore.sub(/_controller/,''),
-      :action => current_action.to_s
-    )
-=end
-    @@server_info_cache.merge(current_controller.send(:params).slice(:controller, :action))
-  #rescue
-    #@@server_info_cache = {}
-  end
-  def server_info
-    ApplicationController.server_info
-  end
-  helper_method :server_info
-
-  def ApplicationController.git_rev()
-    server_info['git_rev']
-  end
-  def git_rev
-    ApplicationController.git_rev
-  end
-  helper_method :git_rev
-
 # support for in-app referrer (never cross site)
 #
   def http_referer
@@ -359,16 +290,5 @@ protected
     options[:layout] = 'application' unless options.has_key?(:layout)
     render(options)
   end
-
-=begin
-  def ApplicationController.ver()
-    git_ver = server_info['git_rev']
-    return "v=" + git_ver
-  end
-  def ver
-    ApplicationController.ver
-  end
-  helper_method :ver
-=end
 
 end

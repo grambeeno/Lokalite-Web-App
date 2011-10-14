@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
   def signup
-    redirect_to events_path(:origin => params[:origin]) and return if logged_in?
+    redirect_to events_path(:origin => params[:origin]) and return if user_signed_in?
     if params[:token]
       redirect_to(url_for(:action => :activate, :token => params[:token]))
       return

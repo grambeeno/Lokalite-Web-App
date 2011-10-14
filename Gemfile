@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'bcrypt-ruby'
+gem 'devise'
+
 gem 'pg'
 gem 'yajl-ruby', '0.8.1'
 

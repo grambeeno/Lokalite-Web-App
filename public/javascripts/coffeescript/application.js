@@ -13,20 +13,22 @@
           direction: "down"
         }, 200);
         active_hover_id = $(this).attr('id');
-        return setTimeout((__bind(function() {
-          var data, ids, path;
-          if (active_hover_id === $(this).attr('id')) {
-            ids = extractComplexObjectId($(this));
-            path = "/organizations/" + ids.organization;
-            data = {
-              impression: {
-                id: ids.event,
-                type: 'Event Description Read'
-              }
-            };
-            return ReportGrid.track(path, data);
-          }
-        }, this)), 1000);
+        if ($(this).parent().hasClass('events')) {
+          return setTimeout((__bind(function() {
+            var data, ids, path;
+            if (active_hover_id === $(this).attr('id')) {
+              ids = extractComplexObjectId($(this));
+              path = "/organizations/" + ids.organization;
+              data = {
+                impression: {
+                  id: ids.event,
+                  type: 'Event Description Read'
+                }
+              };
+              return ReportGrid.track(path, data);
+            }
+          }, this)), 1000);
+        }
       },
       mouseleave: function() {
         $(this).find('.description').hide("slide", {

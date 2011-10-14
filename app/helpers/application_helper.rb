@@ -248,24 +248,6 @@ module ApplicationHelper
     content = simple_format(content, options)
   end
 
-  def share_this_code_for(event)
-    url = event_path(:id => event.id, :slug => event.slug, :path_only => false)
-
-    html =
-      <<-__
-        <span class="st_twitter_large sharethis" displaytext="Tweet" st_url="#{ url }">
-          <span class="stButton" style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;">
-          <span class="stLarge" style="background-image: url("http://w.sharethis.com/images/twitter_32.png");"></span></span>
-        </span>
-        <span class="st_facebook_large sharethis" displaytext="Facebook" st_url="#{ url }">
-          <span class="stButton" style="text-decoration:none;color:#000000;display:inline-block;cursor:pointer;">
-          <span class="stLarge" style="background-image: url("http://w.sharethis.com/images/facebook_32.png");"></span></span>
-        </span>
-      __
-
-    raw(html)
-  end
-
 # unicode chars
 #
   def left_quote()
@@ -366,36 +348,6 @@ module ApplicationHelper
         end
       }
     at_least_one_error ? to_html : ''
-  end
-
-# sharethis link generator
-#
-  def share_this(*args)
-    options = args.extract_options!.to_options!
-    arg = args.first
-
-    case arg
-      when NilClass
-        st_url = options[:st_url] || options[:url]
-        st_title = options[:st_title] || options[:title]
-
-      when String
-        st_url = args.shift
-        st_title = args.shift || options[:st_title] || options[:title]
-
-      when Event
-        event = arg
-        st_url = event_path(:id => event.id, :slug => event.slug, :only_path => false)
-        st_title = "#{ App.url } (#{ event.name.ellipsis(64) })"
-
-      else
-        raise(ArgumentError, args.inspect)
-    end
-
-    tagz{
-      span_(:st_url => st_url, :st_title => st_title, :class => 'st_twitter_large sharethis', :displayText => 'Tweet')
-      span_(:st_url => st_url, :st_title => st_title, :class => 'st_facebook_large sharethis', :displayText => 'Facebook')
-    }
   end
 
   # possessive("United States") => "United States'"

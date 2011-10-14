@@ -82,17 +82,19 @@ form.formtastic
         top: 4px
         // margin-top: -20px
 
-form.formtastic
-  .signup-fields,
-  .login-fields
-    text-align: center
-    input[type="text"], input[type="password"]
-      width: 100%
-    div
-      width: 300px
-      margin: 0 auto 1em
-      display: block
-      text-align: left
+.signup-fields,
+.login-fields
+  text-align: center
+  input[type="text"], input[type="email"], input[type="password"]
+    +input-base
+    width: 100%
+  input[type=submit]
+    +button
+  div
+    width: 300px
+    margin: 0 auto 1em
+    display: block
+    text-align: left
 
 
 

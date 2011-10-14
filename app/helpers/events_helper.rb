@@ -1,7 +1,7 @@
 module EventsHelper
 
   def event_trended?(event)
-    if logged_in?
+    if user_signed_in?
       current_user.events.include?(event)
     else
       session[:trended_events] && session[:trended_events].include?(event.id)

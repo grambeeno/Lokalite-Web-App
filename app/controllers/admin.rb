@@ -2,8 +2,8 @@ module Admin
   class Controller < ::ApplicationController
     layout 'application'
 
-    before_filter :require_current_user
-    before_filter :require_admin_user
+    before_filter :authenticate_user!
+    before_filter :require_admin
 
   private
     #alias_method(:admin, :current_user)

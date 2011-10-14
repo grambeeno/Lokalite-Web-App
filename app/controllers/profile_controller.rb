@@ -1,6 +1,6 @@
 class ProfileController < ApplicationController
 
-  before_filter :require_current_user
+  before_filter :authenticate_user!
 
   def datebook
     @saved_events = current_user.events.upcoming

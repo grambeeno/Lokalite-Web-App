@@ -46,10 +46,6 @@ class TestController < ApplicationController
     dump_env(request.env)
   end
 
-  def show_current_controller
-    show(current_controller)
-  end
-
   def show_session
     show(session)
   end

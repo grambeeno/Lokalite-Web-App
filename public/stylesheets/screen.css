@@ -306,7 +306,7 @@ table.event-picker input[type='checkbox'] { background-color: red; }
 .flash .dismiss:active, .flash .dismiss:focus { outline: none; }
 .flash p { margin-right: 30px; }
 .flash.error { background-color: #f8dcda; border-color: #f4c8c5; }
-.flash.notice { background-color: #fff0c0; border-color: #ffe38d; }
+.flash.notice, .flash.alert { background-color: #fff0c0; border-color: #ffe38d; }
 .flash.success { background-color: #dff1df; border-color: #bbe2bb; }
 .flash.info { background-color: #c7eefe; border-color: #ade6fe; }
 
@@ -345,9 +345,13 @@ form.formtastic .event-repeat span.for-text { display: inline-block; margin: 0 8
 form.formtastic .event-repeat span.checkbox-wrapper { position: relative; margin-left: 10px; width: 12px; height: 12px; display: inline-block; }
 form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { position: absolute; top: 4px; }
 
-form.formtastic .signup-fields, form.formtastic .login-fields { text-align: center; }
-form.formtastic .signup-fields input[type="text"], form.formtastic .signup-fields input[type="password"], form.formtastic .login-fields input[type="text"], form.formtastic .login-fields input[type="password"] { width: 100%; }
-form.formtastic .signup-fields div, form.formtastic .login-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
+.signup-fields, .login-fields { text-align: center; }
+.signup-fields input[type="text"], .signup-fields input[type="email"], .signup-fields input[type="password"], .login-fields input[type="text"], .login-fields input[type="email"], .login-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; }
+.signup-fields input[type="text"].file, .signup-fields input[type="email"].file, .signup-fields input[type="password"].file, .login-fields input[type="text"].file, .login-fields input[type="email"].file, .login-fields input[type="password"].file { background-color: transparent; padding: 0; border: none; }
+.signup-fields input[type=submit], .login-fields input[type=submit] { color: inherit; text-decoration: inherit; cursor: inherit; border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background-image: -webkit-linear-gradient(top, #ffffff, #ebebeb); background-image: -moz-linear-gradient(top, #ffffff, #ebebeb); background-image: -o-linear-gradient(top, #ffffff, #ebebeb); background-image: -ms-linear-gradient(top, #ffffff, #ebebeb); background-image: linear-gradient(top, #ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; padding: 8px 10px; margin-right: 6px; }
+.signup-fields input[type=submit]:active, .signup-fields input[type=submit]:focus, .login-fields input[type=submit]:active, .login-fields input[type=submit]:focus { outline: none; }
+.signup-fields input[type=submit]:hover, .login-fields input[type=submit]:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background-image: -webkit-linear-gradient(top, #ffffff, #dbdbdb); background-image: -moz-linear-gradient(top, #ffffff, #dbdbdb); background-image: -o-linear-gradient(top, #ffffff, #dbdbdb); background-image: -ms-linear-gradient(top, #ffffff, #dbdbdb); background-image: linear-gradient(top, #ffffff, #dbdbdb); }
+.signup-fields div, .login-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
 
 .new-plan-container { width: 320px; background-color: #f1f1f1; padding: 10px; border: 1px solid #cccccc; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 .new-plan-container div { margin-bottom: 1em; }

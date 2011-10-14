@@ -1,6 +1,7 @@
 # See how all your routes lay out with "rake routes"
 Lokalite::Application.routes.draw do
 
+  devise_for :users
   resources :plans
 
   get "profile/datebook"

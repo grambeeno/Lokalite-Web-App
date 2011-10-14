@@ -450,6 +450,7 @@ class Event < ActiveRecord::Base
     options = args.dup.extract_options!
     user = options.delete(:for_user)
     extras = {}
+    logger.debug { "-------------------- user #{user.inspect}" }
     extras[:trended?] = user.events.include?(self) if user
     super(*options).push(extras)
   end

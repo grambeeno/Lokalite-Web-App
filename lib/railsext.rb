@@ -11,7 +11,7 @@
     #ActionView::Helpers
     #ActiveSupport::Inflector
     #ActiveSupport::Inflector::Inflections
-     
+
 # support for using helper methods in controllers/models/models or anywhere
 #
   class Helper < ActionView::Base
@@ -53,7 +53,7 @@
       controller.session
     end
 
-    ### see ./actionpack/test/controller/caching_test.rb 
+    ### see ./actionpack/test/controller/caching_test.rb
     def mock_controller
       #require 'action_controller/test_process' unless defined?(::ActionController::TestRequest)
       require 'action_dispatch/testing/test_request.rb'
@@ -87,34 +87,6 @@
 
    #include ActionController::UrlWriter
    include Rails.application.routes.url_helpers
-  end
-
-# state for current controller
-#
-  module ActionController
-    class Base
-      class << self
-        def current
-          @@current if defined?(@@current)
-        end
-        alias_method 'current_controller', 'current'
-
-        def current= controller
-          @@current = controller
-        end
-      end
-    end
-
-    def ActionController.current
-      ActionController::Base.current
-    end
-    def ActionController.current_controller
-      ActionController::Base.current
-    end
-
-    def ActionController.current= controller
-      ActionController::Base.current = controller
-    end
   end
 
 # support for using named routes from the console

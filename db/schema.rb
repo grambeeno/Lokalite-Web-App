@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011174441) do
+ActiveRecord::Schema.define(:version => 20111012144817) do
 
   create_table "event_images", :force => true do |t|
     t.string   "image"
@@ -238,19 +238,32 @@ ActiveRecord::Schema.define(:version => 20111011174441) do
   add_index "user_role_joins", ["user_id"], :name => "index_user_role_joins_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "uuid",                                                  :null => false
+    t.string   "uuid",                                                                             :null => false
     t.string   "email"
-    t.string   "password"
-    t.string   "time_zone",  :default => "Mountain Time (US & Canada)"
+    t.string   "encrypted_password",     :limit => 128, :default => "",                            :null => false
+    t.string   "time_zone",                             :default => "Mountain Time (US & Canada)"
     t.string   "handle"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["created_at"], :name => "index_users_on_created_at"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["encrypted_password"], :name => "index_users_on_password"
   add_index "users", ["handle"], :name => "index_users_on_handle"
-  add_index "users", ["password"], :name => "index_users_on_password"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["updated_at"], :name => "index_users_on_updated_at"
   add_index "users", ["uuid"], :name => "index_users_on_uuid", :unique => true
 

@@ -1,6 +1,6 @@
 <nav>
   <ul>
-    <% if logged_in? and current_user.admin? %>
+    <% if user_signed_in? and current_user.admin? %>
       <li>
         <%= link_to 'Admin', admin_path %>
       </li>

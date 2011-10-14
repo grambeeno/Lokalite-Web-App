@@ -1,6 +1,6 @@
 module My
   class Controller < ::ApplicationController
-    before_filter :require_current_user
+    before_filter :authenticate_user!
 
   private
     alias_method(:my, :current_user)

@@ -45,7 +45,7 @@ ApiV1 =
     interface('/events/trend') do
       write do
         event = Event.find(params[:event_id])
-        if logged_in?
+        if user_signed_in?
           current_user.events << event
         else
           @session[:trended_events] = [] unless @session[:trended_events]
@@ -67,7 +67,7 @@ ApiV1 =
     interface('/events/untrend') do
       write do
         event = Event.find(params[:event_id])
-        if logged_in?
+        if user_signed_in?
           current_user.events.remove(event)
         else
           @session[:trended_events].delete(event.id) if @session[:trended_events]
@@ -115,43 +115,28 @@ ApiV1 =
     attr_accessor :effective_user
     attr_accessor :real_user
 
-    def initialize(options = {})
-      @session = options[:session]
-
-      effective_user  = options[:effective_user] || options[:user]
-      real_user       = options[:real_user]      || effective_user
-      @effective_user = user_for(effective_user) if effective_user
-      @real_user      = user_for(real_user) if real_user
-      @real_user ||= @effective_user
+    def initialize(current_user)
+      @current_user = current_user
     end
 
     def user_for(arg)
       User.find(arg)
     end
 
-    alias_method('user', 'effective_user')
-    alias_method('user=', 'effective_user=')
-    alias_method('current_user', 'effective_user')
-    alias_method('current_user=', 'effective_user=')
-
     def api
       self
     end
 
-    def logged_in?
-      @effective_user and @real_user
-    end
-
-    def user?
-      logged_in?
+    def user_signed_in?
+      !!@current_user
     end
 
     def current_user
-      effective_user
+      @current_user
     end
 
-    def current_user?
-      !!effective_user
+    def user?
+      user_signed_in?
     end
 
     def my
@@ -205,9 +190,4 @@ ApiV1 =
     end
   end
 
-
 unloadable(ApiV1)
-
-# def api(*args, &block)
-#   Api.new(*args, &block)
-# end

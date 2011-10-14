@@ -7,25 +7,29 @@ $ ->
 
   $('.truncate').truncate()
 
-  # store the active_hover_id so we can track hovers that last over 1 second
+  # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
+  # store active_hover_id so we can determine the length of the event
+  #
+  # TODO - We should be tracking organizations too
   active_hover_id = ''
   $('.events li, .organizations li').live
     mouseenter: ->
       $(this).find('.description').show("slide", { direction: "down" }, 200)
       active_hover_id = $(this).attr('id')
 
-      setTimeout ( =>
-        if active_hover_id == $(this).attr('id')
-          ids  = extractComplexObjectId($(this))
-          path = "/organizations/#{ids.organization}"
-          data =
-            impression:
-                id  : ids.event
-                type: 'Event Description Read'
+      if $(this).parent().hasClass('events')
+        setTimeout ( =>
+          if active_hover_id == $(this).attr('id')
+            ids  = extractComplexObjectId($(this))
+            path = "/organizations/#{ids.organization}"
+            data =
+              impression:
+                  id  : ids.event
+                  type: 'Event Description Read'
 
-          ReportGrid.track(path, data)
-        ),
-        1000
+            ReportGrid.track(path, data)
+          ),
+          1000
 
     mouseleave: ->
       $(this).find('.description').hide("slide", { direction: "down" }, 400)

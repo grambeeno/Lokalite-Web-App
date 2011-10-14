@@ -82,11 +82,11 @@ protected
     end
 
     if user
-      @api = api_class.new(:user => user, :session => session)
+      @api = api_class.new(current_user)
       return
     else
       if white_listed?(path)
-        @api = api_class.new(:session => session)
+        @api = api_class.new()
       else
         render(:nothing => true, :status => :unauthorized)
       end
