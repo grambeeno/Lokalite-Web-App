@@ -2,6 +2,12 @@
 Lokalite::Application.routes.draw do
 
   devise_for :users
+
+  match '/business' => 'root#business', :as => 'business_promo'
+  devise_scope :user do
+    match '/business/sign_up' => 'devise/registrations#new', :business => true, :as => 'business_sign_up'
+  end
+
   resources :plans
 
   get "profile/datebook"
@@ -44,22 +50,7 @@ Lokalite::Application.routes.draw do
   match 'api/:api_version/*path' => 'api#call', :as => 'api', :constraints => {:api_version => /\d+/}
 
 
-  #StaticController.pages.each do |page|
-    #match "static/:page(.:format)", :controller => 'static', :action => :method_missing, :as => 'static'
-  #end
   match 'static(/:action(.:format))', :controller => 'static', :as => 'static'
-  #match "static/:page(.:format)", :controller => 'static', :action => 'compile_page', :as => 'static'
-
-  match '/business' => 'root#business', :as => 'business_promo'
-  match '/business/signup' => 'auth#signup', :business => true, :as => 'business_signup'
-  # disabling /signup for now
-  # match '/signup(/:token)' => 'auth#signup', :as => 'signup'
-  match '/auth/:action(/:token)', :controller => 'auth', :as => 'auth'
-  match '/activate(/:token)' => 'auth#activate', :as => 'activate'
-  match '/login(/:token)' => 'auth#login', :as => 'login'
-  match '/logout' => 'auth#logout', :as => 'logout'
-  match '/password(/:token)' => 'auth#password', :as => 'password'
-  # match '/set_location/(*prefix)' => 'root#set_location', :as => 'set_location'
 
   match 'test(/:action(/:id(.:format)))', :controller => 'test', :as => 'test'
 

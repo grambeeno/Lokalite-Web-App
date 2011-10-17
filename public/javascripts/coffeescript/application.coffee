@@ -71,8 +71,6 @@ $ ->
       # unset clicked data on button so user doesn't get asked if they want to submit again
       $(this).find('input[type=submit]').data('clicked', false)
       return false
-
-
   #---------------------------------------------------#
 
   # https://github.com/aaronrussell/jquery-simply-countable

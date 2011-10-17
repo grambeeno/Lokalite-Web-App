@@ -7,38 +7,9 @@ class Mailer < ActionMailer::Base
     :from => App.email
   )
 
-  def signup(*args)
-    options = args.extract_options!.to_options!
-    @signup = args.shift || options.fetch(:signup)
-    @token = @signup.token
-    @email = @signup.email
-    @activation_url = activate_path(:token => @token.to_s, :only_path => false)
-    @subject = subject_for("Please activate your account.")
-    mail(:to => @email, :subject => @subject)
-  end
-
-  def password(*args)
-    options = args.extract_options!.to_options!
-    @user = args.shift || options.fetch(:user)
-    @token = args.shift || options[:token] || @user.password_token
-    @email = @user.email
-    @password_url = password_path(:token => @token.to_s, :only_path => false)
-    @subject = subject_for("Please reset your password.")
-    mail(:to => @email, :subject => @subject)
-  end
-
-  def invitation(*args)
-    options = args.extract_options!.to_options!
-    @user = args.shift || options.fetch(:user)
-    @token = args.shift || options[:token] || @user.password_token
-    @email = @user.email
-    @password_url = password_path(:token => @token.to_s, :only_path => false)
-    @subject = subject_for("Please accept the following invitation.")
-    mail(:to => @email, :subject => @subject)
-  end
-
-  def new_user_notification(signup)
-    @user    = signup.email
+  # TODO - Needs fixing, no longer called
+  def new_user_notification(user)
+    @user    = user.email
     @subject = subject_for("New user signed up")
     mail(:to => 'content@lokalite.com', :subject => @subject)
   end

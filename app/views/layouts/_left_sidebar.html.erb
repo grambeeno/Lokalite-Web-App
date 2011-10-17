@@ -1,4 +1,4 @@
-<% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+<% unless ['/users', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
   <%#= search_form %>
 
   <%

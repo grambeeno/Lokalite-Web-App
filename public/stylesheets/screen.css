@@ -101,18 +101,18 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 
 #splash { text-align: center; }
 
-#business-signup, #public-landing { text-align: center; font-size: 14px; margin-bottom: 60px; }
-#business-signup h1, #business-signup h2, #business-signup h3, #public-landing h1, #public-landing h2, #public-landing h3 { color: black; }
-#business-signup h1, #public-landing h1 { margin: 14px auto; }
-#business-signup h2, #public-landing h2 { font-size: 24px; font-weight: normal; }
-#business-signup h3, #public-landing h3 { font-size: 18px; margin-top: 24px; }
-#business-signup .centered, #public-landing .centered { margin: 30px auto; display: inline-block; }
-#business-signup .bottom, #public-landing .bottom { margin: 40px auto 0; text-align: left; }
-#business-signup .checkered, #public-landing .checkered { background-color: white; background-image: url('/images/main-bg.png?1318227768'); background-repeat: repeat; }
-#business-signup .checkered .shadow-top, #business-signup .checkered .shadow-bottom, #public-landing .checkered .shadow-top, #public-landing .checkered .shadow-bottom { background-repeat: repeat-x; height: 10px; width: 100%; }
-#business-signup .checkered .shadow-top, #public-landing .checkered .shadow-top { background-image: url('/images/landing/shadow-top.png?1318227768'); margin-bottom: 40px; }
-#business-signup .checkered .shadow-bottom, #public-landing .checkered .shadow-bottom { background-image: url('/images/landing/shadow-bottom.png?1318227768'); margin: 30px 0; }
-#business-signup .top, #public-landing .top { margin: 0 auto; width: 1120px; }
+#business-sign-up, #public-landing { text-align: center; font-size: 14px; margin-bottom: 60px; }
+#business-sign-up h1, #business-sign-up h2, #business-sign-up h3, #public-landing h1, #public-landing h2, #public-landing h3 { color: black; }
+#business-sign-up h1, #public-landing h1 { margin: 14px auto; }
+#business-sign-up h2, #public-landing h2 { font-size: 24px; font-weight: normal; }
+#business-sign-up h3, #public-landing h3 { font-size: 18px; margin-top: 24px; }
+#business-sign-up .centered, #public-landing .centered { margin: 30px auto; display: inline-block; }
+#business-sign-up .bottom, #public-landing .bottom { margin: 40px auto 0; text-align: left; }
+#business-sign-up .checkered, #public-landing .checkered { background-color: white; background-image: url('/images/main-bg.png?1318227768'); background-repeat: repeat; }
+#business-sign-up .checkered .shadow-top, #business-sign-up .checkered .shadow-bottom, #public-landing .checkered .shadow-top, #public-landing .checkered .shadow-bottom { background-repeat: repeat-x; height: 10px; width: 100%; }
+#business-sign-up .checkered .shadow-top, #public-landing .checkered .shadow-top { background-image: url('/images/landing/shadow-top.png?1318227768'); margin-bottom: 40px; }
+#business-sign-up .checkered .shadow-bottom, #public-landing .checkered .shadow-bottom { background-image: url('/images/landing/shadow-bottom.png?1318227768'); margin: 30px 0; }
+#business-sign-up .top, #public-landing .top { margin: 0 auto; width: 1120px; }
 
 #public-landing h1.main-title { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/main-title.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 820px; height: 150px; }
 #public-landing h1.info { font-size: 46px; font-weight: normal; text-align: center; margin-top: 50px; margin-bottom: 18px; line-height: 1.8em; }
@@ -140,19 +140,19 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 
 #your-favorites { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/your-favorites.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 420px; height: 82px; top: -36px; left: 800px; }
 
-#business-signup h1 { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
-#business-signup a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; width: 1120px; }
-#business-signup .bottom { width: 1120px; }
-#business-signup .create, #business-signup .share, #business-signup .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
-#business-signup .create { margin-right: 40px; background-image: url('/images/business/create.png?1318227768'); }
-#business-signup .share { margin-right: 40px; background-image: url('/images/business/share.png?1318227768'); }
-#business-signup .grow { background-image: url('/images/business/grow.png?1318227768'); }
-#business-signup .bottom h2 { font-size: 30px; color: black; margin-bottom: 14px; }
-#business-signup .bottom p { padding: 6px 0; width: 280px; }
-#business-signup .bottom section { background-repeat: no-repeat; margin-bottom: 60px; }
-#business-signup .bottom .lokalite-is { background-image: url('/images/business/lokalite-is.png?1318227768'); height: 380px; padding-left: 680px; }
-#business-signup .bottom .spend-less { background-image: url('/images/business/spend-less.png?1318227768'); background-position: 420px 40px; padding-left: 100px; height: 290px; }
-#business-signup .bottom .gain-more { background-image: url('/images/business/gain-more.png?1318227768'); height: 313px; padding-left: 680px; }
+#business-sign-up h1 { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
+#business-sign-up a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; width: 1120px; }
+#business-sign-up .bottom { width: 1120px; }
+#business-sign-up .create, #business-sign-up .share, #business-sign-up .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
+#business-sign-up .create { margin-right: 40px; background-image: url('/images/business/create.png?1318227768'); }
+#business-sign-up .share { margin-right: 40px; background-image: url('/images/business/share.png?1318227768'); }
+#business-sign-up .grow { background-image: url('/images/business/grow.png?1318227768'); }
+#business-sign-up .bottom h2 { font-size: 30px; color: black; margin-bottom: 14px; }
+#business-sign-up .bottom p { padding: 6px 0; width: 280px; }
+#business-sign-up .bottom section { background-repeat: no-repeat; margin-bottom: 60px; }
+#business-sign-up .bottom .lokalite-is { background-image: url('/images/business/lokalite-is.png?1318227768'); height: 380px; padding-left: 680px; }
+#business-sign-up .bottom .spend-less { background-image: url('/images/business/spend-less.png?1318227768'); background-position: 420px 40px; padding-left: 100px; height: 290px; }
+#business-sign-up .bottom .gain-more { background-image: url('/images/business/gain-more.png?1318227768'); height: 313px; padding-left: 680px; }
 
 .category-tab-buttons { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 .category-tab-buttons li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 6px; padding-right: 6px; }
@@ -345,13 +345,14 @@ form.formtastic .event-repeat span.for-text { display: inline-block; margin: 0 8
 form.formtastic .event-repeat span.checkbox-wrapper { position: relative; margin-left: 10px; width: 12px; height: 12px; display: inline-block; }
 form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { position: absolute; top: 4px; }
 
-.signup-fields, .login-fields { text-align: center; }
-.signup-fields input[type="text"], .signup-fields input[type="email"], .signup-fields input[type="password"], .login-fields input[type="text"], .login-fields input[type="email"], .login-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; }
-.signup-fields input[type="text"].file, .signup-fields input[type="email"].file, .signup-fields input[type="password"].file, .login-fields input[type="text"].file, .login-fields input[type="email"].file, .login-fields input[type="password"].file { background-color: transparent; padding: 0; border: none; }
-.signup-fields input[type=submit], .login-fields input[type=submit] { color: inherit; text-decoration: inherit; cursor: inherit; border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background-image: -webkit-linear-gradient(top, #ffffff, #ebebeb); background-image: -moz-linear-gradient(top, #ffffff, #ebebeb); background-image: -o-linear-gradient(top, #ffffff, #ebebeb); background-image: -ms-linear-gradient(top, #ffffff, #ebebeb); background-image: linear-gradient(top, #ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; padding: 8px 10px; margin-right: 6px; }
-.signup-fields input[type=submit]:active, .signup-fields input[type=submit]:focus, .login-fields input[type=submit]:active, .login-fields input[type=submit]:focus { outline: none; }
-.signup-fields input[type=submit]:hover, .login-fields input[type=submit]:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background-image: -webkit-linear-gradient(top, #ffffff, #dbdbdb); background-image: -moz-linear-gradient(top, #ffffff, #dbdbdb); background-image: -o-linear-gradient(top, #ffffff, #dbdbdb); background-image: -ms-linear-gradient(top, #ffffff, #dbdbdb); background-image: linear-gradient(top, #ffffff, #dbdbdb); }
-.signup-fields div, .login-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
+.sign-up-fields, .login-fields { text-align: center; }
+.sign-up-fields input[type="text"], .sign-up-fields input[type="email"], .sign-up-fields input[type="password"], .login-fields input[type="text"], .login-fields input[type="email"], .login-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; }
+.sign-up-fields input[type="text"].file, .sign-up-fields input[type="email"].file, .sign-up-fields input[type="password"].file, .login-fields input[type="text"].file, .login-fields input[type="email"].file, .login-fields input[type="password"].file { background-color: transparent; padding: 0; border: none; }
+.sign-up-fields input[type=submit], .login-fields input[type=submit] { color: inherit; text-decoration: inherit; cursor: inherit; border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background-image: -webkit-linear-gradient(top, #ffffff, #ebebeb); background-image: -moz-linear-gradient(top, #ffffff, #ebebeb); background-image: -o-linear-gradient(top, #ffffff, #ebebeb); background-image: -ms-linear-gradient(top, #ffffff, #ebebeb); background-image: linear-gradient(top, #ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; padding: 8px 10px; margin-right: 6px; }
+.sign-up-fields input[type=submit]:active, .sign-up-fields input[type=submit]:focus, .login-fields input[type=submit]:active, .login-fields input[type=submit]:focus { outline: none; }
+.sign-up-fields input[type=submit]:hover, .login-fields input[type=submit]:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background-image: -webkit-linear-gradient(top, #ffffff, #dbdbdb); background-image: -moz-linear-gradient(top, #ffffff, #dbdbdb); background-image: -o-linear-gradient(top, #ffffff, #dbdbdb); background-image: -ms-linear-gradient(top, #ffffff, #dbdbdb); background-image: linear-gradient(top, #ffffff, #dbdbdb); }
+.sign-up-fields div, .login-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
+.sign-up-fields div.buttons, .login-fields div.buttons { text-align: center; margin-top: 20px; }
 
 .new-plan-container { width: 320px; background-color: #f1f1f1; padding: 10px; border: 1px solid #cccccc; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 .new-plan-container div { margin-bottom: 1em; }
