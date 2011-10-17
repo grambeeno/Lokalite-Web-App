@@ -1,7 +1,8 @@
 # See how all your routes lay out with "rake routes"
 Lokalite::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
 
   match '/business' => 'root#business', :as => 'business_promo'
   devise_scope :user do

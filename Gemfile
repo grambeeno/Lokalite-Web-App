@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'devise'
+gem "oa-oauth", :require => "omniauth/oauth"
 
 gem 'pg'
 gem 'yajl-ruby', '0.8.1'

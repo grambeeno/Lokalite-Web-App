@@ -37,6 +37,7 @@ namespace :backup do
   desc "Imports production db into development"
   task :import do
     # identify most recent local backup and import it
+    # system "psql -c 'DROP SCHEMA public CASCADE;' lokalite_development lokalite"
     system "recent_db_backup=`ls -1 db_dumps/ | tail -1`
     psql -f db_dumps/`echo $recent_db_backup` lokalite_development lokalite"
   end
