@@ -88,7 +88,7 @@ class Event < ActiveRecord::Base
   scope(:random, lambda{|*args|
     order('random()')
   })
-  scope :trending, order('trend_weight DESC').upcoming.includes(:organization).limit(12)
+  scope :popular, order('trend_weight DESC').upcoming.includes(:organization).limit(12)
 
   def Event.update_clone_counts!
     Event.reset_column_information
@@ -132,13 +132,16 @@ class Event < ActiveRecord::Base
 
     if organization_id.blank?
       if options[:category].present?
-        if options[:category] == 'trending'
-          results  = results.trending
-          # Want to limit at 12 trending results
+        # keep trending around while that version of the iPhone app is actively used.
+        if %w[most_popular trending].include?(options[:category])
+          results  = results.popular
+          # Want to limit at 12 popular results
           # don't override what we set in the named scope by setting it here too
           per_page = 12
+        elsif options[:category] == 'suggested' and user = options[:user]
+          results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         else
-          results = results.tagged_with(options[:category], :on => 'categories')
+          results = results.tagged_with(options[:category].humanize, :on => 'categories')
         end
       end
     else
@@ -455,11 +458,6 @@ class Event < ActiveRecord::Base
     super(*options).push(extras)
   end
 end
-
-
-
-
-
 
 # == Schema Information
 #

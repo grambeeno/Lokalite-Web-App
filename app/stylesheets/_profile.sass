@@ -1,0 +1,35 @@
+.profile-header
+  margin: 0 0 25px 0
+
+  .avatar
+    display: inline-block
+    background-color: white
+    // margin-top: -130px
+    // margin: -130px 0 0 0
+    border: 1px solid #444
+
+    padding: 4px
+    margin: 0 0 0 25px
+    img
+      display: block
+
+  .band
+    // we don't know how tall the profile pic will be
+    // so let it flow down and pull the band up into the picture
+    margin-top: -46px
+    background-color: $light-green
+    border:
+      width: 1px
+      style: solid
+      color: #555
+      left: none
+      right: none
+    padding: 20px 25px
+    padding-left: 50px + 100px
+    h1
+      font-size: 20px
+
+  .profile-links
+    +horizontal-list(10px)
+    margin-top: 8px
+

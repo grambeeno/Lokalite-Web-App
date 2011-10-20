@@ -8,9 +8,17 @@ class ProfileController < ApplicationController
   end
 
   def plans
+    @plans = current_user.plans.upcoming
   end
 
-  def friends
-  end
+  def update
+    params[:user].delete(:password) if params[:user][:password] && params[:user][:password].blank?
 
+    if current_user.update_attributes(params[:user])
+      flash[:success] = 'Your profile has been updated.'
+      redirect_to :back
+    else
+      render :profile
+    end
+  end
 end

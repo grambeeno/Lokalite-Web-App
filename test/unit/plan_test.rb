@@ -7,15 +7,19 @@ class PlanTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: plans
 #
 #  id          :integer         not null, primary key
 #  user_id     :integer
-#  name        :string(255)
+#  uuid        :string(255)
+#  title       :string(255)
+#  public      :boolean         default(FALSE)
 #  description :text
-#  date        :datetime
+#  event_list  :text
+#  start_date  :datetime
 #  created_at  :datetime
 #  updated_at  :datetime
 #

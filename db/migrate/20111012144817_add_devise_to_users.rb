@@ -9,6 +9,9 @@ class AddDeviseToUsers < ActiveRecord::Migration
       t.datetime :last_sign_in_at
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
+
+      t.text :facebook_data
+      t.text :settings
     end
 
     rename_column :users, :password, :encrypted_password

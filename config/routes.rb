@@ -11,9 +11,13 @@ Lokalite::Application.routes.draw do
 
   resources :plans
 
-  get "profile/datebook"
-  get "profile/plans"
-  get "profile/friends"
+  get "profile/datebook", :as => 'datebook'
+  get "profile/plans", :as => 'user_plans'
+  get 'profile/edit', :as => 'edit_profile'
+  post 'profile/update', :as => 'update_profile'
+
+  # get "profile/suggestions", :as => 'suggestions'
+  # get "profile/friends"
 
   match 'events(/*slug)/:id', :as => :event, :controller => :events, :constraints => {:id => /\d+/}, :action => :show
 
@@ -45,7 +49,6 @@ Lokalite::Application.routes.draw do
   # match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
   match 'my/(:action(/:id(.:format)))', :controller => 'my', :as => 'my'
 
-  match 'my/profile', :controller => 'my', :action => 'profile', :as => 'edit_profile'
 
   match 'api/:api_version' => 'api#index', :as => 'api_index', :constraints => {:api_version => /\d+/}
   match 'api/:api_version/*path' => 'api#call', :as => 'api', :constraints => {:api_version => /\d+/}

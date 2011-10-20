@@ -5,7 +5,7 @@
   <%# TODO - this is a prime canditate for fragment cacheing %>
   <% [
     {:title => 'Top Featured Events', :events => Event.featured, :category => 'featured'},
-    {:title => 'Most Popular Events', :events => Event.trending, :category => 'trending'}
+    {:title => 'Most Popular Events', :events => Event.popular, :category => 'most_popular'}
   ].each do |item| -%>
    <h3><%= link_to item[:title], events_path(:origin => params[:origin], :category => item[:category]) %></h3>
     <ul>

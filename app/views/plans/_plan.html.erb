@@ -1,0 +1,44 @@
+<section class="plan-preview">
+
+  <div class='title'>
+    <div class="title-image">
+      <%= image_tag plan.user.image_url %>
+    </div>
+    <div class="text">
+      <h1><%= link_to plan.title, plan %></h1>
+      <h2>By <%= plan.user.full_name %></h2>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+
+  <div class='image'>
+    <%= google_maps_image(plan, :size => '190x190') %>
+  </div>
+
+  <div class="event-thumbs">
+    <dl>
+      <dt>Events</dt>
+
+      <dd>
+        <% for event in plan.events[0...6] -%>
+          <%= link_to image_tag(event.image.url(:thumb), :class => 'tooltip', :title => event.name), event_path(event.slug, event.id) %>
+        <% end -%>
+      </dd>
+    </dl>
+  </div>
+
+  <div class="detail">
+    <dl>
+      <dt>Time</dt>
+      <dd><%= render :partial => '/events/time_span', :locals => {:event => plan} %></dd>
+
+      <dt>Description</dt>
+      <dd><%= clean_format plan.description %></dd>
+
+    </dl>
+
+  </div>
+  <div class="clear"></div>
+</section>
+<hr />

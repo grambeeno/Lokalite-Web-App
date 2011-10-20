@@ -52,17 +52,6 @@ jq(function($){
     });
   };
 
-// facebox shit yo!
-//
-  jq('a[rel*=facebox]').facebox();
-  jq(document).bind(
-    'afterReveal.facebox',
-    function(){
-      var facebox = jq('#facebox');
-      App.initialize(facebox);
-    }
-  );
-
   App.initialize_focus = function(){
     var scope = arguments[0];
     scope = scope ? jq(scope) : jq('html');

@@ -134,7 +134,8 @@ ActiveRecord::Schema.define(:version => 20111015001909) do
     t.boolean  "public",      :default => false
     t.text     "description"
     t.text     "event_list"
-    t.datetime "start_date"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -221,6 +222,8 @@ ActiveRecord::Schema.define(:version => 20111015001909) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.text     "facebook_data"
+    t.text     "settings"
   end
 
   add_index "users", ["created_at"], :name => "index_users_on_created_at"

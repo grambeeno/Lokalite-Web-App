@@ -25,7 +25,7 @@
   <ul class='categories'>
     <% if active_tab == 'events' %>
       <%
-        EVENT_CATEGORIES.dup.unshift('Featured', 'Trending').push('All Events').each do |category|
+        EVENT_CATEGORIES.dup.unshift('Featured', 'Most Popular').push('All Events').each do |category|
         slug = category.parameterize('_')
         classes = [slug]
         if params[:controller] == 'events' and params[:action] == 'index'

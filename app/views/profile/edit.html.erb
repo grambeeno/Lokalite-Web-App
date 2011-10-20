@@ -1,0 +1,27 @@
+<%= render :partial => 'profile_header' %>
+
+<div class="content">
+
+  <%= semantic_form_for current_user, :url => update_profile_path do |form| %>
+    <%= form.inputs do %>
+      <li>
+        <%= form.error_messages %>
+      </li>
+      <%= form.input :email %>
+      <%= form.input :password, :hint => "Leave blank unless you want to change your password.", :input_html => {:value => ''} %>
+      <%#= form.input :time_zone %>
+    <% end %>
+
+    <h2 class="big">Help us suggest events for you by checking the categories below!</h2>
+
+    <%= form.inputs do %>
+      <%= form.input :event_categories, :as => :check_boxes, :collection => EVENT_CATEGORIES, :label => "Favorite Categories" %>
+    <% end %>
+
+    <%= form.buttons do %>
+      <%= form.submit 'Update Profile' %>
+    <% end %>
+  <% end %>
+
+
+</div>

@@ -3,11 +3,11 @@ class PlansController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @plans = Plan.all
+    redirect_to user_plans_path
   end
 
   def show
-    @plan = Plan.find(params[:id])
+    @plan = Plan.find_by_uuid(params[:id])
   end
 
   def new
@@ -26,11 +26,11 @@ class PlansController < ApplicationController
   end
 
   def edit
-    @plan = Plan.find(params[:id])
+    @plan = Plan.find_by_uuid(params[:id])
   end
 
   def update
-    @plan = Plan.find(params[:id])
+    @plan = Plan.find_by_uuid(params[:id])
 
     if @plan.update_attributes(params[:plan])
       flash[:notice] = 'Plan was successfully updated.'
@@ -41,7 +41,7 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan = Plan.find(params[:id])
+    @plan = Plan.find_by_uuid(params[:id])
     @plan.destroy
 
     redirect_to(plans_url)

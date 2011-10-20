@@ -12,10 +12,12 @@
     <span id="counter"></span>
   </div>
 
-  <div>
-    <%= f.check_box :public %>
-    <%= f.label :public, "Plan is public?" %>
-  </div>
+  <% if false %>
+    <div>
+      <%= f.check_box :public %>
+      <%= f.label :public, "Plan is public?" %>
+    </div>
+  <% end %>
 
   <%# <div>%>
     <%#=  f.text_field :start_date, :placeholder => 'Start Date', :class => 'datepicker' %>

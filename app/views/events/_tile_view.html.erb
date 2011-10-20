@@ -1,12 +1,6 @@
 <header class='index'>
-  <h1 class='tiled-title'>
-    <% if params[:category] %>
-      <%= title_for_category(params[:category]) %> Events
-    <% elsif params[:keywords] %>
-      Search results: <%= params[:keywords] %>
-  <% else %>
-    All Events
-  <% end %>
+  <h1>
+    <%= tile_view_title %>
   </h1>
 
   <%
@@ -14,11 +8,19 @@
     options[:view_type] = 'map'
   %>
   <%= link_to 'Switch to Map View', events_path(options), :class => 'switch-to-map-view' %>
+  <div class="clear"></div>
+
+  <% if user_signed_in? && options[:category] == 'suggested' %>
+    <p class='tiled-category-list'>
+      Events in
+      <%= current_user.event_categories.join(', ') %>
+    </p>
+  <% end %>
 </header>
 
 <ul class="events">
   <% @events.each do |event| %>
-    <%= render :partial => 'event', :locals => { :event => event } %>
+    <%= render :partial => '/events/event', :locals => { :event => event } %>
   <% end %>
 </ul>
 

@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     else
       params[:per_page] = 12
     end
+    params[:user] = current_user if user_signed_in?
     @events = Event.browse(params)
   end
 

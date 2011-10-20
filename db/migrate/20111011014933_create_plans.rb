@@ -7,7 +7,8 @@ class CreatePlans < ActiveRecord::Migration
       t.boolean :public, :default => false
       t.text :description
       t.text :event_list
-      t.datetime :start_date
+      t.datetime :starts_at
+      t.datetime :ends_at
 
       t.timestamps
     end

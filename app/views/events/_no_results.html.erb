@@ -2,7 +2,13 @@
   <% if params[:keywords].present? %>
     Sorry, we didn't find any events for the search "<%= params[:keywords] %>" in your location.
   <% elsif params[:category].present? %>
-    Uh oh, there are no events in the "<%= title_for_category(params[:category]) %>" category in your location.
+    <% if params[:category] == 'suggested' and current_user.event_categories.empty? %>
+      You don't have any favorite categories yet!
+      <%= link_to "Edit your profile", edit_profile_path %>
+      to select your favorites.
+    <% else %>
+      Uh oh, there are no events in the "<%= title_for_category(params[:category]) %>" category in your location.
+    <% end %>
   <% else%>
     Sorry, we don't have any upcoming events for your location!
   <% end %>

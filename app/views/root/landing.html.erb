@@ -72,7 +72,7 @@
       <span class='relative-container'><div id="your-favorites">your favorites. keep 'em coming</div></span>
 
       <ul class="events">
-        <% Event.trending.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
+        <% Event.popular.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
           <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
       </ul>
@@ -81,6 +81,7 @@
       <h2>Never Be Bored Again</h2>
     </div>
 
+    <div class="clear"></div>
     <div class="shadow-bottom"></div>
   </div>
 

@@ -1,15 +1,61 @@
-<div class="content">
-  <h1><%= @plan.title %></h1>
-  <p><%= @plan.description %></p>
-
-  <% for event in @plan.events -%>
-    <div>
-      <%= event.name %>
+<section class="plan">
+  <div class='title'>
+    <div class="title-image">
+      <%= image_tag @plan.user.image_url %>
     </div>
-  <% end -%>
+    <div class="text">
+      <h1>
+        <%= @plan.title %>
+        <% if @plan.is_editable_by?(current_user) %>
+          <span class='edit'><%= link_to '(edit)', edit_plan_path(@plan) %></span>
+        <% end %>
+      </h1>
+      <h2>
+        By
+        <%= @plan.user.full_name %>
+      </h2>
+    </div>
+  </div>
 
-  <% if @plan.is_editable_by?(current_user) %>
-    <%= link_to 'Edit', edit_plan_path(@plan) %>
-  <% end %>
+  <div class='image'>
+    <%= google_maps_image(@plan, :size => '300x300') %>
+  </div>
+
+  <div class="detail">
+    <dl>
+      <dt>Time</dt>
+      <dd><%= render :partial => '/events/time_span', :locals => {:event => @plan} %></dd>
+
+      <dt>Description</dt>
+      <dd><%= clean_format @plan.description %></dd>
+
+      <dt>Events</dt>
+      <dd>
+        <ol>
+          <% for event in @plan.events -%>
+            <li><%= event.name %></li>
+          <% end -%>
+        </ol>
+      </dd>
+    </dl>
+
+  </div>
+
+  <div class="clear"></div>
+</section>
+
+<br />
+
+<div class="more-events">
+  <ul class="events">
+    <% @plan.events.each do |event| %>
+      <%= render :partial => '/events/event', :locals => { :event => event } %>
+    <% end %>
+  </ul>
+  <div class="clear"></div>
+</div>
+
+<div class='content'>
+  <%= facebook_comments(:url => plan_url(@plan), :posts => 6) %>
 </div>
 

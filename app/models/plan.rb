@@ -24,6 +24,21 @@ class Plan < ActiveRecord::Base
     end
   end
 
+  scope :by_date, order('starts_at')
+  scope(:after, lambda{|time|
+    where('ends_at > ?', time)
+  })
+  scope(:before, lambda{|time|
+    where('starts_at < ?', time)
+  })
+  scope :upcoming, by_date().after(Time.now)
+
+  before_save :cache_event_data
+  def cache_event_data
+    self.starts_at = events.map(&:starts_at).min
+    self.ends_at = events.map(&:ends_at).max
+  end
+
   def event_ids
     event_list.to_s
   end
@@ -39,7 +54,12 @@ class Plan < ActiveRecord::Base
   def is_editable_by?(a_user)
     a_user.id == user_id
   end
+
+  def to_param
+    uuid
+  end
 end
+
 
 # == Schema Information
 #
@@ -47,9 +67,12 @@ end
 #
 #  id          :integer         not null, primary key
 #  user_id     :integer
-#  name        :string(255)
+#  uuid        :string(255)
+#  title       :string(255)
+#  public      :boolean         default(FALSE)
 #  description :text
-#  date        :datetime
+#  event_list  :text
+#  start_date  :datetime
 #  created_at  :datetime
 #  updated_at  :datetime
 #

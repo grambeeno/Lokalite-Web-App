@@ -1,17 +1,32 @@
 module MapHelper
 
-  def google_maps_image(location, options = {})
+  # http://code.google.com/apis/maps/documentation/staticmaps/
+  def google_maps_image(target, options = {})
     url = 'http://maps.googleapis.com/maps/api/staticmap?'
 
+    if target.is_a?(Location)
+      title = target.formatted_address
+      options[:markers] = "#{target.latitude},#{target.longitude}"
+      options[:zoom] = 13
+    elsif target.is_a?(Plan)
+      title = pluralize(target.events.size, 'Event')
+      markers = []
+      target.events.each_with_index do |event, index|
+        markers << "label:#{index+1}|#{event.location.latitude},#{event.location.longitude}"
+      end
+      # with multiple markers and multiple options we pass more than one 'markers' param
+      options[:markers] = markers.join('&markers=')
+    else
+      raise ArgumentError, "Expected Location or Plan, received #{target.class}"
+    end
+
     options.reverse_merge!({
-      :markers => "#{location.latitude},#{location.longitude}",
-      :zoom   => 13,
       :size   => '640x320',
       :sensor => false
     })
 
     url << options.map{|key, value| key.to_s + '=' + value.to_s }.join('&')
-    image_tag url, :alt => '', :title => location.formatted_address, :class => 'tooltip'
+    image_tag url, :alt => '', :title => title, :class => 'tooltip'
   end
 
   def gmaps_url_for(location)

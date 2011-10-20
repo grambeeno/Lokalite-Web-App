@@ -14,17 +14,39 @@ class User < ActiveRecord::Base
   #   end
   # end
 
+  serialize :facebook_data
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
+    # don't store some verbose data that we won't need
+    data.reject!{|key, value| %w[inspirational_people work education].include?(key) }
+
     if user = User.find_by_email(data["email"])
+      user.facebook_data = data
+      user.save if user.changed?
       user
     else # Create a user with a stub password.
-      User.create(:email => data["email"], :password => Devise.friendly_token[0,20])
+      User.create(:email => data["email"], :password => Devise.friendly_token[0,20], :facebook_data => data)
     end
   end
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  serialize :settings
+
+  def event_categories=(values)
+    self.settings = {} if self.settings.blank?
+    self.settings[:event_categories] = values.reject{|v| v.blank?}
+  end
+  def event_categories
+    if settings && settings[:event_categories]
+      settings[:event_categories]
+    else
+      []
+    end
+  end
+
 
   has_many(:user_organization_joins, :dependent => :destroy)
   has_many(:organizations, :through => :user_organization_joins)
@@ -135,9 +157,18 @@ class User < ActiveRecord::Base
     __
   end
 
-  def default_handle
-    email.to_s.scan(/\w+/).first
+  def full_name
+    if facebook_data.present?
+      facebook_data['name']
+    else
+      email
+    end
   end
+
+  def image_url(type = 'square')
+    "http://graph.facebook.com/#{facebook_data['id']}/picture?type=#{type}" if facebook_data.present?
+  end
+
 
   # def User.root
   #   @root ||= User.find(0)
@@ -179,17 +210,26 @@ class User < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: users
 #
-#  id         :integer         not null, primary key
-#  uuid       :string(255)     not null
-#  email      :string(255)
-#  password   :string(255)
-#  time_zone  :string(255)     default("Mountain Time (US & Canada)")
-#  handle     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                     :integer         not null, primary key
+#  uuid                   :string(255)     not null
+#  email                  :string(255)
+#  encrypted_password     :string(128)     default(""), not null
+#  time_zone              :string(255)     default("Mountain Time (US & Canada)")
+#  handle                 :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer         default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
 #
 

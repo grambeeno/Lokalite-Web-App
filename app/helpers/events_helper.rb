@@ -1,5 +1,23 @@
 module EventsHelper
 
+  def tile_view_title
+    if category = params[:category]
+      if category == 'suggested'
+        "Events from your favorite categories"
+      else
+        "#{title_for_category(category)} Events"
+      end
+    elsif keywords = params[:keywords]
+      "Search results: #{keywords}"
+    else
+      "All Events"
+    end
+  end
+
+  def event_path_options()
+
+  end
+
   def event_trended?(event)
     if user_signed_in?
       current_user.events.include?(event)

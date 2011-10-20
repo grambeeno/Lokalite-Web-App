@@ -1,0 +1,5 @@
+# reload the whole page when .js changes
+config.apply_js_live = true
+# reload the whole page when .css changes
+config.apply_css_live = true
+
