@@ -40,7 +40,7 @@ a.button:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, co
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
 body > header { height: 53px; background-color: black; background-image: url('/images/header-bg.png?1318227768'); background-repeat: repeat-x; color: white; }
 body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
-body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1318925612'); background-repeat: no-repeat; background-position: 50% 50%; width: 124px; height: 53px; }
+body > header .content .logo { display: inline; float: left; display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1319158281'); background-repeat: no-repeat; background-position: 50% 50%; width: 124px; height: 53px; }
 body > header .content nav { display: inline; float: right; }
 body > header .content nav > ul { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; overflow: visible; margin-top: 20px; }
 body > header .content nav > ul li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 8px; padding-right: 8px; }
@@ -83,7 +83,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories .all_events { background-image: url('/images/category-icons/all_events.png?1318227768'); }
 #left-sidebar ul.categories .all_places { background-image: url('/images/category-icons/all_places.png?1318227768'); }
 #left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1318227768'); }
-#left-sidebar ul.categories .most_popular { background-image: url('/images/category-icons/most_popular.png?1318227768'); }
+#left-sidebar ul.categories .most_popular { background-image: url('/images/category-icons/most_popular.png?1319158281'); }
 #left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1318227768'); }
 #left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1318227768'); }
 #left-sidebar ul.categories .food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1318227768'); }
@@ -147,7 +147,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #business-sign-up h1 { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
 #business-sign-up a.get-started, #business-sign-up a.create-organization { display: block; margin: 20px auto 10px; width: 1120px; }
 #business-sign-up a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; }
-#business-sign-up a.create-organization { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/create-your-organization.png?1319157607'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; }
+#business-sign-up a.create-organization { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/create-your-organization.png?1319158281'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; }
 #business-sign-up .bottom { width: 1120px; }
 #business-sign-up .create, #business-sign-up .share, #business-sign-up .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
 #business-sign-up .create { margin-right: 40px; background-image: url('/images/business/create.png?1318227768'); }
@@ -174,7 +174,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .category-icon.all_events { background-image: url('/images/category-icons/all_events.png?1318227768'); }
 .category-icon.all_places { background-image: url('/images/category-icons/all_places.png?1318227768'); }
 .category-icon.featured { background-image: url('/images/category-icons/featured.png?1318227768'); }
-.category-icon.most_popular { background-image: url('/images/category-icons/most_popular.png?1318227768'); }
+.category-icon.most_popular { background-image: url('/images/category-icons/most_popular.png?1319158281'); }
 .category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1318227768'); }
 .category-icon.campus { background-image: url('/images/category-icons/campus.png?1318227768'); }
 .category-icon.food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1318227768'); }
@@ -225,7 +225,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .events li .image, .organizations li .image { position: relative; width: 202px; }
 .events li .image img, .organizations li .image img { border: 1px solid black; }
 .events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1318227768'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/trend-corner.png?1318227768'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/add-corner.png?1319159730'); background-position: top; width: 52px; height: 52px; }
 .events li .image .trend-button:hover, .organizations li .image .trend-button:hover { background-position: bottom; }
 .events li .image .trend-button.trended, .organizations li .image .trend-button.trended { background-position: bottom; }
 .events li .image .trend-button.trended:hover, .organizations li .image .trend-button.trended:hover { background-position: top; }
