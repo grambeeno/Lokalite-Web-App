@@ -1,8 +1,12 @@
 <%
   if user_signed_in?
-    get_started_path = new_my_organization_path
+    action_text = 'Create Your Organization'
+    action_class = 'create-organization'
+    action_path = new_my_organization_path
   else
-    get_started_path = business_sign_up_path
+    action_text = 'Get Started'
+    action_class = 'get-started'
+    action_path = business_sign_up_path
   end
 %>
 <div id="business-sign-up">
@@ -36,7 +40,7 @@
 
     <div class="clear"></div>
 
-    <%= link_to 'Get Started', get_started_path, :class => 'get-started' %>
+    <%= link_to action_text, action_path, :class => action_class %>
     or
     <%= link_to 'check out the site', root_path %>
   </div>
@@ -102,6 +106,6 @@
     </section>
   </div>
 
-  <%= link_to 'Get Started', get_started_path, :class => 'get-started' %>
+  <%= link_to action_text, action_path, :class => action_class %>
 </div>
 

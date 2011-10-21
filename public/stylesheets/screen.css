@@ -83,7 +83,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories .all_events { background-image: url('/images/category-icons/all_events.png?1318227768'); }
 #left-sidebar ul.categories .all_places { background-image: url('/images/category-icons/all_places.png?1318227768'); }
 #left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1318227768'); }
-#left-sidebar ul.categories .most_popular { background-image: url('/images/category-icons/most_popular.png'); }
+#left-sidebar ul.categories .most_popular { background-image: url('/images/category-icons/most_popular.png?1318227768'); }
 #left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1318227768'); }
 #left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1318227768'); }
 #left-sidebar ul.categories .food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1318227768'); }
@@ -145,7 +145,9 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #your-favorites { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/landing/your-favorites.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 420px; height: 82px; top: -36px; left: 800px; }
 
 #business-sign-up h1 { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/main-title.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 700px; height: 160px; }
-#business-sign-up a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; display: block; margin: 20px auto 10px; width: 1120px; }
+#business-sign-up a.get-started, #business-sign-up a.create-organization { display: block; margin: 20px auto 10px; width: 1120px; }
+#business-sign-up a.get-started { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/get-started.png?1318227768'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; }
+#business-sign-up a.create-organization { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/business/create-your-organization.png?1319157607'); background-repeat: no-repeat; background-position: 50% 50%; width: 836px; height: 56px; }
 #business-sign-up .bottom { width: 1120px; }
 #business-sign-up .create, #business-sign-up .share, #business-sign-up .grow { display: inline; float: left; width: 310px; padding-top: 200px; background-repeat: no-repeat; background-position: top center; }
 #business-sign-up .create { margin-right: 40px; background-image: url('/images/business/create.png?1318227768'); }
@@ -172,7 +174,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .category-icon.all_events { background-image: url('/images/category-icons/all_events.png?1318227768'); }
 .category-icon.all_places { background-image: url('/images/category-icons/all_places.png?1318227768'); }
 .category-icon.featured { background-image: url('/images/category-icons/featured.png?1318227768'); }
-.category-icon.most_popular { background-image: url('/images/category-icons/most_popular.png'); }
+.category-icon.most_popular { background-image: url('/images/category-icons/most_popular.png?1318227768'); }
 .category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1318227768'); }
 .category-icon.campus { background-image: url('/images/category-icons/campus.png?1318227768'); }
 .category-icon.food_and_dining { background-image: url('/images/category-icons/food_and_dining.png?1318227768'); }

@@ -142,11 +142,15 @@ $splash-width: 1120px
   h1
     +replace-text-with-dimensions("business/main-title.png")
 
-  a.get-started
-    +replace-text-with-dimensions("business/get-started.png")
+  a.get-started,
+  a.create-organization
     display: block
     margin: 20px auto 10px
     width: $splash-width
+  a.get-started
+    +replace-text-with-dimensions("business/get-started.png")
+  a.create-organization
+    +replace-text-with-dimensions("business/create-your-organization.png")
 
   .bottom
     width: $splash-width
