@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
   before_filter :set_origin
+  before_filter :handle_business_sign_up
 
   # before_filter :show_holding_page
 
@@ -48,6 +49,18 @@ protected
     text = "<meta http-equiv='refresh' content='0;url=#{ CGI.escapeHTML(url) }'>"
     options[:text] ||= text
     render(options)
+  end
+
+  def handle_business_sign_up
+    # store in the session when a user is on the business signup page
+    if params[:controller] == 'devise/registrations' and params[:business]
+      session[:create_organization] = true
+    end
+
+    # after an acount is created, redirect them to create their organization
+    if user_signed_in? and session.delete(:create_organization)
+      redirect_to new_my_organization_path and return
+    end
   end
 
 # current user support
