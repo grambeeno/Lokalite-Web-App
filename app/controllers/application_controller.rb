@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 protected
 
   def set_effective_user
-    return unless current_user.admin?
+    return unless user_signed_in? && current_user.admin?
     @current_user = User.find_by_uuid(session['effective_user']) if session.key?('effective_user')
   end
 
