@@ -8,17 +8,16 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
   before_filter :set_origin
-  before_filter :handle_business_sign_up, :handle_plan_invitations
+  before_filter :set_effective_user, :handle_business_sign_up, :handle_plan_invitations
 
   # before_filter :show_holding_page
 
 protected
 
-  # def show_holding_page
-  #   unless user_signed_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'
-  #     render :file => 'public/holding-page.html', :layout => false
-  #   end
-  # end
+  def set_effective_user
+    return unless current_user.admin?
+    @current_user = User.find_by_uuid(session['effective_user']) if session.key?('effective_user')
+  end
 
   def set_origin
     origin = session[:origin] || 'boulder-colorado'
@@ -87,7 +86,7 @@ protected
   # helper_method(:current_user)
 
   def user_sudoing?
-    # real_user != effective_user
+    session.key?('effective_user')
   end
   helper_method(:user_sudoing?)
 

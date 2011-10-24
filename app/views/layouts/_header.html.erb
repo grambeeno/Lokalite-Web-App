@@ -5,7 +5,7 @@
     <% if user_signed_in? %>
       <% if user_sudoing? %>
         <li>
-          Acting like <%= effective_user.email %>.
+          Acting like <%= current_user.email %>.
           <%= link_to '[x]', :controller => 'admin/users', :action => :unsudo %>
         </li>
       <% end %>

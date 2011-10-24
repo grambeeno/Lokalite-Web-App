@@ -1,4 +1,6 @@
 class Admin::UsersController < Admin::Controller
+  skip_before_filter :require_admin, :only => :unsudo
+
   def index
     page = params[:page] || 1
     per_page = params[:per_page] || 20
@@ -11,17 +13,17 @@ class Admin::UsersController < Admin::Controller
   def edit
     @user = User.find(params[:id])
     return if request.get?
-  
+
     params[:user] ||= {}
-  
+
     transaction do
       %w( handle email password ).each do |attr|
         value = params[:user][attr]
         @user.send("#{ attr }=", value) unless value.blank?
       end
-  
+
       return unless @user.save
-  
+
       unless current_user == @user
         if params[:user][:admin] == '1'
           @user.admin!
@@ -30,7 +32,7 @@ class Admin::UsersController < Admin::Controller
         end
       end
     end
-  
+
     message("user #{ @user.email.inspect } updated!", :class => :success)
     redirect_to(:action => :index)
   end
@@ -38,19 +40,19 @@ class Admin::UsersController < Admin::Controller
   # def new
   #   @user = User.new
   #   return if request.get?
-  # 
+  #
   #   params[:user] ||= {}
-  # 
+  #
   #   transaction do
   #     email = params[:user][:email]
   #     password = params[:user][:password]
-  # 
+  #
   #     @signup = Signup.signup!(:email => email, :password => password, :deliver => false)
   #     @user = User.create(:email => @signup.email, :password => @signup.password)
   #     @signup.update_attributes!(:user_id => @user.id)
   #     @signup.token.expire!
   #   end
-  # 
+  #
   #   message("user #{ @user.email.inspect } created!", :class => :success)
   #   redirect_to(:action => :index)
   # end
@@ -63,9 +65,7 @@ class Admin::UsersController < Admin::Controller
   end
 
   def unsudo
-    if(session[:effective_user] != session[:real_user])
-      session[:effective_user] = session[:real_user]
-    end
+    session.delete(:effective_user)
     redirect_to(:action => :index)
   end
 end
