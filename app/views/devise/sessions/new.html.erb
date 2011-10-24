@@ -17,9 +17,12 @@
   </div>
 
   <div class='devise-fields'>
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-    <br />
+    <fb:login-button size='large' onlogin="afterFacebookSignIn()">Sign in with Facebook</fb:login-button>
 
+    <br />
+    <br />
+    <br />
+    <h2 class='big'>or with an email and password:</h2>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <div><%= f.label :email %><br />
         <%= f.email_field :email %></div>

@@ -7,7 +7,9 @@ module FacebookHelper
     raw "<div class='fb-comments' data-href='#{options[:url]}' data-num-posts='#{options[:posts]}' data-width='#{options[:width]}'></div>"
   end
 
-
+  # The js api for this seems to be broken for everyone. Use a plain link instead.
+  # See properties here:
+  # http://developers.facebook.com/docs/reference/dialogs/send/
   def send_facebook_message_url(options)
     options.reverse_merge!({
       :app_id => FACEBOOK_APP_ID,

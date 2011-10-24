@@ -102,42 +102,6 @@ form.formtastic
 #favorite-categories ol
   font-size: 16px
 
-$plan-form-width: 320px
-$plan-form-inner-width: 320px - 20px
-
-.new-plan-container
-  width: $plan-form-width
-  background-color: $form-grey
-  padding: 10px
-  border: 1px solid #ccc
-  +border-radius(5px)
-
-  div
-    margin-bottom: 1em
-
-  .events li
-    // get the listings centered
-    margin-left: ($plan-form-width - $tile-width) / 2
-
-    // this is the text under the dropzone
-    div
-      margin-bottom: 0
-    p
-      padding: 6px 10px 4px
-      line-height: 16px
-      color: $grey
-
-
-
-  form
-    input[type="text"], textarea
-      +input-base
-      background-color: white
-      width: $plan-form-inner-width
-      +box-shadow(#ddd 0 4px 6px)
-    textarea
-      height: 70px
-
 #selected-event-list
   +clearfix
 

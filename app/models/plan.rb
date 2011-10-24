@@ -2,6 +2,9 @@ class Plan < ActiveRecord::Base
   # the user that created the plan
   belongs_to :user
 
+  has_many :plan_user_invitations
+  has_many :invitations, :through => :plan_user_invitations
+
   serialize :event_list
 
   validates_presence_of :uuid

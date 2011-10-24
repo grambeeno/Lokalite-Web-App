@@ -6,7 +6,7 @@
     <div class="text">
       <h1>
         <%= @plan.title %>
-        <% if @plan.is_editable_by?(current_user) %>
+        <% if user_signed_in? && @plan.is_editable_by?(current_user) %>
           <span class='edit'><%= link_to '(edit)', edit_plan_path(@plan) %></span>
         <% end %>
       </h1>
@@ -39,6 +39,7 @@
       </dd>
     </dl>
 
+    <%= render :partial => '/plans/invite_friends_link', :locals => {:plan => @plan} %>
   </div>
 
   <div class="clear"></div>

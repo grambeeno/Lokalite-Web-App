@@ -7,13 +7,6 @@ class Mailer < ActionMailer::Base
     :from => App.email
   )
 
-  # TODO - Needs fixing, no longer called
-  def new_user_notification(user)
-    @user    = user.email
-    @subject = subject_for("New user signed up")
-    mail(:to => 'content@lokalite.com', :subject => @subject)
-  end
-
   def new_event_notification(event)
     @event   = event
     @subject = subject_for("New event!")

@@ -34,7 +34,7 @@ namespace :backup do
     system "rsync -vr #{user}@#{domain}:#{application}/current/public/system/ public/system/"
   end
 
-  desc "Imports production db into development"
+  desc "Imports production db into development environment"
   task :import do
     # clear out the schema. Even though we exported with --clean there may be
     # other tables added in migrations during development
@@ -42,6 +42,14 @@ namespace :backup do
     # identify most recent local backup and import it
     system "recent_db_backup=`ls -1 db_dumps/ | tail -1`
     psql -f db_dumps/`echo $recent_db_backup` lokalite_development lokalite"
+  end
+
+  desc "Imports production db into production environment"
+  # this is used for bringing the production db into our staging environment
+  task :import_to_production do
+    system "psql -c 'DROP SCHEMA public CASCADE;' lokalite_production lokalite"
+    system "recent_db_backup=`ls -1 db_dumps/ | tail -1`
+    psql -f db_dumps/`echo $recent_db_backup` lokalite_production lokalite"
   end
 
 end

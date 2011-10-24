@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
   before_filter :set_origin
-  before_filter :handle_business_sign_up
+  before_filter :handle_business_sign_up, :handle_plan_invitations
 
   # before_filter :show_holding_page
 
@@ -60,6 +60,12 @@ protected
     # after an acount is created, redirect them to create their organization
     if user_signed_in? and session.delete(:create_organization)
       redirect_to new_my_organization_path and return
+    end
+  end
+
+  def handle_plan_invitations
+    if user_signed_in? && session.key?('plan_invitation_uuid')
+      redirect_to plan_invitation_path(session.delete(:plan_invitation_uuid))
     end
   end
 

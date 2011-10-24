@@ -1,10 +1,10 @@
 window.facebookLoaded = ->
   # getFacebookUser()
-  console.log 'loaded facebook'
+  # console.log 'loaded facebook'
   # FB.ui
   #   method: 'send'
-  #   name: 'People Argue Just to Win'
-  #   link: 'http://www.nytimes.com/2011/06/15/arts/people-argue-just-to-win-scholars-assert.html'
+  #   name: 'Just a test'
+  #   link: 'http://lokalite.com/'
 
 # getFacebookUser = ->
 #   FB.getLoginStatus (response) ->
@@ -19,6 +19,7 @@ window.facebookLoaded = ->
 # We sign in via the JS api, then redirect to the Rails app
 # to execute the devise sign in. For details, see:
 # https://github.com/intridea/omniauth/issues/120
+
 window.afterFacebookSignIn = ->
   window.location = '/users/auth/facebook/'
 

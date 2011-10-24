@@ -10,8 +10,9 @@ Lokalite::Application.routes.draw do
   end
 
   resources :plans
+  match "plans/:id/invitation", :controller => 'plans', :action => 'show', :invitation => true, :as => 'plan_invitation'
+  match "profile/datebook", :controller => 'plans', :action => 'new', :as => 'datebook'
 
-  get "profile/datebook", :as => 'datebook'
   get "profile/plans", :as => 'user_plans'
   get 'profile/edit', :as => 'edit_profile'
   post 'profile/update', :as => 'update_profile'

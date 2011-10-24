@@ -48,10 +48,13 @@ class User < ActiveRecord::Base
   end
 
 
-  has_many(:user_organization_joins, :dependent => :destroy)
-  has_many(:organizations, :through => :user_organization_joins)
+  has_many :user_organization_joins, :dependent => :destroy
+  has_many :organizations, :through => :user_organization_joins
 
   has_many :plans
+
+  has_many :plan_user_invitations, :dependent => :destroy
+  has_many :plan_invitations, :through => :plan_user_invitations
 
   has_many :user_event_joins
   has_many :events, :through => :user_event_joins do

@@ -18,12 +18,9 @@
     // so let it flow down and pull the band up into the picture
     margin-top: -46px
     background-color: $light-green
-    border:
-      width: 1px
-      style: solid
-      color: #555
-      left: none
-      right: none
+    border: 1px solid #555
+    border-left: none
+    border-right: none
     padding: 20px 25px
     padding-left: 50px + 100px
     h1
@@ -32,4 +29,73 @@
   .profile-links
     +horizontal-list(10px)
     margin-top: 8px
+
+
+$datebook-width: $tile-width + ($content-bg-padding * 2)
+
+.datebook
+  width: $datebook-width
+  h3
+    margin-left: $content-bg-padding
+  .help-bubble
+    width: $tile-width - 20
+    margin-left: $content-bg-padding
+
+.datebook, .new-plan-container
+  +float('left')
+  h3
+    margin-bottom: 10px
+
+$new-plan-container-width: $content-outer-width - $datebook-width - 20 - 1
+
+.new-plan-container
+  width: $new-plan-container-width
+  background-color: $light-green
+  border: 1px solid #555
+  border-top: none
+  border-right: none
+  +clearfix
+  padding: 10px
+  margin-top: -25px
+
+$plan-form-width: $new-plan-container-width - 20
+$plan-form-inner-width: $plan-form-width - 20
+
+.new-plan
+  width: $plan-form-width
+  background-color: $form-grey
+  padding: 10px
+  border: 1px solid #ccc
+  +border-radius(5px)
+
+  div
+    margin-bottom: 1em
+
+  .events li
+    // get the listings centered
+    margin-left: ($plan-form-width - $tile-width) / 2
+
+    // this is the text under the dropzone
+    div
+      margin-bottom: 0
+    p
+      padding: 6px 10px 4px
+      line-height: 16px
+      color: $grey
+
+  form
+    input[type="text"], textarea
+      +input-base
+      background-color: white
+      width: $plan-form-inner-width
+      +box-shadow(#ddd 0 4px 6px)
+    textarea
+      height: 70px
+
+.plan-invite-modal
+  width: 450px
+  input
+    +input-base
+    width: 400px
+
 

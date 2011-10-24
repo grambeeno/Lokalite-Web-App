@@ -35,9 +35,9 @@
 
       <dt>Description</dt>
       <dd><%= clean_format plan.description %></dd>
-
     </dl>
 
+    <%= render :partial => '/plans/invite_friends_link', :locals => {:plan => plan} %>
   </div>
   <div class="clear"></div>
 </section>

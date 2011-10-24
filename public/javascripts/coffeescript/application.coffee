@@ -1,5 +1,6 @@
-# compiling this manually for now
-# had trouble upgrading to rails 3.1
+# Compiling this manually for now with:
+# coffee -cw .
+# Had trouble upgrading to rails 3.1
 # don't want to deal with barista or another external gem right now...
 $ ->
   trackImpressions()
@@ -47,7 +48,7 @@ $ ->
     drop: (event, ui) ->
       # remove positioning set by drag event so the list flows naturally
       ui.draggable.removeAttr('style')
-        .addClass('without-image')
+        # .addClass('without-image')
       $(this).append(ui.draggable)
 
   # disable links once they're added to the selected events
@@ -87,7 +88,30 @@ $ ->
     $('#plan_description').simplyCountable
       maxCount: 140
 
-
+  # $('.invite-to-plan').live 'click', (event) ->
+  #   event.preventDefault()
+  $('.invite-to-plan').qtip
+    content:
+      # text: $('div:hidden'),
+      text: ->
+        $(this).next('.invite-modal').html()
+      title:
+        text: 'Invite Friends'
+        button: true
+    position:
+      my: 'center'
+      at: 'center'
+      target: $(window)
+    show:
+      event: 'click'
+      solo: true
+      modal: true
+    hide: false
+    style:
+      classes: 'plan-invite-modal ui-tooltip-light ui-tooltip-rounded'
+      width: 440
+    # events:
+    #   show: (event, api) ->
 
 
 displayOrganizationChart = ->

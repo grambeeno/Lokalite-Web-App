@@ -1,0 +1,11 @@
+<%= link_to "Invite Friends", '#', { :class => 'invite-to-plan' } %>
+<div style='display:none;' class='invite-modal'>
+  <div>
+    Send this link to friends:
+    <br />
+    <%= text_field_tag 'plan-invitation-link', plan_invitation_url(plan.uuid) %>
+  </div>
+  <div>
+    <%= link_to 'Invite friends on Facebook', send_facebook_message_url() %>
+  </div>
+</div>
