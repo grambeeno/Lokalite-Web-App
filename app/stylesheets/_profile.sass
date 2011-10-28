@@ -16,7 +16,7 @@
   .band
     // we don't know how tall the profile pic will be
     // so let it flow down and pull the band up into the picture
-    margin-top: -46px
+    // margin-top: -46px This was breaking layout
     background-color: $light-green
     border: 1px solid #555
     border-left: none
@@ -73,7 +73,9 @@ $plan-form-inner-width: $plan-form-width - 20
 
   .events li
     // get the listings centered
-    margin-left: ($plan-form-width - $tile-width) / 2
+    //margin-left: ($plan-form-width - $tile-width) / 2
+    width: 100px
+    height: 100px
 
     // this is the text under the dropzone
     div

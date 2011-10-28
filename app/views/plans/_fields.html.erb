@@ -23,15 +23,14 @@
     <%#=  f.text_field :start_date, :placeholder => 'Start Date', :class => 'datepicker' %>
   <%# </div>%>
 
+  <p class='centered cf'>
+    Drag and drop events here to add them to your plan.
+  </p>
+
   <ul id='selected-event-list' class='events'>
     <%# does not yet allow for editing of events in plan %>
     <% if f.object.new_record? %>
-      <li>
-        <div id='drag-target'></div>
-        <p class='centered'>
-          Drag and drop events here to add them to your plan.
-        </p>
-      </li>
+      <li id='drag-target'></li>
     <% else %>
       <% f.object.events.each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>

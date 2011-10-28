@@ -29,13 +29,25 @@
       <dt>Description</dt>
       <dd class='description'><%= raw auto_link(@event.description, :all, :html => {:target => '_blank'}) %></dd>
 
+    </dl>
+    <div class="cf">
+      <dl class="half">
       <dt>Tags</dt>
       <dd>
         <% for category in @event.categories -%>
           <%= link_to category.name, events_path(:origin => params[:origin], :category => category.name.parameterize('_')), :class => "category-icon #{category.name.parameterize('_')} tooltip", :title => category.name %>
         <% end -%>
       </dd>
-    </dl>
+      </dl>
+      <dl class="half ext">
+        <dt>Share</dt>
+        <dd>
+          <a href="" class="social-icon datebook-icon tooltip" oldtitle="Datebook" aria-describedby="ui-tooltip-0">Datebook</a>
+          <a href="" class="social-icon twitter-icon tooltip" oldtitle="Twitter" aria-describedby="ui-tooltip-0">Twitter</a>
+          <a href="" class="social-icon facebook-icon tooltip" oldtitle="Facebook" aria-describedby="ui-tooltip-0">Facebook</a>
+        </dd>
+      </dl>
+    </div>
     <br />
 
     <!--

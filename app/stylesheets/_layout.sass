@@ -35,10 +35,18 @@ body
       +centered-on-page
       // +clearfix
 
-      .logo
+      .logo-wrap
         +float('left')
+        width: 190px
+
+      .logo
         display: block
         +replace-text-with-dimensions('header-logo.png')
+      
+      form
+        +float('left')
+        width: 150px
+        margin: 20px 0 0
 
       nav
         +float('right')
@@ -162,3 +170,9 @@ body
         background:
           image: image-url("category-icons/#{$category}.png")
 
+.half
+  float: left
+  width: 48%
+
+.ext
+  float: right
