@@ -13,7 +13,7 @@
 
   <ul class="organizations">
     <% @organizations.each do |organization| %>
-      <%= render :partial => 'organization', :locals => { :organization => organization } %>
+      <%= render :partial => 'organization', :locals => { :organization => organization, :reportgrid_event_type => 'org_tile' } %>
     <% end %>
   </ul>
 

@@ -18,7 +18,7 @@
 
 <ul class="events">
   <% @events.each do |event| %>
-    <%= render :partial => '/events/event', :locals => { :event => event } %>
+    <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "event_tile" } %>
   <% end %>
 </ul>
 

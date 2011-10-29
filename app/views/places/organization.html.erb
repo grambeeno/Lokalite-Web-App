@@ -1,4 +1,4 @@
-<section class="organization"<%= report_grid_tracker(@organization, :type => 'Page') %>>
+<section class="organization"<%= reportgrid_organization_tracker(@organization, "org_page") %>>
   <div class='title'>
     <div class="title-image">
       <%= image_tag "category-icons/50px/#{@organization.category.name.parameterize('_')}.png" %>
@@ -48,7 +48,7 @@
   <h2 class='big'>Upcoming Events</h2>
   <ul class="events">
     <% @organization.events.upcoming.limit(12).each do |event| %>
-      <%= render :partial => '/events/event', :locals => { :event => event } %>
+      <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "org_upcoming_event" } %>
     <% end %>
   </ul>
   <div class="clear"></div>

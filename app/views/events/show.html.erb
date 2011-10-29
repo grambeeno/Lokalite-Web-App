@@ -1,4 +1,4 @@
-<section class='event'<%= report_grid_tracker(@event, :type => 'Page') %>>
+<section class='event'<%= reportgrid_event_tracker(@event, "event_page") %>>
   <div class='title'>
     <div class="title-image">
       <%= image_tag @event.organization.image.url(:thumb) %>
@@ -107,7 +107,7 @@
       <h2 class='big'>Other Events in <%= category.name %></h2>
       <ul class="events">
         <% events.each do |event| %>
-          <%= render :partial => '/events/event', :locals => { :event => event } %>
+          <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => 'related_event_tile' } %>
         <% end %>
       </ul>
       <div class="clear"></div>
