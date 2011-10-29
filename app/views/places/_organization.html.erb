@@ -1,4 +1,4 @@
-<li<%= report_grid_tracker(organization, :type => 'Tile') %>>
+<li<%= reportgrid_organization_tracker(organization, reportgrid_event_type) %>>
   <div class='image'>
     <%= link_to organization_path(organization.slug, organization.id) do %>
       <%= image_tag(organization.image.url(:medium)) %>

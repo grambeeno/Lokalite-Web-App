@@ -45,28 +45,47 @@ module EventsHelper
     args.map{|o| dom_id(o) }.join('-')
   end
 
-  # object can be an event or organization
-  def report_grid_tracker(object, options = {})
-    if object.is_a? Organization
-      organization = object
-    else
-      organization = object.organization
-    end
-
+  # embeds lokalite organization/event metadata for reportgrid tracking
+  def reportgrid_event_tracker(event, base_type, options = {})
+    organization = event.organization
+   
     # construct the object to send to ReportGrid
     #
     # remember that we are referring to a ReportGrid event
     # not a Lokalite event
-    event = {
-      :impression => {
-        :id   => object.id,
-        :type => "#{object.class.name} #{options[:type]}"
-      }
+    
+    reportgrid_event_data = {
+      :org_category     => organization.category.name,
+      :event_day        => event.starts_at.strftime('%a'),
+      :signed_id        => user_signed_in?,
+      :event_categories => {},
+      :base_type        => base_type
+    }
+    
+    event.categories.each { |category| 
+      reportgrid_event_data[:event_categories][category] = true
+    }
+
+    reportgrid_event_data[:path] = "/#{organization.id}/#{event.location_id}/#{event.id}"
+
+    raw " data-reportgrid='#{reportgrid_event_data.to_json}'"
+  end
+  
+  # embeds lokalite organization metadata for reportgrid tracking
+  def reportgrid_organization_tracker(organization, base_type, options = {})
+   
+    # remember that we are referring to a ReportGrid event
+    # not a Lokalite event
+    
+    reportgrid_event_data = {
+      :org_category => organization.category.name,
+      :signed_id    => user_signed_in?,
+      :base_type    => base_type
     }
 
     # we'll extract and delete the path in JS
-    event[:path] = "/organizations/#{organization.id}"
+    reportgrid_event_data[:path] = "/#{organization.id}"
 
-    raw " data-reportgrid='#{event.to_json}'"
+    raw " data-reportgrid='#{reportgrid_event_data.to_json}'"
   end
 end

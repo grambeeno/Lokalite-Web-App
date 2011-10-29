@@ -50,7 +50,7 @@
 <div class="more-events">
   <ul class="events">
     <% @plan.events.each do |event| %>
-      <%= render :partial => '/events/event', :locals => { :event => event } %>
+      <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type = 'event_plan_tile' } %>
     <% end %>
   </ul>
   <div class="clear"></div>

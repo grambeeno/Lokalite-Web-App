@@ -21,20 +21,42 @@ $ ->
       if $(this).parent().hasClass('events')
         setTimeout ( =>
           if active_hover_id == $(this).attr('id')
-            ids  = extractComplexObjectId($(this))
-            path = "/organizations/#{ids.organization}"
-            data =
-              impression:
-                  id  : ids.event
-                  type: 'Event Description Read'
-
-            ReportGrid.track(path, data)
+            
+            data = $.parseJSON $(this).attr('data-reportgrid')
+             
+            trackEvent data, "_engage"
           ),
           1000
 
     mouseleave: ->
       $(this).find('.description').hide("slide", { direction: "down" }, 400)
       active_hover_id = ''
+
+    click: ->
+      data = $.parseJSON $(this).attr('data-reportgrid')
+      trackEvent data, "_click"
+      
+
+  $('.map a').live
+    mouseenter: ->
+      active_hover_id = $(this).attr('href')
+
+      if $(this).parent().hasClass('map')
+        setTimeout ( =>
+          if active_hover_id == $(this).attr('href')
+           
+            data = $.parseJSON $('section.event').attr('data-reportgrid')
+             
+            trackEvent data, "_map_engage"
+          ),
+          1000
+
+    mouseleave: ->
+      active_hover_id = ''
+
+    click: ->
+      data = $.parseJSON $('section.event').attr('data-reportgrid')
+      trackEvent data, "_map_click"
 
   # event plans
   $('li', '.datebook .events').draggable
@@ -134,14 +156,25 @@ displayOrganizationChart = ->
         #   datapointover : label.sourceType
         # }
 
+trackEvent = (data, type_suffix) ->
+  event_type = data.base_type + type_suffix 
+  path       = data.path
+
+  delete data.base_type
+  delete data.path
+ 
+  tracking_data = {}
+  tracking_data[event_type] = data
+
+  console.log(JSON.stringify tracking_data)
+
+  ReportGrid.track path, tracking_data 
+
 trackImpressions = ->
   $('[data-reportgrid]').each ->
     data = $.parseJSON $(this).attr('data-reportgrid')
-
-    path = data.path
-    delete data.path
-
-    ReportGrid.track path, data
+  
+    trackEvent data, " impression"
 
 # id='organization_4' returns 4
 extractObjectId = (element) ->
@@ -155,5 +188,4 @@ extractComplexObjectId = (element) ->
     [key, value] = pair.split('_')
     ids[key] = value
   ids
-
 

@@ -1,5 +1,5 @@
 (function() {
-  var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackImpressions;
+  var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackEvent, trackImpressions;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   $(function() {
     var active_hover_id;
@@ -15,17 +15,10 @@
         active_hover_id = $(this).attr('id');
         if ($(this).parent().hasClass('events')) {
           return setTimeout((__bind(function() {
-            var data, ids, path;
+            var data;
             if (active_hover_id === $(this).attr('id')) {
-              ids = extractComplexObjectId($(this));
-              path = "/organizations/" + ids.organization;
-              data = {
-                impression: {
-                  id: ids.event,
-                  type: 'Event Description Read'
-                }
-              };
-              return ReportGrid.track(path, data);
+              data = $.parseJSON($(this).attr('data-reportgrid'));
+              return trackEvent(data, "_engage");
             }
           }, this)), 1000);
         }
@@ -35,6 +28,33 @@
           direction: "down"
         }, 400);
         return active_hover_id = '';
+      },
+      click: function() {
+        var data;
+        data = $.parseJSON($(this).attr('data-reportgrid'));
+        return trackEvent(data, "_click");
+      }
+    });
+    $('.map a').live({
+      mouseenter: function() {
+        active_hover_id = $(this).attr('href');
+        if ($(this).parent().hasClass('map')) {
+          return setTimeout((__bind(function() {
+            var data;
+            if (active_hover_id === $(this).attr('href')) {
+              data = $.parseJSON($('section.event').attr('data-reportgrid'));
+              return trackEvent(data, "_map_engage");
+            }
+          }, this)), 1000);
+        }
+      },
+      mouseleave: function() {
+        return active_hover_id = '';
+      },
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.event').attr('data-reportgrid'));
+        return trackEvent(data, "_map_click");
       }
     });
     $('li', '.datebook .events').draggable({
@@ -132,13 +152,22 @@
       });
     });
   };
+  trackEvent = function(data, type_suffix) {
+    var event_type, path, tracking_data;
+    event_type = data.base_type + type_suffix;
+    path = data.path;
+    delete data.base_type;
+    delete data.path;
+    tracking_data = {};
+    tracking_data[event_type] = data;
+    console.log(JSON.stringify(tracking_data));
+    return ReportGrid.track(path, tracking_data);
+  };
   trackImpressions = function() {
     return $('[data-reportgrid]').each(function() {
-      var data, path;
+      var data;
       data = $.parseJSON($(this).attr('data-reportgrid'));
-      path = data.path;
-      delete data.path;
-      return ReportGrid.track(path, data);
+      return trackEvent(data, " impression");
     });
   };
   extractObjectId = function(element) {
