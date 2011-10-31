@@ -13,7 +13,7 @@
           direction: "down"
         }, 200);
         active_hover_id = $(this).attr('id');
-        if ($(this).parent().hasClass('events')) {
+        if ($(this).parent().hasClass('events') || $(this).parent().hasClass('organizations')) {
           return setTimeout((__bind(function() {
             var data;
             if (active_hover_id === $(this).attr('id')) {
@@ -35,7 +35,21 @@
         return trackEvent(data, "_click");
       }
     });
-    $('.map a').live({
+    $('.featured_sidebar li, .trending_sidebar li').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($(this).attr('data-reportgrid'));
+        return trackEvent(data, "_click");
+      }
+    });
+    $('section.event .text a').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.event').attr('data-reportgrid'));
+        return trackEvent(data, "_org_click");
+      }
+    });
+    $('section.event .map a').live({
       mouseenter: function() {
         active_hover_id = $(this).attr('href');
         if ($(this).parent().hasClass('map')) {
@@ -55,6 +69,42 @@
         var data;
         data = $.parseJSON($('section.event').attr('data-reportgrid'));
         return trackEvent(data, "_map_click");
+      }
+    });
+    $('section.organization .map a').live({
+      mouseenter: function() {
+        active_hover_id = $(this).attr('href');
+        if ($(this).parent().hasClass('map')) {
+          return setTimeout((__bind(function() {
+            var data;
+            if (active_hover_id === $(this).attr('href')) {
+              data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+              return trackEvent(data, "_map_engage");
+            }
+          }, this)), 1000);
+        }
+      },
+      mouseleave: function() {
+        return active_hover_id = '';
+      },
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+        return trackEvent(data, "_map_click");
+      }
+    });
+    $('section.organization dd.website a').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+        return trackEvent(data, "_website_click");
+      }
+    });
+    $('section.organization dd.phone').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+        return trackEvent(data, "_phone_click");
       }
     });
     $('li', '.datebook .events').draggable({

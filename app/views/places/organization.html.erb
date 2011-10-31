@@ -22,12 +22,12 @@
 
       <% if @organization.phone.present? %>
         <dt>Phone</dt>
-        <dd><%= number_to_phone @organization.phone.gsub(/\D/, ''), :area_code => true %></dd>
+        <dd class="phone"><%= number_to_phone @organization.phone.gsub(/\D/, ''), :area_code => true %></dd>
       <% end %>
 
       <% if @organization.url.present? %>
         <dt>Website</dt>
-        <dd><%= link_to @organization.url, @organization.url, :target => 'blank' %></dd>
+        <dd class="website"><%= link_to @organization.url, @organization.url, :target => 'blank' %></dd>
       <% end %>
     </dl>
 
