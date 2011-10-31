@@ -18,7 +18,7 @@ $ ->
       $(this).find('.description').show("slide", { direction: "down" }, 200)
       active_hover_id = $(this).attr('id')
 
-      if $(this).parent().hasClass('events')
+      if($(this).parent().hasClass('events') or $(this).parent().hasClass('organizations'))
         setTimeout ( =>
           if active_hover_id == $(this).attr('id')
             
@@ -36,8 +36,17 @@ $ ->
       data = $.parseJSON $(this).attr('data-reportgrid')
       trackEvent data, "_click"
       
+  $('.featured_sidebar li, .trending_sidebar li').live
+    click: ->
+      data = $.parseJSON $(this).attr('data-reportgrid')
+      trackEvent data, "_click"
 
-  $('.map a').live
+  $('section.event .text a').live
+    click: ->
+      data = $.parseJSON $('section.event').attr('data-reportgrid')
+      trackEvent data, "_org_click"
+  
+  $('section.event .map a').live
     mouseenter: ->
       active_hover_id = $(this).attr('href')
 
@@ -58,6 +67,37 @@ $ ->
       data = $.parseJSON $('section.event').attr('data-reportgrid')
       trackEvent data, "_map_click"
 
+  $('section.organization .map a').live
+    mouseenter: ->
+      active_hover_id = $(this).attr('href')
+
+      if $(this).parent().hasClass('map')
+        setTimeout ( =>
+          if active_hover_id == $(this).attr('href')
+           
+            data = $.parseJSON $('section.organization').attr('data-reportgrid')
+             
+            trackEvent data, "_map_engage"
+          ),
+          1000
+
+    mouseleave: ->
+      active_hover_id = ''
+
+    click: ->
+      data = $.parseJSON $('section.organization').attr('data-reportgrid')
+      trackEvent data, "_map_click"
+  
+  $('section.organization dd.website a').live
+    click: ->
+      data = $.parseJSON $('section.organization').attr('data-reportgrid')
+      trackEvent data, "_website_click"
+  
+  $('section.organization dd.phone').live
+    click: ->
+      data = $.parseJSON $('section.organization').attr('data-reportgrid')
+      trackEvent data, "_phone_click"
+  
   # event plans
   $('li', '.datebook .events').draggable
     revert: 'invalid'
