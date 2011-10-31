@@ -253,10 +253,10 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .events li .image, .organizations li .image { position: relative; width: 202px; }
 .events li .image img, .organizations li .image img { border: 1px solid black; }
 .events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1319478045'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/add-corner.png?1319478045'); background-position: top; width: 52px; height: 52px; }
-.events li .image .trend-button:hover, .organizations li .image .trend-button:hover { background-position: bottom; }
-.events li .image .trend-button.trended, .organizations li .image .trend-button.trended { background-position: bottom; }
-.events li .image .trend-button.trended:hover, .organizations li .image .trend-button.trended:hover { background-position: top; }
+.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/add-corner.png?1320097158'); background-position: top; width: 52px; height: 52px; }
+.events li .image .trend-button:hover, .organizations li .image .trend-button:hover { background-position: -52px; }
+.events li .image .trend-button.trended, .organizations li .image .trend-button.trended { background-position: -52px; }
+.events li .image .trend-button.trended:hover, .organizations li .image .trend-button.trended:hover { background-position: bottom; }
 .events li .image .trend-button .trend-count, .organizations li .image .trend-button .trend-count { display: none; font-style: italic; font-size: 10px; color: white; position: absolute; left: 23px; top: 2px; }
 .events li .detail h1, .organizations li .detail h1 { font-size: 14px; }
 .events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
