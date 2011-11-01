@@ -8,6 +8,8 @@ $ ->
 
   $('.truncate').truncate()
 
+  FB.Event.subscribe 'comment.create', (resp) -> alert("Comment created")
+
   # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
   # store active_hover_id so we can determine the length of the event
   #
@@ -35,12 +37,26 @@ $ ->
     click: ->
       data = $.parseJSON $(this).attr('data-reportgrid')
       trackEvent data, "_click"
-      
+  
+  $('a.trend').live
+    click: (event) ->
+      event.stopPropagation()
+      event_li = $(this).parent().parent()
+      data = $.parseJSON event_li.attr('data-reportgrid')
+      trackEvent data, "_trend_click"
+
+  $('a.trended').live
+    click: (event) ->
+      event.stopPropagation()
+      event_li = $(this).parent().parent()
+      data = $.parseJSON event_li.attr('data-reportgrid')
+      trackEvent data, "_untrend_click"
+  
   $('.featured_sidebar li, .trending_sidebar li').live
     click: ->
       data = $.parseJSON $(this).attr('data-reportgrid')
       trackEvent data, "_click"
-
+  
   $('section.event .text a').live
     click: ->
       data = $.parseJSON $('section.event').attr('data-reportgrid')

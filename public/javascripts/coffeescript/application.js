@@ -35,6 +35,24 @@
         return trackEvent(data, "_click");
       }
     });
+    $('a.trend').live({
+      click: function(event) {
+        var data, event_li;
+        event.stopPropagation();
+        event_li = $(this).parent().parent();
+        data = $.parseJSON(event_li.attr('data-reportgrid'));
+        return trackEvent(data, "_trend_click");
+      }
+    });
+    $('a.trended').live({
+      click: function(event) {
+        var data, event_li;
+        event.stopPropagation();
+        event_li = $(this).parent().parent();
+        data = $.parseJSON(event_li.attr('data-reportgrid'));
+        return trackEvent(data, "_untrend_click");
+      }
+    });
     $('.featured_sidebar li, .trending_sidebar li').live({
       click: function() {
         var data;
