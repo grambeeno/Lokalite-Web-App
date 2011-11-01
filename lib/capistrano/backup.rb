@@ -9,17 +9,17 @@ set :destination, "#{db_dir}/#{filename}"
 
 namespace :backup do
 
-  desc "Backup production db and import to development db"
+  desc "Backup production db and sync the db dump and images to local machine"
   task :default do
     backup
     sync_to_local
-    import
   end
 
-  desc "Backup production and sync to local system without importing to development"
-  task :no_import do
+  desc "Backup production, sync to local machine, and import to development database"
+  task :import do
     backup
     sync_to_local
+    import_to_development
   end
 
   desc "Backup production db to the server"
@@ -34,8 +34,8 @@ namespace :backup do
     system "rsync -vr #{user}@#{domain}:#{application}/current/public/system/ public/system/"
   end
 
-  desc "Imports production db into development environment"
-  task :import do
+  desc "Import production db into development environment"
+  task :import_to_development do
     # clear out the schema. Even though we exported with --clean there may be
     # other tables added in migrations during development
     system "psql -c 'DROP SCHEMA public CASCADE;' lokalite_development lokalite"
@@ -44,7 +44,7 @@ namespace :backup do
     psql -f db_dumps/`echo $recent_db_backup` lokalite_development lokalite"
   end
 
-  desc "Imports production db into production environment"
+  desc "Import production db into production environment"
   # this is used for bringing the production db into our staging environment
   task :import_to_production do
     system "psql -c 'DROP SCHEMA public CASCADE;' lokalite_production lokalite"
