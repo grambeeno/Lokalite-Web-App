@@ -460,3 +460,6 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .plan-invite-modal { width: 450px; }
 .plan-invite-modal input { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 400px; }
 .plan-invite-modal input.file { background-color: transparent; padding: 0; border: none; }
+
+@media only screen and (min-width: 480px) and (max-width: 759px) { header div.content { width: 760px; }
+  .middle { width: 370px; } }
