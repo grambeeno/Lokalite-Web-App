@@ -5,10 +5,12 @@
     <input id="global-search" name="global-search" placeholder="Search" type="search" value="" />
   </form>
   <div class="ext">
+<% if user_signed_in? %>
     <a href="" class="btn primary">New Plan</a>
     <% if current_user.organizations.any? %>
     <%= link_to "Create Event", new_my_event_path, :class => 'btn primary' %>
     <% end %>
+<% end %>
   </div>
 </div>
 
