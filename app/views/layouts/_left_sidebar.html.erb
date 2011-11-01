@@ -77,6 +77,9 @@
     </ul>
   <% end %>
 </nav>
-
 <% end %>
-
+  <%
+    options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
+    options[:view_type] = 'map'
+  %>
+  <p class="centered"><%= link_to 'Switch to Map View', events_path(options), :class => 'btn primary' %></p>
