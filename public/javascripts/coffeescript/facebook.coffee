@@ -1,4 +1,7 @@
 window.facebookLoaded = ->
+  # comment.create hook
+  # FB.Event.subscribe "comment.create", (response) -> alert "Comment created"
+
   # getFacebookUser()
   # console.log 'loaded facebook'
   # FB.ui

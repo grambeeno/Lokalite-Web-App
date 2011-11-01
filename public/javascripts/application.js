@@ -168,7 +168,10 @@ jq(function($){
   $('input, textarea').placeholder();
 
   $('.trend').live('click', function(event) {
-    event.preventDefault();
+    // removed by reportgrid to enable event tracking
+    // in application.coffee (note: event.preventDefault()
+    // will be called there instead.)
+    // event.preventDefault();
     var link = $(this);
     var event_id = idFromString(link.attr('href'));
     App.ajax({
@@ -185,7 +188,10 @@ jq(function($){
   });
 
   $('.trended').live('click', function(event) {
-    event.preventDefault();
+    // removed by reportgrid to enable event tracking
+    // in application.coffee (note: event.preventDefault()
+    // will be called there instead.)
+    // event.preventDefault();
     var link = $(this);
     var event_id = idFromString(link.attr('href'));
     App.ajax({
