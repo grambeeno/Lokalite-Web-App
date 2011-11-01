@@ -4,7 +4,12 @@
     <input name="utf8" type="hidden" value="&#x2713;" />
     <input id="global-search" name="global-search" placeholder="Search" type="search" value="" />
   </form>
-  <div class="ext"><a href="" class="btn primary">New Plan</a></div>
+  <div class="ext">
+    <a href="" class="btn primary">New Plan</a>
+    <% if current_user.organizations.any? %>
+    <%= link_to "Create Event", new_my_event_path, :class => 'btn primary' %>
+    <% end %>
+  </div>
 </div>
 
 <nav class='user-navigation'>
@@ -41,11 +46,6 @@
           </li>
         </ul>
       </li>
-      <% if current_user.organizations.any? %>
-        <li>
-          <%= link_to "Create Event", new_my_event_path, :class => 'create-event' %>
-        </li>
-      <% end %>
     <% else %>
       <% if false %>
         <li>
