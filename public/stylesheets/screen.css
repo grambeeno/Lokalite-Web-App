@@ -378,7 +378,9 @@ table.event-picker input[type='checkbox'] { background-color: red; }
 
 .centered { text-align: center; margin: 0 auto; padding: 0 0 15px; }
 
-#left-sidebar .centered { margin-top: 20px; }
+#left-sidebar .centered { margin-top: 10px; }
+
+#left-sidebar .centered .btn { padding-left: 0; padding-right: 0; width: 98%; }
 
 .form { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
 .form h1, .form h2 { text-align: center; }
