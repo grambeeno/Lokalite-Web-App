@@ -425,7 +425,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 
 #selected-event-list { overflow: hidden; *zoom: 1; background: transparent url(dropzone.png) no-repeat 50% 50%; }
 
-#drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1319478045'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; }
+.drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1319478045'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; }
 
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
