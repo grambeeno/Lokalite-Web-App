@@ -1,13 +1,15 @@
 .profile-header
+  position: relative
   margin: 0 0 25px 0
 
   .avatar
-    display: inline-block
+    position: absolute
+    top: 8px
+    left: 0
     background-color: white
     // margin-top: -130px
     // margin: -130px 0 0 0
     border: 1px solid #444
-
     padding: 4px
     margin: 0 0 0 25px
     img
@@ -102,7 +104,7 @@ $plan-form-inner-width: $plan-form-width - 20
 @media only screen and (min-width: 480px) and (max-width: 759px) 
 
   header div.content
-    width: 760px
+    width: 94%
 
   .middle
-    width: 370px
+    width: 300px
