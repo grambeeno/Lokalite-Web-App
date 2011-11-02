@@ -6,7 +6,8 @@
   </form>
   <div class="ext">
 <% if user_signed_in? %>
-    <a href="" class="btn primary">New Plan</a>
+  <!-- Linking to DATEBOOK for NEW PLAN creation -->
+    <%= link_to 'New Plan', datebook_path, :class => 'btn primary' %>
     <% if current_user.organizations.any? %>
       <% if user_sudoing? %>
       <%= link_to "Create Event", new_my_event_path, :class => 'btn primary' %>
