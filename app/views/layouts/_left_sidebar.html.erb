@@ -10,15 +10,14 @@
   -%>
 
 <nav>
-  <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
-  <ul class='category-tab-buttons'>
+  <ul class='category-tab-buttons cf'>
     <li>
-      <% class_names = active_tab == 'events' ? 'active' : nil %>
-      <%= link_to 'Events', events_path(:origin => params[:origin], :category => 'featured'), :class => class_names %>
+      <% class_names = active_tab == 'events' ? 'btn primary' : 'btn' %>
+      <%= link_to 'Events', events_path(:origin => params[:origin], :category => 'featured'), :class => class_names or ' btn' %>
     </li>
-    <li>
-      <% class_names = active_tab == 'places' ? 'active' : nil %>
-      <%= link_to 'Places', places_path(:origin => params[:origin]), :class => class_names %>
+    <li class="last">
+      <% class_names = active_tab == 'places' ? 'btn primary' : 'btn' %>
+      <%= link_to 'Places', places_path(:origin => params[:origin]), :class => class_names or ' btn' %>
     </li>
   </ul>
 
