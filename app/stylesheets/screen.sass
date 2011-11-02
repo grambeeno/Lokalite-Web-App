@@ -105,9 +105,10 @@ a.button
 @import signup
 
 .category-tab-buttons
-  +horizontal-list(6px)
   margin-bottom: 12px
   li
+    float: left
+    margin-right: 10px
     width: $sidebar-width/2 - 6
     a
       text-align: center
@@ -124,6 +125,9 @@ a.button
         border-color: #83cb4d
         background-color: $light-green
         font-weight: bold
+
+.category-tab-buttons li.last
+  margin-right: 0
 
 .category-icon
   +float('left')
@@ -729,6 +733,9 @@ table.event-picker
   text-align: center
   margin: 0 auto
   padding: 0 0 15px
+
+#left-sidebar .centered
+  margin-top: 20px
 
 
 @import forms

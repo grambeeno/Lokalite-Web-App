@@ -1,9 +1,13 @@
 <div class="logo-wrap"><a href="/" class="logo" title="Lokalite Home">lokalite</a></div>
 <div class="middle cf">
-  <form accept-charset="UTF-8" action="" method="get">
-    <input name="utf8" type="hidden" value="&#x2713;" />
-    <input id="global-search" name="global-search" placeholder="Search" type="search" value="" />
-  </form>
+  <%
+    if params[:controller] == 'places'
+      active_tab = 'places'
+    else
+      active_tab = 'events'
+    end
+  -%>
+  <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
   <div class="ext">
 <% if user_signed_in? %>
   <!-- Linking to DATEBOOK for NEW PLAN creation -->
