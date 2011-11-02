@@ -64,7 +64,7 @@ end
 
 # To use debugger
   gem 'ruby-debug'
-
+  gem 'pry'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
