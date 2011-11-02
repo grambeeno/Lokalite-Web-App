@@ -30,7 +30,7 @@
   <ul id='selected-event-list' class='events'>
     <%# does not yet allow for editing of events in plan %>
     <% if f.object.new_record? %>
-      <li id='drag-target'></li>
+      <li class='drag-target'></li>
     <% else %>
       <% f.object.events.each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>

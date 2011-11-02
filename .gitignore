@@ -26,3 +26,4 @@ public/stylesheets/all.css
 nbproject
 vendor/ruby
 db_dumps
+.sass-cache/
