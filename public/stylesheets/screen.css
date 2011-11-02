@@ -220,6 +220,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #right-sidebar ul li .image img { width: 30px; }
 #right-sidebar ul li .details { display: inline; float: left; width: 130px; padding-left: 10px; font-size: 12px; }
 #right-sidebar ul li .details .organization { font-size: 10px; }
+#right-sidebar .soc-links li { float: left; }
 
 #middle { width: 760px; -moz-box-shadow: 0 0 8px #333333; -webkit-box-shadow: 0 0 8px #333333; -o-box-shadow: 0 0 8px #333333; box-shadow: 0 0 8px #333333; margin-bottom: 25px; -moz-border-radius-bottomleft: 8px; -webkit-border-bottom-left-radius: 8px; -o-border-bottom-left-radius: 8px; -ms-border-bottom-left-radius: 8px; -khtml-border-bottom-left-radius: 8px; border-bottom-left-radius: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-right-radius: 8px; -o-border-bottom-right-radius: 8px; -ms-border-bottom-right-radius: 8px; -khtml-border-bottom-right-radius: 8px; border-bottom-right-radius: 8px; }
 
