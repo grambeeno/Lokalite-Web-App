@@ -27,16 +27,52 @@
     Drag and drop events below to add them to your plan.
   </p>
 
-  <ul id='selected-event-list' class='events'>
+  <div id='selected-event-list' class='events cf'>
     <%# does not yet allow for editing of events in plan %>
     <% if f.object.new_record? %>
-      <li class='drag-target'></li>
+      <div id='drag-target'></div>
+      <div class="drag-thumb">
+        <div class="image">
+          <a href="">
+            <img src="/images/social-icons/facebook_320.png">
+            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+          </a>
+        </div>
+        <a class="close">Close</a>
+      </div>
+      <div class="drag-thumb">
+        <div class="image">
+          <a href="">
+            <img src="/images/social-icons/facebook_320.png">
+            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+          </a>
+        </div>
+        <a class="close">Close</a>
+      </div>
+      <div class="drag-thumb">
+        <div class="image">
+          <a href="">
+            <img src="/images/social-icons/facebook_320.png">
+            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+          </a>
+        </div>
+        <a class="close">Close</a>
+     </div>
+      <div class="drag-thumb">
+        <div class="image">
+          <a href="">
+            <img src="/images/social-icons/facebook_320.png">
+            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+          </a>
+        </div>
+        <a class="close">Close</a>
+      </div>
     <% else %>
       <% f.object.events.each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>
       <% end %>
     <% end %>
-  </ul>
+  </div>
 
   <div class="clear"></div>
 
