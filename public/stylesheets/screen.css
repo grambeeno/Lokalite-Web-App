@@ -425,7 +425,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 
 #selected-event-list { overflow: hidden; *zoom: 1; background: transparent url(dropzone.png) no-repeat 50% 50%; }
 
-.drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1319478045'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; }
+#drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1319478045'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; }
 
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
@@ -433,8 +433,8 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
 .chart { background-color: white; border: 1px solid gray; margin-bottom: 2em; }
 
-.profile-header { margin: 0 0 25px 0; }
-.profile-header .avatar { display: inline-block; background-color: white; border: 1px solid #444444; padding: 4px; margin: 0 0 0 25px; }
+.profile-header { position: relative; margin: 0 0 25px 0; }
+.profile-header .avatar { position: absolute; top: 8px; left: 0; background-color: white; border: 1px solid #444444; padding: 4px; margin: 0 0 0 25px; }
 .profile-header .avatar img { display: block; }
 .profile-header .band { background-color: #cbe5cc; border: 1px solid #555555; border-left: none; border-right: none; padding: 20px 25px; padding-left: 150px; }
 .profile-header .band h1 { font-size: 20px; }
@@ -466,5 +466,5 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .plan-invite-modal input { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 400px; }
 .plan-invite-modal input.file { background-color: transparent; padding: 0; border: none; }
 
-@media only screen and (min-width: 480px) and (max-width: 759px) { header div.content { width: 760px; }
-  .middle { width: 370px; } }
+@media only screen and (min-width: 480px) and (max-width: 759px) { header div.content { width: 94%; }
+  .middle { width: 300px; } }
