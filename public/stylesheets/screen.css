@@ -433,7 +433,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 
 #selected-event-list .image img { display: block; padding: 0; margin: 0; }
 
-.drag-thumb .close { display: block; position: absolute; top: -8px; right: -7px; z-index: 10; width: 13px; height: 14px; background: transparent url(/images/close.png) no-repeat 50% 50%; text-indent: -9999px; cursor: pointer; opacity: 0.7; filter: alpha(opacity=70); }
+.drag-thumb .close { display: block; position: absolute; top: -5px; right: -4px; z-index: 10; width: 13px; height: 14px; background: transparent url(/images/close.png) no-repeat 50% 50%; text-indent: -9999px; cursor: pointer; opacity: 0.7; filter: alpha(opacity=70); }
 
 .drag-thumb .close:hover { opacity: 1; filter: alpha(opacity=100); }
 
