@@ -3,17 +3,17 @@
 
   <%= f.hidden_field :event_ids %>
 
-  <div>
+  <div class="mbm">
     <%= f.text_field :title, :placeholder => 'Title' %>
   </div>
 
-  <div>
+  <div class="mbm">
     <%= f.text_area :description, :placeholder => 'Description' %>
     <span id="counter"></span>
   </div>
 
   <% if false %>
-    <div>
+    <div class="mbm">
       <%= f.check_box :public %>
       <%= f.label :public, "Plan is public?" %>
     </div>
@@ -24,48 +24,50 @@
   <%# </div>%>
 
   <p class='centered cf'>
-    Drag and drop events below to add them to your plan.
+    Add events to your plan by dragging them from your <i>Datebook</i> (left).
   </p>
 
   <div id='selected-event-list' class='events cf'>
     <%# does not yet allow for editing of events in plan %>
     <% if f.object.new_record? %>
       <div class='drag-target'></div>
-      <div class="drag-thumb">
-        <div class="image">
-          <a href="">
-            <img src="/images/boulder_theater.jpg">
-            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
-          </a>
+      <div class="thumb-container cf">
+        <div class="drag-thumb">
+          <div class="image">
+            <a href="">
+              <img src="/images/boulder_theater.jpg">
+              <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+            </a>
+          </div>
+          <a class="close">Close</a>
         </div>
-        <a class="close">Close</a>
-      </div>
-      <div class="drag-thumb">
-        <div class="image">
-          <a href="">
-            <img src="/images/boulder_theater.jpg">
-            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
-          </a>
+        <div class="drag-thumb">
+          <div class="image">
+            <a href="">
+              <img src="/images/boulder_theater.jpg">
+              <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+            </a>
+          </div>
+          <a class="close">Close</a>
         </div>
-        <a class="close">Close</a>
-      </div>
-      <div class="drag-thumb">
-        <div class="image">
-          <a href="">
-            <img src="/images/boulder_theater.jpg">
-            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
-          </a>
+        <div class="drag-thumb">
+          <div class="image">
+            <a href="">
+              <img src="/images/boulder_theater.jpg">
+              <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+            </a>
+          </div>
+          <a class="close">Close</a>
+       </div>
+        <div class="drag-thumb">
+          <div class="image">
+            <a href="">
+              <img src="/images/boulder_theater.jpg">
+              <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
+            </a>
+          </div>
+          <a class="close">Close</a>
         </div>
-        <a class="close">Close</a>
-     </div>
-      <div class="drag-thumb">
-        <div class="image">
-          <a href="">
-            <img src="/images/boulder_theater.jpg">
-            <div class="description" style="display:none;">$2.75 New Belgium Drafts all day long. </div>
-          </a>
-        </div>
-        <a class="close">Close</a>
       </div>
     <% else %>
       <% f.object.events.each do |event| %>
@@ -77,7 +79,7 @@
   <div class="clear"></div>
 
   <div class="centered">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn primary' %>
   </div>
 <% end -%>
 

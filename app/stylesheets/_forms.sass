@@ -109,30 +109,40 @@ form.formtastic
 
 .drag-target
   +replace-text-with-dimensions('dropzone.png')
-  margin: 1em auto
+  margin: 1em auto 2em
   padding: 10px
   background-color: #fff
   -webkit-box-shadow: 0 0 5px #555
   -moz-box-shadow: 0 0 5px #555
   box-shadow: 0 0 5px #555
   // background-color: $light-green
+.thumb-container
+  margin: 1em auto
+  padding: 0 0 0 34px
 .drag-thumb
   position: relative
-  width: 100px
-  height: 100px
   float: left
-  margin-right: 15px
+  margin: 0 14px 1em 0
+  padding: 5px
+  background: #fff
+  -webkit-border-radius: 0.2em
+  -moz-border-radius: 0.2em
+  border-radius: 0.2em
+  -webkit-box-shadow: 0 0 3px #888
+  -moz-box-shadow: 0 0 3px #888
+  box-shadow: 0 0 3px #888
 .drag-thumb:last-of-type
   margin-right: 0
 #selected-event-list .image img
   display: block
-  width: 100px
-  height: 100px
+  padding: 0
+  margin: 0
 .drag-thumb .close
   display: block
   position: absolute
-  top: 0
-  right: 0
+  top: -5px
+  right: -4px
+  z-index: 10
   width: 13px
   height: 14px
   background: transparent url(/images/close.png) no-repeat 50% 50%
@@ -143,6 +153,7 @@ form.formtastic
 .drag-thumb .close:hover
   opacity: 1
   filter: alpha(opacity = 100)
+
 
 input.placeholder,
 textarea.placeholder
