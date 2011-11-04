@@ -76,20 +76,18 @@
     </ul>
   <% end %>
 </nav>
+<% end %>
+  <%
+    options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
 
-<!-- Need to base conditional on :view_type -->
-  <% if params[:controller] == 'places' %>
-    <%
-    options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
-    options[:view_type] = 'gallery'
-    %>
-    <p class="centered"><%= link_to 'Switch to Places View', places_path(options), :class => 'btn primary' %></p>
+    if params[:view_type] == 'map'
+      options[:view_type] = nil
+    else  
+      options[:view_type] = 'map'
+    end
+  %>
+  <% if params[:view_type] == 'map' %>
+    <p class="centered"><%= link_to 'Switch to Grid View', events_path(options), :class => 'btn primary' %></p>
   <% else %>
-    <%
-    options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
-    options[:view_type] = 'map'
-    %>
     <p class="centered"><%= link_to 'Switch to Map View', events_path(options), :class => 'btn primary' %></p>
   <% end %>
-
-<% end %>
