@@ -24,16 +24,19 @@
 <nav class='nav secondary-nav'>
   <ul>
     <% if user_signed_in? %>
-      <li>
-       <% if user_sudoing? %>
+      <li class="cf">
+        <div class="user-li cf">
+        <% if user_sudoing? %>
           Acting like <%= current_user.email %>.
           <%= link_to '[x]', :controller => 'admin/users', :action => :unsudo %>
+        <% else %>
+          <% if current_user.image_url.present? %>
+          <%= image_tag current_user.image_url, :size => '25x25', :class => 'user-img' %>
+          <% end %>
+          <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), datebook_path, :class => 'user-link' %>
+        </div><!-- end user-li -->
         <% end %>
-       <% if current_user.image_url.present? %>
-          <%= image_tag current_user.image_url, :size => '25x25' %>
-        <% end %>
-        <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), datebook_path %>
-        <ul class="menu-dropdown">
+        <ul class="dropdown-menu">
           <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>
@@ -54,15 +57,21 @@
     <% else %>
       <% if false %>
         <li>
-          <%= link_to 'Sign Up', new_user_registration_path %>
+        <div class="user-li cf">
+          <%= link_to 'Sign Up', new_user_registration_path, :class => 'user-link' %>
+        </div>
         </li>
       <% end %>
       <li>
-        <%= link_to 'Sign In', new_user_session_path %>
+        <div class="user-li cf">
+        <%= link_to 'Sign In', new_user_session_path, :class => 'user-link' %>
+        </div>
       </li>
       <% if false %>
         <li>
-          <%= link_to 'Contest Registration', static_path(:contest_registration), :class => 'contest-registration' %>
+        <div class="user-li cf">
+          <%= link_to 'Contest Registration', static_path(:contest_registration), :class => 'btn primary' %>
+        </div>
         </li>
       <% end %>
     <% end %>

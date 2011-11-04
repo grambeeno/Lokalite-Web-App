@@ -44,9 +44,12 @@ body > header .content .logo { display: block; text-indent: -119988px; overflow:
 body > header .content form { display: inline; float: left; width: 150px; position: relative; filter: alpha(opacity=100); -khtml-opacity: 1; -moz-opacity: 1; opacity: 1; }
 body > header .content .search { display: inline-block; width: 210px; background-color: #444444; background-color: rgba(255, 255, 255, 0.3); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: normal; font-weight: 13px; line-height: 18px; padding: 4px 9px; color: white; color: rgba(255, 255, 255, 0.75); border: 1px solid #111111; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); -webkit-appearance: textfield; border-image: initial; -webkit-rtl-ordering: logical; -webkit-user-select: text; cursor: auto; }
 body > header .content .search:focus { outline: 0; background-color: #eeeeee; color: #404040; text-shadow: 0 1px 0 white; border: 0; padding: 5px 10px; -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); }
-body > header .content .nav { display: block; float: left; margin: 0 10px 0 0; position: relative; left: 0; }
+body > header .content .nav { width: 180px; display: block; float: left; margin: 0 10px 0 0; position: relative; left: 0; }
 body > header .content .nav > li { display: block; float: left; }
-body > header .content .nav a { display: block; float: none; padding: 10px 10px 11px; line-height: 19px; text-decoration: none; }
+body > header .content .nav a { display: block; float: none; padding: 10px 10px 11px; line-height: 19px; text-decoration: none; color: #bababa; }
+body > header .content .nav .user-li { float: right; text-align: right; display: inline-block; padding: 17px 0; height: 25px; vertical-align: top; cursor: pointer; white-space: nowrap; }
+body > header .content .nav a.user-img { display: inline-block; width: 25px; height: 25px; vertical-align: top; margin-right: 6px; border: none; cursor: pointer; }
+body > header .content .nav a.user-link { cursor: pointer; font-weight: normal; display: inline-block; max-width: 130px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 25px; vertical-align: top; }
 body > header .content .nav a:hover { color: white; text-decoration: none; }
 body > header .content .nav .active > a { background-color: #222222; background-color: rgba(0, 0, 0, 0.5); }
 body > header .content .nav.secondary-nav { float: right; margin-left: 10px; margin-right: 0; }
