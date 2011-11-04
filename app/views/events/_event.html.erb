@@ -1,11 +1,13 @@
-<li<%= report_grid_tracker(event, :type => 'Tile') %> id='<%= complex_dom_id(event.organization, event) %>'>
+<li<%= report_grid_tracker(event, :type => 'Tile') %> class="drag-thumb" id='<%= complex_dom_id(event.organization, event) %>'>
   <div class='image'>
     <%= link_to event_path(event.slug, event.id) do %>
-      <%= image_tag(event.image.url(:medium)) %>
+      <%= image_tag(event.image.url(:medium), :class => 'medium') %>
+      <%= image_tag(event.image.url(:profile), :class => 'profile') %>
       <div class='description'><%= event.description %></div>
     <% end %>
 
     <%= link_to ' ', "#trend_event/#{event.id}", :class => ['trend-button', trend_class(event)] %>
+    <a href="#" class="close">Close</a>
   </div>
 
   <%= link_to event_path(event.slug, event.id) do %>
@@ -22,5 +24,3 @@
     </div>
   <% end %>
 </li>
-
-

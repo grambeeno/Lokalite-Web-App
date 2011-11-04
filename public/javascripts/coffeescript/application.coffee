@@ -43,8 +43,9 @@ $ ->
       top: 12
       right: 18
 
-  $('#selected-event-list').droppable
+  $('.thumb-container').droppable
     tolerance: 'touch'
+    greedy: true
     drop: (event, ui) ->
       # remove positioning set by drag event so the list flows naturally
       ui.draggable.removeAttr('style')

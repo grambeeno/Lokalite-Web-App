@@ -330,6 +330,8 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .events li a:active, .events li a:focus, .organizations li a:active, .organizations li a:focus { outline: none; }
 .events li .image, .organizations li .image { position: relative; width: 202px; }
 .events li .image img, .organizations li .image img { border: 1px solid black; }
+.events li .image img.profile, .organizations li .image img.profile { display: none; }
+.events li .image .close, .organizations li .image .close { display: none; }
 .events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1320032303'); background-repeat: repeat; color: white; padding: 2px; display: none; }
 .events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/add-corner.png?1320187315'); background-position: top; width: 52px; height: 52px; }
 .events li .image .trend-button:hover, .organizations li .image .trend-button:hover { background-position: -52px; }
@@ -499,6 +501,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 #selected-event-list .drag-thumb:last-of-type { margin-right: 0; }
 #selected-event-list .drag-thumb .image { width: auto; }
 #selected-event-list .drag-thumb .image img { display: block; padding: 0; margin: 0; }
+#selected-event-list .drag-thumb .image img.medium { display: none; }
 #selected-event-list .drag-thumb .close { display: block; position: absolute; top: -5px; right: -4px; z-index: 10; width: 13px; height: 14px; background: transparent url(/images/close.png) no-repeat 50% 50%; text-indent: -9999px; cursor: pointer; opacity: 0.7; filter: alpha(opacity=70); }
 #selected-event-list .drag-thumb .close:hover { opacity: 1; filter: alpha(opacity=100); }
 
