@@ -46,7 +46,6 @@ gem 'pg_search'
 
 gem 'will_paginate', '~> 3.0.0'
 
-
 gem 'dao'
 
 group :development, :test do
@@ -54,6 +53,7 @@ group :development, :test do
   # gem 'silent-postgres', :git => 'git://github.com/johnbintz/silent-postgres.git'
   gem 'capistrano'
   gem 'capistrano-ext'
+  gem 'guard-livereload'
 end
 
 # Bundle edge Rails instead:
