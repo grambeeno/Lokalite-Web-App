@@ -7,7 +7,9 @@
       active_tab = 'events'
     end
   -%>
+<% unless ['/users', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
   <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
+<% end %>
   <div class="ext">
 <% if user_signed_in? %>
   <!-- Linking to DATEBOOK for NEW PLAN creation -->
