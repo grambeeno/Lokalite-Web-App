@@ -39,7 +39,9 @@
         </div><!-- end user-li -->
         <% end %>
         <ul class="dropdown-menu">
-          <%= link_to 'My Datebook', datebook_path, :class => 'user-link' %>
+          <li>
+            <%= link_to 'My Datebook', datebook_path %>
+          </li>
           <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>
