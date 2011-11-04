@@ -90,6 +90,7 @@ body
         -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15)
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.15)
       .nav 
+        width: 180px
         display: block
         float: left
         margin: 0 10px 0 0
@@ -99,13 +100,42 @@ body
       .nav > li 
         display: block
         float: left
-
+      
       .nav a 
         display: block
         float: none
         padding: 10px 10px 11px
         line-height: 19px
         text-decoration: none
+        color: #BABABA
+      .nav .user-li
+        float: right
+        text-align: right
+        display: inline-block
+        padding: 17px 0
+        height: 25px
+        vertical-align: top
+        cursor: pointer
+        white-space: nowrap
+      .nav a.user-img
+        display: inline-block
+        width: 25px
+        height: 25px
+        vertical-align: top
+        margin-right: 6px
+        border: none
+        cursor: pointer
+      .nav a.user-link
+        cursor: pointer
+        font-weight: normal
+        display: inline-block
+        max-width: 130px
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        padding: 0
+        line-height: 25px
+        vertical-align: top
 
       .nav a:hover 
         color: #ffffff
@@ -126,7 +156,6 @@ body
       .nav a.menu:hover, .nav li.open .menu, .nav .dropdown-toggle:hover, .nav .dropdown.open .dropdown-toggle 
         background: #444
         background: rgba(255, 255, 255, 0.05)
-
       .nav .menu-dropdown, .nav .dropdown-menu 
         background-color: #333
 
