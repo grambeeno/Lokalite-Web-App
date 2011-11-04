@@ -35,10 +35,11 @@
           <% if current_user.image_url.present? %>
           <%= image_tag current_user.image_url, :size => '25x25', :class => 'user-img' %>
           <% end %>
-          <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), datebook_path, :class => 'user-link' %>
+          <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), '#', :class => 'user-link' %>
         </div><!-- end user-li -->
         <% end %>
         <ul class="dropdown-menu">
+          <%= link_to 'My Datebook', datebook_path, :class => 'user-link' %>
           <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>
@@ -52,7 +53,7 @@
             <%= link_to "Settings", edit_profile_path %>
           </li>
           <li>
-            <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
+          <%= link_to 'Logout', '#', :onclick => 'FB.logout(); return false;', :method => :delete %>
           </li>
         </ul>
       </li>

@@ -59,6 +59,10 @@
       li.remove();
       return $('ul.events').append(li);
     });
+    $('.user-link').click(function(e) {
+      e.preventDefault();
+      return $('.dropdown-menu').toggle();
+    });
     $('#selected-event-list a').live('click', function(event) {
       return event.preventDefault();
     });

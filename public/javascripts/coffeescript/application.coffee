@@ -58,6 +58,10 @@ $ ->
     li.remove()
     $('ul.events').append(li)
 
+  $('.user-link').click (e) ->
+    e.preventDefault()
+    $('.dropdown-menu').toggle()
+
   # disable links once they're added to the selected events
   $('#selected-event-list a').live 'click', (event) ->
     event.preventDefault()
