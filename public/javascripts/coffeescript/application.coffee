@@ -43,13 +43,20 @@ $ ->
       top: 12
       right: 18
 
-  $('#selected-event-list').droppable
+  $('.thumb-container').droppable
     tolerance: 'touch'
+    greedy: true
     drop: (event, ui) ->
       # remove positioning set by drag event so the list flows naturally
       ui.draggable.removeAttr('style')
         # .addClass('without-image')
       $(this).append(ui.draggable)
+
+  $('.close').click (e) ->
+    e.preventDefault()
+    li = $(this).closest('li')
+    li.remove()
+    $('ul.events').append(li)
 
   # disable links once they're added to the selected events
   $('#selected-event-list a').live 'click', (event) ->

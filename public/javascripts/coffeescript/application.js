@@ -44,12 +44,20 @@
         right: 18
       }
     });
-    $('#selected-event-list').droppable({
+    $('.thumb-container').droppable({
       tolerance: 'touch',
+      greedy: true,
       drop: function(event, ui) {
         ui.draggable.removeAttr('style');
         return $(this).append(ui.draggable);
       }
+    });
+    $('.close').click(function(e) {
+      var li;
+      e.preventDefault();
+      li = $(this).closest('li');
+      li.remove();
+      return $('ul.events').append(li);
     });
     $('#selected-event-list a').live('click', function(event) {
       return event.preventDefault();
