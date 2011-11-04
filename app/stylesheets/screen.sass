@@ -587,6 +587,7 @@ header.index
     +float('left')
     // 6px is what padding + border adds to a single image
     width: ($thumb-width + $thumb-margin + 6) * 2
+    margin-right: 5px
     img
       +float('left')
       padding: 2px
@@ -597,13 +598,26 @@ header.index
   .detail
     +float('left')
     width: 230px
-    margin-left: 5px
-    margin-right: 15px
+    margin-right: 5px
     p
       line-height: 1.4em
     table.times
       font-size: 14px
-
+  
+  .attendee-thumbs
+    +float('left')
+    width: 130px
+    dd
+      +float('left')
+      background: #fff
+      padding: 2px
+      border: 1px solid #ddd
+      margin: 0 5px 5px 0
+      img
+        display: block
+        margin: 0
+        padding: 0
+ 
   dt
     font-weight: bold
     font-size: 14px
