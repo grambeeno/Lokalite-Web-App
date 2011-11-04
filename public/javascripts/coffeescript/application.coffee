@@ -8,8 +8,6 @@ $ ->
 
   $('.truncate').truncate()
 
-  FB.Event.subscribe 'comment.create', (resp) -> alert("Comment created")
-
   # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
   # store active_hover_id so we can determine the length of the event
   #
@@ -208,15 +206,24 @@ trackEvent = (data, type_suffix) ->
   tracking_data = {}
   tracking_data[event_type] = data
 
-  console.log(JSON.stringify tracking_data)
 
-  ReportGrid.track path, tracking_data 
+  paths = [path]
+  parts = path.split(/\//g)
+  parts.pop()
+  while(parts.length > 0)
+    paths.push(parts.join("/") + "/")
+    parts.pop()
+  
+  console.log(paths)
+  console.log(tracking_data)
+  
+  ReportGrid.track paths, tracking_data 
 
 trackImpressions = ->
   $('[data-reportgrid]').each ->
     data = $.parseJSON $(this).attr('data-reportgrid')
   
-    trackEvent data, " impression"
+    trackEvent data, "_impression"
 
 # id='organization_4' returns 4
 extractObjectId = (element) ->

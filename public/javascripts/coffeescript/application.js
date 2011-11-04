@@ -207,21 +207,29 @@
     });
   };
   trackEvent = function(data, type_suffix) {
-    var event_type, path, tracking_data;
+    var event_type, parts, path, paths, tracking_data;
     event_type = data.base_type + type_suffix;
     path = data.path;
     delete data.base_type;
     delete data.path;
     tracking_data = {};
     tracking_data[event_type] = data;
-    console.log(JSON.stringify(tracking_data));
-    return ReportGrid.track(path, tracking_data);
+    paths = [path];
+    parts = path.split(/\//g);
+    parts.pop();
+    while (parts.length > 0) {
+      paths.push(parts.join("/") + "/");
+      parts.pop();
+    }
+    console.log(paths);
+    console.log(tracking_data);
+    return ReportGrid.track(paths, tracking_data);
   };
   trackImpressions = function() {
     return $('[data-reportgrid]').each(function() {
       var data;
       data = $.parseJSON($(this).attr('data-reportgrid'));
-      return trackEvent(data, " impression");
+      return trackEvent(data, "_impression");
     });
   };
   extractObjectId = function(element) {
