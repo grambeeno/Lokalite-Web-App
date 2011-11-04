@@ -42,8 +42,8 @@ body > header .content { width: 1140px; margin: 0 auto; padding: 0 10px; }
 body > header .content .logo-wrap { display: inline; float: left; width: 190px; }
 body > header .content .logo { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/header-logo.png?1319478045'); background-repeat: no-repeat; background-position: 50% 50%; width: 124px; height: 53px; }
 body > header .content form { display: inline; float: left; width: 150px; position: relative; filter: alpha(opacity=100); -khtml-opacity: 1; -moz-opacity: 1; opacity: 1; }
-body > header .content .search { display: inline-block; width: 210px; background-color: #444444; background-color: rgba(255, 255, 255, 0.3); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: normal; font-weight: 13px; line-height: 18px; padding: 4px 9px; color: white; color: rgba(255, 255, 255, 0.75); border: 1px solid #111111; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); -webkit-appearance: textfield; border-image: initial; -webkit-rtl-ordering: logical; -webkit-user-select: text; cursor: auto; }
-body > header .content .search:focus { outline: 0; background-color: #eeeeee; color: #404040; text-shadow: 0 1px 0 white; border: 0; padding: 5px 0; -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); }
+body > header .content .search { display: inline-block; width: 190px; background-color: #444444; background-color: rgba(255, 255, 255, 0.3); background-image: url(/images/monocle.png); background-repeat: no-repeat; background-position: 164px 50%; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: normal; font-weight: 13px; line-height: 18px; padding: 4px 0; color: white; color: rgba(255, 255, 255, 0.75); border: 1px solid #111111; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25); -webkit-appearance: textfield; border-image: initial; -webkit-rtl-ordering: logical; -webkit-user-select: text; cursor: auto; }
+body > header .content .search:focus { outline: 0; background-color: #eeeeee; background-image: none; color: #404040; text-shadow: 0 1px 0 white; border: 0; padding: 5px 0; -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); box-shadow: 0 0 3px rgba(0, 0, 0, 0.15); }
 body > header .content .nav { width: 180px; display: block; float: left; margin: 0 10px 0 0; position: relative; left: 0; }
 body > header .content .nav > li { display: block; float: left; }
 body > header .content .nav a { display: block; float: none; padding: 10px 10px 11px; line-height: 19px; text-decoration: none; color: #bababa; }
@@ -297,7 +297,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #right-sidebar ul li .image img { width: 30px; }
 #right-sidebar ul li .details { display: inline; float: left; width: 130px; padding-left: 10px; font-size: 12px; }
 #right-sidebar ul li .details .organization { font-size: 10px; }
-#right-sidebar .soc-links li { float: left; }
+#right-sidebar .soc-links li { float: left; margin-right: 8px; }
 
 #middle { width: 760px; -moz-box-shadow: 0 0 8px #333333; -webkit-box-shadow: 0 0 8px #333333; -o-box-shadow: 0 0 8px #333333; box-shadow: 0 0 8px #333333; margin-bottom: 25px; -moz-border-radius-bottomleft: 8px; -webkit-border-bottom-left-radius: 8px; -o-border-bottom-left-radius: 8px; -ms-border-bottom-left-radius: 8px; -khtml-border-bottom-left-radius: 8px; border-bottom-left-radius: 8px; -moz-border-radius-bottomright: 8px; -webkit-border-bottom-right-radius: 8px; -o-border-bottom-right-radius: 8px; -ms-border-bottom-right-radius: 8px; -khtml-border-bottom-right-radius: 8px; border-bottom-right-radius: 8px; }
 
@@ -515,8 +515,6 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 .thumb-container { margin: 1em auto; padding: 0 0 0 34px; }
 
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
-
-#keywords { width: 100%; }
 
 .chart { background-color: white; border: 1px solid gray; margin-bottom: 2em; }
 
