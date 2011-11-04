@@ -36,7 +36,7 @@
           <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), datebook_path, :class => 'user-link' %>
         </div><!-- end user-li -->
         <% end %>
-        <ul class="menu-dropdown">
+        <ul>
           <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>
@@ -57,15 +57,21 @@
     <% else %>
       <% if false %>
         <li>
-          <%= link_to 'Sign Up', new_user_registration_path %>
+        <div class="user-li cf">
+          <%= link_to 'Sign Up', new_user_registration_path, :class => 'user-link' %>
+        </div>
         </li>
       <% end %>
       <li>
-        <%= link_to 'Sign In', new_user_session_path %>
+        <div class="user-li cf">
+        <%= link_to 'Sign In', new_user_session_path, :class => 'user-link' %>
+        </div>
       </li>
       <% if false %>
         <li>
+        <div class="user-li cf">
           <%= link_to 'Contest Registration', static_path(:contest_registration), :class => 'btn primary' %>
+        </div>
         </li>
       <% end %>
     <% end %>
