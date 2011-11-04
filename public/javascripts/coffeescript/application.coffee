@@ -52,6 +52,12 @@ $ ->
         # .addClass('without-image')
       $(this).append(ui.draggable)
 
+  $('.close').click (e) ->
+    e.preventDefault()
+    li = $(this).closest('li')
+    li.remove()
+    $('ul.events').append(li)
+
   # disable links once they're added to the selected events
   $('#selected-event-list a').live 'click', (event) ->
     event.preventDefault()

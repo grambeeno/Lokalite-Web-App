@@ -52,6 +52,13 @@
         return $(this).append(ui.draggable);
       }
     });
+    $('.close').click(function(e) {
+      var li;
+      e.preventDefault();
+      li = $(this).closest('li');
+      li.remove();
+      return $('ul.events').append(li);
+    });
     $('#selected-event-list a').live('click', function(event) {
       return event.preventDefault();
     });

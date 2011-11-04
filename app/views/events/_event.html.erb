@@ -7,7 +7,6 @@
     <% end %>
 
     <%= link_to ' ', "#trend_event/#{event.id}", :class => ['trend-button', trend_class(event)] %>
-    <a href="#" class="close">Close</a>
   </div>
 
   <%= link_to event_path(event.slug, event.id) do %>
@@ -23,4 +22,5 @@
       <%= render :partial => '/events/time_span', :locals => {:event => event} %>
     </div>
   <% end %>
+  <a href="#" class="close">Close</a>
 </li>
