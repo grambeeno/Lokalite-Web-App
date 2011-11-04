@@ -106,6 +106,49 @@ form.formtastic
   +clearfix
   background: transparent url(dropzone.png) no-repeat 50% 50%
   padding: 1em 0 0
+  
+  .drag-thumb
+    position: relative
+    float: left
+    margin: 0 14px 1em 0
+    padding: 5px
+    background: #fff
+    -webkit-border-radius: 0.2em
+    -moz-border-radius: 0.2em
+    border-radius: 0.2em
+    -webkit-box-shadow: 0 0 3px #888
+    -moz-box-shadow: 0 0 3px #888
+    box-shadow: 0 0 3px #888
+    width: auto
+
+    &:last-of-type
+      margin-right: 0
+
+    .image
+      width: auto
+
+      img
+        display: block
+        padding: 0
+        margin: 0
+
+    .close
+      display: block
+      position: absolute
+      top: -5px
+      right: -4px
+      z-index: 10
+      width: 13px
+      height: 14px
+      background: transparent url(/images/close.png) no-repeat 50% 50%
+      text-indent: -9999px
+      cursor: pointer
+      opacity: 0.7
+      filter: alpha(opacity = 70)
+
+      &:hover
+        opacity: 1
+        filter: alpha(opacity = 100)
 
 .drag-target
   +replace-text-with-dimensions('dropzone.png')
@@ -116,44 +159,10 @@ form.formtastic
   -moz-box-shadow: 0 0 5px #555
   box-shadow: 0 0 5px #555
   // background-color: $light-green
+
 .thumb-container
   margin: 1em auto
   padding: 0 0 0 34px
-.drag-thumb
-  position: relative
-  float: left
-  margin: 0 14px 1em 0
-  padding: 5px
-  background: #fff
-  -webkit-border-radius: 0.2em
-  -moz-border-radius: 0.2em
-  border-radius: 0.2em
-  -webkit-box-shadow: 0 0 3px #888
-  -moz-box-shadow: 0 0 3px #888
-  box-shadow: 0 0 3px #888
-.drag-thumb:last-of-type
-  margin-right: 0
-#selected-event-list .image img
-  display: block
-  padding: 0
-  margin: 0
-.drag-thumb .close
-  display: block
-  position: absolute
-  top: -5px
-  right: -4px
-  z-index: 10
-  width: 13px
-  height: 14px
-  background: transparent url(/images/close.png) no-repeat 50% 50%
-  text-indent: -9999px
-  cursor: pointer
-  opacity: 0.7
-  filter: alpha(opacity = 70)
-.drag-thumb .close:hover
-  opacity: 1
-  filter: alpha(opacity = 100)
-
 
 input.placeholder,
 textarea.placeholder
