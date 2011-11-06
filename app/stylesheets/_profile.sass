@@ -37,18 +37,18 @@
       float: left
       margin-right: 10px
       background: transparent url(/images/profile-icons.png) no-repeat 0 0
-      opacity: 0.8
-      &:hover
-        opacity: 1
-    .active
-      opacity: 1
-      a
-        cursor: default
-        color: #000
+    .datebook-icon
+      background-position: 0 -98px
+      // &:hover
+      //   background-position: 0 -98px
     .plans-icon
-      background-position: -133px 0
+      background-position: -133px -98px
+      // &:hover
+      //   background-position: -133px -98px
     .suggestions-icon
-      background-position: -266px 0
+      background-position: -266px -98px
+      // &:hover
+      //   background-position: -266px -98px
     a
       display: block
       padding-top: 105px
@@ -57,6 +57,16 @@
       color: #555
       &:hover
         color: #000
+    .active
+      a
+        cursor: default
+        color: #000
+    // .datebook-icon.active
+    //   background-position: 0 -98px
+    // .plans-icon.active
+    //   background-position: -133px -98px
+    // .suggestions-icon.active
+    //   background-position: -266px -98px
 
 
 $datebook-width: $tile-width + ($content-bg-padding * 2)

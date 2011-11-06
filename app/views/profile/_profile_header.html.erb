@@ -7,10 +7,8 @@
   <% end %>
   <div class="band">
     <h1><%= raw profile_breadcrumbs %></h1>
-
-
     <ul class='profile-links cf'>
-      <li class="datebook-icon active"><%= link_to 'Datebook', datebook_path %></li>
+      <li class="datebook-icon"><%= link_to 'Datebook', datebook_path %></li>
       <li class="plans-icon"><%= link_to 'Plans', user_plans_path %></li>
       <li class="suggestions-icon"><%= link_to 'Suggestions', events_path(:origin => params[:origin], :category => 'suggested') %></li>
     </ul>
