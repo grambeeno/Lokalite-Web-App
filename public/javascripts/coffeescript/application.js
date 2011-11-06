@@ -93,36 +93,10 @@
       });
     }
     if ($('#plan_description').length) {
-      $('#plan_description').simplyCountable({
+      return $('#plan_description').simplyCountable({
         maxCount: 140
       });
     }
-    return $('.invite-to-plan').qtip({
-      content: {
-        text: function() {
-          return $(this).next('.invite-modal').html();
-        },
-        title: {
-          text: 'Invite Friends',
-          button: true
-        }
-      },
-      position: {
-        my: 'center',
-        at: 'center',
-        target: $(window)
-      },
-      show: {
-        event: 'click',
-        solo: true,
-        modal: true
-      },
-      hide: false,
-      style: {
-        classes: 'plan-invite-modal ui-tooltip-light ui-tooltip-rounded',
-        width: 440
-      }
-    });
   });
   displayOrganizationChart = function() {
     return $('.organization_stats').each(function() {

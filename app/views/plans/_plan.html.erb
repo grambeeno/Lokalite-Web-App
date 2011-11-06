@@ -36,7 +36,9 @@
       <dd><%= clean_format plan.description %></dd>
     </dl>
 
-    <%= render :partial => '/plans/invite_friends_link', :locals => {:plan => plan} %>
+    <% unless current_user.facebook_data.nil? %>
+      <%= link_to "Invite Friends", '#', :class => 'btn primary mts invite-to-plan', 'data-title' => plan.title, 'data-description' => plan.description  %>
+    <% end %>
   </div>
 <!--
   <div class="attendee-thumbs">
