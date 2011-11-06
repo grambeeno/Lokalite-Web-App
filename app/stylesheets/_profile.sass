@@ -29,8 +29,34 @@
       font-size: 20px
 
   .profile-links
-    +horizontal-list(10px)
-    margin-top: 8px
+    margin: 10px 0 20px
+    list-style: none
+    li
+      width: 133px
+      height: 98px
+      float: left
+      margin-right: 10px
+      background: transparent url(/images/profile-icons.png) no-repeat 0 0
+      opacity: 0.8
+      &:hover
+        opacity: 1
+    .active
+      opacity: 1
+      a
+        cursor: default
+        color: #000
+    .plans-icon
+      background-position: -133px 0
+    .suggestions-icon
+      background-position: -266px 0
+    a
+      display: block
+      padding-top: 105px
+      text-align: center
+      text-decoration: none
+      color: #555
+      &:hover
+        color: #000
 
 
 $datebook-width: $tile-width + ($content-bg-padding * 2)

@@ -523,11 +523,15 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .profile-header .avatar img { display: block; }
 .profile-header .band { background-color: #cbe5cc; border: 1px solid #555555; border-left: none; border-right: none; padding: 20px 25px; padding-left: 150px; }
 .profile-header .band h1 { font-size: 20px; }
-.profile-header .profile-links { margin: 0; padding: 0; border: 0; overflow: hidden; *zoom: 1; margin-top: 8px; }
-.profile-header .profile-links li { list-style-image: none; list-style-type: none; margin-left: 0px; white-space: nowrap; display: inline; float: left; padding-left: 10px; padding-right: 10px; }
-.profile-header .profile-links li:first-child, .profile-header .profile-links li.first { padding-left: 0; }
-.profile-header .profile-links li:last-child { padding-right: 0; }
-.profile-header .profile-links li.last { padding-right: 0; }
+.profile-header .profile-links { margin: 10px 0 20px; list-style: none; }
+.profile-header .profile-links li { width: 133px; height: 98px; float: left; margin-right: 10px; background: transparent url(/images/profile-icons.png) no-repeat 0 0; opacity: 0.8; }
+.profile-header .profile-links li:hover { opacity: 1; }
+.profile-header .profile-links .active { opacity: 1; }
+.profile-header .profile-links .active a { cursor: default; color: black; }
+.profile-header .profile-links .plans-icon { background-position: -133px 0; }
+.profile-header .profile-links .suggestions-icon { background-position: -266px 0; }
+.profile-header .profile-links a { display: block; padding-top: 105px; text-align: center; text-decoration: none; color: #555555; }
+.profile-header .profile-links a:hover { color: black; }
 
 .datebook { width: 270px; }
 .datebook h3 { margin-left: 25px; }
