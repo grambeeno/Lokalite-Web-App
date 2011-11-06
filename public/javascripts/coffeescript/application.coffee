@@ -99,31 +99,6 @@ $ ->
     $('#plan_description').simplyCountable
       maxCount: 140
 
-  # $('.invite-to-plan').live 'click', (event) ->
-  #   event.preventDefault()
-  $('.invite-to-plan').qtip
-    content:
-      # text: $('div:hidden'),
-      text: ->
-        $(this).next('.invite-modal').html()
-      title:
-        text: 'Invite Friends'
-        button: true
-    position:
-      my: 'center'
-      at: 'center'
-      target: $(window)
-    show:
-      event: 'click'
-      solo: true
-      modal: true
-    hide: false
-    style:
-      classes: 'plan-invite-modal ui-tooltip-light ui-tooltip-rounded'
-      width: 440
-    # events:
-    #   show: (event, api) ->
-
 
 displayOrganizationChart = ->
   $('.organization_stats').each ->

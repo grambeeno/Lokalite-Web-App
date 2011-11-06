@@ -21,9 +21,9 @@
     d.getElementsByTagName('head')[0].appendChild(js);
   }(document));
 
-  function sendRequestToManyRecipients() {
+  function sendRequestToManyRecipients(data) {
     FB.ui({method: 'apprequests',
-      message: 'My Great Request'
+      message: data.title + ' - ' + data.description
     }, requestCallback);
   }
 
