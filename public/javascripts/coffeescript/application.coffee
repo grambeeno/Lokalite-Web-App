@@ -58,7 +58,7 @@ $ ->
     li.remove()
     $('ul.events').append(li)
 
-  $('.user-link').click (e) ->
+  $('.user-name').click (e) ->
     e.preventDefault()
     $('.dropdown-menu').toggle()
 
