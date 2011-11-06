@@ -276,11 +276,11 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .category-icon.learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1319478045'); }
 .category-icon.mmj { background-image: url('/images/category-icons/mmj.png?1319478045'); }
 
-.social-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/social-icons/facebook.png?1319478045'); background-repeat: no-repeat; background-position: 50% 50%; width: 18px; height: 36px; background-position: left top; display: block; margin-right: 12px; height: 18px; margin-bottom: 4px; }
+.social-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/social-icons/facebook.png?1320555784'); background-repeat: no-repeat; background-position: 50% 50%; width: 17px; height: 34px; background-position: left top; display: block; margin-right: 12px; height: 17px; margin-bottom: 4px; }
 .social-icon:hover { background-position: left bottom; }
-.social-icon.twitter-icon { background-image: url('/images/social-icons/twitter.png?1319478045'); }
+.social-icon.twitter-icon { background-image: url('/images/social-icons/twitter.png?1320555021'); }
 .social-icon.lokalite-icon { background-image: url('/images/social-icons/lokalite.png'); }
-.social-icon.datebook-icon { background-image: url('/images/social-icons/datebook.png?1319826747'); }
+.social-icon.datebook-icon { background-image: url('/images/social-icons/datebook.png?1320554999'); }
 
 .fb_share_size_Small { display: none; }
 
