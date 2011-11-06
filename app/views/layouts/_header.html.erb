@@ -35,11 +35,13 @@
           <% if current_user.image_url.present? %>
           <%= image_tag current_user.image_url, :size => '25x25', :class => 'user-img' %>
           <% end %>
-          <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), '#', :class => 'user-link' %>
+          <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), '#', :class => 'user-link user-name' %>
         </div><!-- end user-li -->
         <% end %>
         <ul class="dropdown-menu">
-          <%= link_to 'My Datebook', datebook_path, :class => 'user-link' %>
+          <li>
+            <%= link_to 'My Datebook', datebook_path %>
+          </li>
           <% if current_user.organizations.size > 1 %>
             <li>
               <%= link_to "My Businesses", my_organizations_path %>

@@ -59,7 +59,7 @@
       li.remove();
       return $('ul.events').append(li);
     });
-    $('.user-link').click(function(e) {
+    $('.user-name').click(function(e) {
       e.preventDefault();
       return $('.dropdown-menu').toggle();
     });

@@ -19,10 +19,9 @@
   <div class="event-thumbs">
     <dl>
       <dt>Events</dt>
-
       <dd>
-        <% for event in plan.events[0...6] -%>
-          <%= link_to image_tag(event.image.url(:thumb), :class => 'tooltip', :title => event.name), event_path(event.slug, event.id) %>
+        <% for event in plan.events[0...4] %>
+          <%= link_to image_tag(event.image.url(:profile), :class => 'tooltip', :title => event.name), event_path(event.slug, event.id) %>
         <% end -%>
       </dd>
     </dl>
