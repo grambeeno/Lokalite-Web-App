@@ -454,14 +454,6 @@ table.event-picker input[type='checkbox'] { background-color: red; }
 
 .clear { width: 100%; height: 1px; margin: 0 0 -1px; clear: both; }
 
-.cf:before { content: ""; display: table; }
-
-.cf:after { content: ""; display: table; }
-
-.cf:after { clear: both; }
-
-.cf { zoom: 1; }
-
 .form { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
 .form h1, .form h2 { text-align: center; }
 .form h1 { font-size: 46px; margin-bottom: 10px; }
@@ -498,6 +490,8 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 .devise-fields input[type=submit]:hover { background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background-image: -webkit-linear-gradient(top, #ffffff, #dbdbdb); background-image: -moz-linear-gradient(top, #ffffff, #dbdbdb); background-image: -o-linear-gradient(top, #ffffff, #dbdbdb); background-image: -ms-linear-gradient(top, #ffffff, #dbdbdb); background-image: linear-gradient(top, #ffffff, #dbdbdb); }
 .devise-fields div { width: 300px; margin: 0 auto 1em; display: block; text-align: left; }
 .devise-fields div.buttons { text-align: center; margin-top: 20px; }
+
+#secondary-signin { display: none; }
 
 #favorite-categories ol { font-size: 16px; }
 
@@ -553,5 +547,14 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .plan-invite-modal input { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 400px; }
 .plan-invite-modal input.file { background-color: transparent; padding: 0; border: none; }
 
-@media only screen and (min-width: 480px) and (max-width: 759px) { header div.content { width: 94%; }
+.cf:before { content: ""; display: table; }
+
+.cf:after { content: ""; display: table; }
+
+.cf:after { clear: both; }
+
+.cf { zoom: 1; }
+
+@media only screen and (min-width: 480px) and (max-width: 759px) { header { width: 100%; }
+  header div.content { width: 94%; }
   .middle { width: 300px; } }

@@ -745,6 +745,10 @@ table.event-picker
   margin: 0 0 -1px
   clear: both
 
+@import forms
+@import charts
+@import profile
+
 // Added by Steve: newfangled clearfix
 
 .cf:before
@@ -758,7 +762,12 @@ table.event-picker
 .cf
   zoom: 1
 
+@media only screen and (min-width: 480px) and (max-width: 759px) 
 
-@import forms
-@import charts
-@import profile
+  header
+    width: 100%
+  header div.content
+    width: 94%
+
+  .middle
+    width: 300px
