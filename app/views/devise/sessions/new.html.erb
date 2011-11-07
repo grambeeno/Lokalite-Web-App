@@ -19,29 +19,41 @@
   <div class='devise-fields'>
     <fb:login-button size='large' onlogin="afterFacebookSignIn()">Sign in with Facebook</fb:login-button>
 
-    <br />
-    <br />
-    <br />
-    <h2 class='big'>or with an email and password:</h2>
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <div><%= f.label :email %><br />
-        <%= f.email_field :email %></div>
+<script type="text/javascript">
+$(document).ready(function(){
 
-      <div><%= f.label :password %><br />
-        <%= f.password_field :password %></div>
+  $(".btn-slide").click(function(){
+    $("#secondary-signin").slideToggle("slow");
+    $(this).toggleClass("active"); return false;
+  });
+  
+   
+});
+</script>
 
-      <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-      <% end -%>
+    <h2 class='big mtl'>or with an <a href="#secondary-signin" class="btn-slide">email and password</a>.</h2>
 
-      <div class='buttons'>
-        <%= f.submit "Sign in" %>
-        or
-        <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+    <div id="secondary-signin">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div><%= f.label :email %><br />
+          <%= f.email_field :email %></div>
 
-        <br />
-        <br />
-        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        <div><%= f.label :password %><br />
+          <%= f.password_field :password %></div>
+
+        <% if devise_mapping.rememberable? -%>
+          <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+        <% end -%>
+
+        <div class='buttons'>
+          <%= f.submit "Sign in" %>
+          or
+          <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+
+          <br />
+          <br />
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        </div>
       </div>
     <% end %>
   </div>
