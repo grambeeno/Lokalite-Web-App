@@ -2,7 +2,6 @@ class Plan < ActiveRecord::Base
   # the user that created the plan
   belongs_to :user
 
-  has_many :plan_user_invitations
   has_many :invitations, :through => :plan_user_invitations
 
   serialize :event_list
@@ -64,6 +63,7 @@ class Plan < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: plans
@@ -75,7 +75,8 @@ end
 #  public      :boolean         default(FALSE)
 #  description :text
 #  event_list  :text
-#  start_date  :datetime
+#  starts_at   :datetime
+#  ends_at     :datetime
 #  created_at  :datetime
 #  updated_at  :datetime
 #

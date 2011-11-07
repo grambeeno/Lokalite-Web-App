@@ -8,6 +8,7 @@ class UserTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -28,5 +29,7 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  facebook_data          :text
+#  settings               :text
 #
 

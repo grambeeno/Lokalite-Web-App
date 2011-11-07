@@ -28,8 +28,10 @@
   }
 
   function requestCallback(response) {
-    // Handle callback here
-    console.log(response);
+    response.uuid = $('.invite-to-plan').data('uuid');
+    $.post('/facebook/ajax_request_handler', response, function(data) {
+      // Console.log
+    });
   }
 </script>
 

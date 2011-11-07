@@ -104,6 +104,14 @@ a.button
 @import layout
 @import signup
 
+img.profile
+  width: 74px
+  height: 96px
+
+img.profile_small
+  width: 55px
+  height: 80px
+
 .category-tab-buttons
   margin-bottom: 12px
   li
@@ -589,12 +597,16 @@ header.index
     // 6px is what padding + border adds to a single image
     width: ($thumb-width + $thumb-margin + 6) * 2
     margin-right: 5px
+    a:nth-child(even) img
+      margin-right: 0
+
     img
       +float('left')
       padding: 2px
       background-color: white
       border: 1px solid #ddd
       margin: 0 $thumb-margin $thumb-margin 0
+      
 
   .detail
     +float('left')

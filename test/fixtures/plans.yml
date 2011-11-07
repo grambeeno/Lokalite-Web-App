@@ -13,6 +13,7 @@ two:
   date: 2011-10-10 19:49:33
 
 
+
 # == Schema Information
 #
 # Table name: plans
@@ -24,7 +25,8 @@ two:
 #  public      :boolean         default(FALSE)
 #  description :text
 #  event_list  :text
-#  start_date  :datetime
+#  starts_at   :datetime
+#  ends_at     :datetime
 #  created_at  :datetime
 #  updated_at  :datetime
 #

@@ -8,14 +8,6 @@ class PlansController < ApplicationController
   end
 
   def show
-    if params[:invitation]
-      if user_signed_in?
-        # give the user a plan invitation, display to them the option of accepting the invitation
-      else
-        session[:plan_invitation_uuid] = params[:id]
-        flash[:success] = "You've been invited to join this plan!<br /><br />To accept this invitation, please <a href='/users/sign_in'>Sign In</a> or <a href='/users/sign_up'>Sign Up</a>."
-      end
-    end
   end
 
   def new
