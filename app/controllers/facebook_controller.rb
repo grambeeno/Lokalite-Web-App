@@ -8,6 +8,9 @@ class FacebookController < ApplicationController
   def ajax_request_handler
     @plan = PlanUserInvitation.create!(:request_id => params[:request], :uuid => params[:uuid])
     @plan.save
+    respond_to do |format| 
+      format.js { render :json => @plan }
+    end
   end
 
 end
