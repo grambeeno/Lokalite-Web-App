@@ -32,7 +32,7 @@ Lokalite::Application.routes.draw do
   match 'places/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}
   match 'places/:origin(/category/:category)', :controller => :places, :action => :index, :as => :places
 
-  match 'facebook/get_requests', :controller => :facebook, :action => :get_requests, :as => :get_requests
+  match 'facebook', :controller => :facebook, :action => :index, :as => :facebook_index
   post 'facebook/ajax_request_handler', :controller => :facebook, :action => :ajax_request_handler, :as => :ajax_request_handler
 
   namespace :my do
