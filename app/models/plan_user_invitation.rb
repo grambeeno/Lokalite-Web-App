@@ -1,7 +1,6 @@
 class PlanUserInvitation < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :plan
 end
+
 
 # == Schema Information
 #
@@ -13,5 +12,7 @@ end
 #  accepted   :boolean
 #  created_at :datetime
 #  updated_at :datetime
+#  request_id :string(255)
+#  uuid       :string(255)
 #
 

@@ -52,8 +52,6 @@ class User < ActiveRecord::Base
   has_many :organizations, :through => :user_organization_joins
 
   has_many :plans
-
-  has_many :plan_user_invitations, :dependent => :destroy
   has_many :plan_invitations, :through => :plan_user_invitations
 
   has_many :user_event_joins
@@ -214,6 +212,7 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -234,5 +233,7 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
+#  facebook_data          :text
+#  settings               :text
 #
 

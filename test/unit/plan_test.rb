@@ -8,6 +8,7 @@ class PlanTest < ActiveSupport::TestCase
 end
 
 
+
 # == Schema Information
 #
 # Table name: plans
@@ -19,7 +20,8 @@ end
 #  public      :boolean         default(FALSE)
 #  description :text
 #  event_list  :text
-#  start_date  :datetime
+#  starts_at   :datetime
+#  ends_at     :datetime
 #  created_at  :datetime
 #  updated_at  :datetime
 #
