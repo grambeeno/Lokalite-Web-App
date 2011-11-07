@@ -2,7 +2,7 @@
   <div class='image'>
     <%= link_to event_path(event.slug, event.id) do %>
       <%= image_tag(event.image.url(:medium), :class => 'medium') %>
-      <%= image_tag(event.image.url(:profile), :class => 'profile') %>
+      <%= image_tag(event.image.url(:small), :class => 'profile') %>
       <div class='description'><%= event.description %></div>
     <% end %>
 

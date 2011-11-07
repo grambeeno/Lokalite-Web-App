@@ -21,7 +21,7 @@
       <dt>Events</dt>
       <dd>
         <% for event in plan.events[0...4] %>
-          <%= link_to image_tag(event.image.url(:profile), :class => 'tooltip', :title => event.name), event_path(event.slug, event.id) %>
+          <%= link_to image_tag(event.image.url(:small), :class => 'tooltip profile_small', :title => event.name), event_path(event.slug, event.id) %>
         <% end -%>
       </dd>
     </dl>
