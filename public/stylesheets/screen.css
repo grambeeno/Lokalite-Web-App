@@ -346,6 +346,8 @@ img.profile_small { width: 55px; height: 80px; }
 .events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
 .events li.ui-draggable-dragging .detail, .organizations li.ui-draggable-dragging .detail { display: none; }
 
+.events-controller .events .close, .datebook .events .close { display: none; }
+
 .datebook .events .trend-button { display: none; }
 
 #selected-event-list li .detail, #selected-event-list li .trend-button { display: none; }
