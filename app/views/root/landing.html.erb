@@ -60,7 +60,7 @@
       <h2>Featured Events</h2>
       <span class='relative-container'><div id="our-favorites">our favorites. hopefully yours as well</div></span>
 
-      <ul class="events">
+      <ul class="events cf">
         <% Event.featured.limit(3).each do |event| %>
           <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
@@ -71,7 +71,7 @@
 
       <span class='relative-container'><div id="your-favorites">your favorites. keep 'em coming</div></span>
 
-      <ul class="events">
+      <ul class="events cf">
         <% Event.popular.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
           <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
