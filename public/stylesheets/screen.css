@@ -524,11 +524,11 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .profile-header .band { background-color: #cbe5cc; border: 1px solid #555555; border-left: none; border-right: none; padding: 20px 25px; padding-left: 150px; }
 .profile-header .band h1 { font-size: 20px; }
 .profile-header .profile-links { margin: 10px 0 20px; list-style: none; }
-.profile-header .profile-links li { width: 133px; height: 98px; float: left; margin-right: 10px; background: transparent url(/images/profile-icons.png) no-repeat 0 0; }
-.profile-header .profile-links .datebook-icon { background-position: 0 -98px; }
-.profile-header .profile-links .plans-icon { background-position: -133px -98px; }
-.profile-header .profile-links .suggestions-icon { background-position: -266px -98px; }
-.profile-header .profile-links a { display: block; padding-top: 105px; text-align: center; text-decoration: none; color: #555555; }
+.profile-header .profile-links li { width: 114px; height: 86px; float: left; margin-right: 10px; background: transparent url(/images/profile-icons.png) no-repeat 0 0; }
+.profile-header .profile-links .datebook-icon { background-position: 0 -86px; }
+.profile-header .profile-links .plans-icon { background-position: -114px -86px; }
+.profile-header .profile-links .suggestions-icon { background-position: -228px -86px; }
+.profile-header .profile-links a { display: block; padding-top: 95px; text-align: center; text-decoration: none; color: #555555; }
 .profile-header .profile-links a:hover { color: black; }
 .profile-header .profile-links .active a { cursor: default; color: black; }
 
