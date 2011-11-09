@@ -314,8 +314,6 @@ img.profile_small { width: 55px; height: 80px; }
 
 .middle { float: left; width: 710px; padding: 15px 25px 0; }
 
-.ext { float: right; }
-
 #map_canvas { margin-top: -16px; margin-bottom: -16px; width: 100%; height: 800px; }
 
 .google-maps-custom-button { direction: ltr; overflow: hidden; text-align: center; position: relative; font-family: Arial, sans-serif; -webkit-user-select: none; font-size: 12px; line-height: 160%; padding: 0px 6px; -webkit-box-shadow: rgba(0, 0, 0, 0.348) 2px 2px 3px; box-shadow: rgba(0, 0, 0, 0.348) 2px 2px 3px; min-width: 26px; color: black; border: 1px solid #a9bbdf; padding-left: 6px; font-weight: normal; -moz-border-radius: 2px; -webkit-border-radius: 2px; -o-border-radius: 2px; -ms-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f3f3f3)); background-image: -webkit-linear-gradient(top, #fefefe, #f3f3f3); background-image: -moz-linear-gradient(top, #fefefe, #f3f3f3); background-image: -o-linear-gradient(top, #fefefe, #f3f3f3); background-image: -ms-linear-gradient(top, #fefefe, #f3f3f3); background-image: linear-gradient(top, #fefefe, #f3f3f3); background-position: initial initial; background-repeat: initial initial; cursor: pointer; cursor: hand; }
