@@ -589,25 +589,7 @@ header.index
     border: 1px solid #ddd
     margin-right: 15px
     width: 190px
-    height: 190px
-
-  $thumb-width: 50px
-  $thumb-margin: 10px
-  .event-thumbs
-    +float('left')
-    // 6px is what padding + border adds to a single image
-    width: ($thumb-width + $thumb-margin + 6) * 2
-    margin-right: 5px
-    a:nth-child(even) img
-      margin-right: 0
-
-    img
-      +float('left')
-      padding: 2px
-      background-color: white
-      border: 1px solid #ddd
-      margin: 0 $thumb-margin $thumb-margin 0
-      
+    height: 190px      
 
   .detail
     +float('left')
@@ -641,6 +623,32 @@ header.index
     margin-bottom: 10px
     p
       padding-bottom: 8px
+
+$thumb-width: 50px
+$thumb-margin: 10px
+  
+.event-thumbs
+  +float('left')
+  // 6px is what padding + border adds to a single image
+  width: ($thumb-width + $thumb-margin + 6) * 2
+  margin-right: 5px
+  a:nth-child(even) img
+    margin-right: 0
+
+  img
+    +float('left')
+    padding: 2px
+    background-color: white
+    border: 1px solid #ddd
+    margin: 0 $thumb-margin $thumb-margin 0
+
+.plan .event-thumbs
+  width: 100%
+  margin-right: 0
+  a:nth-child(even) img
+    margin-right: 5px
+  a:nth-child(odd) img
+    margin-right: 5px
 
 .static-controller
   +huge-headers

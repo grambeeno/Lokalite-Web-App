@@ -408,9 +408,6 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 .plan-preview .title h1 a:hover { text-decoration: underline; }
 .plan-preview .title h2 { font-size: 16px; font-weight: normal; }
 .plan-preview .image { display: inline; float: left; border: 1px solid #dddddd; margin-right: 15px; width: 190px; height: 190px; }
-.plan-preview .event-thumbs { display: inline; float: left; width: 132px; margin-right: 5px; }
-.plan-preview .event-thumbs a:nth-child(even) img { margin-right: 0; }
-.plan-preview .event-thumbs img { display: inline; float: left; padding: 2px; background-color: white; border: 1px solid #dddddd; margin: 0 10px 10px 0; }
 .plan-preview .detail { display: inline; float: left; width: 230px; margin-right: 5px; }
 .plan-preview .detail p { line-height: 1.4em; }
 .plan-preview .detail table.times { font-size: 14px; }
@@ -420,6 +417,14 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 .plan-preview dt { font-weight: bold; font-size: 14px; border-bottom: 1px solid #cccccc; margin-bottom: 4px; }
 .plan-preview dd { margin-bottom: 10px; }
 .plan-preview dd p { padding-bottom: 8px; }
+
+.event-thumbs { display: inline; float: left; width: 132px; margin-right: 5px; }
+.event-thumbs a:nth-child(even) img { margin-right: 0; }
+.event-thumbs img { display: inline; float: left; padding: 2px; background-color: white; border: 1px solid #dddddd; margin: 0 10px 10px 0; }
+
+.plan .event-thumbs { width: 100%; margin-right: 0; }
+.plan .event-thumbs a:nth-child(even) img { margin-right: 5px; }
+.plan .event-thumbs a:nth-child(odd) img { margin-right: 5px; }
 
 .static-controller h1, .static-controller h2 { text-align: center; }
 .static-controller h1 { font-size: 46px; margin-bottom: 10px; }

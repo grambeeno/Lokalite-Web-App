@@ -1,4 +1,4 @@
-<section class="plan">
+<section class="plan cf">
   <div class='title cf'>
     <div class="half">
       <div class="title-image">
@@ -37,29 +37,15 @@
       <dd><%= clean_format @plan.description %></dd>
 
       <dt>Events</dt>
-      <dd>
-        <ol>
-          <% for event in @plan.events -%>
-            <li><%= event.name %></li>
-          <% end -%>
-        </ol>
+      <dd class="more-events event-thumbs cf">
+        <% for event in @plan.events[0...5] %>
+          <%= link_to image_tag(event.image.url(:small), :class => 'tooltip profile_small', :title => event.name), event_path(event.slug, event.id) %>
+        <% end -%>
       </dd>
     </dl>
   </div>
 
-  <div class="clear"></div>
 </section>
-
-<br />
-
-<div class="more-events">
-  <ul class="events">
-    <% @plan.events.each do |event| %>
-      <%= render :partial => '/events/event', :locals => { :event => event } %>
-    <% end %>
-  </ul>
-  <div class="clear"></div>
-</div>
 
 <div class='content'>
   <%= facebook_comments(:url => plan_url(@plan), :posts => 6) %>
