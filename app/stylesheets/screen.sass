@@ -160,11 +160,13 @@ img.profile_small
   height: 17px
   margin-bottom: 4px
   &:hover
-    background-position: left bottom
+    background-position: 0 -17px
 
   @each $social in $social-categories
     &.#{$social}-icon
       background-image: image_url("social-icons/#{$social}.png")
+.social-icon.datebook-icon.active:hover
+  background-position: 0 -34px
 
 .fb_share_size_Small
   display: none
