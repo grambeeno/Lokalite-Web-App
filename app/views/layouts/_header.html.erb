@@ -35,7 +35,8 @@
           <% if current_user.image_url.present? %>
           <%= image_tag current_user.image_url, :size => '25x25', :class => 'user-img' %>
           <% end %>
-          <%= link_to raw("#{current_user.full_name} &nbsp;&#9662;"), '#', :class => 'user-link user-name' %>
+          <%= link_to raw("#{current_user.full_name}"), '#', :class => 'user-link user-name' %>
+          <span class="dd-arrow">&#9662;</span>
         </div><!-- end user-li -->
         <% end %>
         <ul class="dropdown-menu">
