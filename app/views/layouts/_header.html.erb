@@ -56,7 +56,7 @@
             <%= link_to "Edit Profile", edit_profile_path %>
           </li>
           <li>
-          <%= link_to 'Logout', '#', :onclick => 'FB.logout(); return false;', :method => :delete %>
+          <%= link_to 'Logout', destroy_user_session_path, :onclick => 'FB.logout();', :method => :delete %>
           </li>
         </ul>
       </li>
