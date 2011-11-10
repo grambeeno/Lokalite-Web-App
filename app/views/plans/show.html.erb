@@ -39,9 +39,7 @@
       </dd>
     </dl>
 
-    <% unless current_user.facebook_data.nil? %>
-      <%= link_to "Invite Friends", '#', :class => 'btn primary mts invite-to-plan', 'data-title' => @plan.title, 'data-description' => @plan.description, 'data-uuid' => @plan.uuid  %>
-    <% end %>
+    <%= link_to "Invite Friends", '#', :class => 'btn primary mts invite-to-plan', 'data-title' => @plan.title, 'data-description' => @plan.description, 'data-uuid' => @plan.uuid  %>
   </div>
 
   <div class="clear"></div>
