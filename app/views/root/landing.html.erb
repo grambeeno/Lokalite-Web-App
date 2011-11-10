@@ -7,7 +7,7 @@
     <h2>(trust us, you'll never be bored again)</h2>
 
 
-    <div class='centered'>
+    <div class='centered cf'>
       <div class="browse">
         <h3>Browse</h3>
         We’ve got a huge gallery of events
@@ -33,10 +33,10 @@
     <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
   </div>
 
-  <div class="bottom checkered">
+  <div class="bottom checkered cf">
     <div class="shadow-top"></div>
 
-    <div class='inside'>
+    <div class='inside cf'>
       <h1 class='info'>
         There are currently
         <strong>
@@ -60,7 +60,7 @@
       <h2>Featured Events</h2>
       <span class='relative-container'><div id="our-favorites">our favorites. hopefully yours as well</div></span>
 
-      <ul class="events">
+      <ul class="events cf">
         <% Event.featured.limit(3).each do |event| %>
           <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
@@ -71,7 +71,7 @@
 
       <span class='relative-container'><div id="your-favorites">your favorites. keep 'em coming</div></span>
 
-      <ul class="events">
+      <ul class="events cf">
         <% Event.popular.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
           <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
@@ -85,7 +85,7 @@
     <div class="shadow-bottom"></div>
   </div>
 
-  <div class='content-width'>
+  <div class='content-width cf'>
     <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
     <p class='note'>
       click to enter - trust us:

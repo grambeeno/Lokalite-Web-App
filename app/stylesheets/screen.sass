@@ -12,7 +12,6 @@ $grey: #5d5d5d
 $light-grey: #808080
 $header-grey: #444444
 
-
 $event-categories: 'all_events', 'all_places', 'featured', 'most_popular', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
 $social-categories: 'twitter', 'lokalite', 'datebook'
@@ -161,11 +160,13 @@ img.profile_small
   height: 17px
   margin-bottom: 4px
   &:hover
-    background-position: left bottom
+    background-position: 0 -17px
 
   @each $social in $social-categories
     &.#{$social}-icon
       background-image: image_url("social-icons/#{$social}.png")
+.social-icon.datebook-icon.active:hover
+  background-position: 0 -34px
 
 .fb_share_size_Small
   display: none
@@ -224,9 +225,6 @@ img.profile_small
   float: left
   width: 710px
   padding: 15px 25px 0
-
-.ext
-  float: right
 
 #map_canvas
   margin-top: -16px
@@ -421,6 +419,9 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
       .detail
         display: none
 
+.events-controller .events .close, .datebook .events .close
+  display: none
+
 .datebook .events .trend-button
   display: none
 
@@ -588,25 +589,7 @@ header.index
     border: 1px solid #ddd
     margin-right: 15px
     width: 190px
-    height: 190px
-
-  $thumb-width: 50px
-  $thumb-margin: 10px
-  .event-thumbs
-    +float('left')
-    // 6px is what padding + border adds to a single image
-    width: ($thumb-width + $thumb-margin + 6) * 2
-    margin-right: 5px
-    a:nth-child(even) img
-      margin-right: 0
-
-    img
-      +float('left')
-      padding: 2px
-      background-color: white
-      border: 1px solid #ddd
-      margin: 0 $thumb-margin $thumb-margin 0
-      
+    height: 190px      
 
   .detail
     +float('left')
@@ -640,6 +623,32 @@ header.index
     margin-bottom: 10px
     p
       padding-bottom: 8px
+
+$thumb-width: 50px
+$thumb-margin: 10px
+  
+.event-thumbs
+  +float('left')
+  // 6px is what padding + border adds to a single image
+  width: ($thumb-width + $thumb-margin + 6) * 2
+  margin-right: 5px
+  a:nth-child(even) img
+    margin-right: 0
+
+  img
+    +float('left')
+    padding: 2px
+    background-color: white
+    border: 1px solid #ddd
+    margin: 0 $thumb-margin $thumb-margin 0
+
+.plan .event-thumbs
+  width: 100%
+  margin-right: 0
+  a:nth-child(even) img
+    margin-right: 5px
+  a:nth-child(odd) img
+    margin-right: 5px
 
 .static-controller
   +huge-headers
@@ -778,8 +787,9 @@ table.event-picker
 
   header
     width: 100%
+    background: #222
   header div.content
     width: 94%
 
   .middle
-    width: 300px
+    width: 280px
