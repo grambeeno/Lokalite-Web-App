@@ -1,7 +1,7 @@
 class FacebookController < ApplicationController
   
   def authorize
-    request_ids = Array(params[:request_ids]).join(',').strip.split(/\s*,\s*/).first
+    request_ids = Array(params[:request_ids]).join(',').strip.split(/\s*,\s*/).last
     @invitation = PlanUserInvitation.find_by_request_id(request_ids)
     @plan = Plan.find_by_uuid(@invitation.uuid) 
   end
