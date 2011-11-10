@@ -3,7 +3,7 @@ class FacebookController < ApplicationController
   def authorize
     request_ids = params[:request_ids].to_a
     if request_ids.count == 1
-      @invitation = PlanUserInvitation.find_by_request_id(params[:request_ids])
+      @invitation = PlanUserInvitation.find_by_request_id(request_ids.first)
       @plan = Plan.find_by_uuid(@invitation.uuid) 
     else
       # render :index
