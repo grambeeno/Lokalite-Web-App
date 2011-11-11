@@ -13,7 +13,14 @@
     <% end %>
 
     <h2 class="big">Help us suggest events for you by checking the categories below!</h2>
-
+    <script type="text/javascript">
+      $(function() {
+        $('.check_boxes input').change(function() {
+          $('#updated_categories').val('changed');
+        })
+      });
+    </script>
+    <input id="updated_categories" type="hidden" name="updated_categories"> 
     <%= form.inputs do %>
       <%= form.input :event_categories, :as => :check_boxes, :collection => EVENT_CATEGORIES, :label => "Favorite Categories" %>
     <% end %>

@@ -6,16 +6,17 @@ class EventsController < ApplicationController
     if params.delete(:utf8)
       redirect_to events_path(params)
     end
-    if params[:category] == 'suggested'
-      flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'
-      redirect_to edit_profile_path
-    end
     if params[:view_type] == 'map'
       params[:per_page] = 24
     else
       params[:per_page] = 12
     end
     params[:user] = current_user if user_signed_in?
+    
+    if params[:user].event_categories.empty?
+      flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'
+      redirect_to edit_profile_path
+    end
     @events = Event.browse(params)
   end
 
