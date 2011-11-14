@@ -96,7 +96,7 @@
   <div class="clear"></div>
 
   <div class="content">
-    <%= facebook_comments(:url => event_url(@event.slug, @event.id)) %>
+    <%= facebook_comments(:url => event_url(@event.slug, @event.id), :posts => 6) %>
   </div>
 </section>
 
