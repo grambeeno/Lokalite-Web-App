@@ -1,3 +1,13 @@
+<!--
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=221397624592914";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+-->
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -13,13 +23,13 @@
     facebookLoaded();
   };
 
-  // Load the SDK Asynchronously
-  (function(d){
-    var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-    js = d.createElement('script'); js.id = id; js.async = true;
-    js.src = "//connect.facebook.net/en_US/all.js";
-    d.getElementsByTagName('head')[0].appendChild(js);
-  }(document));
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=<%= FACEBOOK_APP_ID %>";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 
   function sendRequestToManyRecipients(data) {
     FB.ui({method: 'apprequests',
@@ -34,4 +44,3 @@
     });
   }
 </script>
-

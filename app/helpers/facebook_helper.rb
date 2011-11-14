@@ -4,7 +4,7 @@ module FacebookHelper
       :posts => 3,
       :width => 710
     })
-    raw "<div class='fb-comments' data-href='#{options[:url]}' data-num-posts='#{options[:posts]}' data-width='#{options[:width]}'></div>"
+    raw "<fb:comments href='#{options[:url]}' num_posts='#{options[:posts]}' width='#{options[:width]}'></fb:comments>"
   end
 
   # The js api for this seems to be broken for everyone. Use a plain link instead.
