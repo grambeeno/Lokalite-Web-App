@@ -13,10 +13,11 @@ class EventsController < ApplicationController
     end
     params[:user] = current_user if user_signed_in?
     
-    if params[:user].event_categories.empty?
-      flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'
-      redirect_to edit_profile_path
-    end
+    # if params[:user].event_categories.empty?
+    #   flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'
+    #   redirect_to edit_profile_path
+    # end
+
     @events = Event.browse(params)
   end
 
