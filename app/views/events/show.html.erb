@@ -94,8 +94,10 @@
   </div>
 
   <div class="clear"></div>
-  
-  <%= facebook_comments(:url => event_url(@event.slug, @event.id)) %>
+
+  <div class="content">
+    <%= facebook_comments(:url => event_url(@event.slug, @event.id)) %>
+  </div>
 </section>
 
 <div class="more-events">
