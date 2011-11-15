@@ -8,22 +8,17 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
   before_filter :set_origin
-<<<<<<< HEAD
   before_filter :set_effective_user, :handle_business_sign_up, :handle_plan_invitations
-=======
   before_filter :prepare_for_mobile 
->>>>>>> mobile_view
 
   # before_filter :show_holding_page
 
 protected
 
-<<<<<<< HEAD
   def set_effective_user
     return unless user_signed_in? && current_user.admin?
     @current_user = User.find_by_uuid(session['effective_user']) if session.key?('effective_user')
   end
-=======
   def mobile_device?
     if session[:mobile_param]
        session[:mobile_param] == '1'
@@ -44,7 +39,6 @@ end
   #     render :file => 'public/holding-page.html', :layout => false
   #   end
   # end
->>>>>>> mobile_view
 
   def set_origin
     origin = session[:origin] || 'boulder-colorado'
@@ -339,12 +333,8 @@ end
   def after_sign_in_path_for(resource_or_scope)
     root_path
   end
-<<<<<<< HEAD
-=======
   def ver
     ApplicationController.ver
   end
   helper_method :ver
-=end
->>>>>>> mobile_view
 end
