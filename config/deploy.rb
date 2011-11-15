@@ -6,6 +6,8 @@ require "bundler/capistrano"
 set :stages, %w(development staging production)
 set :default_stage, "development"
 
+set :branch, "mobile_view"
+
 set :application, "lokalite"
 
 set :use_sudo, false
