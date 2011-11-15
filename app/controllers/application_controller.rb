@@ -336,5 +336,7 @@ end
   def ver
     ApplicationController.ver
   end
+
   helper_method :ver
+
 end
