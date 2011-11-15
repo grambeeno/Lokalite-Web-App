@@ -54,7 +54,7 @@ class Event < ActiveRecord::Base
   def check_description_length
     return if description.blank?
     stripped = description.gsub /\r\n/, ' '
-    if stripped.length > 140
+    if stripped.length > 140 
       errors.add(:description, 'is too long (maximum is 140 characters)')
     end
   end

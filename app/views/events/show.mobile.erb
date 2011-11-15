@@ -1,0 +1,45 @@
+<body>
+  <div data-role='page'>
+    <div data-role='header' data-position='fixed'> 
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+          <div data-role='navbar' data-theme='a'>
+            <ul>
+              <li><%= link_to "Back", '/events/categories', "data-rel"=>"back" unless current_page? root_path %></li>
+              <li><%= link_to "Home", '/events/categories', "data-role"=> "button" %></li>
+              <li><%= link_to "Full Site", root_url(:mobile => 0), :class => "button", :rel => "external" %></li> 
+            </ul>
+            </div>
+    <div data-role='content'>
+      <fieldset class='ui-grid-a'>
+        <div class='ui-block-a' style='width:23%'> 
+          <%= image_tag @event.image.url(:thumb) %>
+        </div>
+        <div class='ui-block-b' style='width:77%'>
+          <h3 style='margin-top:0px'>
+            <%= @event.name %>
+          </h3>
+        </div>
+        <div class='ui-block-a' style='width:100%'>
+          <%= event_location_string(@event) %>
+        </div>
+      </div>
+        <div class='ui-block-a' style='width:98%; margin:0 0 0 5px; white-space:normal'>
+          <p><strong>About the Event:</strong>
+            <br /><%= @event.description %></p> 
+        </div>
+        <div class='ui-block-a' style='width:100%'>
+          <%= link_to 'Trend this Event',  "#trend_event/#{@event.id}", :class => ['trend-button', trend_class(@event)],                            "data-role"=>"button", "data-theme"=>"e" %>
+        </div>
+        <div class='ui-block-a' style='width:100%'>
+          <%= link_to @event.location.name, organization_path(@event.location.name, @event.organization.id), "data-role"=>"button", "data-theme"=>"e" %>
+        </div>
+        <div class='ui-block-a ui-body-e' style='width:100% white-space:normal position:absolute; 0 0 0 0'>
+          <%= link_to google_maps_image(@event.location, :size => '320x190'), gmaps_url_for(@event.location), :target => '_blank',                  :class => 'map_link' %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</body>

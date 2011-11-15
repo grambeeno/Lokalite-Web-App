@@ -195,8 +195,11 @@ GEM
     tzinfo (0.3.29)
     unidecode (1.0.0)
     uuidtools (2.1.1)
+<<<<<<< HEAD
     warden (1.0.6)
       rack (>= 1.0)
+=======
+>>>>>>> mobile_view
     will_paginate (3.0.2)
     yajl-ruby (0.8.1)
 

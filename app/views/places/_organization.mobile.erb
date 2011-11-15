@@ -1,0 +1,25 @@
+<% @organizations.each do |organization| %>
+<%= link_to organization_path(organization.slug, organization.id) do %>
+
+<ul data-role='listview' class='ui-listview' role='listbox'>
+  <li tabindex='0' role='option'>
+    <div class='ui-btn-text'>
+      <h2 class='ui-li-heading'>
+      <span style='float:left; margin-top:-8px;' class='ui-li-thumb'>      
+        <%= image_tag(organization.image.url(:thumb)) %>
+      </span>
+      <span style='float:left; margin:0 0 0 60px;'> 
+        <strong style='font-size:12pt;'>
+          <%= organization.name %>
+        </strong>
+        <p class='ui-li-desc' style='white-space:normal; margin:5px 0 0 0;'>
+          <%= organization.description.truncate(70) %> 
+        </p>
+      </span>
+  </li>
+</ul>
+<% end %>
+<% end %>
+<div class="tiled-pagination">
+  <%= will_paginate @organizations %>
+</div>

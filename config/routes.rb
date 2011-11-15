@@ -1,5 +1,6 @@
 # See how all your routes lay out with "rake routes"
 Lokalite::Application.routes.draw do
+<<<<<<< HEAD
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
@@ -19,6 +20,9 @@ Lokalite::Application.routes.draw do
 
   # get "profile/suggestions", :as => 'suggestions'
   # get "profile/friends"
+=======
+  match 'events/categories', :controller => :events, :action => :categories, :as => :event_categories
+>>>>>>> mobile_view
 
   match 'events(/*slug)/:id', :as => :event, :controller => :events, :constraints => {:id => /\d+/}, :action => :show
 
@@ -27,6 +31,7 @@ Lokalite::Application.routes.draw do
 
   # match 'events(/:action(/:id(.:format)))', :as => :events, :controller => :events
 
+  match 'places/categories', :controller => :places, :action => :categories, :as => :places_categories
   match 'places/random', :controller => :places, :action => :random_organization, :as => :random_organization
   match 'places/:name/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
   match 'places/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}

@@ -1,0 +1,42 @@
+<%
+  if params[:controller] == 'places'
+    active_tab = 'places'
+  else
+    active_tab = 'events'
+  end
+-%>
+
+<div data-role='navbar'>
+  <ul>
+    <li>
+      <% class_names = active_tab == 'events' ? 'active' : nil %>
+      <%= link_to 'Events', event_categories_path, :class => class_names %>
+    </li>
+    <li>
+      <% class_names = active_tab == 'places' ? 'active' : nil %>
+      <%= link_to 'Places', places_categories_path, :class => class_names %>
+    </li>
+  </ul>
+</div>
+
+  <ul data-role='listview' data-inset='true' theme='a'>
+      <% if active_tab == 'events' %>
+      <%
+        EVENT_CATEGORIES.dup.unshift('Featured', 'Trending').push('All Events').each do |category|
+        slug = category.parameterize('_')
+        classes = [slug]
+        if params[:controller] == 'events' and params[:action] == 'index'
+          classes << 'active' if slug == params[:category] or (params[:category].blank? and slug.start_with?('all_'))
+        end
+        %>
+        <li class="<%= classes.join(' ') %>">
+        <%
+            options = {:origin => params[:origin]}
+            options[:view_type] = params[:view_type]
+            options[:category]  = slug unless category == 'All Events'
+          %>
+        <%= link_to(category, events_path(options)) %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>

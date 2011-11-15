@@ -25,6 +25,13 @@
     <li>
       <%= link_to 'Business', business_promo_path %>
     </li>
+    <li>
+      <% if mobile_device? %> 
+        <%= link_to 'Full Site', :mobile => 0 %>
+        <% else %> 
+        <%= link_to 'Mobile Site', :mobile => 1 %>
+        <% end %>
+      </li>
   </ul>
 </nav>
 

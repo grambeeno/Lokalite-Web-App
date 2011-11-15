@@ -23,12 +23,13 @@
     <meta name="alexaVerifyID" content="pYn4tfsbhIEUBVhn6q5YorJoBZ4" />
     
     <!--  Mobile viewport optimized: j.mp/bplateviewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
 
     <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+    <%= stylesheet_link_tag 'mobile' if mobile_device? %>
     <%= render :partial => 'shared/stylesheets' %>
     <%= render :partial => 'shared/javascripts' %>
     <%= csrf_meta_tag %>

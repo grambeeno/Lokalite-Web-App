@@ -1,0 +1,13 @@
+<%=
+stylesheets = %w(
+               mobile
+               )
+               stylesheet_link_tag(stylesheets, :cache => "all-#{ git_rev }") %>
+
+<%= stylesheet_link_tag 'mobile.css' %>
+<% default_content_for(:style){} %>
+
+<style>
+  <%= css_for(style) %>
+</style>
+
