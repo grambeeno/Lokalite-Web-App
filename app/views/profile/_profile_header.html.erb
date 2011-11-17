@@ -1,7 +1,7 @@
 <div class="profile-header">
   <% if current_user.image_url %>
     <div class="avatar">
-      <%= image_tag current_user.image_url(:normal), :alt => current_user.full_name, :size => '100x100' %>
+      <%= image_tag current_user.image_url(:normal), :alt => current_user.full_name %>
       <%#= image_tag current_user.image_url(:normal), :alt => current_user.full_name %>
     </div>
   <% end %>
