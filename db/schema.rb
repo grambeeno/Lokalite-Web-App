@@ -161,19 +161,6 @@ ActiveRecord::Schema.define(:version => 20111107030101) do
 
   add_index "sessions", ["user_id"], :name => "index_sessions_on_user_id", :unique => true
 
-  create_table "signups", :force => true do |t|
-    t.string   "email"
-    t.string   "password"
-    t.integer  "user_id"
-    t.integer  "delivery_count", :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "signups", ["delivery_count"], :name => "index_signups_on_delivery_count"
-  add_index "signups", ["email"], :name => "index_signups_on_email", :unique => true
-  add_index "signups", ["user_id"], :name => "index_signups_on_user_id"
-
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -190,25 +177,6 @@ ActiveRecord::Schema.define(:version => 20111107030101) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
-
-  create_table "tokens", :force => true do |t|
-    t.string   "uuid"
-    t.string   "kind"
-    t.integer  "context_id"
-    t.string   "context_type"
-    t.integer  "counter",      :default => 0
-    t.datetime "expires_at"
-    t.text     "data",         :default => "--- {}\n\n"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tokens", ["context_id"], :name => "index_tokens_on_context_id"
-  add_index "tokens", ["context_type"], :name => "index_tokens_on_context_type"
-  add_index "tokens", ["counter"], :name => "index_tokens_on_counter"
-  add_index "tokens", ["expires_at"], :name => "index_tokens_on_expires_at"
-  add_index "tokens", ["kind"], :name => "index_tokens_on_kind"
-  add_index "tokens", ["uuid"], :name => "index_tokens_on_uuid", :unique => true
 
   create_table "user_event_joins", :force => true do |t|
     t.integer  "user_id"
