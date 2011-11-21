@@ -2,7 +2,7 @@
   <header class='index'>
     <h1 class='tiled-title'>
       <% if params[:category] %>
-        Places: <%= title_for_category(params[:category]) %>
+        <%= title_for_category(params[:category]) %>
       <% elsif params[:keywords] %>
         Search results: <%= params[:keywords] %>
       <% else %>
