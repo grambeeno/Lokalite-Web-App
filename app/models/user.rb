@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   has_many :user_organization_joins, :dependent => :destroy
   has_many :organizations, :through => :user_organization_joins
 
@@ -166,10 +165,31 @@ class User < ActiveRecord::Base
     end
   end
 
+  # http://developers.facebook.com/docs/reference/api
+  # Type options:
+  # thumb - 50px wide
+  # small - 100px wide
+  # normal - 200px wide
+  # square - 50px by 50px
+  #
   def image_url(type = 'square')
-    "http://graph.facebook.com/#{facebook_data['id']}/picture?type=#{type}" if facebook_data.present?
+    if facebook_data.present?
+      "http://graph.facebook.com/#{facebook_data['id']}/picture?type=#{type}"
+    else
+      robot_image(type)
+    end
   end
 
+  def robot_image(type)
+    if type.to_s == 'normal'
+      size = 100
+    elsif type.to_s == 'large'
+      size = 200
+    else
+      size = 50
+    end
+    "http://static1.robohash.com/#{id}?size=#{size}x#{size}&&bgset=bg1"
+  end
 
   # def User.root
   #   @root ||= User.find(0)

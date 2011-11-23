@@ -63,7 +63,6 @@ class Plan < ActiveRecord::Base
 end
 
 
-
 # == Schema Information
 #
 # Table name: plans
