@@ -6,7 +6,7 @@
   <% if @saved_events.any? %>
     <ul class="events">
       <% @saved_events.each do |event| %>
-        <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => 'plan_edit_event_tile' } %>
       <% end %>
     </ul>
     <div class="clear"></div>

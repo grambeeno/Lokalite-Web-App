@@ -10,11 +10,11 @@
 #       Install PostgreSQL and put its /bin directory on your path.
 development:
   adapter: postgresql
-  database: lokalite_development
+  database: lokalite
   template: template0
   host: localhost
   pool: 5
-  username: lokalite
+  username: matheson 
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a

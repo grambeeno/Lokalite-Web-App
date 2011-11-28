@@ -62,7 +62,7 @@
 
       <ul class="events cf">
         <% Event.featured.limit(3).each do |event| %>
-          <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "featured_event_tile" } %>
+          <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "landing_featured_event_tile" } %>
         <% end %>
       </ul>
 
@@ -73,7 +73,7 @@
 
       <ul class="events cf">
         <% Event.popular.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
-          <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "popular_event_tile" } %>
+          <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "landing_popular_event_tile" } %>
         <% end %>
       </ul>
 

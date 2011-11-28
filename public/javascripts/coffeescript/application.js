@@ -1,130 +1,10 @@
 (function() {
-  var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackEvent, trackImpressions;
+  var displayOrganizationChart, event_queue_id, extractComplexObjectId, extractObjectId, initReportgrid, processEventQueue, syncTrackEvent, trackEvent, trackImpressions;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   $(function() {
-    var active_hover_id;
-    trackImpressions();
+    initReportgrid();
     displayOrganizationChart();
     $('.truncate').truncate();
-    active_hover_id = '';
-    $('.events li, .organizations li').live({
-      mouseenter: function() {
-        $(this).find('.description').show("slide", {
-          direction: "down"
-        }, 200);
-        active_hover_id = $(this).attr('id');
-        if ($(this).parent().hasClass('events') || $(this).parent().hasClass('organizations')) {
-          return setTimeout((__bind(function() {
-            var data;
-            if (active_hover_id === $(this).attr('id')) {
-              data = $.parseJSON($(this).attr('data-reportgrid'));
-              return trackEvent(data, "_engage");
-            }
-          }, this)), 1000);
-        }
-      },
-      mouseleave: function() {
-        $(this).find('.description').hide("slide", {
-          direction: "down"
-        }, 400);
-        return active_hover_id = '';
-      },
-      click: function() {
-        var data;
-        data = $.parseJSON($(this).attr('data-reportgrid'));
-        return trackEvent(data, "_click");
-      }
-    });
-    $('a.trend').live({
-      click: function(event) {
-        var data, event_li;
-        event.stopPropagation();
-        event_li = $(this).parent().parent();
-        data = $.parseJSON(event_li.attr('data-reportgrid'));
-        return trackEvent(data, "_trend_click");
-      }
-    });
-    $('a.trended').live({
-      click: function(event) {
-        var data, event_li;
-        event.stopPropagation();
-        event_li = $(this).parent().parent();
-        data = $.parseJSON(event_li.attr('data-reportgrid'));
-        return trackEvent(data, "_untrend_click");
-      }
-    });
-    $('.featured_sidebar li, .trending_sidebar li').live({
-      click: function() {
-        var data;
-        data = $.parseJSON($(this).attr('data-reportgrid'));
-        return trackEvent(data, "_click");
-      }
-    });
-    $('section.event .text a').live({
-      click: function() {
-        var data;
-        data = $.parseJSON($('section.event').attr('data-reportgrid'));
-        return trackEvent(data, "_org_click");
-      }
-    });
-    $('section.event .map a').live({
-      mouseenter: function() {
-        active_hover_id = $(this).attr('href');
-        if ($(this).parent().hasClass('map')) {
-          return setTimeout((__bind(function() {
-            var data;
-            if (active_hover_id === $(this).attr('href')) {
-              data = $.parseJSON($('section.event').attr('data-reportgrid'));
-              return trackEvent(data, "_map_engage");
-            }
-          }, this)), 1000);
-        }
-      },
-      mouseleave: function() {
-        return active_hover_id = '';
-      },
-      click: function() {
-        var data;
-        data = $.parseJSON($('section.event').attr('data-reportgrid'));
-        return trackEvent(data, "_map_click");
-      }
-    });
-    $('section.organization .map a').live({
-      mouseenter: function() {
-        active_hover_id = $(this).attr('href');
-        if ($(this).parent().hasClass('map')) {
-          return setTimeout((__bind(function() {
-            var data;
-            if (active_hover_id === $(this).attr('href')) {
-              data = $.parseJSON($('section.organization').attr('data-reportgrid'));
-              return trackEvent(data, "_map_engage");
-            }
-          }, this)), 1000);
-        }
-      },
-      mouseleave: function() {
-        return active_hover_id = '';
-      },
-      click: function() {
-        var data;
-        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
-        return trackEvent(data, "_map_click");
-      }
-    });
-    $('section.organization dd.website a').live({
-      click: function() {
-        var data;
-        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
-        return trackEvent(data, "_website_click");
-      }
-    });
-    $('section.organization dd.phone').live({
-      click: function() {
-        var data;
-        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
-        return trackEvent(data, "_phone_click");
-      }
-    });
     $('li', '.datebook .events').draggable({
       revert: 'invalid',
       cursorAt: {
@@ -186,6 +66,130 @@
       });
     }
   });
+  initReportgrid = function() {
+    var active_hover_id;
+    processEventQueue();
+    trackImpressions();
+    active_hover_id = '';
+    $('.events li, .organizations li').live({
+      mouseenter: function() {
+        $(this).find('.description').show("slide", {
+          direction: "down"
+        }, 200);
+        active_hover_id = $(this).attr('id');
+        if ($(this).parent().hasClass('events') || $(this).parent().hasClass('organizations')) {
+          return setTimeout((__bind(function() {
+            var data;
+            if (active_hover_id === $(this).attr('id')) {
+              data = $.parseJSON($(this).attr('data-reportgrid'));
+              return trackEvent(data, "_engage");
+            }
+          }, this)), 1000);
+        }
+      },
+      mouseleave: function() {
+        $(this).find('.description').hide("slide", {
+          direction: "down"
+        }, 400);
+        return active_hover_id = '';
+      },
+      click: function() {
+        var data;
+        data = $.parseJSON($(this).attr('data-reportgrid'));
+        return syncTrackEvent(data, "_click");
+      }
+    });
+    $('a.trend').live({
+      click: function(event) {
+        var data, event_li;
+        event.stopPropagation();
+        event_li = $(this).parent().parent();
+        data = $.parseJSON(event_li.attr('data-reportgrid'));
+        return trackEvent(data, "_trend_click");
+      }
+    });
+    $('a.trended').live({
+      click: function(event) {
+        var data, event_li;
+        event.stopPropagation();
+        event_li = $(this).parent().parent();
+        data = $.parseJSON(event_li.attr('data-reportgrid'));
+        return trackEvent(data, "_untrend_click");
+      }
+    });
+    $('.featured_sidebar li, .trending_sidebar li').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($(this).attr('data-reportgrid'));
+        return syncTrackEvent(data, "_click");
+      }
+    });
+    $('section.event .text a').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.event').attr('data-reportgrid'));
+        return syncTrackEvent(data, "_org_click");
+      }
+    });
+    $('section.event .map a').live({
+      mouseenter: function() {
+        active_hover_id = $(this).attr('href');
+        if ($(this).parent().hasClass('map')) {
+          return setTimeout((__bind(function() {
+            var data;
+            if (active_hover_id === $(this).attr('href')) {
+              data = $.parseJSON($('section.event').attr('data-reportgrid'));
+              return trackEvent(data, "_map_engage");
+            }
+          }, this)), 1000);
+        }
+      },
+      mouseleave: function() {
+        return active_hover_id = '';
+      },
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.event').attr('data-reportgrid'));
+        return trackEvent(data, "_map_click");
+      }
+    });
+    $('section.organization .map a').live({
+      mouseenter: function() {
+        active_hover_id = $(this).attr('href');
+        if ($(this).parent().hasClass('map')) {
+          return setTimeout((__bind(function() {
+            var data;
+            if (active_hover_id === $(this).attr('href')) {
+              data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+              return trackEvent(data, "_map_engage");
+            }
+          }, this)), 1000);
+        }
+      },
+      mouseleave: function() {
+        return active_hover_id = '';
+      },
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+        return trackEvent(data, "_map_click");
+      }
+    });
+    $('section.organization dd.website a').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+        return syncTrackEvent(data, "_website_click");
+      }
+    });
+    return $('section.organization dd.phone').live({
+      click: function() {
+        var data;
+        data = $.parseJSON($('section.organization').attr('data-reportgrid'));
+        return syncTrackEvent(data, "_phone_click");
+      }
+    });
+  };
   displayOrganizationChart = function() {
     return $('.organization_stats').each(function() {
       var id, path, target;
@@ -205,6 +209,38 @@
         }
       });
     });
+  };
+  event_queue_id = "reportgrid_event_queue";
+  processEventQueue = function() {
+    var events;
+    if ($.jStorage.storageAvailable()) {
+      events = $.jStorage.get(event_queue_id, []) || [];
+      $(events).each(function() {
+        return ReportGrid.track.apply(null, this);
+      });
+      return $.jStorage.set(event_queue_id, []);
+    }
+  };
+  syncTrackEvent = function(data, type_suffix) {
+    var event_type, parts, path, paths, queue, tracking_data;
+    event_type = data.base_type + type_suffix;
+    path = data.path;
+    delete data.base_type;
+    delete data.path;
+    tracking_data = {};
+    tracking_data[event_type] = data;
+    paths = [path];
+    parts = path.split(/\//g);
+    parts.pop();
+    while (parts.length > 0) {
+      paths.push(parts.join("/") + "/");
+      parts.pop();
+    }
+    if ($.jStorage.storageAvailable()) {
+      queue = $.jStorage.get(event_queue_id, []) || [];
+      queue.push([paths, tracking_data]);
+      return $.jStorage.set(event_queue_id, queue);
+    }
   };
   trackEvent = function(data, type_suffix) {
     var event_type, parts, path, paths, tracking_data;

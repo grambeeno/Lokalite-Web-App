@@ -3,115 +3,12 @@
 # Had trouble upgrading to rails 3.1
 # don't want to deal with barista or another external gem right now...
 $ ->
-  trackImpressions()
+  initReportgrid()
+
   displayOrganizationChart()
 
   $('.truncate').truncate()
 
-  # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
-  # store active_hover_id so we can determine the length of the event
-  #
-  # TODO - We should be tracking organizations too
-  active_hover_id = ''
-  $('.events li, .organizations li').live
-    mouseenter: ->
-      $(this).find('.description').show("slide", { direction: "down" }, 200)
-      active_hover_id = $(this).attr('id')
-
-      if($(this).parent().hasClass('events') or $(this).parent().hasClass('organizations'))
-        setTimeout ( =>
-          if active_hover_id == $(this).attr('id')
-            
-            data = $.parseJSON $(this).attr('data-reportgrid')
-             
-            trackEvent data, "_engage"
-          ),
-          1000
-
-    mouseleave: ->
-      $(this).find('.description').hide("slide", { direction: "down" }, 400)
-      active_hover_id = ''
-
-    click: ->
-      data = $.parseJSON $(this).attr('data-reportgrid')
-      trackEvent data, "_click"
-  
-  $('a.trend').live
-    click: (event) ->
-      event.stopPropagation()
-      event_li = $(this).parent().parent()
-      data = $.parseJSON event_li.attr('data-reportgrid')
-      trackEvent data, "_trend_click"
-
-  $('a.trended').live
-    click: (event) ->
-      event.stopPropagation()
-      event_li = $(this).parent().parent()
-      data = $.parseJSON event_li.attr('data-reportgrid')
-      trackEvent data, "_untrend_click"
-  
-  $('.featured_sidebar li, .trending_sidebar li').live
-    click: ->
-      data = $.parseJSON $(this).attr('data-reportgrid')
-      trackEvent data, "_click"
-  
-  $('section.event .text a').live
-    click: ->
-      data = $.parseJSON $('section.event').attr('data-reportgrid')
-      trackEvent data, "_org_click"
-  
-  $('section.event .map a').live
-    mouseenter: ->
-      active_hover_id = $(this).attr('href')
-
-      if $(this).parent().hasClass('map')
-        setTimeout ( =>
-          if active_hover_id == $(this).attr('href')
-           
-            data = $.parseJSON $('section.event').attr('data-reportgrid')
-             
-            trackEvent data, "_map_engage"
-          ),
-          1000
-
-    mouseleave: ->
-      active_hover_id = ''
-
-    click: ->
-      data = $.parseJSON $('section.event').attr('data-reportgrid')
-      trackEvent data, "_map_click"
-
-  $('section.organization .map a').live
-    mouseenter: ->
-      active_hover_id = $(this).attr('href')
-
-      if $(this).parent().hasClass('map')
-        setTimeout ( =>
-          if active_hover_id == $(this).attr('href')
-           
-            data = $.parseJSON $('section.organization').attr('data-reportgrid')
-             
-            trackEvent data, "_map_engage"
-          ),
-          1000
-
-    mouseleave: ->
-      active_hover_id = ''
-
-    click: ->
-      data = $.parseJSON $('section.organization').attr('data-reportgrid')
-      trackEvent data, "_map_click"
-  
-  $('section.organization dd.website a').live
-    click: ->
-      data = $.parseJSON $('section.organization').attr('data-reportgrid')
-      trackEvent data, "_website_click"
-  
-  $('section.organization dd.phone').live
-    click: ->
-      data = $.parseJSON $('section.organization').attr('data-reportgrid')
-      trackEvent data, "_phone_click"
-  
   # event plans
   $('li', '.datebook .events').draggable
     revert: 'invalid'
@@ -175,7 +72,116 @@ $ ->
     $('#plan_description').simplyCountable
       maxCount: 140
 
+initReportgrid = ->
 
+  processEventQueue()
+
+  trackImpressions()
+
+  # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
+  # store active_hover_id so we can determine the length of the event
+  active_hover_id = ''
+
+  $('.events li, .organizations li').live
+    mouseenter: ->
+      $(this).find('.description').show("slide", { direction: "down" }, 200)
+      active_hover_id = $(this).attr('id')
+
+      if($(this).parent().hasClass('events') or $(this).parent().hasClass('organizations'))
+        setTimeout ( =>
+          if active_hover_id == $(this).attr('id')
+            
+            data = $.parseJSON $(this).attr('data-reportgrid')
+             
+            trackEvent data, "_engage"
+          ),
+          1000
+
+    mouseleave: ->
+      $(this).find('.description').hide("slide", { direction: "down" }, 400)
+      active_hover_id = ''
+
+    click: ->
+      data = $.parseJSON $(this).attr('data-reportgrid')
+      syncTrackEvent data, "_click"
+  
+  $('a.trend').live
+    click: (event) ->
+      event.stopPropagation()
+      event_li = $(this).parent().parent()
+      data = $.parseJSON event_li.attr('data-reportgrid')
+      trackEvent data, "_trend_click"
+
+
+  $('a.trended').live
+    click: (event) ->
+      event.stopPropagation()
+      event_li = $(this).parent().parent()
+      data = $.parseJSON event_li.attr('data-reportgrid')
+      trackEvent data, "_untrend_click"
+  
+  $('.featured_sidebar li, .trending_sidebar li').live
+    click: ->
+      data = $.parseJSON $(this).attr('data-reportgrid')
+      syncTrackEvent data, "_click"
+  
+  $('section.event .text a').live
+    click: ->
+      data = $.parseJSON $('section.event').attr('data-reportgrid')
+      syncTrackEvent data, "_org_click"
+  
+  $('section.event .map a').live
+    mouseenter: ->
+      active_hover_id = $(this).attr('href')
+
+      if $(this).parent().hasClass('map')
+        setTimeout ( =>
+          if active_hover_id == $(this).attr('href')
+           
+            data = $.parseJSON $('section.event').attr('data-reportgrid')
+             
+            trackEvent data, "_map_engage"
+          ),
+          1000
+
+    mouseleave: ->
+      active_hover_id = ''
+
+    click: ->
+      data = $.parseJSON $('section.event').attr('data-reportgrid')
+      trackEvent data, "_map_click"
+
+  $('section.organization .map a').live
+    mouseenter: ->
+      active_hover_id = $(this).attr('href')
+
+      if $(this).parent().hasClass('map')
+        setTimeout ( =>
+          if active_hover_id == $(this).attr('href')
+           
+            data = $.parseJSON $('section.organization').attr('data-reportgrid')
+             
+            trackEvent data, "_map_engage"
+          ),
+          1000
+
+    mouseleave: ->
+      active_hover_id = ''
+
+    click: ->
+      data = $.parseJSON $('section.organization').attr('data-reportgrid')
+      trackEvent data, "_map_click"
+  
+  $('section.organization dd.website a').live
+    click: ->
+      data = $.parseJSON $('section.organization').attr('data-reportgrid')
+      syncTrackEvent data, "_website_click"
+  
+  $('section.organization dd.phone').live
+    click: ->
+      data = $.parseJSON $('section.organization').attr('data-reportgrid')
+      syncTrackEvent data, "_phone_click"
+  
 displayOrganizationChart = ->
   $('.organization_stats').each ->
     target = "##{$(this).attr('id')}"
@@ -195,6 +201,39 @@ displayOrganizationChart = ->
         #   datapoint     : label.sourceTypePercent
         #   datapointover : label.sourceType
         # }
+
+event_queue_id = "reportgrid_event_queue"
+
+
+processEventQueue = () -> 
+  if $.jStorage.storageAvailable()
+    events = $.jStorage.get(event_queue_id, []) || []
+    $(events).each(() ->
+      ReportGrid.track.apply(null, this)
+    )
+    $.jStorage.set(event_queue_id, [])
+
+syncTrackEvent = (data, type_suffix) ->
+  event_type = data.base_type + type_suffix 
+  path       = data.path
+
+  delete data.base_type
+  delete data.path
+ 
+  tracking_data = {}
+  tracking_data[event_type] = data
+
+  paths = [path]
+  parts = path.split(/\//g)
+  parts.pop()
+  while(parts.length > 0)
+    paths.push(parts.join("/") + "/")
+    parts.pop()
+
+  if $.jStorage.storageAvailable()
+    queue = $.jStorage.get(event_queue_id, []) || []
+    queue.push([paths, tracking_data])
+    $.jStorage.set(event_queue_id, queue)
 
 trackEvent = (data, type_suffix) ->
   event_type = data.base_type + type_suffix 

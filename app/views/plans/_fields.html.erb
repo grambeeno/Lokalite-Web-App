@@ -35,7 +35,7 @@
       </div>
     <% else %>
       <% f.object.events.each do |event| %>
-        <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type = 'plan_fields_event_tile' } %>
       <% end %>
     <% end %>
   </div>

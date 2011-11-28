@@ -5,6 +5,8 @@
 
   <%
     options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
+
+    reportgrid_event_type = options[:category] == 'featured' ? "feature_event_tile" : "event_tile"
   %>
   <div class="clear"></div>
 
@@ -18,7 +20,7 @@
 
 <ul class="events">
   <% @events.each do |event| %>
-    <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => "event_tile" } %>
+    <%= render :partial => '/events/event', :locals => { :event => event, :reportgrid_event_type => reportgrid_event_type } %>
   <% end %>
 </ul>
 
