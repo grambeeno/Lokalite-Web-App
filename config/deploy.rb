@@ -10,7 +10,7 @@ set :application, "lokalite"
 
 set :use_sudo, false
 
-set :branch "contact_form"
+set :branch, "contact_form"
 
 set :scm, :git
 set :repository,  "git@github.com:grambeeno/Lokalite-Web-App.git"
