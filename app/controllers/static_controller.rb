@@ -19,4 +19,10 @@ class StaticController < ApplicationController
       caches_action(#{ page.inspect })
     __
   end
+
+  def send_mail
+    Mailer::deliver_contact_email(params[:email])
+    redirect_to '/static/contact'
+    flash[:notice] = 'Thanks for your email'
+  end
 end

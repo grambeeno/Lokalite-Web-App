@@ -17,6 +17,14 @@ class Mailer < ActionMailer::Base
     mail(:to => email, :subject => 'test')
   end
 
+  def contact_email(email_params)
+    @recipients = 'info@lokalite.com'
+    @from = email_params[:name]
+    @subject = email_params[:subject] 
+    @body['email_body'] = email_params[:body]
+    @body['email_name'] = email_params[:name]
+  end
+
 protected
   def subject_for(*args)
     ["[#{ App.domain }]", *args.compact.flatten].join(' ')

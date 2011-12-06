@@ -11,18 +11,32 @@
 
 <section class="profile"><article>
 
-<h1 style="margin-bottom:1em; font-size:14pt"><center><b>We want to hear from you!</b></center></h1>
+<h1>Contact</h1>
 
-<p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Want to come drink a beer (or apple juice) with the Lokalite crew?</p>
-<p class="body"><b>Email us:</b> <a href="mailto:info@lokalite.com">info@lokalite.com</a></p>
-&nbsp;
-<p class="body">What you think of our new product? What new features do you want to see? Let us know!</p>
-<p class="body"><b>Email us:</b> <a href="mailto:feedback@lokalite.com">feedback@lokalite.com</a></p>
-&nbsp;
-<p class="body">Want us to sponser one of your awesome events?</p>
-<p class="body"><b>Email us:</b> <a href="mailto:support@lokalite.com">support@lokalite.com</a></p>
-&nbsp;
-<p class="body">Having trouble with your account?</p>
-<p class="body"><b>Email us:</b> <a href="mailto:support@lokalite.com">support@lokalite.com</a></p>
+<p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Let us know! 
 
+<div class="body">
+<%= form_for :email, :url => {:controller => 'static', :action => 'send_mail' } do |f| %>
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :size => 77 %>
+  </div><br />
+  <div>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, :size => 77 %>
+  </div><br />
+  <div>
+    <%= f.label :subject %><br />
+    <%= f.select :subject, ['Select One...', 'General', 'Bugs & Problems', 'Feature Requests', 'Founders', 'Client Relations', 'Public Relations'] %>
+  </div><br />
+  <div>
+    <%= f.label :comments %><br />
+    <%= f.text_area :email_body, :rows => 5, :cols => 80 %>
+  </div>
+  <div>
+    <%= f.submit 'Send Message' %>
+  </div>
+  
+  <% end %>
+</div>
 </article></section>
