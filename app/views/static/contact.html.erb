@@ -1,7 +1,7 @@
 <style>
 
   .body {
-    margin: 0px 25px 0px 25px;
+    margin: 0px 18px 0px 18px;
     font-size: 14pt;
 }
 
@@ -11,32 +11,32 @@
 
 <section class="profile"><article>
 
-<h1>Contact</h1>
+<h3 class="body" style='font-size:18pt'><strong>Contact</strong></h3>
 
 <p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Let us know! 
 
-<div class="body">
+  <form class="form-stacked">
 <%= form_for :email, :url => {:controller => 'static', :action => 'send_mail' } do |f| %>
   <div>
     <%= f.label :name %><br />
-    <%= f.text_field :name, :size => 77 %>
+    <%= f.text_field :name, "class"=>"span12", "id"=>"xlInput" %>
   </div><br />
   <div>
     <%= f.label :email %><br />
-    <%= f.email_field :email, :size => 77 %>
+    <%= f.email_field :email, "class"=>"span12", "id"=>"xlInput" %>
   </div><br />
   <div>
     <%= f.label :subject %><br />
-    <%= f.select :subject, ['Select One...', 'General', 'Bugs & Problems', 'Feature Requests', 'Founders', 'Client Relations', 'Public Relations'] %>
+    <%= f.select :subject, ['Select One...', 'General', 'Bugs & Problems', 'Feature Requests', 'Founders', 'Client Relations', 'Public Relations'], "id"=>"normalSelect" %>
   </div><br />
   <div>
     <%= f.label :comments %><br />
-    <%= f.text_area :email_body, :rows => 5, :cols => 80 %>
-  </div>
+    <%= f.text_area :email_body, "class"=>"span12", :rows => 5 %>
+  </div><br />
   <div>
-    <%= f.submit 'Send Message' %>
+    <%= f.submit 'Submit', "class"=>"btn small primary" %>
   </div>
   
   <% end %>
-</div>
+</form>
 </article></section>
