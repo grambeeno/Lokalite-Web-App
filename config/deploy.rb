@@ -8,6 +8,8 @@ set :default_stage, "development"
 
 set :application, "lokalite"
 
+set :branch, "contact_form"
+
 set :use_sudo, false
 
 set :scm, :git
