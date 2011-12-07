@@ -21,8 +21,9 @@ class Mailer < ActionMailer::Base
     @recipients = 'info@lokalite.com'
     @from = email_params[:name]
     @subject = email_params[:subject] 
-    @body['email_body'] = email_params[:body]
-    @body['email_name'] = email_params[:name]
+    @body["email_body"] = email_params[:comments]
+    @body["email_name"] = email_params[:name]
+    content_type "text/html"
   end
 
 protected

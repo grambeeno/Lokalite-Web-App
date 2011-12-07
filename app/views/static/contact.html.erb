@@ -7,16 +7,12 @@
 
 </style>
 
-<% content_for(:context) { "Contact Us" } %>
-
-<section class="profile"><article>
-
 <h3 class="body" style='font-size:18pt'><strong>Contact</strong></h3>
 
-<p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Let us know! 
+<p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Let us know!</p> 
 
-  <form class="form-stacked">
-<%= form_for :email, :url => {:controller => 'static', :action => 'send_mail' } do |f| %>
+<div class="form-stacked">
+  <%= form_for :email, :url => { :controller => 'static', :action => 'send_mail' } do |f| %>
   <div>
     <%= f.label :name %><br />
     <%= f.text_field :name, "class"=>"span12", "id"=>"xlInput" %>
@@ -31,12 +27,10 @@
   </div><br />
   <div>
     <%= f.label :comments %><br />
-    <%= f.text_area :email_body, "class"=>"span12", :rows => 5 %>
+    <%= f.text_area :comments, "class"=>"span12", :rows => 5 %>
   </div><br />
   <div>
     <%= f.submit 'Submit', "class"=>"btn small primary" %>
   </div>
-  
   <% end %>
-</form>
-</article></section>
+</div>
