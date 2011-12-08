@@ -26,6 +26,25 @@ class Mailer < ActionMailer::Base
     content_type "text/html"
   end
 
+  def advertise_email(email_params)
+    @recipients = 'info@lokalite.com'
+    @company = email_params[:company]
+    @subscription = email_params[:subscription]
+    @featuring_events = email_params[:featuring_events]
+    @social_media = email_params[:social_media]
+    @non_profit = email_params[:non_profit]
+    @body["email_body"] = email_params[:comments]
+    @body["email_name"] = email_params[:name]
+    @budget = email_params[:budget]
+    @phone = email_params[:phone]
+    @start = email_params[:begin]
+    @first_name = email_params[:first_name]
+    @last_name = email_params[:last_name]
+    @city = email_params[:city]
+    @agency = email_params[:agency]
+    content_type "text/html"
+  end
+
 protected
   def subject_for(*args)
     ["[#{ App.domain }]", *args.compact.flatten].join(' ')

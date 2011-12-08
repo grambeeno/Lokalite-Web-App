@@ -1,0 +1,15 @@
+Hello Lokalite, 
+
+I am <%= @first_name %> <%= @last_name %> and I am sending this email on behalf of <%= @company %>.
+We are interested in <%= if @subscription == '1' then "Subscriptions" end %>, <%= if @featuring_events =='1' then "Featuring Events" end %>, <%= if @social_media == '1' then "Social Media Consulting" end %> and would like to begin no later than <%= @start %>. 
+Our budget to accomplish our goals is <%= @budget %>. We look forward to hearing back from you.
+
+<%= if @non_profit == '1' then "This is a Non-Profit Organization" else "We are not Non-Profit" end %>
+
+<%= @company %>
+<%= @phone %>
+<%= @city %>
+<%= @agency %> => Agency
+
+Additional Comments:
+  <%= @email_body %>

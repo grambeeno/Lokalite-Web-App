@@ -1,0 +1,12 @@
+  .title {
+    margin: 0 18px 0 18px;
+    color: #000000;
+  }
+ 
+ 
+ .backdrop {
+    color: white; background-color: #749a74; background-repeat: repeat-x; background-image: -khtml-gradient(linear, left top, left bottom, from(#a4c9a4), to(#749a74)); background-image: -moz-linear-gradient(top, #a4c9a4, #749a74); background-image: -ms-linear-gradient(top, #a4c9a4, #749a74); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a4c9a4), color-stop(100%, #749a74)); background-image: -webkit-linear-gradient(top, #a4c9a4, #749a74); background-image: -o-linear-gradient(top, #a4c9a4, #749a74); background-image: linear-gradient(top, #a4c9a4, #749a74); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0); text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); border-color: #a4c9a4 #a4c9a4 #516b51; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-radius: 5px; }
+
+.plain { background-color: white; background-image:none; }
+
