@@ -28,7 +28,7 @@ class Mailer < ActionMailer::Base
 
   def advertise_email(email_params)
     @recipients = 'info@lokalite.com'
-    @from = 'lokalite@lokalite.com' 
+    @from = email_params[:email] 
     @company = email_params[:company]
     @subscription = email_params[:subscription]
     @featuring_events = email_params[:featuring_events]
@@ -43,6 +43,7 @@ class Mailer < ActionMailer::Base
     @last_name = email_params[:last_name]
     @city = email_params[:city]
     @agency = email_params[:agency]
+    mail(:subject => 'Advertising Request')
     content_type "text/html"
   end
 
