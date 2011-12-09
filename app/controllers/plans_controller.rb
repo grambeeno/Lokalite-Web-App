@@ -8,6 +8,14 @@ class PlansController < ApplicationController
   end
 
   def show
+    if params[:invitation] and !user_signed_in?
+      session[:plan_invitation_uuid] = params[:id]
+    end
+  end
+
+  def accept_invitation
+    current_user.accepted_invitations.create(:plan_id => @plan.id)
+    redirect_to @plan, :success => 'Glad you can be there!'
   end
 
   def new
@@ -19,6 +27,8 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(params[:plan])
 
     if @plan.save
+      current_user.accepted_invitations.create(:plan_id => @plan.id)
+
       flash[:notice] = 'Plan was successfully created.'
       redirect_to(@plan)
     else

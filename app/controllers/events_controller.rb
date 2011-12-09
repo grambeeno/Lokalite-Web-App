@@ -12,8 +12,8 @@ class EventsController < ApplicationController
       params[:per_page] = 12
     end
     params[:user] = current_user if user_signed_in?
-   
-    
+
+
     if params[:category] == "suggested" && params[:user].event_categories.empty?
       flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'
       redirect_to edit_profile_path
@@ -33,7 +33,6 @@ class EventsController < ApplicationController
 #
   def feature
     if current_user and current_user.admin?
-      Rails.logger.debug params.inspect
       id = params[:id]
       featured = params[:featured]
       Event.find(id).featured!(featured)

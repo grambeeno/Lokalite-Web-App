@@ -11,13 +11,13 @@
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
+      // channelURL : '//lokalite.dev/channel.html', // Channel File
+      // xfbml      : true                           // parse XFBML
     FB.init({
       appId      : '<%= FACEBOOK_APP_ID %>', // App ID
-      channelURL : '//lokalite.dev/channel.html', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      oauth      : true, // enable OAuth 2.0
-      xfbml      : true  // parse XFBML
+      status     : true,                     // check login status
+      cookie     : true,                     // enable cookies to allow the server to access the session
+      oauth      : true                      // enable OAuth 2.0
     });
 
     facebookLoaded();
@@ -31,16 +31,4 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  function sendRequestToManyRecipients(data) {
-    FB.ui({method: 'apprequests',
-      message: data.title + ' - ' + data.description
-    }, requestCallback);
-  }
-
-  function requestCallback(response) {
-    response.uuid = $('.invite-to-plan').data('uuid');
-    $.post('/facebook/ajax_request_handler', response, function(data) {
-      // Console.log
-    });
-  }
 </script>

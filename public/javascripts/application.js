@@ -216,16 +216,6 @@ jq(function($){
     $('#organization_locations_attributes_0_name').val($(this).val());
   });
 
-  $('.tooltip').qtip({
-    position: {
-      my: 'bottom middle',
-      at: 'top middle'
-    },
-    style: {
-      classes: 'ui-tooltip-youtube'
-    }
-  });
-
   // $('#search_events').keyup(function(event) {
   //   if (event.keyCode == 13) {
   //     window.location = window.location + '/search/' + $(this).val()

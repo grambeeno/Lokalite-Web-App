@@ -17,11 +17,11 @@
     <title><%= title %></title>
     <meta name="description" content="<%= title %>">
     <meta name="author" content="lokalite.com">
-    <meta name="keywords" content="Boulder Events, Events, Events Calendar, Local Events, Weekend events, Happy Hours, Music, things t                                   o do, concerts"
+    <meta name="keywords" content="Boulder Events, Events, Events Calendar, Local Events, Weekend events, Happy Hours, Music, things to do, concerts">
 
     <!-- Alexa Traffic Site Tag -->
     <meta name="alexaVerifyID" content="pYn4tfsbhIEUBVhn6q5YorJoBZ4" />
-    
+
     <!--  Mobile viewport optimized: j.mp/bplateviewport -->
     <meta name="viewport" content="width=device-width">
 
@@ -61,12 +61,7 @@
 
         <div id="middle">
           <% flash.each do |kind, message| %>
-            <%= content_tag :div, :class => "flash #{kind}" do %>
-              <a href="#dismiss" class='dismiss'>×</a>
-              <p>
-                <%= raw message %>
-              </p>
-            <% end %>
+            <%= display_flash kind, message %>
           <% end %>
 
           <%= yield %>

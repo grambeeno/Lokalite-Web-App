@@ -51,7 +51,9 @@ class User < ActiveRecord::Base
   has_many :organizations, :through => :user_organization_joins
 
   has_many :plans
-  has_many :plan_invitations, :through => :plan_user_invitations
+  has_many :invitations, :class_name => 'PlanUserInvitation'
+  has_many :accepted_invitations, :class_name => 'PlanUserInvitation', :conditions => {:accepted => true}
+  has_many :plans_attending, :through => :accepted_invitations, :source => :plan
 
   has_many :user_event_joins
   has_many :events, :through => :user_event_joins do

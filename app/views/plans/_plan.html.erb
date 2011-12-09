@@ -36,18 +36,17 @@
       <dd><%= clean_format plan.description %></dd>
     </dl>
   </div>
-<!--
+
   <div class="attendee-thumbs">
-    <dl class="cf">
-      <dt>Attendees</dt>
-        <dd><img src="/images/attendee-thumb.png"></dd>
-        <dd><img src="/images/attendee-thumb.png"></dd>
-        <dd><img src="/images/attendee-thumb.png"></dd>
-        <dd><img src="/images/attendee-thumb.png"></dd>
-        <dd><img src="/images/attendee-thumb.png"></dd>
+    <dl>
+    <dt>Who's Coming?</dt>
+      <dd>
+        <% for user in plan.attendees -%>
+          <%= image_tag(user.image_url, :class => 'tooltip profile_small', :title => user.full_name) %>
+        <% end -%>
+      </dd>
     </dl>
-    <p><a href="">See more...</a></p>
   </div>
--->
+
 </section>
 <hr />

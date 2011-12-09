@@ -1,5 +1,21 @@
 <%= render :partial => 'profile_header' %>
 
 <div class="content">
-  <%= render :partial => '/plans/plan', :collection => @plans %>
+  <% if @plans.any? %>
+    <%= render :partial => '/plans/plan', :collection => @plans %>
+  <% else %>
+    <h2 class="big">
+      You don't have any upcoming plans.
+    </h2>
+
+    <p class="centered">
+      Add your favorite events to your datebook,
+      create a plan, and invite your friends!
+    </p>
+
+    <p class="centered">
+      <%= link_to 'New Plan', datebook_path, :class => 'btn primary' %>
+    </p>
+  <% end %>
 </div>
+

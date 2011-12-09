@@ -23,6 +23,26 @@ module ApplicationHelper
     browse_context
   end
 
+  def display_flash(kind, message_or_options_with_block = {}, options = {}, &block)
+    if block_given?
+      message = capture(&block)
+      options = message_or_options_with_block
+    else
+      message = message_or_options_with_block
+    end
+
+    options.reverse_merge!({
+      :close_link => true
+    })
+
+    parts = []
+    parts << link_to('×', '#dismiss', :class => 'dismiss') if options[:close_link]
+    parts << content_tag(:p, message)
+
+    content_tag :div, raw(parts.join), :class => "flash #{kind}"
+  end
+
+
   def search_form(options = {})
     options.to_options!
     options[:action] ||= fullpath.split(/[?]/).first

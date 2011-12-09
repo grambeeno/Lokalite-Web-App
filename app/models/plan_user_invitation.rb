@@ -1,4 +1,8 @@
 class PlanUserInvitation < ActiveRecord::Base
+  belongs_to :plan
+  belongs_to :user
+
+  scope :accepted, where(:accepted => true)
 end
 
 

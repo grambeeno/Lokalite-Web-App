@@ -111,12 +111,13 @@ a.button
 @import signup
 
 img.profile
-  width: 74px
-  height: 96px
+  // width: 74px
+  width: 105px
+  // height: 96px
 
 img.profile_small
   width: 55px
-  height: 80px
+  // height: 80px
 
 .category-tab-buttons
   margin-bottom: 12px
@@ -566,10 +567,20 @@ header.index
       // width: 688px
   // .location
   //   // margin-top: 80px
+
+$thumb-width: 50px
+$thumb-margin: 10px
+
 .event, .plan
   .detail
     table.times
       font-size: 13px
+    img
+      +float('left')
+      padding: 2px
+      background-color: white
+      border: 1px solid #ddd
+      margin: 0 $thumb-margin $thumb-margin 0
 
     .description
       line-height: 1.1em
@@ -593,35 +604,48 @@ header.index
     h2
       font-size: 16px
       font-weight: normal
+
+  $section-margin: 11px
   .image
     +float('left')
     border: 1px solid #ddd
-    margin-right: 15px
+    margin-right: $section-margin
     width: 190px
     height: 190px
 
   .detail
     +float('left')
-    width: 230px
-    margin-right: 5px
+    width: 220px
+    margin-right: $section-margin
     p
       line-height: 1.4em
     table.times
       font-size: 13px
+      // push description down to look better with images
+      margin-bottom: 30px
+
+
+  .event-thumbs, .attendee-thumbs
+    +float('left')
+    // 6px is what padding + border adds to a single image
+    width: ($thumb-width + $thumb-margin + 6) * 2
+    margin-right: $section-margin
+
+    a:nth-child(even) img
+      margin-right: 0
+    img:nth-child(even)
+      margin-right: 0
+
+
+    img
+      +float('left')
+      padding: 2px
+      background-color: white
+      border: 1px solid #ddd
+      margin: 0 $thumb-margin $thumb-margin 0
 
   .attendee-thumbs
-    +float('left')
-    width: 130px
-    dd
-      +float('left')
-      background: #fff
-      padding: 2px
-      border: 1px solid #ddd
-      margin: 0 5px 5px 0
-      img
-        display: block
-        margin: 0
-        padding: 0
+    margin-right: 0
 
   dt
     font-weight: bold
@@ -632,32 +656,6 @@ header.index
     margin-bottom: 10px
     p
       padding-bottom: 8px
-
-$thumb-width: 50px
-$thumb-margin: 10px
-
-.event-thumbs
-  +float('left')
-  // 6px is what padding + border adds to a single image
-  width: ($thumb-width + $thumb-margin + 6) * 2
-  margin-right: 5px
-  a:nth-child(even) img
-    margin-right: 0
-
-  img
-    +float('left')
-    padding: 2px
-    background-color: white
-    border: 1px solid #ddd
-    margin: 0 $thumb-margin $thumb-margin 0
-
-.plan .event-thumbs
-  width: 100%
-  margin-right: 0
-  a:nth-child(even) img
-    margin-right: 5px
-  a:nth-child(odd) img
-    margin-right: 5px
 
 .static-controller
   +huge-headers
@@ -731,7 +729,7 @@ table.event-picker
 
 
 .flash
-  margin: 0 $content-bg-padding 10px
+  margin: 0 $content-bg-padding 18px
   font-size: 14px
   padding: 1em
   line-height: 1.4em

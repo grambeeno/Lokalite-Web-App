@@ -2,7 +2,9 @@ class Plan < ActiveRecord::Base
   # the user that created the plan
   belongs_to :user
 
-  has_many :invitations, :through => :plan_user_invitations
+  has_many :invitations, :class_name => 'PlanUserInvitation'#, :source => 'plan_user_invitations'
+  has_many :accepted_invitations, :class_name => 'PlanUserInvitation', :conditions => {:accepted => true}
+  has_many :attendees, :through => :accepted_invitations, :source => :user
 
   serialize :event_list
 

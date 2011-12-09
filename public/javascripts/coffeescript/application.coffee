@@ -1,5 +1,5 @@
 # Compiling this manually for now with:
-# coffee -cw .
+# coffee -cwb .
 # Had trouble upgrading to rails 3.1
 # don't want to deal with barista or another external gem right now...
 $ ->
@@ -7,6 +7,13 @@ $ ->
   displayOrganizationChart()
 
   $('.truncate').truncate()
+
+  $(".tooltip").qtip
+    position:
+      my: "bottom middle"
+      at: "top middle"
+    style:
+      classes: "ui-tooltip-youtube"
 
   # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
   # store active_hover_id so we can determine the length of the event
@@ -65,6 +72,12 @@ $ ->
   # disable links once they're added to the selected events
   $('#selected-event-list a').live 'click', (event) ->
     event.preventDefault()
+
+  # on plan invitation page
+  $('.wont_be_there').live 'click', (event) ->
+    event.preventDefault()
+    $('.im_attending').fadeOut()
+    $(this).closest('.invitation').slideUp()
 
   # serialize event ids before submitting form
   $('#plan-form').submit (event) ->

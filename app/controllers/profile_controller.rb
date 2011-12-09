@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
   before_filter :authenticate_user!
 
   def plans
-    @plans = current_user.plans.upcoming
+    @plans = current_user.plans_attending.upcoming
   end
 
   def update
@@ -11,13 +11,13 @@ class ProfileController < ApplicationController
 
     if params[:updated_categories] == "changed"
       redirection_path = events_path(:origin => params[:origin], :category => 'suggested')
-    else 
+    else
       redirection_path = :back
-    end 
-    
+    end
+
     if current_user.update_attributes(params[:user])
       flash[:success] = 'Your profile has been updated.'
-      redirect_to redirection_path 
+      redirect_to redirection_path
     else
       render :profile
     end

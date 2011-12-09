@@ -3,14 +3,16 @@ Lokalite::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-
   match '/business' => 'root#business', :as => 'business_promo'
   devise_scope :user do
     match '/business/sign_up' => 'devise/registrations#new', :business => true, :as => 'business_sign_up'
   end
 
+
+
   resources :plans
-  match "plans/:id/invitation", :controller => 'plans', :action => 'show', :invitation => true, :as => 'plan_invitation'
+  get "plans/invitation/:id", :controller => 'plans', :action => 'show', :invitation => true, :as => 'plan_invitation'
+  post "plans/invitation/:id", :controller => 'plans', :action => 'accept_invitation', :as => 'accept_plan_invitation'
   match "profile/datebook", :controller => 'plans', :action => 'new', :as => 'datebook'
 
   get "profile/plans", :as => 'user_plans'

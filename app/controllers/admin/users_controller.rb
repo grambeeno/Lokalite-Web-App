@@ -69,3 +69,4 @@ class Admin::UsersController < Admin::Controller
     redirect_to(:action => :index)
   end
 end
+

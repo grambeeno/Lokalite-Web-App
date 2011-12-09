@@ -1,3 +1,41 @@
+<% if params[:invitation] %>
+
+
+  <% if user_signed_in? && @plan.attendees.include?(current_user) %>
+    <%= display_flash 'success', :close_link => false do %>
+      You've already accepted this invitation! You can invite others by sending them the link to this page.
+    <% end -%>
+    <hr />
+  <% else %>
+    <div class="invitation">
+      <%= display_flash 'notice', :close_link => false do %>
+        You've been invited to
+        <%= @plan.title %>!
+
+      <% end %>
+      <div class="centered">
+        <% if user_signed_in? %>
+          <% form_tag(accept_plan_invitation_path(@plan), :method => :post) do -%>
+            <%= submit_tag "I'm Attending!", :class => 'btn large right primary' %>
+              &nbsp;&nbsp;
+            <%= link_to "I Won't Be There", '#not_attending', :class => "wont_be_there" %>
+          <% end -%>
+        <% else %>
+          <%# We store a value in the session to redirect them back after the account is created %>
+          <h2 class="big">
+            Will you be there?
+          </h2>
+          <fb:login-button onlogin="afterFacebookSignIn()">Sign in with Facebook</fb:login-button>
+          or
+          <%= link_to 'create an account without facebook', new_user_registration_path -%>
+          to RSVP.
+        <% end %>
+      </div>
+      <hr />
+    </div>
+  <% end %>
+<% end %>
+
 <section class="plan cf">
   <div class='title cf'>
     <div class="half">
@@ -18,7 +56,18 @@
       </div>
     </div>
     <div class="half ext">
-      <%= link_to "Invite Friends", '#', :class => 'btn primary mts invite-to-plan ext', 'data-title' => @plan.title, 'data-description' => @plan.description, 'data-uuid' => @plan.uuid  %>
+      <%=
+        link_to "Invite Friends", '#', {
+          :class => 'btn primary mts invite-to-plan ext',
+          'data-name'        => @plan.title,
+          'data-description' => @plan.description,
+          'data-link'        => plan_invitation_url(@plan),
+          'data-picture'     => File.join('http://lokalite.com', @plan.events.first.image.image_url(:medium))
+          # Don't know why the picture won't load from google maps
+          # 'data-picture'     => google_maps_image_url(@plan, :size => '300x300')
+        }
+        %>
+      <%#= plan_invitation_url(@plan) %>
     </div>
   </div>
 
@@ -35,14 +84,21 @@
       <dd><%= clean_format @plan.description %></dd>
 
       <dt>Events</dt>
-      <dd class="more-events event-thumbs cf">
+      <dd>
         <% for event in @plan.events[0...5] %>
           <%= link_to image_tag(event.image.url(:small), :class => 'tooltip profile_small', :title => event.name), event_path(event.slug, event.id) %>
+        <% end -%>
+        <div class="clear"></div>
+      </dd>
+
+      <dt>Who's Coming?</dt>
+      <dd>
+        <% for user in @plan.attendees -%>
+          <%= image_tag(user.image_url, :class => 'tooltip profile_small', :title => user.full_name) %>
         <% end -%>
       </dd>
     </dl>
   </div>
-
 </section>
 
 <div class='content'>

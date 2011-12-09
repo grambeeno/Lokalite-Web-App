@@ -45,7 +45,7 @@ namespace :backup do
   end
 
   desc "Import production db into production environment"
-  # this is used for bringing the production db into our staging environment
+  # this is used for bringing the production db into our staging environment (running in production mode)
   task :import_to_production do
     system "psql -c 'DROP SCHEMA public CASCADE;' lokalite_production lokalite"
     system "recent_db_backup=`ls -1 db_dumps/ | tail -1`

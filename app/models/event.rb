@@ -54,7 +54,7 @@ class Event < ActiveRecord::Base
   def check_description_length
     return if description.blank?
     stripped = description.gsub /\r\n/, ' '
-    if stripped.length > 140 
+    if stripped.length > 140
       errors.add(:description, 'is too long (maximum is 140 characters)')
     end
   end
@@ -453,7 +453,6 @@ class Event < ActiveRecord::Base
     options = args.dup.extract_options!
     user = options.delete(:for_user)
     extras = {}
-    logger.debug { "-------------------- user #{user.inspect}" }
     extras[:trended?] = user.events.include?(self) if user
     super(*options).push(extras)
   end
