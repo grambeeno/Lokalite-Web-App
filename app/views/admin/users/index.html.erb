@@ -49,5 +49,24 @@
   <br />
   <%= will_paginate :collection => @users %>
 
-
 </div>
+<br />
+<br />
+<div>
+      <h1 class='info'>
+        There are currently
+        <strong>
+          <%= Event.upcoming.size %>
+          events
+        </strong>
+
+
+        <br />
+        put on by
+        <strong>
+          <%= Organization.all.size %>
+          companies
+        </strong>
+        in Boulder, Co.
+      </h1>
+    </div>
