@@ -44,7 +44,7 @@ class Mailer < ActionMailer::Base
     @email = email_params[:email]
     @city = email_params[:city]
     @agency = email_params[:agency]
-    mail(:subject => 'Advertising Request')
+    mail(:to => 'info@lokalite.com', :subject => 'Advertising Request')
     content_type "text/html"
   end
 
