@@ -42,33 +42,52 @@
       <dl class="half ext">
         <dt>Share</dt>
         <dd>
-          <a name="fb_share"></a> 
+          <a name="fb_share"></a>
           <script src="//platform.twitter.com/widgets.js" type="text/javascript"></script>
           <script type="text/javascript">
             $(function() {
                 $('.twitter-icon').click(function(event) {
-                  var width  = 575,
-                      height = 400,
-                      left   = ($(window).width()  - width)  / 2,
-                      top    = ($(window).height() - height) / 2,
-                      url    = this.href,
-                      opts   = 'status=1' +
+                  var width   = 575,
+                      height  = 400,
+                      left    = ($(window).width()  - width)  / 2,
+                      top     = ($(window).height() - height) / 2,
+                      url     = this.href,
+                      options = 'status=1' +
                                ',width='  + width  +
                                ',height=' + height +
                                ',top='    + top    +
                                ',left='   + left;
-    
-                  window.open(url, 'twitter', opts);
- 
+
+                  window.open(url, 'twitter', options);
+
                   return false;
                 });
               });
           </script>
-          <% if user_signed_in? %>
-          <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook-icon tooltip', :oldtitle => 'Datebook', 'aria-describedby' => 'ui-tooltip-0', :title => 'Add to or remove from your datebook' %>
-          <% end %>
           <ul class="social">
-            <li><a href="https://twitter.com/share" oldtitle="Twitter" aria-describedby="ui-tooltip-0" title="Share this event on Twitter"><img src="/images/social-icons/twitter.png" /></a></li>
+            <% if user_signed_in? %>
+              <li>
+                <% if event_trended?(@event) %>
+                  <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook_remove-icon tooltip', :title => 'Remove from your datebook' %>
+                <% else %>
+                  <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook_add-icon tooltip', :title => 'Add to your datebook' %>
+                <% end %>
+              </li>
+            <% end %>
+            <li>
+              <%
+                twitter_link = url_for({
+                  :protocol   => 'https',
+                  :host       => 'twitter.com',
+                  :controller => 'share',
+                  :action     => 'index',
+                  :text       => "I am checking out #{@event.name.strip} via @lokalite",
+                  :related    => 'lokalite',
+                  :hashtags   => 'Boulder,Events'
+                })
+              -%>
+              <%= link_to 'Share on Twitter', twitter_link, :title => 'Share this event on Twitter', :class => 'social-icon twitter-icon tooltip' %>
+            </li>
           </ul>
         </dd>
       </dl>

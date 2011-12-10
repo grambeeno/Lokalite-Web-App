@@ -8,8 +8,6 @@ Lokalite::Application.routes.draw do
     match '/business/sign_up' => 'devise/registrations#new', :business => true, :as => 'business_sign_up'
   end
 
-
-
   resources :plans
   get "plans/invitation/:id", :controller => 'plans', :action => 'show', :invitation => true, :as => 'plan_invitation'
   post "plans/invitation/:id", :controller => 'plans', :action => 'accept_invitation', :as => 'accept_plan_invitation'

@@ -14,7 +14,7 @@ $header-grey: #444444
 
 $event-categories: 'all_events', 'all_places', 'featured', 'most_popular', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
-$social-categories: 'twitter', 'lokalite', 'datebook'
+$social-categories: 'twitter', 'lokalite', 'datebook_add', 'datebook_remove', 'facebook'
 
 =transparent-black
   background:
@@ -144,7 +144,8 @@ img.profile_small
 .category-tab-buttons li.last
   margin-right: 0
 
-.category-icon
+.category-icon,
+.social-icon
   +float('left')
   +replace-text-with-dimensions("category-icons/featured.png")
   background-position: left top
@@ -155,26 +156,16 @@ img.profile_small
   &:hover
     background-position: left bottom
 
+.category-icon
   @each $category in $event-categories
     &.#{$category}
       background-image: image_url("category-icons/#{$category}.png")
 
 .social-icon
-  +float('left')
-  +replace-text-with-dimensions("social-icons/facebook.png")
-  background-position: left top
-  display: block
-  margin-right: 12px
-  height: 17px
-  margin-bottom: 4px
-  &:hover
-    background-position: 0 -17px
-
   @each $social in $social-categories
     &.#{$social}-icon
       background-image: image_url("social-icons/#{$social}.png")
-.social-icon.datebook-icon.active:hover
-  background-position: 0 -34px
+
 
 .fb_share_size_Small
   display: none
