@@ -113,7 +113,6 @@ ApiV1 =
   ## this is simply a suggest way to model your api.  it is not required.
   #
     attr_accessor :effective_user
-    attr_accessor :real_user
 
     def initialize(current_user = nil)
       @current_user = current_user

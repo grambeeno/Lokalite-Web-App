@@ -112,7 +112,7 @@ class My::EventsController < My::Controller
   end
 
   def feature
-    if real_user.admin?
+    if user_sudoing?
       @event.feature!
       flash[:success] = "#{@event.name} has been featured!"
       redirect_to :back
@@ -122,7 +122,7 @@ class My::EventsController < My::Controller
   end
 
   def unfeature
-    if real_user.admin?
+    if user_sudoing?
       @event.unfeature!
       flash[:notice] = "#{@event.name} is no longer a featured event."
       redirect_to :back
