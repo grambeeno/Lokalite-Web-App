@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_user_time_zone
   before_filter :set_origin
   before_filter :set_effective_user, :handle_business_sign_up, :handle_plan_invitations
-  before_filter :prepare_for_mobile 
+  before_filter :prepare_for_mobile
 
   # before_filter :show_holding_page
 
@@ -110,6 +110,11 @@ end
     session.key?('effective_user')
   end
   helper_method(:user_sudoing?)
+
+  def real_user_is_admin?
+    user_sudoing? || current_user.admin?
+  end
+  helper_method(:real_user_is_admin?)
 
   def require_admin
     unless current_user.admin?
