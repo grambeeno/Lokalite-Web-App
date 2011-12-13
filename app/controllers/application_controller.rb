@@ -17,7 +17,10 @@ protected
 
   def set_effective_user
     return unless user_signed_in? && current_user.admin?
-    @current_user = User.find_by_uuid(session['effective_user']) if session.key?('effective_user')
+    if session.key?('effective_user')
+      @real_user    = current_user
+      @current_user = User.find_by_uuid(session['effective_user'])
+    end
   end
   def mobile_device?
     if session[:mobile_param]
@@ -107,7 +110,7 @@ end
   # helper_method(:current_user)
 
   def user_sudoing?
-    session.key?('effective_user')
+    defined?(@real_user)
   end
   helper_method(:user_sudoing?)
 
