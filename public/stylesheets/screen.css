@@ -339,14 +339,16 @@ img.profile_small { width: 55px; }
 .events li .image img.profile, .organizations li .image img.profile { display: none; }
 .events li .image .close, .organizations li .image .close { display: none; }
 .events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1318227768'); background-repeat: repeat; color: white; padding: 2px; display: none; }
-.events li .image .trend-button, .organizations li .image .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/datebook-add.png?1323800759'); background-position: top; width: 52px; height: 52px; }
-.events li .image .trend-button:hover, .events li .image .trend-button.trended, .organizations li .image .trend-button:hover, .organizations li .image .trend-button.trended { background-position: bottom; }
-.events li .image .untrend-button, .organizations li .image .untrend-button { display: none; }
 .events li .detail h1, .organizations li .detail h1 { font-size: 14px; }
 .events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
 .events li.ui-draggable-dragging .detail, .organizations li.ui-draggable-dragging .detail { display: none; }
 
 .events-controller .events .close, .datebook .events .close, .organization-events .events .close { display: none; }
+
+.events .image, .event .image .inner { position: relative; }
+.events .image .trend-button, .event .image .inner .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/datebook-add.png?1323800759'); background-position: top; width: 52px; height: 52px; }
+.events .image .trend-button:hover, .events .image .trend-button.trended, .event .image .inner .trend-button:hover, .event .image .inner .trend-button.trended { background-position: bottom; }
+.events .image .untrend-button, .event .image .inner .untrend-button { display: none; }
 
 .datebook .events .image .trend-button { display: none; }
 .datebook .events .image .untrend-button { display: block; text-decoration: none; position: absolute; top: -18px; right: -18px; background-image: url('/images/datebook-remove.png?1323803753'); background-position: top; width: 20px; height: 20px; }

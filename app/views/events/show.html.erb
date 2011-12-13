@@ -18,7 +18,10 @@
     </div>
   <% end %>
   <div class='image'>
-    <%= image_tag(@event.image.url(:large)) %>
+    <div class="inner">
+      <%= image_tag(@event.image.url(:large)) %>
+      <%= link_to ' ', "#trend_event/#{@event.id}", :class => ['trend-button', trend_class(@event)] %>
+    </div>
   </div>
 
   <div class='detail'>

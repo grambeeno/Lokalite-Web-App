@@ -380,21 +380,6 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
         padding: 2px
         display: none
 
-      .trend-button
-        text-decoration: none
-        position: absolute
-        top: 0
-        left: 0
-        background:
-          image: image-url('datebook-add.png')
-          position: top
-        width: image-width('datebook-add.png')
-        height: image-height('datebook-add.png')/2
-        &:hover, &.trended
-          background-position: bottom
-      .untrend-button
-        display: none
-
     .detail
       h1
         font-size: 14px
@@ -411,6 +396,25 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
 
 .events-controller .events .close, .datebook .events .close, .organization-events .events .close
   display: none
+
+
+.events .image,
+.event .image .inner
+  position: relative
+  .trend-button
+    text-decoration: none
+    position: absolute
+    top: 0
+    left: 0
+    background:
+      image: image-url('datebook-add.png')
+      position: top
+    width: image-width('datebook-add.png')
+    height: image-height('datebook-add.png')/2
+    &:hover, &.trended
+      background-position: bottom
+  .untrend-button
+    display: none
 
 .datebook .events .image
   .trend-button
