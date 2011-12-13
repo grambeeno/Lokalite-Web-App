@@ -6,7 +6,13 @@ $ ->
   trackImpressions()
   displayOrganizationChart()
 
+  $('input, textarea').placeholder()
+
   $('.truncate').truncate()
+
+  $(".flash a.dismiss").live "click", (event) ->
+    event.preventDefault()
+    $(this).closest(".flash").hide 400
 
   $(".tooltip").qtip
     position:
@@ -42,6 +48,29 @@ $ ->
     mouseleave: ->
       $(this).find('.description').hide("slide", { direction: "down" }, 400)
       active_hover_id = ''
+
+  $(".trend-button").live "click", (event) ->
+    event.preventDefault()
+    link = $(this)
+    event_id = idFromString(link.attr("href"))
+    App.ajax
+      url: "/api/1/events/trend?event_id=" + event_id
+      type: "post"
+      success: (response, status, request) ->
+        # Prefer immediate response
+    link.removeClass "trend"
+    link.addClass "trended"
+
+  $(".untrend-button").live "click", (event) ->
+    event.preventDefault()
+    link = $(this)
+    event_id = idFromString(link.attr("href"))
+    App.ajax
+      url: "/api/1/events/untrend?event_id=" + event_id
+      type: "post"
+      success: (response, status, request) ->
+        # Prefer immediate response
+    link.closest('.event-preview').fadeOut()
 
   # event plans
   $('li', '.datebook .events').draggable

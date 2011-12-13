@@ -65,15 +65,6 @@
               });
           </script>
           <ul class="social">
-            <% if user_signed_in? %>
-              <li>
-                <% if event_trended?(@event) %>
-                  <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook_remove-icon tooltip', :title => 'Remove from your datebook' %>
-                <% else %>
-                  <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook_add-icon tooltip', :title => 'Add to your datebook' %>
-                <% end %>
-              </li>
-            <% end %>
             <li>
               <%
                 twitter_link = url_for({

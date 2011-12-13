@@ -14,7 +14,7 @@ $header-grey: #444444
 
 $event-categories: 'all_events', 'all_places', 'featured', 'most_popular', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
-$social-categories: 'twitter', 'lokalite', 'datebook_add', 'datebook_remove', 'facebook'
+$social-categories: 'twitter', 'lokalite', 'facebook'
 
 =transparent-black
   background:
@@ -386,24 +386,15 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
         top: 0
         left: 0
         background:
-          image: image-url('add-corner.png')
+          image: image-url('datebook-add.png')
           position: top
-        width: image-width('add-corner.png')
-        height: image-height('add-corner.png')/3
-        &:hover
-          background-position: -52px
-        &.trended
-          background-position: -52px
-          &:hover
-            background-position: bottom
-        .trend-count
-          display: none
-          font-style: italic
-          font-size: 10px
-          color: white
-          position: absolute
-          left: 23px
-          top: 2px
+        width: image-width('datebook-add.png')
+        height: image-height('datebook-add.png')/2
+        &:hover, &.trended
+          background-position: bottom
+      .untrend-button
+        display: none
+
     .detail
       h1
         font-size: 14px
@@ -421,8 +412,23 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
 .events-controller .events .close, .datebook .events .close, .organization-events .events .close
   display: none
 
-.datebook .events .trend-button
-  display: none
+.datebook .events .image
+  .trend-button
+    display: none
+  .untrend-button
+    display: block
+    text-decoration: none
+    position: absolute
+    $offset: -18px
+    top: $offset
+    right: $offset
+    background:
+      image: image-url('datebook-remove.png')
+      position: top
+    width: image-width('datebook-remove.png')
+    height: image-width('datebook-remove.png')
+    &:hover
+      background-position: bottom
 
 #selected-event-list li .detail, #selected-event-list li .trend-button
   display: none

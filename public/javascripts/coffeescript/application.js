@@ -4,7 +4,12 @@ $(function() {
   var active_hover_id;
   trackImpressions();
   displayOrganizationChart();
+  $('input, textarea').placeholder();
   $('.truncate').truncate();
+  $(".flash a.dismiss").live("click", function(event) {
+    event.preventDefault();
+    return $(this).closest(".flash").hide(400);
+  });
   $(".tooltip").qtip({
     position: {
       my: "bottom middle",
@@ -44,6 +49,31 @@ $(function() {
       }, 400);
       return active_hover_id = '';
     }
+  });
+  $(".trend-button").live("click", function(event) {
+    var event_id, link;
+    event.preventDefault();
+    link = $(this);
+    event_id = idFromString(link.attr("href"));
+    App.ajax({
+      url: "/api/1/events/trend?event_id=" + event_id,
+      type: "post",
+      success: function(response, status, request) {}
+    });
+    link.removeClass("trend");
+    return link.addClass("trended");
+  });
+  $(".untrend-button").live("click", function(event) {
+    var event_id, link;
+    event.preventDefault();
+    link = $(this);
+    event_id = idFromString(link.attr("href"));
+    App.ajax({
+      url: "/api/1/events/untrend?event_id=" + event_id,
+      type: "post",
+      success: function(response, status, request) {}
+    });
+    return link.closest('.event-preview').fadeOut();
   });
   $('li', '.datebook .events').draggable({
     revert: 'invalid',
