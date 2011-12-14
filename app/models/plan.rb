@@ -44,7 +44,8 @@ class Plan < ActiveRecord::Base
   end
 
   def event_ids
-    event_list.to_s
+    return '' if event_list.blank?
+    event_list.join(',')
   end
 
   def event_ids=(ids)
