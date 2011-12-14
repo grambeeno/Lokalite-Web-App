@@ -26,7 +26,7 @@ window.afterFacebookSignIn = ->
 postToFeedCallback = (response) ->
 
 $ ->
-  $('.invite-to-plan').click (e) ->
+  $('.facebook-invite').click (e) ->
     e.preventDefault()
     data = $(this).data()
     FB.ui

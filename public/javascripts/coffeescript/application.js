@@ -106,8 +106,12 @@ $(function() {
   });
   $('.wont_be_there').live('click', function(event) {
     event.preventDefault();
-    $('.im_attending').fadeOut();
     return $(this).closest('.invitation').slideUp();
+  });
+  $('.attending-event').live('click', function(event) {
+    event.preventDefault();
+    $(this).closest('.invitation').slideUp();
+    return $('.trend-button').click();
   });
   $('#plan-form').submit(function(event) {
     var event_ids, event_string;

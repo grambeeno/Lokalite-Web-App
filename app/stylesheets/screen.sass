@@ -520,11 +520,21 @@ header.index
   .title
     +clearfix
     margin-bottom: 10px
+    $right-margin: 10px
     .title-image
       +float('left')
-      margin-right: 10px
+      margin-right: $right-margin
+      width: 50px
     .text
       +float('left')
+      margin-right: $right-margin
+      width: $content-inner-width - 110 - 50
+    .facebook-invite
+      +float('left')
+      text-align: center
+      // 110 wide, subtract 30 for padding
+      width: 80px
+
     h1
       font-size: 24px
     h2
@@ -559,7 +569,7 @@ header.index
       padding-bottom: 8px
 
   .location
-    margin-top: 8px
+    margin-top: 2px
     .map img
       border: 1px solid #ddd
       +border-radius(5px)

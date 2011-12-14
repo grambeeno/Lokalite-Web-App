@@ -105,8 +105,16 @@ $ ->
   # on plan invitation page
   $('.wont_be_there').live 'click', (event) ->
     event.preventDefault()
-    $('.im_attending').fadeOut()
     $(this).closest('.invitation').slideUp()
+
+  # on event invitation page
+  $('.attending-event').live 'click', (event) ->
+    event.preventDefault()
+    $(this).closest('.invitation').slideUp()
+    # instead of re-implementing the trend event we'll just
+    # click the button that already exists on the event page
+    $('.trend-button').click()
+
 
   # serialize event ids before submitting form
   $('#plan-form').submit (event) ->

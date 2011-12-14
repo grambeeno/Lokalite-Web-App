@@ -5,7 +5,7 @@ window.afterFacebookSignIn = function() {
 };
 postToFeedCallback = function(response) {};
 $(function() {
-  $('.invite-to-plan').click(function(e) {
+  $('.facebook-invite').click(function(e) {
     var data;
     e.preventDefault();
     data = $(this).data();

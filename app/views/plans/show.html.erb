@@ -1,6 +1,4 @@
 <% if params[:invitation] %>
-
-
   <% if user_signed_in? && @plan.attendees.include?(current_user) %>
     <%= display_flash 'success', :close_link => false do %>
       You've already accepted this invitation! You can invite others by sending them the link to this page.
@@ -38,37 +36,33 @@
 
 <section class="plan cf">
   <div class='title cf'>
-    <div class="half">
-      <div class="title-image">
-        <%= image_tag @plan.user.image_url %>
-      </div>
-      <div class="text">
-        <h1>
-          <%= @plan.title %>
-          <% if user_signed_in? && @plan.is_editable_by?(current_user) %>
-            <span class='edit'><%= link_to '(edit)', edit_plan_path(@plan) %></span>
-          <% end %>
-        </h1>
-        <h2>
-          By
-          <%= @plan.user.full_name %>
-        </h2>
-      </div>
+    <div class="title-image">
+      <%= image_tag @plan.user.image_url %>
     </div>
-    <div class="half ext">
-      <%=
-        link_to "Invite Friends", '#', {
-          :class => 'btn primary mts invite-to-plan ext',
-          'data-name'        => @plan.title,
-          'data-description' => @plan.description,
-          'data-link'        => plan_invitation_url(@plan),
-          'data-picture'     => File.join('http://lokalite.com', @plan.events.first.image.image_url(:medium))
-          # Don't know why the picture won't load from google maps
-          # 'data-picture'     => google_maps_image_url(@plan, :size => '300x300')
-        }
-        %>
-      <%#= plan_invitation_url(@plan) %>
+    <div class="text">
+      <h1>
+        <%= @plan.title %>
+        <% if user_signed_in? && @plan.is_editable_by?(current_user) %>
+          <span class='edit'><%= link_to '(edit)', edit_plan_path(@plan) %></span>
+        <% end %>
+      </h1>
+      <h2>
+        By
+        <%= @plan.user.full_name %>
+      </h2>
     </div>
+    <%=
+      link_to "Invite Friends", '#', {
+        :class => 'btn primary facebook-invite',
+        'data-name'        => @plan.title,
+        'data-description' => @plan.description,
+        'data-link'        => plan_invitation_url(@plan),
+        'data-picture'     => File.join('http://lokalite.com', @plan.events.first.image.image_url(:medium))
+        # Don't know why the picture won't load from google maps
+        # 'data-picture'     => google_maps_image_url(@plan, :size => '300x300')
+      }
+    %>
+    <%#= plan_invitation_url(@plan) %>
   </div>
 
   <div class='image'>
