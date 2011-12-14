@@ -40,7 +40,9 @@
 
   <div class="clear"></div>
 
-  <%= facebook_comments(:url => organization_url(@organization.slug, @organization.id)) %>
+  <div class='facebook-comments'>
+    <%= facebook_comments(:url => organization_url(@organization.slug, @organization.id)) %>
+  </div>
 </section>
 
 <div class="organization-events">
