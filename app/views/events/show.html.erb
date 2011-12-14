@@ -82,6 +82,17 @@
               -%>
               <%= link_to 'Share on Twitter', twitter_link, :title => 'Share this event on Twitter', :class => 'social-icon twitter-icon tooltip' %>
             </li>
+            <li>
+              <%=
+                link_to 'Share on Facebook', '#share_on_facebook', {
+                  :title => 'Share this event on Facebook',
+                  :class => 'social-icon facebook-icon tooltip',
+                  'data-link' => event_url(@event.slug, @event.id),
+                  'data-picture' => File.join('http://lokalite.com', @event.image.image_url(:medium)),
+                  'data-name' => @event.name.strip,
+                  'data-description' => @event.description
+                } %>
+            </li>
           </ul>
         </dd>
       </dl>
