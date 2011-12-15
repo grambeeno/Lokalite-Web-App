@@ -1,3 +1,37 @@
+<% if params[:invitation] %>
+  <% if user_signed_in? && @event.users.include?(current_user) %>
+    <%= display_flash 'success', :close_link => false do %>
+      You've already accepted this invitation! You can invite others by sending them the link to this page.
+    <% end -%>
+    <hr />
+  <% else %>
+    <div class="invitation">
+      <%= display_flash 'notice', :close_link => false do %>
+        You've been invited to
+        <%= @event.name %>!
+
+      <% end %>
+      <div class="centered">
+        <% if user_signed_in? %>
+          <%= link_to "I'm Attending!", '#add_to_datebook', :class => 'btn large primary attending-event' %>
+            &nbsp;&nbsp;
+          <%= link_to "I Won't Be There", '#not_attending', :class => "wont_be_there" %>
+        <% else %>
+          <%# We store a value in the session to redirect them back after the account is created %>
+          <h2 class="big">
+            Will you be there?
+          </h2>
+          <fb:login-button onlogin="afterFacebookSignIn()">Sign in with Facebook</fb:login-button>
+          or
+          <%= link_to 'create an account without facebook', new_user_registration_path -%>
+          to RSVP.
+        <% end %>
+      </div>
+      <hr />
+    </div>
+  <% end %>
+<% end %>
+
 <section class='event'<%= report_grid_tracker(@event, :type => 'Page') %>>
   <div class='title'>
     <div class="title-image">
@@ -9,16 +43,22 @@
         <%= event_location_string(@event) %>
       </h2>
     </div>
+    <%=
+      link_to "Invite Friends", '#', {
+        :class => 'btn primary facebook-invite',
+        'data-name'        => @event.name,
+        'data-description' => @event.description,
+        'data-link'        => event_invitation_url(@event),
+        'data-picture'     => File.join('http://lokalite.com', @event.image.image_url(:medium))
+      }
+    %>
   </div>
 
-  <% if false %>
-    <div class="social-links">
-      <%= link_to 'Twitter', '#', :class => 'twitter' %>
-      <%= link_to 'Facebook', '#', :class => 'facebook' %>
-    </div>
-  <% end %>
   <div class='image'>
-    <%= image_tag(@event.image.url(:large)) %>
+    <div class="inner">
+      <%= image_tag(@event.image.url(:large)) %>
+      <%= link_to ' ', "#trend_event/#{@event.id}", :class => ['trend-button', trend_class(@event)] %>
+    </div>
   </div>
 
   <div class='detail'>
@@ -32,12 +72,12 @@
     </dl>
     <div class="cf">
       <dl class="half">
-      <dt>Tags</dt>
-      <dd>
-        <% for category in @event.categories -%>
-          <%= link_to category.name, events_path(:origin => params[:origin], :category => category.name.parameterize('_')), :class => "category-icon #{category.name.parameterize('_')} tooltip", :title => category.name %>
-        <% end -%>
-      </dd>
+        <dt>Tags</dt>
+        <dd>
+          <% for category in @event.categories -%>
+            <%= link_to category.name, events_path(:origin => params[:origin], :category => category.name.parameterize('_')), :class => "category-icon #{category.name.parameterize('_')} tooltip", :title => category.name %>
+          <% end -%>
+        </dd>
       </dl>
       <dl class="half ext">
         <dt>Share</dt>
@@ -65,15 +105,6 @@
               });
           </script>
           <ul class="social">
-            <% if user_signed_in? %>
-              <li>
-                <% if event_trended?(@event) %>
-                  <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook_remove-icon tooltip', :title => 'Remove from your datebook' %>
-                <% else %>
-                  <%= link_to 'Datebook', datebook_path, :class => 'social-icon datebook_add-icon tooltip', :title => 'Add to your datebook' %>
-                <% end %>
-              </li>
-            <% end %>
             <li>
               <%
                 twitter_link = url_for({
@@ -88,21 +119,21 @@
               -%>
               <%= link_to 'Share on Twitter', twitter_link, :title => 'Share this event on Twitter', :class => 'social-icon twitter-icon tooltip' %>
             </li>
+            <li>
+              <%=
+                link_to 'Share on Facebook', '#share_on_facebook', {
+                  :title => 'Share this event on Facebook',
+                  :class => 'social-icon facebook-icon tooltip',
+                  'data-link' => event_url(@event.slug, @event.id),
+                  'data-picture' => File.join('http://lokalite.com', @event.image.image_url(:medium)),
+                  'data-name' => @event.name.strip,
+                  'data-description' => @event.description
+                } %>
+            </li>
           </ul>
         </dd>
       </dl>
     </div>
-
-    <!--
-    <div class="buttons">
-      <%= link_to 'Share', '#' %>
-      &nbsp;
-      <% if user_signed_in? %>
-        <%= link_to(trend_class(@event).to_s.titleize, "#trend_event/#{@event.id}", :class => [trend_class(@event)]) %>
-      <% end %>
-      (<%= pluralize @event.users_count, 'trend' %>)
-    </div>
-    -->
 
     <div class="location">
       <div class="map">
@@ -113,7 +144,7 @@
 
   <div class="clear"></div>
 
-  <div class="content">
+  <div class="facebook-comments">
     <%= facebook_comments(:url => event_url(@event.slug, @event.id), :posts => 6) %>
   </div>
 </section>

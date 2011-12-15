@@ -1,7 +1,7 @@
 # See how all your routes lay out with "rake routes"
 Lokalite::Application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
   match '/business' => 'root#business', :as => 'business_promo'
   devise_scope :user do
@@ -9,11 +9,11 @@ Lokalite::Application.routes.draw do
   end
 
   resources :plans
-  get "plans/invitation/:id", :controller => 'plans', :action => 'show', :invitation => true, :as => 'plan_invitation'
-  post "plans/invitation/:id", :controller => 'plans', :action => 'accept_invitation', :as => 'accept_plan_invitation'
-  match "profile/datebook", :controller => 'plans', :action => 'new', :as => 'datebook'
+  get 'plans/invitation/:id', :controller => 'plans', :action => 'show', :invitation => true, :as => 'plan_invitation'
+  post 'plans/invitation/:id', :controller => 'plans', :action => 'accept_invitation', :as => 'accept_plan_invitation'
+  match 'profile/datebook', :controller => 'plans', :action => 'new', :as => 'datebook'
 
-  get "profile/plans", :as => 'user_plans'
+  get 'profile/plans', :as => 'user_plans'
   get 'profile/edit', :as => 'edit_profile'
   post 'profile/update', :as => 'update_profile'
 
@@ -22,6 +22,7 @@ Lokalite::Application.routes.draw do
 
   match 'events/categories', :controller => :events, :action => :categories, :as => :event_categories
 
+  get   'events/invitation/:id', :controller => :events, :action => :show, :invitation => true, :as => 'event_invitation'
   match 'events(/*slug)/:id', :as => :event, :controller => :events, :constraints => {:id => /\d+/}, :action => :show
 
   # match 'events/:origin(/category/:category)(/search/:keywords)', :controller => :events, :action => :index, :as => :events

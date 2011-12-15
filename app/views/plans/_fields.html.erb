@@ -29,15 +29,12 @@
 
   <div id='selected-event-list' class='events cf'>
     <%# does not yet allow for editing of events in plan %>
-    <% if f.object.new_record? %>
-      <div class='drag-target'></div>
-      <div class="thumb-container cf">
-      </div>
-    <% else %>
+    <div class='drag-target'></div>
+    <ul class="thumb-container">
       <% f.object.events.each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>
-      <% end %>
-    <% end %>
+      <% end unless f.object.new_record? %>
+    </ul>
   </div>
 
   <div class="clear"></div>

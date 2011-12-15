@@ -1,10 +1,15 @@
 var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackImpressions;
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 $(function() {
-  var active_hover_id;
+  var active_hover_id, planDragOptions;
   trackImpressions();
   displayOrganizationChart();
+  $('input, textarea').placeholder();
   $('.truncate').truncate();
+  $(".flash a.dismiss").live("click", function(event) {
+    event.preventDefault();
+    return $(this).closest(".flash").hide(400);
+  });
   $(".tooltip").qtip({
     position: {
       my: "bottom middle",
@@ -45,13 +50,39 @@ $(function() {
       return active_hover_id = '';
     }
   });
-  $('li', '.datebook .events').draggable({
+  $(".trend-button").live("click", function(event) {
+    var event_id, link;
+    event.preventDefault();
+    link = $(this);
+    event_id = idFromString(link.attr("href"));
+    App.ajax({
+      url: "/api/1/events/trend?event_id=" + event_id,
+      type: "post",
+      success: function(response, status, request) {}
+    });
+    link.removeClass("trend");
+    return link.addClass("trended");
+  });
+  $(".untrend-button").live("click", function(event) {
+    var event_id, link;
+    event.preventDefault();
+    link = $(this);
+    event_id = idFromString(link.attr("href"));
+    App.ajax({
+      url: "/api/1/events/untrend?event_id=" + event_id,
+      type: "post",
+      success: function(response, status, request) {}
+    });
+    return link.closest('.event-preview').fadeOut();
+  });
+  planDragOptions = {
     revert: 'invalid',
     cursorAt: {
       top: 12,
       right: 18
     }
-  });
+  };
+  $('li', '.datebook .events').draggable(planDragOptions);
   $('.thumb-container').droppable({
     tolerance: 'touch',
     greedy: true,
@@ -60,12 +91,14 @@ $(function() {
       return $(this).append(ui.draggable);
     }
   });
-  $('.close').click(function(e) {
+  $('.remove-from-plan').live('click', function(e) {
     var li;
     e.preventDefault();
-    li = $(this).closest('li');
+    li = $(this).closest('.event-preview');
     li.remove();
-    return $('ul.events').append(li);
+    $('ul.events').append(li);
+    $('li', '.datebook .events').draggable('destroy');
+    return $('li', '.datebook .events').draggable(planDragOptions);
   });
   $('.user-name').click(function(e) {
     e.preventDefault();
@@ -76,8 +109,12 @@ $(function() {
   });
   $('.wont_be_there').live('click', function(event) {
     event.preventDefault();
-    $('.im_attending').fadeOut();
     return $(this).closest('.invitation').slideUp();
+  });
+  $('.attending-event').live('click', function(event) {
+    event.preventDefault();
+    $(this).closest('.invitation').slideUp();
+    return $('.trend-button').click();
   });
   $('#plan-form').submit(function(event) {
     var event_ids, event_string;

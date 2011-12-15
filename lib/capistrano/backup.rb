@@ -30,8 +30,10 @@ namespace :backup do
 
   desc "Syncs DB backups from the server to local system"
   task :sync_to_local do
-    system "rsync -vr #{user}@#{domain}:db_dumps/ db_dumps/"
-    system "rsync -vr #{user}@#{domain}:#{application}/current/public/system/ public/system/"
+    puts "Copying Database backups..."
+    system "rsync -ar #{user}@#{domain}:db_dumps/ db_dumps/"
+    puts "Copying Images..."
+    system "rsync -ar #{user}@#{domain}:#{application}/current/public/system/ public/system/"
   end
 
   desc "Import production db into development environment"

@@ -6,7 +6,13 @@ $ ->
   trackImpressions()
   displayOrganizationChart()
 
+  $('input, textarea').placeholder()
+
   $('.truncate').truncate()
+
+  $(".flash a.dismiss").live "click", (event) ->
+    event.preventDefault()
+    $(this).closest(".flash").hide 400
 
   $(".tooltip").qtip
     position:
@@ -43,12 +49,37 @@ $ ->
       $(this).find('.description').hide("slide", { direction: "down" }, 400)
       active_hover_id = ''
 
+  $(".trend-button").live "click", (event) ->
+    event.preventDefault()
+    link = $(this)
+    event_id = idFromString(link.attr("href"))
+    App.ajax
+      url: "/api/1/events/trend?event_id=" + event_id
+      type: "post"
+      success: (response, status, request) ->
+        # Prefer immediate response
+    link.removeClass "trend"
+    link.addClass "trended"
+
+  $(".untrend-button").live "click", (event) ->
+    event.preventDefault()
+    link = $(this)
+    event_id = idFromString(link.attr("href"))
+    App.ajax
+      url: "/api/1/events/untrend?event_id=" + event_id
+      type: "post"
+      success: (response, status, request) ->
+        # Prefer immediate response
+    link.closest('.event-preview').fadeOut()
+
   # event plans
-  $('li', '.datebook .events').draggable
+  planDragOptions =
     revert: 'invalid'
     cursorAt:
       top: 12
       right: 18
+
+  $('li', '.datebook .events').draggable(planDragOptions)
 
   $('.thumb-container').droppable
     tolerance: 'touch'
@@ -56,14 +87,17 @@ $ ->
     drop: (event, ui) ->
       # remove positioning set by drag event so the list flows naturally
       ui.draggable.removeAttr('style')
+      # ui.draggable.css('position', 'relative')
         # .addClass('without-image')
       $(this).append(ui.draggable)
 
-  $('.close').click (e) ->
+  $('.remove-from-plan').live 'click', (e) ->
     e.preventDefault()
-    li = $(this).closest('li')
+    li = $(this).closest('.event-preview')
     li.remove()
     $('ul.events').append(li)
+    $('li', '.datebook .events').draggable('destroy')
+    $('li', '.datebook .events').draggable(planDragOptions)
 
   $('.user-name').click (e) ->
     e.preventDefault()
@@ -76,8 +110,16 @@ $ ->
   # on plan invitation page
   $('.wont_be_there').live 'click', (event) ->
     event.preventDefault()
-    $('.im_attending').fadeOut()
     $(this).closest('.invitation').slideUp()
+
+  # on event invitation page
+  $('.attending-event').live 'click', (event) ->
+    event.preventDefault()
+    $(this).closest('.invitation').slideUp()
+    # instead of re-implementing the trend event we'll just
+    # click the button that already exists on the event page
+    $('.trend-button').click()
+
 
   # serialize event ids before submitting form
   $('#plan-form').submit (event) ->

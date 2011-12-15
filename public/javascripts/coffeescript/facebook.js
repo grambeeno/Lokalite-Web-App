@@ -1,15 +1,11 @@
-var sendPlanInviteCallback;
+var postToFeedCallback;
 window.facebookLoaded = function() {};
 window.afterFacebookSignIn = function() {
   return window.location = '/users/auth/facebook/';
 };
-sendPlanInviteCallback = function(response) {
-  return $.post('/facebook/ajax_request_handler', response, function(data) {
-    return console.log(data);
-  });
-};
+postToFeedCallback = function(response) {};
 $(function() {
-  return $('.invite-to-plan').click(function(e) {
+  $('.facebook-invite').click(function(e) {
     var data;
     e.preventDefault();
     data = $(this).data();
@@ -20,5 +16,18 @@ $(function() {
       description: data.description,
       picture: data.picture
     });
+  });
+  return $('.facebook-icon').click(function(e) {
+    var data;
+    e.preventDefault();
+    data = $(this).data();
+    console.log('data', data);
+    return FB.ui({
+      method: 'feed',
+      link: data.link,
+      picture: data.picture,
+      name: data.name,
+      description: data.description
+    }, postToFeedCallback);
   });
 });

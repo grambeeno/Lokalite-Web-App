@@ -108,22 +108,18 @@ form.formtastic
   +clearfix
   background: transparent url(dropzone.png) no-repeat 50% 50%
   padding: 1em 0 0
-  
+
   .description
     display: none !important
 
-  .drag-thumb
+  .event-preview
     position: relative
     float: left
     margin: 0 14px 1em 0
     padding: 5px
     background: #fff
-    -webkit-border-radius: 0.2em
-    -moz-border-radius: 0.2em
-    border-radius: 0.2em
-    -webkit-box-shadow: 0 0 3px #888
-    -moz-box-shadow: 0 0 3px #888
-    box-shadow: 0 0 3px #888
+    +border-radius(0.2em)
+    +box-shadow(0 0 3px #888)
     width: auto
 
     &:last-of-type
@@ -139,37 +135,25 @@ form.formtastic
 
         &.medium
           display: none
-    .close
+    .remove-from-plan
       display: block
       position: absolute
       top: -5px
-      right: -4px
-      z-index: 10
-      width: 13px
-      height: 14px
-      background: transparent url(/images/close.png) no-repeat 50% 50%
-      text-indent: -9999px
-      cursor: pointer
-      opacity: 0.7
-      filter: alpha(opacity = 70)
-
+      right: -5px
+      +replace-text-with-dimensions('remove-from-plan.png')
+      height: image-height('remove-from-plan.png')/2
+      background-position: top
       &:hover
-        opacity: 1
-        filter: alpha(opacity = 100)
+        background-position: bottom
+
 
 .drag-target
   +replace-text-with-dimensions('dropzone.png')
   margin: 1em auto 2em
   padding: 10px
   background-color: #fff
-  -webkit-box-shadow: 0 0 5px #555
-  -moz-box-shadow: 0 0 5px #555
-  box-shadow: 0 0 5px #555
+  +box-shadow(0 0 5px #555)
   // background-color: $light-green
-
-.thumb-container
-  margin: 1em auto
-  padding: 0 0 0 34px
 
 input.placeholder,
 textarea.placeholder

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_default_url_options!
   before_filter :set_user_time_zone
   before_filter :set_origin
-  before_filter :set_effective_user, :handle_business_sign_up, :handle_plan_invitations
+  before_filter :set_effective_user, :handle_business_sign_up, :handle_invitations
   before_filter :prepare_for_mobile
 
   # before_filter :show_holding_page
@@ -17,7 +17,10 @@ protected
 
   def set_effective_user
     return unless user_signed_in? && current_user.admin?
-    @current_user = User.find_by_uuid(session['effective_user']) if session.key?('effective_user')
+    if session.key?('effective_user')
+      @real_user    = current_user
+      @current_user = User.find_by_uuid(session['effective_user'])
+    end
   end
   def mobile_device?
     if session[:mobile_param]
@@ -83,9 +86,13 @@ end
     end
   end
 
-  def handle_plan_invitations
-    if user_signed_in? && session.key?('plan_invitation_uuid')
-      redirect_to plan_invitation_path(session.delete(:plan_invitation_uuid))
+  def handle_invitations
+    if user_signed_in?
+      if session.key?('plan_invitation_uuid')
+        redirect_to plan_invitation_path(session.delete(:plan_invitation_uuid))
+      elsif session.key?('event_invitation_id')
+        redirect_to event_invitation_path(session.delete(:event_invitation_id))
+      end
     end
   end
 
@@ -107,7 +114,7 @@ end
   # helper_method(:current_user)
 
   def user_sudoing?
-    session.key?('effective_user')
+    defined?(@real_user)
   end
   helper_method(:user_sudoing?)
 

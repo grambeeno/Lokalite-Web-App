@@ -96,7 +96,7 @@ class Organization < ActiveRecord::Base
     end
 
     results = relation
-    results = results.tagged_with(options[:category], :on => 'categories') unless options[:category].blank?
+    results = results.tagged_with(options[:category].humanize, :on => 'categories') unless options[:category].blank?
 
     results = results.search(keywords.join(' ')) unless keywords.blank?
 

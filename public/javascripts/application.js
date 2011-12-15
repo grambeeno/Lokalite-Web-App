@@ -165,43 +165,6 @@ jq(function($){
   }
 
 
-  $('input, textarea').placeholder();
-
-  $('.trend').live('click', function(event) {
-    event.preventDefault();
-    var link = $(this);
-    var event_id = idFromString(link.attr('href'));
-    App.ajax({
-      url: '/api/1/events/trend?event_id=' + event_id,
-      type: 'post',
-      success: function(response, status, request) {
-        // nothing anymore, we'll just ignore if the request was
-        // successful and give the user immediate feedback instead
-      }
-    });
-    link.removeClass('trend');
-    link.addClass('trended');
-    link.attr('href', link.attr('href').replace('trend', 'untrend'));
-  });
-
-  $('.trended').live('click', function(event) {
-    event.preventDefault();
-    var link = $(this);
-    var event_id = idFromString(link.attr('href'));
-    App.ajax({
-      url: '/api/1/events/untrend?event_id=' + event_id,
-      type: 'post',
-      success: function(response, status, request) {
-        // nothing anymore, we'll just ignore if the request was
-        // successful and give the user immediate feedback instead
-      }
-    });
-    link.removeClass('trended');
-    link.addClass('trend');
-    link.attr('href', link.attr('href').replace('untrend', 'trend'));
-  });
-
-
   $('.flash a.dismiss').live('click', function(event) {
     event.preventDefault();
     $(this).closest('.flash').hide(400);
