@@ -1,7 +1,7 @@
 <%= render :partial => '/profile/profile_header' %>
 
 <div class="datebook">
-  <h3>Datebook</h3>
+  <h3>Bookmarks</h3>
 
   <% if @saved_events.any? %>
     <ul class="events">
@@ -12,7 +12,7 @@
     <div class="clear"></div>
   <% else %>
     <div class="help-bubble">
-      Add events to your Datebook by pressing the plus sign on the upper-left corner of an event tile.
+      Add events to your Bookmarks by pressing the plus sign on the upper-left corner of an event tile.
     </div>
   <% end %>
 </div>
