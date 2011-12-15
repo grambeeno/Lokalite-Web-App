@@ -61,8 +61,26 @@
     <% else %>
       <li>
         <div class="user-menu">
-        <%= link_to 'Sign In', new_user_session_path, :class => 'user-link' %>
+          <%= link_to 'Sign In', '#', :class => 'user-link user-name' %>
+          <span class="dd-arrow">&#9662;</span>
         </div>
+
+        <ul class="dropdown-menu sign-in">
+          <li>
+            <fb:login-button onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button>
+            <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
+              <div>
+                <%= f.email_field :email, :placeholder => "Email", "class"=>"landing-form-field" %>
+              </div>
+              <div>
+                <%= f.password_field :password, :placeholder => "Password", "class"=>"landing-form-field" %>
+              </div>
+              <div class='buttons'>
+                <%= f.submit "Sign in" %>
+              </div>
+            <% end %>
+          </li>
+        </ul>
       </li>
     <% end %>
   </ul>

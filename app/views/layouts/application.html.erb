@@ -43,14 +43,10 @@
 
     <%= render :partial => '/layouts/facebook' %>
 
-    <header class="cf">
+    <header>
       <div class="content cf">
-        <% if current_page?(landing_path) %>
-          <%= render :partial => '/layouts/landing_header' %>
-        <% else %>
-          <%= render :partial => '/layouts/header' %>
-        <% end %>
-        </div>
+        <%= render :partial => '/layouts/header' %>
+      </div>
     </header>
 
     <% if params[:controller] == 'root' %>

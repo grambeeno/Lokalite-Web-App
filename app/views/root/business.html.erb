@@ -1,94 +1,56 @@
-<div id="public-landing">
- 
+<div id="business-landing">
   <div class="center-field">
-  
-    <div class="business-text">
-      <h1 class="business-title">Join the 250 Boulder companies using Lokalite</h1>
-      <ul class='business-desc'> 
-        
-          <p class='create-image'><strong>Create</strong> as many events as you'd like for FREE. Happy hours, weekly specials, free classes, special deals... add whatever suites your fancy.</p> 
 
-      <p><strong>Share</strong> any of your events to Facebook and Twitter with the click of a button. You may also follow posts to stay up to date on what people are saying about your event.</p>
-      <p><strong>Analyze</strong> the power of your events. Lokalite's custom analytics provide valuable insights into the performance of your events on Lokalite.</p>
-    </ul>
+    <h1 class="title">Join the 250 Boulder companies using Lokalite</h1>
+    <div class="clear"></div>
+
+    <div class="left-side">
+      <p class='create'>
+        <strong>Create</strong> as many events as you'd like for FREE. Happy hours, weekly specials, free classes, special deals... add whatever suites your fancy.
+      </p>
+      <p class='share'>
+        <strong>Share</strong> any of your events to Facebook and Twitter with the click of a button. You may also follow posts to stay up to date on what people are saying about your event.
+      </p>
+      <p class='analyze'>
+        <strong>Analyze</strong> the power of your events. Lokalite's custom analytics provide valuable insights into the performance of your events on Lokalite.
+      </p>
     </div>
-    
-    <div class="business-signup-field">
-      <h2><strong>New to Lokalite? Join Today!</strong></h2>
-      <br />
-      <div class="landing-form-field">
+
+    <div class="sign-up">
+      <h2><strong>New to Lokalite?</strong> Join Today!</h2>
+
+      <div>
         <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button>
       </div>
 
       <h3>or with email and password</h3>
-    
-      <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
       <br />
-      
-      <div class="landing-form-field">
-        <%= f.email_field :email, :placeholder => "Email", "class"=>"landing-form-field" %>
-      </div><br />
-      
-      <div class="landing-form-field">
-        <%= f.password_field :password, :placeholder => "Password", "class"=>"landing-form-field" %>
-      </div><br />
-      
-      <div class="landing-form-field">
-        <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", "class"=>"landing-form-field" %>
-      </div><br />
-      
-      <div>
-        <%= f.submit 'Sign Up', "class"=>"btn large landing" %>
-      </div>
-      
-      <br /><br /><br /><br />
-      
-      <div>
-        <p style="margin-bottom: 20px"><%= link_to 'Are you a business? Add your events here!', business_sign_up_path %></p> 
+
+      <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
+        <div>
+          <%= f.email_field :email, :placeholder => "Email", :class => "landing-form-field" %>
+        </div>
+
+        <div>
+          <%= f.password_field :password, :placeholder => "Password", :class => "landing-form-field" %>
+        </div>
+
+        <div>
+          <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :class => "landing-form-field" %>
+        </div>
+
+        <div>
+          <%= f.submit 'Sign Up', :class => "btn large dark" %>
+        </div>
       <% end %>
-      </div>
-  
+
+      <hr />
+
+      <p>
+        <%= link_to 'Are you a business? Add your events here!', business_sign_up_path %>
+      </p>
+
     </div>
+  </div>
 </div>
-
-  <nav>
-  <ul> 
-      <% if user_signed_in? and current_user.admin? %>
-        <li>
-          <%= link_to 'Admin', admin_path, "class"=>"landing-footer" %>
-        </li>
-      <% end %>
-      <li>
-        <%= link_to 'About', static_path(:about), "class"=>"landing-footer" %>
-      </li>
-      <li>
-        <%= link_to 'Contact', static_path(:contact), "class"=>"landing-footer" %>
-      </li>
-      <li>
-        <%= link_to 'Terms', static_path(:terms_of_service), "class"=>"landing-footer" %>
-      </li>
-      <li>
-        <%= link_to 'Privacy Policy', static_path(:privacy_policy), "class"=>"landing-footer" %>
-      </li>
-      <% if false %>
-      <li>
-        <%= link_to 'Movie', static_path(:movie), :id => :movie, "class"=>"landing-footer" %>
-      </li>
-    <% end %>
-      <li>
-        <%= link_to 'Business', business_promo_path, "class"=>"landing-footer" %>
-      </li>
-      <li class="landing-footer">
-        <% if mobile_device? %> 
-        <%= link_to 'Full Site', :mobile => 0 %>
-          <% else %> 
-          <%= link_to 'Mobile Site', :mobile => 1 %>
-        <% end %>
-      </li>
-    </ul>
-  </nav>
-
-  <div class='copyright'>Copyright &copy; <%= Time.now.year %> lokalite.com</div>
-
-
 

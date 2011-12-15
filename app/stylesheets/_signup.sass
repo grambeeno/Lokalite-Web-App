@@ -7,7 +7,7 @@ $form-width: $form-inner-width + ($form-padding * 2)
 
 $splash-width: $content-width + $form-width + 6
 
-#business-sign-up,
+#business-landing,
 #public-landing
   text-align: center
   font-size: 14px
@@ -62,7 +62,36 @@ body.root-controller
         +link-colors(black, #444)
 
 
-#public-landing
+#business-landing
+  h1.title
+    +text-shadow(white, 1px, 1px)
+    font-size: 44px
+    margin-bottom: 25px
+  .create,
+  .share,
+  .analyze
+    margin-bottom: 10px
+    padding-left: image-width('landing/Polaroid.png') + 20
+    background-repeat: no-repeat
+    font-size: 18px
+    line-height: 1.6em
+
+  .create
+    background-image: image_url('landing/Polaroid.png')
+    padding-top: 10px
+    height: 150px
+  .share
+    background-image: image_url('landing/Bullhorn.png')
+    padding-top: 4px
+    height: 136px
+  .analyze
+    background-image: image_url('landing/Analytics.png')
+    padding-top: 4px
+    height: 120px
+
+
+#public-landing,
+#business-landing
   margin: 0 auto
   // height: 800px
   padding: 50px 0
@@ -128,190 +157,4 @@ body.root-controller
   .events
     margin: 20px 0 0 -16px
     width: 500px
-
-  .business-text
-    float: left
-    position: relative
-
-  ul.business-desc
-    float: left
-    width: 350px
-  h1.main-title
-    +replace-text-with-dimensions("landing/main-title.png")
-
-  h1.landing-title
-    font-size: 48px
-    font-weight: normal
-    // margin-left: -130px
-  h1.business-title
-    font-size: 48px
-    font-weight: normal
-
-  p.landing-desc
-    font-size: 20px
-    padding-left: 4px
-
-  .create-image
-    background-image: url('images/landing/Business_Landing_Sprite.png')
-
-  a.enter
-    +replace-text-with-dimensions("landing/enter.png")
-    display: block
-    margin: 20px auto 10px
-
-  .business-signup-field
-    float: right
-    +border-radius(5px)
-    width: 420px
-    margin-right: 30px
-    margin-top: 0
-    position: relative
-    +background-image(linear-gradient(#dddddd, #ffffff))
-
-  .content-width
-    width: $splash-width
-    margin: 0 auto
-
-  .landing-footer
-    color: #000000
-    text-decoration: none
-    float: left
-    margin-left: 20px
-
-  nav.landing-footer
-    width: 440px
-    padding: 0 225px
-
-  p.business-link
-    margin-bottom: 20px
-    text-decoration: none
-    color: #000000
-
-  .landing-button
-    +border-radius(5px)
-    +background-image(linear-gradient(#dddddd, #ffffff))
-
-  .browse,
-  .share,
-  .attend
-    +float('left')
-
-    width: image-width('/landing/browse.png')
-    padding-top: image-height('/landing/browse.png')
-    background-repeat: no-repeat
-    background-position: top center
-
-  .browse
-    margin-right: 20px
-    background-image: image_url('landing/browse.png')
-  .share
-    margin-right: 20px
-    background-image: image_url('landing/share.png')
-  .attend
-    background-image: image_url('landing/attend.png')
-
-  .note
-    font-size: 12px
-    line-height: 16px
-
-  .checkered .inside
-    margin: 0 auto
-    position: relative
-    width: $splash-width
-
-#more-added-daily,
-#of-your-favorite,
-#our-favorites,
-#your-favorites
-  position: absolute
-
-.relative-container
-  position: relative
-
-
-#more-added-daily
-  +replace-text-with-dimensions("landing/more-added-daily.png")
-  top: -45px
-  left: -200px
-
-#of-your-favorite
-  +replace-text-with-dimensions("landing/of-your-favorite.png")
-  top: -40px
-  left: -96px
-
-#our-favorites
-  +replace-text-with-dimensions("landing/our-favorites.png")
-  top: -60px
-  left: 0px
-#your-favorites
-  +replace-text-with-dimensions("landing/your-favorites.png")
-  top: -36px
-  left: 800px
-
-
-#business-sign-up
-  h1
-    +replace-text-with-dimensions("business/main-title.png")
-
-  a.get-started,
-  a.create-organization
-    display: block
-    margin: 20px auto 10px
-    width: $splash-width
-  a.get-started
-    +replace-text-with-dimensions("business/get-started.png")
-  a.create-organization
-    +replace-text-with-dimensions("business/create-your-organization.png")
-
-  .bottom
-    width: $splash-width
-
-  .create,
-  .share,
-  .grow
-    +float('left')
-
-    width: image-width('/business/create.png') + 40px
-    padding-top: image-height('/business/create.png')
-    background-repeat: no-repeat
-    background-position: top center
-
-  .create
-    margin-right: 40px
-    background-image: image_url('business/create.png')
-  .share
-    margin-right: 40px
-    background-image: image_url('business/share.png')
-  .grow
-    background-image: image_url('business/grow.png')
-
-  .bottom
-    h2
-      font-size: 30px
-      color: black
-      margin-bottom: 14px
-    p
-      padding: 6px 0
-      width: 280px
-
-    section
-      background-repeat: no-repeat
-      margin-bottom: 60px
-
-    $left-padding: 680px
-    .lokalite-is
-      background-image: image_url('business/lokalite-is.png')
-      height: image-height('/business/lokalite-is.png')
-      padding-left: $left-padding
-    .spend-less
-      background-image: image_url('business/spend-less.png')
-      background-position: 420px 40px
-      padding-left: 100px
-      height: 290px
-
-    .gain-more
-      background-image: image_url('business/gain-more.png')
-      height: image-height('/business/gain-more.png')
-      padding-left: $left-padding
-
 
