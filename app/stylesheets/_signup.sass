@@ -1,23 +1,27 @@
-#splash
-  text-align: center
 
-$splash-width: 1120px
+$content-width: 490px
+$field-padding: 8px
+$form-padding: 14px
+$form-inner-width: 420px + ($field-padding * 2)
+$form-width: $form-inner-width + ($form-padding * 2)
+
+$splash-width: $content-width + $form-width + 6
 
 #business-sign-up,
 #public-landing
   text-align: center
   font-size: 14px
   margin-bottom: 60px
-  h1, h2, h3
-    color: black
-  h1
-    margin: 14px auto
-  h2
-    font-size: 24px
-    font-weight: normal
-  h3
-    font-size: 18px
-    margin-top: 24px
+  // h1, h2, h3
+  //   color: black
+  // h1
+  //   margin: 14px auto
+  // h2
+  //   font-size: 24px
+  //   font-weight: normal
+  // h3
+  //   font-size: 18px
+  //   margin-top: 24px
   .centered
     margin: 30px auto
     display: inline-block
@@ -48,62 +52,104 @@ $splash-width: 1120px
     margin: 0 auto
     width: $splash-width
 
+body.root-controller
+  +radial-gradient(#a4c9a4, #749a74)
+  > footer
+    .content
+      color: black
+      a
+        +hover-link
+        +link-colors(black, #444)
+
+
 #public-landing
   margin: 0 auto
-  height: 800px
-  background-image: -webkit-radial-gradient(#a4c9a4, #749a74)
-  background-image: -moz-radial-gradient(top, #a4c9a4, #749a74)
-  background-image: -ms-radial-gradient(#a4c9a4, #749a74)
-  background-image: -o-radial-gradient(#a4c9a4, #749a74)
-  background-image: radial-gradient(#a4c9a4, #749a74)
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=radial)
+  // height: 800px
+  padding: 50px 0
 
-  .text
-    float: left
-    position: relative
-    width: 630px
+  .center-field
+    +clearfix
+    text-align: left
+    margin: 0 auto
+    padding: 25px
+    width: $splash-width + 50
+    +border-radius(5px)
+    background-image: image_url('landing/white_wash.png')
+
+  .left-side
+    margin-right: 25px
+    width: $content-width
+    +float('left')
+    +text-shadow(white, 1px, 1px)
+
+  .sign-up
+    +float('left')
+    +border-radius(5px)
+    +background-image(linear-gradient(#ffffff, #dddddd))
+    width: $form-width
+    padding: 10px $form-padding
+
+    h2, h3
+      font-size: 20px
+      color: #555
+      font-weight: normal
+    h2
+      margin-bottom: 1em
+    h3
+      margin-top: 1em
+
+    form
+      +clearfix
+      div
+        margin-bottom: 12px
+
+
+      input[type='submit']
+        +float('right')
+
+    hr
+      margin: 1.4em 0 1em
+      border-top: 1px solid white
+
+    p
+      a
+        +link-colors(#555, #444)
+        +hover-link
+        font-weight: bold
+
+    .landing-form-field
+      font-size: 16px
+      +border-radius(5px)
+      width: $form-width - ($field-padding * 2)
+      height: 36px
+      padding: 4px
+
+
+  .events
+    margin: 20px 0 0 -16px
+    width: 500px
+
   .business-text
     float: left
     position: relative
-    
+
   ul.business-desc
     float: left
     width: 350px
-    text-align: left
   h1.main-title
     +replace-text-with-dimensions("landing/main-title.png")
-  h1.info
-    font-size: 46px
-    font-weight: normal
-    text-align: center
-    margin-top: 50px
-    margin-bottom: 18px
-    line-height: 1.8em
+
   h1.landing-title
     font-size: 48px
     font-weight: normal
-    margin-left: -130px
-    position: relative
+    // margin-left: -130px
   h1.business-title
     font-size: 48px
     font-weight: normal
-    position: relative
-  h2
-    text-align: left 
-    font-size: 20px
-    margin-top: 14px
-    margin-left: 10px
-  h3
-    text-align: left 
-    font-weight: normal
-    font-size: 20px
-    margin-left: 10px
 
   p.landing-desc
     font-size: 20px
-    text-align: left
-    margin-left: 25px
-    position: relative
+    padding-left: 4px
 
   .create-image
     background-image: url('images/landing/Business_Landing_Sprite.png')
@@ -113,46 +159,14 @@ $splash-width: 1120px
     display: block
     margin: 20px auto 10px
 
-  .sign-up-field
-    float: right
-    border-radius: 5px
-    width: 420px
-    margin-right: 30px
-    margin-top: -457px
-    position: relative
-    background-image: -webkit-linear-gradient(#ffffff, #dddddd)
-    background-image: -moz-linear-gradient(top, #a4c9a4, #749a74)
-    background-image: -ms-linear-gradient(#a4c9a4, #749a74)
-    background-image: -o-linear-gradient(#a4c9a4, #749a74)
-    background-image: linear-gradient(#a4c9a4, #749a74)
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0)
-
-  .landing-form-field
-    margin: 0 auto
-    border-radius: 5px
-    text-align: left
-    width: 400px
-    height: 40px
-
   .business-signup-field
     float: right
-    border-radius: 5px
+    +border-radius(5px)
     width: 420px
     margin-right: 30px
     margin-top: 0
     position: relative
-    background-image: -webkit-linear-gradient(#ffffff, #dddddd)
-    background-image: -moz-linear-gradient(top, #a4c9a4, #749a74)
-    background-image: -ms-linear-gradient(#a4c9a4, #749a74)
-    background-image: -o-linear-gradient(#a4c9a4, #749a74)
-    background-image: linear-gradient(#a4c9a4, #749a74)
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0)
-
-  .center-field
-    margin: 50px auto
-    width: 1100px
-    border-radius: 5px
-    background-image: image_url('landing/white_wash.png')
+    +background-image(linear-gradient(#dddddd, #ffffff))
 
   .content-width
     width: $splash-width
@@ -174,14 +188,8 @@ $splash-width: 1120px
     color: #000000
 
   .landing-button
-    border-radius: 5px
-    background-image: -webkit-linear-gradient(#ffffff, #dddddd)
-    background-image: -moz-linear-gradient(top, #a4c9a4, #749a74)
-    background-image: -ms-linear-gradient(#a4c9a4, #749a74)
-    background-image: -o-linear-gradient(#a4c9a4, #749a74)
-    background-image: linear-gradient(#a4c9a4, #749a74)
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0)
-
+    +border-radius(5px)
+    +background-image(linear-gradient(#dddddd, #ffffff))
 
   .browse,
   .share,
@@ -201,12 +209,6 @@ $splash-width: 1120px
     background-image: image_url('landing/share.png')
   .attend
     background-image: image_url('landing/attend.png')
-
-  .events
-    margin: 20px auto
-    float: left
-    position: relative
-    width: 500px
 
   .note
     font-size: 12px

@@ -44,13 +44,13 @@
     <%= render :partial => '/layouts/facebook' %>
 
     <header class="cf">
-    <div class="content cf">
-      <% if current_page?(landing_path) %>
-      <%= render :partial => '/layouts/landing_header' %>
-      <% else %>
-      <%= render :partial => '/layouts/header' %>
-      <% end %>
-      </div>
+      <div class="content cf">
+        <% if current_page?(landing_path) %>
+          <%= render :partial => '/layouts/landing_header' %>
+        <% else %>
+          <%= render :partial => '/layouts/header' %>
+        <% end %>
+        </div>
     </header>
 
     <% if params[:controller] == 'root' %>
@@ -76,15 +76,9 @@
     <% end %>
 
     <footer>
-    <% if current_page?(landing_path) %>
-    <% if current_page?(business_path) %>
-      <%= render :partial => 'layouts/landing_footer' %>
-    <% else %>
       <div class="content">
         <%= render :partial => '/layouts/footer' %>
       </div>
-      <% end %>
-      <% end %>
     </footer>
   </body>
 </html>

@@ -1,86 +1,53 @@
 <div id="public-landing">
- 
   <div class="center-field">
-  
-    <div class="text">
+
+    <div class="left-side">
       <h1 class="landing-title">Discover local events</h1>
-      <p class="landing-desc">Find, share, bookmark and plan with friends using the thousands 
+      <p class="landing-desc">Find, share, bookmark and plan with friends using the thousands
       of local events going on in your community</p>
-    </div>
-    
-    <div id="main">
+
       <ul class="events">
         <% Event.featured.limit(2).each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
       </ul>
     </div>
-  
-    <div class="sign-up-field">
-      <h2><strong>New to Lokalite? Join Today!</strong></h2>
-      <br />
-      <div class="landing-form-field">
+
+    <div class="sign-up">
+      <h2><strong>New to Lokalite?</strong> Join Today!</h2>
+
+      <div>
         <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button>
       </div>
 
       <h3>or with email and password</h3>
-    
-      <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
       <br />
-      
-      <div class="landing-form-field">
-        <%= f.email_field :email, :placeholder => "Email", "class"=>"landing-form-field" %>
-      </div><br />
-      
-      <div class="landing-form-field">
-        <%= f.password_field :password, :placeholder => "Password", "class"=>"landing-form-field" %>
-      </div><br />
-      
-      <div class="landing-form-field">
-        <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", "class"=>"landing-form-field" %>
-      </div><br />
-      
-      <div>
-        <%= f.submit 'Sign Up', "class"=>"btn large landing" %>
-      </div>
-      
-      <br /><br /><br /><br />
-      
-      <div>
-        <p style="margin-bottom: 20px"><%= link_to 'Are you a business? Add your events here!', business_sign_up_path %></p> 
+
+      <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
+        <div>
+          <%= f.email_field :email, :placeholder => "Email", :class => "landing-form-field" %>
+        </div>
+
+        <div>
+          <%= f.password_field :password, :placeholder => "Password", :class => "landing-form-field" %>
+        </div>
+
+        <div>
+          <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :class => "landing-form-field" %>
+        </div>
+
+        <div>
+          <%= f.submit 'Sign Up', :class => "btn large dark" %>
+        </div>
       <% end %>
-      </div>
-  
+
+      <hr />
+
+      <p>
+        <%= link_to 'Are you a business? Add your events here!', business_sign_up_path %>
+      </p>
+
     </div>
+  </div>
 </div>
 
-  <nav class="landing-footer">
-  <ul> 
-      <% if user_signed_in? and current_user.admin? %>
-        <li>
-          <%= link_to 'Admin', admin_path, "class"=>"landing-footer" %>
-        </li>
-      <% end %>
-      <li>
-        <%= link_to 'About', static_path(:about), "class"=>"landing-footer" %>
-      </li>
-      <li>
-        <%= link_to 'Contact', static_path(:contact), "class"=>"landing-footer" %>
-      </li>
-      <li>
-        <%= link_to 'Terms', static_path(:terms_of_service), "class"=>"landing-footer" %>
-      </li>
-      <li>
-        <%= link_to 'Privacy Policy', static_path(:privacy_policy), "class"=>"landing-footer" %>
-      </li>
-      <% if false %>
-      <li>
-        <%= link_to 'Movie', static_path(:movie), :id => :movie, "class"=>"landing-footer" %>
-      </li>
-    <% end %>
-      <li>
-        <%= link_to 'Business', business_promo_path, "class"=>"landing-footer" %>
-      </li>
-    </ul>
-  </nav>
-  <div class='copyright'>Copyright &copy; <%= Time.now.year %> lokalite.com</div>
