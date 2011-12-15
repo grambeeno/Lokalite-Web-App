@@ -1,0 +1,98 @@
+<div id="public-landing">
+  <div class='top'>
+
+    <h1 class='main-title'>
+      Looking for something to do? You've come to the right place.
+    </h1>
+    <h2>(trust us, you'll never be bored again)</h2>
+
+
+    <div class='centered cf'>
+      <div class="browse">
+        <h3>Browse</h3>
+        We’ve got a huge gallery of events
+        <br />
+        that’s only getting bigger.
+      </div>
+      <div class="share">
+        <h3>Share</h3>
+        Events are always more fun with friends.
+        <br />
+        So spread the word. They’ll be sure to thank you.
+      </div>
+      <div class="attend">
+        <h3>Attend</h3>
+        This parts up to you. Go ahead. Get away from
+        <br />
+        this screen. It’s time to have fun!
+      </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
+  </div>
+
+  <div class="bottom checkered cf">
+    <div class="shadow-top"></div>
+
+    <div class='inside cf'>
+      <h1 class='info'>
+        There are currently
+        <strong>
+          <%= Event.upcoming.size %>
+          events
+        </strong>
+
+        <span class='relative-container'><div id="more-added-daily">(more added daily)</div></span>
+
+        <br />
+        put on by
+        <strong>
+          <%= Organization.all.size %>
+          <span class='relative-container'><div id="of-your-favorite">of your favorite</div></span>
+          companies
+        </strong>
+        in Boulder, Co.
+      </h1>
+
+      <h3>check out some of the</h3>
+      <h2>Featured Events</h2>
+      <span class='relative-container'><div id="our-favorites">our favorites. hopefully yours as well</div></span>
+
+      <ul class="events cf">
+        <% Event.featured.limit(3).each do |event| %>
+          <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <% end %>
+      </ul>
+
+      <h3>as well as the</h3>
+      <h2>Most Popular Events</h2>
+
+      <span class='relative-container'><div id="your-favorites">your favorites. keep 'em coming</div></span>
+
+      <ul class="events cf">
+        <% Event.popular.tagged_with('Featured', :exclude => true).limit(3).each do |event| %>
+          <%= render :partial => '/events/event', :locals => { :event => event } %>
+        <% end %>
+      </ul>
+
+      <h3>and remember, with lokalite by your side, you'll</h3>
+      <h2>Never Be Bored Again</h2>
+    </div>
+
+    <div class="clear"></div>
+    <div class="shadow-bottom"></div>
+  </div>
+
+  <div class='content-width cf'>
+    <%= link_to 'Enter', events_path(:origin => params[:origin], :category => 'featured'), :class => 'enter' %>
+    <p class='note'>
+      click to enter - trust us:
+      <br />
+      the grass is much greener on the other side
+    </p>
+  </div>
+</div>
+
+

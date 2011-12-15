@@ -44,15 +44,17 @@
     <%= render :partial => '/layouts/facebook' %>
 
     <header class="cf">
-      <div class="content cf">
-        <%= render :partial => '/layouts/header' %>
+    <div class="content cf">
+      <% if current_page?(landing_path) %>
+      <%= render :partial => '/layouts/landing_header' %>
+      <% else %>
+      <%= render :partial => '/layouts/header' %>
+      <% end %>
       </div>
     </header>
 
     <% if params[:controller] == 'root' %>
-      <div id="splash">
         <%= yield %>
-      </div>
     <% else %>
       <div id="main">
         <div id="left-sidebar">
@@ -74,9 +76,15 @@
     <% end %>
 
     <footer>
+    <% if current_page?(landing_path) %>
+    <% if current_page?(business_path) %>
+      <%= render :partial => 'layouts/landing_footer' %>
+    <% else %>
       <div class="content">
         <%= render :partial => '/layouts/footer' %>
       </div>
+      <% end %>
+      <% end %>
     </footer>
   </body>
 </html>

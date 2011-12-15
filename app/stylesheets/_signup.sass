@@ -48,8 +48,28 @@ $splash-width: 1120px
     margin: 0 auto
     width: $splash-width
 
-
 #public-landing
+  margin: 0 auto
+  height: 800px
+  background-image: -webkit-radial-gradient(#a4c9a4, #749a74)
+  background-image: -moz-radial-gradient(top, #a4c9a4, #749a74)
+  background-image: -ms-radial-gradient(#a4c9a4, #749a74)
+  background-image: -o-radial-gradient(#a4c9a4, #749a74)
+  background-image: radial-gradient(#a4c9a4, #749a74)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=radial)
+
+  .text
+    float: left
+    position: relative
+    width: 630px
+  .business-text
+    float: left
+    position: relative
+    
+  ul.business-desc
+    float: left
+    width: 350px
+    text-align: left
   h1.main-title
     +replace-text-with-dimensions("landing/main-title.png")
   h1.info
@@ -59,22 +79,109 @@ $splash-width: 1120px
     margin-top: 50px
     margin-bottom: 18px
     line-height: 1.8em
-  h2
-    text-align: center
-    font-size: 40px
-    margin-top: 14px
-  h3
-    text-align: center
+  h1.landing-title
+    font-size: 48px
     font-weight: normal
+    margin-left: -130px
+    position: relative
+  h1.business-title
+    font-size: 48px
+    font-weight: normal
+    position: relative
+  h2
+    text-align: left 
+    font-size: 20px
+    margin-top: 14px
+    margin-left: 10px
+  h3
+    text-align: left 
+    font-weight: normal
+    font-size: 20px
+    margin-left: 10px
+
+  p.landing-desc
+    font-size: 20px
+    text-align: left
+    margin-left: 25px
+    position: relative
+
+  .create-image
+    background-image: url('images/landing/Business_Landing_Sprite.png')
 
   a.enter
     +replace-text-with-dimensions("landing/enter.png")
     display: block
     margin: 20px auto 10px
 
+  .sign-up-field
+    float: right
+    border-radius: 5px
+    width: 420px
+    margin-right: 30px
+    margin-top: -457px
+    position: relative
+    background-image: -webkit-linear-gradient(#ffffff, #dddddd)
+    background-image: -moz-linear-gradient(top, #a4c9a4, #749a74)
+    background-image: -ms-linear-gradient(#a4c9a4, #749a74)
+    background-image: -o-linear-gradient(#a4c9a4, #749a74)
+    background-image: linear-gradient(#a4c9a4, #749a74)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0)
+
+  .landing-form-field
+    margin: 0 auto
+    border-radius: 5px
+    text-align: left
+    width: 400px
+    height: 40px
+
+  .business-signup-field
+    float: right
+    border-radius: 5px
+    width: 420px
+    margin-right: 30px
+    margin-top: 0
+    position: relative
+    background-image: -webkit-linear-gradient(#ffffff, #dddddd)
+    background-image: -moz-linear-gradient(top, #a4c9a4, #749a74)
+    background-image: -ms-linear-gradient(#a4c9a4, #749a74)
+    background-image: -o-linear-gradient(#a4c9a4, #749a74)
+    background-image: linear-gradient(#a4c9a4, #749a74)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0)
+
+  .center-field
+    margin: 50px auto
+    width: 1100px
+    border-radius: 5px
+    background-image: image_url('landing/white_wash.png')
+
   .content-width
     width: $splash-width
     margin: 0 auto
+
+  .landing-footer
+    color: #000000
+    text-decoration: none
+    float: left
+    margin-left: 20px
+
+  nav.landing-footer
+    width: 440px
+    padding: 0 225px
+
+  p.business-link
+    margin-bottom: 20px
+    text-decoration: none
+    color: #000000
+
+  .landing-button
+    border-radius: 5px
+    background-image: -webkit-linear-gradient(#ffffff, #dddddd)
+    background-image: -moz-linear-gradient(top, #a4c9a4, #749a74)
+    background-image: -ms-linear-gradient(#a4c9a4, #749a74)
+    background-image: -o-linear-gradient(#a4c9a4, #749a74)
+    background-image: linear-gradient(#a4c9a4, #749a74)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a4c9a4', endColorstr='#749a74', GradientType=0)
+
 
   .browse,
   .share,
@@ -96,8 +203,10 @@ $splash-width: 1120px
     background-image: image_url('landing/attend.png')
 
   .events
-    margin: 10px auto
-    width: (220px + 10 + 25) * 3
+    margin: 20px auto
+    float: left
+    position: relative
+    width: 500px
 
   .note
     font-size: 12px
