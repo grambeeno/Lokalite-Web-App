@@ -53,7 +53,13 @@ class Plan < ActiveRecord::Base
   end
 
   def events
-    Event.find(event_list).to_a
+    list = Event.find(event_list)
+    # need to return them correctly sorted
+    sorted = []
+    for id in event_list
+      sorted << list.select{|e| e.id == id.to_i}.first
+    end
+    sorted
   end
 
   def is_editable_by?(a_user)
