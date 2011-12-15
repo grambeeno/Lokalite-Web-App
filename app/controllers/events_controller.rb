@@ -23,6 +23,10 @@ class EventsController < ApplicationController
   end
 
   def show
+    if params[:invitation] and !user_signed_in?
+      session[:event_invitation_id] = params[:id]
+    end
+
     includes = [:categories, :image, :organization]
     @event = Event.where(:id => params[:id]).includes(includes).first
 
