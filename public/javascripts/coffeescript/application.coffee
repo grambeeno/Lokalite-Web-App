@@ -73,11 +73,13 @@ $ ->
     link.closest('.event-preview').fadeOut()
 
   # event plans
-  $('li', '.datebook .events').draggable
+  planDragOptions =
     revert: 'invalid'
     cursorAt:
       top: 12
       right: 18
+
+  $('li', '.datebook .events').draggable(planDragOptions)
 
   $('.thumb-container').droppable
     tolerance: 'touch'
@@ -85,14 +87,17 @@ $ ->
     drop: (event, ui) ->
       # remove positioning set by drag event so the list flows naturally
       ui.draggable.removeAttr('style')
+      # ui.draggable.css('position', 'relative')
         # .addClass('without-image')
       $(this).append(ui.draggable)
 
-  $('.close').click (e) ->
+  $('.remove-from-plan').live 'click', (e) ->
     e.preventDefault()
-    li = $(this).closest('li')
+    li = $(this).closest('.event-preview')
     li.remove()
     $('ul.events').append(li)
+    $('li', '.datebook .events').draggable('destroy')
+    $('li', '.datebook .events').draggable(planDragOptions)
 
   $('.user-name').click (e) ->
     e.preventDefault()

@@ -369,9 +369,6 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
         &.profile
           display: none
 
-      .close
-        display: none
-
       .description
         position: absolute
         bottom: 4px
@@ -397,8 +394,10 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
       .detail
         display: none
 
-.events-controller .events .close, .datebook .events .close, .organization-events .events .close
-  display: none
+.events-controller, .datebook, .organization-events
+  .events
+    .remove-from-plan
+      display: none
 
 
 .events .image,

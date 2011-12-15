@@ -1,7 +1,7 @@
 var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackImpressions;
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 $(function() {
-  var active_hover_id;
+  var active_hover_id, planDragOptions;
   trackImpressions();
   displayOrganizationChart();
   $('input, textarea').placeholder();
@@ -75,13 +75,14 @@ $(function() {
     });
     return link.closest('.event-preview').fadeOut();
   });
-  $('li', '.datebook .events').draggable({
+  planDragOptions = {
     revert: 'invalid',
     cursorAt: {
       top: 12,
       right: 18
     }
-  });
+  };
+  $('li', '.datebook .events').draggable(planDragOptions);
   $('.thumb-container').droppable({
     tolerance: 'touch',
     greedy: true,
@@ -90,12 +91,14 @@ $(function() {
       return $(this).append(ui.draggable);
     }
   });
-  $('.close').click(function(e) {
+  $('.remove-from-plan').live('click', function(e) {
     var li;
     e.preventDefault();
-    li = $(this).closest('li');
+    li = $(this).closest('.event-preview');
     li.remove();
-    return $('ul.events').append(li);
+    $('ul.events').append(li);
+    $('li', '.datebook .events').draggable('destroy');
+    return $('li', '.datebook .events').draggable(planDragOptions);
   });
   $('.user-name').click(function(e) {
     e.preventDefault();

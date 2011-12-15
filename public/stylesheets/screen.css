@@ -339,13 +339,12 @@ img.profile_small { width: 55px; }
 .events li .image, .organizations li .image { position: relative; width: 202px; }
 .events li .image img, .organizations li .image img { border: 1px solid black; }
 .events li .image img.profile, .organizations li .image img.profile { display: none; }
-.events li .image .close, .organizations li .image .close { display: none; }
 .events li .image .description, .organizations li .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1318227768'); background-repeat: repeat; color: white; padding: 2px; display: none; }
 .events li .detail h1, .organizations li .detail h1 { font-size: 14px; }
 .events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
 .events li.ui-draggable-dragging .detail, .organizations li.ui-draggable-dragging .detail { display: none; }
 
-.events-controller .events .close, .datebook .events .close, .organization-events .events .close { display: none; }
+.events-controller .events .remove-from-plan, .datebook .events .remove-from-plan, .organization-events .events .remove-from-plan { display: none; }
 
 .events .image, .event .image .inner { position: relative; }
 .events .image .trend-button, .event .image .inner .trend-button { text-decoration: none; position: absolute; top: 0; left: 0; background-image: url('/images/datebook-add.png?1323800759'); background-position: top; width: 52px; height: 52px; }
@@ -516,8 +515,8 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 #selected-event-list .event-preview .image { width: auto; }
 #selected-event-list .event-preview .image img { display: block; padding: 0; margin: 0; }
 #selected-event-list .event-preview .image img.medium { display: none; }
-#selected-event-list .event-preview .close { display: block; position: absolute; top: -5px; right: -4px; z-index: 10; width: 13px; height: 14px; background: transparent url(/images/close.png) no-repeat 50% 50%; text-indent: -9999px; cursor: pointer; opacity: 0.7; filter: alpha(opacity=70); }
-#selected-event-list .event-preview .close:hover { opacity: 1; filter: alpha(opacity=100); }
+#selected-event-list .event-preview .remove-from-plan { display: block; position: absolute; top: -5px; right: -5px; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/remove-from-plan.png?1323909445'); background-repeat: no-repeat; background-position: 50% 50%; width: 14px; height: 28px; height: 14px; background-position: top; }
+#selected-event-list .event-preview .remove-from-plan:hover { background-position: bottom; }
 
 .drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1319472994'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; margin: 1em auto 2em; padding: 10px; background-color: white; -moz-box-shadow: 0 0 5px #555555; -webkit-box-shadow: 0 0 5px #555555; -o-box-shadow: 0 0 5px #555555; box-shadow: 0 0 5px #555555; }
 
