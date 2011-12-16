@@ -16,10 +16,12 @@ $splash-width: $content-width + $form-width + 6
   h1.landing-title
     font-size: 48px
     font-weight: normal
+    +text-shadow(white, 1px, 1px)
 
   p.landing-desc
     font-size: 20px
     padding-left: 4px
+    +text-shadow(white, 1px, 1px)
 
   // h1, h2, h3
   //   color: black
@@ -118,7 +120,6 @@ body.root-controller
     margin-right: 25px
     width: $content-width
     +float('left')
-    +text-shadow(white, 1px, 1px)
 
   .sign-up
     +float('left')
