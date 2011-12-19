@@ -1,28 +1,36 @@
 <style>
 
   .body {
-    margin: 0px 25px 0px 25px;
+    margin: 0px 18px 0px 18px;
     font-size: 14pt;
 }
 
 </style>
 
-<% content_for(:context) { "Contact Us" } %>
+<h3 class="body" style='font-size:18pt'><strong>Contact</strong></h3>
 
-<section class="profile"><article>
+<p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Let us know!</p> 
 
-<h1 style="margin-bottom:1em; font-size:14pt"><center><b>We want to hear from you!</b></center></h1>
-
-<p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Want to come drink a beer (or apple juice) with the Lokalite crew?</p>
-<p class="body"><b>Email us:</b> <a href="mailto:info@lokalite.com">info@lokalite.com</a></p>
-&nbsp;
-<p class="body">What you think of our new product? What new features do you want to see? Let us know!</p>
-<p class="body"><b>Email us:</b> <a href="mailto:feedback@lokalite.com">feedback@lokalite.com</a></p>
-&nbsp;
-<p class="body">Want us to sponser one of your awesome events?</p>
-<p class="body"><b>Email us:</b> <a href="mailto:support@lokalite.com">support@lokalite.com</a></p>
-&nbsp;
-<p class="body">Having trouble with your account?</p>
-<p class="body"><b>Email us:</b> <a href="mailto:support@lokalite.com">support@lokalite.com</a></p>
-
-</article></section>
+<div class="form-stacked">
+  <%= form_for :email, :url => { :controller => 'static', :action => 'send_mail' } do |f| %>
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, "class"=>"span12", "id"=>"xlInput" %>
+  </div><br />
+  <div>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, "class"=>"span12", "id"=>"xlInput" %>
+  </div><br />
+  <div>
+    <%= f.label :subject %><br />
+    <%= f.select :subject, ['Select One...', 'General', 'Bugs & Problems', 'Feature Requests', 'Founders', 'Client Relations', 'Public Relations'], "id"=>"normalSelect" %>
+  </div><br />
+  <div>
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments, "class"=>"span12", :rows => 5 %>
+  </div><br />
+  <div>
+    <%= f.submit 'Submit', "class"=>"btn small primary" %>
+  </div>
+  <% end %>
+</div>
