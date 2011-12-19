@@ -139,7 +139,7 @@ $(function() {
   }
   if ($('#event_description').length) {
     $('#event_description').simplyCountable({
-      maxCount: 140
+      maxCount: 200
     });
   }
   if ($('#plan_description').length) {
