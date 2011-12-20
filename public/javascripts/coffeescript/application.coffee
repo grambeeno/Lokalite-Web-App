@@ -21,6 +21,9 @@ $ ->
     style:
       classes: "ui-tooltip-youtube"
 
+  # https://github.com/bigspotteddog/ScrollToFixed
+  $('#new-plan-container').scrollToFixed()
+
   # Tell ReportGrid when the mouse hovers over an event tile for over 1 second
   # store active_hover_id so we can determine the length of the event
   #
@@ -75,6 +78,9 @@ $ ->
   # event plans
   planDragOptions =
     revert: 'invalid'
+    # ScrollToFixed uses a z-index of 1000, so when the page scrolls
+    # the event is obfuscated while dragging
+    zindex: 1001
     cursorAt:
       top: 12
       right: 18
@@ -148,7 +154,7 @@ $ ->
 
   if $('#event_description').length
     $('#event_description').simplyCountable
-      maxCount: 140
+      maxCount: 200
 
   if $('#plan_description').length
     $('#plan_description').simplyCountable

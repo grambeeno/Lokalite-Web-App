@@ -19,6 +19,7 @@ $(function() {
       classes: "ui-tooltip-youtube"
     }
   });
+  $('#new-plan-container').scrollToFixed();
   active_hover_id = '';
   $('.events li, .organizations li').live({
     mouseenter: function() {
@@ -77,6 +78,7 @@ $(function() {
   });
   planDragOptions = {
     revert: 'invalid',
+    zindex: 1001,
     cursorAt: {
       top: 12,
       right: 18
