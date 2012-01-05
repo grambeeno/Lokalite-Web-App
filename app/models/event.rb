@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
 
   has_many :user_event_joins
   has_many :users, :through => :user_event_joins
+  has_many :event_features
 
   belongs_to :organization, :touch => true
   belongs_to :image, :class_name => 'EventImage'
@@ -81,8 +82,8 @@ class Event < ActiveRecord::Base
   scope :one_time,   where(:repeating => false)
   scope :prototypes, where(:prototype_id => nil)
 
-  scope(:featured, lambda{|*args|
-    upcoming().includes(:categories).tagged_with('featured', :on => :categories)
+  scope(:featured_on, lambda{|date|
+    includes(:event_features).where(['event_features.date = ?', date])
   })
 
   scope(:random, lambda{|*args|
@@ -125,7 +126,8 @@ class Event < ActiveRecord::Base
       end
     end
 
-    results = Event.after(start_time)
+    # results = Event.after(start_time)
+    results = Event
     results = results.before(latest_start) if latest_start
 
     organization_id = options[:organization_id]
@@ -140,6 +142,8 @@ class Event < ActiveRecord::Base
           per_page = 12
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
+        elsif options[:category] == 'featured'
+          results = results.featured_on(Date.today)
         else
           results = results.tagged_with(options[:category].humanize, :on => 'categories')
         end
@@ -421,7 +425,7 @@ class Event < ActiveRecord::Base
   end
 
   def featured?
-    categories.any?{|c| c.name.downcase == 'featured' }
+    # TODO - Implement this properly
   end
 
   # the following are needed for to_dao

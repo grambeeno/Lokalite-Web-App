@@ -3,7 +3,7 @@ class My::EventsController < My::Controller
   before_filter :find_event_and_authorize
 
   def index
-    @events = Event.all
+    # @events = Event.all
   end
 
   def show
@@ -112,20 +112,46 @@ class My::EventsController < My::Controller
   end
 
   def feature
-    if real_user_is_admin?
-      @event.feature!
-      flash[:success] = "#{@event.name} has been featured!"
-      redirect_to :back
+    if %w[event_id slot date].all?{|name| params.key?(name)}
+      @event.event_features.create(
+        :event_id => params[:event_id],
+        :slot => params[:slot],
+        :date => Chronic.parse(params[:date]).to_date
+      )
+      flash[:success] = "#{@event.name} will be featured in slot #{params[:slot].to_i + 1} on #{params[:date]}."
+      redirect_to manage_featured_events_path
     else
-      permission_denied
+      if real_user_is_admin?
+        @organizations = Organization.order('name')
+      else
+        permission_denied
+        # when we allow normal users to feature their own events
+        # We'll have this instead:
+        # @organizations = current_user.organizations
+      end
+
+      @events = @organizations.first.events.upcoming
     end
+  end
+
+  def events_for_organization
+    organization = Organization.find(params[:organization_id])
+    events = organization.events.upcoming
+    render :partial => '/my/events/event_picker_content', :locals => {:events => events}
+  end
+
+  def featured_slots
+    render :partial => '/my/events/featured_slots'
   end
 
   def unfeature
     if real_user_is_admin?
-      @event.unfeature!
-      flash[:notice] = "#{@event.name} is no longer a featured event."
-      redirect_to :back
+      date = Chronic.parse(params[:date]).to_date
+      feature = EventFeature.where(:slot => params[:slot], :date => date).limit(1).first
+      feature.destroy
+      # flash[:notice] = feature.inspect
+      flash[:notice] = "The event is no longer featured. Slot #{params[:slot].to_i + 1} is now available on #{params[:date]}."
+      redirect_to manage_featured_events_path
     else
       permission_denied
     end
@@ -137,7 +163,7 @@ class My::EventsController < My::Controller
     id = params[:id] || params[:event_id]
     @event = Event.find(id) if id
     if @event
-      permission_denied unless current_user.organizations.include?(@event.organization)
+      permission_denied unless real_user_is_admin? || current_user.organizations.include?(@event.organization)
     end
   end
 
@@ -148,7 +174,6 @@ class My::EventsController < My::Controller
     attributes.delete(:location_attributes) unless attributes[:location_id] == 'new'
 
     categories = [attributes.delete(:first_category), attributes.delete(:second_category)]
-    categories << 'Featured' if event and event.featured?
     attributes[:category_list] = categories.join(', ')
     attributes
   end

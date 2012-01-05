@@ -1,7 +1,7 @@
 var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackImpressions;
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 $(function() {
-  var active_hover_id, planDragOptions;
+  var active_hover_id, datepickerFormat, initQtip, planDragOptions;
   trackImpressions();
   displayOrganizationChart();
   $('input, textarea').placeholder();
@@ -10,15 +10,18 @@ $(function() {
     event.preventDefault();
     return $(this).closest(".flash").hide(400);
   });
-  $(".tooltip").qtip({
-    position: {
-      my: "bottom middle",
-      at: "top middle"
-    },
-    style: {
-      classes: "ui-tooltip-youtube"
-    }
-  });
+  initQtip = function() {
+    return $(".tooltip").qtip({
+      position: {
+        my: "bottom middle",
+        at: "top middle"
+      },
+      style: {
+        classes: "ui-tooltip-youtube"
+      }
+    });
+  };
+  initQtip();
   $('#new-plan-container').scrollToFixed();
   active_hover_id = '';
   $('.events li, .organizations li').live({
@@ -134,6 +137,72 @@ $(function() {
       return false;
     }
   });
+  datepickerFormat = 'yy-mm-dd';
+  $('.featured-date').datepicker({
+    dateFormat: datepickerFormat,
+    minDate: 0,
+    onSelect: function(dateText, instance) {
+      $('.event-slots').html('<div class="loader" style="margin-left:42px;margin-bottom:8px;"><div>');
+      return $.get("/my/events/featured_slots/" + dateText, function(data) {
+        $('.event-slots').html(data);
+        return initQtip();
+      });
+    }
+  });
+  $('.feature-events #organization_id').change(function(event) {
+    var organization_id;
+    $('.event-picker').html("<li class='loader'></li>");
+    organization_id = $(this).val();
+    return $.get("/my/events/events_for_organization/" + organization_id, function(data) {
+      var html;
+      if (data === '') {
+        html = 'No Upcoming Events Found.';
+      } else {
+        html = data;
+      }
+      return $('.event-picker').html(html);
+    });
+  });
+  $('.event-picker :radio').live('change', function(event) {
+    var date;
+    date = $(this).data('start-date');
+    return $('.featured-date').datepicker("option", "maxDate", date);
+  });
+  $('.event-slots .slot').live('click', function(event) {
+    if ($(this).hasClass('available')) {
+      $(this).parent().find('.slot').removeClass('selected');
+      return $(this).addClass('selected');
+    }
+  });
+  $('a.feature-event').live('click', function(event) {
+    var date, errors, path, slot;
+    event.preventDefault();
+    errors = [];
+    date = $('.featured-date').datepicker('getDate');
+    if (date) {
+      date = $.datepicker.formatDate(datepickerFormat, date);
+    } else {
+      errors.push('date');
+    }
+    slot = $('.event-slots .selected');
+    if (slot.length === 0) {
+      errors.push('slot');
+    } else {
+      slot = extractObjectId(slot);
+    }
+    event = $('.event-picker :radio:checked');
+    if (event.length === 0) {
+      errors.push('event');
+    } else {
+      event = extractObjectId(event);
+    }
+    if (errors.length > 0) {
+      alert("Please select: " + (errors.reverse().join(', ')) + ".");
+      return false;
+    }
+    path = "/my/events/feature/?event_id=" + event + "&slot=" + slot + "&date=" + date;
+    return window.location = path;
+  });
   if ($('#organization_description').length) {
     $('#organization_description').simplyCountable({
       maxCount: 500
@@ -180,7 +249,9 @@ trackImpressions = function() {
   });
 };
 extractObjectId = function(element) {
-  return element.attr('id').split('_').pop();
+  if (element !== []) {
+    return element.attr('id').split('_').pop();
+  }
 };
 extractComplexObjectId = function(element) {
   var ids, key, pair, parts, value, _i, _len, _ref;

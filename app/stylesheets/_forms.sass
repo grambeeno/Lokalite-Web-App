@@ -146,6 +146,79 @@ form.formtastic
       &:hover
         background-position: bottom
 
+$slot-width: 36px
+$slot-margin: 8px
+
+.feature-events
+  .event-picker
+    max-height: 240px
+    +no-bullets
+    overflow: auto
+    padding: 8px 8px 8px 18px
+    margin: 10px 0px
+    li
+      +clearfix
+      margin-bottom: 6px
+      input
+        +float('left')
+        margin: 8px 4px
+      label
+        display: block
+        +float('left')
+        margin-left: 6px
+
+  .event-slots
+    border: 1px solid $light-grey
+    width: ($slot-width + 2 + $slot-margin) * 3
+    padding: $slot-margin 0 0 $slot-margin
+    +clearfix
+
+    .slot
+      position: relative
+      +float('left')
+      width: $slot-width
+      height: $slot-width
+      margin: 0 $slot-margin $slot-margin 0
+      border: 1px solid $light-grey
+
+      font-size: 24px
+      color: $light-grey
+      line-height: $slot-width
+      text-align: center
+      background-color: $error-bg
+      border-color: $error-border
+
+      &.available
+        background-color: $success-bg
+        border-color: $success-border
+        cursor: pointer
+      &.selected
+        background-color: $notice-bg
+        border-color: $notice-border
+
+
+      a
+        display: none
+
+      &:hover a
+        display: block
+        position: absolute
+        top: -5px
+        right: -5px
+        +replace-text-with-dimensions('remove-from-plan.png')
+        height: image-height('remove-from-plan.png')/2
+        background-position: top
+        &:hover
+          background-position: bottom
+
+
+  .select-date,
+  .select-slot
+    +float('left')
+    margin-right: 35px
+
+
+
 
 .drag-target
   +replace-text-with-dimensions('dropzone.png')

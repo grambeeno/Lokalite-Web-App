@@ -49,6 +49,11 @@
           <li>
             <%= link_to "Profile Settings", edit_profile_path %>
           </li>
+          <% if real_user_is_admin? %>
+            <li>
+              <%= link_to "Manage Feature Events", manage_featured_events_path %>
+            </li>
+          <% end %>
           <li>
             <% if user_sudoing? %>
               <%= link_to 'Back to your user', :controller => 'admin/users', :action => :unsudo %>

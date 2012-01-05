@@ -1,0 +1,10 @@
+<% for event in events -%>
+  <li>
+    <%= radio_button_tag :event, event.id, false, 'data-start-date' => event.starts_at.to_date.to_s('datepicker') %>
+    <%= label_tag "event_#{event.id}" do %>
+      <strong><%= event.name %></strong>
+      <br />
+      <%= event.starts_at.to_s(:full) %>
+    <% end -%>
+  </li>
+<% end -%>

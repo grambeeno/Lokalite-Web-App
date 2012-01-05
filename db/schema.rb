@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107030101) do
+ActiveRecord::Schema.define(:version => 20111220180624) do
+
+  create_table "event_features", :force => true do |t|
+    t.integer  "event_id"
+    t.date     "date"
+    t.integer  "slot"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_features", ["event_id", "date"], :name => "index_event_features_on_event_id_and_date"
 
   create_table "event_images", :force => true do |t|
     t.string   "image"

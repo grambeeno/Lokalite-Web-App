@@ -39,15 +39,19 @@ Lokalite::Application.routes.draw do
   match 'facebook/authorize', :controller => :facebook, :action => :authorize, :as => :facebook_authorize
   post 'facebook/ajax_request_handler', :controller => :facebook, :action => :ajax_request_handler, :as => :ajax_request_handler
 
+
+  match 'my/events/feature', :controller => 'my/events', :action => :feature, :as => :manage_featured_events
+  match 'my/events/unfeature/slot/:slot/date/:date', :controller => 'my/events', :action => :unfeature, :as => :unfeature_slot_on_date
+  match 'my/events/events_for_organization/:organization_id', :controller => 'my/events', :action => 'events_for_organization'
+  match 'my/events/featured_slots/:date', :controller => 'my/events', :action => 'featured_slots'
+
   namespace :my do
     resources :organizations do
       match 'add_user', :action => 'add_user', :as => :add_user
     end
     resources :events do
-      put  'update_multiple', :action => 'update_multiple', :as => :update_multiple
+      put 'update_multiple', :action => 'update_multiple', :as => :update_multiple
       match 'repeat', :action => 'repeat', :as => :repeat
-      match 'feature', :action => 'feature', :as => :feature
-      match 'unfeature', :action => 'unfeature', :as => :unfeature
     end
   end
 

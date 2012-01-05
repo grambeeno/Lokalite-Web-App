@@ -14,12 +14,15 @@ $ ->
     event.preventDefault()
     $(this).closest(".flash").hide 400
 
-  $(".tooltip").qtip
-    position:
-      my: "bottom middle"
-      at: "top middle"
-    style:
-      classes: "ui-tooltip-youtube"
+  initQtip = ->
+    $(".tooltip").qtip
+      position:
+        my: "bottom middle"
+        at: "top middle"
+      style:
+        classes: "ui-tooltip-youtube"
+
+  initQtip()
 
   # https://github.com/bigspotteddog/ScrollToFixed
   $('#new-plan-container').scrollToFixed()
@@ -146,6 +149,73 @@ $ ->
       return false
   #---------------------------------------------------#
 
+  # '2012-01-27'
+  # http://docs.jquery.com/UI/Datepicker/parseDate
+  datepickerFormat = 'yy-mm-dd'
+
+  # /my/events/feature
+  $('.featured-date').datepicker
+    dateFormat: datepickerFormat
+    minDate: 0
+    # Select a date from the calendar
+    onSelect: (dateText, instance) ->
+      $('.event-slots').html('<div class="loader" style="margin-left:42px;margin-bottom:8px;"><div>')
+      $.get "/my/events/featured_slots/#{dateText}", (data) ->
+        $('.event-slots').html(data)
+        initQtip()
+
+  # select an organization from dropdown
+  $('.feature-events #organization_id').change (event) ->
+    $('.event-picker').html("<li class='loader'></li>")
+    organization_id = $(this).val()
+    $.get "/my/events/events_for_organization/#{organization_id}", (data) ->
+      if data == ''
+        html = 'No Upcoming Events Found.'
+      else
+        html = data
+      $('.event-picker').html(html)
+
+  # select an event
+  $('.event-picker :radio').live 'change', (event) ->
+    date = $(this).data('start-date')
+    $('.featured-date').datepicker("option", "maxDate", date)
+
+  $('.event-slots .slot').live 'click', (event) ->
+    if $(this).hasClass('available')
+      $(this).parent().find('.slot').removeClass('selected')
+      $(this).addClass('selected')
+
+  $('a.feature-event').live 'click', (event) ->
+    event.preventDefault()
+    errors = []
+
+    date = $('.featured-date').datepicker('getDate')
+    if date
+      date = $.datepicker.formatDate(datepickerFormat, date)
+    else
+      errors.push 'date'
+
+    slot = $('.event-slots .selected')
+    if slot.length == 0
+      errors.push 'slot'
+    else
+      slot = extractObjectId(slot)
+
+    event = $('.event-picker :radio:checked')
+    if event.length == 0
+      errors.push 'event'
+    else
+      event = extractObjectId(event)
+
+    if errors.length > 0
+      alert("Please select: #{errors.reverse().join(', ')}.")
+      return false
+
+    path = "/my/events/feature/?event_id=#{event}&slot=#{slot}&date=#{date}"
+    window.location = path
+  #---------------------------------------------------#
+
+
   # https://github.com/aaronrussell/jquery-simply-countable
   # for some reason it doesn't fail silently when the element doesn't exist...
   if $('#organization_description').length
@@ -192,7 +262,8 @@ trackImpressions = ->
 
 # id='organization_4' returns 4
 extractObjectId = (element) ->
-  element.attr('id').split('_').pop()
+  unless element == []
+    return element.attr('id').split('_').pop()
 
 # id='organization_4-event_5' returns {organization: 4, event: 5}
 extractComplexObjectId = (element) ->

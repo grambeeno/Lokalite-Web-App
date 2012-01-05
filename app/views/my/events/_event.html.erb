@@ -1,8 +1,6 @@
 <h2><%= event.name %></h2>
 <% if event.featured? %>
-  <p>
-    Featured
-  </p>
+  <%# TODO - put something here %>
 <% end %>
 <%= render :partial => '/events/time_span', :locals => {:event => event} %>
 <ul class="buttons">
@@ -11,13 +9,6 @@
     <li><%= link_to "Edit Event Dates and Times", my_event_repeat_path(event) %></li>
   <% end %>
   <li><%= link_to "Delete", my_event_path(event), :confirm => "Are you sure you want to delete this event?\n\n Any copies of this event will also be deleted.", :method => :delete %></li>
-  <% if real_user_is_admin? %>
-    <% if event.featured?  %>
-      <li><%= link_to "Unfeature", my_event_unfeature_path(event) %></li>
-    <% else %>
-      <li><%= link_to "Feature", my_event_feature_path(event) %></li>
-    <% end %>
-  <% end %>
 </ul>
 
 <% if event.prototype? %>
@@ -30,9 +21,7 @@
         <%= clone.starts_at.to_s(:full) %>
         <% if real_user_is_admin? %>
           <% if clone.featured? %>
-            <%= link_to "Unfeature", my_event_unfeature_path(clone) %>
-          <% else %>
-            <%= link_to "Feature", my_event_feature_path(clone) %>
+            <%# TODO - put something here %>
           <% end %>
         <% end %>
       </li>

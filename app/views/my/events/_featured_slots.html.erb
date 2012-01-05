@@ -1,0 +1,33 @@
+<%#= @events.inspect %>
+<%
+  if params[:date]
+    date = Chronic.parse(params[:date]).to_date
+  else
+    date = Date.today
+  end
+  events = Event.featured_on(date)
+  slots = {}
+  for event in events
+    feature = event.event_features.select{|f| f.date = date}.first
+    slots[feature.slot] = event
+  end
+-%>
+<% 12.times do |index| -%>
+  <%
+    classes = ['slot']
+
+    if slots.key?(index)
+      title = slots[index].name
+      classes << 'tooltip'
+    else
+      title = ''
+      classes << 'available'
+    end
+  -%>
+  <div class="<%= classes.join(' ') %>" id="slot_<%= index %>" title="<%= title %>">
+    <% unless classes.include?('available') %>
+      <%= link_to 'unfeature', unfeature_slot_on_date_path(index, date.to_s(:year_month_day)), :confirm => "Are you sure you want to unfeature this event?" %>
+    <% end %>
+    <%= index + 1 %>
+  </div>
+<% end -%>

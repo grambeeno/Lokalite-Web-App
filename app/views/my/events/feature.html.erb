@@ -1,0 +1,42 @@
+<div class='content feature-events'>
+  <h1>
+    Manage Featured Events
+  </h1>
+
+  <% index = 0 -%>
+  <% if @organizations.size > 1 %>
+    <br />
+    <% index += 1 %>
+    <h3><%= index %>. Select an Organization</h3>
+    <%= select_tag :organization_id, options_from_collection_for_select(@organizations, 'id', 'name') %>
+    <br />
+  <% end %>
+
+  <br />
+  <% index += 1 %>
+  <h3><%= index %>. Select an Event</h3>
+  <ul class='event-picker'>
+    <%= render :partial => 'event_picker_content', :locals => {:events => @events} %>
+  </ul>
+
+  <hr />
+  <div class='select-date'>
+    <% index += 1 %>
+    <h3><%= index %>. Select a Date</h3>
+    <div class='featured-date'></div>
+  </div>
+
+  <div class='select-slot'>
+    <% index += 1 %>
+    <h3><%= index %>. Select a Slot</h3>
+    <div class="event-slots">
+      <%= render :partial => 'featured_slots' %>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+  <br />
+  <%= link_to "Feature Event", '#feature_event', :class => 'btn feature-event' %>
+
+</div>
+

@@ -753,6 +753,15 @@ table.event-picker
       text-decoration: underline
 
 
+$error-bg:       #F8DCDA
+$error-border:   #F4C8C5
+$notice-bg:      #FFF0C0
+$notice-border:  #FFE38D
+$success-bg:     #DFF1DF
+$success-border: #BBE2BB
+$info-bg:        #C7EEFE
+$info-border:    #ADE6FE
+
 .flash
   margin: 0 $content-bg-padding 18px
   font-size: 14px
@@ -774,23 +783,29 @@ table.event-picker
     margin-right: 30px
 
   &.error
-    background-color: #F8DCDA
-    border-color: #F4C8C5
+    background-color: $error-bg
+    border-color: $error-border
   &.notice, &.alert
-    background-color: #FFF0C0
-    border-color: #FFE38D
+    background-color: $notice-bg
+    border-color: $notice-border
   &.success
-    background-color: #DFF1DF
-    border-color: #BBE2BB
+    background-color: $success-bg
+    border-color: $success-border
   &.info
-    background-color: #C7EEFE
-    border-color: #ADE6FE
+    background-color: $info-bg
+    border-color: $info-border
 
 #counter
   &.safe
     color: #256C16
   &.over
     color: #81080B
+
+
+.loader
+  background: image-url('loading.gif') no-repeat
+  width: image-width('loading.gif')
+  height: image-height('loading.gif')
 
 .clear
   width: 100%

@@ -1,0 +1,24 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event: 
+  date: 2011-12-20
+  slot: 1
+
+two:
+  event: 
+  date: 2011-12-20
+  slot: 1
+
+# == Schema Information
+#
+# Table name: event_features
+#
+#  id         :integer         not null, primary key
+#  event_id   :integer
+#  date       :date
+#  slot       :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
