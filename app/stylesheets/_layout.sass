@@ -34,6 +34,9 @@ body
     background-image: -o-linear-gradient(top, #333333, #222222)
     background-image: linear-gradient(top, #333333, #222222)
     color: white
+    -moz-box-shadow: 0px 0px 5px #333
+    -webkit-box-shadow: 0px 0px 5px #333
+    -o-box-shadow: 0px 0px 5px #333
     .content
       +centered-on-page
       // +clearfix
@@ -374,6 +377,7 @@ body
       &.active
         background-color: black
         background-position: 2px bottom
+        border-radius: 3px
         a
           color: white
 
