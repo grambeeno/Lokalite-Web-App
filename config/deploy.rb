@@ -3,7 +3,7 @@ require "bundler/capistrano"
 
 # You can deploy if you have a public key in /home/#{user}/.ssh/authorized_keys
 
-set :stages, %w(development staging production)
+set :stages, %w(development softlayer production)
 set :default_stage, "development"
 
 set :application, "lokalite"
