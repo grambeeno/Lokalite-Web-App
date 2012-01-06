@@ -153,7 +153,7 @@ input[type="checkbox"] { vertical-align: bottom; }
 label, input[type=button], input[type=submit], button { cursor: pointer; }
  
 /* webkit browsers add a 2px margin outside the chrome of form elements */  
-button, input, select, textarea { margin: 0; display: inline-block; width: 210px; height: 25px; padding: 4px; font-size: 13px; line-height: 18px; color: gray; border: 1px solid #CCC; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px }
+button, input, select, textarea { margin: 0;}
 
 /* colors for form validity */
 input:valid, textarea:valid   {  }
