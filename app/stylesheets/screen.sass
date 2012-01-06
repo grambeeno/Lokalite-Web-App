@@ -12,6 +12,8 @@ $grey: #5d5d5d
 $light-grey: #808080
 $header-grey: #444444
 
+$black: #000
+
 $event-categories: 'all_events', 'all_places', 'featured', 'most_popular', 'happy_hour', 'campus', 'food_and_dining', 'music_and_the_arts', 'nightlife', 'shopping', 'restaurants_and_bars', 'coffee_and_tea', 'arts_and_entertainment', 'services', 'beer_wine_and_spirits', 'sports_and_fitness', 'health_and_beauty', 'community', 'non-profit', 'tours_and_tastings', 'learn_something_new', 'mmj'
 
 $social-categories: 'twitter', 'lokalite', 'facebook'
@@ -66,7 +68,8 @@ h1 span.edit a
   +hover-link
 
 a
-  +link-colors($blue, darken($blue, 12), darken($blue, 20), $blue)
+  +link-colors($black, darken($light-green, 40), darken($light-green, 50), $black)
+  text-decoration: none
 
 ul.social
   margin: 0
@@ -175,7 +178,7 @@ img.profile_small
   padding-left: $sidebar-padding
   h3 a
     +hover-link
-    +link-colors($header-grey, $blue)
+    +link-colors($black, darken($light-green, 40), darken($light-green, 50), $black)
     // +unstyled-link
   ul
     margin: 0
@@ -198,6 +201,8 @@ img.profile_small
         padding-left: 10px
         font-size: 12px
         margin: 0 auto
+        +link-colors($black, darken($light-green, 40), darken($light-green, 50), $black)
+
         .organization
           font-size: 10px
   .soc-links li
