@@ -1,10 +1,11 @@
-<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+<!<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">	
 
 <style>
 
   .body {
     margin: 0px 18px 0px 18px;
     font-size: 14pt;
+    cursor: default;
 }
 
 </style>
@@ -13,31 +14,31 @@
 
 <p class="body">General Inquiries? Know of a Kick-Ass event going on that we missed? Let us know!</p> 
 
-<div class="form-stacked">
+<div class="form-stacked" style='margin: 0 18px 0 18px'>
   <%= form_for :email, :url => { :controller => 'static', :action => 'send_mail' } do |f| %>
   
     <div>
-      <%= f.label :name %><br />
-      <%= f.text_field :name, "class"=>"span12", "id"=>"xlInput" %>
+      <%= f.label :name, "class"=>"contact-text" %><br />
+      <%= f.text_field :name, "class"=>"contact-field", "id"=>"xlInput" %>
     </div><br />
     
     <div>
-      <%= f.label :email %><br />
-      <%= f.email_field :email, "class"=>"span12", "id"=>"xlInput" %>
+      <%= f.label :email, "class"=>"contact-text" %><br />
+      <%= f.email_field :email, "class"=>"contact-field", "id"=>"xlInput" %>
     </div><br />
     
     <div>
-      <%= f.label :subject %><br />
+      <%= f.label :subject, "class"=>"contact-text" %><br />
       <%= f.select :subject, ['Select One...', 'General', 'Bugs & Problems', 'Feature Requests', 'Founders', 'Client Relations', 'Public Relations'], "id"=>"normalSelect" %>
     </div><br />
     
     <div>
-      <%= f.label :comments %><br />
-      <%= f.text_area :comments, "class"=>"span12", :rows => 5 %>
+      <%= f.label :comments, "class"=>"contact-text" %><br />
+      <%= f.text_area :comments, "class"=>"contact-field-comments", :rows => 5 %>
     </div><br />
     
     <div>
-      <%= f.submit 'Submit', "class"=>"btn large dark" %>
+      <%= f.submit 'Submit', "class"=>"btn secondary" %>
     </div>
   
   <% end %>

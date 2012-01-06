@@ -527,6 +527,12 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
+.contact-text { cursor: default; font-weight: bold; }
+
+.contact-field { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 710px; padding: 10px 14px; margin: 0 0 15px 0; height: 28px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; -moz-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; }
+
+.contact-field-comments { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 710px; padding: 10px 14px; margin: 0 0 15px 0; height: 100px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; -moz-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; }
+
 .chart { background-color: white; border: 1px solid gray; margin-bottom: 2em; }
 
 .profile-header { margin: 0 0 25px 0; }
