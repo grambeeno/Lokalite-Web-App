@@ -468,8 +468,8 @@ table.event-picker input[type='checkbox'] { background-color: red; }
 .form h1 { font-size: 46px; margin-bottom: 10px; }
 .form h2 { font-size: 20px; font-weight: normal; color: gray; margin-bottom: 20px; }
 
-form.formtastic input, form.formtastic textarea { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; }
-form.formtastic input.file, form.formtastic textarea.file { background-color: transparent; padding: 0; border: none; }
+form.formtastic input, form.formtastic textarea { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; border-radius: 3px; border: 1px solid #d7d7d7; background-color: white; -moz-box-shadow: #eeeeee 0 2px 5px; -webkit-box-shadow: #eeeeee 0 2px 5px; -o-box-shadow: #eeeeee 0 2px 5px; box-shadow: #eeeeee 0 2px 5px; }
+form.formtastic input.file, form.formtastic textarea.file { background-color: transparent; padding: 0; border: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; box-shadow: none; }
 form.formtastic input[type=submit] { color: inherit; text-decoration: inherit; cursor: inherit; border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background: -webkit-linear-gradient(#ffffff, #ebebeb); background: -moz-linear-gradient(#ffffff, #ebebeb); background: -o-linear-gradient(#ffffff, #ebebeb); background: -ms-linear-gradient(#ffffff, #ebebeb); background: linear-gradient(#ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; padding: 8px 10px; margin-right: 6px; }
 form.formtastic input[type=submit]:active, form.formtastic input[type=submit]:focus { outline: none; }
 form.formtastic input[type=submit]:hover { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background: -webkit-linear-gradient(#ffffff, #dbdbdb); background: -moz-linear-gradient(#ffffff, #dbdbdb); background: -o-linear-gradient(#ffffff, #dbdbdb); background: -ms-linear-gradient(#ffffff, #dbdbdb); background: linear-gradient(#ffffff, #dbdbdb); }
@@ -492,8 +492,8 @@ form.formtastic .event-repeat span.checkbox-wrapper { position: relative; margin
 form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { position: absolute; top: 4px; }
 
 .devise-fields { text-align: center; }
-.devise-fields input[type="text"], .devise-fields input[type="email"], .devise-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; }
-.devise-fields input[type="text"].file, .devise-fields input[type="email"].file, .devise-fields input[type="password"].file { background-color: transparent; padding: 0; border: none; }
+.devise-fields input[type="text"], .devise-fields input[type="email"], .devise-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; border: 1px solid #d7d7d7; background-color: white; -moz-box-shadow: #eeeeee 0 2px 5px; -webkit-box-shadow: #eeeeee 0 2px 5px; -o-box-shadow: #eeeeee 0 2px 5px; box-shadow: #eeeeee 0 2px 5px; }
+.devise-fields input[type="text"].file, .devise-fields input[type="email"].file, .devise-fields input[type="password"].file { background-color: transparent; padding: 0; border: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; box-shadow: none; }
 .devise-fields input[type=submit] { color: inherit; text-decoration: inherit; cursor: inherit; border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background: -webkit-linear-gradient(#ffffff, #ebebeb); background: -moz-linear-gradient(#ffffff, #ebebeb); background: -o-linear-gradient(#ffffff, #ebebeb); background: -ms-linear-gradient(#ffffff, #ebebeb); background: linear-gradient(#ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; padding: 8px 10px; margin-right: 6px; }
 .devise-fields input[type=submit]:active, .devise-fields input[type=submit]:focus { outline: none; }
 .devise-fields input[type=submit]:hover { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dbdbdb)); background: -webkit-linear-gradient(#ffffff, #dbdbdb); background: -moz-linear-gradient(#ffffff, #dbdbdb); background: -o-linear-gradient(#ffffff, #dbdbdb); background: -ms-linear-gradient(#ffffff, #dbdbdb); background: linear-gradient(#ffffff, #dbdbdb); }
@@ -534,9 +534,9 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
 .contact-text { cursor: default; font-weight: bold; }
 
-.contact-field { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 710px; padding: 10px 14px; margin: 0 0 15px 0; height: 28px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; -moz-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; }
+.contact-field { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 710px; padding: 10px 14px; margin: 0 0 15px 0; height: 28px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: 0 2px 5px #eeeeee; -moz-box-shadow: 0 2px 5px #eeeeee; box-shadow: 0 2px 5px #eeeeee; }
 
-.contact-field-comments { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 710px; padding: 10px 14px; margin: 0 0 15px 0; height: 100px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; -moz-box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; box-shadow: inset 0 1px 0 #eeeeee, white 0 1px 0; }
+.contact-field-comments { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 710px; padding: 10px 14px; margin: 0 0 15px 0; height: 100px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: 0 2px 5px #eeeeee; -moz-box-shadow: 0 2px 5px #eeeeee; box-shadow: 0 2px 5px #eeeeee; }
 
 .chart { background-color: white; border: 1px solid gray; margin-bottom: 2em; }
 
@@ -568,7 +568,7 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .new-plan .events li div { margin-bottom: 0; }
 .new-plan .events li p { padding: 6px 10px 4px; line-height: 16px; color: #5d5d5d; }
 .new-plan form input[type="text"], .new-plan form textarea { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; background-color: white; width: 429px; -moz-box-shadow: #dddddd 0 2px 5px; -webkit-box-shadow: #dddddd 0 2px 5px; -o-box-shadow: #dddddd 0 2px 5px; box-shadow: #dddddd 0 2px 5px; border-radius: 3px; }
-.new-plan form input[type="text"].file, .new-plan form textarea.file { background-color: transparent; padding: 0; border: none; }
+.new-plan form input[type="text"].file, .new-plan form textarea.file { background-color: transparent; padding: 0; border: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; box-shadow: none; }
 .new-plan form textarea { height: 70px; }
 
 .cf:before { content: ""; display: table; }

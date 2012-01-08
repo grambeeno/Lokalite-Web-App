@@ -3,7 +3,7 @@ module EventsHelper
   def tile_view_title
     if category = params[:category]
       if category == 'suggested'
-        "Events from your favorite categories"
+        "Suggested Events"
       else
         "#{title_for_category(category)} Events"
       end

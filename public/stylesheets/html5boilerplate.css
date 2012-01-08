@@ -155,6 +155,10 @@ label, input[type=button], input[type=submit], button { cursor: pointer; }
 /* webkit browsers add a 2px margin outside the chrome of form elements */  
 button, input, select, textarea { margin: 0;}
 
+/* style used for non-header selection menus */
+
+select { display: inline-block; height: 25px; padding: 4px; font-size: 13px; line-height: 18px; color: #444; border: 1px solid #CCC; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;}
+
 /* colors for form validity */
 input:valid, textarea:valid   {  }
 input:invalid, textarea:invalid { 
