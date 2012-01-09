@@ -15,7 +15,8 @@ class My::EventsController < My::Controller
     end
 
     unless @organization.blank?
-      @event = @organization.events.new(:starts_at => Date.today + 18.hours, :ends_at => Date.today + 22.hours)
+      today = Time.zone.now.to_date
+      @event = @organization.events.new(:starts_at => today + 18.hours, :ends_at => today + 22.hours)
     end
   end
 

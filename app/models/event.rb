@@ -115,7 +115,7 @@ class Event < ActiveRecord::Base
         Chronic.parse(options[:after].humanize)
       end
     else
-      Time.now
+      Time.zone.now
     end
 
     latest_start = if options[:before]
@@ -126,8 +126,7 @@ class Event < ActiveRecord::Base
       end
     end
 
-    # results = Event.after(start_time)
-    results = Event
+    results = Event.after(start_time)
     results = results.before(latest_start) if latest_start
 
     organization_id = options[:organization_id]
@@ -143,7 +142,7 @@ class Event < ActiveRecord::Base
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         elsif options[:category] == 'featured'
-          results = results.featured_on(Date.today)
+          results = results.featured_on(Time.zone.now.to_date)
         else
           results = results.tagged_with(options[:category].humanize, :on => 'categories')
         end

@@ -3,7 +3,7 @@
   if params[:date]
     date = Chronic.parse(params[:date]).to_date
   else
-    date = Date.today
+    date = Time.zone.now.to_date
   end
   events = Event.featured_on(date)
   slots = {}

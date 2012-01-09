@@ -7,7 +7,7 @@
       of local events going on in your community</p>
 
       <ul class="events">
-        <% Event.featured_on(Date.today).limit(2).each do |event| %>
+        <% Event.featured_on(Time.zone.now.to_date).limit(2).each do |event| %>
         <%= render :partial => '/events/event', :locals => { :event => event } %>
         <% end %>
       </ul>
