@@ -363,7 +363,7 @@ img.profile_small { width: 55px; }
 .google_maps_info_window .info .address { font-size: 11px; font-weight: bold; }
 .google_maps_info_window .info table.times { font-size: 11px; margin: 18px 0; }
 
-table.times { margin-top: 10px; font-size: 10px; text-align: left; }
+table.times { font-size: 10px; text-align: left; }
 table.times tr { height: 12px; }
 table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
 table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
@@ -388,14 +388,14 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 .event .image img, .organization .image img, .plan .image img { border: 1px solid black; width: 300px; }
 .event .detail, .organization .detail, .plan .detail { display: inline; float: left; width: 363px; padding-left: 25px; }
 .event dt, .organization dt, .plan dt { font-weight: bold; font-size: 14px; border-bottom: 1px solid #cccccc; margin-bottom: 4px; }
-.event dd, .organization dd, .plan dd { margin-bottom: 10px; }
+.event dd, .organization dd, .plan dd { margin-bottom: 7px; }
 .event dd p, .organization dd p, .plan dd p { padding-bottom: 8px; }
 .event .location, .organization .location, .plan .location { margin-top: 2px; }
 .event .location .map img, .organization .location .map img, .plan .location .map img { border: 1px solid #dddddd; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; }
 
 .event .detail table.times, .plan .detail table.times { font-size: 13px; }
 .event .detail img, .plan .detail img { display: inline; float: left; padding: 2px; background-color: white; border: 1px solid #dddddd; margin: 0 10px 10px 0; }
-.event .detail .description, .plan .detail .description { line-height: 1.1em; height: 3.3em; }
+.event .detail .description, .plan .detail .description { line-height: 1.1em; height: 3.9em; }
 
 .plan-preview { margin-bottom: 25px; }
 .plan-preview .title { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
@@ -492,7 +492,7 @@ form.formtastic .event-repeat span.checkbox-wrapper { position: relative; margin
 form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { position: absolute; top: 4px; }
 
 .devise-fields { text-align: center; }
-.devise-fields input[type="text"], .devise-fields input[type="email"], .devise-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; border: 1px solid #d7d7d7; background-color: white; -moz-box-shadow: #eeeeee 0 2px 5px; -webkit-box-shadow: #eeeeee 0 2px 5px; -o-box-shadow: #eeeeee 0 2px 5px; box-shadow: #eeeeee 0 2px 5px; }
+.devise-fields input[type="text"], .devise-fields input[type="email"], .devise-fields input[type="password"] { background-color: #f1f1f1; border: 1px solid #d7d7d7; padding: 10px; width: 100%; border: 1px solid #d7d7d7; background-color: white; -moz-box-shadow: #eeeeee 0 2px 5px; -webkit-box-shadow: #eeeeee 0 2px 5px; -o-box-shadow: #eeeeee 0 2px 5px; box-shadow: #eeeeee 0 2px 5px; border-radius: 3px; }
 .devise-fields input[type="text"].file, .devise-fields input[type="email"].file, .devise-fields input[type="password"].file { background-color: transparent; padding: 0; border: none; -moz-box-shadow: none; -webkit-box-shadow: none; -o-box-shadow: none; box-shadow: none; }
 .devise-fields input[type=submit] { color: inherit; text-decoration: inherit; cursor: inherit; border: 1px solid #cccccc; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #ebebeb)); background: -webkit-linear-gradient(#ffffff, #ebebeb); background: -moz-linear-gradient(#ffffff, #ebebeb); background: -o-linear-gradient(#ffffff, #ebebeb); background: -ms-linear-gradient(#ffffff, #ebebeb); background: linear-gradient(#ffffff, #ebebeb); text-shadow: white 1px 1px 1px; font-size: 14px; padding: 8px 10px; margin-right: 6px; }
 .devise-fields input[type=submit]:active, .devise-fields input[type=submit]:focus { outline: none; }
