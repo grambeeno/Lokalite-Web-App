@@ -1,0 +1,10 @@
+@font-face {
+  font-family:"Harabara";
+  src:url("Harabara.eot?") format("eot"),
+      url("Harabara.woff") format("woff"),
+      url("Harabara.ttf") format("truetype"),
+      url("Harabara.svg#Harabara") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+

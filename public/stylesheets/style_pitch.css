@@ -1,0 +1,511 @@
+/******************************************
+TAG DEFINITIONS
+******************************************/
+body {
+	background: #faf8f3 url(../images/main-bg.png) center top;
+}
+
+h1, h2, h3, h4, {
+	font-family: 'Harabara';
+	color: #595854;
+	font-weight: normal;
+}
+h1 {
+	font-size: 47px;
+	text-align: center;
+	height: 59px;
+	line-height: 59px;
+}
+
+
+/******************************************
+NAVIGATION
+******************************************/
+#nav {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+	#nav_left:before, #nav_right:before {
+		display: block;
+		content: '';
+		height: 0px;
+		background: #f3f0e9;
+		border-bottom: 1px solid #efede9;
+	}
+	#nav_center {
+		width: 960px;
+		height: 18px;
+	}
+		#nav_center a {
+			display: block;
+			float: left;
+			position: relative;
+			width: 47px;
+			height: 22px;
+			background: url(../images/PD_Header.png) no-repeat -278px 0;
+			padding: 18px 0 12px;
+			text-align: center;
+			font-size: 18px;
+			line-height: 18px;
+			color: #cac7c1;
+		}
+		#nav_center a:hover, #nav_center a.current {
+			background-position: -325px 0;
+			color: #fff;
+		}
+		
+		#nav_center a#twitter {
+			background: url(../images/PD_Header.png) no-repeat -94px 0;
+		}
+		#nav_center a#twitter:hover {
+			background-position: -141px 0;
+		}
+		#nav_center a#facebook {
+			background: url(../images/PD_Header.png) no-repeat 0 0;
+		}
+		#nav_center a#facebook:hover {
+			background-position: -47px 0;
+		}
+		#nav_center a#angellist {
+			background: url(../images/PD_Header.png) no-repeat -188px 0;
+		}
+		#nav_center a#angellist:hover {
+			background-position: -235px 0;
+		}
+		
+		#nav_center a .label {
+			display: none;
+			position: absolute;
+			top: 53px;
+			color: #595856;
+			text-align: center;
+			font-size: 12px;
+			line-height: 13px;
+		}
+		#nav_center a.current .label, #nav_center a:hover .label {
+			display: block;
+		}
+		#nav_center .filler {
+			height: 56px;
+			width: 23px;
+			background: none;
+			float: left;
+		}
+		#nav_center .filler:before, #filler_left, #filler_right {
+			content: '';
+			display: block;
+			height: 0px;
+			background: #ffffff;
+			border-bottom: 0px solid #efede9;
+		}
+		#filler_left {
+			width: 1px;
+			float: left;
+		}
+		#filler_right {
+			width: 2px;
+			float: left;
+		}
+
+
+
+
+/******************************************
+COMMON CLASSES
+******************************************/
+.slide {
+	position: relative;
+	margin: 0;
+	width: 100%;
+	padding: 110px 0 200px;;
+}
+
+.container {
+	position: relative;
+	width: 940px;
+	margin: 0 auto;
+}
+
+.clear {
+	clear: both;
+}
+
+.transition {
+	height: 71px;
+	width: 100%;
+	text-align: center;
+	padding: 59px 0 0;
+}
+
+	.transition .next {
+		display: inline-block;
+		width: 199px;
+		height: 71px;
+		background: url(../images/next-prev-buttons.png) no-repeat 0 0;
+		margin: 0 27px;
+	}
+	.transition .next:hover { background-position: 0 -71px; }
+	.transition .next:active { background-position: 0 -142px; }
+	.transition .start {
+		display: inline-block;
+		width: 199px;
+		height: 71px;
+		background: url(../images/Start_Buttons.png) no-repeat 0 0;
+		margin: 0 27px;
+	}
+	.transition .start:hover { background-position: 0 -68px; }
+	.transition .start:active { background-position: 0 -139px; }
+	.transition .prev {
+		display: inline-block;
+		width: 199px;
+		height: 71px;
+		background: url(../images/next-prev-buttons.png) no-repeat -199px 0;
+		margin: 0 20px;
+	}
+	.transition .prev:hover { background-position: -199px -71px; }
+	.transition .prev:active { background-position: -199px -142px; }
+
+.title {
+	width: 100%;
+	margin: 0 0 65px;
+        letter-spacing: 1px;
+        color: #000000;
+}	
+	.title th {
+	}
+
+
+/******************************************
+SLIDE 1
+******************************************/
+#slide1 {
+	padding: 110px 0 210px;;
+}
+#logo {
+	width: 250px;
+	height: 125px;
+	background: url(../images/Logo.png) no-repeat;
+	margin: 0 auto;
+}
+#slide1 h1 {
+	margin: 27px 0 40px;
+}
+
+        h2#tag {
+                font-size: 36px;
+                text-align: center;
+                font-weight: normal;
+                color: #749a74;
+}
+
+#intro_items {
+	width: 726px;
+	height: 650px;
+	margin: 0 auto 20px;
+	background: url(../images/Page_1_Events.png) no-repeat;
+}
+
+	
+
+
+/******************************************
+SLIDE 2
+******************************************/
+#slide2 {
+	background-image: url(../images/Page_2_Background.png) ;
+}
+	#slide2 h1 {
+		color: #fff;
+	}
+	
+	h2#tagline {
+		font-size: 72px;
+		text-align: center;
+		font-weight: normal;
+		margin: 130px 0 110px;
+		color: #fff;
+                letter-spacing: 1px;
+                width: 1000px;
+	}
+	
+	#slide2 .transition {
+		background-image: url(../images/Page_2_Background.png);
+		margin-bottom: 160px;
+		padding-bottom: 100px;
+	}
+
+
+
+/******************************************
+SLIDE 3
+******************************************/
+#dev-timeline {
+              width: 950px;
+              height: 900px;
+              background: url(../images/Development_Timeline.png);
+        }
+
+/* .bio {
+	width: 240px;
+        height: 300px;
+	margin: 0 13px 15px 41px;
+	background: url(../images/Picture_Background.png) no-repeat;
+	position: relative;
+	float: left;
+	margin: 20px 0px 15px 110px;
+}
+	
+      .banner {
+		width: 83px;
+		height: 83px;
+		position: absolute;
+		top: -3px;
+		left: -2px;
+	}
+	#lauren .banner { background: url(../images/Banner_Content.png) no-repeat; }
+	#zach .banner { background: url(../images/Banner_Client.png) no-repeat; }
+	#zef .banner { background: url(../images/Banner_Engineer.png) no-repeat; }
+	#will .banner { background: url(../images/Banner_Finance.png) no-repeat; }
+	#graham .banner {background: url(../images/Banner_Engineer.png) no-repeat;}
+         .pic {
+		width: 225px;
+		height: 210px;
+		margin: 8px auto 14px;
+	}
+	#lauren .pic {
+		background: url(../images/Picture_Lauren.png) no-repeat;
+	}
+	#zach .pic {
+		background: url(../images/Picture_Zach.png) no-repeat;
+	}
+	#zef .pic {
+		background: url(../images/Picture_Zef.png) no-repeat;
+	}
+	#will .pic {
+		background: url(../images/Picture_Will.png) no-repeat;
+	}
+        #graham .pic {
+                   background: url(../images/Picture_Graham.png) no-repeat;
+        }
+	
+	.bio h2 {
+		font-family: 'Harabara';
+                font-size: 17px;
+		font-weight: 300;
+		color: #595754;
+		margin: -15px 0 0 10px;
+	}
+	.bio .bio_info {
+		margin: 0 10px 0 0;
+		float: right;
+	}
+		.bio .bio_info a {
+			margin: -12px 0 0 0;
+                        width: 21px;
+			height: 17px;
+			display: block;
+                        float: right;
+	.bio a.bio_twitter { background: url(../images/Twitter.png) no-repeat 0 0; }
+			margin: 0 0 0 0;
+		}
+	
+        .bio a.bio_email { background: url(../images/Mail.png) no-repeat 0 0px; }
+	.bio a.bio_twitter { background: url(../images/Twitter.png) no-repeat 0 0; }
+	.bio a.bio_linkedin { background: url(../images/LinkedIn.png) no-repeat 0 0; }
+	.bio a.bio_github { background: url(../images/Github.png) no-repeat 0 0; }
+	
+		.bio ul {
+			font-family: 'myriad pro';
+                        margin: 0 0 0 25px;
+			color: #595754;
+			font-size: 12px;
+                        font-weight: normal;
+			line-height: 14px;
+		}
+			.bio ul li {
+				margin-bottom: 5px;
+			} */
+
+
+
+/******************************************
+SLIDE 4
+******************************************/
+#problems {
+	width: 950px;
+	height: 300px;
+	background: url(../images/Problems.png) no-repeat;
+}
+
+
+
+/******************************************
+SLIDE 5
+******************************************/
+#competitors {
+	width: 950px;
+	height: 300px;
+	margin-left: 40px;
+}
+
+	
+
+/******************************************
+SLIDE 6
+******************************************/
+#but-remain {
+	width: 950px;
+	height: 750px;
+	background: url(../images/But_remain.png) no-repeat;
+}
+
+	
+
+/******************************************
+SLIDE 7
+******************************************/
+#difference {
+	width: 950px;
+	height: 750px;
+	background: url(../images/Lokalite_Is_Different.png) no-repeat;
+}
+
+h4#disclaim {
+        text-align:center;
+}
+
+	
+
+/******************************************
+SLIDE 8
+******************************************/
+#market {
+	width: 940px;
+	height: 1200px;
+	background: url(../images/Market.png) no-repeat;
+}
+
+
+
+/******************************************
+SLIDE 9
+******************************************/
+#targeting {
+	width: 940px;
+	height: 1200px;
+	background: url(../images/Targeting.png) no-repeat;
+}
+
+
+
+/******************************************
+SLIDE 10
+******************************************/
+#next {
+	width: 950px;
+	height: 1400px;
+        background: url(../images/Next.png) ;
+}
+
+
+
+/******************************************
+SLIDE 11
+******************************************/
+#press {
+	width: 850px;
+	height: 550px;
+        margin-left: 80px;
+}
+
+
+/******************************************
+SLIDE 12
+******************************************/
+#testimonials {
+              width: 850px;
+              height: 550px;
+              background: url(../images/Testimonials.png);
+              }
+
+
+
+/*****************************************
+SLIDE 13
+*****************************************/
+#contact1 {
+	width: 250px;
+	height: 125px;
+	background: url(../images/Logo.png) no-repeat;
+	margin: 40px auto;
+        position: center;
+}
+#contact2 {
+	width: 257px;
+	height: 59px;
+	margin: 100px auto 20px;
+	background: url(../images/contact-500.png) no-repeat;
+}
+
+.contact_bar {
+	margin: 0 auto 33px;
+	width: 448px;
+	height: 30px;
+	background: url(../images/Contact_Bar.png) no-repeat;
+	padding: 15px 18px 14px 65px;
+	position: relative;
+        letter-spacing: 1px;
+}
+	.contact_bar i {
+		width: 40px;
+		height: 40px;
+		display: block;
+		position: absolute;
+		top: 10px;
+		left: 35px;
+	}
+	#email_bar i { 
+                top: 15px;
+                background: url(../images/Contact_Mail.png) no-repeat; 
+}
+	#angellist_bar i {
+		height: 40px;
+		top: 10px;
+		background: url(../images/Contact_AngelList.png) no-repeat;
+	}
+	#twitter_bar i { background: url(../images/Contact_Twitter.png) no-repeat; }
+	#facebook_bar i { background: url(../images/Contact_Facebook.png); }
+        #pdf_bar i { background: url(../images/Contact_PDF.png) no-repeat; }
+	
+	.contact_bar a {
+		color: #000000;
+		font-size: 26px;
+		font-family: "Harabara";
+		font-weight: normal;
+                margin-left: 30px;
+	}
+	
+	.contact_button {
+		width: 100px;
+		height: 31px;
+		display: block;
+		float: right;
+		margin: 0 0 0 13px;
+		background: url(../images/Contact_Buttons.png) no-repeat;
+	}
+	.email_us { background-position: 0 -1px; }
+	.email_us:hover { background-position: 0 -33px; }
+	.follow_us { background-position: -104px -1px; }
+	.follow_us:hover { background-position: -104px -33px; }
+	.like_us { background-position: -310px -1px; }
+        .like_us:hover { background-position: -310px -33px; }
+        .request_intro { background-position: 0 0; }
+	.request_intro:hover { background-position: -140px -31px; }
+	.print { background-position: -208px -1px; }
+	.print:hover { background-position: -208px -33px; }
+	
+
+
