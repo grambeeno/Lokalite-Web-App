@@ -361,7 +361,7 @@ img.profile_small { width: 55px; }
 .google_maps_info_window .info { display: inline; float: left; width: 220px; margin-top: 24px; }
 .google_maps_info_window .info .description { line-height: 1.2em; height: 4.8em; }
 .google_maps_info_window .info .address { font-size: 11px; font-weight: bold; }
-.google_maps_info_window .info table.times { font-size: 11px; margin: 18px 0; }
+.google_maps_info_window .info table.times { font-size: 11px; margin: 34px 0 8px 0; }
 
 table.times { font-size: 10px; text-align: left; }
 table.times tr { height: 12px; }
@@ -395,16 +395,19 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 
 .event .detail table.times, .plan .detail table.times { font-size: 13px; }
 .event .detail img, .plan .detail img { display: inline; float: left; padding: 2px; background-color: white; border: 1px solid #dddddd; margin: 0 10px 10px 0; }
-.event .detail .description, .plan .detail .description { line-height: 1.1em; height: 3.9em; }
+.event .detail .description, .plan .detail .description { line-height: 1.1em; height: 4.2em; }
 
 .plan-preview { margin-bottom: 25px; }
 .plan-preview .title { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
 .plan-preview .title .title-image { display: inline; float: left; margin-right: 10px; }
 .plan-preview .title .text { display: inline; float: left; }
 .plan-preview .title h1 { font-size: 24px; }
-.plan-preview .title h1 a { color: inherit; text-decoration: inherit; cursor: inherit; text-decoration: none; }
+.plan-preview .title h1 a { color: inherit; text-decoration: inherit; cursor: inherit; text-decoration: none; color: #444444; }
 .plan-preview .title h1 a:active, .plan-preview .title h1 a:focus { outline: none; }
 .plan-preview .title h1 a:hover { text-decoration: underline; }
+.plan-preview .title h1 a:visited { color: #444444; }
+.plan-preview .title h1 a:hover { color: #4c984f; }
+.plan-preview .title h1 a:active { color: #3b763d; }
 .plan-preview .title h2 { font-size: 16px; font-weight: normal; }
 .plan-preview .image { display: inline; float: left; border: 1px solid #dddddd; margin-right: 11px; width: 190px; height: 190px; }
 .plan-preview .detail { display: inline; float: left; width: 220px; margin-right: 11px; }

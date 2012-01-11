@@ -500,7 +500,7 @@ $info-window-width: 380px
       font-weight: bold
     table.times
       font-size: 11px
-      margin: 18px 0
+      margin: 34px 0 8px 0
 
 
 table.times
@@ -567,8 +567,7 @@ header.index
       font-weight: normal
       a
         +hover-link
-        // +link-colors(#555, $blue)
-
+        //:+link-colors($header-grey, darken($light-green, 40), darken($light-green, 50), $header-grey)
   .image
     +foreground
     +float('left')
@@ -618,7 +617,7 @@ $thumb-margin: 10px
 
     .description
       line-height: 1.1em
-      height: 3.9em
+      height: 4.2em
 
 .plan-preview
   margin-bottom: 25px
@@ -635,6 +634,8 @@ $thumb-margin: 10px
       a
         +unstyled-link
         +hover-link
+        +link-colors($header-grey, darken($light-green, 40), darken($light-green, 50), $header-grey)
+
     h2
       font-size: 16px
       font-weight: normal
