@@ -30,7 +30,7 @@
           <% if user_sudoing? %>
             <span class='acting-like'>Acting like</span>
           <% end %>
-          <%= link_to current_user.full_name, '#', :class => 'user-link user-name' %>
+          <%= link_to current_user.full_name, '#', :class => 'user-link user-name', :style => 'margin-left: 10px' %>
           <%= link_to raw("&#9662;"), '#', :class => 'user-link user-name' %>
         </div>
         <ul class="dropdown-menu">
