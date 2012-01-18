@@ -5,7 +5,7 @@ module EventsHelper
       if category == 'suggested'
         "Suggested Events"
       else
-        "#{title_for_category(category)} Events"
+        "#{title_for_category(category)}"
       end
     elsif keywords = params[:keywords]
       "Search results: #{keywords}"

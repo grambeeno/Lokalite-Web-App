@@ -3,10 +3,10 @@ module ApplicationHelper
 
 
   def title_for_category(category)
-    category = category.titleize
+    category = category.titleize 
     category = category.upcase if category.upcase == 'MMJ'
     category = category.gsub(/ And /, ' and ')
-    category
+    category = category + " Events"
   end
 
   def tile_main_content?
@@ -95,8 +95,8 @@ module ApplicationHelper
     parts << @event.name if @event
     parts << @organization.name if @organization
     parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
-    parts << title_for_category(params[:category]) if params[:category]
     parts << "lokalite"
+    parts << title_for_category(params[:category]) if params[:category]
     parts.join(' | ')
   end
 
