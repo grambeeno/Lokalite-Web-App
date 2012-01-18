@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title><%= title %></title>
-    <meta name="description" content="<%= title %>">
+    <meta name="description" content="<% if params[:action] == "show" %> <%= @event.description %> <% else %> <%= title %> <% end %>">
     <meta name="author" content="lokalite.com">
     <meta name="keywords" content="Boulder Events, Events, Events Calendar, Local Events, Weekend events, Happy Hours, Music, things to do, concerts">
 
