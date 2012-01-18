@@ -478,7 +478,7 @@ SLIDE 13
 	}
 	#twitter_bar i { background: url(../images/Contact_Twitter.png) no-repeat; }
 	#facebook_bar i { background: url(../images/Contact_Facebook.png); }
-        #pdf_bar i { background: url(../images/Contact_PDF.png) no-repeat; }
+        /*#pdf_bar i { background: url(../images/Contact_PDF.png) no-repeat; } */
 	
 	.contact_bar a {
 		color: #000000;
