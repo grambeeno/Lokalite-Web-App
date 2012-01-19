@@ -3,7 +3,7 @@
 
 set :user, "lokalitedev"
 
-ip = '72.249.171.49'
+ip = '184.173.113.114'
 role :web, ip
 role :app, ip
 role :db,  ip, :primary => true
