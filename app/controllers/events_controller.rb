@@ -45,7 +45,8 @@ private
       12.times do |slot|
         unless slots.include?(slot)
           # insert the next featured event in the correct slot
-          events.insert(slot, Event.next_featured_in_slot(slot))
+          event = Event.next_featured_in_slot(slot)
+          events.insert(slot, event) if event
         end
       end
     end
