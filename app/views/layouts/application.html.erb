@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title><%= title %></title>
-    <meta name="description" content="<% if params[:action] == "show" %> <%= @event.description %> <% else %> <%= title %> <% end %>">
+    <meta name="description" content="<% if @event %> <%= @event.description %> <% else %> <%= title %> <% end %>">
     <meta name="author" content="lokalite.com">
     <meta name="keywords" content="Boulder Events, Events, Events Calendar, Local Events, Weekend events, Happy Hours, Music, things to do, concerts">
 
@@ -28,7 +28,7 @@
     <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
+
     <%= stylesheet_link_tag 'mobile' if mobile_device? %>
     <%= render :partial => 'shared/stylesheets' %>
     <%= render :partial => 'shared/javascripts' %>
