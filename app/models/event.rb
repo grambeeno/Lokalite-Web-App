@@ -83,13 +83,21 @@ class Event < ActiveRecord::Base
   scope :prototypes, where(:prototype_id => nil)
 
   scope(:featured_on, lambda{|date|
-    includes(:event_features).where(['event_features.date = ?', date])
+    includes(:event_features).where(['event_features.date = ?', date]).order('event_features.slot')
   })
 
   scope(:random, lambda{|*args|
     order('random()')
   })
   scope :popular, order('trend_weight DESC').upcoming.includes(:organization).limit(12)
+
+  def self.next_featured_in_slot(slot)
+    upcoming.includes(:event_features).
+      where(['event_features.slot = ?', slot]).
+      where(['event_features.date >= ?', Time.zone.now.to_date]).
+      order('event_features.date').
+      limit(1).first
+  end
 
   def Event.update_clone_counts!
     Event.reset_column_information
@@ -142,7 +150,8 @@ class Event < ActiveRecord::Base
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         elsif options[:category] == 'featured'
-          results = results.featured_on(Time.zone.now.to_date)
+          today = Time.zone.now.to_date# - 1.day
+          results = results.featured_on(today)
         else
           results = results.tagged_with(options[:category].humanize, :on => 'categories')
         end
@@ -171,6 +180,8 @@ class Event < ActiveRecord::Base
       results = results.order('events.name ASC')
     elsif options[:order] == 'starts_at'
       results = results.order('events.starts_at ASC')
+    elsif options[:category] == 'featured'
+      # don't resort
     else
       results = results.order('events.starts_at ASC')
     end
@@ -413,15 +424,15 @@ class Event < ActiveRecord::Base
     clone.save
   end
 
-  def feature!
-    self.category_list.add('Featured')
-    self.save
-  end
+  # def feature!
+  #   self.category_list.add('Featured')
+  #   self.save
+  # end
 
-  def unfeature!
-    self.category_list.remove('Featured')
-    self.save
-  end
+  # def unfeature!
+  #   self.category_list.remove('Featured')
+  #   self.save
+  # end
 
   def featured?
     # TODO - Implement this properly

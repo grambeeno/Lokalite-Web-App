@@ -19,6 +19,9 @@ class EventsController < ApplicationController
     end
 
     @events = Event.browse(params)
+    if params[:category] == 'featured'
+      @events = ensure_enough_featured_events(@events)
+    end
   end
 
   def show
@@ -33,6 +36,21 @@ class EventsController < ApplicationController
   end
 
 private
+
+  def ensure_enough_featured_events(events)
+    events = events.to_a
+    events.delete_at(2)
+    if events.size < 12
+      slots = events.map{ |e| e.event_features.first.slot }
+      12.times do |slot|
+        unless slots.include?(slot)
+          # insert the next featured event in the correct slot
+          events.insert(slot, Event.next_featured_in_slot(slot))
+        end
+      end
+    end
+    events
+  end
 
   def remember_location
     session[:location] = params[:location]
