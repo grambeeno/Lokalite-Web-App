@@ -1,0 +1,36 @@
+<% @events.each do |event| %>
+<%= link_to event_path(event.slug, event.id) do %>
+
+<ul data-role='listview' class='ui-listview' role='listbox'>
+  <li tabindex='0' role='option'>
+      <div class='ui-btn-text'>
+        <h3 class='ui-li-heading'>
+        <span style='float:left; margin-top:0px;' class='ui-li-thumb'>
+          <%= image_tag(event.image.url(:thumb)) %>
+        </span>
+        <span style='float:left; margin-left:58px;'> 
+          <strong style='font-size:12pt;'><%= event.name %></strong>
+          <table class="times" style='font-size:10pt;'>
+            <tr>
+              <th>Starts</th>
+              <td class="time"><%= event.starts_at.to_s(:time_only).downcase %></td>
+              <td class="date"><%= event.starts_at.to_s(:short_date) %></td>
+            </tr>
+            <tr>
+              <th>Ends</th>
+              <td class="time"><%= event.ends_at.to_s(:time_only).downcase %></td>
+              <td class="date"><%= event.ends_at.to_s(:short_date) %></td>
+            </tr>
+          </table>
+        </span>
+        </h3>
+      <span class='ui-icon ui-icon-arrow-r'></span>
+    </div>
+  </li>
+</ul>
+<% end %>
+<% end %>
+<div class="tiled-pagination">
+  <%= will_paginate @organizations %>
+</div>
+

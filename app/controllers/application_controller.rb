@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_origin
   before_filter :set_effective_user, :handle_business_sign_up, :handle_invitations
   before_filter :prepare_for_mobile
+  before_filter :set_fb
 
   # before_filter :show_holding_page
 
@@ -36,6 +37,19 @@ end
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?
 end
+
+  def fb?
+    if session[:fbview_param]
+       session[:fbview_param] == '1'
+    end
+  end
+
+    helper_method :fb?
+
+  def set_fb
+    session[:fbview_param] = params[:fbview] if params[:fbview]
+    request.format = :fbview if fb?
+  end
 
   # def show_holding_page
   #   unless logged_in? || %w[auth api].include?(params[:controller]) || params[:action] == 'business' || Rails.env == 'development'

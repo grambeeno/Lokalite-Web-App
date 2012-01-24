@@ -1,0 +1,10 @@
+<div data-role='navbar' data-theme='a'>
+  <ul>
+    <li><%= link_to "Back", '/events/categories', "data-rel"=>"back" unless current_page? root_path %></li>
+    <li><%= link_to "Event Categories", '/events/categories', "data-role"=> "button" %></li>
+  </ul>
+</div>
+
+<% if @organizations.any? %>
+  <%= render :partial => 'organization' %>
+<% end %> 
