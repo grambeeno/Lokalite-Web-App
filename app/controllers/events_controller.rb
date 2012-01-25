@@ -51,7 +51,7 @@ private
         end
       end
     end
-    events.compact!
+    events.compact
   end
 
   def remember_location
