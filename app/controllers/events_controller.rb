@@ -45,12 +45,13 @@ private
       12.times do |slot|
         unless slots.include?(slot)
           # insert the next featured event in the correct slot
+          # insert nil values anyway to get correct placement, then compact array later
           event = Event.next_featured_in_slot(slot)
-          events.insert(slot, event) if event
+          events.insert(slot, event)
         end
       end
     end
-    events
+    events.compact!
   end
 
   def remember_location
