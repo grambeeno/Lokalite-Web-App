@@ -2,7 +2,13 @@ class EventsController < ApplicationController
   before_filter :remember_location
 
   def index
+    # utf8 is added when searching
     if params.delete(:utf8)
+      redirect_to events_path(params)
+    end
+    # Don't apply date filters to featured event page
+    if params.key?(:after) and params[:category] == 'featured'
+      params.delete(:category)
       redirect_to events_path(params)
     end
     if params[:view_type] == 'map'

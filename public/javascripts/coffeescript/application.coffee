@@ -230,6 +230,62 @@ $ ->
     $('#plan_description').simplyCountable
       maxCount: 140
 
+  # Event date filtering in left sidebar
+  # with help from http://medialize.github.com/URI.js/docs.html
+  observeEventDateFlitering = ->
+    startTimeSelect = $('.event_date_filters #event_start_time')
+    startDateSelect = $('.event_date_filters #event_start_date')
+
+    url = new URI(window.location.href)
+
+    startTimeSelect.change ->
+      applyFilters()
+
+    startDateSelect.datepicker
+      minDate: 0
+      dateFormat: 'mm-dd-yy'
+      onSelect: (dateText, instance) ->
+        applyFilters()
+
+    startTimeString = ->
+      selectedDate = startDateSelect.datepicker('getDate')
+      date = $.datepicker.formatDate('mm-dd-yy', selectedDate)
+      time = startTimeSelect.val()
+      "#{date} #{time}"
+
+    applyFilters = ->
+      clearFilters()
+      url.addQuery 'after', startTimeString()
+      updatePageLocation()
+
+    clearFilters = ->
+      url.removeQuery 'after'
+
+    # use this so we don't have to always normalize
+    # also, don't want to reload the page unless we need to
+    updatePageLocation = ->
+      url.normalize()
+      unless url.equals()
+        window.location = url.toString()
+
+    $('a.clear_date_filter').live 'click', (event) ->
+      event.preventDefault()
+      clearFilters()
+      updatePageLocation()
+
+    # now set initial state.
+    # if after param is aleady set, select it in the timepicker and calendar
+    if after = url.query(true).after
+      [date, time] = after.split(' ')
+      startTimeSelect.val(time)
+      startDateSelect.datepicker('setDate', date)
+    else
+      # hide the link to clear the datepicker
+      $('a.clear_date_filter').hide()
+
+  observeEventDateFlitering()
+  #---------------------------------------------------#
+
 
 displayOrganizationChart = ->
   $('.organization_stats').each ->

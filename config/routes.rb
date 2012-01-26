@@ -4,7 +4,7 @@ Lokalite::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
   match '/' => 'events#index', :constraints => { :subdomain => /list/ }, :fbview => '1', :category => 'featured', :origin => 'boulder-colorado'
-  match '/' => 'slides#show', :constraints => { :subdomain => /information/ } 
+  match '/' => 'slides#show', :constraints => { :subdomain => /information/ }
   match '/business' => 'root#business', :as => 'business_promo'
   devise_scope :user do
     match '/business/sign_up' => 'devise/registrations#new', :business => true, :as => 'business_sign_up'

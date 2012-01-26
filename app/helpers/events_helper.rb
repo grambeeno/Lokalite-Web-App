@@ -1,4 +1,7 @@
 module EventsHelper
+  def event_index_page?
+    params[:controller] == 'events' && params[:action] == 'index'
+  end
 
   def tile_view_title
     if category = params[:category]
@@ -14,8 +17,28 @@ module EventsHelper
     end
   end
 
-  def event_path_options()
+  # used to persist existing data in URL, but gives an easy way to override
+  # or remove certain params. Also allows keeping other arbitrary params.
+  def events_path_with_options(custom_options = {})
+    keys = [:origin, :view_type, :category, :after]
 
+    # allow user to pass other params they want to persist:
+    # events_path_with_options(:keep => [:keywords])
+    if custom_options.key?(:keep)
+      keys << custom_options.delete(:keep)
+      keys.flatten!
+    end
+
+    # seed options with data that we have from URL
+    options = params.reject{|key, value| !keys.include?(key.to_sym) }
+
+    # override options with options passed manually
+    options.merge!(custom_options)
+
+    # take care of some special cases
+    options.delete(:category) if options[:category] == 'all_events'
+
+    events_path(options)
   end
 
   def event_trended?(event)

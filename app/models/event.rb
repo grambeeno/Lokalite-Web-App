@@ -120,7 +120,8 @@ class Event < ActiveRecord::Base
       begin
         options[:after].to_time
       rescue
-        Chronic.parse(options[:after].humanize)
+        string = URI.decode(options[:after]).gsub('+', ' ').humanize
+        Chronic.parse(string)
       end
     else
       Time.zone.now
@@ -150,7 +151,7 @@ class Event < ActiveRecord::Base
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         elsif options[:category] == 'featured'
-          today = Time.zone.now.to_date# - 1.day
+          today = Time.zone.now.to_date
           results = results.featured_on(today)
         else
           results = results.tagged_with(options[:category].humanize, :on => 'categories')

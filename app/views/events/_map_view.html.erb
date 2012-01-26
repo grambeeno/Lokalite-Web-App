@@ -1,10 +1,6 @@
 <script type="text/javascript">
 
-  <%
-    options = {:origin => params[:origin]}
-    options[:category] = params[:category] if params[:category].present?
-  %>
-  var gallery_view_path = "<%= events_path(options) %>";
+  var gallery_view_path = "<%= events_path_with_options %>";
 
   function GalleryViewSwitcher(controlDiv, map) {
 

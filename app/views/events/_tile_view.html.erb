@@ -8,8 +8,15 @@
   %>
   <div class="clear"></div>
 
+  <% if params[:after].present? %>
+    <p class='tiled-subheading'>
+      After
+      <%= Chronic.parse(params[:after]).to_s(:full) %>
+      <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter' %>
+    </p>
+  <% end %>
   <% if user_signed_in? && options[:category] == 'suggested' %>
-    <p class='tiled-category-list'>
+    <p class='tiled-subheading'>
       Events in
       <%= current_user.event_categories.join(', ') %>
     </p>

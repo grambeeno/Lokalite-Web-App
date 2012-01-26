@@ -29,7 +29,7 @@
               <%= check_box_tag 'events[]', clone.id, true, :id => tag_id, :class => 'event-checkbox' %>
             </td>
             <td>
-              <%= label_tag tag_id, clone.starts_at.to_s(:full) %>
+              <%= label_tag tag_id, clone.starts_at.to_s(:full_short) %>
               <% if clone == @event %>
                 (Original)
               <% end %>

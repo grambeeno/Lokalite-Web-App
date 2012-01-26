@@ -1,0 +1,34 @@
+<ul class='categories'>
+  <%
+    EVENT_CATEGORIES.dup.unshift('Featured', 'Most Popular').push('All Events').each do |category|
+    slug = category.parameterize('_')
+    classes = [slug]
+    if event_index_page?
+      classes << 'active' if slug == params[:category] or (params[:category].blank? and slug == 'all_events')
+    end
+  %>
+    <li class="<%= classes.join(' ') %>">
+      <%= link_to(category, events_path_with_options(:category => slug)) %>
+    </li>
+  <% end %>
+</ul>
+
+<% if params[:view_type] == 'map' %>
+  <p class="centered"><%= link_to 'Switch to Gallery View', events_path_with_options(:view_type => nil, :keep => [:keywords]), :class => 'btn primary' %></p>
+<% else %>
+  <p class="centered"><%= link_to 'Switch to Map View', events_path_with_options(:view_type => 'map', :keep => [:keywords]), :class => 'btn primary' %></p>
+<% end %>
+
+
+<% if event_index_page? %>
+  <div class="event_date_filters">
+    <h2>Filter by Date:</h2>
+    <div id="event_start_date"></div>
+
+    After: <%= select_tag :event_start_time, options_for_select([['6:00 am', '6am'], ['12:00 pm', '12pm'], ['5:00 pm', '5pm'], ['6:00 pm', '6pm'], ['7:00 pm', '7pm'], ['8:00 pm', '8pm'], ['9:00 pm', '9pm']]) %>
+
+    <p class="centered">
+      <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter btn primary' %>
+    </p>
+  </div>
+<% end %>

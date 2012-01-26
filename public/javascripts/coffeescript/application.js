@@ -1,7 +1,7 @@
 var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackImpressions;
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 $(function() {
-  var active_hover_id, datepickerFormat, initQtip, planDragOptions;
+  var active_hover_id, datepickerFormat, initQtip, observeEventDateFlitering, planDragOptions;
   trackImpressions();
   displayOrganizationChart();
   $('input, textarea').placeholder();
@@ -214,10 +214,60 @@ $(function() {
     });
   }
   if ($('#plan_description').length) {
-    return $('#plan_description').simplyCountable({
+    $('#plan_description').simplyCountable({
       maxCount: 140
     });
   }
+  observeEventDateFlitering = function() {
+    var after, applyFilters, clearFilters, date, startDateSelect, startTimeSelect, startTimeString, time, updatePageLocation, url, _ref;
+    startTimeSelect = $('.event_date_filters #event_start_time');
+    startDateSelect = $('.event_date_filters #event_start_date');
+    url = new URI(window.location.href);
+    startTimeSelect.change(function() {
+      return applyFilters();
+    });
+    startDateSelect.datepicker({
+      minDate: 0,
+      dateFormat: 'mm-dd-yy',
+      onSelect: function(dateText, instance) {
+        return applyFilters();
+      }
+    });
+    startTimeString = function() {
+      var date, selectedDate, time;
+      selectedDate = startDateSelect.datepicker('getDate');
+      date = $.datepicker.formatDate('mm-dd-yy', selectedDate);
+      time = startTimeSelect.val();
+      return "" + date + " " + time;
+    };
+    applyFilters = function() {
+      clearFilters();
+      url.addQuery('after', startTimeString());
+      return updatePageLocation();
+    };
+    clearFilters = function() {
+      return url.removeQuery('after');
+    };
+    updatePageLocation = function() {
+      url.normalize();
+      if (!url.equals()) {
+        return window.location = url.toString();
+      }
+    };
+    $('a.clear_date_filter').live('click', function(event) {
+      event.preventDefault();
+      clearFilters();
+      return updatePageLocation();
+    });
+    if (after = url.query(true).after) {
+      _ref = after.split(' '), date = _ref[0], time = _ref[1];
+      startTimeSelect.val(time);
+      return startDateSelect.datepicker('setDate', date);
+    } else {
+      return $('a.clear_date_filter').hide();
+    }
+  };
+  return observeEventDateFlitering();
 });
 displayOrganizationChart = function() {
   return $('.organization_stats').each(function() {
