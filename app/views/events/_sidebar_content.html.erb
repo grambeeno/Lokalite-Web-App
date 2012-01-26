@@ -25,7 +25,30 @@
     <h2>Filter by Date:</h2>
     <div id="event_start_date"></div>
 
-    After: <%= select_tag :event_start_time, options_for_select([['6:00 am', '6am'], ['12:00 pm', '12pm'], ['5:00 pm', '5pm'], ['6:00 pm', '6pm'], ['7:00 pm', '7pm'], ['8:00 pm', '8pm'], ['9:00 pm', '9pm']]) %>
+    <%
+      hours = [
+        ['6:00 am',  '6am'],
+        ['7:00 am',  '7am'],
+        ['8:00 am',  '8am'],
+        ['9:00 am',  '9am'],
+        ['10:00 am', '10am'],
+        ['11:00 am', '11am'],
+        ['12:00 pm', '12pm'],
+        ['1:00 pm',  '1pm'],
+        ['2:00 pm',  '2pm'],
+        ['3:00 pm',  '3pm'],
+        ['4:00 pm',  '4pm'],
+        ['5:00 pm',  '5pm'],
+        ['6:00 pm',  '6pm'],
+        ['7:00 pm',  '7pm'],
+        ['8:00 pm',  '8pm'],
+        ['9:00 pm',  '9pm'],
+        ['10:00 pm', '10pm'],
+        ['11:00 pm', '11pm'],
+        ['12:00 am', '12am']
+      ]
+    %>
+    After: <%= select_tag :event_start_time, options_for_select(hours) %>
 
     <p class="centered">
       <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter btn primary' %>

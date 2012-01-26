@@ -118,6 +118,9 @@ class Event < ActiveRecord::Base
 
     start_time = if options[:after]
       begin
+        # experienced a specific format that would convert with to_time, but it's not actually what we wanted
+        # we raise manually so it falls to Chronic.parse
+        raise if options[:after].match(/\d{2}-\d{2}-\d{4}/)
         options[:after].to_time
       rescue
         string = URI.decode(options[:after]).gsub('+', ' ').humanize
@@ -131,7 +134,8 @@ class Event < ActiveRecord::Base
       begin
         options[:before].to_time
       rescue
-        Chronic.parse(options[:before].humanize)
+        string = URI.decode(options[:before]).gsub('+', ' ').humanize
+        Chronic.parse(string)
       end
     end
 
