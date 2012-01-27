@@ -21,74 +21,12 @@
     </li>
   </ul>
 
-  <ul class='categories'>
-    <% if active_tab == 'events' %>
-      <%
-        EVENT_CATEGORIES.dup.unshift('Featured', 'Most Popular').push('All Events').each do |category|
-        slug = category.parameterize('_')
-        classes = [slug]
-        if params[:controller] == 'events' and params[:action] == 'index'
-          classes << 'active' if slug == params[:category] or (params[:category].blank? and slug.start_with?('all_'))
-        end
-      %>
-        <li class="<%= classes.join(' ') %>">
-        <%
-            options = {:origin => params[:origin]}
-            options[:view_type] = params[:view_type]
-            options[:category]  = slug unless category == 'All Events'
-          %>
-        <%= link_to(category, events_path(options)) %>
-        </li>
-      <% end %>
-
-    <% else %>
-      <%
-          # not including Featured for places yet, but might want to add that in sometime
-        ORGANIZATION_CATEGORIES.dup.unshift('All Places').each do |category|
-        slug = category.parameterize('_')
-        classes = [slug]
-        if params[:controller] == 'places' and params[:action] == 'index'
-          classes << 'active' if slug == params[:category] or (params[:category].blank? and slug.start_with?('all_'))
-        end
-      %>
-        <li class="<%= classes.join(' ') %>">
-          <%
-              options = {:origin => params[:origin]}
-              options[:category] = slug unless category == 'All Places'
-            %>
-          <%= link_to(category, places_path(options)) %>
-        </li>
-      <% end %>
-    <% end %>
-  </ul>
-
-  <% if false && active_tab == 'events' %>
-    <h3>Dates</h3>
-
-    <ul>
-      <% ['Today', 'Tomorrow', 'This Week', 'This Weekend', 'This Month', 'This Year'].each do |date|
-        active = ((Slug.for(date) == params[:date]) || (date=='Today' && params[:date].blank?))
-      %>
-        <li>
-          <%= link_to(date, events_path(:date => date), :class => (active ? 'active' : '')) %>
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-  <%
-    options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
-
-    if params[:view_type] == 'map'
-      options[:view_type] = nil
-    else  
-      options[:view_type] = 'map'
-    end
-  %>
-  <% if params[:view_type] == 'map' %>
-    <p class="centered"><%= link_to 'Switch to Gallery View', events_path(options), :class => 'btn primary' %></p>
+  <% if active_tab == 'events' %>
+    <%= render :partial => 'events/sidebar_content' %>
   <% else %>
-    <p class="centered"><%= link_to 'Switch to Map View', events_path(options), :class => 'btn primary' %></p>
+  <%= render :partial => 'places/sidebar_content' %>
   <% end %>
+
 </nav>
 <% end %>
 

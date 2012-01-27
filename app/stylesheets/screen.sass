@@ -526,9 +526,11 @@ header.index
     margin: 0 $content-bg-padding
     +float('left')
 
-  .tiled-category-list
+  .tiled-subheading
     margin: 0 $content-bg-padding
     color: $light-grey
+    .clear_date_filter
+      +float('right')
 
   .switch-to-map-view
     +float('right')
@@ -758,6 +760,17 @@ table.event-picker
     color: black
     &:hover, &:focus
       text-decoration: underline
+
+// left sidebar date filtering
+.event_date_filters
+  h2
+    font-size: 18px
+    font-weight: normal
+  .ui-datepicker
+    font-size: 10px
+    margin-top: 6px
+    margin-bottom: 12px
+
 
 
 $error-bg:       #F8DCDA

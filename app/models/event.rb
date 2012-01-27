@@ -118,9 +118,13 @@ class Event < ActiveRecord::Base
 
     start_time = if options[:after]
       begin
+        # experienced a specific format that would convert with to_time, but it's not actually what we wanted
+        # we raise manually so it falls to Chronic.parse
+        raise if options[:after].match(/\d{2}-\d{2}-\d{4}/)
         options[:after].to_time
       rescue
-        Chronic.parse(options[:after].humanize)
+        string = URI.decode(options[:after]).gsub('+', ' ').humanize
+        Chronic.parse(string)
       end
     else
       Time.zone.now
@@ -130,7 +134,8 @@ class Event < ActiveRecord::Base
       begin
         options[:before].to_time
       rescue
-        Chronic.parse(options[:before].humanize)
+        string = URI.decode(options[:before]).gsub('+', ' ').humanize
+        Chronic.parse(string)
       end
     end
 
@@ -150,7 +155,7 @@ class Event < ActiveRecord::Base
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         elsif options[:category] == 'featured'
-          today = Time.zone.now.to_date# - 1.day
+          today = Time.zone.now.to_date
           results = results.featured_on(today)
         else
           results = results.tagged_with(options[:category].humanize, :on => 'categories')
