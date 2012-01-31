@@ -2,9 +2,9 @@
   <div class="center-field">
 
     <div class="left-side">
-      <h1 class="landing-title">Discover local events</h1>
-      <p class="landing-desc">Find, share, bookmark and plan with friends using the thousands
-      of local events going on in your community</p>
+      <h1 class="landing-title">Discover Boulder Events</h1>
+      <p class="landing-desc">Find, share, and plan with friends using the thousands
+      of local events going on in the Boulder community</p>
 
       <ul class="events">
         <% Event.featured_on(Time.zone.now.to_date).limit(2).each do |event| %>
@@ -44,7 +44,7 @@
       <hr />
 
       <p>
-        <%= link_to 'Are you a business? Add your events here!', business_sign_up_path %>
+        <%= link_to 'Boulder business? Add your events here!', business_sign_up_path %>
         <div class='enter-land'>
           <%= link_to 'Browse Now', events_path(:origin => params[:origin], :category => 'featured') %> 
         </div>

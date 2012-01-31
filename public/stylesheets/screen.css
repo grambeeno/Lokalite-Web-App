@@ -195,7 +195,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 .mll, .mhl, .mal { margin-left: 20px !important; }
 
 #business-landing, #public-landing { text-align: center; font-size: 14px; margin-bottom: 60px; }
-#business-landing h1.landing-title, #public-landing h1.landing-title { font-size: 48px; font-weight: normal; text-shadow: #dddddd 1px 1px 1px; padding-left: 1px; }
+#business-landing h1.landing-title, #public-landing h1.landing-title { font-size: 44px; font-weight: normal; text-shadow: #dddddd 1px 1px 1px; padding-left: 1px; }
 #business-landing p.landing-desc, #public-landing p.landing-desc { font-size: 20px; padding-left: 4px; text-shadow: #dddddd 1px 1px 1px; }
 #business-landing .centered, #public-landing .centered { margin: 30px auto; display: inline-block; }
 #business-landing .bottom, #public-landing .bottom { margin: 40px auto 0; text-align: left; }
