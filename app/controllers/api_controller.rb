@@ -3,7 +3,6 @@ class APIController < ApplicationController
 
   skip_before_filter true
   skip_before_filter :verify_authenticity_token
-  skip_before_filter :prepare_for_mobile
 
   before_filter :setup_path
   before_filter :setup_api

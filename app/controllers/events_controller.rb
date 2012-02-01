@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_filter :prepare_for_mobile
   before_filter :remember_location
 
   def index
