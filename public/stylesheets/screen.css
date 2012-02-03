@@ -130,6 +130,16 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 
 .ext { float: right; }
 
+body.static-controller .sitemap { padding: 0 50px 50px 50px; }
+body.static-controller .sitemap h1 { margin-bottom: 20px; }
+body.static-controller .sitemap h2 { text-align: left; margin-bottom: 10px; }
+body.static-controller .sitemap nav.right1, body.static-controller .sitemap .right2, body.static-controller .sitemap .right3, body.static-controller .sitemap .right4 { float: right; }
+body.static-controller .sitemap nav.right1 { margin: -127px 250px 0 0; }
+body.static-controller .sitemap nav.right2 { margin: -50px 270px 0 0; }
+body.static-controller .sitemap nav.right3 { margin: -127px -380px 0 0; }
+body.static-controller .sitemap nav.right4 { margin: -267px 60px 0 0; }
+body.static-controller .sitemap nav.local-events { margin: 70px 0 0 60px; }
+
 .ptn, .pvn, .pan { padding-top: 0px !important; }
 
 .pts, .pvs, .pas { padding-top: 5px !important; }
