@@ -1,5 +1,5 @@
 # See how all your routes lay out with "rake routes"
-Lokalite::Application.routes.draw do
+Lokalite::Application.routes.draw do |map|
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 
@@ -63,6 +63,7 @@ Lokalite::Application.routes.draw do
   # match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
   match 'my/(:action(/:id(.:format)))', :controller => 'my', :as => 'my'
 
+  map.sitemap '/sitemap.xml', :controller => 'sitemap' 
 
   match 'api/:api_version' => 'api#index', :as => 'api_index', :constraints => {:api_version => /\d+/}
   match 'api/:api_version/*path' => 'api#call', :as => 'api', :constraints => {:api_version => /\d+/}
