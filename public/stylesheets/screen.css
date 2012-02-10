@@ -432,7 +432,7 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 .plan-preview .event-thumbs a:nth-child(even) img, .plan-preview .attendee-thumbs a:nth-child(even) img { margin-right: 0; }
 .plan-preview .event-thumbs img:nth-child(even), .plan-preview .attendee-thumbs img:nth-child(even) { margin-right: 0; }
 .plan-preview .event-thumbs img, .plan-preview .attendee-thumbs img { display: inline; float: left; padding: 2px; background-color: white; border: 1px solid #dddddd; margin: 0 10px 10px 0; }
-.plan-preview .attendee-thumbs { margin-right: 0; }
+.plan-preview .attendee-thumbs { margin: -84px 0 0 0; }
 .plan-preview dt { font-weight: bold; font-size: 14px; border-bottom: 1px solid #cccccc; margin-bottom: 4px; }
 .plan-preview dd { margin-bottom: 10px; }
 .plan-preview dd p { padding-bottom: 8px; }
@@ -549,7 +549,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 .feature-events .event-slots .slot:hover a:hover { background-position: bottom; }
 .feature-events .select-date, .feature-events .select-slot { display: inline; float: left; margin-right: 35px; }
 
-.drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1324496977'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; margin: 1em auto 2em; padding: 10px; background-color: white; -moz-box-shadow: 0 0 5px #555555; -webkit-box-shadow: 0 0 5px #555555; -o-box-shadow: 0 0 5px #555555; box-shadow: 0 0 5px #555555; }
+.drag-target { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/dropzone.png?1324496977'); background-repeat: no-repeat; background-position: 50% 50%; width: 200px; height: 90px; margin: 1em auto 2em; padding: 10px; background-color: white; -moz-box-shadow: 0 0 5px #555555; -webkit-box-shadow: 0 0 5px #555555; -o-box-shadow: 0 0 5px #555555; box-shadow: 0 0 5px #555555; border-radius: 4px; }
 
 input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
