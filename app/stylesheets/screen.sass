@@ -225,6 +225,8 @@ img.profile_small
     +content-with-padding
     padding: $content-inner-padding
     +foreground
+  > .content-with-align
+    text-align: center
 .middle
   float: left
   width: 710px
@@ -335,6 +337,9 @@ img.profile_small
 .btn.small
   padding: 7px 9px 7px
   font-size: 11px
+.btn.medium
+  padding-top: 8px
+  padding-bottom: 8px
 .btn.dark
   color: #ffffff
   background-repeat: repeat-x
@@ -536,6 +541,13 @@ header.index
     +float('right')
     margin-top: 10px
     margin-right: $content-bg-padding
+
+.navbar-fixed-top
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  z-index: 1030
 
 .tiled-pagination
   margin: 4px $content-bg-padding
