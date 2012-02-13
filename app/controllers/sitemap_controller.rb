@@ -1,6 +1,6 @@
 class SitemapController < ApplicationController
 
-  cache_page :index, :boulder_events, :boulder_places
+  cache_page :index
 
   def index
     @sitemaps = "http://lokalite.dev:3000/sitemap/boulder_events.xml", "http://lokalite.dev:3000/sitemap/boulder_places.xml" 
@@ -31,7 +31,6 @@ class SitemapController < ApplicationController
 
     headers['Content-Type'] = 'application/xml'
     render :layout => false
-    Time.now.to_s
   end
 
   def expire_cache
