@@ -89,7 +89,7 @@ body > footer .content nav ul li:first-child, body > footer .content nav ul li.f
 body > footer .content nav ul li:last-child { padding-right: 0; }
 body > footer .content nav ul li.last { padding-right: 0; }
 body > footer .content .copyright { display: inline; float: right; color: #444444; }
-body #main { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; margin-top: 1px; }
+body #main { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; margin-top: 59px; }
 body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1324496977'); background-repeat: repeat; }
 
 #left-sidebar, #right-sidebar, #middle { display: inline; float: left; padding: 16px 0; }
