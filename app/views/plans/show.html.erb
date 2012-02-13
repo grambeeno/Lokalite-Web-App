@@ -14,9 +14,9 @@
       <div class="centered">
         <% if user_signed_in? %>
           <% form_tag(accept_plan_invitation_path(@plan), :method => :post) do -%>
-            <%= submit_tag "I'm Attending!", :class => 'btn large right primary' %>
+            <%= submit_tag "I'm Attending!", :class => 'btn right primary' %>
               &nbsp;&nbsp;
-            <%= link_to "I Won't Be There", '#not_attending', :class => "wont_be_there" %>
+            <%= link_to "I Won't Be There", '#not_attending', :class => "wont_be_there btn secondary" %>
           <% end -%>
         <% else %>
           <%# We store a value in the session to redirect them back after the account is created %>

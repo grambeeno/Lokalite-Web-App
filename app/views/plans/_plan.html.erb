@@ -31,7 +31,11 @@
     <dl>
       <dt>Time</dt>
       <dd><%= render :partial => '/events/time_span', :locals => {:event => plan} %></dd>
+    </dl>
+  </div>
 
+  <div class="detail">
+    <dl>
       <dt>Description</dt>
       <dd><%= clean_format plan.description %></dd>
     </dl>

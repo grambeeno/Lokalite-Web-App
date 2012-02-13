@@ -6,7 +6,7 @@ module ProfileHelper
       if action == 'Edit' && params[:controller] == 'profile'
         action = 'Edit Profile'
       elsif action == 'New' && params[:controller] == 'plans'
-        action = 'New Plan'
+        action = 'Bookmarks'
       end
       parts << action
     end.join(' &#x25B8; ')

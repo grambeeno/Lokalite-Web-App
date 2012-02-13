@@ -13,7 +13,7 @@
   <div class="ext">
     <% if user_signed_in? %>
       <!-- Linking to DATEBOOK for NEW PLAN creation -->
-      <%= link_to 'New Plan', datebook_path, :class => 'btn primary' %>
+      <%= link_to 'Bookmarks', datebook_path, :class => 'btn primary' %>
       <% if current_user.organizations.any? or user_sudoing? %>
         <%= link_to "Create Event", new_my_event_path, :class => 'btn primary' %>
       <% end %>
