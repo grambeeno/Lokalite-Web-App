@@ -1,6 +1,6 @@
 class SitemapController < ApplicationController
 
-  cache_page :index
+  cache_page :controller => 'sitemap', :action => :index
 
   def index
     @sitemaps = "http://lokalite.dev:3000/sitemap/boulder_events.xml", "http://lokalite.dev:3000/sitemap/boulder_places.xml" 
