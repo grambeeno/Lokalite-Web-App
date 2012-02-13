@@ -1,8 +1,8 @@
 xml.instruct! :xml, :version => '1.0'
-xml.tag! 'urlset', 'xmlns' => "http://www.sitemaps.org/schemas/sitemap/0.9" do
-  @urls.each do |url|
-    xml.tag! 'url' do
-      xml.tag! 'loc', url
+xml.tag! 'sitemapindex', 'xmlns' => "http://www.sitemaps.org/schemas/sitemap/0.9" do
+  @sitemaps.each do |sitemap|
+    xml.tag! 'sitemap' do
+      xml.tag! 'loc', sitemap
     end
   end
 end

@@ -114,7 +114,7 @@ class Event < ActiveRecord::Base
     page     = options[:page] || 1
     per_page = options[:per_page] || 20
     page     = [Integer(page), 1].max
-    per_page = [Integer(per_page), 42].min
+    per_page = [Integer(per_page)].min
 
     start_time = if options[:after]
       begin
