@@ -34,7 +34,7 @@ class SitemapController < ApplicationController
   end
 
   def expire_cache
-    expire_action :action => :index
+    expire_page :controller => 'sitemap', :action => :index
     render :text => 'Cache Expired'
   end
 
