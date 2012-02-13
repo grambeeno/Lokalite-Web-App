@@ -564,7 +564,7 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .profile-header { margin: 0 0 25px 0; }
 .profile-header .avatar { left: 0; background-color: white; border: 1px solid #444444; padding: 4px; margin: 0 0 0 25px; display: inline-block; }
 .profile-header .avatar img { display: block; }
-.profile-header .band { margin-top: -46px; background-color: #cbe5cc; border: 1px solid #555555; border-left: none; border-right: none; padding: 20px 25px 20px 150px; }
+.profile-header .band { margin-top: -46px; background-color: #cbe5cc; border: 1px solid #aaaaaa; border-left: none; border-right: none; padding: 20px 25px 20px 150px; }
 .profile-header .band h1 { font-size: 20px; }
 .profile-header .profile-links { margin: 10px 0 20px; list-style: none; }
 .profile-header .profile-links li { width: 114px; height: 86px; float: left; margin-right: 10px; background: transparent url(/images/profile-icons.png) no-repeat 0 0; }
