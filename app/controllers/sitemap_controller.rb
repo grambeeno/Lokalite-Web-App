@@ -3,7 +3,7 @@ class SitemapController < ApplicationController
   caches_page :index
 
   def index
-    @sitemaps = "http://lokalite.dev:3000/sitemap/boulder_events.xml", "http://lokalite.dev:3000/sitemap/boulder_places.xml" 
+    @sitemaps = "http://lokalite.com/sitemap/boulder_events.xml", "http://lokalite.com/sitemap/boulder_places.xml" 
 
     headers['Content-Type'] = 'application/xml'
     render :layout => false
