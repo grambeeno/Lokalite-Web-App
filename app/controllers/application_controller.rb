@@ -35,8 +35,10 @@ end
 
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
-    if mobile_device? request.subdomain != 'm'
-end
+    if mobile_device? 
+    request.subdomain != 'm'
+    end
+  end
 
   def fb?
     if session[:fbview_param]
