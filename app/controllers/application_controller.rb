@@ -36,7 +36,8 @@ end
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
-      request.format = :mobile && redirect_to 'http://m.lokalite.com'
+      request.format = :mobile
+      redirect_to 'http://m.lokalite.com'
     end
   end
 
