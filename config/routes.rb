@@ -63,7 +63,7 @@ Lokalite::Application.routes.draw do |map|
   # match 'my/organizations/(:action(/:id(.:format)))', :controller => 'my/organizations', :as => 'my_organizations'
   match 'my/(:action(/:id(.:format)))', :controller => 'my', :as => 'my'
 
-  map.sitemap '/sitemap.xml', :controller => 'sitemap'
+  map.sitemap '/sitemap.xml', :controller => 'sitemap', :action => 'index'
   match 'sitemap(/:action(.:format))', :controller => 'sitemap'
 
   match 'api/:api_version' => 'api#index', :as => 'api_index', :constraints => {:api_version => /\d+/}
