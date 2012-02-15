@@ -24,19 +24,14 @@ protected
     end
   end
   def mobile_device?
-    if session[:mobile_param]
-       session[:mobile_param] == '1'
-    else
        request.user_agent =~ /Mobile|webOS|AvantGo|Dolphin|OpenWave|Plucker|NetFront|PIE|AT&T|RiM|9xxx Series|88xx Series|Cricket|Dell|Google|HP|HTC|LGE|Motorola/
-    end
-end
+  end
 
   helper_method :mobile_device?
 
   def prepare_for_mobile
-    session[:mobile_param] = params[:mobile] if params[:mobile]
-    if mobile_device? 
-      request.subdomain != 'm'
+    if mobile_device? && request.subdomain != 'm' 
+       redirect_to 'http://m.lokalite.com'
     end
   end
 
