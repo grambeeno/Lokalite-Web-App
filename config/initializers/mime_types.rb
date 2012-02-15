@@ -6,3 +6,4 @@
 
 Mime::Type.register_alias "text/html", :mobile
 Mime::Type.register_alias "text/html", :fbview
+Mime::Type.register "text/plain", :txt

@@ -5,3 +5,4 @@
 # Disallow: /
 
 Sitemap: http://lokalite.com/sitemap.xml
+
