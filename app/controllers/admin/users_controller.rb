@@ -37,25 +37,26 @@ class Admin::UsersController < Admin::Controller
     redirect_to(:action => :index)
   end
 
-  # def new
-  #   @user = User.new
-  #   return if request.get?
-  #
-  #   params[:user] ||= {}
-  #
-  #   transaction do
-  #     email = params[:user][:email]
-  #     password = params[:user][:password]
-  #
-  #     @signup = Signup.signup!(:email => email, :password => password, :deliver => false)
-  #     @user = User.create(:email => @signup.email, :password => @signup.password)
-  #     @signup.update_attributes!(:user_id => @user.id)
-  #     @signup.token.expire!
-  #   end
-  #
-  #   message("user #{ @user.email.inspect } created!", :class => :success)
-  #   redirect_to(:action => :index)
-  # end
+  # We made major changes to the user authentication system so something may not be defined properly. Doesn't allow admin to add user from 'Admin Page'
+  def new
+    @user = User.new
+    return if request.get?
+ 
+    params[:user] ||= {}
+ 
+    transaction do
+      email = params[:user][:email]
+      password = params[:user][:password]
+ 
+      @signup = Signup.signup!(:email => email, :password => password, :deliver => false)
+      @user = User.create(:email => @signup.email, :password => @signup.password)
+      @signup.update_attributes!(:user_id => @user.id)
+      @signup.token.expire!
+    end
+ 
+    message("user #{ @user.email.inspect } created!", :class => :success)
+    redirect_to(:action => :index)
+  end
 
   def sudo
     @user = User.find(params[:id])

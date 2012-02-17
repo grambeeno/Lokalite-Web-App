@@ -1,9 +1,9 @@
-
+<!-- See Controllers > Admin > Users_Controller.rb -->
 <div style='width:80%;margin:auto'>
 
   <br />
-  <br />
   <%= link_to raw('&larr; All Users'), :action => :index %>
+  <br />
   <br />
 
   <% form(@user) do |f| %>
@@ -12,18 +12,17 @@
 
     <%= f.label :email %>
     <br />
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :style => 'padding: 10px' %>
     <br />
 
+    <br /> 
     <%= f.label :password %>
     <br />
-    <%= f.text_field :password, :value => nil %>
+    <%= f.text_field :password, :value => nil, :style => 'padding: 10px' %>
     <br />
 
     <br />
-    <%= f.submit %>
+    <%= f.submit 'Create User', :class => 'btn secondary' %>
 
   <% end %>
-
-
 </div>
