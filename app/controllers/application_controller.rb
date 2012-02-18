@@ -27,7 +27,7 @@ protected
     if session[:mobile_param]
        session[:mobile_param] == '1'
     else
-       request.user_agent =~ /Mobile|webOS|AvantGo|Dolphin|OpenWave|Plucker|NetFront|PIE|AT&T|RiM|9xxx Series|88xx Series|Cricket|Dell|Google|HP|HTC|LGE|Motorola/
+       request.user_agent =~ /Mobile|webOS|AvantGo|Dolphin|OpenWave|Plucker|NetFront|PIE|AT&T|RiM|9xxx Series|88xx Series|Cricket|Dell|Google[^b]|HP|HTC|LGE|Motorola/
     end
 end
 
