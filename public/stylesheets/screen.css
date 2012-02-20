@@ -253,7 +253,7 @@ img.profile_small { width: 55px; }
 
 .category-tab-buttons { margin-bottom: 12px; }
 .category-tab-buttons li { float: left; margin-right: 10px; width: 84px; }
-.category-tab-buttons li a { text-align: center; display: block; width: 100%; height: 100%; padding: 8px 0; text-decoration: none; border: 1px solid #dddddd; background-color: #dddddd; color: #666666; }
+.category-tab-buttons li a { text-align: center; display: block; width: 100%; height: 100%; padding: 8px 0; text-decoration: none; border: 1px solid #dddddd; background-color: #e6e6e6; color: #666666; }
 .category-tab-buttons li a.active { color: black; border-color: #83cb4d; background-color: #cbe5cc; font-weight: bold; }
 
 .category-tab-buttons li.last { margin-right: 0; }
@@ -387,7 +387,7 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
 header.index { overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 header.index h1 { margin: 0 25px; display: inline; float: left; }
-header.index .tiled-subheading { margin: 29px 0 0 25px; color: gray; }
+header.index .tiled-subheading { margin: 30px 0 0 25px; color: gray; }
 header.index .tiled-subheading_clear_date_filter { float: right; margin: 0 25px; }
 header.index .switch-to-map-view { display: inline; float: right; margin-top: 10px; margin-right: 25px; }
 
