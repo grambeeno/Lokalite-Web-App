@@ -94,9 +94,10 @@ module ApplicationHelper
     parts = []
     parts << @event.name if @event
     parts << @organization.name if @organization
-    parts << 'Boulder Events' if current_page?('/landing')
     parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
     parts << "lokalite"
+    parts << 'For Local Events' if current_page?('/landing')
+    parts << 'For Local Events' if current_page?('/')
     parts << title_for_category(params[:category]) if params[:category]
     parts.join(' | ')
   end
