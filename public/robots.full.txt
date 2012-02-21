@@ -4,5 +4,8 @@
 # User-Agent: *
 # Disallow: /
 
+User-Agent: zbot
+Disallow: /
+
 Sitemap: http://lokalite.com/sitemap.xml
 
