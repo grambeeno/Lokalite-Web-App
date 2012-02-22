@@ -6,7 +6,7 @@
         Because we are awesome and so are you.
       </h2>
     <% else %>
-      <h1 class='big'>Find life in your community</h1>
+      <h1 class='big'>Discover Boulder Events</h1>
       <h2 class='big'>
         With lokalite, finding something to do has never been easier. 
         </br>
@@ -44,17 +44,15 @@
           <%= f.password_field :password %></div>
 
         <% if devise_mapping.rememberable? -%>
-          <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+          <div style="width: 350px; margin: 0 0 0 25px"><%= f.check_box :remember_me %> <%= f.label :remember_me %>
         <% end -%>
+        <%= link_to "Forgot your password?", new_password_path(resource_name), :style => "margin-left: 85px" %><br />
+          </div>
 
         <div class='buttons'>
           <%= f.submit "Sign in" %>
           or
           <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-
-          <br />
-          <br />
-          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
         </div>
       </div>
     <% end %>
