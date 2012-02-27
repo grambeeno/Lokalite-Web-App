@@ -23,6 +23,7 @@ class Mailer < ActionMailer::Base
     @subject = email_params[:subject] 
     @body["email_body"] = email_params[:comments]
     @body["email_name"] = email_params[:name]
+    @email = email_params[:email]
     content_type "text/html"
   end
 
