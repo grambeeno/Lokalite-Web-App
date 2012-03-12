@@ -7,7 +7,7 @@
       active_tab = 'events'
     end
   -%>
-  <% unless ['/users', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+  <% unless ['/users', '/business', '/static', '/my', '/landing'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
     <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
   <% end %>
   <div class="ext">
@@ -34,6 +34,7 @@
           <%= link_to raw("&#9662;"), '#', :class => 'user-link' %>
         </div>
         <ul class="dropdown-menu">
+          <div class="divider"></div>
           <li>
             <%= link_to 'Bookmarks', datebook_path %>
           </li>
@@ -44,6 +45,11 @@
           <% elsif current_user.organizations.any? %>
             <li>
               <%= link_to('Edit My Events', my_organization_path(current_user.organizations.first)) %>
+            </li>
+          <% end %>
+          <% if current_user.organizations.any? or user_sudoing? %>
+            <li>
+              <%= link_to "Create Event", new_my_event_path %>
             </li>
           <% end %>
           <li>
@@ -65,29 +71,32 @@
       </li>
     <% else %>
       <li>
-        <div class="signin">
-          <%= link_to 'Sign In', new_user_session_path, :class => 'signin' %>
+        <div class="signin user-name user-menu">
+          <%= link_to 'Have an account? Sign In', '#', :class => 'signin' %>
+          <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
         </div>
-
-        <% if false %>
-          <span class="dd-arrow">&#9662;</span>
-          <ul class="dropdown-menu sign-in">
-            <li>
-              <fb:login-button onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button>
-              <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
-                <div>
-                  <%= f.email_field :email, :placeholder => "Email", "class"=>"landing-form-field" %>
-                </div>
-                <div>
-                  <%= f.password_field :password, :placeholder => "Password", "class"=>"landing-form-field" %>
-                </div>
-                <div class='buttons'>
-                  <%= f.submit "Sign in" %>
-                </div>
-              <% end %>
-            </li>
-          </ul>
-        <% end %>
+        <ul class="dropdown-menu">
+          <li>
+            <div class="divider"></div>
+            <div id="facebook">
+              <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button> 
+            </div>
+              <%= form_for (:users, :controller => :users, :action => :sign_in) do |f| %>
+              <div></br>
+                <%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %>
+              </div>
+              <div></br>
+                <%= f.password_field :password, :placeholder => "Password", :class => "signin-field" %>
+              </div></br>
+                <%= f.submit "Sign in", :class => "btn primary btn-float-right" %>
+              </br></br>
+              <div class="divider"></div>
+              <%= link_to "Forgot your password?", '/users/password/new', :id => "forgot_password" %>
+              <%= link_to "Need to signup?", '/landing', :id => "forgot_password" %>
+              <%= link_to "Local business?", '/business', :id => "forgot_password" %>
+            <% end %>
+          </li>
+        </ul>
       </li>
     <% end %>
   </ul>
