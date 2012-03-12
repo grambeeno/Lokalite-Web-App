@@ -14,18 +14,18 @@
     </div>
   <% end %>
 
-  <% if params[:after].present? %>
-    <p class='tiled-subheading'>
-      After
-      <%= Chronic.parse(params[:after]).to_s(:full) %>
-    </p>
-  <% end %>
   <% if user_signed_in? && options[:category] == 'suggested' %>
     <p class='tiled-subheading'>
       Events in
       <%= current_user.event_categories.join(', ') %>
     </p>
   <% end %>
+  <% if params[:after].present? %>
+    <p class='tiled-subheading'>
+      After
+      <%= Chronic.parse(params[:after]).to_s(:full) %>
+    </p>
+  <% end %> 
 </header>
 
 <ul class="events">

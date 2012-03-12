@@ -319,6 +319,9 @@ img.profile_small
   border-radius: 4px
   -webkit-border-radius: 4px
   -moz-border-radius: 4px
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+  box-shadow: none
 .btn.secondary
   color: #ffffff
   background-color: #231f20
@@ -333,6 +336,9 @@ img.profile_small
   border-radius: 4px
   -webkit-border-radius: 4px
   -moz-border-radius: 4px
+  -webkit-box-shadow: none
+  -moz-box-shadow: none
+  box-shadow: none
 .btn.large
   font-size: 15px
   line-height: normal
@@ -352,6 +358,9 @@ img.profile_small
   border-radius: 4px
   -webkit-border-radius: 4px
   -moz-border-radius: 4px
+.btn-float-right
+  float: right
+  margin: 0 5px 0 0 
 .btn.dark
   color: #ffffff
   background-repeat: repeat-x
@@ -482,10 +491,15 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
   display: none
 
 .help-bubble
-  background:
-    color: black
-    image: image-url('header-bg.png')
-    repeat: repeat-x
+  background-color: #222222
+  background-repeat: repeat-x
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222))
+  background-image: -moz-linear-gradient(top, #333333, #222222)
+  background-image: -ms-linear-gradient(top, #333333, #222222)
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222))
+  background-image: -webkit-linear-gradient(top, #333333, #222222)
+  background-image: -o-linear-gradient(top, #333333, #222222)
+  background-image: linear-gradient(top, #333333, #222222)
   color: white
   border: 1px solid #ccc
   font-weight: bold
@@ -548,6 +562,9 @@ header.index
 
   .tiled-subheading
     margin: $content-bg-padding + 5 0 0 $content-bg-padding 
+    color: $light-grey
+  .tiled-subheading-subline
+    margin: 0 0 0 $content-bg-padding
     color: $light-grey
   .tiled-subheading_clear_date_filter
     //+float('right')
