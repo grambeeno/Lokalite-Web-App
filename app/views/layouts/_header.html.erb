@@ -81,7 +81,7 @@
             <div id="facebook">
               <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button> 
             </div>
-              <%= form_for (:users, :controller => :users, :action => :sign_in) do |f| %>
+            <%= form_for (:user, :url => session_path(:user)) do |f| %>
               <div></br>
                 <%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %>
               </div>
