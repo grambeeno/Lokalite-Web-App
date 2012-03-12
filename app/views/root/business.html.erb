@@ -26,7 +26,7 @@
       <h3>or with email and password</h3>
       <br />
 
-      <%= form_for(:users, :controller => :users, :action=> :sign_in) do |f| %>
+      <%= form_for(:user, :url => registration_path(:user)) do |f| %>
         <div>
           <%= f.email_field :email, :placeholder => "Email", :class => "landing-form-field" %>
         </div>
@@ -45,10 +45,6 @@
       <% end %>
 
       <hr />
-
-      <p>
-        <%= link_to 'Are you a business? Add your events here!', business_sign_up_path %>
-      </p>
 
     </div>
   </div>
