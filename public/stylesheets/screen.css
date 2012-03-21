@@ -235,7 +235,7 @@ body.root-controller > footer .content a:hover { color: #444444; }
 #public-landing .left-side, #business-landing .left-side { margin-right: 25px; width: 490px; display: inline; float: left; }
 #public-landing .sign-up, #business-landing .sign-up { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd)); background-image: -webkit-linear-gradient(#ffffff, #dddddd); background-image: -moz-linear-gradient(#ffffff, #dddddd); background-image: -o-linear-gradient(#ffffff, #dddddd); background-image: -ms-linear-gradient(#ffffff, #dddddd); background-image: linear-gradient(#ffffff, #dddddd); width: 464px; padding: 10px 14px; margin-top: 7px; }
 #public-landing .sign-up h2, #public-landing .sign-up h3, #business-landing .sign-up h2, #business-landing .sign-up h3 { font-size: 20px; color: #555555; font-weight: normal; }
-#public-landing .sign-up h2, #business-landing .sign-up h2 { margin: 0 0 1em 2px; }
+#public-landing .sign-up h2, #business-landing .sign-up h2 { margin: 0 0 1em 3px; }
 #public-landing .sign-up h3, #business-landing .sign-up h3 { margin: 1em 0 0 3px; }
 #public-landing .sign-up form, #business-landing .sign-up form { overflow: hidden; *zoom: 1; }
 #public-landing .sign-up form div, #business-landing .sign-up form div { margin: 2px 0 12px 0; padding-left: 2px; }
