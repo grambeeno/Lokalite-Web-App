@@ -1,0 +1,281 @@
+
+$content-width: 490px
+$field-padding: 8px
+$form-padding: 14px
+$form-inner-width: 420px + ($field-padding * 2)
+$form-width: $form-inner-width + ($form-padding * 2)
+
+$splash-width: $content-width + $form-width + 6
+
+#business-landing,
+#public-landing
+  text-align: center
+  font-size: 14px
+  margin-bottom: 60px
+
+  h1.landing-title
+    font-size: 44px
+    font-weight: normal
+    +text-shadow(#dddddd, 1px, 1px)
+    padding-left: 1px
+
+  p.landing-desc
+    font-size: 20px
+    padding-left: 4px
+    +text-shadow(#dddddd, 1px, 1px)
+
+  // h1, h2, h3
+  //   color: black
+  // h1
+  //   margin: 14px auto
+  // h2
+  //   font-size: 24px
+  //   font-weight: normal
+  // h3
+  //   font-size: 18px
+  //   margin-top: 24px
+  .centered
+    margin: 30px auto
+    display: inline-block
+
+  .bottom
+    margin: 40px auto 0
+    text-align: left
+    // width: 1020px
+
+  .checkered
+    background:
+      color: white
+      image: image-url('main-bg.png')
+      repeat: repeat
+    .shadow-top, .shadow-bottom
+      background-repeat: repeat-x
+      height: image_height('landing/shadow-top.png')
+      width: 100%
+
+    .shadow-top
+      background-image: image_url('landing/shadow-top.png')
+      margin-bottom: 40px
+    .shadow-bottom
+      background-image: image_url('landing/shadow-bottom.png')
+      margin: 30px 0
+
+  .top
+    margin: 0 auto
+    width: $splash-width
+
+body.root-controller
+  +radial-gradient(#749a74, #a4c9a4)
+  > footer
+    .content
+      color: black
+      a
+        +hover-link
+        +link-colors(black, #444)
+
+
+#business-landing
+  h1.title
+    +text-shadow(#DDD, 1px, 1px)
+    font-size: 45px
+    margin-bottom: 25px
+  .create,
+  .share,
+  .analyze
+    margin-bottom: 10px
+    padding-left: image-width('landing/Polaroid.png') + 20
+    background-repeat: no-repeat
+    font-size: 18px
+    line-height: 1.6em
+
+  .create
+    background-image: image_url('landing/Polaroid.png')
+    padding-top: 10px
+    height: 150px
+  .share
+    background-image: image_url('landing/Bullhorn.png')
+    padding-top: 4px
+    height: 136px
+  .analyze
+    background-image: image_url('landing/Analytics.png')
+    padding-top: 4px
+    height: 120px
+
+
+#public-landing,
+#business-landing
+  margin: 59px auto auto auto
+  // height: 800px
+  padding: 50px 0
+
+  .center-field
+    +clearfix
+    text-align: left
+    margin: 0 auto
+    padding: 25px
+    width: $splash-width + 50
+    +border-radius(5px)
+    background-image: image_url('landing/white_wash.png')
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .1),0 0 125px rgba(255, 255, 255, .25)
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .1),0 0 125px rgba(255, 255, 255, .25)
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .1),0 0 125
+
+  .left-side
+    margin-right: 25px
+    width: $content-width
+    +float('left')
+
+  .sign-up
+    +float('left')
+    +border-radius(5px)
+    +background-image(linear-gradient(#ffffff, #dddddd))
+    width: $form-width
+    padding: 10px $form-padding
+    margin-top: 7px
+
+    h2, h3
+      font-size: 20px
+      color: #555
+      font-weight: normal
+    h2
+      margin: 0 0 1em 3px
+   
+    h3
+      margin: 1em 0 0 3px
+
+    form
+      +clearfix
+      div
+        margin: 2px 0 12px 0
+        padding-left: 2px
+
+      input[type='submit']
+        +float('right')
+        margin-right: 4px
+
+    hr
+      margin: 1.4em 3px 1em 2px
+      border-top: 1px solid white
+
+    p
+      a
+        +link-colors(#555, #444)
+        +hover-link
+        font-weight: bold
+        margin-left: 2px
+        
+    .enter-land
+      a
+        +link-colors(#555, #444)
+        +hover-link
+        margin: -17px 4px 0 0
+        float: right
+        font-weight: bold
+
+    .landing-form-field
+      font-size: 16px
+      +border-radius(5px)
+      width: $form-width - ($field-padding * 2)
+      height: 36px
+      padding: 4px
+      border: 1px solid #CCC
+      -webkit-box-shadow: inset 0 1px 0 #EEE,white 0 1px 0
+      -moz-box-shadow: inset 0 1px 0 #EEE,white 0 1px 0
+      box-shadow: inset 0 1px 0 #EEE,white 0 1px 0
+
+  .events
+    margin: 20px 0 0 -18px
+    width: 500px
+
+#facebook
+  margin-top: 10px
+  .fb_button
+    border: 1px solid #111
+    width: 180px
+    height: 30px
+    background-position: 0px 0px
+    //background: #29447e
+    margin: 0 0 0 4px
+    padding: 0
+    background-repeat: no-repeat
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3b5998), color-stop(100%, #29447e))
+    background-image: -webkit-linear-gradient(#3b5998, #29447e)
+    background-image: -moz-linear-gradient(#3b5998, #29447e)
+    background-image: -o-linear-gradient(#3b5998, #29447e)
+    background-image: -ms-linear-gradient(#3b5998, #29447e)
+    background-image: linear-gradient(#3b5998, #29447e)
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    border-radius: 4px
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
+    -webkit-transition: 0.1s linear all
+    -moz-transition: 0.1s linear all
+    -ms-transition: 0.1s linear all
+    -o-transition: 0.1s linear all
+    transition: 0.1s linear all
+  .fb_button:hover
+    background: #213b6d
+    background-position: 0 -15px
+    text-decoration: none  
+  .fb_button_text
+    border: none
+    background: url('/images/Facebook_F.png')
+    background-repeat: no-repeat 
+    padding: 6px 0 0 0    
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+    font-size: 12px
+    margin: 0 10px 0 4px
+    text-align: right
+    height: 30px
+
+#facebook_xlarge
+  .fb_button
+    border: 1px solid #111
+    width: 458px
+    height: 46px
+    background-position: 0px 0px
+    //background: #29447e
+    margin: 0 0 0 4px
+    padding: 0
+    background-repeat: no-repeat
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #3b5998), color-stop(100%, #29447e))
+    background-image: -webkit-linear-gradient(#3b5998, #29447e)
+    background-image: -moz-linear-gradient(#3b5998, #29447e)
+    background-image: -o-linear-gradient(#3b5998, #29447e)
+    background-image: -ms-linear-gradient(#3b5998, #29447e)
+    background-image: linear-gradient(#3b5998, #29447e)
+    -webkit-border-radius: 4px
+    -moz-border-radius: 4px
+    border-radius: 4px
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
+    -webkit-transition: 0.1s linear all
+    -moz-transition: 0.1s linear all
+    -ms-transition: 0.1s linear all
+    -o-transition: 0.1s linear all
+    transition: 0.1s linear all
+  .fb_button:hover
+    background: #213b6d
+    background-position: 0 -15px
+    text-decoration: none  
+  .fb_button_text
+    border: none
+    background: url('/images/Facebook_F_xlarge.png')
+    background-repeat: no-repeat 
+    padding: 6px 0 0 0    
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+    font-size: 28px
+    margin: 0 10px 0 0
+    text-align: center
+    height: 40px 
+ 
+
+#forgot_password
+  padding: 5px 0 5px 5px
+  color: #bababa
+#forgot_password:hover
+  color: white
+  
