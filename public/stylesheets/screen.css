@@ -405,7 +405,7 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
 header.index { overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 header.index h1 { margin: 0 25px; display: inline; float: left; }
-header.index .tiled-subheading { margin: 30px 0 0 25px; color: gray; }
+header.index .tiled-subheading { margin: 30px 0 0 0; color: gray; }
 header.index .tiled-subheading-subline { margin: 0 0 0 25px; color: gray; }
 header.index .tiled-subheading_clear_date_filter { float: right; margin: 0 25px; }
 header.index .switch-to-map-view { display: inline; float: right; margin-top: 10px; margin-right: 25px; }
