@@ -28,18 +28,15 @@
       <%= devise_error_messages! %>
 
       <div>
-        <%= f.label :email %><br />
-        <%= f.email_field :email %>
+        <%= f.email_field :email, :placeholder => "Email" %>
       </div>
 
       <div>
-        <%= f.label :password %><br />
-        <%= f.password_field :password %>
+        <%= f.password_field :password, :placeholder => "Password" %>
       </div>
 
       <div>
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation %>
+        <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %>
       </div>
 
       <div class='buttons'>

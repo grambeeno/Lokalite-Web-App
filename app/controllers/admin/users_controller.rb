@@ -37,7 +37,7 @@ class Admin::UsersController < Admin::Controller
     redirect_to(:action => :index)
   end
 
-  # We made major changes to the user authentication system so something may not be defined properly. Doesn't allow admin to add user from 'Admin Page'
+  # We made major changes to the user authentication system so something may not be defined properly. Doesn't allow admin to add user from '/admin/users/new'
   def new
     @user = User.new
     return if request.get?

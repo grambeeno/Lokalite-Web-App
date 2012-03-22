@@ -9,22 +9,17 @@
   <% form(@user) do |f| %>
 
     <%= f.error_messages %>
-
-    <%= f.label :handle %>
+    
     <br />
-    <%= f.text_field :handle, :class => :focus, :style => "padding: 10px" %>
-    <br />
-    <br />
-
-    <%= f.label :email %>
-    <br />
-    <%= f.text_field :email, :style => "padding: 10px" %>
+    <%= f.text_field :handle, :placeholder => "Handle", :class => :focus, :style => "padding: 10px" %>
     <br />
     <br />
 
-    <%= f.label :password %>
+    <%= f.text_field :email, :placeholder => "Email", :style => "padding: 10px" %>
     <br />
-    <%= f.text_field :password, :value => nil, :style => "padding: 10px" %>
+    <br />
+
+    <%= f.text_field :password, :placeholder => "Password", :value => nil, :style => "padding: 10px" %>
     <br />
     <br />
 
