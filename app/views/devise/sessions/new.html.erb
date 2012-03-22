@@ -19,9 +19,11 @@
   </div>
 
   <div class='devise-fields'>
-    <fb:login-button size='large' onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
+    <div id="facebook", style="margin-right: 150px">
+      <fb:login-button size='large' onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
+    </div>
 
-    <script type="text/javascript">
+   <!-- <script type="text/javascript">
       $(document).ready(function(){
 
         $(".btn-slide").click(function(){
@@ -31,11 +33,13 @@
 
 
       });
-    </script>
+    </script> -->
 
-    <h2 class='big mtl'>or with an <a href="#secondary-signin" class="btn-slide">email and password</a>.</h2>
+    <h2 class='big mtl'>or with an email and password. <!-- <a href="#secondary-signin" class="btn-slide">email and password</a>. --> </h2>
 
-    <div id="secondary-signin">
+<!-- Note: The div below had an id of 'secondary-signin' in order to give it the slide effect -->
+
+    <div>
       <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
         <div><%= f.label :email %><br />
           <%= f.email_field :email %></div>
@@ -44,7 +48,7 @@
           <%= f.password_field :password %></div>
 
         <% if devise_mapping.rememberable? -%>
-          <div style="width: 350px; margin: 0 0 0 25px"><%= f.check_box :remember_me %> <%= f.label :remember_me %>
+          <div style="width: 350px"><%= f.check_box :remember_me %> <%= f.label :remember_me %>
         <% end -%>
         <%= link_to "Forgot your password?", new_password_path(resource_name), :style => "margin-left: 85px" %><br />
           </div>
