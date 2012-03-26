@@ -114,7 +114,9 @@
       }
     });
 
-    $('#event_location_id').append('<option value="new">Create a new location</option>');
+    <% if current_user.part_of_organization?(organization) %>
+      $('#event_location_id').append('<option value="new">Create a new location</option>');
+    <% end %>
 
     $('.new-location').hide()
     $('#event_location_id').change(function(){

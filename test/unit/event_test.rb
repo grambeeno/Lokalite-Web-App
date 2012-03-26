@@ -13,6 +13,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: events
@@ -34,5 +35,7 @@ end
 #  users_count           :integer         default(0)
 #  trend_weight          :decimal(, )     default(0.0)
 #  anonymous_trend_count :integer         default(0)
+#  created_by_id         :integer
+#  approved              :boolean         default(FALSE)
 #
 

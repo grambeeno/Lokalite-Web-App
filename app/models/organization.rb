@@ -71,6 +71,7 @@ class Organization < ActiveRecord::Base
     location && location.formatted_address
   end
 
+  scope :alphabetized, order(:name)
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'B']]
 
   def self.browse(*args)

@@ -1,0 +1,61 @@
+<div class='form'>
+  <h1>Approve Events</h1>
+  <%= form_tag do %>
+    <table>
+      <tr>
+        <td>
+          <label>
+            <%= check_box_tag 'select_all', 1, true, :class => 'toggle_checkboxes' %>
+            Select all
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+
+      <% for event in @events -%>
+        <tr>
+          <td>
+            <label>
+              <%= check_box_tag 'event_ids[]', event.id, true %>
+              <%= event.name %>
+            </label>
+          </td>
+          <td>
+            <%= event.organization.name %>
+          </td>
+          <td>
+            <%= event.created_by.full_name %>
+          </td>
+          <td>
+            <%= link_to "(view event)", event_path(event.slug, event.id) %>
+          </td>
+        </tr>
+      <% end -%>
+    </table>
+
+    <br />
+    <br />
+    <%= submit_tag "Approve Events", :class => "btn primary" %>
+  <% end %>
+</div>
+
+<style type="text/css">
+  table td {
+    padding: 2px 6px;
+  }
+</style>
+
+<script type="text/javascript">
+  $(function() {
+      $('.toggle_checkboxes').live('change', function() {
+
+        if ($(this).is(':checked')) {
+          $('input:checkbox').attr('checked', true);
+        } else {
+          $('input:checkbox').attr('checked', false);
+        }
+      });
+  });
+</script>

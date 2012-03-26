@@ -133,6 +133,14 @@ end
   # end
   # helper_method(:current_user)
 
+  def real_user
+    if user_sudoing?
+      @real_user
+    else
+      current_user
+    end
+  end
+
   def user_sudoing?
     defined?(@real_user)
   end

@@ -222,6 +222,10 @@ class User < ActiveRecord::Base
     User.for(arg)
   end
 
+  def part_of_organization?(organization)
+    organizations.include? organization
+  end
+
   def can_edit_event?(event)
     event = Event.find(event) unless event.is_a?(Event)
     organizations.detect{|organization| event.organization_id == organization.id}

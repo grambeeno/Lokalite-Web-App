@@ -1,6 +1,7 @@
 class My::EventsController < My::Controller
   before_filter :set_organization
   before_filter :find_event_and_authorize
+  before_filter :require_admin, :only => :approve
 
   def index
     # @events = Event.all
@@ -10,13 +11,16 @@ class My::EventsController < My::Controller
   end
 
   def new
-    if @organization.blank? && current_user.organizations.size == 1
-      redirect_to new_my_event_path(:organization_id => current_user.organizations.first.id) and return
-    end
-
-    unless @organization.blank?
+    if @organization.present?
       today = Time.zone.now.to_date
       @event = @organization.events.new(:starts_at => today + 18.hours, :ends_at => today + 22.hours)
+    else
+      @organizations = current_user.organizations
+      if @organizations.size == 1
+        redirect_to new_my_event_path(:organization_id => current_user.organizations.first.id) and return
+      elsif @organizations.size == 0
+        @organizations = Organization.alphabetized
+      end
     end
   end
 
@@ -29,6 +33,11 @@ class My::EventsController < My::Controller
     duration = attributes.delete(:duration)
     @event = Event.new(attributes)
     @event.duration = duration
+    @event.created_by = real_user
+
+    if current_user.part_of_organization?(@event.organization) || real_user_is_admin?
+      @event.approved = true
+    end
 
     if @event.save
       if @event.repeating and params.key?(:event_repeats)
@@ -155,6 +164,20 @@ class My::EventsController < My::Controller
       redirect_to manage_featured_events_path
     else
       permission_denied
+    end
+  end
+
+  def approve
+    if params[:event_ids].present?
+      events = Event.find(params[:event_ids])
+      for event in events
+        event.update_attribute(:approved, true)
+      end
+
+      flash[:success] = "Events were approved."
+      redirect_to root_path
+    else
+      @events = Event.not_approved
     end
   end
 

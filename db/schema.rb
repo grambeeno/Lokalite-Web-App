@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220180624) do
+ActiveRecord::Schema.define(:version => 20120326131132) do
 
   create_table "event_features", :force => true do |t|
     t.integer  "event_id"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20111220180624) do
     t.integer  "users_count",           :default => 0
     t.decimal  "trend_weight",          :default => 0.0
     t.integer  "anonymous_trend_count", :default => 0
+    t.integer  "created_by_id"
+    t.boolean  "approved",              :default => false
   end
 
   add_index "events", ["description"], :name => "index_events_on_description"

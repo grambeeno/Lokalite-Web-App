@@ -47,17 +47,18 @@
               <%= link_to('Edit My Events', my_organization_path(current_user.organizations.first)) %>
             </li>
           <% end %>
-          <% if current_user.organizations.any? or user_sudoing? %>
-            <li>
-              <%= link_to "Create Event", new_my_event_path %>
-            </li>
-          <% end %>
+          <li>
+            <%= link_to "Create Event", new_my_event_path %>
+          </li>
           <li>
             <%= link_to "Profile Settings", edit_profile_path %>
           </li>
           <% if real_user_is_admin? %>
             <li>
               <%= link_to "Manage Featured Events", manage_featured_events_path %>
+            </li>
+            <li>
+              <%= link_to "Approve New Events", approve_events_path %>
             </li>
           <% end %>
           <li>
@@ -79,7 +80,7 @@
           <li>
             <div class="divider"></div>
             <div id="facebook">
-              <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button> 
+              <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
             </div>
             <%= form_for (:user, :url => session_path(:user)) do |f| %>
               <div></br>

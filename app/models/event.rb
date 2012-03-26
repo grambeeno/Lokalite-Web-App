@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :user_event_joins
   has_many :event_features
 
+  belongs_to :created_by, :class_name => 'User'
+
   belongs_to :organization, :touch => true
   belongs_to :image, :class_name => 'EventImage'
   belongs_to :location, :include => :geocoding
@@ -68,6 +70,7 @@ class Event < ActiveRecord::Base
   # pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']]
 
+  scope :not_approved, where(:approved => false)
   scope :by_date, order('starts_at')
 
   scope(:after, lambda{|time|
@@ -477,6 +480,7 @@ class Event < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: events
@@ -498,5 +502,7 @@ end
 #  users_count           :integer         default(0)
 #  trend_weight          :decimal(, )     default(0.0)
 #  anonymous_trend_count :integer         default(0)
+#  created_by_id         :integer
+#  approved              :boolean         default(FALSE)
 #
 
