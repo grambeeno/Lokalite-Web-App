@@ -114,7 +114,7 @@
       }
     });
 
-    <% if current_user.part_of_organization?(organization) %>
+    <% if current_user.part_of_organization?(organization) || real_user_is_admin? %>
       $('#event_location_id').append('<option value="new">Create a new location</option>');
     <% end %>
 
