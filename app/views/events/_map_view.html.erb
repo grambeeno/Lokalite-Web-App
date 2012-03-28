@@ -75,5 +75,37 @@
  })
 </script>
 
+<header class='index'>
+  <h1>
+    <%= tile_view_title %>
+  </h1>
+
+  <%
+    options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
+  %>
+ <!-- <div class="clear"></div> -->
+
+  <% if params[:after].present? %>
+    <div>
+      <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
+    </div>
+  <% end %>
+
+  <div class="tiled-subheading">
+    <% if user_signed_in? && options[:category] == 'suggested' %>
+      <p class='tiled-subheading-subline'>
+        Events in
+        <%= current_user.event_categories.join(', ') %>
+      </p>
+    <% end %>
+    <% if params[:after].present? %>
+      <p class='tiled-subheading-subline'>
+        After
+        <%= Chronic.parse(params[:after]).to_s(:full) %>
+      </p>
+    <% end %> 
+  </div>
+</header>
+
 <div id="map_canvas"></div>
 
