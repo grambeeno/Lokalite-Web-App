@@ -83,13 +83,19 @@
   <%
     options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }
   %>
- <!-- <div class="clear"></div> -->
+ <!-- <div class="clear"></div> --> 
 
   <% if params[:after].present? %>
     <div>
       <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
     </div>
   <% end %>
+
+  <div class="map_view_button"><%= link_to 'Switch to Map View', events_path_with_options(:view_type => 'map', :keep => [:keywords]), :class => 'map_view' %>
+  </div>
+  <div class="gallery_view_button"><%= link_to 'Switch to Gallery View', events_path_with_options(:view_type => nil, :keep => [:keywords]), :class => 'gallery_view' %>
+  </div>
+
 
   <div class="tiled-subheading">
     <% if user_signed_in? && options[:category] == 'suggested' %>

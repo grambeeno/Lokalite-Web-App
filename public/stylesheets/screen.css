@@ -405,9 +405,15 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 
 header.index { overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 header.index h1 { margin: 0 25px; display: inline; float: left; }
+header.index .gallery_view_button { margin: 0 0 0 25px; float: right; }
+header.index .gallery_view_button .gallery_view { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url("/images/polaroid_view.png?1332965516"); background-repeat: no-repeat; background-position: 100% 0%; width: 30px; height: 30px; }
+header.index .gallery_view_button .gallery_view:hover { background-position: 0% 100%; }
+header.index .map_view_button { margin: 0 20px 0 0; float: right; }
+header.index .map_view_button .map_view { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url("/images/map_pin.png"); background-repeat: no-repeat; background-position: 100% 0%; width: 30px; height: 30px; }
+header.index .map_view_button .map_view:hover { background-position: 0% 100%; }
 header.index .tiled-subheading { margin: 30px 0 0 0; color: gray; }
 header.index .tiled-subheading-subline { margin: 0 0 0 25px; color: gray; }
-header.index .tiled-subheading_clear_date_filter { float: right; margin: 0 25px; }
+header.index .tiled-subheading_clear_date_filter { float: right; margin: 0 25px 0 0; }
 header.index .switch-to-map-view { display: inline; float: right; margin-top: 10px; margin-right: 25px; }
 
 .navbar-fixed-top { position: fixed; top: 0; right: 0; left: 0; z-index: 1030; }

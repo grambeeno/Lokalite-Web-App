@@ -564,6 +564,42 @@ header.index
   h1
     margin: 0 $content-bg-padding
     +float('left')
+  .gallery_view_button
+    //position: absolute
+    margin: 0 0 0 25px
+    float: right
+
+    .gallery_view
+      display: block
+      text-indent: -119988px
+      overflow: hidden
+      text-align: left
+      background-image: url('/images/polaroid_view.png?1332965516')
+      background-repeat: no-repeat
+      background-position: 100% 0%
+      width: 30px
+      height: 30px
+    .gallery_view:hover
+      background-position: 0% 100%
+
+  .map_view_button
+    //position: absolute
+    margin: 0 20px 0 0
+    float: right
+
+    .map_view
+      display: block
+      text-indent: -119988px
+      overflow: hidden
+      text-align: left
+      background-image: url('/images/map_pin.png')
+      background-repeat: no-repeat
+      background-position: 100% 0%
+      width: 30px
+      height: 30px
+    .map_view:hover
+      background-position: 0% 100%
+
 
   .tiled-subheading
     margin: $content-bg-padding + 5 0 0 0 
@@ -574,7 +610,7 @@ header.index
   .tiled-subheading_clear_date_filter
     //+float('right')
     float: right
-    margin: 0 $content-bg-padding
+    margin: 0 $content-bg-padding 0 0
 
   .switch-to-map-view
     +float('right')
