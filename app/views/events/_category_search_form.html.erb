@@ -1,0 +1,68 @@
+  <h4>Event Categories</h4>
+    <input id="event_categories" type="hidden" name="event_categories"> 
+    <%= form_tag events_path_with_options do %>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'happy hour' %>
+      <%= label_tag "Happy Hour" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'music and the arts' %>
+      <%= label_tag "Music and the Arts" %>
+    </div>
+      
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'nightlife' %>
+      <%= label_tag "Nightlife" %>
+    </div>
+      
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'shopping' %>
+      <%= label_tag "Shopping" %>
+    </div>
+      
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'food and dining' %>
+      <%= label_tag "Food and Dining" %>
+    </div>
+      
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'sports and fitness' %>
+      <%= label_tag "Sports and Fitness" %>
+    </div>
+
+  <div class='right_column_events'>
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'health and beauty' %>
+      <%= label_tag "Health and Beauty" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'learn something new' %>
+      <%= label_tag "Learn Something New" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'campus' %>
+      <%= label_tag "Campus" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'community' %>
+      <%= label_tag "Community" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'tours and tastings' %>
+      <%= label_tag "Tours and Tastings" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'mmj' %>
+      <%= label_tag "MMJ" %>
+    </div>
+  </div>
+
+<% end %>
+  

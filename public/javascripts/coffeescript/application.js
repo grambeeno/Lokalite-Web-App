@@ -219,7 +219,7 @@ $(function() {
     });
   }
   observeEventDateFlitering = function() {
-    var after, applyFilters, clearFilters, date, startDateSelect, startTimeSelect, startTimeString, time, updatePageLocation, url, _ref;
+    var after, applyFilters, clearFilters, date, startDateSelect, startTimeSelect, startTimeString, time, url, _ref;
     startTimeSelect = $('.event_date_filters #event_start_time');
     startDateSelect = $('.event_date_filters #event_start_date');
     url = new URI(window.location.href);
@@ -242,24 +242,15 @@ $(function() {
     };
     applyFilters = function() {
       clearFilters();
-      url.addQuery('after', startTimeString());
-      return updatePageLocation();
+      $('a.clear_date_filter').show();
+      return $("#after").val(startTimeString());
     };
     clearFilters = function() {
-      return url.removeQuery('after');
+      $("#after").val('');
+      return $('a.clear_date_filter').hide();
     };
-    updatePageLocation = function() {
-      url.normalize();
-      if (!url.equals()) {
-        return window.location = url.toString();
-      }
-    };
-    $('a.clear_date_filter').live('click', function(event) {
-      event.preventDefault();
-      clearFilters();
-      return updatePageLocation();
-    });
-    if (after = url.query(true).after) {
+    after = $("#after").val();
+    if (after) {
       _ref = after.split(' '), date = _ref[0], time = _ref[1];
       startTimeSelect.val(time);
       return startDateSelect.datepicker('setDate', date);

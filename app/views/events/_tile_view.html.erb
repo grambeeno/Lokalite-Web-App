@@ -1,3 +1,5 @@
+
+
 <header class='index'>
   <h1>
     <%= tile_view_title %>
@@ -10,7 +12,7 @@
 
   <% if params[:after].present? %>
     <div>
-      <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
+      <%= link_to 'Clear Date Filter', events_path_with_options(:category => nil, :after => nil), :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
     </div>
   <% end %>
 

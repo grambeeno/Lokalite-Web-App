@@ -1,0 +1,63 @@
+  <h4>Places Categories</h4>
+    <input id="places_categories" type="hidden" name="places_categories"> 
+    <%= form_tag places_path(:origin => params[:origin], :category => params[:category]) do %>
+    
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'shopping' %>
+      <%= label_tag "Shopping" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'restaurants and bars' %>
+      <%= label_tag "Restaurants and Bars" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'coffee and tea' %>
+      <%= label_tag "Coffee and Tea" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'arts and entertainment' %>
+      <%= label_tag "Arts and Entertainment" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'services' %>
+      <%= label_tag "Services" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'campus' %>
+      <%= label_tag "Campus" %>
+    </div>
+
+  <div class='right_column_events'>
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'beer wine and spirits' %>
+      <%= label_tag "Beer Wine and Spirits" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'sports and fitness' %>
+      <%= label_tag "Sports and Fitness" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'health and beauty' %>
+      <%= label_tag "Health and Beauty" %>
+    </div>
+
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'non-profit' %>
+      <%= label_tag "Non-Profit" %>
+    </div> 
+    
+    <div class='columns'>
+      <%= check_box_tag 'category[]', 'mmj' %>
+      <%= label_tag "MMJ" %>
+    </div> 
+  </div>
+
+<% end %>
+  

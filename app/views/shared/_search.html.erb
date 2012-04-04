@@ -3,10 +3,100 @@
     <%
       value = params[:keywords] || ''
     -%>
-    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}" %>
-    <%= hidden_field_tag(:after, params[:after]) if params[:after] %>
+    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'panbut' %>
+    <div class='search_module'>    
+      <h5>Welcome to Lokalite's Advanced Search. Use the search field and these filters to narrow down your search.</h5>
+    
+      <div class="search_list">
+        <ul>
+<!-- <script>
+$('#directory').change(function() {
+    var boxes = $('.event-checkbox');
+    if ($(this).attr('checked') === 'checked') {
+      boxes.attr('checked', 'checked');
+    } else {
+      boxes.attr('checked', null);
+    }
+  });
+</script> -->
+        <!--  <li><h4>Directory</h4>
+            <%= check_box_tag events_path(:origin => params[:origin], :category => 'featured') %>
+              <%= label_tag "Events" %>
+              
+              <%= check_box_tag places_path(:origin => params[:origin]) %>
+              <%= label_tag "Places" %>
+            </li> -->
+            
+          <li><h4>State</h4>
+            <% states = [ ['Colorado']] %>
+            <%= select_tag :event_state, options_for_select(states), :class => 'form_input' %>
+          </li>
+          <li><h4>City</h4>
+            <% cities = [ ['Boulder']] %>
+            <%= select_tag :event_city, options_for_select(cities), :class => 'form_input' %>
+          </li>
+        </ul>
+      </div>
+
+      <% if event_index_page? %>
+      <div class="event_date_filters">
+        <h4>Pick a Date:</h4>
+        <div id="event_start_date"></div>
+
+    <%
+      hours = [
+        ['6:00 am',  '6am'],
+        ['7:00 am',  '7am'],
+        ['8:00 am',  '8am'],
+        ['9:00 am',  '9am'],
+        ['10:00 am', '10am'],
+        ['11:00 am', '11am'],
+        ['12:00 pm', '12pm'],
+        ['1:00 pm',  '1pm'],
+        ['2:00 pm',  '2pm'],
+        ['3:00 pm',  '3pm'],
+        ['4:00 pm',  '4pm'],
+        ['5:00 pm',  '5pm'],
+        ['6:00 pm',  '6pm'],
+        ['7:00 pm',  '7pm'],
+        ['8:00 pm',  '8pm'],
+        ['9:00 pm',  '9pm'],
+        ['10:00 pm', '10pm'],
+        ['11:00 pm', '11pm'],
+        ['12:00 am', '12am']
+      ]
+    %>
+    <div class="event_start_time">
+      <h5>Start Time:<h5>
+          <%= select_tag :event_start_time, options_for_select(hours), :class => 'form_input' %>
+    </div>
+  </div>
+    <% end %>
+
+      <% if event_index_page? %>
+  <div class="search_categories">
+        <%= render :partial => 'events/category_search_form' %>
+      </div>
+      <% else %>
+  <div class="search_categories_places">
+        <%= render :partial => 'places/category_search_form' %>
+      </div>
+        <% end %>
+
+    <%= hidden_field_tag(:after, params[:after]) %>
+    
+    <% if event_index_page? %>
+    <div class='search_submit'>
+      <%= submit_tag nil, :class => 'form_submit btn primary' %>
+    </div>
+    <% else %>
+    <div class='search_submit_places'>
+      <%= submit_tag nil, :class => 'form_submit btn primary' %>
+    </div>
+    <% end %>
+</div>
     <%# Scope search to selected category if desired %>
     <%#= hidden_field_tag(:category, params[:category]) if params[:category] %>
-  <% end %>
+    <% end %>
 </p>
 

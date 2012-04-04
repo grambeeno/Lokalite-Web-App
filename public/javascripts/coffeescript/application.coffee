@@ -255,34 +255,28 @@ $ ->
 
     applyFilters = ->
       clearFilters()
-      url.addQuery 'after', startTimeString()
-      updatePageLocation()
+      $('a.clear_date_filter').show()
+      $("#after").val(startTimeString())
 
     clearFilters = ->
-      url.removeQuery 'after'
+      $("#after").val('')
+      $('a.clear_date_filter').hide()
 
     # use this so we don't have to always normalize
     # also, don't want to reload the page unless we need to
-    updatePageLocation = ->
-      url.normalize()
-      unless url.equals()
-        window.location = url.toString()
-
-    $('a.clear_date_filter').live 'click', (event) ->
-      event.preventDefault()
-      clearFilters()
-      updatePageLocation()
 
     # now set initial state.
     # if after param is aleady set, select it in the timepicker and calendar
-    if after = url.query(true).after
-      [date, time] = after.split(' ')
-      startTimeSelect.val(time)
-      startDateSelect.datepicker('setDate', date)
-    else
-      # hide the link to clear the datepicker
-      $('a.clear_date_filter').hide()
 
+     after = $("#after").val()
+     if after 
+       [date, time] = after.split(' ')
+       startTimeSelect.val(time)
+       startDateSelect.datepicker('setDate', date)
+     else
+       # hide the link to clear the datepicker
+       $('a.clear_date_filter').hide()
+  
   observeEventDateFlitering()
   #---------------------------------------------------#
 

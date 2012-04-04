@@ -161,7 +161,9 @@ class Event < ActiveRecord::Base
           today = Time.zone.now.to_date
           results = results.featured_on(today)
         else
-          results = results.tagged_with(options[:category].humanize, :on => 'categories')
+          categories = options[:category].to_a
+          categories = categories.map{|c| c.humanize }
+          results = results.tagged_with(categories, :on => 'categories', :any => true)
         end
       end
     else

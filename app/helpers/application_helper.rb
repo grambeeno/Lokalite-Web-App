@@ -3,10 +3,14 @@ module ApplicationHelper
 
 
   def title_for_category(category)
-    category = category.titleize 
+    if category = params[:category].to_a
+       category = category.map{|c| c.titleize }
+       category.join(', ')
+    else
     category = category.upcase if category.upcase == 'MMJ'
     category = category.gsub(/ And /, ' and ')
     category = category + " Events"
+  end
   end
 
   def tile_main_content?

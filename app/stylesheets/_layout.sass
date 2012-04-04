@@ -489,7 +489,101 @@ body.static-controller
       margin: -267px 60px 0 0
     nav.local-events
       margin: 70px 0 0 60px
-      
+
+.search_module 
+  border-radius: 3px
+  position: absolute 
+  display: none
+  margin: 17px 0 0 160px
+  width: 700px
+  padding: 10px
+  +linear-gradient(color-stops(#333, #222))
+
+.event_date_filters
+  margin: 10px 0 100px 350px
+  h2
+    font-size: 18px
+    font-weight: normal
+  .ui-datepicker
+    font-size: 10px
+    margin-top: 6px
+    margin-bottom: 12px
+
+.event_start_time
+  margin: -169px 0 10px 220px
+
+.search_list
+  ul
+    list-style: none
+    margin-left: 0 
+    li
+      float: left
+      margin: 10px 20px 10px 0
+
+.search_submit
+  margin: 80px 0 0 350px
+
+.search_submit_places
+  margin: 0 0 0 350px
+
+.search_categories
+  margin: -100px 0
+
+.search_categories .columns
+  margin: 10px 0 5px 0
+
+.search_categories_places
+  margin: 70px 0 0 0
+
+.search_categories_places .columns
+  margin: 10px 0 5px 0
+
+.search_categories_places .right_column_events
+  margin: -152px 0 0 180px
+
+.search_categories .right_column_events
+  margin: -152px 0 0 160px
+
+.checkbox-list
+  +no-bullets
+  padding: 8px 8px 8px 18px
+  margin: 10px 0px
+  h4
+    margin: 0 0 0 -17px
+  ul
+    margin: 0 0 0 -21px
+  ul.right_column
+    margin: -178px 0 0 130px
+  li
+    +clearfix
+    margin-bottom: -5px
+    input
+      +float('left')
+      margin: 8px 4px
+
+.search-title
+  font-size: 36px
+
+#panbut
+  position: relative
+  margin: 0 auto
+  text-align: center
+
+#panbut span 
+  position: absolute
+  width: 150px
+  height: 25px
+  top: -2px
+  left: 15px
+  cursor: pointer
+  padding: 7px 25px
+  font: bold 11px sans-serif
+  text-transform: uppercase
+  text-shadow: -1px -1px 0 #333
+
+#panbut.closed span  
+  top: 0
+
 // Spacing Helpers
 // p,m = padding,margin
 // a,t,r,b,l,h,v = all,top,right,bottom,left,horizontal,vertical
