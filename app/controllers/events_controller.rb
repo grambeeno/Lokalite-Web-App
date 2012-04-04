@@ -7,7 +7,7 @@ class EventsController < ApplicationController
       redirect_to events_path(params)
     end
     # Don't apply date filters to featured event page
-    if params.key?(:after) and params[:category] == 'featured'
+    if params.key?(:after) and params[:category] == 'featured' 
       params.delete(:category)
       redirect_to events_path(params)
     end
@@ -18,6 +18,11 @@ class EventsController < ApplicationController
     end
     params[:user] = current_user if user_signed_in?
 
+    # Don't apply date filters to suggested event page
+    # if params.key?(:after) and params[:category] == 'suggested'
+      # params.delete(:category)
+      # redirect_to events_path(params)
+    # end 
 
     if params[:category] == "suggested" && params[:user].event_categories.empty?
       flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'

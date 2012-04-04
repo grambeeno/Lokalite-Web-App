@@ -2,6 +2,7 @@
 
 <div class="content">
   <% if @plans.any? %>
+    <h1 class="plans-title">Plans</h1>
     <%= render :partial => '/plans/plan', :collection => @plans %>
   <% else %>
     <h2 class="big">

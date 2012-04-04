@@ -1,17 +1,32 @@
 .profile-header
-  margin: 0 0 25px 0
+  //margin: 0 0 25px 0
+  position: absolute
 
   .avatar
-    left: 0
-    background-color: white
-    border: 1px solid #444
-    padding: 4px
-    margin: 0 0 0 25px
-    display: inline-block
+    //left: 0
+    //background-color: white
+    //border: 1px solid #444
+    //padding: 2px
+    margin: 0 0 20px -190px
+    //display: inline-block
     img
       display: block
+      height: 40px
+      width: 40px
+    .name
+      margin: -25px 0 0 50px
+      display: block
+      width: 180px
+      text-overflow: ellipsis
+      overflow: hidden
+      max-width: 130px
+      //word-wrap: break-word
+      vertical-align: middle
+      font-weight: bold
+      &:hover
+        text-decoration: underline
 
-  .band
+  //.band
     // we don't know how tall the profile pic will be
     // so let it flow down and pull the band up into the picture
     margin-top: -46px
@@ -23,48 +38,80 @@
     h1
       font-size: 20px
 
+  .sidebar
+    margin: 0 0 0 -190px
+    width: 180px
+
   .profile-links
-    margin: 10px 0 20px
-    list-style: none
+    margin: 0
+    list-style: none 
     li
-      width: 114px
-      height: 86px
+      width: 100%
+      // padding-top: 10px
+      // height: 86px
       float: left
       margin-right: 10px
-      background: transparent url(/images/profile-icons.png) no-repeat 0 0
+      font-size: 12px
+      margin-bottom: 8px
+      background-position: 2px top
+      background-repeat: no-repeat
+      // background: transparent url(/images/profile-icons.png) no-repeat 0 0
+      &:hover
+        background-color: #f1f1f1
+        //background-position: 2px bottom
+        border-radius: 3px
+        -moz-box-shadow: 0px 0px 1px #555
+        -webkit-box-shadow: 0px 0px 1px #555
+        -o-box-shadow: 0px 0px 1px #555
+        a
+          color: black 
     .datebook-icon
-      background-position: 0 -86px
-      // &:hover
-      //   background-position: 0 -98px
+      background-image: url(/images/bookmarks.png)     
     .plans-icon
-      background-position: -114px -86px
-      // &:hover
-      //   background-position: -133px -98px
+      background-image: url(/images/plans.png) 
     .suggestions-icon
-      background-position: -228px -86px
-      // &:hover
-      //   background-position: -266px -98px
+      background-image: url(/images/suggestions.png)      
+    .create-event-icon
+      background-image: url(/images/create_event.png)    
+    .edit-event-icon
+      background-image: url(/images/edit_event_icon.png) 
+    .add-organization-icon
+      background-image: url(/images/add_organization_icon.png)
+    .my-businesses-icon
+      background-image: url(/images/my_businesses_icon.png)
+    .user-list-icon
+      background-image: url(/images/user_list.png)
+    .add-user-icon
+      background-image: url(/images/add_user.png) 
+    .manage-featured-icon
+      background-image: url(/images/manage_featured.png)
+    .approve-events-icon
+      background-image: url(/images/approve_events.png)
     a
       display: block
-      padding-top: 95px
-      text-align: center
+      //padding-top: 95px
+      //text-align: center
       text-decoration: none
       color: #555
-      &:hover
-        color: #000
+      width: 100%
+      padding-top: 3px
+      height: 17px
+      padding-left: 26px
+      +link-colors($header-grey, darken($light-green, 40), darken($light-green, 50), $header-grey)
     .active
       a
         cursor: default
-        color: #000
-    // .datebook-icon.active
-    //   background-position: 0 -98px
-    // .plans-icon.active
-    //   background-position: -133px -98px
-    // .suggestions-icon.active
-    //   background-position: -266px -98px
+        color: #000 
 
 
 $datebook-width: $tile-width + ($content-bg-padding * 2)
+
+.bookmarks-title
+  margin: 0 25px
+  padding-bottom: 10px
+
+.plans-title
+  padding-bottom: 10px
 
 .datebook
   width: $datebook-width
@@ -86,7 +133,7 @@ $new-plan-container-width: $content-outer-width - $datebook-width - 20 - 1
   border-top: none
   border-right: none
   +clearfix
-  padding: 10px
+  padding: 20px 10px
 
 $plan-form-width: $new-plan-container-width - 20
 $plan-form-inner-width: $plan-form-width - 20
