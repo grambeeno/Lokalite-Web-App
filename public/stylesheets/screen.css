@@ -180,7 +180,7 @@ body.static-controller .sitemap nav.local-events { margin: 70px 0 0 60px; }
 
 .search-title { font-size: 36px; }
 
-#panbut { position: relative; margin: 0 auto; text-align: center; }
+#panbut { position: relative; margin: 0 auto; text-align: left; }
 
 #panbut span { position: absolute; width: 150px; height: 25px; top: -2px; left: 15px; cursor: pointer; padding: 7px 25px; font: bold 11px sans-serif; text-transform: uppercase; text-shadow: -1px -1px 0 #333333; }
 
