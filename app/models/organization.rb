@@ -97,10 +97,13 @@ class Organization < ActiveRecord::Base
     end
 
     results = relation
+   
+   if options[:category].present?
     categories = options[:category].to_a
     categories = categories.map{|c| c.humanize }
     results = results.tagged_with(categories, :on => 'categories', :any => true)
-
+   end
+    
     results = results.search(keywords.join(' ')) unless keywords.blank?
 
     # TODO - filter by location
