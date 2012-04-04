@@ -219,10 +219,9 @@ $(function() {
     });
   }
   observeEventDateFlitering = function() {
-    var after, applyFilters, clearFilters, date, startDateSelect, startTimeSelect, startTimeString, time, url, _ref;
+    var after, applyFilters, clearFilters, date, startDateSelect, startTimeSelect, startTimeString, time, _ref;
     startTimeSelect = $('.event_date_filters #event_start_time');
     startDateSelect = $('.event_date_filters #event_start_date');
-    url = new URI(window.location.href);
     startTimeSelect.change(function() {
       return applyFilters();
     });

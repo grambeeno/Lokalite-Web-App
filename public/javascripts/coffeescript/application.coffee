@@ -236,8 +236,6 @@ $ ->
     startTimeSelect = $('.event_date_filters #event_start_time')
     startDateSelect = $('.event_date_filters #event_start_date')
 
-    url = new URI(window.location.href)
-
     startTimeSelect.change ->
       applyFilters()
 
