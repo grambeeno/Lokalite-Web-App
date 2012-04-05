@@ -213,7 +213,7 @@ body
       .nav .menu-dropdown .signin-field, .nav .dropdown-menu .signin-field
         display: inline-block
         width: 200px
-        margin: 0 0 0 3px
+        margin: 0 3px
         background-color: #444444
         background-color: rgba(255, 255, 255, 0.3)
         background-repeat: no-repeat
@@ -507,13 +507,26 @@ body.static-controller
   border-radius: 3px
   position: absolute 
   display: none
-  margin: 17px 0 0 160px
-  width: 700px
-  padding: 10px
-  +linear-gradient(color-stops(#333, #222))
+  margin: 10px 25px
+  width: 530px
+  padding: 10px 22px
+  +linear-gradient(color-stops(#222, #333))
+  border: 1px solid black
+  border-top: 1px solid #444
+  
+.search-places
+  width: 347px
+  border-radius: 3px
+  position: absolute 
+  display: none
+  margin: 10px 25px
+  padding: 10px 22px
+  +linear-gradient(color-stops(#222, #333))
+  border: 1px solid black
+  border-top: 1px solid #444
 
 .event_date_filters
-  margin: 10px 0 100px 350px
+  margin: 10px 0 0px 350px
   h2
     font-size: 18px
     font-weight: normal
@@ -521,9 +534,11 @@ body.static-controller
     font-size: 10px
     margin-top: 6px
     margin-bottom: 12px
+  .event_start_time
+    margin-top: 160px
 
-.event_start_time
-  margin: -169px 0 10px 220px
+#event_start_date
+  position: absolute
 
 .search_list
   ul
@@ -532,15 +547,19 @@ body.static-controller
     li
       float: left
       margin: 10px 20px 10px 0
+      .field-dropdown
+        min-width: 140px
+        margin-top: 6px
 
 .search_submit
-  margin: 80px 0 0 350px
+  margin: -43px 0 0 460px
+  position: absolute
 
 .search_submit_places
-  margin: 0 0 0 350px
+  margin: 0 0 0 276px
 
 .search_categories
-  margin: -100px 0
+  margin-top: -165px 
 
 .search_categories .columns
   margin: 10px 0 5px 0
