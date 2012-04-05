@@ -4,10 +4,10 @@
       value = params[:keywords] || ''
     -%>
     <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'search_DD' %>
-    <% if event_index_page? %>
-    <div class='search_module'>    
-    <% else %>
+    <% if places_index_page? %>
     <div class='places-search search_module'>
+    <% else %>
+    <div class='search_module'>    
     <% end %>
       <h5>Welcome to Lokalite's Advanced Search. Use the search field and these filters to narrow down your search.</h5>
     
@@ -42,7 +42,8 @@ $('#directory').change(function() {
         </ul>
       </div>
 
-      <% if event_index_page? %>
+      <% if places_index_page? %>
+      <% else %>
       <div class="event_date_filters">
         <h5>Pick a Date:</h5>
         <div id="event_start_date"></div>
@@ -77,24 +78,24 @@ $('#directory').change(function() {
   </div>
     <% end %>
 
-      <% if event_index_page? %>
-  <div class="search_categories">
-        <%= render :partial => 'events/category_search_form' %>
-      </div>
-      <% else %>
+      <% if places_index_page? %>
   <div class="search_categories_places">
         <%= render :partial => 'places/category_search_form' %>
+      </div>
+      <% else %>
+  <div class="search_categories">
+        <%= render :partial => 'events/category_search_form' %>
       </div>
         <% end %>
 
     <%= hidden_field_tag(:after, params[:after]) %>
     
-    <% if event_index_page? %>
-    <div class='search_submit'>
+    <% if places_index_page? %>
+    <div class='search_submit_places'>
       <%= submit_tag nil, :class => 'form_submit btn primary' %>
     </div>
     <% else %>
-    <div class='search_submit_places'>
+    <div class='search_submit'>
       <%= submit_tag nil, :class => 'form_submit btn primary' %>
     </div>
     <% end %>
