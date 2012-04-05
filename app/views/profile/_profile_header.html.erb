@@ -1,15 +1,37 @@
 <div class="profile-header">
   <div class="avatar">
-    <%= image_tag current_user.image_url(:normal), :alt => current_user.full_name %>
+    <%= image_tag current_user.image_url, :size => '40x40' %>
+    <%= link_to current_user.full_name, datebook_path, :class => 'user-link name' %>
   </div>
 
-  <div class="band">
-    <h1><%= raw profile_breadcrumbs %></h1>
+  <div class= 'sidebar'>  
+    <h4 class='small'>Datebook</h4>
     <ul class='profile-links cf'>
-      <li class="datebook-icon"><%= link_to 'Bookmarks', datebook_path %></li>
-      <li class="plans-icon"><%= link_to 'Plans', user_plans_path %></li>
-      <li class="suggestions-icon"><%= link_to 'Suggestions', events_path(:origin => params[:origin], :category => 'suggested') %></li>
+      <li class='datebook-icon'><%= link_to 'Bookmarks', datebook_path, :class => 'user-link' %></li>
+      <li class='plans-icon'><%= link_to 'Plans', user_plans_path %></li>
+      <li class='suggestions-icon'><%= link_to 'Suggestions', events_path(:origin => params[:origin], :category => 'suggested') %></li>
+      <li class='create-event-icon'><%= link_to 'Create Event', new_my_event_path %></li>
     </ul>
+    <% if current_user.organizations.any? or user_sudoing? %>
+    <h4 class='small'>Business Panel</h4>
+    <ul class='profile-links cf'>
+      <% if current_user.organizations.size > 1 %>
+        <li class='my-businesses-icon'><%= link_to "My Businesses", my_organizations_path %></li>
+        <% elsif current_user.organizations.any? %>
+        <li class='edit-event-icon'><%= link_to('Edit My Events', my_organization_path(current_user.organizations.first)) %></li>
+      <% end %>
+        <li class='add-organization-icon'><%= link_to('Add a New Organization', new_my_organization_path) %></li>
+      </ul>
+    <% end %>
+  <% if current_user.admin? %>
+  <h4 class='small'>Admin Panel</h4>
+  <ul class='profile-links cf'>
+    <li class="user-list-icon"><%= link_to "User List", admin_path %>
+    <li class="add-user-icon"><%= link_to "Create New User", '/admin/users/new' %>
+    <li class="manage-featured-icon"><%= link_to "Manage Featured Events", manage_featured_events_path %>
+    <li class="approve-events-icon"><%= link_to "Approve Events", approve_events_path %>
+  <% end %>
   </div>
 </div>
 
+     

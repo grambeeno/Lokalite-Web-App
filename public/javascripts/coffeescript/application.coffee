@@ -108,7 +108,7 @@ $ ->
     $('li', '.datebook .events').draggable('destroy')
     $('li', '.datebook .events').draggable(planDragOptions)
 
-  $('.user-name').click (e) ->
+  $('.user-name').mouseenter (e) ->
     e.preventDefault()
     $('.dropdown-menu').toggle()
 
