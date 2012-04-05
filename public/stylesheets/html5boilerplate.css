@@ -164,10 +164,10 @@ input:valid, textarea:valid {
       border: 1px solid #d7d7d7;
       border-radius: 3px;
       background-color: white;
-      -moz-box-shadow: #eeeeee 0 2px 5px;
+      /*-moz-box-shadow: #eeeeee 0 2px 5px;
       -webkit-box-shadow: #eeeeee 0 2px 5px;
       -o-box-shadow: #eeeeee 0 2px 5px;
-      box-shadow: #eeeeee 0 2px 5px; 
+      box-shadow: #eeeeee 0 2px 5px; */
 }
 input:invalid, textarea:invalid { 
       border-radius: 1px;
