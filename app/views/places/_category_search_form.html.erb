@@ -1,9 +1,9 @@
-  <h5>Places Categories</h5>
+  <h4>Places Categories</h4>
     <input id="places_categories" type="hidden" name="places_categories"> 
     <%= form_tag places_path(:origin => params[:origin], :category => params[:category]) do %>
     
     <div class='columns'>
-      <%= check_box_tag 'category[shopping]', 'shopping' %>
+      <%= check_box_tag 'category[]', 'shopping' %>
       <%= label_tag 'shopping', "Shopping" %>
     </div>
 

@@ -3,17 +3,8 @@
     <%
       value = params[:keywords] || ''
     -%>
-<<<<<<< Updated upstream
     <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'search_DD' %>
     <div class='search_module'>    
-=======
-    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'panbut' %>
-    <% if event_index_page? %>
-      <div class='search_module'>  
-    <% else %>
-      <div class='search-places search_module'>
-    <% end %>  
->>>>>>> Stashed changes
       <h5>Welcome to Lokalite's Advanced Search. Use the search field and these filters to narrow down your search.</h5>
     
       <div class="search_list">
@@ -36,20 +27,20 @@ $('#directory').change(function() {
               <%= label_tag "Places" %>
             </li> -->
             
-          <li><h5>State</h5>
+          <li><h4>State</h4>
             <% states = [ ['Colorado']] %>
-            <%= select_tag :event_state, options_for_select(states), :class => 'form_input field-dropdown' %>
+            <%= select_tag :event_state, options_for_select(states), :class => 'form_input' %>
           </li>
-          <li><h5>City</h5>
+          <li><h4>City</h4>
             <% cities = [ ['Boulder']] %>
-            <%= select_tag :event_city, options_for_select(cities), :class => 'form_input field-dropdown' %>
+            <%= select_tag :event_city, options_for_select(cities), :class => 'form_input' %>
           </li>
         </ul>
       </div>
 
       <% if event_index_page? %>
       <div class="event_date_filters">
-        <h5>Pick a Date:</h5>
+        <h4>Pick a Date:</h4>
         <div id="event_start_date"></div>
 
     <%
@@ -75,9 +66,9 @@ $('#directory').change(function() {
         ['12:00 am', '12am']
       ]
     %>
-    <div class="event_start_time field-dropdown">
+    <div class="event_start_time">
       <h5>After:<h5>
-          <%= select_tag :event_start_time, options_for_select(hours), :class => 'form_input', :style => 'margin-top: 6px' %>
+          <%= select_tag :event_start_time, options_for_select(hours), :class => 'form_input' %>
     </div>
   </div>
     <% end %>

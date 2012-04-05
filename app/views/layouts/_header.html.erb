@@ -59,34 +59,32 @@
        </li>
     <% else %>
       <li>
-        <div class="user-menu">
-          <div class="signin user-name">
-            <%= link_to 'Have an account? Sign In', '#', :class => 'signin' %>
-            <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
-          </div>
-          <ul class="dropdown-menu sign-in" style='margin-left: 0px'>
-            <li>  
-              <div class="divider"></div>
-              <div id="facebook">
-                <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
-              </div>
-              <%= form_for (:user, :url => session_path(:user)) do |f| %>
-                <div></br>
-                  <%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %>
-                </div>
-                <div></br>
-                  <%= f.password_field :password, :placeholder => "Password", :class => "signin-field" %>
-                </div></br>
-                  <%= f.submit "Sign in", :class => "btn primary btn-float-right" %>
-                </br></br>
-                <div class="divider"></div>
-                <%= link_to "Forgot your password?", '/users/password/new', :id => "forgot_password" %>
-                <%= link_to "Need to signup?", '/landing', :id => "forgot_password" %>
-                <%= link_to "Local business?", '/business', :id => "forgot_password" %>
-              <% end %>
-            </li>
-          </ul>
+        <div class="signin user-name user-menu">
+          <%= link_to 'Have an account? Sign In', '#', :class => 'signin' %>
+          <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
         </div>
+        <ul class="dropdown-menu sign-in" style='margin-left: 0px'>
+          <li>  
+            <div class="divider"></div>
+            <div id="facebook">
+              <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
+            </div>
+            <%= form_for (:user, :url => session_path(:user)) do |f| %>
+              <div></br>
+                <%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %>
+              </div>
+              <div></br>
+                <%= f.password_field :password, :placeholder => "Password", :class => "signin-field" %>
+              </div></br>
+                <%= f.submit "Sign in", :class => "btn primary btn-float-right" %>
+              </br></br>
+              <div class="divider"></div>
+              <%= link_to "Forgot your password?", '/users/password/new', :id => "forgot_password" %>
+              <%= link_to "Need to signup?", '/landing', :id => "forgot_password" %>
+              <%= link_to "Local business?", '/business', :id => "forgot_password" %>
+            <% end %>
+          </li>
+        </ul>
       </li>
     <% end %>
   </ul>
