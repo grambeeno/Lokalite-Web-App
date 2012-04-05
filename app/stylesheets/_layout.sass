@@ -507,13 +507,26 @@ body.static-controller
   border-radius: 3px
   position: absolute 
   display: none
-  margin: 17px 0 0 160px
-  width: 700px
-  padding: 10px
-  +linear-gradient(color-stops(#333, #222))
+  margin: 10px 0 0 25px
+  width: 535px
+  padding: 10px 20px
+  +linear-gradient(color-stops(#222, #333))
+  border: 1px solid black
+  border-top: 1px solid #444
+
+.places-search
+  border-radius: 3px
+  position: absolute 
+  display: none
+  margin: 10px 0 0 25px
+  width: 325px
+  padding: 10px 20px
+  +linear-gradient(color-stops(#222, #333))
+  border: 1px solid black
+  border-top: 1px solid #444
 
 .event_date_filters
-  margin: 10px 0 100px 350px
+  margin: 10px 0 0 350px
   h2
     font-size: 18px
     font-weight: normal
@@ -521,9 +534,10 @@ body.static-controller
     font-size: 10px
     margin-top: 6px
     margin-bottom: 12px
+    position: absolute
 
 .event_start_time
-  margin: -169px 0 10px 220px
+  margin: 170px 0 10px 0px
 
 .search_list
   ul
@@ -532,15 +546,23 @@ body.static-controller
     li
       float: left
       margin: 10px 20px 10px 0
+      .form-dropdown
+        min-width: 140px
+        margin-top: 6px
+
+.time-dropdown
+  margin-top: 6px
 
 .search_submit
-  margin: 80px 0 0 350px
+  margin: -37px 0 0 460px
+  position: absolute
 
 .search_submit_places
-  margin: 0 0 0 350px
+  margin: 0 0 0 255px
 
 .search_categories
-  margin: -100px 0
+  margin: -180px 0 0 0 
+  position: absolute
 
 .search_categories .columns
   margin: 10px 0 5px 0
@@ -552,10 +574,10 @@ body.static-controller
   margin: 10px 0 5px 0
 
 .search_categories_places .right_column_events
-  margin: -152px 0 0 180px
+  margin: -157px 0 0 180px
 
 .search_categories .right_column_events
-  margin: -152px 0 0 160px
+  margin: -157px 0 0 160px
 
 .checkbox-list
   +no-bullets
