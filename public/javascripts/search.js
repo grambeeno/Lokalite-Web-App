@@ -3,7 +3,7 @@
     	    		// search panel is open
     			
     	    						
-    	jQuery("#panbut").click(function(){
+    	jQuery("#search_DD").click(function(){
     		var open = jQuery(this).parent().hasClass('open');
     		var closed = jQuery(this).parent().hasClass('closed');
     		
@@ -11,13 +11,13 @@
     	    jQuery("div.search_module").slideToggle();
     		    
     	    if(open == true){
-    	    	jQuery("#panbut").removeClass('open');
-    	    	jQuery("#panbut").addClass('closed');
-    	    	jQuery('#panbut span').text('');
+    	    	jQuery("#search_DD").removeClass('open');
+    	    	jQuery("#search_DD").addClass('closed');
+    	    	jQuery('#search_DD span').text('');
     	    } else if ( closed == true ) {
-    	    	jQuery("#panbut").removeClass('closed');
-    	    	jQuery("#panbut").addClass('open');
-    	    	jQuery('#panbut span').text('');
+    	    	jQuery("#search_DD").removeClass('closed');
+    	    	jQuery("#search_DD").addClass('open');
+    	    	jQuery('#search_DD span').text('');
     	    }
     		    
     	});

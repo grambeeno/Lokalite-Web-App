@@ -5,7 +5,9 @@ module EventsHelper
 
   def tile_view_title
     if category = params[:category]
-      if category == 'suggested'
+      if params[:category] && keywords = params[:keywords]
+        "Search results: #{keywords} in #{title_for_category(category)}"
+      elsif category == 'suggested'
         "Suggested Events"
       else
         "#{title_for_category(category)}"
