@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'devise'
+gem 'devise', '~>1.4.9'
 gem "oa-oauth", :require => "omniauth/oauth"
 
 gem 'pg'

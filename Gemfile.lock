@@ -61,7 +61,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     dao (3.3.0)
-    devise (1.4.8)
+    devise (1.4.9)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -145,7 +145,7 @@ GEM
     oauth2 (0.5.1)
       faraday (~> 0.7.4)
       multi_json (~> 1.0.3)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.7)
     pg (0.10.1)
     pg_search (0.2)
     polyglot (0.3.2)
@@ -213,7 +213,7 @@ DEPENDENCIES
   chronic
   compass
   dao
-  devise
+  devise (~> 1.4.9)
   earth-tools
   faker
   fattr
