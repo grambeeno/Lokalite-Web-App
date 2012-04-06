@@ -59,7 +59,8 @@
        </li>
     <% else %>
       <li>
-        <div class="signin user-name user-menu">
+        <div class="user-menu">
+        <div class="signin user-name">
           <%= link_to 'Have an account? Sign In', '#', :class => 'signin' %>
           <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
         </div>
@@ -85,6 +86,7 @@
             <% end %>
           </li>
         </ul>
+      </div>
       </li>
     <% end %>
   </ul>
