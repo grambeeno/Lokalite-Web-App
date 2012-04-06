@@ -1,26 +1,97 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+    body { background-color: #fff; 
+      color: #444; 
+      text-align: left; 
+      font-family: Helvetica, Arial, Verdana, sans-serif;
+      margin: 0; 
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    .header {
+      background-color: #222222;
+      background-repeat: repeat-x;
+      background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222));
+      background-image: -moz-linear-gradient(top, #333333, #222222);
+      background-image: -ms-linear-gradient(top, #333333, #222222);
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222));
+      background-image: -webkit-linear-gradient(top, #333333, #222222);
+      background-image: -o-linear-gradient(top, #333333, #222222);
+      background-image: linear-gradient(top, #333333, #222222);
+      color: white;
+      -moz-box-shadow: 0px 0px 5px #333333;
+      -webkit-box-shadow: 0px 0px 5px #333333;
+      -o-box-shadow: 0px 0px 5px #333333;
+      min-width: 1160px;
+      min-height: 53px;
+    }
+    div.dialog {
+      padding: 0 4em;
+      margin: 5em auto 0 20em; 
+    }
+    h1 { font-size: 100%; 
+      color: #444; 
+      line-height: 1.5em; 
+    }
+    a {
+      text-decoration: none;
+      color: #444;
+    }
+    a:hover {
+      color: #749a74;
+      text-decoration: underline;
+    }
+    .image {
+      background-image: url('/images/404.png');
+      background-repeat: no-repeat;
+      width: 400px;
+      height: 400px;
+      position: absolute;
+    }
+    .text-box {
+      margin: 10em 0 0 25em;
+      position: absolute;
+    }
+    .logo-wrap {
+      display: inline;
+      float: left;
+      width: 190px;
+    }
+    .logo {
+      display: block;
+      text-indent: -119988px;
+      overflow: hidden;
+      text-align: left;
+      background-image: url('/images/header-logo.png?1324496977');
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      width: 124px;
+      height: 53px;
+    }
+    .content-cf {
+      width: 1140px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+   
   </style>
 </head>
 
-<body>
+<body> 
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+  <div class="header">
+    <div class="content-cf">
+      <div class="logo-wrap"><a href="/" class="logo" title="Lokalite Home">lokalite</a></div>
+    </div>
+  </div>
+  <div class="dialog">  
+    <div class='image'></div> 
+    <div class="text-box"> 
+      <h1>DO NOT PASS THIS PAGE.</h1>
+      <h1>DO NOT COLLECT $404.</h1>
+      <h1>Try heading back <a href="/">home</a> and starting over.</h1>
+    </div>
   </div>
 </body>
 </html>
