@@ -44,7 +44,7 @@
         <td style='padding:0.5em'>
           <% if user.organizations.any? %>
           <% user.organizations.each do |organization| %>
-          <%= link_to truncate(organization.name, :length => 25), organization_path(organization.slug, organization.id) %>
+          <%= link_to truncate(organization.name, :length => 22), organization_path(organization.slug, organization.id) %>
       <% end %>
           <% else %>
           None 
