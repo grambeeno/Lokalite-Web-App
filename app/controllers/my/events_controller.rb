@@ -15,7 +15,7 @@ class My::EventsController < My::Controller
       today = Time.zone.now.to_date
       @event = @organization.events.new(:starts_at => today + 18.hours, :ends_at => today + 22.hours)
     else
-      @organizations = current_user.organizations
+      @organizations = current_user.organizations.alphabetized
       if @organizations.size == 1
         redirect_to new_my_event_path(:organization_id => current_user.organizations.first.id) and return
       elsif @organizations.size == 0
