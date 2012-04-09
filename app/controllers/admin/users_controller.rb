@@ -44,14 +44,11 @@ class Admin::UsersController < Admin::Controller
  
     params[:user] ||= {}
  
-    transaction do
+    User.transaction do
       email = params[:user][:email]
       password = params[:user][:password]
  
-      @signup = Signup.signup!(:email => email, :password => password, :deliver => false)
-      @user = User.create(:email => @signup.email, :password => @signup.password)
-      @signup.update_attributes!(:user_id => @user.id)
-      @signup.token.expire!
+      @user = User.create(:email => email, :password => password)
     end
  
     message("user #{ @user.email.inspect } created!", :class => :success)
