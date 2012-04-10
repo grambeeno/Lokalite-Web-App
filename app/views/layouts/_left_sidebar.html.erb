@@ -1,4 +1,4 @@
-<% unless ['/users', '/business', '/static', '/my', '/profile', '/plans', '/admin'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+<% unless ['/users', '/business', '/static', '/my', '/profile', '/plans', '/admin', '/approve_events'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
   <%#= search_form %>
 
   <%
@@ -24,9 +24,18 @@
   <% if active_tab == 'events' %>
     <%= render :partial => 'events/sidebar_content' %>
   <% else %>
-  <%= render :partial => 'places/sidebar_content' %>
-  <% end %>
+    <%= render :partial => 'places/sidebar_content' %>
+  <% end %>  
 
 </nav>
 <% end %>
+
+<% unless ['/events', '/places', '/users', '/static', '/business'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %> 
+  <nav>
+    <%= render :partial => 'profile/profile_sidebar' %> 
+  </nav>
+<% end %>
+
+
+
 
