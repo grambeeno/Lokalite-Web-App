@@ -38,7 +38,7 @@ Lokalite::Application.routes.draw do |map|
   match 'places/random', :controller => :places, :action => :random_organization, :as => :random_organization
   match 'places/:name/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}, :as => :organization
   match 'places/:id', :controller => :places, :action => :organization, :constraints => {:id => /\d+/}
-  match 'places/:origin(/category/:category)', :controller => :places, :action => :index, :as => :places
+  match 'places(/:view_type)/:origin(/category/:category)(/search/:keywords)', :controller => :places, :action => :index, :as => :places, :constraints => {:view_type => /map/}
 
   match 'facebook/authorize', :controller => :facebook, :action => :authorize, :as => :facebook_authorize
   post 'facebook/ajax_request_handler', :controller => :facebook, :action => :ajax_request_handler, :as => :ajax_request_handler

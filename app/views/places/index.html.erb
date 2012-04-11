@@ -1,28 +1,9 @@
 <% if @organizations.any? %>
-  <header class='index'>
-    <h1 class='tiled-title'>
-      <% if params[:category] %>
-        <%= title_for_category(params[:category]) %>
-      <% elsif params[:keywords] %>
-        Search results: <%= params[:keywords] %>
-      <% else %>
-        All Places
-      <% end %>
-    </h1>
-  </header>
-
-  <ul class="organizations">
-    <% @organizations.each do |organization| %>
-      <%= render :partial => 'organization', :locals => { :organization => organization } %>
-    <% end %>
-  </ul>
-
-  <div class="clear"></div>
-
-  <div class="tiled-pagination">
-    <%= will_paginate @organizations %>
-  </div>
+  <% if params[:view_type] == 'map' %>
+    <%= render :partial => 'map_view' %>
+  <% else %>
+    <%= render :partial => 'tile_view' %>
+  <% end %>
 <% else %>
   <%= render :partial => "no_results" %>
 <% end %>
-

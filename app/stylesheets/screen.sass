@@ -525,29 +525,31 @@ $info-window-width: 380px
     font-size: 20px
     a
       text-decoration: none
+      &:hover
+        text-decoration: underline
   .image
     +float('left')
     padding-left: 8px
+    margin-top: 5px
     img
       border: 1px solid black
   .info
     +float('left')
     width: $info-window-width - 150 - 2 - 8
-    margin-top: 24px
+    margin-top: 5px
     .description
-      line-height: 1.2em
-      height: 4.8em
+      line-height: 1.2em  
     .address
-      font-size: 11px
+      font-size: 12px
       font-weight: bold
-    table.times
-      font-size: 11px
-      margin: 34px 0 8px 0
-
+      margin-top: 5px
+  
+  table.times
+    font-size: 12px
+    margin-top: 5px
 
 table.times
-  // margin-top: 10px
-  font-size: 10px
+  font-size: 12px
   text-align: left
   tr
     height: 12px

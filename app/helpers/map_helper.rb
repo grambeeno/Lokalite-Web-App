@@ -63,6 +63,15 @@ module MapHelper
     end
     raw "[#{markers.join(',')}]"
   end
+  
+  def markers_for_places(organizations)
+    markers = []
+    for event in organizations
+      info_window = render(:partial => '/places/info_window', :locals => {:event => event})
+      markers << "{name: '#{escape_javascript(event.name)}', lat: #{event.location.latitude.to_f}, lng: #{event.location.longitude.to_f}, infoWindow: '#{escape_javascript(info_window)}'}"
+    end
+    raw "[#{markers.join(',')}]"
+  end
 
 
 end

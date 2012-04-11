@@ -13,7 +13,7 @@
           options = {:origin => params[:origin]}
           options[:category] = slug unless category == 'All Places'
         %>
-      <%= link_to(category, places_path(options)) %>
+      <%= link_to(category, places_path_with_options(:category => slug)) %>
     </li>
   <% end %>
 </ul>

@@ -2,7 +2,11 @@ class PlacesController < ApplicationController
   before_filter :remember_location
 
   def index
-    params[:per_page] = 12
+    if params[:view_type] == 'map'
+      params[:per_page] = 500
+    else
+      params[:per_page] = 12
+    end 
     @organizations = Organization.browse(params)
   end
 

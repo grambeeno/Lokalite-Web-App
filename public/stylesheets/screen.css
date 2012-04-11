@@ -446,14 +446,15 @@ img.profile_small { width: 55px; }
 .google_maps_info_window { width: 380px; }
 .google_maps_info_window h1 { font-size: 20px; }
 .google_maps_info_window h1 a { text-decoration: none; }
-.google_maps_info_window .image { display: inline; float: left; padding-left: 8px; }
+.google_maps_info_window h1 a:hover { text-decoration: underline; }
+.google_maps_info_window .image { display: inline; float: left; padding-left: 8px; margin-top: 5px; }
 .google_maps_info_window .image img { border: 1px solid black; }
-.google_maps_info_window .info { display: inline; float: left; width: 220px; margin-top: 24px; }
-.google_maps_info_window .info .description { line-height: 1.2em; height: 4.8em; }
-.google_maps_info_window .info .address { font-size: 11px; font-weight: bold; }
-.google_maps_info_window .info table.times { font-size: 11px; margin: 34px 0 8px 0; }
+.google_maps_info_window .info { display: inline; float: left; width: 220px; margin-top: 5px; }
+.google_maps_info_window .info .description { line-height: 1.2em; }
+.google_maps_info_window .info .address { font-size: 12px; font-weight: bold; margin-top: 5px; }
+.google_maps_info_window table.times { font-size: 12px; margin-top: 5px; }
 
-table.times { font-size: 10px; text-align: left; }
+table.times { font-size: 12px; text-align: left; }
 table.times tr { height: 12px; }
 table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
 table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }

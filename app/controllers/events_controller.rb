@@ -15,7 +15,7 @@ class EventsController < ApplicationController
       params[:per_page] = 24
     else
       params[:per_page] = 12
-    end
+    end 
     params[:user] = current_user if user_signed_in?
 
     # Don't apply date filters to suggested event page
