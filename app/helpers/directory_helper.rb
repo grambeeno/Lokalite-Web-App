@@ -1,7 +1,7 @@
 module DirectoryHelper
 
-  def places_index_page?
-    params[:controller] == 'places' && params[:action] == 'index'
+  def places_page?
+    params[:controller] == 'places'
   end
 
 end

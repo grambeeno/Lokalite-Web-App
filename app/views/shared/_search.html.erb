@@ -4,7 +4,7 @@
       value = params[:keywords] || ''
     -%>
     <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'search_DD' %>
-    <% if places_index_page? %>
+    <% if places_page? %>
     <div class='places-search search_module'>
     <% else %>
     <div class='search_module'>    
@@ -42,7 +42,7 @@ $('#directory').change(function() {
         </ul>
       </div>
 
-      <% if places_index_page? %>
+      <% if places_page? %>
       <% else %>
       <div class="event_date_filters">
         <h5>Pick a Date:</h5>
@@ -78,7 +78,7 @@ $('#directory').change(function() {
   </div>
     <% end %>
 
-      <% if places_index_page? %>
+      <% if places_page? %>
   <div class="search_categories_places">
         <%= render :partial => 'places/category_search_form' %>
       </div>
@@ -90,7 +90,7 @@ $('#directory').change(function() {
 
     <%= hidden_field_tag(:after, params[:after]) %>
     
-    <% if places_index_page? %>
+    <% if places_page? %>
     <div class='search_submit_places'>
       <%= submit_tag nil, :class => 'form_submit btn primary', :value => 'Submit' %>
     </div>
