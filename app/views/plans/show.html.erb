@@ -1,5 +1,3 @@
-<%= render :partial => 'profile/profile_header' %>
-
 <% if params[:invitation] %>
   <% if user_signed_in? && @plan.attendees.include?(current_user) %>
     <%= display_flash 'success', :close_link => false do %>

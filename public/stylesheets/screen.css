@@ -643,12 +643,11 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
 .chart { background-color: white; border: 1px solid gray; margin-bottom: 2em; }
 
-.profile-header { position: absolute; }
-.profile-header .avatar { margin: 0 0 20px -190px; }
+.profile-header .avatar { margin: 0 0 20px 0; }
 .profile-header .avatar img { display: block; height: 40px; width: 40px; }
 .profile-header .avatar .name { margin: -25px 0 0 50px; display: block; width: 180px; text-overflow: ellipsis; overflow: hidden; max-width: 130px; vertical-align: middle; font-weight: bold; }
 .profile-header .avatar .name:hover { text-decoration: underline; }
-.profile-header .sidebar { margin: 0 0 0 -190px; width: 180px; }
+.profile-header .sidebar { width: 180px; }
 .profile-header .profile-links { margin: 0; list-style: none; }
 .profile-header .profile-links li { width: 100%; float: left; margin-right: 10px; font-size: 12px; margin-bottom: 8px; background-position: 2px top; background-repeat: no-repeat; }
 .profile-header .profile-links li:hover { background-color: #f1f1f1; border-radius: 3px; -moz-box-shadow: 0px 0px 1px #555555; -webkit-box-shadow: 0px 0px 1px #555555; -o-box-shadow: 0px 0px 1px #555555; }
