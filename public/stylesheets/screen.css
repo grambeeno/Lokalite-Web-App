@@ -311,7 +311,7 @@ body.root-controller > footer .content a:hover { color: #444444; }
 #facebook .fb_button:hover { background: #213b6d; background-position: 0 -15px; text-decoration: none; }
 #facebook .fb_button_text { border: none; background: url("/images/Facebook_F.png"); background-repeat: no-repeat; padding: 6px 0 0 0; text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); font-size: 12px; margin: 0 28px 0 4px; text-align: right; height: 30px; }
 
-#ftest .ua398 { padding: 10px 0 0 0; cursor: pointer; height: 36px; width: 212px; }
+#ftest .ua398 { padding: 10px 0 0 0; cursor: pointer; height: 36px; width: 212px; cursor: pointer; }
 #ftest .ua398 .h30 { height: 30px; }
 #ftest .ua398 .m000250 { margin: 0 250px; }
 
