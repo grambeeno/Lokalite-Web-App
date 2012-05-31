@@ -18,12 +18,22 @@
     <% end %>
   </div>
 
+  <div id="ftest">
+    <div class="ua398" onclick="FB.login(null,{perms:'email'});return false;">
+      <div class='m000250'>
+        <span class=" fb_button_text">
+          <img src="/images/fbtest_small.png" alt="Log in"/>
+        </span>
+      </div>
+    </div> 
+  </div>
+
   <div class='devise-fields'>
-    <div id="facebook", style="margin-right: 150px">
+    <!-- <div id="facebook", style="margin-right: 150px">
       <fb:login-button size='large' onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
     </div>
 
-   <!-- <script type="text/javascript">
+    <script type="text/javascript">
       $(document).ready(function(){
 
         $(".btn-slide").click(function(){

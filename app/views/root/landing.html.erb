@@ -16,11 +16,19 @@
     <div class="sign-up">
       <h2><strong>New to Lokalite?</strong> Join Today!</h2>
 
-      <div id="facebook_xlarge">
-        <fb:login-button size='xlarge' style='2px' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button>
+      <div id="ftest">
+        <a class="" onclick="FB.login(null,{perms:'email'});return false;">
+          <div class=''>
+            <span class=" fb_button_text">
+              <img src="/images/fbtest.png" alt="Log in"/>
+            </span>
+         </div>
+       </a> 
+        <!-- <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> -->
       </div>
+      <br />
 
-      <h3>or with email and password</h3>
+      <h4>or with email and password</h4>
       <br />
 
       <%= form_for(:user, :url => registration_path(:user)) do |f| %>

@@ -68,9 +68,16 @@
         <ul class="dropdown-menu sign-in" style='margin-left: 0px'>
           <li>  
             <div class="divider"></div>
-            <div id="facebook">
-              <fb:login-button onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
-            </div>
+            <div id="ftest">
+              <div class="ua398" onclick="FB.login(null,{perms:'email'});return false;">
+                <div class='h30'>
+                  <span class=" fb_button_text">
+                    <img src="/images/fbtest_small.png" alt="Log in"/>
+                  </span>
+                </div>
+              </div> 
+            <!-- <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> -->
+          </div>
             <%= form_for (:user, :url => session_path(:user)) do |f| %>
               <div></br>
                 <%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %>
