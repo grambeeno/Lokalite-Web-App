@@ -16,22 +16,13 @@
     </h2>
   <% end %>
 
-  <div id="ftest">
-    <div class="ua398" onclick="FB.login(null,{perms:'email'});return false;">
-      <div class='m000250'>
-        <span class=" fb_button_text">
-          <img src="/images/fbtest_small.png" alt="Log in"/>
-        </span>
-      </div>
-    </div> 
-  </div>
 
   <div class='devise-fields'>
-    <!-- <div id="facebook", style="margin-right: 150px">
+    <div id="facebook", style="margin-right: 150px">
       <fb:login-button size='large' onlogin="afterFacebookSignIn()">Sign up with Facebook</fb:login-button>
-    </div> -->
+    </div>
 
-    <h2 class='big mtl'>or with an email and password:</h2>
+    <h2 class='big'>or with an email and password:</h2>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
