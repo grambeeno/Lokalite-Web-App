@@ -17,7 +17,19 @@
       <h2><strong>New to Lokalite?</strong> Join Today!</h2>
 
       <div id="facebook_xlarge"> 
-        <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> 
+        <!-- <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> -->
+        <!-- custom login button -->
+        <a href="#" onclick="fblogin();return false;"><img src="images/fbtest.png"></a>
+
+
+        <script>
+          //your fb login function
+          function fblogin() {
+            FB.login(function(response) {
+              //...
+            }, {perms:'read_stream,publish_stream,offline_access'});
+          }
+        </script>
       </div>
       <br />
 
