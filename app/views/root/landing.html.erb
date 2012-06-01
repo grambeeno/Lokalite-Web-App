@@ -17,36 +17,7 @@
       <h2><strong>New to Lokalite?</strong> Join Today!</h2>
 
       <div id="facebook_xlarge"> 
-        <!-- <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> -->
-        <!-- custom login button -->
-<a href="#" onclick="fb_login();"><img src="images/fbtest.png" border="0" alt=""></a>        
-
-
-        <script>
-          function fb_login(){
-    FB.login(function(response) {
-
-        if (response.authResponse) {
-            console.log('Welcome!  Fetching your information.... ');
-            //console.log(response); // dump complete info
-            access_token = response.authResponse.accessToken; //get access token
-            user_id = response.authResponse.userID; //get FB UID
-
-            FB.api('/me', function(response) {
-                user_email = response.email; //get user email
-          // you can store this data into your database             
-            });
-
-        } else {
-            //user hit cancel button
-            console.log('User cancelled login or did not fully authorize.');
-
-        }
-    }, {
-        scope: 'publish_stream,email'
-    });
-}
-        </script>
+        <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> 
       </div>
       <br />
 
