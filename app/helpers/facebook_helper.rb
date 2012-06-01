@@ -13,7 +13,7 @@ module FacebookHelper
   def send_facebook_message_url(options)
     options.reverse_merge!({
       :app_id => FACEBOOK_APP_ID,
-      :redirect_uri => 'http://lokalite.com'
+      :redirect_uri => 'lokalite.com'
     })
     "https://www.facebook.com/dialog/send?#{hash_to_url_params(options)}"
   end
