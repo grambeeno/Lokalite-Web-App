@@ -1,107 +1,23 @@
- <p>
-  <%= form_tag send("#{active_tab}_path", :origin => params[:origin]), :method => :get do %>
-    <%
-      value = params[:keywords] || ''
-    -%>
-    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'search_DD' %>
-    <% if places_page? %>
-    <div class='places-search search_module'>
-    <% else %>
-    <div class='search_module'>    
-    <% end %>
-      <h5>Welcome to Lokalite's Advanced Search. Use the search field and these filters to narrow down your search.</h5>
-    
-      <div class="search_list">
-        <ul>
-<!-- <script>
-$('#directory').change(function() {
-    var boxes = $('.event-checkbox');
-    if ($(this).attr('checked') === 'checked') {
-      boxes.attr('checked', 'checked');
-    } else {
-      boxes.attr('checked', null);
-    }
-  });
-</script> -->
-        <!--  <li><h4>Directory</h4>
-            <%= check_box_tag events_path(:origin => params[:origin], :category => 'featured') %>
-              <%= label_tag "Events" %>
-              
-              <%= check_box_tag places_path(:origin => params[:origin]) %>
-              <%= label_tag "Places" %>
-            </li> -->
-            
-          <li><h5>State</h5>
-            <% states = [ ['Colorado']] %>
-            <%= select_tag :event_state, options_for_select(states), :class => 'form_input form-dropdown' %>
-          </li>
-          <li><h5>City</h5>
-            <% cities = [ ['Boulder']] %>
-            <%= select_tag :event_city, options_for_select(cities), :class => 'form_input form-dropdown' %>
-          </li>
-        </ul>
-      </div>
+<form>
+  <input type="text" id="search_DD" class="search" placeholder="Search Lokalite" />
+</form>
+<div id="st-results-container"></div>
+<script type="text/javascript">
+  var Swiftype = window.Swiftype || {};
+  (function() {
+    Swiftype.key = 'pT8BPXVxGry34S64jhnE';
+    Swiftype.inputElement = '#search_DD';
+    Swiftype.resultContainingElement = '#st-results-container';
+    Swiftype.attachElement = '#search_DD';
+    Swiftype.renderStyle = "overlay";
 
-      <% if places_page? %>
-      <% else %>
-      <div class="event_date_filters">
-        <h5>Pick a Date:</h5>
-        <div id="event_start_date"></div>
-
-    <%
-      hours = [
-        ['6:00 am',  '6am'],
-        ['7:00 am',  '7am'],
-        ['8:00 am',  '8am'],
-        ['9:00 am',  '9am'],
-        ['10:00 am', '10am'],
-        ['11:00 am', '11am'],
-        ['12:00 pm', '12pm'],
-        ['1:00 pm',  '1pm'],
-        ['2:00 pm',  '2pm'],
-        ['3:00 pm',  '3pm'],
-        ['4:00 pm',  '4pm'],
-        ['5:00 pm',  '5pm'],
-        ['6:00 pm',  '6pm'],
-        ['7:00 pm',  '7pm'],
-        ['8:00 pm',  '8pm'],
-        ['9:00 pm',  '9pm'],
-        ['10:00 pm', '10pm'],
-        ['11:00 pm', '11pm'],
-        ['12:00 am', '12am']
-      ]
-    %>
-    <div class="event_start_time">
-      <h5>After:<h5>
-          <%= select_tag :event_start_time, options_for_select(hours), :class => 'form_input time-dropdown' %>
-    </div>
-  </div>
-    <% end %>
-
-      <% if places_page? %>
-  <div class="search_categories_places">
-        <%= render :partial => 'places/category_search_form' %>
-      </div>
-      <% else %>
-  <div class="search_categories">
-        <%= render :partial => 'events/category_search_form' %>
-      </div>
-        <% end %>
-
-    <%= hidden_field_tag(:after, params[:after]) %>
-    
-    <% if places_page? %>
-    <div class='search_submit_places'>
-      <%= submit_tag nil, :class => 'form_submit btn primary', :value => 'Submit' %>
-    </div>
-    <% else %>
-    <div class='search_submit'>
-      <%= submit_tag nil, :class => 'form_submit btn primary', :value => 'Submit' %>
-    </div>
-    <% end %>
-</div>
-    <%# Scope search to selected category if desired %>
-    <%#= hidden_field_tag(:category, params[:category]) if params[:category] %>
-    <% end %>
-  </p> 
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = "//swiftype.com/embed.js";
+    var entry = document.getElementsByTagName('script')[0];
+    entry.parentNode.insertBefore(script, entry);
+  }());
+  </script>
+  
 

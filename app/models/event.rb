@@ -172,7 +172,7 @@ class Event < ActiveRecord::Base
 
     if options[:keywords].present?
       keywords = Array(options[:keywords]).flatten.compact
-      results  = results.search(keywords.join(' '))
+      results  = results.order('events.starts_at ASC').search(keywords.join(' '))
     end
 
     # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
