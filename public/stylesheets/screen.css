@@ -428,7 +428,7 @@ img.profile_small { width: 55px; }
 .events li .detail h1, .organizations li .detail h1 { font-size: 14px; }
 .events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
 .events li.ui-draggable-dragging .detail, .organizations li.ui-draggable-dragging .detail { display: none; }
-.events li.list, .organizations li.list { -moz-box-shadow: 0 0 0 transparent; -webkit-box-shadow: 0 0 0 transparent; -o-box-shadow: 0 0 0 transparent; box-shadow: 0 0 0 transparent; background-color: transparent; display: inline; float: left; width: 690px; padding: 0; margin-top: 25px; margin-left: 25px; margin-right: 25px; }
+.events li.list, .organizations li.list { -moz-box-shadow: 0 0 0 transparent; -webkit-box-shadow: 0 0 0 transparent; -o-box-shadow: 0 0 0 transparent; box-shadow: 0 0 0 transparent; background-color: transparent; display: inline; float: left; width: 690px; padding: 0; margin-top: 25px; margin-left: 25px; margin-right: 25px; padding-bottom: 25px; border-bottom: 1px solid #cccccc; }
 .events li.list a, .organizations li.list a { color: inherit; text-decoration: inherit; cursor: inherit; }
 .events li.list a:active, .events li.list a:focus, .organizations li.list a:active, .organizations li.list a:focus { outline: none; }
 .events li.list .image, .organizations li.list .image { position: relative; background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; width: 152px; height: 152px; padding: 12.5px; display: inline; float: left; margin-right: 25px; }
