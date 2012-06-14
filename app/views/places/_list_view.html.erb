@@ -31,7 +31,7 @@
 
   <ul class="organizations">
     <% @organizations.each do |organization| %>
-      <%= render :partial => 'organization', :locals => { :organization => organization } %>
+      <%= render :partial => 'organization_listing', :locals => { :organization => organization } %>
     <% end %>
   </ul>
 
@@ -40,4 +40,5 @@
   <div class="tiled-pagination">
     <%= will_paginate @organizations %>
   </div>
+
 

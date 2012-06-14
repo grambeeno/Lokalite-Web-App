@@ -1,0 +1,27 @@
+<li<%= report_grid_tracker(organization, :type => 'List') %> class="list">
+  <div class='image'>
+    <%= link_to organization_path(organization.slug, organization.id) do %>
+      <%= image_tag(organization.image.url(:small)) %> 
+    <% end %>
+  </div>
+
+  
+    <div class='detail'>
+      <h1>
+      <%= link_to organization_path(organization.slug, organization.id) do %>
+        <%= organization.name %>
+      <% end %>
+      </h1>
+      </br>
+
+      <div>
+        @ <%= organization.location.name %>
+      </div>
+      </br> 
+     
+    </div>
+ 
+  <div><%= raw auto_link(organization.description, :all, :html => {:target => '_blank'}) %></div>
+</li>
+
+

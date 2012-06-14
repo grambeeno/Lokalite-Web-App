@@ -456,6 +456,67 @@ $tile-width: $tile-inner-width + ($tile-padding * 2)
       .detail
         display: none
 
+  li.list
+    +box-shadow(0 0 0 transparent)
+    background-color: transparent
+    +float('left')
+    width: 690px
+    padding: 0 
+    margin-top: $content-bg-padding 
+    margin-left: $content-bg-padding
+    margin-right: $content-bg-padding
+
+    // &:hover
+    //   background-color: darken(white, 5%)
+      // .detail
+      //   color: $blue
+    a
+      +unstyled-link
+
+    // +single-box-shadow(black, 0, 0, 4px)
+    // text-shadow: white 1px 1px 1px
+    .image
+      position: relative
+      +foreground
+      width: 152px 
+      height: 152px
+      padding: $content-bg-padding / 2
+      +float('left')
+      margin-right: $content-bg-padding
+      img
+        border: 1px solid black
+
+        &.profile
+          display: none
+
+      .description
+        position: absolute
+        bottom: 4px
+        right: 1px
+        left: 1px
+        line-height: 1.6em
+        +transparent-black
+        color: white
+        padding: 2px
+        display: none
+
+    .detail
+      h1
+        font-size: 14px
+        // height: 1em
+        // overflow: hidden
+      .organization
+        font-size: 12px
+        // height: 1em
+        // overflow: hidden
+      a
+        &:hover
+          color: #4c984f
+          text-decoration: underline
+        &:active
+          color: #3b763d
+          text-decoration: underline
+
 .events .remove-from-plan
   display: none
 
@@ -581,7 +642,7 @@ header.index
       text-indent: -119988px
       overflow: hidden
       text-align: left
-      background-image: url('/images/polaroid_view.png?1332965516')
+      background-image: url('/images/polaroid_view.png')
       background-repeat: no-repeat
       background-position: 100% 0%
       width: 30px
@@ -591,7 +652,7 @@ header.index
 
   .map_view_button
     //position: absolute
-    margin: 0 20px 0 0
+    //margin: 0 20px 0 0
     float: right
 
     .map_view
@@ -607,6 +668,23 @@ header.index
     .map_view:hover
       background-position: 0% 100%
 
+  .list_view_button
+    //position: absolute
+    margin: 0 25px 0 0
+    float: right
+
+    .list_view
+      display: block
+      text-indent: -119988px
+      overflow: hidden
+      text-align: left
+      background-image: url('/images/list_view.png')
+      background-repeat: no-repeat
+      background-position: 100% 0%
+      width: 30px
+      height: 30px
+    .list_view:hover
+      background-position: 0% 100%
 
   .tiled-subheading
     //margin: $content-bg-padding + 5 0 0 0 

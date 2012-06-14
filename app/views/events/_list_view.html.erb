@@ -10,8 +10,8 @@
   </div>
 
   <div class="gallery_view_button tooltip" title="Switch to Gallery View"><%= link_to 'Switch to Gallery View', events_path_with_options(:view_type => nil, :keep => [:keywords]), :class => 'gallery_view' %>
-  </div>
- 
+  </div>  
+
   <h1><%= tile_view_title %></h1>
   <%options = params.reject{|key, value| ! %w[origin category keywords].include?(key) }%> 
   
@@ -33,7 +33,7 @@
 
 <ul class="events">
   <% @events.each do |event| %>
-    <%= render :partial => '/events/event', :locals => { :event => event } %>
+    <%= render :partial => '/events/event_listing', :locals => { :event => event } %>
   <% end %>
 </ul>
 
@@ -42,4 +42,5 @@
 <div class="tiled-pagination"> 
   <%= will_paginate @events %>
 </div>
+
 

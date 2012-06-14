@@ -1,6 +1,8 @@
 <% if @organizations.any? %>
   <% if params[:view_type] == 'map' %>
     <%= render :partial => 'map_view' %>
+  <% elsif params[:view_type] == 'list' %>
+    <%= render :partial => 'list_view' %>
   <% else %>
     <%= render :partial => 'tile_view' %>
   <% end %>

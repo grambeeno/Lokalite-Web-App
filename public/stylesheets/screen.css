@@ -428,6 +428,17 @@ img.profile_small { width: 55px; }
 .events li .detail h1, .organizations li .detail h1 { font-size: 14px; }
 .events li .detail .organization, .organizations li .detail .organization { font-size: 12px; }
 .events li.ui-draggable-dragging .detail, .organizations li.ui-draggable-dragging .detail { display: none; }
+.events li.list, .organizations li.list { -moz-box-shadow: 0 0 0 transparent; -webkit-box-shadow: 0 0 0 transparent; -o-box-shadow: 0 0 0 transparent; box-shadow: 0 0 0 transparent; background-color: transparent; display: inline; float: left; width: 690px; padding: 0; margin-top: 25px; margin-left: 25px; margin-right: 25px; }
+.events li.list a, .organizations li.list a { color: inherit; text-decoration: inherit; cursor: inherit; }
+.events li.list a:active, .events li.list a:focus, .organizations li.list a:active, .organizations li.list a:focus { outline: none; }
+.events li.list .image, .organizations li.list .image { position: relative; background-color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; box-shadow: 0px 0px 5px #333333; width: 152px; height: 152px; padding: 12.5px; display: inline; float: left; margin-right: 25px; }
+.events li.list .image img, .organizations li.list .image img { border: 1px solid black; }
+.events li.list .image img.profile, .organizations li.list .image img.profile { display: none; }
+.events li.list .image .description, .organizations li.list .image .description { position: absolute; bottom: 4px; right: 1px; left: 1px; line-height: 1.6em; background-image: url('/images/transparent-black.png?1334783175'); background-repeat: repeat; color: white; padding: 2px; display: none; }
+.events li.list .detail h1, .organizations li.list .detail h1 { font-size: 14px; }
+.events li.list .detail .organization, .organizations li.list .detail .organization { font-size: 12px; }
+.events li.list .detail a:hover, .organizations li.list .detail a:hover { color: #4c984f; text-decoration: underline; }
+.events li.list .detail a:active, .organizations li.list .detail a:active { color: #3b763d; text-decoration: underline; }
 
 .events .remove-from-plan { display: none; }
 
@@ -463,11 +474,14 @@ table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
 header.index { overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 header.index h1 { margin: 0 25px; max-width: 450px; }
 header.index .gallery_view_button { margin: 0 0 0 25px; float: right; }
-header.index .gallery_view_button .gallery_view { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url("/images/polaroid_view.png?1332965516"); background-repeat: no-repeat; background-position: 100% 0%; width: 30px; height: 30px; }
+header.index .gallery_view_button .gallery_view { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url("/images/polaroid_view.png"); background-repeat: no-repeat; background-position: 100% 0%; width: 30px; height: 30px; }
 header.index .gallery_view_button .gallery_view:hover { background-position: 0% 100%; }
-header.index .map_view_button { margin: 0 20px 0 0; float: right; }
+header.index .map_view_button { float: right; }
 header.index .map_view_button .map_view { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url("/images/map_pin.png"); background-repeat: no-repeat; background-position: 100% 0%; width: 30px; height: 30px; }
 header.index .map_view_button .map_view:hover { background-position: 0% 100%; }
+header.index .list_view_button { margin: 0 25px 0 0; float: right; }
+header.index .list_view_button .list_view { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url("/images/list_view.png"); background-repeat: no-repeat; background-position: 100% 0%; width: 30px; height: 30px; }
+header.index .list_view_button .list_view:hover { background-position: 0% 100%; }
 header.index .tiled-subheading { color: gray; }
 header.index .tiled-subheading-subline { margin: 0 0 0 25px; color: gray; }
 header.index .tiled-subheading_clear_date_filter { float: right; margin: 0 25px 0 0; }

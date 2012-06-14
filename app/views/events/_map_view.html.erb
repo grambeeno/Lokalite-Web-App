@@ -82,6 +82,9 @@
     </div>
   <% end %>
 
+  <div class="list_view_button tooltip" title="Switch to List View"><%= link_to 'Switch to List View', events_path_with_options(:view_type => 'list', :keep => [:keywords]), :class => 'list_view'%>
+  </div>
+
   <div class="map_view_button tooltip" title="Switch to Map View"><%= link_to 'Switch to Map View', events_path_with_options(:view_type => 'map', :keep => [:keywords]), :class => 'map_view' %>
   </div>
 
