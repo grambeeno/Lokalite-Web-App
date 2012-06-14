@@ -10,11 +10,11 @@
   </div>
 
       <div class='detail'>
-        <h1>
+        <h2>
         <%= link_to event_path(event.slug, event.id) do %>
           <%= event.name %>
         <% end %>
-        </h1>
+        </h2>
       </br>
 
       <% unless @organization %>
