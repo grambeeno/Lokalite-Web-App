@@ -107,7 +107,7 @@ form.formtastic fieldset ol li.hidden { display:none; }
 /* BOOLEAN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset > ol > li.boolean label { padding-left:25%; width:auto; }
-form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em; }
+form.formtastic fieldset > ol > li.boolean label input { margin:0 0.5em 0 0.2em; width: 14px; height: 14px }
 
 
 /* RADIO OVERRIDES
@@ -127,7 +127,7 @@ form.formtastic fieldset > ol > li.check_boxes fieldset { overflow:visible; }
 form.formtastic fieldset > ol > li.check_boxes fieldset ol { margin-bottom:-0.5em; }
 form.formtastic fieldset > ol > li.check_boxes fieldset ol li { margin:0.1em 0 0.5em 0; overflow:visible; }
 form.formtastic fieldset > ol > li.check_boxes fieldset ol li label { float:none; width:100%; }
-form.formtastic fieldset > ol > li.check_boxes fieldset ol li label input { margin-right:0.2em; }
+form.formtastic fieldset > ol > li.check_boxes fieldset ol li label input { margin-right:0.2em; width: 14px; height: 14px }
 
 
 /* DATE & TIME OVERRIDES

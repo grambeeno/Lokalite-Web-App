@@ -356,7 +356,7 @@ img.profile_small { width: 55px; }
 .category-icon.learn_something_new { background-image: url('/images/category-icons/learn_something_new.png?1334783175'); }
 .category-icon.mmj { background-image: url('/images/category-icons/mmj.png?1334783175'); }
 
-.social-icon.twitter-icon { background-image: url('/images/social-icons/twitter.png?1334783175'); }
+.social-icon.twitter-icon { background-image: url('/images/social-icons/twitter.png?1339811599'); }
 .social-icon.lokalite-icon { background-image: url('/images/social-icons/lokalite.png'); }
 .social-icon.facebook-icon { background-image: url('/images/social-icons/facebook.png?1334783175'); }
 
@@ -553,7 +553,7 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 
 table.event-picker { margin-bottom: 6px; }
 table.event-picker td { padding: 6px 4px; }
-table.event-picker input[type='checkbox'] { background-color: red; }
+table.event-picker input[type='checkbox'] { background-color: red; width: 14px; height: 14px; }
 
 .repeating-event-fields { display: none; }
 

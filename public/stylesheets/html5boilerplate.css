@@ -144,10 +144,13 @@ textarea { overflow: auto; } /* thnx ivannikolic! www.sitepoint.com/blogs/2010/0
 
 /* align checkboxes, radios, text inputs with their label
    by: Thierry Koblentz tjkdesign.com/ez-css/css/base.css  */
-input[type="radio"] { vertical-align: text-bottom; }
-input[type="checkbox"] { vertical-align: bottom; }
-.ie7 input[type="checkbox"] { vertical-align: baseline; }
-.ie6 input { vertical-align: text-bottom; }
+input[type="radio"] { vertical-align: text-bottom; cursor: pointer }
+input[type="checkbox"] { vertical-align: bottom; cursor: pointer }
+.ie7 input[type="checkbox"] { vertical-align: baseline; cursor: pointer }
+.ie6 input { vertical-align: text-bottom; cursor: pointer }
+
+/* fix checkbox sizing issues */
+input[type="checkbox"] { width: 14px; height: 14px}
 
 /* hand cursor on clickable input elements */
 label, input[type=button], input[type=submit], button { cursor: pointer; }
