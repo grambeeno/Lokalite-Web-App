@@ -32,7 +32,9 @@
 
 <% unless ['/events', '/places', '/users', '/static', '/business'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %> 
   <nav>
-    <%= render :partial => 'profile/profile_sidebar' %> 
+    <% if user_signed_in? %>
+      <%= render :partial => 'profile/profile_sidebar' %> 
+    <% end %>
   </nav>
 <% end %>
 
