@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
 
-  before_filter :authenticate_user!, :except => :show
+  before_filter :authenticate_user! #, :except => :show
   before_filter :find_plan
 
   def index
