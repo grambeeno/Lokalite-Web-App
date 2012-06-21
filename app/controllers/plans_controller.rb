@@ -8,7 +8,7 @@ class PlansController < ApplicationController
   end
 
   def show
-    if params[:invitation] #and !user_signed_in?
+    if params[:invitation] and !user_signed_in?
       session[:plan_invitation_uuid] = params[:id]
     end
   end
