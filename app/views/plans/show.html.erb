@@ -57,9 +57,9 @@
         'data-name'        => @plan.title,
         'data-description' => @plan.description,
         'data-link'        => plan_invitation_url(@plan),
-        'data-picture'     => File.join('http://lokalite.com', @plan.events.first.image.image_url(:medium))
-        # Don't know why the picture won't load from google maps
-        # 'data-picture'     => google_maps_image_url(@plan, :size => '300x300')
+        # 'data-picture'     => File.join('http://lokalite.com', @plan.events.first.image.image_url(:medium))
+        # Don't know why the picture won't load from google maps//FB requires images to be 200x200
+        'data-picture'     => google_maps_image_url(@plan, :size => '200x200')
       }
     %>
     <%#= plan_invitation_url(@plan) %>
