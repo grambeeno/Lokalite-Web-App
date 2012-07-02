@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
   DefaultTimeZone = 'Mountain Time (US & Canada)'
 
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable
+  # :token_authenticatable, :encryptable, :confirmable, :lockable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # def self.new_with_session(params, session)
   #   super.tap do |user|
