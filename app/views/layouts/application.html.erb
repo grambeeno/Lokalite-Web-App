@@ -8,11 +8,14 @@
   <!--[if (gt IE 9)|!(IE)]><!--> <html xmlns:fb="http://ogp.me/ns/fb#"> <!--<![endif]-->
 
   <head>
+ 
+    <!-- JS fix for Facebook #_=_ fragment authentication bug -->
     <script type="text/javascript">
-      if (window.location.hash == '#_=_') {
-        window.location.hash = '';
+      if (window.location.hash == "#_=_") {
+        window.location.hash = "";
       }
     </script>
+
     <meta charset="utf-8">
 
     <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
