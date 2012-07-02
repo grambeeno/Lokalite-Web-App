@@ -77,7 +77,10 @@
               </div>
               <div></br>
                 <%= f.password_field :password, :placeholder => "Password", :class => "signin-field" %>
-              </div></br>
+              </div></br> 
+                <div class="remember">
+                <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                </div>
                 <%= f.submit "Sign in", :class => "btn primary btn-float-right" %>
               </br></br>
               <div class="divider"></div>

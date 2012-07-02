@@ -84,10 +84,10 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 52.weeks
 
   # If true, a valid remember token can be re-used between multiple browsers.
-  # config.remember_across_browsers = true
+  config.remember_across_browsers = true
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
@@ -107,6 +107,7 @@ Devise.setup do |config|
   # Email regex used to validate email formats. It simply asserts that
   # an one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
+  # config_email_regexp = /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   #
   # This pattern matches anything that has 'one of more of' a through z (lowercase and/or uppercase), 0 through 9, an underscore (_), a dot (.), an apostrophe (')    # or a hyphen(-). Then followed by a required @ symbol. Then followed by (a through z (upper and/or lower), and/or 0 through 9, and/or a hyphen) followed by a 
   # required dot (.). Then lastly followed by an alpha-numeric string that is 2 characters long (to handle country domains and 2 character TLD's), all current US 
