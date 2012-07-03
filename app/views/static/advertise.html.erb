@@ -74,6 +74,10 @@
           </li>
         </ul>
     </div>
+    <div>
+      <strong><%= f.label 'Agency Name (optional)' %></strong>
+      <%= f.text_field :agency, :class => "advertise-field", :required => false %>
+    </div>
   </div>
 </div>
 
@@ -86,14 +90,14 @@
     <div>
       <strong><%= f.label 'Last Name' %></strong>
       <%= f.text_field :last_name, :class => "advertise-field" %>
-    </div>
-    <div>
-      <strong><%= f.label 'Agency Name (optional)' %></strong>
-      <%= f.text_field :agency, :class => "advertise-field", :required => false %>
-    </div>
+    </div> 
     <div>
       <strong><%= f.label 'City' %></strong>
       <%= f.text_field :city, :class => "advertise-field" %>
+    </div>
+    <div>
+      <strong><%= f.label 'State' %></strong>
+      <%= f.text_field :state, :class => "advertise-field" %>
     </div>
     <div>
       <strong><%= f.label :email %></strong>
