@@ -44,16 +44,16 @@
     <%= f.label 'Interested In:' %>
       <ul>
         <li>
-          <%= f.check_box(:p1) %>
-          <%= f.label(:p1, "Product 1") %>
+          <%= f.check_box(:subscription) %>
+          <%= f.label(:subscription, "Product 1") %>
         </li>
         <li>
           <%= f.check_box(:featuring_events) %>
           <%= f.label(:featuring_events, "Featured Events") %>
         </li>
         <li>
-          <%= f.check_box(:p3) %>
-          <%= f.label(:p3, "Product 3") %>
+          <%= f.check_box(:social_media) %>
+          <%= f.label(:social_media, "Product 3") %>
         </li>
       </ul>
     <div class="avt">
@@ -109,7 +109,7 @@
     <div>
       <h3>Anything Else?</h3> 
       <%= f.label 'Comments (optional)' %>
-      <%= f.text_area :comments, :class => "advertise-field-comments", :rows => 5, :required => false %>
+      <%= f.text_area :email_body, :class => "advertise-field-comments", :rows => 5, :required => false %>
     </div>
 
     <div>
