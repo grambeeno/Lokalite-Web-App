@@ -109,7 +109,7 @@ Devise.setup do |config|
   # to give user feedback and not to assert the e-mail validity.
   # config_email_regexp = /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   #
-  # This pattern matches anything that has 'one of more of' a through z (lowercase and/or uppercase), 0 through 9, an underscore (_), a dot (.), an apostrophe (')    # or a hyphen(-). Then followed by a required @ symbol. Then followed by (a through z (upper and/or lower), and/or 0 through 9, and/or a hyphen) followed by a 
+  # This pattern matches anything that has 'one of more of' a through z (lowercase and/or uppercase), 0 through 9, an underscore (_), a dot (.), an apostrophe (')    # or a hyphen(-). Then followed by a required @ symbol. Then followed by a through z (upper and/or lower), and/or 0 through 9, and/or a hyphen followed by a 
   # required dot (.). Then lastly followed by an alpha-numeric string that is 2 characters long (to handle country domains and 2 character TLD's), all current US 
   # TLD's, a couple one off non-US TLD's (nom, firm, gen, and idv), and/or a dot (.) followed by a 2 character long alpha numeric string (to handle TLD extensions).  # This should satisfy most cases but needs to become more refined as the app user base grows. 
   #
@@ -118,8 +118,9 @@ Devise.setup do |config|
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
-  # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 6.hours
+  # time the user will be asked for credentials again. Default is 30 minutes. 
+  # Note: :timeoutable and :rememberable don't play well together. You must choose one or the other.
+  # config.timeout_in = 30.minutes
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
