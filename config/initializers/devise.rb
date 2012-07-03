@@ -113,8 +113,8 @@ Devise.setup do |config|
   # required dot (.). Then lastly followed by an alpha-numeric string that is 2 characters long (to handle country domains and 2 character TLD's), all current US 
   # TLD's, a couple one off non-US TLD's (nom, firm, gen, and idv), and/or a dot (.) followed by a 2 character long alpha numeric string (to handle TLD extensions).  # This should satisfy most cases but needs to become more refined as the app user base grows. 
   #
-  # Give credit where credit is due... inspired by http://www.dustindiaz.com/update-your-email-regexp/ 
-  config.email_regexp = /^([a-zA-Z0-9_\.\-\'\+])+\@(([a-zA-Z0-9\-])+\.)+(?:[a-zA-Z0-9]{2,2}|aero|asia|biz|cat|com|coop|info|int|jobs|mobi|museum|name|net|org|pro|tel|travel|xxx|edu|gov|mil|nom|firm|gen|idv\.)+$/
+  # Give credit where credit is due... inspired by http://www.dustindiaz.com/update-your-email-regexp/ & http://stackoverflow.com/questions/1487789/regular-expressi    on-for-domain-from-email-address
+  config.email_regexp = /^([a-zA-Z0-9_\.\-\'\+])+\@(([a-zA-Z0-9\-])+\.)+(?:[a-zA-Z0-9]{2}|aero|asia|biz|cat|com|coop|info|int|jobs|mobi|museum|name|net|org|pro|tel|travel|xxx|edu|gov|mil|nom|firm|gen|idv\.)$/
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
