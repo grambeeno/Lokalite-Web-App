@@ -35,7 +35,7 @@ class Mailer < ActionMailer::Base
     @featuring_events = email_params[:featuring_events]
     @social_media = email_params[:social_media]
     @non_profit = email_params[:non_profit]
-    @body["email_body"] = email_params[:comments]
+    @comments = email_params[:comments]
     @body["email_name"] = email_params[:name]
     @budget = email_params[:budget]
     @phone = email_params[:phone]
