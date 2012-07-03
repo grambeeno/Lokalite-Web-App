@@ -95,9 +95,13 @@
       <strong><%= f.label 'City' %></strong>
       <%= f.text_field :city, :class => "advertise-field" %>
     </div>
-    <div>
+    <div class="avt">
       <strong><%= f.label 'State' %></strong>
-      <%= f.text_field :state, :class => "advertise-field" %>
+      <ul>
+        <li>
+          <%= f.select :state, Location.state_options, :class => "advertise-field" %>
+        </li>
+      </ul>
     </div>
     <div>
       <strong><%= f.label :email %></strong>

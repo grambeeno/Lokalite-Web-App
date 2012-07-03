@@ -665,7 +665,7 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 
 .advertising-half-right { width: 330px; padding: 0.5em 0; float: left; }
 
-.advertise-field { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 97%; padding: 10px 14px; margin: 0 0 15px 0; height: 28px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: 0 2px 5px #eeeeee; -moz-box-shadow: 0 2px 5px #eeeeee; box-shadow: 0 2px 5px #eeeeee; }
+.advertise-field { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 97%; padding: 10px 14px; margin: 2px 0 15px 0; height: 28px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: 0 2px 5px #eeeeee; -moz-box-shadow: 0 2px 5px #eeeeee; box-shadow: 0 2px 5px #eeeeee; }
 
 .advertise-field-comments { display: inline; float: left; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; width: 700px; padding: 10px 14px; margin: 0 0 15px 0; height: 100px; padding: 4px; border: 1px solid #cccccc; -webkit-box-shadow: 0 2px 5px #eeeeee; -moz-box-shadow: 0 2px 5px #eeeeee; box-shadow: 0 2px 5px #eeeeee; }
 
