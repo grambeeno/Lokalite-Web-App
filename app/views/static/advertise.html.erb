@@ -26,13 +26,13 @@
   <div class='form-stacked'>
     <%= form_for :email, :url => { :controller => 'static', :action => 'send_advertise_mail' } do |f| %>  
     <div class="advertising-half-left"> 
-      <h3>Advertiser</h3>
+      <h3><u>Advertiser</u></h3>
     <div>
-      <%= f.label 'Company or Brand Name' %>
+      <strong><%= f.label 'Company or Brand Name' %></strong>
       <%= f.text_field :company, :class => "advertise-field" %>
     </div>
     <div class="avt"> 
-      <%= f.label 'Estimated Monthly Budget:' %>
+      <strong><%= f.label 'Estimated Monthly Budget:' %></strong>
       <ul>
         <li>
           <%= f.select :budget, ['Select One...', '$100 - $499', '$500 - $999', '$1000 - $1499', '$1500 - $1999', '$2000+'] %>
@@ -41,7 +41,7 @@
     </div>  
 
   <div class="avt">
-    <%= f.label 'Interested In:' %>
+    <strong><%= f.label 'Interested In:' %></strong>
       <ul>
         <li>
           <%= f.check_box(:subscription) %>
@@ -57,7 +57,7 @@
         </li>
       </ul>
     <div class="avt">
-      <%= f.label 'Estimated Start Date:' %>
+      <strong><%= f.label 'Estimated Start Date:' %></strong>
       <ul>
         <li>
           <%= f.select :begin, ['Select One...', '1 - 2 weeks', '3 - 4 weeks', '1+ months'], "id"=>"normalSelect" %>
@@ -66,7 +66,7 @@
     </div>
 
     <div>
-      <%= f.label 'Non-Profit? (optional)' %>
+      <strong><%= f.label 'Non-Profit? (optional)' %></strong>
         <ul>
           <li>
             <%= f.check_box(:non_profit) %>
@@ -78,38 +78,37 @@
 </div>
 
   <div class="advertising-half-right">    
-    <h3>About You</h3>
+    <h3><u>About You</u></h3>
     <div>
-      <%= f.label 'First Name' %>
+      <strong><%= f.label 'First Name' %></strong>
       <%= f.text_field :first_name, :class => "advertise-field" %>
     </div>
     <div>
-      <%= f.label 'Last Name' %>
+      <strong><%= f.label 'Last Name' %></strong>
       <%= f.text_field :last_name, :class => "advertise-field" %>
     </div>
-
     <div>
-      <%= f.label 'Agency Name (optional)' %>
+      <strong><%= f.label 'Agency Name (optional)' %></strong>
       <%= f.text_field :agency, :class => "advertise-field", :required => false %>
     </div>
     <div>
-      <%= f.label 'City' %>
+      <strong><%= f.label 'City' %></strong>
       <%= f.text_field :city, :class => "advertise-field" %>
     </div>
     <div>
-      <%= f.label :email %>
+      <strong><%= f.label :email %></strong>
       <%= f.email_field :email, :class => "advertise-field" %>
     </div>
     <div>
-      <%= f.label 'Phone Number' %>
+      <strong><%= f.label 'Phone Number' %></strong>
       <%= f.text_field :phone, :class => "advertise-field" %>
     </div>  
   </div>
 
     <div>
-      <h3>Anything Else?</h3> 
-      <%= f.label 'Comments (optional)' %>
-      <%= f.text_area :comments, :class => "advertise-field-comments", :rows => 5 %>
+      <h3><u>Anything Else?</u></h3> 
+      <strong><%= f.label 'Comments (optional)' %></strong>
+      <%= f.text_area :comments, :class => "advertise-field-comments", :rows => 5, :required => false %>
     </div>
 
     <div>
