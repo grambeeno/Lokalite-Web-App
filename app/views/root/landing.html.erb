@@ -17,7 +17,12 @@
       <h2><strong>New to Lokalite?</strong> Join Today!</h2>
 
       <div id="facebook_xlarge"> 
-        <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> 
+        <!-- <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> -->
+        <div class="fb_button" onclick="FB.login()" onlogin="afterFacebookSignIn()">
+          <div class="fb_button_text"> Sign up using Facebook
+          </div>
+        </div>
+        
       </div>
       <br />
 
