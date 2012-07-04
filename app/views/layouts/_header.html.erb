@@ -69,7 +69,7 @@
           <li>  
             <div class="divider"></div>
             <div id="facebook">
-              <fb:login-button size="medium" onlogin="afterFacebookSignIn()">Connect with Facebook</fb:login-button>
+              <fb:login-button size="medium" onlogin="afterFacebookSignIn()" style="margin-right: 25px">Connect with Facebook</fb:login-button>
             </div>
             <%= form_for (:user, :url => session_path(:user)) do |f| %>
               <div></br>
