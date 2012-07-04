@@ -20,7 +20,7 @@
         <!-- <fb:login-button size='xlarge' onlogin="afterFacebookSignIn()">Sign up using Facebook</fb:login-button> -->
         <div class="fb_button" onclick="FB.login(function(response) {
    // handle the response
- }, {scope: 'email'});" onlogin="afterFacebookSignIn()">
+ }, {scope: 'email'});return true" onlogin="afterFacebookSignIn()">
           <div class="fb_button_text"> Sign up using Facebook
           </div>
         </div>
