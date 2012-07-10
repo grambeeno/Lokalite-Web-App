@@ -33,6 +33,12 @@ end
 
   helper_method :mobile_device?
 
+  def boulder_weekly?
+    request.subdomain == 'boulderweekly'
+  end
+
+  helper_method :boulder_weekly?
+  
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
