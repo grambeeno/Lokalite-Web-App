@@ -17,9 +17,12 @@
     <li>
       <%= link_to 'Terms', static_path(:terms_of_service) %>
     </li>
+    <% if boulder_weekly? %>
+    <% else %>
     <li>
       <%= link_to 'Privacy Policy', static_path(:privacy_policy) %>
     </li>
+    <% end %>
     <% if false %>
       <li>
         <%= link_to 'Movie', static_path(:movie), :id => :movie %>

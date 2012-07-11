@@ -4,13 +4,13 @@ body
   > header.boulderheader
     background-color: #5C3761
     background-repeat: repeat-x
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#8c5494), to(#5C3761))
-    background-image: -moz-linear-gradient(top, #8c5494, #5C3761)
-    background-image: -ms-linear-gradient(top, #8c5494, #5C3761)
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8c5494), color-stop(100%, #5C3761))
-    background-image: -webkit-linear-gradient(top, #8c5494, #5C3761)
-    background-image: -o-linear-gradient(top, #8c5494, #5C3761)
-    background-image: linear-gradient(top, #8c5494, #5C3761)
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#5C3761), to(#442947))
+    background-image: -moz-linear-gradient(top, #5C3761, #442947)
+    background-image: -ms-linear-gradient(top, #5C3761, #442947)
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5C3761), color-stop(100%, #442947))
+    background-image: -webkit-linear-gradient(top, #5C3761, #442947)
+    background-image: -o-linear-gradient(top, #5C3761, #442947)
+    background-image: linear-gradient(top, #5C3761, #442947)
     color: white
     -moz-box-shadow: 0px 0px 5px #8c5494
     -webkit-box-shadow: 0px 0px 5px #8c5494
@@ -44,10 +44,10 @@ body
           +border-bottom-radius(4px)
           position: absolute 
           display: none
-          margin: 10px 0 0 -360px
+          margin: 10px 0 0 -365px
           width: 535px
           padding: 10px 20px
-          +linear-gradient(color-stops(#5C3761, #8c5494))
+          +linear-gradient(color-stops(#442947, #5C3761))
           border: 1px solid #444
           border-top: 1px solid #5C3761
         .places-search
@@ -105,12 +105,12 @@ body
           margin: -157px 0 0 160px
       .search
         display: inline-block
-        width: 190px
+        width: 180px
         background-color: #444
         background-color: rgba(255, 255, 255, 0.3)
         background-image: url(/images/monocle.png)
         background-repeat: no-repeat
-        background-position: 164px 50%
+        background-position: 154px 50%
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
         font-weight: normal
         font-size: 13px
@@ -130,7 +130,7 @@ body
         -webkit-rtl-ordering: logical
         -webkit-user-select: text
         cursor: auto
-        margin: 15px 25px 0
+        margin: 15px 30px 0
       .search:focus
         outline: 0
         background-color: #eee
@@ -165,13 +165,13 @@ body
         float: left
         text-align: right
         display: inline-block
-        //padding: 0 15px 0
+        padding: 0 0 
         height: 53px
         vertical-align: top
         cursor: pointer
         white-space: nowrap
         &:hover
-          background-color: #333                  
+          background-color: #6EAB24                  
         .acting-like
           position: absolute
           top: 8px
@@ -179,10 +179,10 @@ body
           margin-left: 4em
            
       .nav .signin
-        text-align: center
-        width: 210px
+        text-align: center 
         line-height: 4.3em
         cursor: pointer
+        padding: 0 10px
 
       .nav a.arrow
         cursor: pointer
@@ -195,6 +195,7 @@ body
         padding: 0
         line-height: 4.3em
         vertical-align: top
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)
 
       .nav a.signin
         cursor: pointer
@@ -207,6 +208,7 @@ body
         padding: 0
         line-height: 4.3em
         vertical-align: top
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)
 
       .nav .user-img
         display: inline-block 
@@ -248,58 +250,14 @@ body
 
       .nav.secondary-nav .menu-dropdown, .nav.secondary-nav .dropdown-menu
         left: 0
-        top: 0
+        top: 2px
         border: 0 
       .nav a.menu:hover, .nav li.open .menu, .nav .dropdown-toggle:hover, .nav .dropdown.open .dropdown-toggle
         background: #444
         background: rgba(255, 255, 255, 0.05)
       .nav .menu-dropdown, .nav .dropdown-menu
-        background-color: #333
-      .nav .menu-dropdown .signin-field, .nav .dropdown-menu .signin-field
-        display: inline-block
-        width: 200px
-        margin: 0 3px 0 0
-        background-color: #444444
-        background-color: rgba(255, 255, 255, 0.3)
-        background-repeat: no-repeat
-        background-position: 164px 50%
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        font-weight: normal
-        font-size: 13px
-        line-height: 18px
-        padding: 4px 0 4px 2px
-        color: white
-        color: rgba(255, 255, 255, 0.75)
-        border: 1px solid #111111
-        -webkit-border-radius: 4px
-        -moz-border-radius: 4px
-        border-radius: 4px
-        -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
-        -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
-        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.25)
-        -webkit-appearance: textfield
-        border-image: initial
-        -webkit-rtl-ordering: logical
-        -webkit-user-select: text
-        cursor: auto
-      .nav .menu-dropdown .signin-field:focus, .nav .dropdown-menu .signin-field:focus
-        outline: 0
-        background-color: #eeeeee
-        color: #404040
-        text-shadow: 0 1px 0 white
-        border: 0
-        padding: 5px 0 5px 4px 
-        -webkit-box-shadow: 0 0 8px rgba(255,255,255,.5)
-        -moz-box-shadow: 0 0 8px rgba(255,255,255,.5)
-        box-shadow: 0 0 8px rgba(255,255,255,.5)
+        background-color: #6EAB24 
   
-      .nav .menu-dropdown .remember, .nav .dropdown-menu .remember
-        float: left
-        padding: 5px
-        color: #bababa
-        &:hover
-          color: white
-
       .nav .menu-dropdown a.menu, .nav .dropdown-menu a.menu, .nav .menu-dropdown .dropdown-toggle, .nav .dropdown-menu .dropdown-toggle
         color: #ffffff
 
@@ -308,21 +266,18 @@ body
         background: rgba(255, 255, 255, 0.05)
 
       .nav .menu-dropdown li a, .nav .dropdown-menu li a
-        color: #999
-        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)
-
-      .nav .menu-dropdown li a:hover, .nav .dropdown-menu li a:hover
-        background-color: #191919
-        background-repeat: repeat-x
-        background-image: -khtml-gradient(linear, left top, left bottom, from(#292929), to(#191919))
-        background-image: -moz-linear-gradient(top, #292929, #191919)
-        background-image: -ms-linear-gradient(top, #292929, #191919)
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #292929), color-stop(100%, #191919))
-        background-image: -webkit-linear-gradient(top, #292929, #191919)
-        background-image: -o-linear-gradient(top, #292929, #191919)
-        background-image: linear-gradient(top, #292929, #191919)
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#292929', endColorstr='#191919', GradientType=0)
-        color: #ffffff
+        padding: 5px 10px
+        color: white
+        &:hover
+          background-color: #5C3761
+          background-repeat: repeat-x
+          background-image: -khtml-gradient(linear, left top, left bottom, from(#5C3761), to(#442947))
+          background-image: -moz-linear-gradient(top, #5C3761, #442947)
+          background-image: -ms-linear-gradient(top, #5C3761, #442947)
+          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5C3761), color-stop(100%, #442947))
+          background-image: -webkit-linear-gradient(top, #5C3761, #442947)
+          background-image: -o-linear-gradient(top, #5C3761, #442947)
+          background-image: linear-gradient(top, #5C3761, #442947)
 
       .nav .menu-dropdown .active a, .nav .dropdown-menu .active a
         color: #ffffff
@@ -366,8 +321,7 @@ body
         position: absolute
         top: 40px
         z-index: -100
-        width: 190px
-        _width: 160px
+        width: 230px 
         margin: 51px -150px 0 
         padding: 0px 0 6px 0
         zoom: 1
@@ -397,7 +351,7 @@ body
 
       .menu-dropdown .divider, .dropdown-menu .divider
         height: 1px
-        margin: 1px 0
+        margin: 0
         overflow: hidden
         background-color: #eee
         border-bottom: 1px solid #ffffff

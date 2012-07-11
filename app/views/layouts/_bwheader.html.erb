@@ -7,17 +7,135 @@
 <nav class='nav secondary-nav'>
   <ul> 
     <li>
+      <div class="user-menu" style="margin-left: 15px">
+        <div class="signin menu0">
+          <%= link_to 'NEWS', 'http://www.boulderweekly.com/articles.sec-90-1-news.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu0 dropdown-menu menu0" style='margin-left: 15px'>
+          <li>   
+            <%= link_to "BOULDERGANIC", '#' %>
+            <%= link_to "COVER STORY", '#' %>
+            <%= link_to "LOCAL NEWS", '#' %>
+            <%= link_to "POLICE BLOTTER", '#' %>
+            <%= link_to "BRIEFS", '#' %>
+            <%= link_to "POLITICS", '#' %>
+            <%= link_to "ENVIRONMENT", '#' %>
+            <%= link_to "TECH", '#' %>
+          </li>
+        </ul>
+      </div>
       <div class="user-menu">
-        <div class="signin user-name">
-          <%= link_to 'Have an account? Sign In', '#', :class => 'signin' %>
+        <div class="signin menu1">
+          <%= link_to 'OPINION', 'http://www.boulderweekly.com/articles.sec-91-1-views.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu1 dropdown-menu menu1" style='margin-left: 74px'>
+          <li>   
+            <%= link_to "PERSPECTIVES", '#' %>
+            <%= link_to "LETTERS", '#' %>
+            <%= link_to "UNCENSORED", '#' %>
+            <%= link_to "IN CASE YOU MISSED IT", '#' %>
+            <%= link_to "DODGE'S BULLETS", '#' %>
+            <%= link_to "HIGHROAD", '#' %>
+            <%= link_to "DANISH PLAN", '#' %>
+            <%= link_to "LAB NOTES", '#' %>
+            <%= link_to "STEW'S VIEWS", '#' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu2">
+          <%= link_to 'ENTERTAINMENT', 'http://www.boulderweekly.com/flex-158-buzz.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu2 dropdown-menu menu2" style='margin-left: 149px'>
+          <li>   
+            <%= link_to "FEATURES", '#' %>
+            <%= link_to "OVERTONES", '#' %>
+            <%= link_to "ARTS & CULTURE", '#' %>
+            <%= link_to "BUZZ BLOG", '#' %>
+            <%= link_to "REVIEWS", '#' %>
+            <%= link_to "ENTERTAINMENT NEWS", '#' %>
+            <%= link_to "FICTION", '#' %>
+            <%= link_to "MOVIE REVIEWS", '#' %>
+            <%= link_to "MOVIE TIMES", '#' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu3">
+          <%= link_to 'EVENTS', 'http://boulderweekly.lokalite.com/events/boulder-colorado/category/featured', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu3 dropdown-menu menu3" style='margin-left: 280px'>
+          <li>   
+            <%= link_to "EVENTS", events_path(:subdomain => params[:boulderweekly], :category => 'featured') %>
+            <%= link_to "PLACES", places_path(:subdomain => params[:boulderweekly]) %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu4">
+          <%= link_to 'CUISINE', 'http://www.boulderweekly.com/flex-165-cuisine.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu4 dropdown-menu menu4" style='margin-left: 353px'>
+          <li>   
+            <%= link_to "REVIEWS", '#' %>
+            <%= link_to "FEATURES", '#' %>
+            <%= link_to "DESSERT DIVA", '#' %>
+            <%= link_to "TIDBITES", '#' %>
+            <%= link_to "PLACES TO EAT", '#' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu5">
+          <%= link_to 'HEALTH', 'http://www.boulderweekly.com/articles.sec-115-1-dear-pharmacist.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu5 dropdown-menu menu5" style='margin-left: 426px'>
+          <li>   
+            <%= link_to "HEALTH NEWS", '#' %>
+            <%= link_to "SOPHISTICATED SEX", '#' %>
+            <%= link_to "DEAR PHARMACIST", '#' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu6">
+          <%= link_to 'BLOGS', 'http://www.boulderweekly.com/blogs', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu6 dropdown-menu menu6" style='margin-left: 497px'>
+          <li>   
+            <%= link_to "BEST OF BOULDER", '#' %>
+            <%= link_to "OFF THE FLATIRON", '#' %>
+            <%= link_to "BUZZ", '#' %>
+            <%= link_to "FRESH HEIRESS", '#' %>
+            <%= link_to "DODGE'S BULLETS ONLINE", '#' %>
+            <%= link_to "STEW'S VIEWS", '#' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu7">
+          <%= link_to 'EXTRAS', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu7 dropdown-menu menu7" style='margin-left: 405px'>
+          <li>   
+            <%= link_to "ASTROLOGY", '#' %>
+            <%= link_to "VIDEO", '#' %>
+            <%= link_to "COUPON PAGE", '#' %>
+            <%= link_to "SIGN UP FOR OUR NEWSLETTER", '#' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu8">
+          <%= link_to 'MORE', '#', :class => 'signin' %>
           <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
         </div>
-        <ul class="dropdown-menu sign-in" style='margin-left: 0px'>
-          <li>  
-            <div class="divider"></div>
-              <%= link_to "Forgot your password?", '/users/password/new', :id => "forgot_password" %>
-              <%= link_to "Need to signup?", '/landing', :id => "forgot_password" %>
-              <%= link_to "Local business?", '/business', :id => "forgot_password" %>
+        <ul class="dd-menu8 dropdown-menu menu8" style='margin-left: 477px'>
+          <li>   
+            <%= link_to "SPECIAL EDITIONS", '#' %>
+            <%= link_to "ARCHIVE", '#' %>
+            <%= link_to "INFO/ADVERTISING", '#' %>
+            <%= link_to "DIGITAL EDITION", '#' %>
           </li>
         </ul>
       </div>
