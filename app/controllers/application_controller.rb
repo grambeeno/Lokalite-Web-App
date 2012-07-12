@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_origin
   before_filter :set_effective_user, :handle_business_sign_up, :handle_invitations
   before_filter :prepare_for_mobile
-  before_filter :set_fb
+  before_filter :set_fb 
 
   # before_filter :show_holding_page
 
@@ -37,7 +37,7 @@ end
     request.subdomain == 'boulderweekly'
   end
 
-  helper_method :boulder_weekly?
+  helper_method :boulder_weekly? 
   
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]

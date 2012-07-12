@@ -1,3 +1,5 @@
+<% if boulder_weekly? %>
+<% else %>
 <nav>
   <ul>
     <% if user_signed_in? and current_user.admin? %>
@@ -17,17 +19,17 @@
     <li>
       <%= link_to 'Terms', static_path(:terms_of_service) %>
     </li>
-    <% if boulder_weekly? %>
-    <% else %>
     <li>
       <%= link_to 'Privacy Policy', static_path(:privacy_policy) %>
     </li>
-    <% end %>
     <% if false %>
       <li>
         <%= link_to 'Movie', static_path(:movie), :id => :movie %>
       </li>
-    <% end %>
+    <% end %> 
+    <li>
+      <%= link_to 'Business', 'http://www.lokalite.com/business' %>
+    </li>
     <li>
       <%= link_to 'Business', business_promo_path %>
     </li>
@@ -49,3 +51,4 @@
 
 
 <div class='copyright'>Copyright &copy; <%= Time.now.year %> lokalite.com</div>
+<% end %>

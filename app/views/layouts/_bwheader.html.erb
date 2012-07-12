@@ -13,14 +13,14 @@
         </div>
         <ul class="dd-menu0 dropdown-menu menu0" style='margin-left: 15px'>
           <li>   
-            <%= link_to "BOULDERGANIC", '#' %>
-            <%= link_to "COVER STORY", '#' %>
-            <%= link_to "LOCAL NEWS", '#' %>
-            <%= link_to "POLICE BLOTTER", '#' %>
-            <%= link_to "BRIEFS", '#' %>
-            <%= link_to "POLITICS", '#' %>
-            <%= link_to "ENVIRONMENT", '#' %>
-            <%= link_to "TECH", '#' %>
+            <%= link_to "BOULDERGANIC", 'http://www.boulderweekly.com/articles.sec-127-1-boulderganic.html' %>
+            <%= link_to "COVER STORY", 'http://www.boulderweekly.com/articles.sec-52-1-cover-story.html' %>
+            <%= link_to "LOCAL NEWS", 'http://www.boulderweekly.com/articles.sec-66-1-news.html' %>
+            <%= link_to "POLICE BLOTTER", 'http://www.boulderweekly.com/articles.sec-121-1-police-blotter.html' %>
+            <%= link_to "BRIEFS", 'http://www.boulderweekly.com/articles.sec-67-1-news-briefs.html' %>
+            <%= link_to "POLITICS", 'http://www.boulderweekly.com/articles.sec-103-1-national.html' %>
+            <%= link_to "ENVIRONMENT", 'http://www.boulderweekly.com/articles.sec-144-1-enviroment.html' %>
+            <%= link_to "TECH", 'http://www.boulderweekly.com/articles.sec-109-1-tech.html' %>
           </li>
         </ul>
       </div>
@@ -30,15 +30,15 @@
         </div>
         <ul class="dd-menu1 dropdown-menu menu1" style='margin-left: 74px'>
           <li>   
-            <%= link_to "PERSPECTIVES", '#' %>
-            <%= link_to "LETTERS", '#' %>
-            <%= link_to "UNCENSORED", '#' %>
-            <%= link_to "IN CASE YOU MISSED IT", '#' %>
-            <%= link_to "DODGE'S BULLETS", '#' %>
-            <%= link_to "HIGHROAD", '#' %>
-            <%= link_to "DANISH PLAN", '#' %>
-            <%= link_to "LAB NOTES", '#' %>
-            <%= link_to "STEW'S VIEWS", '#' %>
+            <%= link_to "PERSPECTIVES", 'http://www.boulderweekly.com/articles.sec-71-1-perspectives.html' %>
+            <%= link_to "LETTERS", 'http://www.boulderweekly.com/articles.sec-64-1-letters.html' %>
+            <%= link_to "UNCENSORED", 'http://www.boulderweekly.com/articles.sec-82-1-uncensored.html' %>
+            <%= link_to "IN CASE YOU MISSED IT", 'http://www.boulderweekly.com/articles.sec-62-1-in-case-you-missed-it.html' %>
+            <%= link_to "DODGE'S BULLETS", 'http://www.boulderweekly.com/articles.sec-119-1-dodges-bullets.html' %>
+            <%= link_to "HIGHROAD", 'http://www.boulderweekly.com/articles.sec-81-1-the-highroad.html' %>
+            <%= link_to "DANISH PLAN", 'http://www.boulderweekly.com/articles.sec-54-1-danish-plan.html' %>
+            <%= link_to "LAB NOTES", 'http://www.boulderweekly.com/articles.sec-137-1-lab-notes.html' %>
+            <%= link_to "STEW'S VIEWS", 'http://www.boulderweekly.com/articles.sec-79-1-stews-views.html' %>
           </li>
         </ul>
       </div>
@@ -48,15 +48,15 @@
         </div>
         <ul class="dd-menu2 dropdown-menu menu2" style='margin-left: 149px'>
           <li>   
-            <%= link_to "FEATURES", '#' %>
-            <%= link_to "OVERTONES", '#' %>
-            <%= link_to "ARTS & CULTURE", '#' %>
-            <%= link_to "BUZZ BLOG", '#' %>
-            <%= link_to "REVIEWS", '#' %>
-            <%= link_to "ENTERTAINMENT NEWS", '#' %>
-            <%= link_to "FICTION", '#' %>
-            <%= link_to "MOVIE REVIEWS", '#' %>
-            <%= link_to "MOVIE TIMES", '#' %>
+            <%= link_to "FEATURES", 'http://www.boulderweekly.com/articles.sec-49-1-buzz.html' %>
+            <%= link_to "OVERTONES", 'http://www.boulderweekly.com/articles.sec-69-1-overtones.html' %>
+            <%= link_to "ARTS & CULTURE", 'http://www.boulderweekly.com/articles.sec-47-1-arts-&-culture.html' %>
+            <%= link_to "BUZZ BLOG", 'http://www.boulderweekly.com/blogs-1-1-1-50.html' %>
+            <%= link_to "REVIEWS", 'http://www.boulderweekly.com/articles.sec-106-1-reviews.html' %>
+            <%= link_to "ENTERTAINMENT NEWS", 'http://www.boulderweekly.com/articles.sec-120-1-entertainment.html' %>
+            <%= link_to "FICTION", 'http://www.boulderweekly.com/articles.sec-131-1-fiction.html' %>
+            <%= link_to "MOVIE REVIEWS", 'http://www.boulderweekly.com/articles.sec-93-1-movies.html' %>
+            <%= link_to "MOVIE TIMES", 'http://www.boulderweekly.com/movie-times.html' %>
           </li>
         </ul>
       </div>
@@ -66,8 +66,8 @@
         </div>
         <ul class="dd-menu3 dropdown-menu menu3" style='margin-left: 280px'>
           <li>   
-            <%= link_to "EVENTS", events_path(:subdomain => params[:boulderweekly], :category => 'featured') %>
-            <%= link_to "PLACES", places_path(:subdomain => params[:boulderweekly]) %>
+            <%= link_to "EVENTS", events_path(:origin => params[:origin], :category => 'featured') %>
+            <%= link_to "PLACES", places_path(:origin => params[:origin]) %>
           </li>
         </ul>
       </div>
@@ -77,11 +77,11 @@
         </div>
         <ul class="dd-menu4 dropdown-menu menu4" style='margin-left: 353px'>
           <li>   
-            <%= link_to "REVIEWS", '#' %>
-            <%= link_to "FEATURES", '#' %>
-            <%= link_to "DESSERT DIVA", '#' %>
-            <%= link_to "TIDBITES", '#' %>
-            <%= link_to "PLACES TO EAT", '#' %>
+            <%= link_to "REVIEWS", 'http://www.boulderweekly.com/articles.sec-74-1-restaurant-review.html' %>
+            <%= link_to "FEATURES", 'http://www.boulderweekly.com/articles.sec-53-1-cuisine.html' %>
+            <%= link_to "DESSERT DIVA", 'http://www.boulderweekly.com/articles.sec-100-1-dessert-diva.html' %>
+            <%= link_to "TIDBITES", 'http://www.boulderweekly.com/articles.sec-107-1-tidbites.html' %>
+            <%= link_to "PLACES TO EAT", 'http://www.boulderweekly.com/places' %>
           </li>
         </ul>
       </div>
@@ -91,9 +91,9 @@
         </div>
         <ul class="dd-menu5 dropdown-menu menu5" style='margin-left: 426px'>
           <li>   
-            <%= link_to "HEALTH NEWS", '#' %>
-            <%= link_to "SOPHISTICATED SEX", '#' %>
-            <%= link_to "DEAR PHARMACIST", '#' %>
+            <%= link_to "HEALTH NEWS", 'http://www.boulderweekly.com/articles.sec-124-1-health.html' %>
+            <%= link_to "SOPHISTICATED SEX", 'http://www.boulderweekly.com/articles.sec-123-1-sophisticated-sex.html' %>
+            <%= link_to "DEAR PHARMACIST", 'http://www.boulderweekly.com/articles.sec-115-1-dear-pharmacist.html' %>
           </li>
         </ul>
       </div>
@@ -103,42 +103,35 @@
         </div>
         <ul class="dd-menu6 dropdown-menu menu6" style='margin-left: 497px'>
           <li>   
-            <%= link_to "BEST OF BOULDER", '#' %>
-            <%= link_to "OFF THE FLATIRON", '#' %>
-            <%= link_to "BUZZ", '#' %>
-            <%= link_to "FRESH HEIRESS", '#' %>
-            <%= link_to "DODGE'S BULLETS ONLINE", '#' %>
-            <%= link_to "STEW'S VIEWS", '#' %>
+            <%= link_to "BEST OF BOULDER", 'http://www.boulderweekly.com/blogs-1-1-1-51.html' %>
+            <%= link_to "OFF THE FLATIRON", 'http://www.boulderweekly.com/blogs-1-1-1-55.html' %>
+            <%= link_to "BUZZ", 'http://www.boulderweekly.com/blogs-1-1-1-50.html' %>
+            <%= link_to "FRESH HEIRESS", 'http://www.boulderweekly.com/blogs-1-1-1-52.html' %>
+            <%= link_to "DODGE'S BULLETS ONLINE", 'http://www.boulderweekly.com/blogs-1-1-1-53.html' %>
+            <%= link_to "STEW'S VIEWS", 'http://www.boulderweekly.com/blogs-1-1-1-54.html' %>
           </li>
         </ul>
       </div>
       <div class="user-menu">
         <div class="signin menu7">
-          <%= link_to 'EXTRAS', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html', :class => 'signin' %>
+          <%= link_to 'MORE', '#', :class => 'signin' %>
+          <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
         </div>
-        <ul class="dd-menu7 dropdown-menu menu7" style='margin-left: 405px'>
+        <ul class="dd-menu7 dropdown-menu menu7" style='margin-left: 404px'>
           <li>   
-            <%= link_to "ASTROLOGY", '#' %>
-            <%= link_to "VIDEO", '#' %>
-            <%= link_to "COUPON PAGE", '#' %>
-            <%= link_to "SIGN UP FOR OUR NEWSLETTER", '#' %>
+            <%= link_to 'EXTRAS', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html' %>
+            <%= link_to "SPECIAL EDITIONS", 'http://www.boulderweekly.com/flex-175-special-editions.html' %>
+            <%= link_to "ARCHIVE", 'http://npaper-wehaa.com/boulder-weekly/#2009/12/24/s1/?s=issues' %>
+            <%= link_to "DIGITAL EDITION", 'http://npaper-wehaa.com/boulder-weekly/2012/04/12/#?s=issues' %>
+            <%= link_to "INFO/ADVERTISING", 'http://www.boulderweekly.com/flex-157-advertising-info.html' %>
+            <%= link_to "CONTACT US", 'http://www.boulderweekly.com/flex-150-contact-us.html' %>
           </li>
         </ul>
       </div>
       <div class="user-menu">
         <div class="signin menu8">
-          <%= link_to 'MORE', '#', :class => 'signin' %>
-          <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
+          <%= link_to 'ADD EVENT', 'http://lokalite.com/my/events/new', :class => 'signin' %>
         </div>
-        <ul class="dd-menu8 dropdown-menu menu8" style='margin-left: 477px'>
-          <li>   
-            <%= link_to "SPECIAL EDITIONS", '#' %>
-            <%= link_to "ARCHIVE", '#' %>
-            <%= link_to "INFO/ADVERTISING", '#' %>
-            <%= link_to "DIGITAL EDITION", '#' %>
-          </li>
-        </ul>
-      </div>
     </li>
   </ul>
 </nav>
