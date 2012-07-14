@@ -75,10 +75,10 @@ body > header .content .search:focus { outline: 0; background-color: #eeeeee; ba
 body > header .content .nav { display: block; float: left; margin: 0 0 0 0; position: relative; left: 0; }
 body > header .content .nav > li { display: block; float: left; }
 body > header .content .nav a { display: block; float: none; padding: 10px 1px; line-height: 1px; text-decoration: none; color: #bababa; }
-body > header .content .nav .user-menu { float: left; text-align: right; display: inline-block; padding: 0 23px; height: 53px; vertical-align: top; cursor: pointer; white-space: nowrap; }
+body > header .content .nav .user-menu { float: left; text-align: right; display: inline-block; height: 53px; vertical-align: top; cursor: pointer; white-space: nowrap; }
 body > header .content .nav .user-menu:hover { background-color: #333333; }
 body > header .content .nav .user-menu .acting-like { position: absolute; top: 8px; font-size: 10px; margin-left: 4em; }
-body > header .content .nav .signin { text-align: center; line-height: 4.3em; cursor: pointer; }
+body > header .content .nav .signin { text-align: center; line-height: 4.3em; cursor: pointer; padding: 0 23px; }
 body > header .content .nav a.arrow { cursor: pointer; font-weight: normal; display: inline-block; max-width: 50px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 4.3em; vertical-align: top; }
 body > header .content .nav a.signin { cursor: pointer; font-weight: normal; display: inline-block; max-width: 160px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 4.3em; vertical-align: top; }
 body > header .content .nav .user-img { display: inline-block; vertical-align: top; margin: 15px -30px 0 15px; border: none; cursor: pointer; position: relative; }

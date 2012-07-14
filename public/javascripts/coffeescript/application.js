@@ -105,7 +105,7 @@ $(function() {
     $('li', '.datebook .events').draggable('destroy');
     return $('li', '.datebook .events').draggable(planDragOptions);
   });
-  $('.user-name').click(function(e) {
+  $('.user-name').hover(function(e) {
     e.preventDefault();
     return $('.dropdown-menu').toggle();
   });

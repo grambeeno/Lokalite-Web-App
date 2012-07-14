@@ -32,7 +32,7 @@
             <div class="vert-divider"></div>
             <%= link_to raw("&#9662;"), '#', :class => 'user-link' %>   
             </div>    
-            <ul class="dropdown-menu"> 
+            <ul class="dropdown-menu user-name"> 
               <li>           
                 <div class="divider"></div>
                 <% if current_user.organizations.size > 1 %>
@@ -65,7 +65,7 @@
           <%= link_to 'Have an account? Sign In', '#', :class => 'signin' %>
           <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
         </div>
-        <ul class="dropdown-menu sign-in" style='margin-left: 0px'>
+        <ul class="dropdown-menu sign-in user-name" style='margin-left: 0px'>
           <li>  
             <div class="divider"></div>
             <div id="facebook">
