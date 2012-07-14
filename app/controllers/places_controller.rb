@@ -5,7 +5,7 @@ class PlacesController < ApplicationController
     if params[:view_type] == 'map'
       params[:per_page] = 500
     else
-      params[:per_page] = 12
+      params[:per_page] = 24 
     end 
     @organizations = Organization.browse(params)
   end

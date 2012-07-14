@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     if params[:view_type] == 'map'
       params[:per_page] = 24
     else
-      params[:per_page] = 12
+      params[:per_page] = 24 
     end 
     params[:user] = current_user if user_signed_in?
 
@@ -51,9 +51,9 @@ private
   def ensure_enough_featured_events(events)
     events = events.to_a
     events.delete_at(2)
-    if events.size < 12
+    if events.size < 24 
       slots = events.map{ |e| e.event_features.first.slot }
-      12.times do |slot|
+      24.times do |slot|
         unless slots.include?(slot)
           # insert the next featured event in the correct slot
           # insert nil values anyway to get correct placement, then compact array later
