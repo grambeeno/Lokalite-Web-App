@@ -70,6 +70,7 @@ class Event < ActiveRecord::Base
   # pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
   pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']]
 
+  scope :approved, where(:approved => true)
   scope :not_approved, where(:approved => false)
   scope :by_date, order('starts_at')
 
@@ -142,7 +143,7 @@ class Event < ActiveRecord::Base
       end
     end
 
-    results = Event.after(start_time)
+    results = Event.approved.after(start_time)
     results = results.before(latest_start) if latest_start
 
     organization_id = options[:organization_id]
