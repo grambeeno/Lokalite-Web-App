@@ -13,6 +13,21 @@
       <tr>
         <td>&nbsp;</td>
       </tr>
+      
+      <tr>
+        <th style='text-align:left; padding: 0 0 0 .5em'>
+          Title
+        </th>
+        <th style='text-align:left; padding: 0 0 0 .5em'>
+          Organization
+        </th>
+        <th style='text-align:left; padding: 0 0 0 .5em'>
+          User Email
+        </th>
+        <th style='text-align:left; padding: 0 0 0 .5em'>
+          View Event?
+        </th>
+      </tr>
 
       <% for event in @events -%>
         <tr>
@@ -29,7 +44,7 @@
             <%= event.created_by.full_name %>
           </td>
           <td>
-            <%= link_to "(view event)", event_path(event.slug, event.id) %>
+            <%= link_to "view event", event_path(event.slug, event.id) %>
           </td>
         </tr>
       <% end -%>
