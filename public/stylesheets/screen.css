@@ -77,13 +77,12 @@ body > header .content .nav > li { display: block; float: left; }
 body > header .content .nav a { display: block; float: none; padding: 10px 1px; line-height: 1px; text-decoration: none; color: #bababa; }
 body > header .content .nav .user-menu { float: left; text-align: right; display: inline-block; height: 53px; vertical-align: top; cursor: pointer; white-space: nowrap; }
 body > header .content .nav .user-menu:hover { background-color: #333333; }
-body > header .content .nav .user-menu .acting-like { position: absolute; top: 8px; font-size: 10px; margin-left: 4em; }
+body > header .content .nav .user-menu .acting-like { position: absolute; top: 2px; font-size: 10px; margin-left: 5.5em; }
 body > header .content .nav .signin { text-align: center; line-height: 4.3em; cursor: pointer; padding: 0 23px; }
 body > header .content .nav a.arrow { cursor: pointer; font-weight: normal; display: inline-block; max-width: 50px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 4.3em; vertical-align: top; }
 body > header .content .nav a.signin { cursor: pointer; font-weight: normal; display: inline-block; max-width: 160px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 4.3em; vertical-align: top; }
-body > header .content .nav .user-img { display: inline-block; vertical-align: top; margin: 15px -30px 0 15px; border: none; cursor: pointer; position: relative; }
+body > header .content .nav .user-img { display: inline-block; vertical-align: top; margin: 15px -15px 0 0; border: none; cursor: pointer; position: relative; }
 body > header .content .nav a.user-link { cursor: pointer; font-weight: normal; display: inline-block; max-width: 150px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 15px 0; line-height: 53px; vertical-align: top; }
-body > header .content .nav a.profile { padding-left: 40px; }
 body > header .content .user-menu:hover a, body > header .content .user-menu:hover span { color: white; text-decoration: none; }
 body > header .content .nav .active > a { background-color: #222222; background-color: rgba(0, 0, 0, 0.5); }
 body > header .content .nav.secondary-nav { float: right; margin-left: 0; margin-right: 0; }
@@ -739,6 +738,8 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .profile-header .profile-links .add-user-icon { background-image: url(/images/add_user.png); }
 .profile-header .profile-links .manage-featured-icon { background-image: url(/images/manage_featured.png); }
 .profile-header .profile-links .approve-events-icon { background-image: url(/images/approve_events.png); }
+.profile-header .profile-links .edit-organization-icon { background-image: url(/images/pilcrow.png); }
+.profile-header .profile-links .back-to-your-user-icon { background-image: url(/images/back_to_your_user.png); }
 .profile-header .profile-links a { display: block; text-decoration: none; color: #555555; width: 100%; padding-top: 3px; height: 17px; padding-left: 26px; color: #444444; }
 .profile-header .profile-links a:visited { color: #444444; }
 .profile-header .profile-links a:hover { color: #4c984f; }

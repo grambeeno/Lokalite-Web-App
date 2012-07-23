@@ -16,12 +16,14 @@
   <ul>
     <% if user_signed_in? %>
       <li>
-        <div class="user-menu">
-          <%= image_tag current_user.image_url, :size => '25x25', :class => 'user-img' %>
+        <div class="user-menu"> 
           <% if user_sudoing? %>
-            <span class='acting-like'>Acting like</span>
+            <%= link_to "Acting like", datebook_path, :class => 'acting-like' %> 
           <% end %>
-          <%= link_to current_user.full_name, datebook_path, :class => 'user-link profile'%>        
+          <%= link_to datebook_path, :class => 'user-link profile' do %> 
+            <%= image_tag current_user.image_url, :size => '25x25', :class => 'user-img' %>
+            <%= link_to current_user.full_name, datebook_path, :class => 'user-link' %>       
+          <% end %>
         </div> 
         <div class="user-menu">
           <div class="vert-divider"></div>
@@ -42,7 +44,7 @@
                 <% end %>
                 <%= link_to "Create Event", new_my_event_path %>
                 <%= link_to "Profile Settings", edit_profile_path %>
-                <% if real_user_is_admin? %>
+                <% if current_user.admin? %> <!-- Note: old helper method real_user_is_admin? -->
                   <%= link_to "Manage Featured Events", manage_featured_events_path %>
                   <%= link_to "Approve New Events", approve_events_path %>
                   <%= link_to 'User List', admin_path %>
