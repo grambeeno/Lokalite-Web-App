@@ -9,7 +9,14 @@
     <% else %>
     <div class='search_module'>    
     <% end %>
-      <h5>Welcome to Lokalite's Advanced Search. Use the search field and these filters to narrow down your search.</h5>
+      <h5>Welcome to 
+        <% if boulder_weekly? %>
+          Boulder Weekly's 
+        <% else %> 
+          Lokalite's
+        <% end %> 
+          Advanced Search. Use the search field and these filters to narrow down your search.
+        </h5>
     
       <div class="search_list">
         <ul>
