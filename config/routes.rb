@@ -3,7 +3,7 @@ Lokalite::Application.routes.draw do |map|
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
   
-  match '/' => 'events#index', :constraints => { :subdomain => /boulderweekly/ }, :category => 'featured', :origin => 'boulder-colorado'
+  match 'events(/:view_type)/:origin(/category/:category)(/search/:keywords)', :as => :events, :controller => :events, :action => :index, :constraints => { :subdomain => /boulderweekly/ } 
   match '/' => 'events#index', :constraints => { :subdomain => /list/ }, :fbview => '1', :category => 'featured', :origin => 'boulder-colorado'
   match '/' => 'slides#show', :constraints => { :subdomain => /information/ }
   match '/' => 'events#index', :constraints => { :subdomain => /m/ }, :mobile => '1', :category => 'featured', :origin => 'boulder-colorado'
