@@ -74,6 +74,8 @@ h1 span.edit a
 a
   +link-colors($header-grey, darken($light-green, 40), darken($light-green, 50), $header-grey)
   text-decoration: none
+  &:hover
+    text-decoration: underline
 
 ul.social
   margin: 0
@@ -209,6 +211,8 @@ img.profile_small
         font-size: 12px
         margin: 0 auto
         +link-colors($header-grey, darken($light-green, 40), darken($light-green, 50), $header-grey)
+        &:hover
+          text-decoration: underline
 
         .organization
           font-size: 10px
