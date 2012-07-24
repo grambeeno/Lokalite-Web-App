@@ -25,6 +25,7 @@ a { color: #444444; text-decoration: none; }
 a:visited { color: #444444; }
 a:hover { color: #4c984f; }
 a:active { color: #3b763d; }
+a:hover { text-decoration: underline; }
 
 ul.social { margin: 0; }
 ul.social li { display: inline; list-style-type: none; float: left; margin-right: 5px; }
@@ -426,6 +427,7 @@ img.profile_small { width: 55px; }
 #right-sidebar ul li .details:visited { color: #444444; }
 #right-sidebar ul li .details:hover { color: #4c984f; }
 #right-sidebar ul li .details:active { color: #3b763d; }
+#right-sidebar ul li .details:hover { text-decoration: underline; }
 #right-sidebar ul li .details .organization { font-size: 10px; }
 #right-sidebar .soc-links li { float: left; margin-right: 8px; }
 
