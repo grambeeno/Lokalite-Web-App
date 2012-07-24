@@ -34,7 +34,9 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    request.subdomain == 'boulderweekly'
+    if request.subdomain == 'boulderweekly'
+      request.subdomain == 'boulderweekly'
+    end
   end
 
   helper_method :boulder_weekly? 
