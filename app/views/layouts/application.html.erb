@@ -67,7 +67,7 @@
 
     <% if params[:controller] == 'root' && !boulder_weekly? %>
     <%= yield %>
-    <% else if boulder_weekly? %>
+    <% else %>
       <div id="main">
         <div id="left-sidebar">
           <%= render(:partial => '/layouts/left_sidebar') %>
