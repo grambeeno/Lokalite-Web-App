@@ -35,7 +35,6 @@ end
 
   def boulder_weekly?
     request.subdomain == 'boulderweekly'
-    end
   end
 
   helper_method :boulder_weekly? 
