@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_user_time_zone
   before_filter :set_origin
   before_filter :set_effective_user, :handle_business_sign_up, :handle_invitations
+  before_filter :prepare_for_BW
   before_filter :prepare_for_mobile
   before_filter :set_fb 
 
@@ -38,7 +39,13 @@ end
   end
 
   helper_method :boulder_weekly? 
-  
+ 
+  def prepare_for_BW
+    if boulder_weekly? && params[:controller] == 'root'
+      redirect_to events_path(:origin => params[:origin], :category => 'featured')
+    end
+  end
+
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
