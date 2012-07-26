@@ -65,8 +65,8 @@
       </header>
     <% end %>
 
-    <% if params[:controller] == 'root' %>
-        <%= yield %>
+    <% if !boulder_weekly? && params[:controller] == 'root' %>
+    <%= yield %>
     <% else %>
       <div id="main">
         <div id="left-sidebar">
