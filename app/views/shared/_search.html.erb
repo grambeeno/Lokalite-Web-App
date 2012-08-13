@@ -3,7 +3,7 @@
     <%
       value = params[:keywords] || ''
     -%>
-    <%= text_field_tag :keywords, value, :type => 'search', :placeholder => "Search #{active_tab.titleize}", :id => 'search_DD' %>
+    <%= text_field_tag :keywords, value, :type => 'text', :class => "search", :placeholder => "Search #{active_tab.titleize}", :id => 'search_DD' %>
     <% if places_page? %>
     <div class='places-search search_module'>
     <% else %>
