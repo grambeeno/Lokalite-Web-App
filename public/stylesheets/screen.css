@@ -526,7 +526,7 @@ img.profile_small { width: 55px; }
 table.times { font-size: 12px; text-align: left; }
 table.times tr { height: 12px; }
 table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
-table.times .time { font-weight: bold; text-align: right; padding: 0 12px; }
+table.times .time { font-weight: bold; text-align: right; padding: 0 7px; }
 
 header.index { overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 header.index h1 { margin: 0 25px; max-width: 450px; }
