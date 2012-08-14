@@ -35,15 +35,21 @@
       <%= image_tag 'powered_by.png' %>
     <% end %>
   <% else %>
-  <h3>Download our free<br />iPhone app:</h3>
+  <h3>Lokalite for iPhone</h3>
   <%= link_to 'http://itunes.apple.com/us/app/lokalite-for-local-events/id464192359?mt=8', :target => '_blank' do %>
     <%= image_tag 'available_on_the_appstore.png' %>
     <% end %>
 
     <h3>Follow Us</h3>
     <ul class="soc-links cf">
-      <li><a href="http://www.facebook.com/Lokalite" target="_blank"><%= image_tag 'social-icons/Facebook_Icon.png' %></a></li>
-      <li><a href="http://www.twitter.com/Lokalite" target="_blank"><%= image_tag 'social-icons/Twitter_Icon.png' %></a></li>
+      <li>
+        <div class="fb-like" data-href="https://www.facebook.com/Lokalite" data-send="false" data-layout="button_count" data-show-faces="false" data-font="verdana">        </div> <!-- <a href="http://www.facebook.com/Lokalite" target="_blank"><%= image_tag 'social-icons/Facebook_Icon.png' %></a> -->
+      </li>
+      <li>
+        <a href="https://twitter.com/lokalite" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @lokalite</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script> <!-- <a href="http://www.twitter.com/Lokalite" target="_blank"><%= image_tag 'social-icons/Twitter_Icon.png' %></a> -->
+      </li>
     </ul>
   <% end %> 
 <% end -%>
