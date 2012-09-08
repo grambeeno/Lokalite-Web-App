@@ -7,7 +7,7 @@
 
   <%= form.hidden_field :organization_id, :value => organization.id %>
   <%= form.input :name %>
-  <%= form.input :description, :as => :text, :hint => raw('<span id="counter"></span>'), :input_html => {:rows => 2} %>
+  <%= form.input :description, :as => :text, :hint => raw('<span id="counter"></span>') %>
 
   <% if form.object.new_record? or !form.object.prototype? %>
     <%= form.input :starts_at, :label => 'Event Start Time', :as => :string, :input_html => {:value => form.object.starts_at.to_s(:datetimepicker), :class => 'datetimepicker master-start-time'} %>
