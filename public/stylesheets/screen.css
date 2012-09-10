@@ -139,7 +139,7 @@ body #main #middle { background-color: white; background-image: url('/images/mai
 #left-sidebar ul.categories li.active a { color: white; }
 #left-sidebar ul.categories .all_events { background-image: url('/images/category-icons/all_events.png?1334783175'); }
 #left-sidebar ul.categories .all_places { background-image: url('/images/category-icons/all_places.png?1334783175'); }
-#left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1334783175'); }
+#left-sidebar ul.categories .featured { background-image: url('/images/category-icons/featured.png?1344917145'); }
 #left-sidebar ul.categories .most_popular { background-image: url('/images/category-icons/most_popular.png?1334783175'); }
 #left-sidebar ul.categories .happy_hour { background-image: url('/images/category-icons/happy_hour.png?1334783175'); }
 #left-sidebar ul.categories .campus { background-image: url('/images/category-icons/campus.png?1334783175'); }
@@ -386,12 +386,12 @@ img.profile_small { width: 55px; }
 
 .category-tab-buttons li.last { margin-right: 0; }
 
-.category-icon, .social-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/featured.png?1334783175'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 40px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 4px; }
+.category-icon, .social-icon { display: inline; float: left; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/category-icons/featured.png?1344917145'); background-repeat: no-repeat; background-position: 50% 50%; width: 20px; height: 40px; background-position: left top; display: block; margin-right: 12px; height: 20px; margin-bottom: 4px; }
 .category-icon:hover, .social-icon:hover { background-position: left bottom; }
 
 .category-icon.all_events { background-image: url('/images/category-icons/all_events.png?1334783175'); }
 .category-icon.all_places { background-image: url('/images/category-icons/all_places.png?1334783175'); }
-.category-icon.featured { background-image: url('/images/category-icons/featured.png?1334783175'); }
+.category-icon.featured { background-image: url('/images/category-icons/featured.png?1344917145'); }
 .category-icon.most_popular { background-image: url('/images/category-icons/most_popular.png?1334783175'); }
 .category-icon.happy_hour { background-image: url('/images/category-icons/happy_hour.png?1334783175'); }
 .category-icon.campus { background-image: url('/images/category-icons/campus.png?1334783175'); }
@@ -526,7 +526,7 @@ img.profile_small { width: 55px; }
 table.times { font-size: 12px; text-align: left; }
 table.times tr { height: 12px; }
 table.times th { font-style: italic; font-weight: normal; color: #5d5d5d; }
-table.times .time { font-weight: bold; text-align: right; padding: 0 7px; }
+table.times .time { font-weight: bold; text-align: right; padding: 0 6px; }
 
 header.index { overflow: hidden; *zoom: 1; margin-bottom: 12px; }
 header.index h1 { margin: 0 25px; max-width: 450px; }
@@ -694,7 +694,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 .feature-events .event-picker li { list-style-image: none; list-style-type: none; margin-left: 0px; }
 .feature-events .event-picker li { overflow: hidden; *zoom: 1; margin-bottom: 6px; }
 .feature-events .event-picker li input { display: inline; float: left; margin: 8px 4px; }
-.feature-events .event-picker li label { display: block; display: inline; float: left; margin-left: 6px; }
+.feature-events .event-picker li label { display: block; display: inline; float: left; margin-left: 6px; max-width: 650px; }
 .feature-events .event-slots { border: 1px solid gray; width: 138px; padding: 8px 0 0 8px; overflow: hidden; *zoom: 1; }
 .feature-events .event-slots .slot { position: relative; display: inline; float: left; width: 36px; height: 36px; margin: 0 8px 8px 0; border: 1px solid gray; font-size: 24px; color: gray; line-height: 36px; text-align: center; background-color: #f8dcda; border-color: #f4c8c5; }
 .feature-events .event-slots .slot.available { background-color: #dff1df; border-color: #bbe2bb; cursor: pointer; }
