@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_effective_user, :handle_business_sign_up, :handle_invitations
   before_filter :prepare_for_BW
   before_filter :prepare_for_mobile
-  before_filter :set_fb 
+  before_filter :set_fb
 
   # before_filter :show_holding_page
 
@@ -38,8 +38,8 @@ end
     request.subdomain == 'boulderweekly'
   end
 
-  helper_method :boulder_weekly? 
- 
+  helper_method :boulder_weekly?
+
   def prepare_for_BW
     if boulder_weekly? && params[:controller] == 'root'
       redirect_to events_path(:origin => params[:origin], :category => 'featured')
@@ -165,8 +165,16 @@ end
   helper_method(:real_user_is_admin?)
 
   def require_admin
-    unless current_user.admin?
-      message("Sorry, you must be logged as an *admin* in to view #{ h(request.fullpath) }", :class => :error)
+    require_role('admin')
+  end
+
+  def require_event_admin
+    require_role('event_admin')
+  end
+
+  def require_role(role)
+    unless current_user.has_role?(role)
+      message("Sorry, you must have the role *#{role}* in order to view #{ h(request.fullpath) }", :class => :error)
       redirect_to(root_path)
       return
     end

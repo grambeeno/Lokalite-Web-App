@@ -19,7 +19,7 @@
     <% for clone in clones -%>
       <li>
         <%= clone.starts_at.to_s(:full_short) %>
-        <% if real_user_is_admin? %>
+        <% if current_user.event_admin? %>
           <% if clone.featured? %>
             <%# TODO - put something here %>
           <% end %>

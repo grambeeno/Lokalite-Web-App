@@ -8,7 +8,11 @@ class My::OrganizationsController < My::Controller
   end
 
   def index
-    @organizations = current_user.organizations.order('name')
+    if params[:all] == 'true' && current_user.event_admin?
+      @organizations = Organization.order('name')
+    else
+      @organizations = current_user.organizations.order('name')
+    end
 
     if @organizations.empty?
       message('Please create an organization so you can start listing events!')
@@ -73,7 +77,7 @@ class My::OrganizationsController < My::Controller
     id = params[:id] || params[:organization_id]
     @organization = Organization.find(id) if id
     if @organization
-      permission_denied unless @organization.users.include?(current_user)
+      permission_denied unless @organization.users.include?(current_user) || current_user.event_admin?
     end
   end
 

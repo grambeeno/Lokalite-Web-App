@@ -131,15 +131,31 @@ class User < ActiveRecord::Base
   #   end
   # end
 
+  def has_role?(role_name)
+    role = Role.for(role_name)
+    result = roles.include?(role)
+
+    # check for fallbacks if result is false
+    unless result
+      if role_name == 'event_admin'
+        result = has_role?('admin')
+      end
+    end
+
+    result
+  end
+
   def add_role(role)
-    roles.push(role) unless roles.include?(role)
+    role = Role.for(role)
+    roles.push(role) unless has_role?(role)
     save!
     reload
     roles
   end
 
   def remove_role(role)
-    roles.delete(role) if roles.include?(role)
+    role = Role.for(role)
+    roles.delete(role) if has_role?(role)
     save!
     reload
     roles
@@ -149,7 +165,7 @@ class User < ActiveRecord::Base
     module_eval <<-__, __FILE__, __LINE__ - 1
 
       def #{ name }?
-        roles.include?(Role.#{ name })
+        has_role?('#{name}')
       end
 
       def #{ name }!

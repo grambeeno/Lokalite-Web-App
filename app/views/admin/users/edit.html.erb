@@ -1,5 +1,5 @@
 <div style='width:80%;margin:auto'>
-  
+
   <br />
   <%= link_to raw('&larr; All Users'), :action => :index %>
   <br />
@@ -8,7 +8,7 @@
   <% form(@user) do |f| %>
 
     <%= f.error_messages %>
-    
+
     <br />
     <%= f.text_field :handle, :placeholder => "Handle", :class => :focus, :style => "padding: 10px" %>
     <br />
@@ -26,7 +26,13 @@
     <br />
     <%= f.check_box :admin? %>
     <br />
-    
+
+    <br />
+    <%= f.label :event_admin? %>
+    <br />
+    <%= f.check_box :event_admin? %>
+    <br />
+
     <br />
     <%= label_tag 'user[invitation]', 'Invitation?'  %>
     <br />

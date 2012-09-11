@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::Controller
     @user = User.find(params[:id])
     return if request.get?
 
-    params[:user] ||= {}
+    return unless @user == current_user || real_user_is_admin?
 
     transaction do
       %w( handle email password ).each do |attr|
@@ -24,11 +24,13 @@ class Admin::UsersController < Admin::Controller
 
       return unless @user.save
 
-      unless current_user == @user
-        if params[:user][:admin] == '1'
-          @user.admin!
-        else
-          @user.roles.delete(Role.admin) if @user.admin?
+      if real_user_is_admin?
+        %w(admin event_admin).each do |role|
+          if params[:user][role] == '1'
+            @user.add_role(role)
+          else
+            @user.remove_role(role)
+          end
         end
       end
     end
@@ -41,16 +43,16 @@ class Admin::UsersController < Admin::Controller
   def new
     @user = User.new
     return if request.get?
- 
+
     params[:user] ||= {}
- 
+
     User.transaction do
       email = params[:user][:email]
       password = params[:user][:password]
- 
+
       @user = User.create(:email => email, :password => password)
     end
- 
+
     message("user #{ @user.email.inspect } created!", :class => :success)
     redirect_to(:action => :index)
   end

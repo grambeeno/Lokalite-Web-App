@@ -3,7 +3,6 @@ class CreateRootUser < ActiveRecord::Migration
     # user = User.create!(:email => App.email)
     # User.update_all('id=0', ['id=?', user.id])
     # user = User.find(0)
-    # user.add_role(Role.admin)
   end
 
   def self.down

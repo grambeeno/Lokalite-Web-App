@@ -1,7 +1,7 @@
 class My::EventsController < My::Controller
   before_filter :set_organization
   before_filter :find_event_and_authorize
-  before_filter :require_admin, :only => :approve
+  before_filter :require_event_admin, :only => :approve
 
   def index
     # @events = Event.all
@@ -35,7 +35,7 @@ class My::EventsController < My::Controller
     @event.duration = duration
     @event.created_by = real_user
 
-    if current_user.part_of_organization?(@event.organization) || real_user_is_admin?
+    if current_user.part_of_organization?(@event.organization) || current_user.event_admin?
       @event.approved = true
     end
 
@@ -131,7 +131,7 @@ class My::EventsController < My::Controller
       flash[:success] = "#{@event.name} will be featured in slot #{params[:slot].to_i + 1} on #{params[:date]}."
       redirect_to manage_featured_events_path
     else
-      if real_user_is_admin?
+      if current_user.event_admin?
         @organizations = Organization.order('name')
       else
         permission_denied
@@ -155,7 +155,7 @@ class My::EventsController < My::Controller
   end
 
   def unfeature
-    if real_user_is_admin?
+    if current_user.event_admin?
       date = Chronic.parse(params[:date]).to_date
       feature = EventFeature.where(:slot => params[:slot], :date => date).limit(1).first
       feature.destroy
@@ -187,7 +187,7 @@ class My::EventsController < My::Controller
     id = params[:id] || params[:event_id]
     @event = Event.find(id) if id
     if @event
-      permission_denied unless real_user_is_admin? || current_user.organizations.include?(@event.organization)
+      permission_denied unless current_user.event_admin? || current_user.organizations.include?(@event.organization)
     end
   end
 

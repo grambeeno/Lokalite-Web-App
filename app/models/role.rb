@@ -4,28 +4,13 @@ class Role < ActiveRecord::Base
 
   def Role.for(value)
     return value if value.is_a?(Role)
-    find(:first, :conditions => {:name => value.to_s})
+    find_by_name(value.to_s) || Role.create!(:name => value.to_s)
   end
 
   Names = %w[
-    root
     admin
-    user
+    event_admin
   ]
-
-  Names.each do |name|
-    module_eval <<-__, __FILE__, __LINE__ - 1
-
-      def Role.#{ name }
-        Role.find_by_name('#{ name }') || Role.create!(:name => '#{ name }')
-      end
-
-      def #{ name }?
-        name=='#{ name }'
-      end
-
-    __
-  end
 
   def Role.names
     Names

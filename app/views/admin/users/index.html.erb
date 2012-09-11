@@ -19,6 +19,9 @@
         Admin?
       </th>
       <th style='text-align:left; padding: 0 0 0 .5em'>
+        Event Admin?
+      </th>
+      <th style='text-align:left; padding: 0 0 0 .5em'>
         Organization?
       </th>
     </tr>
@@ -40,12 +43,16 @@
           <input type='checkbox' disabled='true' <%= checked %>/><br />
         </td>
         <td style='padding:0.5em'>
+          <% checked = user.event_admin? ? 'checked' : '' %>
+          <input type='checkbox' disabled='true' <%= checked %>/><br />
+        </td>
+        <td style='padding:0.5em'>
           <% if user.organizations.any? %>
           <% user.organizations.each do |organization| %>
           <%= link_to truncate(organization.name, :length => 15), organization_path(organization.slug, organization.id) %>
       <% end %>
           <% else %>
-          None 
+          None
           <% end %> <br />
         </td>
       </tr>
