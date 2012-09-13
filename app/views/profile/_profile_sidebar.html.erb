@@ -49,14 +49,20 @@
         </li>
       </ul>
     <% end %>
-  <% if current_user.admin? %>
+  <% if current_user.admin? or current_user.event_admin?%>
     <h4 class='small'>Admin Panel</h4>
     <ul class='profile-links cf'>
+    <% if current_user.admin? %>
       <li class="user-list-icon">
         <%= link_to "User List", admin_path %>
       </li>
       <li class="add-user-icon">
         <%= link_to "Create New User", admin_path(:action => 'new') %>
+      </li>
+    <% end %>
+    <% if current_user.admin? or current_user.event_admin? %>
+      <li class='my-businesses-icon'>
+        <%= link_to "All Businesses", my_organizations_path(:all => true) %>
       </li>
       <li class="manage-featured-icon">
         <%= link_to "Manage Featured Events", manage_featured_events_path %>
@@ -64,6 +70,7 @@
       <li class="approve-events-icon">
         <%= link_to "Approve Events", approve_events_path %>
       </li>
+    <% end %>
     </ul>
   <% end %>
   <% if user_sudoing? %>
