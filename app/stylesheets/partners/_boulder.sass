@@ -29,9 +29,33 @@ body
         display: block
         width: 190px
         +replace-text-with-dimensions('boulderweekly.png')
+
+      .back
+        float: left
+        text-align: right
+        display: inline-block
+        padding: 0 0
+        height: 53px
+        vertical-align: top
+        cursor: pointer
+        white-space: nowrap
+        .link
+          cursor: pointer
+          font-weight: normal
+          display: inline-block
+          //max-width: 150px
+          overflow: hidden
+          white-space: nowrap
+          text-overflow: ellipsis
+          padding: 0 18px 0
+          line-height: 53px
+          vertical-align: top
+          &:hover
+            color: white
+            text-decoration: underline
     
       form
-        +float('right')
+        //+float('right')
         width: 210px
         position: relative
         filter: alpha(opacity=100)
@@ -44,7 +68,7 @@ body
           +border-bottom-radius(4px)
           position: absolute 
           display: none
-          margin: 10px 0 0 -365px
+          //margin: 10px 0 0 -365px
           width: 535px
           padding: 10px 20px
           +linear-gradient(color-stops(#442947, #5C3761))
@@ -105,12 +129,12 @@ body
           margin: -157px 0 0 160px
       .search
         display: inline-block
-        width: 170px
+        //width: 170px
         background-color: #444
         background-color: rgba(255, 255, 255, 0.3)
         background-image: url(/images/monocle.png)
         background-repeat: no-repeat
-        background-position: 154px 50%
+        //background-position: 154px 50%
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
         font-weight: normal
         font-size: 13px
@@ -130,7 +154,7 @@ body
         -webkit-rtl-ordering: logical
         -webkit-user-select: text
         cursor: auto
-        margin: 15px 30px 0
+        //margin: 15px 30px 0
       .search:focus
         outline: 0
         background-color: #eee
@@ -145,7 +169,7 @@ body
       .nav
         //max-width: 190px
         display: block
-        float: left
+        //float: left
         margin: 0 0 0 0
         position: relative
         left: 0
@@ -171,7 +195,7 @@ body
         cursor: pointer
         white-space: nowrap
         &:hover
-          background-color: #6EAB24                  
+          background-color: #5C3761                  
         .acting-like
           position: absolute
           top: 8px
@@ -182,7 +206,7 @@ body
         text-align: center 
         line-height: 4.3em
         cursor: pointer
-        padding: 0 10px
+        //padding: 0 10px
 
       .nav a.arrow
         cursor: pointer
@@ -213,7 +237,7 @@ body
       .nav .user-img
         display: inline-block 
         vertical-align: top
-        margin: 15px -30px 0 15px
+        margin: 15px -15px 0 0
         border: none
         cursor: pointer
         position: relative
@@ -225,12 +249,12 @@ body
         overflow: hidden
         white-space: nowrap
         text-overflow: ellipsis
-        padding: 0 15px 0
+        padding: 0 18px 0
         line-height: 53px
         vertical-align: top
         //font-weight: bold
 
-      .nav a.profile
+      //.nav a.profile
         padding-left: 40px
 
       .user-menu:hover a, .user-menu:hover span
@@ -256,7 +280,7 @@ body
         background: #444
         background: rgba(255, 255, 255, 0.05)
       .nav .menu-dropdown, .nav .dropdown-menu
-        background-color: #6EAB24 
+        background-color: #5C3761 
   
       .nav .menu-dropdown a.menu, .nav .dropdown-menu a.menu, .nav .menu-dropdown .dropdown-toggle, .nav .dropdown-menu .dropdown-toggle
         color: #ffffff
@@ -267,30 +291,31 @@ body
 
       .nav .menu-dropdown li a, .nav .dropdown-menu li a
         padding: 5px 10px
-        color: white
+        color: #bababa
         &:hover
+          color: white
           background-color: #5C3761
           background-repeat: repeat-x
-          background-image: -khtml-gradient(linear, left top, left bottom, from(#5C3761), to(#442947))
-          background-image: -moz-linear-gradient(top, #5C3761, #442947)
-          background-image: -ms-linear-gradient(top, #5C3761, #442947)
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5C3761), color-stop(100%, #442947))
-          background-image: -webkit-linear-gradient(top, #5C3761, #442947)
-          background-image: -o-linear-gradient(top, #5C3761, #442947)
-          background-image: linear-gradient(top, #5C3761, #442947)
+          background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(68, 41, 71, 0.5)), to(#442947))
+          background-image: -moz-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
+          background-image: -ms-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
+          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(68, 41, 71, 0.5)), color-stop(100%, #442947))
+          background-image: -webkit-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
+          background-image: -o-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
+          background-image: linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
 
       .nav .menu-dropdown .active a, .nav .dropdown-menu .active a
         color: #ffffff
 
       .nav .menu-dropdown .divider, .nav .dropdown-menu .divider
-        background-color: #222
-        border-color: #444
+        background-color: #442947
+        border-color: rgba(255, 255, 255, 0.25)
 
       .user-menu .vert-divider
-        background-color: #323232	
+        background-color: rgba(255, 255, 255, 0.25)	
         width: 1px
         overflow: hidden
-        border-left: 1px solid #222
+        border-left: 1px solid #442947 
         height: 52px
         position: absolute
 
