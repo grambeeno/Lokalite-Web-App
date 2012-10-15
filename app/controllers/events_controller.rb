@@ -33,6 +33,13 @@ class EventsController < ApplicationController
     if params[:category] == 'featured'
       @events = ensure_enough_featured_events(@events)
     end
+    if params[:category] == 'featured'
+      @events = @events.shuffle
+    end
+  end
+
+  def shuffle
+    sort_by {rand}
   end
 
   def show
