@@ -155,7 +155,7 @@ class Event < ActiveRecord::Base
           results  = results.popular
           # Want to limit at 12 popular results
           # don't override what we set in the named scope by setting it here too
-          per_page = 12
+          per_page = 24
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         elsif options[:category] == 'featured'

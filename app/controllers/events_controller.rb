@@ -36,6 +36,9 @@ class EventsController < ApplicationController
     if params[:category] == 'featured'
       @events = @events.shuffle
     end
+    if params[:category] == 'suggested'
+      @events = @events.shuffle
+    end
   end
 
   def shuffle
