@@ -693,7 +693,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 #selected-event-list .event-preview .remove-from-plan { display: block; position: absolute; top: -5px; right: -5px; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/remove-from-plan.png?1334783175'); background-repeat: no-repeat; background-position: 50% 50%; width: 14px; height: 28px; height: 14px; background-position: top; }
 #selected-event-list .event-preview .remove-from-plan:hover { background-position: bottom; }
 
-.feature-events .event-picker { max-height: 240px; list-style: none; overflow: auto; padding: 8px 8px 8px 18px; margin: 10px 0px; }
+.feature-events .event-picker { max-height: 240px; min-height: 9px; list-style: none; overflow: auto; padding: 8px 8px 8px 18px; margin: 10px 0px; -moz-box-shadow: 0 2px 5px #eeeeee; -webkit-box-shadow: 0 2px 5px #eeeeee; -o-box-shadow: 0 2px 5px #eeeeee; box-shadow: 0 2px 5px #eeeeee; -moz-border-radius: 3px; -webkit-border-radius: 3px; -o-border-radius: 3px; -ms-border-radius: 3px; -khtml-border-radius: 3px; border-radius: 3px; background: white; border: 1px solid #d7d7d7; }
 .feature-events .event-picker li { list-style-image: none; list-style-type: none; margin-left: 0px; }
 .feature-events .event-picker li { overflow: hidden; *zoom: 1; margin-bottom: 6px; }
 .feature-events .event-picker li input { display: inline; float: left; margin: 8px 4px; }

@@ -171,10 +171,15 @@ $slot-margin: 8px
 .feature-events
   .event-picker
     max-height: 240px
+    min-height: 9px
     +no-bullets
     overflow: auto
     padding: 8px 8px 8px 18px
     margin: 10px 0px
+    +box-shadow(0 2px 5px #eee)
+    +border-radius(3px)
+    background: white
+    border: 1px solid #D7D7D7
     li
       +clearfix
       margin-bottom: 6px
