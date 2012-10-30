@@ -64,13 +64,15 @@ $splash-width: $content-width + $form-width + 6
     margin: 0 auto
     width: $splash-width
 
-body.root-controller
-  //+radial-gradient(#749a74, #a4c9a4)
-  background-image: url('/images/landing_page.png')
-  background-repeat: no-repeat 
-  background-size: 100%
-  height: 200%
-  background-color: black
+body.root-controller 
+  background: url('/images/landing_page.png') no-repeat center center fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.landing_page.png', sizingMethod='scale')
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='landing_page.png', sizingMethod='scale')"
+  background-color: #222 
   > footer
     .content
       color: black
@@ -163,8 +165,9 @@ body.root-controller
         margin-right: 4px
 
     hr
-      margin: 1.4em 3px 1em 2px
-      border-top: 1px solid white
+      margin: 1em 2px 
+      border-top: 1px solid #ccc
+      border-bottom: 1px solid white
 
     p
       a
