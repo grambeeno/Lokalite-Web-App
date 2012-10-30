@@ -35,7 +35,7 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    request.subdomain == 'boulderweekly'
+    request.subdomain == 'http://events.boulderweekly.com'
   end
 
   helper_method :boulder_weekly?
