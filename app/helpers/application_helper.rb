@@ -95,15 +95,20 @@ module ApplicationHelper
   end
 
   def title
-    parts = []
-    parts << @event.name if @event
-    parts << @organization.name if @organization
-    parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
-    parts << "lokalite"
-    parts << 'For Local Events' if current_page?('/landing')
-    parts << 'For Local Events' if current_page?('/')
-    parts << title_for_category(params[:category]) if params[:category]
-    parts.join(' | ')
+    if boulder_weekly?
+      parts = []
+      parts << "Boulder Weekly Events"
+    else
+      parts = []
+      parts << @event.name if @event
+      parts << @organization.name if @organization
+      parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
+      parts << "lokalite"
+      parts << 'For Local Events' if current_page?('/landing')
+      parts << 'For Local Events' if current_page?('/')
+      parts << title_for_category(params[:category]) if params[:category]
+      parts.join(' | ')
+    end
   end
 
   def default_content_for(name, &block)
