@@ -24,15 +24,15 @@ protected
       @current_user = User.find_by_uuid(session['effective_user'])
     end
   end
-  def mobile_device?
-    if session[:mobile_param]
-       session[:mobile_param] == '1'
-    else
-       request.user_agent =~ /Mobile|webOS|AvantGo|Dolphin|OpenWave|Plucker|NetFront|PIE|AT&T|RiM|9xxx Series|88xx Series|Cricket|Dell|Googlebot-Mobile|HP|HTC|LGE|Motorola/
-    end
-end
+#  def mobile_device?
+#    if session[:mobile_param]
+#       session[:mobile_param] == '1'
+#    else
+#       request.user_agent =~ /Mobile|webOS|AvantGo|Dolphin|OpenWave|Plucker|NetFront|PIE|AT&T|RiM|9xxx Series|88xx Series|Cricket|Dell|Googlebot-Mobile|HP|HTC|LGE|Motorola/
+#    end
+#end
 
-  helper_method :mobile_device?
+#  helper_method :mobile_device?
 
   def boulder_weekly?
     request.env['HTTP_HOST'] == 'events.boulderweekly.com'
@@ -46,16 +46,16 @@ end
     end
   end
 
-  def prepare_for_mobile
-    session[:mobile_param] = params[:mobile] if params[:mobile]
-    if mobile_device?
-      request.format = :mobile
-    end
-    if mobile_device? && request.subdomain != 'm'
-      redirect_to 'http://m.lokalite.com'
-    end
+#  def prepare_for_mobile
+#    session[:mobile_param] = params[:mobile] if params[:mobile]
+#    if mobile_device?
+#      request.format = :mobile
+#    end
+#    if mobile_device? && request.subdomain != 'm'
+#      redirect_to 'http://m.lokalite.com'
+#    end
 
-  end
+#  end
 
   def fb?
     if session[:fbview_param]
