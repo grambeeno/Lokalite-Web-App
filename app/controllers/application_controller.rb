@@ -51,9 +51,9 @@ end
     if mobile_device?
       request.format = :mobile
     end
-    if mobile_device? && request.subdomain != 'm'
-      redirect_to 'http://m.lokalite.com'
-    end
+#    if mobile_device? && request.subdomain != 'm'
+#      redirect_to 'http://m.lokalite.com'
+#    end
   end
 
   def fb?
