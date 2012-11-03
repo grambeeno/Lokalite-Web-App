@@ -1,13 +1,29 @@
 <!-- THIS IS FOR OUR BOULDER PARTNER!!! -->
 
-<div class="logo-wrap"><a href="http://www.boulderweekly.com" class="logo" title="Boulder Weekly Home">Boulder Weekly</a></div>
+<!-- <div class="logo-wrap"><a href="http://www.boulderweekly.com" class="logo" title="Boulder Weekly Home">Boulder Weekly</a></div> -->
 
 <div class="middle cf">
+
+<%
+    if params[:controller] == 'places'
+      active_tab = 'places'
+    else
+      active_tab = 'events'
+    end
+  -%>
+  <% unless ['/users', '/business', '/static', '/my', '/landing'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+    <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
+  <% end %> 
   
-<!-- <nav class='nav secondary-nav'>
+<nav class='nav secondary-nav'>
   <ul> 
     <li>
       <div class="user-menu" style="margin-left: 15px">
+        <div class="signin">
+          <%= link_to "HOME", 'http://www.boulderweekly.com/', :class => 'signin' %>
+        </div>
+      </div>
+      <div class="user-menu">
         <div class="signin menu0">
           <%= link_to 'NEWS', 'http://www.boulderweekly.com/articles.sec-90-1-news.html', :class => 'signin' %>
         </div>
@@ -39,6 +55,36 @@
             <%= link_to "DANISH PLAN", 'http://www.boulderweekly.com/articles.sec-54-1-danish-plan.html' %>
             <%= link_to "LAB NOTES", 'http://www.boulderweekly.com/articles.sec-137-1-lab-notes.html' %>
             <%= link_to "STEW'S VIEWS", 'http://www.boulderweekly.com/articles.sec-79-1-stews-views.html' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin">
+          <%= link_to "WINTER SCENE", 'http://www.boulderweekly.com/articles.sec-135-1-winter-scene.html', :class => 'signin' %>
+        </div>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu5">
+          <%= link_to 'BOULDERGANIC', 'http://www.boulderweekly.com/articles.sec-154-1-boulderganic.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu5 dropdown-menu menu5 ddmboulder5">
+          <li>   
+            <%= link_to "BOULDERGANIC", 'http://www.boulderweekly.com/articles.sec-127-1-boulderganic.html' %>
+            <%= link_to "ECO-BRIEFS", 'http://www.boulderweekly.com/articles.sec-156-1-eco-briefs.html' %>
+            <%= link_to "SPECIAL EDITIONS", 'http://www.boulderweekly.com/articles.sec-155-1-special-editions.html' %>
+            <%= link_to "ENVIRONMENT TODAY", 'http://www.boulderweekly.com/articles.sec-157-1-outdoors-today.html' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu6">
+          <%= link_to 'ADVENTURE', 'http://www.boulderweekly.com/articles.sec-140-1-adventure.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu6 dropdown-menu menu6 ddmboulder6">
+          <li>   
+            <%= link_to "ADVENTURE", 'http://www.boulderweekly.com/articles.sec-57-1-adventure.html' %>
+            <%= link_to "CALENDAR", 'http://www.boulderweekly.com/articles.sec-158-1-adventure-calendar.html' %>
+            <%= link_to "OUTDOORS TOUR", 'http://www.boulderweekly.com/blogs-1-1-1-50.html' %>
           </li>
         </ul>
       </div>
@@ -86,67 +132,57 @@
         </ul>
       </div>
       <div class="user-menu">
-        <div class="signin menu5">
-          <%= link_to 'HEALTH', 'http://www.boulderweekly.com/articles.sec-115-1-dear-pharmacist.html', :class => 'signin' %>
-        </div>
-        <ul class="dd-menu5 dropdown-menu menu5 ddmboulder5">
-          <li>   
-            <%= link_to "HEALTH NEWS", 'http://www.boulderweekly.com/articles.sec-124-1-health.html' %>
-            <%= link_to "SOPHISTICATED SEX", 'http://www.boulderweekly.com/articles.sec-123-1-sophisticated-sex.html' %>
-            <%= link_to "DEAR PHARMACIST", 'http://www.boulderweekly.com/articles.sec-115-1-dear-pharmacist.html' %>
-          </li>
-        </ul>
-      </div>
-      <div class="user-menu">
-        <div class="signin menu6">
-          <%= link_to 'BLOGS', 'http://www.boulderweekly.com/blogs', :class => 'signin' %>
-        </div>
-        <ul class="dd-menu6 dropdown-menu menu6 ddmboulder6">
-          <li>   
-            <%= link_to "BEST OF BOULDER", 'http://www.boulderweekly.com/blogs-1-1-1-51.html' %>
-            <%= link_to "OFF THE FLATIRON", 'http://www.boulderweekly.com/blogs-1-1-1-55.html' %>
-            <%= link_to "BUZZ", 'http://www.boulderweekly.com/blogs-1-1-1-50.html' %>
-            <%= link_to "FRESH HEIRESS", 'http://www.boulderweekly.com/blogs-1-1-1-52.html' %>
-            <%= link_to "DODGE'S BULLETS ONLINE", 'http://www.boulderweekly.com/blogs-1-1-1-53.html' %>
-            <%= link_to "STEW'S VIEWS", 'http://www.boulderweekly.com/blogs-1-1-1-54.html' %>
-          </li>
-        </ul>
-      </div>
-      <div class="user-menu">
         <div class="signin menu7">
-          <%= link_to 'MORE', '#', :class => 'signin' %>
-          <%= link_to raw("&#9662;"), '#', :class => 'arrow' %>
+          <%= link_to 'EXTRA', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html', :class => 'signin' %>
         </div>
         <ul class="dd-menu7 dropdown-menu menu7 ddmboulder7">
           <li>   
-            <%= link_to 'EXTRAS', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html' %>
-            <%= link_to "SPECIAL EDITIONS", 'http://www.boulderweekly.com/flex-175-special-editions.html' %>
-            <%= link_to "ARCHIVE", 'http://npaper-wehaa.com/boulder-weekly/#2009/12/24/s1/?s=issues' %>
-            <%= link_to "DIGITAL EDITION", 'http://npaper-wehaa.com/boulder-weekly/2012/04/12/#?s=issues' %>
-            <%= link_to "INFO/ADVERTISING", 'http://www.boulderweekly.com/flex-157-advertising-info.html' %>
-            <%= link_to "CONTACT US", 'http://www.boulderweekly.com/flex-150-contact-us.html' %>
+            <%= link_to "ASTROLOGY", 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html' %>
+            <%= link_to "VIDEO", 'http://www.boulderweekly.com/articles.sec-111-1-video.html' %>
+            <%= link_to "COUPON PAGE", 'http://boulderweekly.com/file-14-.pdf' %>
+            <%= link_to "NEWSLETTER SIGNUP", 'http://visitor.r20.constantcontact.com/manage/optin/ea?v=001l6dFchTjv8qTtUABP_pfii1lh2wx1bbGdJj-Jf0U_Xvs3hMyrqJoAADt5CupfGcFgiIZbnX1rNOnF8k02eaKFg%3D%3D' %>
+            <%= link_to "COMPARE AND BUY TEXTBOOKS", 'http://boulderweekly.com/textbooks' %>
+          </li>
+        </ul>
+      </div>
+      <!-- <div class="user-menu">
+        <div class="signin menu8">
+          <%= link_to 'ADD EVENT', 'http://lokalite.com/my/events/new', :class => 'signin' %>
+        </div>
+      </div> -->
+      <div class="user-menu">
+        <div class="signin menu10">
+          <%= link_to 'ARCHIVE', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu10 dropdown-menu menu10 ddmboulder10">
+          <li>   
+            <%= link_to "ASTROLOGY", 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html' %>
+            <%= link_to "VIDEO", 'http://www.boulderweekly.com/articles.sec-111-1-video.html' %>
+            <%= link_to "COUPON PAGE", 'http://boulderweekly.com/file-14-.pdf' %>
+            <%= link_to "NEWSLETTER SIGNUP", 'http://visitor.r20.constantcontact.com/manage/optin/ea?v=001l6dFchTjv8qTtUABP_pfii1lh2wx1bbGdJj-Jf0U_Xvs3hMyrqJoAADt5CupfGcFgiIZbnX1rNOnF8k02eaKFg%3D%3D' %>
+            <%= link_to "COMPARE AND BUY TEXTBOOKS", 'http://boulderweekly.com/textbooks' %>
           </li>
         </ul>
       </div>
       <div class="user-menu">
-        <div class="signin menu8">
-          <%= link_to 'ADD EVENT', 'http://lokalite.com/my/events/new', :class => 'signin' %>
+        <div class="signin menu11">
+          <%= link_to 'INFO/ADS', 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html', :class => 'signin' %>
         </div>
+        <ul class="dd-menu11 dropdown-menu menu11 ddmboulder11">
+          <li>   
+            <%= link_to "ASTROLOGY", 'http://www.boulderweekly.com/articles.sec-48-1-astrology.html' %>
+            <%= link_to "VIDEO", 'http://www.boulderweekly.com/articles.sec-111-1-video.html' %>
+            <%= link_to "COUPON PAGE", 'http://boulderweekly.com/file-14-.pdf' %>
+            <%= link_to "NEWSLETTER SIGNUP", 'http://visitor.r20.constantcontact.com/manage/optin/ea?v=001l6dFchTjv8qTtUABP_pfii1lh2wx1bbGdJj-Jf0U_Xvs3hMyrqJoAADt5CupfGcFgiIZbnX1rNOnF8k02eaKFg%3D%3D' %>
+            <%= link_to "COMPARE AND BUY TEXTBOOKS", 'http://boulderweekly.com/textbooks' %>
+          </li>
+        </ul>
+      </div>
     </li>
   </ul>
-</nav> -->
-<%
-    if params[:controller] == 'places'
-      active_tab = 'places'
-    else
-      active_tab = 'events'
-    end
-  -%>
-  <% unless ['/users', '/business', '/static', '/my', '/landing'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
-    <%= render :partial => '/shared/search', :locals => {:active_tab => active_tab} %>
-  <% end %> 
+</nav>
 
-<nav class='nav secondary-nav'>
+<!-- <nav class='nav secondary-nav'>
   <ul> 
     <% if user_signed_in? %>
       <li>
@@ -241,5 +277,5 @@
       </li>
     <% end %>
   </ul>
-</nav>
+</nav> -->
 

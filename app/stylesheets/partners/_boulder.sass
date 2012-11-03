@@ -1,5 +1,6 @@
 body
   font-family: Helvetica, Arial, Verdana, sans-serif
+  font-size: 12px
 
   > header.boulderheader
     background-color: #5C3761
@@ -17,8 +18,10 @@ body
     -o-box-shadow: 0px 0px 5px #8c5494
     min-width: 1160px
     //padding-top: 10px
+
     .content
-      +centered-on-page
+      width: 100%
+      //+centered-on-page
       // +clearfix
 
       .logo-wrap
@@ -53,6 +56,9 @@ body
           &:hover
             color: white
             text-decoration: underline
+
+      .middle
+        width: 100%
     
       form
         //+float('right')
@@ -68,7 +74,7 @@ body
           +border-bottom-radius(4px)
           position: absolute 
           display: none
-          //margin: 10px 0 0 -365px
+          margin: 3px 0
           width: 535px
           padding: 10px 20px
           +linear-gradient(color-stops(#442947, #5C3761))
@@ -154,7 +160,7 @@ body
         -webkit-rtl-ordering: logical
         -webkit-user-select: text
         cursor: auto
-        //margin: 15px 30px 0
+        margin: 12px 10px 10px 0
       .search:focus
         outline: 0
         background-color: #eee
@@ -206,7 +212,7 @@ body
         text-align: center 
         line-height: 4.3em
         cursor: pointer
-        //padding: 0 10px
+        padding: 0 10px
 
       .nav a.arrow
         cursor: pointer
@@ -266,9 +272,10 @@ body
         background-color: rgba(0, 0, 0, 0.5)
 
       .nav.secondary-nav
-        //float: right
+        float: left
         margin-left: 0
         margin-right: 0
+        left: -22px
       //.nav.secondary-nav:hover, .nav.secondary-nav:hover spanf
         background: #333
 
@@ -365,11 +372,11 @@ body
         background-clip: padding-box
 
       .ddmboulder0
-        margin-left: 15px
-        -moz-margin-start: 15px
-      .ddmboulder1
         margin-left: 74px
-        -moz-margin-start: 73px
+        -moz-margin-start: 74px
+      .ddmboulder1
+        margin-left: 133px
+        -moz-margin-start: 132px
       .ddmboulder2
         margin-left: 149px
         -moz-margin-start: 148px
@@ -388,6 +395,12 @@ body
       .ddmboulder7
         margin-left: 439px
         -moz-margin-start: 433px
+      .ddmboulder10
+        margin-left: 400px
+        -moz-margin-start: 400px
+      .ddmboulder11
+        margin-left: 450px
+        -moz-margin-start: 450px
 
       .dropdown-menu.sign-in
         width: 210px
