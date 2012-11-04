@@ -67,6 +67,24 @@
 
     <% if params[:controller] == 'root' %>
         <%= yield %>
+    <% elsif boulder_weekly? %>
+      <div id="main" style="width: 1200px">
+        <div id="left-sidebar">
+          <%= render(:partial => '/layouts/left_sidebar') %>
+        </div>
+
+        <div id="middle">
+          <% flash.each do |kind, message| %>
+            <%= display_flash kind, message %>
+          <% end %>
+
+          <%= yield %>
+        </div>
+
+        <div id="right-sidebar" style="width: 240px">
+          <%= render(:partial => '/layouts/right_sidebar') %>
+        </div>
+      </div>
     <% else %>
       <div id="main">
         <div id="left-sidebar">
