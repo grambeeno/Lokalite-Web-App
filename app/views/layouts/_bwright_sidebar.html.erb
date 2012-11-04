@@ -1,0 +1,9 @@
+<% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+
+<a class="twitter-timeline" href="https://twitter.com/BoulderWeeklyAE" data-widget-id="265235917848059904">Tweets by @BoulderWeeklyAE</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  <%= link_to App.url, :target => '_blank' do %>
+    <%= image_tag 'powered_by.png' %>
+  <% end %>
+<% end -%>

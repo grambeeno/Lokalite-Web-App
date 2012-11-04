@@ -122,7 +122,7 @@ body > footer .content nav ul li:first-child, body > footer .content nav ul li.f
 body > footer .content nav ul li:last-child { padding-right: 0; }
 body > footer .content nav ul li.last { padding-right: 0; }
 body > footer .content nav ul li:hover { text-decoration: underline; }
-body > footer .content .copyright { display: inline; float: right; color: #444444; }
+body > footer .content .copyright { display: inline; float: right; color: #444444; padding-right: 15px; }
 body #main { width: 1140px; margin: 0 auto; padding: 0 10px; overflow: hidden; *zoom: 1; margin-top: 53px; }
 body #main #middle { background-color: white; background-image: url('/images/main-bg.png?1334783175'); background-repeat: repeat; }
 
