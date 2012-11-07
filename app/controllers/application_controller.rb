@@ -35,7 +35,7 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    request.env['HTTP_HOST'] == 'events.boulderweekly.com'
+    request.env['HTTP_HOST'] == 'events.boulderweekly.com' || 'bouldercountyevents.com'
   end
 
   helper_method :boulder_weekly?
