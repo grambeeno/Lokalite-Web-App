@@ -153,6 +153,10 @@ $(function() {
     e.preventDefault();
     return $('.dd-menu10').toggle();
   });
+  $('.menu11').hover(function(e) {
+    e.preventDefault();
+    return $('.dd-menu11').toggle();
+  });
   $('#selected-event-list a').live('click', function(event) {
     return event.preventDefault();
   });

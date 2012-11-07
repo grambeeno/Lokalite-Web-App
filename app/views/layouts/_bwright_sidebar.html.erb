@@ -1,0 +1,28 @@
+<% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
+
+<a class="twitter-timeline" href="https://twitter.com/BoulderWeeklyAE" data-widget-id="265235917848059904">Tweets by @BoulderWeeklyAE</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 
+<h3 style="padding: 10px 80px 0">Follow Us</h3>
+    <ul class="soc-links cf" style="padding: 0 31px">
+      <li>
+        <a href="https://www.facebook.com/boulderweeklymedia" target="_blank">
+          <%= image_tag 'social-icons/Facebook_Icon.png' %>
+        </a>
+      </li>
+      <li>
+        <a href="http://www.twitter.com/boulderweeklyae" target="_blank">
+          <%= image_tag 'social-icons/Twitter_Icon.png' %>
+        </a>
+      </li>
+      <li>
+        <a href="http://boulderweekly.com/files/home.xml" target="_blank">
+          <%= image_tag 'rss.png' %>
+        </a>
+      </li>
+    </ul> 
+
+  <%= link_to App.url, :target => '_blank' do %>
+    <%= image_tag 'powered_by.png', :style => "padding: 10px 35px" %>
+  <% end %>
+<% end -%>

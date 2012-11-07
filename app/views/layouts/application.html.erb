@@ -52,6 +52,11 @@
     <%= render :partial => '/layouts/facebook' %>
 
     <% if boulder_weekly? %>
+      <div class="header2">
+        <div class="logo-wrap">
+          <a href="http://www.boulderweekly.com" class="logo" title="Boulder Weekly Home">Boulder Weekly</a>
+        </div>
+      </div>
       <header class="navbar-fixed-top boulderheader">
         <div class="content cf">
           <%= render :partial => '/layouts/bwheader' %>
@@ -67,6 +72,24 @@
 
     <% if params[:controller] == 'root' %>
         <%= yield %>
+    <% elsif boulder_weekly? %>
+      <div id="main" style="width: 1200px; margin-top: 168px">
+        <div id="left-sidebar">
+          <%= render(:partial => '/layouts/left_sidebar') %>
+        </div>
+
+        <div id="middle">
+          <% flash.each do |kind, message| %>
+            <%= display_flash kind, message %>
+          <% end %>
+
+          <%= yield %>
+        </div>
+
+        <div id="right-sidebar" style="width: 240px">
+          <%= render(:partial => '/layouts/bwright_sidebar') %>
+        </div>
+      </div>
     <% else %>
       <div id="main">
         <div id="left-sidebar">
