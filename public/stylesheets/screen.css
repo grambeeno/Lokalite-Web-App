@@ -79,7 +79,7 @@ body > header .content .nav a { display: block; float: none; padding: 10px 1px; 
 body > header .content .nav .user-menu { float: left; text-align: right; display: inline-block; height: 53px; vertical-align: top; cursor: pointer; white-space: nowrap; }
 body > header .content .nav .user-menu:hover { background-color: #333333; }
 body > header .content .nav .user-menu .acting-like { position: absolute; top: 2px; font-size: 10px; margin-left: 5.5em; }
-body > header .content .nav .signin { text-align: center; line-height: 4.3em; cursor: pointer; padding: 0 24px; }
+body > header .content .nav .signin { text-align: center; line-height: 4.3em; cursor: pointer; padding: 0 29px; }
 body > header .content .nav a.arrow { cursor: pointer; font-weight: normal; display: inline-block; max-width: 50px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 4.3em; vertical-align: top; }
 body > header .content .nav a.signin { cursor: pointer; font-weight: normal; display: inline-block; max-width: 160px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0; line-height: 4.3em; vertical-align: top; }
 body > header .content .nav .user-img { display: inline-block; vertical-align: top; margin: 15px -15px 0 0; border: none; cursor: pointer; position: relative; }
@@ -349,7 +349,7 @@ body > header.boulderheader .content .nav a.user-link { cursor: pointer; font-we
 body > header.boulderheader .content .user-menu:hover a, body > header.boulderheader .content .user-menu:hover span { color: white; text-decoration: none; }
 body > header.boulderheader .content .nav .active > a { background-color: #222222; background-color: rgba(0, 0, 0, 0.5); }
 body > header.boulderheader .content .nav.secondary-nav { float: left; margin-left: 0; margin-right: 0; left: -22px; }
-body > header.boulderheader .content .nav.secondary-nav .menu-dropdown, body > header.boulderheader .content .nav.secondary-nav .dropdown-menu { left: 0; top: 2px; border: 0; }
+body > header.boulderheader .content .nav.secondary-nav .menu-dropdown, body > header.boulderheader .content .nav.secondary-nav .dropdown-menu { left: 0; top: 0; border: 0; z-index: 1100; }
 body > header.boulderheader .content .nav a.menu:hover, body > header.boulderheader .content .nav li.open .menu, body > header.boulderheader .content .nav .dropdown-toggle:hover, body > header.boulderheader .content .nav .dropdown.open .dropdown-toggle { background: #444444; background: rgba(255, 255, 255, 0.05); }
 body > header.boulderheader .content .nav .menu-dropdown, body > header.boulderheader .content .nav .dropdown-menu { background-color: #5c3761; }
 body > header.boulderheader .content .nav .menu-dropdown a.menu, body > header.boulderheader .content .nav .dropdown-menu a.menu, body > header.boulderheader .content .nav .menu-dropdown .dropdown-toggle, body > header.boulderheader .content .nav .dropdown-menu .dropdown-toggle { color: white; }
@@ -362,16 +362,16 @@ body > header.boulderheader .content .user-menu .vert-divider { background-color
 body > header.boulderheader .content li.menu, body > header.boulderheader .content .dropdown { position: relative; }
 body > header.boulderheader .content a.menu:after, body > header.boulderheader .content .dropdown-toggle:after { width: 0; height: 0; display: inline-block; content: "&darr"; text-indent: -99999px; vertical-align: top; margin-top: 8px; margin-left: 4px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid white; filter: alpha(opacity=50); -khtml-opacity: 0.5; -moz-opacity: 0.5; opacity: 0.5; }
 body > header.boulderheader .content .menu-dropdown, body > header.boulderheader .content .dropdown-menu { background-color: white; float: left; display: none; position: absolute; top: 40px; z-index: -100; width: 210px; margin: 51px -150px 0; padding: 0px 0 6px 0; zoom: 1; border-color: #999999; border-color: rgba(0, 0, 0, 0.2); border-style: solid; border-width: 0 1px 1px; -webkit-border-radius: 0 0 6px 6px; -moz-border-radius: 0 0 6px 6px; border-radius: 0 0 6px 6px; -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -webkit-background-clip: padding-box; -moz-background-clip: padding-box; background-clip: padding-box; }
-body > header.boulderheader .content .ddmboulder0 { margin-left: 71px; -moz-margin-start: 71px; }
+body > header.boulderheader .content .ddmboulder0 { margin-left: 71px; -moz-margin-start: 70px; }
 body > header.boulderheader .content .ddmboulder1 { margin-left: 127px; -moz-margin-start: 126px; }
-body > header.boulderheader .content .ddmboulder2 { margin-left: 521px; -moz-margin-start: 520px; }
-body > header.boulderheader .content .ddmboulder3 { margin-left: 643px; -moz-margin-start: 641px; }
+body > header.boulderheader .content .ddmboulder2 { margin-left: 521px; -moz-margin-start: 519px; }
+body > header.boulderheader .content .ddmboulder3 { margin-left: 643px; -moz-margin-start: 640px; }
 body > header.boulderheader .content .ddmboulder4 { margin-left: 711px; -moz-margin-start: 708px; }
-body > header.boulderheader .content .ddmboulder5 { margin-left: 309px; -moz-margin-start: 305px; }
-body > header.boulderheader .content .ddmboulder6 { margin-left: 426px; -moz-margin-start: 422px; }
-body > header.boulderheader .content .ddmboulder7 { margin-left: 780px; -moz-margin-start: 774px; }
-body > header.boulderheader .content .ddmboulder10 { margin-left: 704px; -moz-margin-start: 704px; }
-body > header.boulderheader .content .ddmboulder11 { margin-left: 780px; -moz-margin-start: 780px; }
+body > header.boulderheader .content .ddmboulder5 { margin-left: 309px; -moz-margin-start: 309px; }
+body > header.boulderheader .content .ddmboulder6 { margin-left: 426px; -moz-margin-start: 425px; }
+body > header.boulderheader .content .ddmboulder7 { margin-left: 780px; -moz-margin-start: 776px; }
+body > header.boulderheader .content .ddmboulder10 { margin-left: 704px; -moz-margin-start: 699px; }
+body > header.boulderheader .content .ddmboulder11 { margin-left: 780px; -moz-margin-start: 776px; }
 body > header.boulderheader .content .dropdown-menu.sign-in { width: 210px; right: 0px; position: absolute; }
 body > header.boulderheader .content .menu-dropdown li, body > header.boulderheader .content .dropdown-menu li { float: none; display: block; background-color: none; }
 body > header.boulderheader .content .menu-dropdown .divider, body > header.boulderheader .content .dropdown-menu .divider { height: 1px; margin: 0; overflow: hidden; background-color: #eeeeee; border-bottom: 1px solid white; }
