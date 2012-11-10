@@ -11,7 +11,8 @@
   <% else %>
     <h1>New Event</h1>
     <h2>Please select an organization</h2>
-    <%#= link_to "Create a New Organization", new_my_organization_path %> 
+    <%= link_to "Add a New Organization", new_my_organization_path, :class => 'btn medium' %> 
+    <br /><br />
     <% for organization in @organizations -%>
       <%= link_to(organization.name, new_my_event_path(:organization_id => organization.id)) %>
       <br />
