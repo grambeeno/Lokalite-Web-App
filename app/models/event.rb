@@ -481,6 +481,15 @@ class Event < ActiveRecord::Base
     extras[:trended?] = user.events.include?(self) if user
     super(*options).push(extras)
   end
+ 
+  def self.export_to_csv(options = {})
+    FasterCSV.generate(options) do |csv|
+      csv << [ "Organization Name", "Location Name", "Location Address", "Location City", "Location State", "Location Zip Code", "Event Name", "Event Description", "Event Start Time", "Event End Time" ]
+      all.each do |event|
+        csv << [ event.organization.name, event.location.name, event.location.geocoded_street, event.location.locality, event.location.region, event.location.postal_code, event.name, event.description, event.starts_at, event.ends_at ]
+      end
+    end
+  end
 end
 
 

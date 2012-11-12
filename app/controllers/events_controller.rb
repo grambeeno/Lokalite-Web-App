@@ -3,17 +3,17 @@ class EventsController < ApplicationController
 
   def index
     # utf8 is added when searching
-    if params.delete(:utf8)
-      redirect_to events_path(params)
-    end
+    #if params.delete(:utf8)
+    #  redirect_to events_path(params)
+    #end
     # Don't apply date filters to featured event page
     if params.key?(:after) and params[:category] == 'featured' 
       params.delete(:category)
       redirect_to events_path(params)
     end
-    if params[:view_type] == 'map'
-      params[:per_page] = 24
-    else
+    if :xls or :csv
+      params[:per_page] = 150 
+    elsif
       params[:per_page] = 24 
     end 
     params[:user] = current_user if user_signed_in?
@@ -38,6 +38,14 @@ class EventsController < ApplicationController
     end
     if params[:category] == 'suggested'
       @events = @events.shuffle
+    end   
+   
+    respond_to do |format|
+      format.html
+      format.csv { send_data @events.export_to_csv() }
+      format.xls # { send_data @events.to_csv(:col_sep => "\t") }
+      format.txt { send_data @events.export_to_csv }
+      # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
     end
   end
 
@@ -77,6 +85,5 @@ private
 
   def remember_location
     session[:location] = params[:location]
-  end
-
+  end 
 end

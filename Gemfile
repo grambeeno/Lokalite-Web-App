@@ -30,6 +30,8 @@ gem 'tzinfo'
 
 gem 'earth-tools'
 
+gem 'fastercsv'
+
 gem 'compass'
 gem 'formtastic'
 gem 'annotate'

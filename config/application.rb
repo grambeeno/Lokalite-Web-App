@@ -22,6 +22,8 @@
 # the normal rails preamble
 #
   require File.expand_path('../boot', __FILE__)
+ 
+  require 'fastercsv'
   require 'rails/all'
 
 # finish setting up RAILS_STAGE here

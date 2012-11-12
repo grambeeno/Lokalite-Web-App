@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Will Powers</Author>
+  <LastAuthor>Will Powers</LastAuthor>
+  <Created>2012-11-11T00:21:05Z</Created>
+  <Company>Lokalite</Company>
+  <Version>14.0</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings> 
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>13800</WindowHeight>
+  <WindowWidth>25600</WindowWidth>
+  <WindowTopX>1260</WindowTopX>
+  <WindowTopY>820</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="12" ss:Color="#000000"
+    ss:Bold="1"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Events">
+  <Table border="1">
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Column ss:Width="120"/>
+   <Row>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Location Name</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Location Address</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Location City</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Location State</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Location Zip Code</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Event Name</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Event Description</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Event Start Time</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Event End Time</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">First Event Category</Data></Cell>
+    <Cell ss:StyleID="s64"><Data ss:Type="String">Second Event Category</Data></Cell>
+   </Row> 
+   <% @events.each do |event| %>
+   <Row>  
+    <Cell><Data ss:Type="String"><%= event.location.name %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.location.geocoded_street %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.location.locality %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.location.region %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.location.postal_code %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.name %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.description %></Data></Cell> 
+    <Cell><Data ss:Type="String"><%= event.starts_at %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.ends_at %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.first_category %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.second_category %></Data></Cell>
+   </Row>
+ <% end %>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageLayoutZoom>0</PageLayoutZoom>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>10</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>
+

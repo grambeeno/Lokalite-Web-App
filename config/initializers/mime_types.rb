@@ -7,3 +7,5 @@
 Mime::Type.register_alias "text/html", :mobile
 Mime::Type.register_alias "text/html", :fbview
 Mime::Type.register "text/plain", :txt
+Mime::Type.register "text/richtext", :rtf
+Mime::Type.register "application/xls", :xls
