@@ -756,6 +756,7 @@ input.placeholder, textarea.placeholder { color: #aaaaaa; }
 .profile-header .profile-links .approve-events-icon { background-image: url(/images/approve_events.png); }
 .profile-header .profile-links .edit-organization-icon { background-image: url(/images/pilcrow.png); }
 .profile-header .profile-links .back-to-your-user-icon { background-image: url(/images/back_to_your_user.png); }
+.profile-header .profile-links .download-icon { background-image: url(/images/file_download.png); }
 .profile-header .profile-links a { display: block; text-decoration: none; color: #555555; width: 100%; padding-top: 3px; height: 17px; padding-left: 26px; color: #444444; }
 .profile-header .profile-links a:visited { color: #444444; }
 .profile-header .profile-links a:hover { color: #4c984f; }
