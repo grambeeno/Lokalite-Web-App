@@ -12,7 +12,7 @@ class EventsController < ApplicationController
       redirect_to events_path(params)
     end
     if :xls or :csv
-      params[:per_page] = 150 
+      params[:per_page] = 1050 
     elsif
       params[:per_page] = 24 
     end 
