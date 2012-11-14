@@ -5,13 +5,13 @@
    ].each do |item| -%>
    <h3><%= link_to item[:title], events_path(:origin => params[:origin], :category => item[:category]) %></h3>
     <ul>
-      <% for event in item[:events].limit(6).includes(:image, :organization).shuffle -%>
+      <% for event in item[:events].limit(6).includes(:image, :organization) -%>
         <li<%= report_grid_tracker(event, :type => 'Sidebar') %>>
           <%= link_to event_path(event.slug, event.id) do %>
             <div class="image">
               <%= image_tag(event.image.url(:thumb)) %>
             </div>
-            <div class="details">
+            <div class="details" style="width: 200px">
               <div class='truncate'>
                 <%= event.name %>
               </div>
