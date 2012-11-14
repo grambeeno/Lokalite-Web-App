@@ -1,5 +1,31 @@
 <% unless ['/login', '/signup', '/business', '/static', '/my'].any? {|path| fullpath.start_with?(path)} || fullpath == '/' %>
 
+<% [
+    {:title => 'Top Featured Events', :events => Event.featured_on(Time.zone.now.to_date), :category => 'featured'},
+   ].each do |item| -%>
+   <h3><%= link_to item[:title], events_path(:origin => params[:origin], :category => item[:category]) %></h3>
+    <ul>
+      <% for event in item[:events].limit(6).includes(:image, :organization).shuffle -%>
+        <li<%= report_grid_tracker(event, :type => 'Sidebar') %>>
+          <%= link_to event_path(event.slug, event.id) do %>
+            <div class="image">
+              <%= image_tag(event.image.url(:thumb)) %>
+            </div>
+            <div class="details">
+              <div class='truncate'>
+                <%= event.name %>
+              </div>
+              <div class="organization-name truncate">
+                <%= event.organization.name %>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end -%>
+    </ul>
+    <hr />
+  <% end -%>
+
 <a class="twitter-timeline" href="https://twitter.com/BoulderWeeklyAE" data-widget-id="265235917848059904">Tweets by @BoulderWeeklyAE</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
  
