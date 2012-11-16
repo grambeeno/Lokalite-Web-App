@@ -35,7 +35,7 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    request.env['HTTP_HOST'] == 'events.boulderweekly.com'
+    request.subdomain == 'boulderweekly'
   end
 
   helper_method :boulder_weekly?
@@ -43,6 +43,9 @@ end
   def prepare_for_BW
     if boulder_weekly? && params[:controller] == 'root'
       redirect_to events_path(:origin => params[:origin], :category => 'featured')
+      if boulder_weekly? && session[:mobile_param]
+        session[:mobile_param] == '1'
+      end
     end
   end
 
