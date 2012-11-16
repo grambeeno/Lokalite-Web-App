@@ -26,7 +26,7 @@ protected
   end
   def mobile_device?
     if session[:mobile_param]
-       session[:mobile_param] == '1'
+       session[:mobile_param] == '1' unless boulder_weekly?
     else
        request.user_agent =~ /Mobile|webOS|AvantGo|Dolphin|OpenWave|Plucker|NetFront|PIE|AT&T|RiM|9xxx Series|88xx Series|Cricket|Dell|Googlebot-Mobile|HP|HTC|LGE|Motorola/
     end
@@ -35,17 +35,14 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    request.env['HTTP_HOST'] == 'events.boulderweekly.com'
+    request.env['HTTP'] == "events.boulderweekly.com"
   end
 
   helper_method :boulder_weekly?
 
   def prepare_for_BW
     if boulder_weekly? && params[:controller] == 'root'
-      redirect_to events_path(:origin => params[:origin], :category => 'featured')
-      if boulder_weekly? && session[:mobile_param]
-        session[:mobile_param] == '1'
-      end
+      redirect_to events_path(:origin => params[:origin], :category => 'featured') 
     end
   end
 
