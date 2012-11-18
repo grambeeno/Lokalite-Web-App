@@ -1,4 +1,4 @@
-if Rails.env['HTTP_HOST'] == "events.boulderweekly.com"
+if params[:boulder_weekly?] 
   REPORT_GRID_TOKEN = 'D90AEC76-FAC1-4591-8726-2126832BD18D'
   FACEBOOK_APP_ID     = '443689675690876'
   FACEBOOK_APP_SECRET = '5bec3517b5649afab095b49f01e8e688'
