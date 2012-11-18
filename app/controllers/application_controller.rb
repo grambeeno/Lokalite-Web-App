@@ -35,7 +35,7 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    if Rails.env == 'development'
+    if Rails.env.development?
       request.subdomain == 'boulderweekly'
     else
       request.env['HTTP_HOST'] == "events.boulderweekly.com"
@@ -53,7 +53,7 @@ end
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
-      request.format = :mobile
+      request.format = :mobile unless boulderweekly?
     end
 #    if mobile_device? && request.subdomain != 'm'
 #      redirect_to 'http://m.lokalite.com'
