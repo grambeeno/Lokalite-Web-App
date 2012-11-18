@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::Controller
   skip_before_filter :require_admin, :only => :unsudo
+  skip_before_filter :require_admin, :only => :new
 
   def index
     page = params[:page] || 1
@@ -38,8 +39,7 @@ class Admin::UsersController < Admin::Controller
     message("user #{ @user.email.inspect } updated!", :class => :success)
     redirect_to(:action => :index)
   end
-
-  # We made major changes to the user authentication system so something may not be defined properly. Doesn't allow admin to add user from '/admin/users/new'
+  
   def new
     @user = User.new
     return if request.get?

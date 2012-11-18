@@ -1,7 +1,10 @@
 <div style='width:80%;margin:auto'>
 
   <br />
-  <%= link_to raw('&larr; All Users'), :action => :index %>
+  <% if current_user.admin? %>
+    <%= link_to raw('&larr; All Users'), :action => :index %>
+  <% else %>
+  <% end %>
   <br /> 
 
   <%= form(@user) do |f| %>

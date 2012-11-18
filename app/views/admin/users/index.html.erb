@@ -1,6 +1,8 @@
 <div style='width:90%;margin:auto'>
-
+  <% if current_user.admin? %>
     <%= link_to 'Create A New User', admin_path(:action => 'new'), :class => 'btn medium primary' %>
+  <% else %>
+  <% end %>
   <br />
   <br />
 
