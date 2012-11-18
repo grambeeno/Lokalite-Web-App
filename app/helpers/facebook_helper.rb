@@ -12,13 +12,8 @@ module FacebookHelper
   # http://developers.facebook.com/docs/reference/dialogs/send/
   def send_facebook_message_url(options)
     options.reverse_merge!({
-      if boulder_weekly?
-        :app_id => '443689675690876'
-        :redirect_uri => 'events.boulderweekly.com'
-      else
-        :app_id => FACEBOOK_APP_ID,
-        :redirect_uri => 'http://lokalite.com'
-      end
+      :app_id => FACEBOOK_APP_ID,
+      :redirect_uri => 'http://lokalite.com'
     })
     "https://www.facebook.com/dialog/send?#{hash_to_url_params(options)}"
   end
