@@ -38,7 +38,7 @@ end
     if Rails.env == 'development'
       request.subdomain == 'boulderweekly'
     else
-      request.env['HTTP_HOST'] == "events.boulderweekly.com"
+      request.env['HTTP_HOST'] == "boulderweekly.lokalite.com"
     end
   end
 

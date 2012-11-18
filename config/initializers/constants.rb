@@ -3,7 +3,7 @@ if Rails.env.development?
   FACEBOOK_APP_ID     = '221397624592914'
   FACEBOOK_APP_SECRET = '74edaeb242da1bdb0a8c2f8dfd055b19'
 else 
-  if Rails.env.production? && self.boulder_weekly?
+  if Rails.env.production? && boulder_weekly?
     REPORT_GRID_TOKEN = 'D90AEC76-FAC1-4591-8726-2126832BD18D'
     FACEBOOK_APP_ID     = '443689675690876'
     FACEBOOK_APP_SECRET = '5bec3517b5649afab095b49f01e8e688'
@@ -13,8 +13,6 @@ else
     FACEBOOK_APP_SECRET = 'afe5d856290c63a336deaf408b3ae425'
   end
 end
-
-
 
 # an array of pairs for a select
 # [human_pickable_time, seconds]
