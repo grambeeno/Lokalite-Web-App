@@ -39,7 +39,7 @@
                 <div class="divider"></div>
                 <% if current_user.admin? or current_user.event_admin? %>
                 <% else %>
-                  <%#= link_to "Create Event", new_my_event_path %>
+                  <%= link_to "Create Event", new_my_event_path %>
                   <% if current_user.organizations.size > 1 %>
                     <%= link_to "My Businesses", my_organizations_path %>
                   <% elsif current_user.organizations.any? %>
