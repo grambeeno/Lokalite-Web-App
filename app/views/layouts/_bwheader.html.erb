@@ -93,19 +93,7 @@
             <%= link_to "BUZZ BLOG", 'http://www.boulderweekly.com/blogs-1-1-1-50.html' %>
           </li>
         </ul>
-      </div>
-      <div class="user-menu">
-        <div class="signin menu3">
-          <%= link_to 'EVENTS', 'http://boulderweekly.lokalite.com/events/boulder-colorado/category/featured', :class => 'signin' %>
-        </div>
-        <ul class="dd-menu3 dropdown-menu menu3 ddmboulder3">
-          <li>   
-            <%= link_to 'ADD EVENT', 'http://lokalite.com/my/events/new' %>
-            <%= link_to "EVENTS", events_path(:origin => params[:origin], :category => 'featured') %>
-            <%= link_to "PLACES", places_path(:origin => params[:origin]) %>
-          </li>
-        </ul>
-      </div>
+      </div> 
       <div class="user-menu">
         <div class="signin menu4">
           <%= link_to 'CUISINE', 'http://www.boulderweekly.com/flex-165-cuisine.html', :class => 'signin' %>
@@ -157,6 +145,18 @@
             <%= link_to "ADVERTISING INFO", 'http://www.boulderweekly.com/flex-157-advertising-info.html' %>
             <%= link_to "BOULDER MARKETPLACE", 'https://class.avenews.com/index.cfm?referrer=http://www.boulderweekly.com' %>
             <%= link_to "JOBS AVAILABLE", 'http://boulderweekly.com/article-93-jobs-available.html' %>
+          </li>
+        </ul>
+      </div>
+      <div class="user-menu">
+        <div class="signin menu3">
+          <%= link_to 'EVENTS', 'http://boulderweekly.lokalite.com/events/boulder-colorado/category/featured', :class => 'signin' %>
+        </div>
+        <ul class="dd-menu3 dropdown-menu menu3 ddmboulder3">
+          <li>   
+            <%= link_to 'ADD EVENT', 'http://lokalite.com/my/events/new' %>
+            <%= link_to "EVENTS", events_path(:origin => params[:origin], :category => 'featured') %>
+            <%= link_to "PLACES", places_path(:origin => params[:origin]) %>
           </li>
         </ul>
       </div>

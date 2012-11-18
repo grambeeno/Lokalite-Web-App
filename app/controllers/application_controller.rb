@@ -35,7 +35,11 @@ end
   helper_method :mobile_device?
 
   def boulder_weekly?
-    request.env['HTTP_HOST'] == "events.boulderweekly.com"
+    if Rails.env == 'development'
+      request.subdomain == 'boulderweekly'
+    else
+      request.env['HTTP_HOST'] == "events.boulderweekly.com"
+    end
   end
 
   helper_method :boulder_weekly?

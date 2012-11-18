@@ -303,7 +303,7 @@ body.root-controller > footer .content .copyright { color: #dddddd; }
 #forgot_password:hover { color: white; }
 
 body { font-family: Helvetica, Arial, Verdana, sans-serif; font-size: 12px; }
-body .header2 { z-index: 1030; height: 115px; position: fixed; top: 0; width: 100%; background-color: black; min-width: 1160px; }
+body .header2 { z-index: 1030; height: 115px; position: fixed; top: 0; width: 100%; background-color: black; min-width: 1476px; }
 body .header2 .logo-wrap { display: inline; float: left; }
 body .header2 .logo { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1352076065'); background-repeat: no-repeat; background-position: 50% 50%; width: 6553600px; height: 4293656593px; width: 252px; height: 115px; margin-left: 50px; }
 body .header2 .logo-wrap2 { display: inline; float: right; }
@@ -364,16 +364,16 @@ body > header.boulderheader .content .user-menu .vert-divider { background-color
 body > header.boulderheader .content li.menu, body > header.boulderheader .content .dropdown { position: relative; }
 body > header.boulderheader .content a.menu:after, body > header.boulderheader .content .dropdown-toggle:after { width: 0; height: 0; display: inline-block; content: "&darr"; text-indent: -99999px; vertical-align: top; margin-top: 8px; margin-left: 4px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid white; filter: alpha(opacity=50); -khtml-opacity: 0.5; -moz-opacity: 0.5; opacity: 0.5; }
 body > header.boulderheader .content .menu-dropdown, body > header.boulderheader .content .dropdown-menu { background-color: white; float: left; display: none; position: absolute; top: 40px; z-index: -100; width: 195px; margin: 51px -150px 0; padding: 0px 0 6px 0; zoom: 1; border-color: #999999; border-color: rgba(0, 0, 0, 0.2); border-style: solid; border-width: 0 1px 1px; -webkit-border-radius: 0 0 6px 6px; -moz-border-radius: 0 0 6px 6px; border-radius: 0 0 6px 6px; -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); -webkit-background-clip: padding-box; -moz-background-clip: padding-box; background-clip: padding-box; }
-body > header.boulderheader .content .ddmboulder0 { margin-left: 67px; -moz-margin-start: 66px; }
+body > header.boulderheader .content .ddmboulder0 { margin-left: 67px; -moz-margin-start: 67px; }
 body > header.boulderheader .content .ddmboulder1 { margin-left: 119px; -moz-margin-start: 118px; }
-body > header.boulderheader .content .ddmboulder2 { margin-left: 479px; -moz-margin-start: 477px; }
-body > header.boulderheader .content .ddmboulder3 { margin-left: 592px; -moz-margin-start: 589px; }
-body > header.boulderheader .content .ddmboulder4 { margin-left: 654px; -moz-margin-start: 650px; }
-body > header.boulderheader .content .ddmboulder5 { margin-left: 286px; -moz-margin-start: 286px; }
-body > header.boulderheader .content .ddmboulder6 { margin-left: 392px; -moz-margin-start: 391px; }
-body > header.boulderheader .content .ddmboulder7 { margin-left: 716px; -moz-margin-start: 712px; }
-body > header.boulderheader .content .ddmboulder10 { margin-left: 772px; -moz-margin-start: 767px; }
-body > header.boulderheader .content .ddmboulder11 { margin-left: 839px; -moz-margin-start: 835px; }
+body > header.boulderheader .content .ddmboulder2 { margin-left: 479px; -moz-margin-start: 481px; }
+body > header.boulderheader .content .ddmboulder3 { margin-left: 850px; -moz-margin-start: 856px; }
+body > header.boulderheader .content .ddmboulder4 { margin-left: 592px; -moz-margin-start: 595px; }
+body > header.boulderheader .content .ddmboulder5 { margin-left: 286px; -moz-margin-start: 287px; }
+body > header.boulderheader .content .ddmboulder6 { margin-left: 392px; -moz-margin-start: 394px; }
+body > header.boulderheader .content .ddmboulder7 { margin-left: 654px; -moz-margin-start: 658px; }
+body > header.boulderheader .content .ddmboulder10 { margin-left: 710px; -moz-margin-start: 714px; }
+body > header.boulderheader .content .ddmboulder11 { margin-left: 777px; -moz-margin-start: 783px; }
 body > header.boulderheader .content .dropdown-menu.sign-in { width: 210px; right: 0px; position: absolute; }
 body > header.boulderheader .content .menu-dropdown li, body > header.boulderheader .content .dropdown-menu li { float: none; display: block; background-color: none; }
 body > header.boulderheader .content .menu-dropdown .divider, body > header.boulderheader .content .dropdown-menu .divider { height: 1px; margin: 0; overflow: hidden; background-color: #eeeeee; border-bottom: 1px solid white; }
