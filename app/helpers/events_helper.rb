@@ -13,7 +13,7 @@ module EventsHelper
         "#{title_for_category(category)}"
       end
     elsif keywords = params[:keywords]
-      "Search results: #{keywords}"
+      "Search results: #{keywords} in All Events" 
     else
       "All Events"
     end
