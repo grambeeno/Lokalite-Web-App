@@ -14,7 +14,7 @@ module DirectoryHelper
         "#{title_for_category(category)}"
       end
     elsif keywords = params[:keywords]
-      "Search results: #{keywords}"
+      "Search results: #{keywords} in All Places"
     else
       "All Places"
     end
