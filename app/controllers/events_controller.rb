@@ -13,9 +13,7 @@ class EventsController < ApplicationController
     end
     if request.format == 'xls' or request.format == 'txt' or request.format == 'csv' 
       params[:per_page] = 1050 
-    elsif request.format == 'txt' and params[:category] == 'featured'
-      params[:per_page] = 24
-    else
+    elsif
       params[:per_page] = 24 
     end 
     params[:user] = current_user if user_signed_in?
