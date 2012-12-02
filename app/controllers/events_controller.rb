@@ -13,7 +13,9 @@ class EventsController < ApplicationController
     end
     if request.format == 'xls' or request.format == 'txt' or request.format == 'csv' 
       params[:per_page] = 1050 
-    elsif
+    elsif request.format == 'txt' and params[:category] == 'featured'
+      params[:per_page] = 24
+    else
       params[:per_page] = 24 
     end 
     params[:user] = current_user if user_signed_in?
@@ -45,7 +47,6 @@ class EventsController < ApplicationController
       format.csv { send_data @events.export_to_csv() }
       format.xls # { send_data @events.to_csv(:col_sep => "\t") }
       format.txt { send_data @events.export_to_csv }
-      format.txt { send_data @events.export_featured_to_csv}
       # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
     end
   end
