@@ -45,6 +45,7 @@ class EventsController < ApplicationController
       format.csv { send_data @events.export_to_csv() }
       format.xls # { send_data @events.to_csv(:col_sep => "\t") }
       format.txt { send_data @events.export_to_csv }
+      format.txt { send_data @events.export_featured_to_csv}
       # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
     end
   end
