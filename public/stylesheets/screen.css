@@ -58,7 +58,7 @@ body > header .content form .places-search { -moz-border-radius-bottomleft: 4px;
 body > header .content form .event_date_filters { margin: 10px 0 0 350px; }
 body > header .content form .event_date_filters h2 { font-size: 18px; font-weight: normal; }
 body > header .content form .event_date_filters .ui-datepicker { font-size: 10px; margin-top: 6px; margin-bottom: 12px; position: absolute; }
-body > header .content form .event_start_time { margin: 170px 0 10px 0px; }
+body > header .content form .event_start_time { margin: 180px 0 10px 0px; }
 body > header .content form .search_list ul { list-style: none; margin-left: 0; }
 body > header .content form .search_list ul li { float: left; margin: 10px 20px 10px 0; }
 body > header .content form .search_list ul li .form-dropdown { min-width: 140px; margin-top: 6px; }
