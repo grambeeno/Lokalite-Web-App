@@ -74,6 +74,10 @@ class Location < ActiveRecord::Base
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
 
+  def self.city_options
+    Event.all.to_a.map{|e| e.location.locality}.uniq.sort
+  end
+
   def self.state_options
     US_STATES.to_a.sort.map{|a| a.reverse}
   end

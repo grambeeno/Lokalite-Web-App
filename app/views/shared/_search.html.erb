@@ -39,11 +39,11 @@ $('#directory').change(function() {
             </li> -->
             
           <li><h5>State</h5>
-            <% states = [ ['Colorado']] %>
+            <% states = Location.state_options %>
             <%= select_tag :event_state, options_for_select(states), :class => 'form_input form-dropdown' %>
           </li>
           <li><h5>City</h5>
-            <% cities = [ ['Boulder']] %>
+            <% cities = Location.city_options %>
             <%= select_tag :event_city, options_for_select(cities), :class => 'form_input form-dropdown' %>
           </li>
         </ul>
