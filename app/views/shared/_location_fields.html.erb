@@ -1,6 +1,6 @@
 <%= form.input :name, :label => 'Location name' %>
 <%= form.input :user_given_street, :required => true, :label => 'Street' %>
 <%= form.input :suite, :label => 'Suite/Room' %>
-<%= form.input :locality, :label => 'City' %>
+<%= form.input :locality, :required => true, :label => 'City' %>
 <%= form.input :region, :label => 'State', :as => :select, :collection => Location.state_options %>
 <%= form.input :postal_code, :label => 'Zip Code', :as => :numeric %>
