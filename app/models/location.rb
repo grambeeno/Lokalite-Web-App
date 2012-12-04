@@ -73,6 +73,10 @@ class Location < ActiveRecord::Base
     add    = %w[street formatted_address latitude longitude]
     super(*args).reject{|arg| remove.include?(arg)} + add
   end
+ 
+  def self.city_options
+    Location.all.to_a.map{|e| e.locality}.compact.uniq.sort
+  end
 
   def self.state_options
     US_STATES.to_a.sort.map{|a| a.reverse}
