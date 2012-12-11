@@ -75,7 +75,11 @@ class Location < ActiveRecord::Base
   end
  
   def self.city_options
-    Location.all.to_a.map{|e| e.locality}.compact.uniq.sort
+    Location.all.to_a.map{|e| e.locality}.compact.uniq.sort 
+  end
+ 
+  def self.db_state_options
+    Location.all.to_a.map{|e| e.region}.compact.uniq.sort 
   end
 
   def self.state_options
