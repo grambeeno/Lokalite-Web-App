@@ -19,7 +19,7 @@
       <% if current_user.event_admin? %>
       <% elsif current_user.organizations.size < 1 %>
       <li class='create-event-icon'>
-        <%#= link_to 'Create Event', new_my_event_path %>
+        <%= link_to 'Create Event', new_my_event_path %>
       </li>
       <% end %>
     </ul>
