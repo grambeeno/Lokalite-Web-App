@@ -11,8 +11,8 @@ class EventsController < ApplicationController
       params.delete(:category)
       redirect_to events_path(params)
     end
-    if request.format == 'xls' or request.format == 'txt' or request.format == 'csv' 
-      params[:per_page] = 1050 
+    if request.format == 'xls' or request.format == 'txt' or request.format == 'csv'  
+      params[:per_page] = 2000
     elsif
       params[:per_page] = 24 
     end 

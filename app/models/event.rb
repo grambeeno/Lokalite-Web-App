@@ -80,7 +80,7 @@ class Event < ActiveRecord::Base
   scope(:before, lambda{|time|
     where('starts_at < ?', time)
   })
-  scope :upcoming, by_date().after(Time.now)
+  scope :upcoming, by_date().after(Time.now) 
 
   scope :repeating,  where(:repeating => true)
   scope :one_time,   where(:repeating => false)
@@ -145,6 +145,9 @@ class Event < ActiveRecord::Base
 
     results = Event.approved.after(start_time)
     results = results.before(latest_start) if latest_start
+    if :export_to_csv       
+      results = Event.approved.after(Time.now).before(Time.now + 1.week) 
+    end
 
     organization_id = options[:organization_id]
 
