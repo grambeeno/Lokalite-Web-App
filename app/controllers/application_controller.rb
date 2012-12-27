@@ -53,7 +53,7 @@ end
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
-      request.format = :mobile 
+      request.format = :mobile unless :rel == 'external'
     end
     if boulder_weekly?
       request.format = :html 
