@@ -305,13 +305,13 @@ body.root-controller > footer .content .copyright { color: #dddddd; }
 body { font-family: Helvetica, Arial, Verdana, sans-serif; font-size: 12px; }
 body .header2 { z-index: 1030; height: 115px; position: fixed; top: 0; width: 100%; background-color: black; min-width: 1432px; }
 body .header2 .logo-wrap { display: inline; float: left; }
-body .header2 .logo { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1354405454'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 100px; width: 252px; height: 115px; margin-left: 50px; }
-body .header2 .logo2 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BCE_logo.png?1354405436'); background-repeat: no-repeat; background-position: 50% 50%; width: 348px; height: 100px; width: 400px; height: 115px; }
-body .header2 .logo3 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BOB_Deals.png?1354405415'); background-repeat: no-repeat; background-position: 50% 50%; width: 607px; height: 75px; width: 730px; height: 115px; }
+body .header2 .logo { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1354407241'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 100px; width: 252px; height: 115px; margin-left: 50px; }
+body .header2 .logo2 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BCE_logo.png?1354406434'); background-repeat: no-repeat; background-position: 50% 50%; width: 348px; height: 100px; width: 400px; height: 115px; }
+body .header2 .logo3 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BOB_Deals.png?1354406434'); background-repeat: no-repeat; background-position: 50% 50%; width: 607px; height: 75px; width: 730px; height: 115px; }
 body > header.boulderheader { background-color: #5c3761; background-repeat: repeat-x; background-image: -khtml-gradient(linear, left top, left bottom, from(#5c3761), to(#442947)); background-image: -moz-linear-gradient(top, #5c3761, #442947); background-image: -ms-linear-gradient(top, #5c3761, #442947); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5c3761), color-stop(100%, #442947)); background-image: -webkit-linear-gradient(top, #5c3761, #442947); background-image: -o-linear-gradient(top, #5c3761, #442947); background-image: linear-gradient(top, #5c3761, #442947); color: white; -moz-box-shadow: 0px 0px 5px #8c5494; -webkit-box-shadow: 0px 0px 5px #8c5494; -o-box-shadow: 0px 0px 5px #8c5494; min-width: 1160px; top: 115px; }
 body > header.boulderheader .content { width: 1200px; }
 body > header.boulderheader .content .logo-wrap { display: inline; float: left; width: 190px; }
-body > header.boulderheader .content .logo { display: block; width: 190px; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1354405454'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 100px; }
+body > header.boulderheader .content .logo { display: block; width: 190px; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1354407241'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 100px; }
 body > header.boulderheader .content .back { float: left; text-align: right; display: inline-block; padding: 0 0; height: 53px; vertical-align: top; cursor: pointer; white-space: nowrap; }
 body > header.boulderheader .content .back .link { cursor: pointer; font-weight: normal; display: inline-block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 18px 0; line-height: 53px; vertical-align: top; }
 body > header.boulderheader .content .back .link:hover { color: white; text-decoration: underline; }
@@ -554,6 +554,12 @@ header.index .switch-to-map-view { display: inline; float: right; margin-top: 10
 .navbar-fixed-top { position: fixed; top: 0; right: 0; left: 0; z-index: 1030; }
 
 .tiled-pagination { margin: 4px 25px; }
+.tiled-pagination .pagination { text-align: center; padding: 0 1em 0 1em; cursor: default; font-size: 1.1em; margin-top: 25px; }
+.tiled-pagination .pagination a, .tiled-pagination .pagination span { padding: 0.2em 0.3em; }
+.tiled-pagination .pagination .disabled { color: #aaaaaa; }
+.tiled-pagination .pagination .current, .tiled-pagination .pagination em { font-style: normal; font-weight: bold; background-color: #bebebe; display: inline-block; width: 1.4em; height: 1.4em; line-height: 1.5; -moz-border-radius: 1em; -webkit-border-radius: 1em; -o-border-radius: 1em; -ms-border-radius: 1em; -khtml-border-radius: 1em; border-radius: 1em; text-shadow: rgba(255, 255, 255, 0.75) 1px 0.1px 1px; }
+.tiled-pagination .pagination a { text-decoration: none; color: black; }
+.tiled-pagination .pagination a:hover, .tiled-pagination .pagination a:focus { text-decoration: underline; }
 
 .event, .organization, .plan { overflow: hidden; *zoom: 1; padding: 0 25px 10px; }
 .event .title, .organization .title, .plan .title { overflow: hidden; *zoom: 1; margin-bottom: 10px; }
@@ -622,13 +628,6 @@ table.event-picker input[type='checkbox'] { background-color: red; width: 14px; 
 .repeating-event-fields { display: none; }
 
 .fb-comments { margin-top: 1em; }
-
-.pagination { text-align: center; padding: 0 1em 0 1em; cursor: default; font-size: 1.1em; margin-top: 25px; }
-.pagination a, .pagination span { padding: 0.2em 0.3em; }
-.pagination .disabled { color: #aaaaaa; }
-.pagination .current, .pagination em { font-style: normal; font-weight: bold; background-color: #bebebe; display: inline-block; width: 1.4em; height: 1.4em; line-height: 1.5; -moz-border-radius: 1em; -webkit-border-radius: 1em; -o-border-radius: 1em; -ms-border-radius: 1em; -khtml-border-radius: 1em; border-radius: 1em; text-shadow: rgba(255, 255, 255, 0.75) 1px 0.1px 1px; }
-.pagination a { text-decoration: none; color: black; }
-.pagination a:hover, .pagination a:focus { text-decoration: underline; }
 
 .flash { margin: 0 25px 18px; font-size: 14px; padding: 1em; line-height: 1.4em; -moz-border-radius: 6px; -webkit-border-radius: 6px; -o-border-radius: 6px; -ms-border-radius: 6px; -khtml-border-radius: 6px; border-radius: 6px; border-style: solid; border-width: 1px; }
 .flash .dismiss { color: inherit; text-decoration: inherit; cursor: inherit; display: inline; float: right; font-size: 20px; font-weight: bold; color: #777777; color: rgba(0, 0, 0, 0.5); filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50); opacity: 0.5; }

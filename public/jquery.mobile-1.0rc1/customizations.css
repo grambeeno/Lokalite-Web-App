@@ -39,3 +39,47 @@
 	background-image:      -o-linear-gradient(top, #a4c984 /*{e-bdown-background-start}*/, #749a74 /*{e-bdown-background-end}*/); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #a4c984 /*{e-bdown-background-start}*/, #749a74 /*{e-bdown-background-end}*/);
 }
+
+/* based on Apple pagination code here: http://mislav.uniqpath.com/will_paginate/ */
+.tiled-pagination {
+        margin: 4px 25px;
+}
+
+.pagination {
+        text-align: center;
+        padding: 0 1em 0 1em;
+        cursor: default;
+        font-size: 1.1em;
+        margin-top: 25px;
+}
+
+.pagination a, .pagination span {
+        padding: 0.2em 0.3em;
+}
+
+.pagination a .disabled, .pagination span .disabled {
+        color: #aaaaaa;
+}
+
+.pagination .current, .pagination em {
+        font-style: normal;
+        font-weight: bold;
+        background-color: #a9a9a9;
+        display: inline-block;
+        width: 1.4em;
+        height: 1.4em;
+        line-height: 1.5;
+        border-radius: 1em;
+        text-shadow: 1px .1px 1px white;
+}
+
+.pagination a {
+        text-decoration: none;
+        color: black !important;
+}
+
+.pagination a:hover, .pagination a:focus {
+        text-decoration: underline;
+}
+
+    

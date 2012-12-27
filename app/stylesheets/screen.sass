@@ -720,7 +720,34 @@ header.index
 
 .tiled-pagination
   margin: 4px $content-bg-padding
-
+  // based on Apple pagination code here: http://mislav.uniqpath.com/will_paginate/
+  .pagination
+    //background: #f1f1f1
+    //border: 1px solid #e5e5e5
+    text-align: center
+    padding: 0 1em 0 1em
+    cursor: default
+    font-size: 1.1em
+    margin-top: 25px
+    a, span
+      padding: 0.2em 0.3em
+    .disabled
+      color: #aaaaaa
+    .current, em
+      font-style: normal
+      font-weight: bold
+      background-color: darken(#f1f1f1, 20)
+      display: inline-block
+      width: 1.4em
+      height: 1.4em
+      line-height: 1.5
+      +border_radius(1em)
+      text-shadow: rgba(white, .75) 1px .1px 1px
+    a
+      text-decoration: none
+      color: black
+      &:hover, &:focus
+        text-decoration: underline
 
 .event, .organization, .plan
   +content-with-padding
@@ -916,37 +943,6 @@ table.event-picker
 
 .fb-comments
   margin-top: 1em
-
-
-// based on Apple pagination code here: http://mislav.uniqpath.com/will_paginate/
-.pagination
-  //background: #f1f1f1
-  //border: 1px solid #e5e5e5
-  text-align: center
-  padding: 0 1em 0 1em
-  cursor: default
-  font-size: 1.1em
-  margin-top: 25px
-  a, span
-    padding: 0.2em 0.3em
-  .disabled
-    color: #aaaaaa
-  .current, em
-    font-style: normal
-    font-weight: bold
-    background-color: darken(#f1f1f1, 20)
-    display: inline-block
-    width: 1.4em
-    height: 1.4em
-    line-height: 1.5
-    +border_radius(1em)
-    text-shadow: rgba(white, .75) 1px .1px 1px
-  a
-    text-decoration: none
-    color: black
-    &:hover, &:focus
-      text-decoration: underline
-
 
 $error-bg:       #F8DCDA
 $error-border:   #F4C8C5

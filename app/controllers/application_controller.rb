@@ -54,6 +54,7 @@ end
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
       request.format = :mobile
+      request.subdomain == 'm'
     end
     if boulder_weekly?
       request.format = :html 
