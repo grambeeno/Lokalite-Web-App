@@ -145,10 +145,10 @@ class Event < ActiveRecord::Base
 
     results = Event.approved.after(start_time)
     results = results.before(latest_start) if latest_start
-    if :export_events       
+    if :export_to_csv       
       # Date range for Boulder Weekly to export only a week's worth of data... They will download the file on Tuesday and the file will provide data for
-      # Thursday until next Wednesday
-      results = Event.approved.after(Date.today + 3.days).before(Date.today + 9.days) 
+      # Thursday until next Wednesday... This breaks the All Events category which breaks the iPhone App Shit!`
+      results = Event.approved.after(Date.today + 2.days).before(Date.today + 8.days) 
     end
 
     organization_id = options[:organization_id]
@@ -487,7 +487,7 @@ class Event < ActiveRecord::Base
     super(*options).push(extras)
   end
  
-  def self.export_events(options = {})
+  def self.export_to_csv(options = {})
     FasterCSV.generate(options) do |csv|
       csv << [ "Organization Name", "Location Name", "Location Address", "Location City", "Location State", "Location Zip Code", "Event Name", "Event Description", "Event Start Time", "Event End Time" ]
       all.each do |event|
