@@ -42,7 +42,7 @@ class EventsController < ApplicationController
    
     respond_to do |format|
       format.html
-      format.csv { send_data @events.export_to_csv() }
+      # format.csv { send_data @events.export_to_csv() } csv file date range in event model was creating bugs in the iPhone app
       format.xls # { send_data @events.to_csv(:col_sep => "\t") }
       format.txt { send_data @events.export_to_csv }
       # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
