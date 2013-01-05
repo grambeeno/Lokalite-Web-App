@@ -116,7 +116,7 @@ class Event < ActiveRecord::Base
     options = Map.extract_options!(args)
 
     page     = options[:page] || 1
-    per_page = options[:per_page] || 20
+    per_page = options[:per_page] || 24
     page     = [Integer(page), 1].max
     per_page = [Integer(per_page)].min
 

@@ -16,8 +16,7 @@ class EventsController < ApplicationController
       # I couldn't put results in the Event Model b/c it was effecting web and iPhone app results
       @events = Event.approved.after(Date.today + 2.days).before(Date.today + 8.days).order('events.starts_at ASC') 
     elsif
-      @events = Event.browse
-      params[:per_page] = 24 
+      @events = Event.browse(params) 
     end 
     params[:user] = current_user if user_signed_in?
 
