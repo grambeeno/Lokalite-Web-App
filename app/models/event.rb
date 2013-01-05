@@ -144,12 +144,7 @@ class Event < ActiveRecord::Base
     end
 
     results = Event.approved.after(start_time)
-    results = results.before(latest_start) if latest_start
-    #if :export_to_csv       
-      # Date range for Boulder Weekly to export only a week's worth of data... They will download the file on Tuesday and the file will provide data for
-      # Thursday until next Wednesday
-      #results = Event.approved.after(Date.today + 2.days).before(Date.today + 8.days) 
-    #end
+    results = results.before(latest_start) if latest_start 
 
     organization_id = options[:organization_id]
 

@@ -12,8 +12,11 @@ class EventsController < ApplicationController
       redirect_to events_path(params)
     end
     if request.format == 'xls' or request.format == 'txt' or request.format == 'csv'  
-      params[:per_page] = 2000
+      # WP:  Date range for Boulder Weekly to download these files on Tuesday and pull results for Thursday to next Wednesday
+      # I couldn't put results in the Event Model b/c it was effecting web and iPhone app results
+      @events = Event.approved.after(Date.today + 2.days).before(Date.today + 8.days).order('events.starts_at ASC') 
     elsif
+      @events = Event.browse
       params[:per_page] = 24 
     end 
     params[:user] = current_user if user_signed_in?
@@ -29,6 +32,14 @@ class EventsController < ApplicationController
       redirect_to edit_profile_path
     end
 
+    respond_to do |format|
+      format.html
+      format.csv { send_data @events.export_to_csv() }
+      format.xls # { send_data @events.to_csv(:col_sep => "\t") }
+      format.txt { send_data @events.export_to_csv }
+      # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
+    end
+
     @events = Event.browse(params)
     if params[:category] == 'featured'
       @events = ensure_enough_featured_events(@events)
@@ -38,15 +49,7 @@ class EventsController < ApplicationController
     end
     if params[:category] == 'suggested'
       @events = @events.shuffle
-    end   
-   
-    respond_to do |format|
-      format.html
-      format.csv { send_data @events.export_to_csv() }
-      format.xls # { send_data @events.to_csv(:col_sep => "\t") }
-      format.txt { send_data @events.export_to_csv }
-      # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
-    end
+    end    
   end
 
   def shuffle
