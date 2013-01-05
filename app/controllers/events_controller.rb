@@ -15,7 +15,13 @@ class EventsController < ApplicationController
       # WP:  Date range for Boulder Weekly to download these files on Tuesday and pull results for Thursday to next Wednesday
       # I couldn't put results in the Event Model b/c it was effecting web and iPhone app results
       @events = Event.approved.after(Date.today + 3.days).before(Date.today + 9.days).order('events.starts_at ASC') 
-    elsif
+    elsif params[:category] == 'featured'
+      @events = ensure_enough_featured_events(@events)
+    elsif params[:category] == 'featured'
+      @events = @events.shuffle
+    elsif params[:category] == 'suggested'
+      @events = @events.shuffle
+    else
       @events = Event.browse(params) 
     end 
     params[:user] = current_user if user_signed_in?
@@ -29,7 +35,7 @@ class EventsController < ApplicationController
     if params[:category] == "suggested" && params[:user].event_categories.empty?
       flash[:error] = 'Update your profile with some favorite categories in order to use suggestions.'
       redirect_to edit_profile_path
-    end
+    end   
 
     respond_to do |format|
       format.html
@@ -37,18 +43,7 @@ class EventsController < ApplicationController
       format.xls # { send_data @events.to_csv(:col_sep => "\t") }
       format.txt { send_data @events.export_to_csv }
       # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
-    end
-
-    @events = Event.browse(params)
-    if params[:category] == 'featured'
-      @events = ensure_enough_featured_events(@events)
-    end
-    if params[:category] == 'featured'
-      @events = @events.shuffle
-    end
-    if params[:category] == 'suggested'
-      @events = @events.shuffle
-    end    
+    end 
   end
 
   def shuffle
