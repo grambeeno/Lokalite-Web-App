@@ -63,7 +63,9 @@
   </table>
 
   <br />
-  <%= will_paginate :collection => @users %>
+  <div class="tiled-pagination">
+    <%= will_paginate :collection => @users %>
+  </div>
 
 </div>
 <br />

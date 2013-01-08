@@ -31,19 +31,19 @@
 
       <% for event in @events -%>
         <tr>
-          <td>
+          <td class="apwire" style="padding: 0.5em">
             <label>
               <%= check_box_tag 'event_ids[]', event.id, true %>
               <%= event.name %>
             </label>
           </td>
-          <td>
+          <td style="padding: 0.5em">
             <%= event.organization.name %>
           </td>
-          <td>
+          <td style="padding: 0.5em">
             <%= event.created_by.full_name %>
           </td>
-          <td>
+          <td style="padding: 0.5em">
             <%= link_to "view event", event_path(event.slug, event.id) %>
           </td>
         </tr>
