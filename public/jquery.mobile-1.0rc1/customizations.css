@@ -82,4 +82,21 @@
         text-decoration: underline;
 }
 
+.ui-bar-a-bw {
+        background-color: #5c3761;
+        background-repeat: repeat-x;
+        background-image: -khtml-gradient(linear, left top, left bottom, from(#5c3761), to(#442947));
+        background-image: -moz-linear-gradient(top, #5c3761, #442947);
+        background-image: -ms-linear-gradient(top, #5c3761, #442947);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5c3761), color-stop(100%, #442947));
+        background-image: -webkit-linear-gradient(top, #5c3761, #442947);
+        background-image: -o-linear-gradient(top, #5c3761, #442947);
+        background-image: linear-gradient(top, #5c3761, #442947);
+        color: white;
+        -moz-box-shadow: 0px 0px 5px #8c5494;
+        -webkit-box-shadow: 0px 0px 5px #8c5494;
+        -o-box-shadow: 0px 0px 5px #8c5494;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+}
     

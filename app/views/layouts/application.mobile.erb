@@ -14,7 +14,11 @@
       
       <body>
         <div class='current'>
-          <div data-role='header' data-position='fixed'> 
+          <% if boulder_weekly? %>
+            <div data-role='header' data-position='fixed' class='ui-bar-a-bw'> 
+          <% else %>
+            <div data-role='header' data-position='fixed'>
+          <% end %>
             <h1>
               <% if boulder_weekly? %>
                 <%= bw_title %>
