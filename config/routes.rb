@@ -5,6 +5,7 @@ Lokalite::Application.routes.draw do |map|
  
   match 'events(/:view_type)/:origin(/category/:category)(/search/:keywords)', :as => :events, :controller => :events, :action => :index, :constraints => { :subdomain => /boulderweekly/ } 
   match 'events/categories', :controller => :events, :action => :categories, :as => :event_categories, :constraints => { :subdomain => /boulderweekly/ }
+  match 'events(/*slug)/:id', :as => :event, :controller => :events, :constraints => { :subdomain => /boulderweekly/, :id => /\d+/}, :action => :show
   match '/' => 'events#index', :constraints => { :subdomain => /list/ }, :fbview => '1', :category => 'featured', :origin => 'boulder-colorado'
   match '/' => 'slides#show', :constraints => { :subdomain => /information/ }
   match '/' => 'events#index', :constraints => { :subdomain => /m/ }, :mobile => '1', :category => 'featured', :origin => 'boulder-colorado'
