@@ -97,12 +97,13 @@
         -webkit-box-shadow: 0px 0px 5px #8c5494;
         -o-box-shadow: 0px 0px 5px #8c5494;
         text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 .ui-title {
-        width: 100%
-        margin-top: 0px
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
 }
 
     
