@@ -25,7 +25,7 @@ class EventsController < ApplicationController
       @events = Event.browse(params) 
     end 
     params[:user] = current_user if user_signed_in?
-
+   
     # Don't apply date filters to suggested event page
     # if params.key?(:after) and params[:category] == 'suggested'
       # params.delete(:category)
