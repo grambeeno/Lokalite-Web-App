@@ -111,7 +111,12 @@ module ApplicationHelper
     end
   end
 
-  def default_content_for(name, &block)
+   def bw_title
+     parts = []
+     parts << "Boulder Weekly Events"
+   end
+ 
+ def default_content_for(name, &block)
     if !content_for?(name)
       content_for("default_#{ name }", &block)
       content_for("default_#{ name }")
