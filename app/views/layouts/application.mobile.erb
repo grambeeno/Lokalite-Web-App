@@ -16,7 +16,10 @@
         <div class='current'>
           <div data-role='header' data-position='fixed'> 
             <h1>
-              <%= bw_title %>
+              <% if boulder_weekly? %>
+                <%= bw_title %>
+              <% else %>
+                <%= title %>
             </h1>
           </div>
           <div data-role='navbar' data-theme='a'>

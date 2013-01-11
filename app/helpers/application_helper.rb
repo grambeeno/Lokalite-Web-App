@@ -114,6 +114,8 @@ module ApplicationHelper
    def bw_title
      parts = []
      parts << "Boulder Weekly Events"
+     parts << title_for_category(params[:category]) if params[:category]
+     parts.join(' | ')
    end
  
  def default_content_for(name, &block)
