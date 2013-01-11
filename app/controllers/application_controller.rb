@@ -56,7 +56,7 @@ end
       request.format = :mobile 
     end
     if boulder_weekly?
-      request.format = :html 
+      request.format = :mobile 
     end
 #    if mobile_device? && request.subdomain != 'm'
 #      redirect_to 'http://m.lokalite.com'
