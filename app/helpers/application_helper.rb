@@ -97,7 +97,7 @@ module ApplicationHelper
   def title
     if boulder_weekly?
       parts = []
-      parts << "Boulder Weekly Events"
+      parts << "Boulder County Events"
     else
       parts = []
       parts << @event.name if @event
