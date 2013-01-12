@@ -9,7 +9,11 @@ body
     top: 0
     width: 100%
     background-color: #000
-    min-width: 1432px
+    min-width: 1225px
+
+  .content
+    +centered-on-page
+    width: 1225px
     
     .logo-wrap
       +float('left')
@@ -17,22 +21,23 @@ body
     .logo
       display: block 
       +replace-text-with-dimensions('boulderweekly.png')
-      width: 252px
+      //width: 252px
       height: 115px
-      margin-left: 50px 
+      //margin-left: 50px 
 
     .logo2
       display: block 
       +replace-text-with-dimensions('BCE_logo.png')
-      width: 400px
+      //width: 400px
       height: 115px
       //margin-right: 50px
 
     .logo3
       display: block 
       +replace-text-with-dimensions('BOB_Deals.png')
-      width: 730px
+      //width: 730px
       height: 115px
+      padding-left: 50px
       //margin-right: 50px
   
   > header.boulderheader
