@@ -68,7 +68,7 @@ class Event < ActiveRecord::Base
 
   # If we want to search for attributes inside the event organization, we need to
   # pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => {:organization => [[:name, 'B']]}
-  pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']]
+  pg_search_scope :search, :against => [[:name, 'A'], [:description, 'C']], :associated_against => { :organization => [[:name, 'B']]}
 
   scope :approved, where(:approved => true)
   scope :not_approved, where(:approved => false)

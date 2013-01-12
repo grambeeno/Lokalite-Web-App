@@ -44,7 +44,7 @@ $('#directory').change(function() {
           </li>
           <li><h5>City</h5>
             <% cities = Location.city_options %>
-            <%= select_tag :event_city, options_for_select(cities), :class => 'form_input form-dropdown' %>
+            <%= select_tag :event_city, options_for_select(cities, :selected => "Boulder"), :class => 'form_input form-dropdown' %>
           </li>
         </ul>
       </div>
