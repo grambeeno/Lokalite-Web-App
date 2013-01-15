@@ -10,6 +10,9 @@
 	background-image:     -ms-linear-gradient(top, #a4c984 /*{e-bup-background-start}*/, #749a74 /*{e-bup-background-end}*/); /* IE10 */
 	background-image:      -o-linear-gradient(top, #a4c984 /*{e-bup-background-start}*/, #749a74 /*{e-bup-background-end}*/); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #a4c984 /*{e-bup-background-start}*/, #749a74 /*{e-bup-background-end}*/);
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
 }
 
 .ui-btn-hover-e {
@@ -24,6 +27,9 @@
 	background-image:     -ms-linear-gradient(top, #a4c984 /*{e-bhover-background-start}*/, #749a74 /*{e-bhover-background-end}*/); /* IE10 */
 	background-image:      -o-linear-gradient(top, #a4c984 /*{e-bhover-background-start}*/, #749a74 /*{e-bhover-background-end}*/); /* Opera 11.10+ */
 	background-image:         linear-gradient(top, #a4c984 /*{e-bhover-background-start}*/, #749a74 /*{e-bhover-background-end}*/);
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
 }
 
 .ui-btn-down-e {
@@ -105,4 +111,26 @@
         margin: .6em 0 .8em !important;
 }
 
-    
+.ui-mobile a img, .ui-mobile fieldset {
+        border: 0;
+        width: 100%;
+}  
+
+.ui-margin {
+        margin: 0px 15px 15px 15px;
+}
+
+.ui-btn-corner-all {
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+}
+
+.ui-collapsible-heading {
+        font-size: 16px;
+        display: block;
+        margin: 0 5px;
+        padding: 0;
+        border-width: 0 0 1px 0;
+        position: relative;
+}
