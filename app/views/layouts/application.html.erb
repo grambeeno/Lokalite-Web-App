@@ -52,9 +52,9 @@
     <%= render :partial => '/layouts/google_analytics' %>
   </head>
   <% if boulder_weekly? %>
-    <div style="background-image: url('/images/BCE_FBlogo.png')"></div>
+    <div class="bce_fblogo"></div>
   <% else %>
-    <div style="background-image: url('/images/logo.png')"></div>
+    <div class="fblogo"></div>
   <% end %>
 
   <body class="<%= params[:controller].parameterize %>-controller">
