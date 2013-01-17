@@ -22,19 +22,10 @@
          Remove this if you use the .htaccess -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <% if boulder_weekly? %>
-      <title><%= bw_title %></title>
-      <meta name="description" content="<% if @event %> <%= @event.description %> <% else %> <%= bw_title %> <% end %>">
-      <meta name="author" content="bouldercountyevents.com">
-      <meta name="keywords" content="Boulder, Boulder Events, Happy Hours, Pearl St., Downtown Boulder, Local Events, Boulder Nightlife, Boulder Restaurants, Music in Boulder, Drink Specials, Boulder Community">
-      <meta property="og:image" content="http://events.boulderweekly.com/images/BCE_logo.png" />
-    <% else %>
-      <title><%= title %></title>
-      <meta name="description" content="<% if @event %> <%= @event.description %> <% else %> <%= title %> <% end %>">
-      <meta name="author" content="lokalite.com">
-      <meta name="keywords" content="Boulder, Boulder Events, Happy Hours, Pearl St., Downtown Boulder, Local Events, Boulder Nightlife, Boulder Restaurants, Music in Boulder, Drink Specials, Boulder Community">
-      <meta property="og:image" content="http://lokalite.com/images/header-logo.png" />
-    <% end %>
+    <title><%= title %></title>
+    <meta name="description" content="<% if @event %> <%= @event.description %> <% else %> <%= title %> <% end %>">
+    <meta name="author" content="lokalite.com">
+    <meta name="keywords" content="Boulder, Boulder Events, Happy Hours, Pearl St., Downtown Boulder, Local Events, Boulder Nightlife, Boulder Restaurants, Music in Boulder, Drink Specials, Boulder Community">
 
     <!-- Alexa Traffic Site Tag -->
     <meta name="alexaVerifyID" content="pYn4tfsbhIEUBVhn6q5YorJoBZ4" />
