@@ -25,8 +25,12 @@
     <title><%= title %></title>
     <meta name="description" content="<% if @event %> <%= @event.description %> <% else %> <%= title %> <% end %>">
     <meta name="author" content="lokalite.com">
-    <meta name="keywords" content="Boulder, Boulder Events, Happy Hours, Pearl St., Downtown Boulder, Local Events, Boulder Nightlife, Boulder Restaurants, Music in Boulder, Drink Specials, Boulder Community">
-    <meta property="og:image" content="http://lokalite.com/images/logo.png">
+    <meta name="keywords" content="Boulder, Boulder Events, Happy Hours, Pearl St., Downtown Boulder, Local Events, Boulder Nightlife, Boulder Restaurants, Music in Boulder, Drink Specials, Boulder Community"> 
+    <% if boulder_weekly? %>
+      <meta property="og:image" content="http://lokalite.com/images/BCE_FBlogo.png">
+    <% else %>
+      <meta property="og:image" content="http://lokalite.com/images/logo.png">
+    <% end %>
 
     <!-- Alexa Traffic Site Tag -->
     <meta name="alexaVerifyID" content="pYn4tfsbhIEUBVhn6q5YorJoBZ4" />
@@ -47,6 +51,11 @@
 
     <%= render :partial => '/layouts/google_analytics' %>
   </head>
+  <% if boulder_weekly? %>
+    <div style="background-image: url('/images/BCE_FBlogo.png')"></div>
+  <% else %>
+    <div style="background-image: url('/images/logo.png')"></div>
+  <% end %>
 
   <body class="<%= params[:controller].parameterize %>-controller">
 
