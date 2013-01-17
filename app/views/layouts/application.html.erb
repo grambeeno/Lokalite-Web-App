@@ -53,11 +53,6 @@
   </head> 
 
   <body class="<%= params[:controller].parameterize %>-controller">
-    <% if boulder_weekly? %>
-      <div class="bce_fblogo"></div>
-    <% else %>
-      <div class="fblogo"></div>
-    <% end %>
 
     <%= render :partial => '/layouts/facebook' %>
 
