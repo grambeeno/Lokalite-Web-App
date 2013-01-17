@@ -21,10 +21,12 @@ $site-padding: 10px
   // background-color: white
 
 .bce_fblogo
-  background-image: url('/images/BCE_FBlogo.png')
+  +replace-text-with-dimensions('BCE_FBlogo.png') 
+  height: 0
 
 .fblogo
-  background-image: url('/images/logo.png')
+  +replace-text-with-dimensions('logo.png')
+  height: 0
 
 body
   font-family: Helvetica, Arial, Verdana, sans-serif

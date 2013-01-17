@@ -46,7 +46,7 @@ a.button:hover { background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-st
 
 .bce_fblogo { background-image: url("/images/BCE_FBlogo.png"); }
 
-.fblogo { background-image: url("/images/logo.png"); }
+.fblogo { text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/logo.png?1358395437'); background-repeat: no-repeat; background-position: 50% 50%; width: 350px; height: 200px; height: 0; }
 
 body { font-family: Helvetica, Arial, Verdana, sans-serif; }
 body > header { background-color: #222222; background-repeat: repeat-x; background-image: -khtml-gradient(linear, left top, left bottom, from(#333333), to(#222222)); background-image: -moz-linear-gradient(top, #333333, #222222); background-image: -ms-linear-gradient(top, #333333, #222222); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #222222)); background-image: -webkit-linear-gradient(top, #333333, #222222); background-image: -o-linear-gradient(top, #333333, #222222); background-image: linear-gradient(top, #333333, #222222); color: white; -moz-box-shadow: 0px 0px 5px #333333; -webkit-box-shadow: 0px 0px 5px #333333; -o-box-shadow: 0px 0px 5px #333333; width: 100%; }
