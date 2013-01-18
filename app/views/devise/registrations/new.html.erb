@@ -16,14 +16,14 @@
     </h2>
   <% end %>
  
-    <!-- <div id="facebook", style="margin: 0; text-align: center">
+    <div id="facebook", style="margin: 0; text-align: center">
       <fb:login-button size='large' onlogin="afterFacebookSignIn()" alt="Sign up using Facebook">Sign up using Facebook</fb:login-button>
     </div>
   
-
-  </br> -->
+  </br>
+  </br>
   <div class='devise-fields'>
-    <!-- <h2 class='big'>or with an email and password:</h2> -->
+    <h2 class='big'>or with an email and password:</h2>
 
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>

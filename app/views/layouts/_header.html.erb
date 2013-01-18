@@ -76,9 +76,9 @@
         <ul class="dropdown-menu sign-in user-name" style='margin-left: 0px'>
           <li>
             <div class="divider"></div>
-            <!-- <div id="facebook">
+            <div id="facebook">
               <fb:login-button size="large" onlogin="afterFacebookSignIn()" style="margin-right: 4px" alt="Connect using Facebook">Connect using Facebook</fb:login-button>
-            </div> -->
+            </div>
             <%= form_for(:user, :url => session_path(:user)) do |f| %>
               <div></br>
                 <%= f.email_field :email, :placeholder => "Email", :class => "signin-field" %>
