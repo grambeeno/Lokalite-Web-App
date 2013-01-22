@@ -17,9 +17,7 @@ class EventsController < ApplicationController
       # Event.approved.after(Date.today + 3.days).before(Date.today + 9.days).order('events.starts_at ASC')
       @events =  ensure_enough_featured_events(@events)
     elsif params[:category] == 'featured'
-      @events = ensure_enough_featured_events(@events)
-    elsif params[:category] == 'featured'
-      @events = @events.shuffle
+      @events = ensure_enough_featured_events(@events).shuffle 
     elsif params[:category] == 'suggested'
       @events = @events.shuffle
     else
