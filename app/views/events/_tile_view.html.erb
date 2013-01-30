@@ -26,6 +26,13 @@
       <p class='tiled-subheading-subline'>
         After
         <%= Chronic.parse(params[:after]).to_s(:full) %>
+        in
+        <%= params[:event_city] %>, <%= params[:event_state] %>
+      </p>
+    <% elsif params[:event_city].present? %>
+      <p class='tiled-subheading-subline'>
+        In
+        <%= params[:event_city] %>, <%= params[:event_state] %>
       </p>
     <% end %> 
   </div>

@@ -182,7 +182,10 @@ class Event < ActiveRecord::Base
     # results = results.includes(:categories, :location, :image, :organization => [:categories, :locations])
     results = results.includes(:categories, :location, :image, :organization => [:locations])
 
-    origin  = options[:origin]
+    # WP: using this origin definition to scope location for search. This doesn't have any effect on the :origin set in the routes.
+    # This definition scopes the search within 50 miles of the definition. Note: see within definition below.
+    #
+    origin  = options[:event_city]
     origin  = origin.humanize if origin
 
     if options[:order] == 'distance' && origin.present?
@@ -200,8 +203,8 @@ class Event < ActiveRecord::Base
     # We're ready for scoping by location, but don't want to enable it yet
     # because we want iPhone users and people in other locations to see data
     #
-    # within  = options[:within] || 20
-    # results = results.origin(origin, :within => within) if origin.present?
+    within  = options[:within] || 25
+    results = results.origin(origin, :within => within) if origin.present?
 
     results = results.origin(origin) if origin.present?
 
