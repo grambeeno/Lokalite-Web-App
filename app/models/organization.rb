@@ -58,7 +58,7 @@ class Organization < ActiveRecord::Base
 
   has_many :locations, :dependent => :destroy, :include => :geocoding
   # still need to enable this for has_many associations
-  # acts_as_geocodable :through => :locations
+  acts_as_geocodable :through => :locations
   accepts_nested_attributes_for :locations
   # validates_presence_of :locations
   validates_associated  :locations
@@ -105,6 +105,13 @@ class Organization < ActiveRecord::Base
    end
     
     results = results.search(keywords.join(' ')) unless keywords.blank?
+
+    origin  = options[:event_city]
+    origin  = origin.humanize if origin
+    within  = options[:within] || 5
+    results = results.origin(origin, :within => within) if origin.present?
+
+    results = results.origin(origin) if origin.present?
 
     # TODO - filter by location
     # results = results.origin([40.014781,-105.186989], :within => 3.5)
