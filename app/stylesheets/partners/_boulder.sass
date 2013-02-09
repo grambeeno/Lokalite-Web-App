@@ -8,7 +8,7 @@ body
     position: fixed
     top: 0
     width: 100%
-    background-color: #000
+    background-color: white
     min-width: 1225px
 
   .bwcontent
@@ -41,21 +41,22 @@ body
       //margin-right: 50px
   
   > header.boulderheader
-    background-color: #5C3761
+    background-color: #fff
     background-repeat: repeat-x
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#5C3761), to(#442947))
-    background-image: -moz-linear-gradient(top, #5C3761, #442947)
-    background-image: -ms-linear-gradient(top, #5C3761, #442947)
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #5C3761), color-stop(100%, #442947))
-    background-image: -webkit-linear-gradient(top, #5C3761, #442947)
-    background-image: -o-linear-gradient(top, #5C3761, #442947)
-    background-image: linear-gradient(top, #5C3761, #442947)
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#fff), to(#fff))
+    background-image: -moz-linear-gradient(top, #fff, #fff)
+    background-image: -ms-linear-gradient(top, #fff, #fff)
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #fff))
+    background-image: -webkit-linear-gradient(top, #fff, #fff)
+    background-image: -o-linear-gradient(top, #fff, #fff)
+    background-image: linear-gradient(top, #fff, #fff)
     color: white
-    -moz-box-shadow: 0px 0px 5px #8c5494
-    -webkit-box-shadow: 0px 0px 5px #8c5494
-    -o-box-shadow: 0px 0px 5px #8c5494
+    -moz-box-shadow: 0px 0px 5px #fff
+    -webkit-box-shadow: 0px 0px 5px #fff
+    -o-box-shadow: 0px 0px 5px #fff
     min-width: 1160px
     top: 115px
+    border-bottom: thick solid #55aa51
     //padding-top: 10px 
 
     .content
@@ -110,25 +111,27 @@ body
         -webkit-form-placeholder: white 
         .search_module 
           +border-top-radius(0)
-          +border-bottom-radius(4px)
+          +border-bottom-radius(0px)
           position: absolute 
           display: none
           margin: 3px 0
           width: 535px
           padding: 10px 20px
-          +linear-gradient(color-stops(#442947, #5C3761))
-          border: 1px solid #444
-          border-top: 1px solid #5C3761
+          +linear-gradient(color-stops(#A4C9A4, #749A74))
+          border: 1px solid #55AA51
+          color: black
+          h5
+            font-weight: normal  
         .places-search
           +border-top-radius(0)
-          +border-bottom-radius(4px)
+          +border-bottom-radius(0px)
           position: absolute 
           display: none 
           width: 400px
           padding: 10px 20px
-          +linear-gradient(color-stops(#442947, #5C3761))
-          border: 1px solid #444 
-          border-top: 1px solid #5C3761
+          +linear-gradient(color-stops(#A4C9A4, #749A74))
+          border: 1px solid #55AA51 
+          border-top: 1px solid #55AA51
         .event_date_filters
           margin: 10px 0 0 350px
           h2
@@ -179,14 +182,14 @@ body
         background-image: url(/images/monocle.png)
         background-repeat: no-repeat
         //background-position: 154px 50%
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        font-family: "Univers LT 47 Condensed Light",Arial, Helvetica, sans-serif
         font-weight: normal
         font-size: 13px
         line-height: 18px
         padding: 4px 0 4px 10px
         color: white
         color: rgba(255, 255, 255, 0.75)
-        border: 1px solid #444
+        border: 1px solid #55AA51
         -webkit-border-radius: 4px
         -moz-border-radius: 4px
         border-radius: 4px
@@ -205,8 +208,8 @@ body
         background-image: none
         color: #404040
         text-shadow: 0 1px 0 #ffffff
-        border: 0
-        padding: 5px 0 5px 10px
+        border: 1px solid #eee
+        padding: 5px -1px 5px 11px
         -webkit-box-shadow: 0 0 8px rgba(255, 255, 255, 0.5)
         -moz-box-shadow: 0 0 8px rgba(255, 255, 255, 0.5)
         box-shadow: 0 0 8px rgba(255, 255, 255, 0.5)
@@ -228,18 +231,20 @@ body
         padding: 10px 1px
         line-height: 1px
         text-decoration: none
-        color: #BABABA
+        color: #000
       .nav .user-menu
         float: left
         text-align: right
         display: inline-block
         padding: 0 0 
-        height: 53px
+        height: 33px
         vertical-align: top
         cursor: pointer
         white-space: nowrap
+        border-right: 1px solid #55AA51
+        margin: 10px 0
         &:hover
-          background-color: #5C3761                  
+          background-color: white                  
         .acting-like
           position: absolute
           top: 8px
@@ -251,6 +256,8 @@ body
         line-height: 4.3em
         cursor: pointer
         padding: 0 10px
+        &:hover
+          text-decoration: underline
 
       .nav a.arrow
         cursor: pointer
@@ -274,12 +281,12 @@ body
         white-space: nowrap
         text-overflow: ellipsis
         padding: 0
-        line-height: 4.3em
+        line-height: 3em
         vertical-align: top
         text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5)
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
-        font-size: 12px
-        font-weight: bold
+        font-family: "Univers LT 47 Condensed Light",Arial, Helvetica, sans-serif
+        font-size: 11px
+        font-weight: none
         text-transform: uppercase
 
       .nav .user-img
@@ -306,7 +313,7 @@ body
         padding-left: 40px
 
       .user-menu:hover a, .user-menu:hover span
-        color: #ffffff
+        color: black
         text-decoration: none
 
       .nav .active > a
@@ -326,11 +333,40 @@ body
         top: 0
         border: 0 
         z-index: 1100
+        border-right: 1px solid black
+        border-left: 1px solid black
+        border-top: 1px solid black
+
       .nav a.menu:hover, .nav li.open .menu, .nav .dropdown-toggle:hover, .nav .dropdown.open .dropdown-toggle
         background: #444
         background: rgba(255, 255, 255, 0.05)
-      .nav .menu-dropdown, .nav .dropdown-menu
-        background-color: #5C3761 
+      .nav .menu-dropdown, .nav .dropdown-menu  
+        background: white
+        border: 1px solid black
+
+      .nav .menu-dropdown:after, .nav .dropdown-menu:after,  .nav .menu-dropdown:after, .nav .dropdown-menu:before 
+        bottom: 100%
+        border: solid transparent
+        content: " "
+        height: 0
+        width: 0
+        position: absolute
+        pointer-events: none
+
+      .nav .menu-dropdown:after, .nav .dropdown-menu:after 
+        border-color: rgba(0, 0, 0, 0)
+        border-bottom-color: white
+        border-width: 15px
+        left: 45%
+        margin-left: 1px
+        
+
+      .nav .menu-dropdown:before, .nav .dropdown-menu:before 
+        border-color: rgba(0, 0, 0, 0)
+        border-bottom-color: black
+        border-width: 16px
+        left: 45%
+        margin-left: 0px
   
       .nav .menu-dropdown a.menu, .nav .dropdown-menu a.menu, .nav .menu-dropdown .dropdown-toggle, .nav .dropdown-menu .dropdown-toggle
         color: #ffffff
@@ -341,22 +377,23 @@ body
 
       .nav .menu-dropdown li a, .nav .dropdown-menu li a
         padding: 5px 10px
-        color: #bababa
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
-        font-size: 12px
-        font-weight: bold
+        color: black
+        font-family: "Univers LT 47 Condensed Light", Arial, Helvetica, sans-serif
+        font-size: 11px
+        font-weight: thin
         text-transform: uppercase
+        border-bottom: 1px solid black
         &:hover
-          color: white
-          background-color: #5C3761
+          color: black
+          background-color: #55AA51
           background-repeat: repeat-x
-          background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(68, 41, 71, 0.5)), to(#442947))
-          background-image: -moz-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
-          background-image: -ms-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
-          background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(68, 41, 71, 0.5)), color-stop(100%, #442947))
-          background-image: -webkit-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
-          background-image: -o-linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
-          background-image: linear-gradient(top, rgba(68, 41, 71, 0.5), #442947)
+          background-image: none
+          background-image: none
+          background-image: none
+          background-image: none
+          background-image: none
+          background-image: none
+          background-image: none
 
       .nav .menu-dropdown .active a, .nav .dropdown-menu .active a
         color: #ffffff
@@ -402,15 +439,15 @@ body
         z-index: -100
         width: 195px 
         margin: 51px -150px 0 
-        padding: 0px 0 6px 0
+        padding: 0px 0 0px 0
         zoom: 1
         border-color: #999
-        border-color: rgba(0, 0, 0, 0.2)
+        border-color: rgba(0, 0, 0, 0)
         border-style: solid
-        border-width: 0 1px 1px
-        -webkit-border-radius: 0 0 6px 6px
-        -moz-border-radius: 0 0 6px 6px
-        border-radius: 0 0 6px 6px
+        border-width: 0 0px 0px
+        -webkit-border-radius: 0 0 0px 0px
+        -moz-border-radius: 0 0 0px 0px
+        border-radius: 0 0 0px 0px
         -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
         -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
@@ -419,35 +456,35 @@ body
         background-clip: padding-box
 
       .ddmboulder0
-        margin-left: 67px
-        -moz-margin-start: 67px
+        margin-left: -10px
+        -moz-margin-start: -10px
       .ddmboulder1
-        margin-left: 119px
-        -moz-margin-start: 118px
+        margin-left: 50px
+        -moz-margin-start: 50px
       .ddmboulder2
-        margin-left: 479px
-        -moz-margin-start: 481px
+        margin-left: 440px
+        -moz-margin-start: 440px
       .ddmboulder3
-        margin-left: 850px
-        -moz-margin-start: 856px
+        margin-left: 795px
+        -moz-margin-start: 795px
       .ddmboulder4
-        margin-left: 592px
-        -moz-margin-start: 595px
+        margin-left: 530px
+        -moz-margin-start: 530px
       .ddmboulder5
-        margin-left: 286px
-        -moz-margin-start: 287px
+        margin-left: 240px
+        -moz-margin-start: 240px
       .ddmboulder6
-        margin-left: 392px
-        -moz-margin-start: 394px
+        margin-left: 340px
+        -moz-margin-start: 340px
       .ddmboulder7
-        margin-left: 654px
-        -moz-margin-start: 658px
+        margin-left: 590px
+        -moz-margin-start: 590px
       .ddmboulder10
-        margin-left: 710px
-        -moz-margin-start: 714px
+        margin-left: 655px
+        -moz-margin-start: 655px
       .ddmboulder11
-        margin-left: 777px
-        -moz-margin-start: 783px
+        margin-left: 725px
+        -moz-margin-start: 725px
 
       .dropdown-menu.sign-in
         width: 210px
