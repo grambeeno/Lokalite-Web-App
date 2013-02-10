@@ -306,13 +306,13 @@ body { font-family: Helvetica, Arial, Verdana, sans-serif; font-size: 12px; }
 body .header2 { z-index: 1030; height: 115px; position: fixed; top: 0; width: 100%; background-color: white; min-width: 1225px; }
 body .bwcontent { width: 1140px; margin: 0 auto; padding: 0 10px; width: 1225px; }
 body .bwcontent .logo-wrap { display: inline; float: left; }
-body .bwcontent .logo { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1360438252'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 110px; height: 115px; }
-body .bwcontent .logo2 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BCE_logo.png?1360437782'); background-repeat: no-repeat; background-position: 50% 50%; width: 348px; height: 100px; height: 115px; }
-body .bwcontent .logo3 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BOB_Deals.png?1360437447'); background-repeat: no-repeat; background-position: 50% 50%; width: 607px; height: 75px; height: 115px; padding-left: 50px; }
+body .bwcontent .logo { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1360449726'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 110px; height: 115px; }
+body .bwcontent .logo2 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BCE_logo.png?1360449726'); background-repeat: no-repeat; background-position: 50% 50%; width: 348px; height: 100px; height: 115px; }
+body .bwcontent .logo3 { display: block; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/BOB_Deals.png?1360449726'); background-repeat: no-repeat; background-position: 50% 50%; width: 607px; height: 75px; height: 115px; padding-left: 50px; }
 body > header.boulderheader { background-color: white; background-repeat: repeat-x; background-image: -khtml-gradient(linear, left top, left bottom, from(white), to(white)); background-image: -moz-linear-gradient(top, white, white); background-image: -ms-linear-gradient(top, white, white); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, white)); background-image: -webkit-linear-gradient(top, white, white); background-image: -o-linear-gradient(top, white, white); background-image: linear-gradient(top, #ffffff, #ffffff); color: white; -moz-box-shadow: 0px 0px 5px white; -webkit-box-shadow: 0px 0px 5px white; -o-box-shadow: 0px 0px 5px white; min-width: 1160px; top: 115px; border-bottom: thick solid #55aa51; }
 body > header.boulderheader .content { width: 1200px; }
 body > header.boulderheader .content .logo-wrap { display: inline; float: left; width: 190px; }
-body > header.boulderheader .content .logo { display: block; width: 190px; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1360438252'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 110px; }
+body > header.boulderheader .content .logo { display: block; width: 190px; text-indent: -119988px; overflow: hidden; text-align: left; background-image: url('/images/boulderweekly.png?1360449726'); background-repeat: no-repeat; background-position: 50% 50%; width: 219px; height: 110px; }
 body > header.boulderheader .content .back { float: left; text-align: right; display: inline-block; padding: 0 0; height: 53px; vertical-align: top; cursor: pointer; white-space: nowrap; }
 body > header.boulderheader .content .back .link { cursor: pointer; font-weight: normal; display: inline-block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 0 18px 0; line-height: 53px; vertical-align: top; }
 body > header.boulderheader .content .back .link:hover { color: white; text-decoration: underline; }
@@ -373,13 +373,13 @@ body > header.boulderheader .content .menu-dropdown, body > header.boulderheader
 body > header.boulderheader .content .ddmboulder0 { margin-left: -10px; -moz-margin-start: -10px; }
 body > header.boulderheader .content .ddmboulder1 { margin-left: 50px; -moz-margin-start: 50px; }
 body > header.boulderheader .content .ddmboulder2 { margin-left: 440px; -moz-margin-start: 440px; }
-body > header.boulderheader .content .ddmboulder3 { margin-left: 795px; -moz-margin-start: 795px; }
-body > header.boulderheader .content .ddmboulder4 { margin-left: 530px; -moz-margin-start: 530px; }
+body > header.boulderheader .content .ddmboulder3 { margin-left: 795px; -moz-margin-start: 800px; }
+body > header.boulderheader .content .ddmboulder4 { margin-left: 530px; -moz-margin-start: 535px; }
 body > header.boulderheader .content .ddmboulder5 { margin-left: 240px; -moz-margin-start: 240px; }
 body > header.boulderheader .content .ddmboulder6 { margin-left: 340px; -moz-margin-start: 340px; }
-body > header.boulderheader .content .ddmboulder7 { margin-left: 590px; -moz-margin-start: 590px; }
-body > header.boulderheader .content .ddmboulder10 { margin-left: 655px; -moz-margin-start: 655px; }
-body > header.boulderheader .content .ddmboulder11 { margin-left: 725px; -moz-margin-start: 725px; }
+body > header.boulderheader .content .ddmboulder7 { margin-left: 590px; -moz-margin-start: 598px; }
+body > header.boulderheader .content .ddmboulder10 { margin-left: 655px; -moz-margin-start: 660px; }
+body > header.boulderheader .content .ddmboulder11 { margin-left: 725px; -moz-margin-start: 732px; }
 body > header.boulderheader .content .dropdown-menu.sign-in { width: 210px; right: 0px; position: absolute; }
 body > header.boulderheader .content .menu-dropdown li, body > header.boulderheader .content .dropdown-menu li { float: none; display: block; background-color: none; }
 body > header.boulderheader .content .menu-dropdown .divider, body > header.boulderheader .content .dropdown-menu .divider { height: 1px; margin: 0; overflow: hidden; background-color: #eeeeee; border-bottom: 1px solid white; }
