@@ -710,7 +710,7 @@ form.formtastic .event-repeat span.checkbox-wrapper input[type="checkbox"] { pos
 .feature-events .event-picker li { overflow: hidden; *zoom: 1; margin-bottom: 6px; }
 .feature-events .event-picker li input { display: inline; float: left; margin: 8px 4px; }
 .feature-events .event-picker li label { display: block; display: inline; float: left; margin-left: 6px; max-width: 650px; }
-.feature-events .event-slots { border: 1px solid gray; width: 138px; padding: 8px 0 0 8px; overflow: hidden; *zoom: 1; }
+.feature-events .event-slots { border: 1px solid gray; width: 140px; padding: 8px 0 0 8px; overflow: hidden; *zoom: 1; }
 .feature-events .event-slots .slot { position: relative; display: inline; float: left; width: 36px; height: 36px; margin: 0 8px 8px 0; border: 1px solid gray; font-size: 24px; color: gray; line-height: 36px; text-align: center; background-color: #f8dcda; border-color: #f4c8c5; }
 .feature-events .event-slots .slot.available { background-color: #dff1df; border-color: #bbe2bb; cursor: pointer; }
 .feature-events .event-slots .slot.selected { background-color: #fff0c0; border-color: #ffe38d; }
