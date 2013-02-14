@@ -331,7 +331,7 @@ body > header.boulderheader .content form .search_list ul li .form-dropdown { mi
 body > header.boulderheader .content form .time-dropdown { margin-top: 6px; }
 body > header.boulderheader .content form .search_submit { margin: -37px 0 0 460px; position: absolute; }
 body > header.boulderheader .content form .search_submit_places { float: right; }
-body > header.boulderheader .content form .search_submit_places .btn { background-color: #e6e6e6; }
+body > header.boulderheader .content form .search_submit_places .btn { background-color: #231f20; }
 body > header.boulderheader .content form .search_categories { margin: -180px 0 0 0; position: absolute; }
 body > header.boulderheader .content form .search_categories .columns { margin: 10px 0 5px 0; }
 body > header.boulderheader .content form .search_categories_places { margin: 70px 0 0 0; }
