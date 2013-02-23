@@ -203,10 +203,12 @@ class Event < ActiveRecord::Base
     # We're ready for scoping by location, but don't want to enable it yet
     # because we want iPhone users and people in other locations to see data
     #
-    within  = options[:within] && 20
+    # Radius function is not working properly. Had to set radius to 1000 to pull relevant results. Unsure how :units is set in acts-as-geocadable gem
+    # model or controller.
+    within  = options[:within] = 1000
     results = results.origin(origin, :within => within) if origin.present?
 
-    results = results.origin(origin) if origin.present?
+    # results = results.origin(origin) if origin.present?
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)
