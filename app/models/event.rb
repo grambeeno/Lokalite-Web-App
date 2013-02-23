@@ -203,7 +203,7 @@ class Event < ActiveRecord::Base
     # We're ready for scoping by location, but don't want to enable it yet
     # because we want iPhone users and people in other locations to see data
     #
-    within  = options[:within] || 5
+    within  = options[:within] || 20
     results = results.origin(origin, :within => within) if origin.present?
 
     results = results.origin(origin) if origin.present?
