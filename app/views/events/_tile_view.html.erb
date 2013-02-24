@@ -22,7 +22,7 @@
         <%= current_user.event_categories.join(', ') %>
       </p>
     <% end %>
-    <% if params[:after].present? %>
+    <% if params[:after].present? && params[:event_city].present? %>
       <p class='tiled-subheading-subline'>
         After
         <%= Chronic.parse(params[:after]).to_s(:full) %>
@@ -33,6 +33,11 @@
       <p class='tiled-subheading-subline'>
         Within 20 miles of
         <%= params[:event_city] %>, <%= params[:event_state] %>
+      </p>
+    <% elsif params[:after].present? %>
+      <p class='tiled-subheading-subline'>
+        After
+        <%= Chronic.parse(params[:after]).to_s(:full) %>
       </p>
     <% end %> 
   </div>
