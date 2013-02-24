@@ -120,6 +120,10 @@ class Event < ActiveRecord::Base
     page     = [Integer(page), 1].max
     per_page = [Integer(per_page)].min
 
+    if options[:view_type] = 'map'
+      per_page = 100
+    end
+
     start_time = if options[:after].present?
       begin
         # experienced a specific format that would convert with to_time, but it's not actually what we wanted
