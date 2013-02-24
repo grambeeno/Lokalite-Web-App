@@ -171,7 +171,7 @@ class Event < ActiveRecord::Base
       results = results.where(:organization_id => organization_id)
     end
 
-    if options[:keywords].present?
+    if options[:keywords].present? 
       keywords = Array(options[:keywords]).flatten.compact
       results  = results.order('events.starts_at ASC').search(keywords.join(' '))
     end
@@ -185,9 +185,7 @@ class Event < ActiveRecord::Base
     # WP: using this origin definition to scope location for search. This doesn't have any effect on the :origin set in the routes.
     # This definition scopes the search within 50 miles of the definition. Note: see within definition below.
     #
-    origin  = options[:event_city]
-    origin  = origin.humanize if origin
-
+    
     if options[:order] == 'distance' && origin.present?
       results = results.near.order('events.starts_at ASC').order('events.name ASC')
     elsif options[:order] == 'name'
@@ -200,15 +198,21 @@ class Event < ActiveRecord::Base
       results = results.order('events.starts_at ASC')
     end
 
-    # We're ready for scoping by location, but don't want to enable it yet
-    # because we want iPhone users and people in other locations to see data
-    #
-    # Radius function is not working properly. Had to set radius to 1000 to pull relevant results. Unsure how :units is set in acts-as-geocadable gem
-    # model or controller.
-    within  = options[:within] = 1000
-    results = results.origin(origin, :within => within) if origin.present?
+    if options[:event_city].present?
+      origin  = options[:event_city]
+      origin  = origin.humanize if origin
 
-    # results = results.origin(origin) if origin.present?
+      # We're ready for scoping by location, but don't want to enable it yet
+      # because we want iPhone users and people in other locations to see data
+      #
+      # Radius function is not working properly. Had to set radius to 1000 to pull relevant results. Unsure how :units is set in acts-as-geocadable gem
+      # model or controller.
+
+      within  = options[:within] = 1000
+      results = results.origin(origin, :within => within) if origin.present?
+
+      # results = results.origin(origin) if origin.present?
+    end
 
     begin
       results = results.paginate(:page => page, :per_page => per_page)

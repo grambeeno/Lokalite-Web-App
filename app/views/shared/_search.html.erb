@@ -40,11 +40,11 @@ $('#directory').change(function() {
             
           <li><h5>State</h5>
             <% states = Location.db_state_options %>
-            <%= select_tag :event_state, options_for_select(states, :selected => "CO"), :class => 'form_input form-dropdown' %>
+            <%= select_tag :event_state, options_for_select([['Select...', '']] + states), :class => 'form_input form-dropdown' %>
           </li>
           <li><h5>City</h5>
             <% cities = Location.city_options %>
-            <%= select_tag :event_city, options_for_select(cities, :selected => "Boulder"), :class => 'form_input form-dropdown' %>
+            <%= select_tag :event_city, options_for_select([['Select...', '']] + cities), :class => 'form_input form-dropdown' %>
           </li>
         </ul>
       </div>
