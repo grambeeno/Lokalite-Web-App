@@ -98,13 +98,13 @@ class Organization < ActiveRecord::Base
 
     results = relation
    
-   if options[:category].present?
-    categories = options[:category].to_a
-    categories = categories.map{|c| c.humanize }
-    results = results.tagged_with(categories, :on => 'categories', :any => true)
-   end
+    if options[:category].present?
+      categories = options[:category].to_a
+      categories = categories.map{|c| c.humanize }
+      results = results.tagged_with(categories, :on => 'categories', :any => true).order('name')
+    end
     
-    results = results.search(keywords.join(' ')) unless keywords.blank?
+    results = results.order('name').search(keywords.join(' ')) unless keywords.blank?
 
     # origin  = options[:event_city]
     # origin  = origin.humanize if origin
@@ -118,7 +118,7 @@ class Organization < ActiveRecord::Base
 
     # results = results.joins(:locations)
     results = results.includes(:locations, :categories)
-    results = results.order(order)
+    results = results.order('name')
 
     results.paginate(:page => page, :per_page => per_page)
   end
