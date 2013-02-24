@@ -22,7 +22,7 @@ module EventsHelper
   # used to persist existing data in URL, but gives an easy way to override
   # or remove certain params. Also allows keeping other arbitrary params.
   def events_path_with_options(custom_options = {})
-    keys = [:origin, :view_type, :category, :after]
+    keys = [:origin, :view_type, :category, :after, :event_city, :event_state, :event_start_time]
 
     # allow user to pass other params they want to persist:
     # events_path_with_options(:keep => [:keywords])
