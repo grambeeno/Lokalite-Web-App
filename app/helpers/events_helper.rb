@@ -22,7 +22,7 @@ module EventsHelper
   # used to persist existing data in URL, but gives an easy way to override
   # or remove certain params. Also allows keeping other arbitrary params.
   def events_path_with_options(custom_options = {})
-    keys = [:origin, :view_type, :category, :after, :event_city, :event_state, :event_start_time]
+    keys = [:origin, :view_type, :category, :after, :event_city, :event_state, :event_start_time] 
 
     # allow user to pass other params they want to persist:
     # events_path_with_options(:keep => [:keywords])
@@ -38,7 +38,18 @@ module EventsHelper
     options.merge!(custom_options)
 
     # take care of some special cases
-    options.delete(:category) if options[:category] == 'all_events'
+    options.delete(:category) if options[:category] == 'all_events' 
+
+    # WP: it isn't pretty but it will keep a redirect loop from occuring when
+    # you search and then click the featured category on the left sidebar.
+    # The real issue is with the :after key but I removed the other keys to 
+    # beautify the URL :P
+    if options[:category] == 'featured'
+      options.delete(:after)
+      options.delete(:event_city)
+      options.delete(:event_state)
+      options.delete(:event_start_time)
+    end
 
     events_path(options)
   end
