@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   before_filter :remember_location
 
   def index
+    if params[:view_type] == 'map'
+      params[:per_page] = 100
+    else
+      params[:per_page] = 24
+    end
     # utf8 is added when searching
     #if params.delete(:utf8)
     #  redirect_to events_path(params)
@@ -19,11 +24,12 @@ class EventsController < ApplicationController
     elsif params[:category] == 'featured'
       @events = ensure_enough_featured_events(@events).shuffle 
     elsif params[:category] == 'suggested'
-      @events = @events.shuffle
+      @events = Event.browse(params[:category] == 'suggested').shuffle
+      params[:per_page] = 24
     else
       @events = Event.browse(params) 
     end 
-    params[:user] = current_user if user_signed_in?
+    params[:user] = current_user if user_signed_in? 
    
     # Don't apply date filters to suggested event page
     # if params.key?(:after) and params[:category] == 'suggested'
