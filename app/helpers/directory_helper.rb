@@ -23,7 +23,7 @@ module DirectoryHelper
   # used to persist existing data in URL, but gives an easy way to override
   # or remove certain params. Also allows keeping other arbitrary params.
   def places_path_with_options(custom_options = {})
-    keys = [:origin, :view_type, :category, :after]
+    keys = [:origin, :view_type, :category]
 
     # allow user to pass other params they want to persist:
     # organizations_path_with_options(:keep => [:keywords])

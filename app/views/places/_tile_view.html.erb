@@ -18,12 +18,6 @@
         Places in 
         <%= current_user.event_categories.join(', ') %>
       </p>
-    <% end %>
-    <% if params[:after].present? %>
-      <p class='tiled-subheading-subline'>
-        After
-        <%= Chronic.parse(params[:after]).to_s(:full) %>
-      </p>
     <% end %> 
   </div>
 </header>

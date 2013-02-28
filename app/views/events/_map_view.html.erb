@@ -76,9 +76,9 @@
 </script>
 
 <header class='index'>
-  <% if params[:after].present? %>
+  <% if params.keys.present? %>
     <div>
-      <%= link_to 'Clear Date Filter', '#clear_date_filter', :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
+      <%= link_to 'Clear Filter', events_path_with_options(:category => nil, :after => nil, :event_city => nil, :event_start_time => nil, :event_state => nil), :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
     </div>
   <% end %>
 

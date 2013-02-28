@@ -1,6 +1,6 @@
 <header class='index'>
-  <% if params[:after].present? %>
-    <%= link_to 'Clear Date Filter', events_path_with_options(:category => nil, :after => nil), :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
+  <% if params.keys.present? %>
+    <%= link_to 'Clear Filter', events_path_with_options(:category => nil, :after => nil, :event_city => nil, :event_start_time => nil, :event_state => nil), :class => 'clear_date_filter tiled-subheading_clear_date_filter btn secondary' %>
   <% end %>
 
   <div class="list_view_button tooltip" title="Switch to List View"><%= link_to 'Switch to List View', events_path_with_options(:view_type => 'list', :keep => [:keywords]), :class => 'list_view'%>
