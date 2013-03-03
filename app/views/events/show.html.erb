@@ -106,6 +106,19 @@
           </script>
           <ul class="social">
             <li>
+              <% if boulder_weekly? %>
+                <%
+                twitter_link = url_for({
+                  :protocol   => 'https',
+                  :host       => 'twitter.com',
+                  :controller => 'share',
+                  :action     => 'index',
+                  :text       => "I am checking out #{@event.name.strip} via @boulderweekly",
+                  :related    => 'lokalite',
+                  :hashtags   => 'Boulder,Events'
+                })
+              -%>
+              <% else %>
               <%
                 twitter_link = url_for({
                   :protocol   => 'https',
@@ -117,6 +130,7 @@
                   :hashtags   => 'Boulder,Events'
                 })
               -%>
+              <% end %>
               <%= link_to 'Share on Twitter', twitter_link, :title => 'Share this event on Twitter', :class => 'social-icon twitter-icon tooltip' %>
             </li>
             <li>
