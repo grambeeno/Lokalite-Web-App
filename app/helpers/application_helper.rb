@@ -103,7 +103,7 @@ module ApplicationHelper
       parts << @event.name if @event
       parts << @organization.name if @organization
       parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
-      parts << "lokalite"
+      parts << "lokalite" unless params[:category].present?
       parts << 'For Local Events' if current_page?('/landing')
       parts << 'For Local Events' if current_page?('/')
       parts << title_for_category(params[:category]) if params[:category]
@@ -113,7 +113,7 @@ module ApplicationHelper
 
    def bw_title
      parts = []
-     parts << "Boulder Weekly Events"
+     parts << "Boulder Weekly Events" unless params[:category].present?
      parts << title_for_category(params[:category]) if params[:category]
      parts.join(' | ')
    end
