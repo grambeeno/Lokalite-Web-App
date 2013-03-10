@@ -1,0 +1,24 @@
+#map_button {
+  float: right;
+  margin: -37px 10px 0 0;
+  text-indent: -119988px;
+  overflow: hidden; 
+  background-image: url("/images/jquery_map.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+#map_button_nil {
+  float: right;
+  margin: -37px 10px 0 0;
+  text-indent: -119988px;
+  overflow: hidden; 
+  background-image: url("/images/jquery_list.png");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  width: 40px;
+  height: 30px;
+}
+

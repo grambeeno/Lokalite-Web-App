@@ -1,0 +1,13 @@
+<table class="times">
+  <tr>
+    <th>Starts</th>
+    <td class="time"><%= event.starts_at.to_s(:time_only).downcase %></td>
+    <td class="date"><%= event.starts_at.to_s(:short_date) %></td>
+  </tr>
+  <tr>
+    <th>Ends</th>
+    <td class="time"><%= event.ends_at.to_s(:time_only).downcase %></td>
+    <td class="date"><%= event.ends_at.to_s(:short_date) %></td>
+  </tr>
+</table>
+

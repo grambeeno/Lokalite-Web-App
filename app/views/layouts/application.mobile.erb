@@ -7,13 +7,16 @@
        <link rel="stylesheet" href="/jquery.mobile-1.0rc1/customizations.css" />
        <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
        <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
-     
+       <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script> 
+       <script src="http://code.google.com/p/jquery-ui-map/"></script>
+            
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
      </head>
       
       <body>
-        <div class='current'>
+        <div class='current' style="position:absolute; top:0; left:0; right:0; bottom:80px">
           <% if boulder_weekly? %>
             <div data-role='header' data-position='fixed' class='ui-bar-a-bw'> 
           <% else %>
@@ -26,6 +29,15 @@
                 <%= title %>
               <% end %>
             </h1>
+            <% if params[:view_type] == 'map' %>
+              <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+                <%= link_to 'Switch to List View', events_path_with_options(:view_type => nil), :id => 'map_button_nil', "data-theme" => "a" %>  
+              </a>
+            <% elsif params[:view_type] == nil && params[:category].present? %>
+              <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+                <%= link_to 'Switch to Map View', events_path_with_options(:view_type => 'map'), :id => 'map_button', "data-theme" => "a" %>  
+              </a>
+            <% end %>
           </div>
           <div data-role='navbar' data-theme='a'>
             <ul>

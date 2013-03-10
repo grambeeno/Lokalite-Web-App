@@ -1,5 +1,9 @@
 <%= stylesheet_link_tag 'mobile' %>
 
+<% if params[:view_type] == 'map' %>
+  <%= render :partial => 'map_view'%> 
+<% else %>
+
 <% @events.each do |event| %>
 <%= link_to event_path(event.slug, event.id) do %>
 
@@ -32,7 +36,8 @@
 </ul>
 <% end %>
 <% end %>
+<% end %>
 <div class="tiled-pagination">
-  <%= will_paginate @events unless params[:category] == 'featured' or params[:category] == 'suggested' %>
+  <%= will_paginate @events unless params[:category] == 'featured' or params[:category] == 'suggested' or params[:view_type] == 'map' %>
 </div>
 
