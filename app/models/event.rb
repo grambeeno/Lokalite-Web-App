@@ -130,6 +130,8 @@ class Event < ActiveRecord::Base
         string = URI.decode(options[:after]).gsub('+', ' ').humanize
         Chronic.parse(string)
       end
+    elsif options[:view_type] == 'map'
+      Time.zone.now - 6.hours
     else
       Time.zone.now
     end
@@ -141,6 +143,8 @@ class Event < ActiveRecord::Base
         string = URI.decode(options[:before]).gsub('+', ' ').humanize
         Chronic.parse(string)
       end
+    elsif options[:view_type] == 'map'
+      Time.zone.now + 18.hours
     end
 
     results = Event.approved.after(start_time)
@@ -174,8 +178,16 @@ class Event < ActiveRecord::Base
     if options[:keywords].present? 
       keywords = Array(options[:keywords]).flatten.compact
       results  = results.order('events.starts_at ASC').search(keywords.join(' '))
+    end 
+
+    if options[:view_type] == 'map' && options[:after].present? && options[:category].present?
+      results = Event.approved.after(start_time).before(start_time + 1.day).tagged_with(categories, :on => 'categories', :any => true)
     end
 
+    if options[:view_type] == 'map' && options[:after].present?
+      results = Event.approved.after(start_time).before(start_time + 1.day)
+    end
+    
     # results = results.joins(:categories, :image, :organization, :location) # uncommented to fix sorting bug
 
     # turns out to be much faster when we don't eager load organization categories

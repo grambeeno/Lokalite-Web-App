@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     if params[:view_type] == 'map'
-      params[:per_page] = 100
+      params[:per_page] = 100 
     else
       params[:per_page] = 24
     end
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
     else
       @events = Event.browse(params) 
     end 
-    params[:user] = current_user if user_signed_in? 
+    params[:user] = current_user if user_signed_in?  
    
     # Don't apply date filters to suggested event page
     # if params.key?(:after) and params[:category] == 'suggested'
