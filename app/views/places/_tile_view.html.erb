@@ -19,6 +19,15 @@
         <%= current_user.event_categories.join(', ') %>
       </p>
     <% end %> 
+    <% if params[:event_city].present? %>
+      <p class='tiled-subheading-subline'>
+        Near
+        <%= params[:event_city] %>
+        <% if params[:event_state].present? %> 
+          , <%= params[:event_state] %> 
+        <% end %>
+      </p>
+    <% end %>
   </div>
 </header>
 

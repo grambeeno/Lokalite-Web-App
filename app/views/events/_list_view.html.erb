@@ -26,20 +26,26 @@
       <p class='tiled-subheading-subline'>
         After
         <%= Chronic.parse(params[:after]).to_s(:full) %>
-        within 20 miles of
-        <%= params[:event_city] %>, <%= params[:event_state] %>
+        near 
+        <%= params[:event_city] %> 
+        <% if params[:event_state].present? %> 
+          , <%= params[:event_state] %> 
+        <% end %>
       </p>
     <% elsif params[:event_city].present? %>
       <p class='tiled-subheading-subline'>
-        Within 20 miles of
-        <%= params[:event_city] %>, <%= params[:event_state] %>
+        Near
+        <%= params[:event_city] %>
+        <% if params[:event_state].present? %> 
+          , <%= params[:event_state] %> 
+        <% end %>
       </p>
     <% elsif params[:after].present? %>
       <p class='tiled-subheading-subline'>
         After
         <%= Chronic.parse(params[:after]).to_s(:full) %>
       </p>
-    <% end %>  
+    <% end %>     
   </div>
 </header>
 
