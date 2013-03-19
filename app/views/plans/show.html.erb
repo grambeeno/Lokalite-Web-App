@@ -39,12 +39,9 @@
     <div class="title-image">
       <%= image_tag @plan.user.image_url %>
     </div>
-    <div class="text">
+    <div class="text" style="width: 470px">
       <h1>
-        <%= @plan.title %>
-        <% if user_signed_in? && @plan.is_editable_by?(current_user) %>
-          <span class='edit'><%= link_to '(edit)', edit_plan_path(@plan) %></span>
-        <% end %>
+        <%= @plan.title %> 
       </h1>
       <h2>
         By
@@ -54,6 +51,7 @@
     <%=
       link_to "Invite Friends", '#', {
         :class => 'btn primary facebook-invite',
+        :style => 'float: right',
         'data-name'        => @plan.title,
         'data-description' => @plan.description,
         'data-link'        => plan_invitation_url(@plan),
@@ -63,6 +61,9 @@
       }
     %>
     <%#= plan_invitation_url(@plan) %>
+    <% if user_signed_in? && @plan.is_editable_by?(current_user) %>
+          <span class='edit'><%= link_to 'Edit', edit_plan_path(@plan), :class => 'btn primary' %></span>
+        <% end %>
   </div>
 
   <div class='image'>
