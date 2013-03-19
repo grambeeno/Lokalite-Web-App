@@ -39,7 +39,24 @@ module DirectoryHelper
     options.merge!(custom_options)
 
     # take care of some special cases
-    options.delete(:category) if options[:category] == 'all_places'
+    if options[:category] == 'all_places' 
+      options.delete(:category)
+      options.delete(:after)
+      options.delete(:event_city)
+      options.delete(:event_state)
+      options.delete(:event_start_time)
+    end
+
+    # WP: it isn't pretty but it will keep a redirect loop from occuring when
+    # you search and then click the featured category on the left sidebar.
+    # The real issue is with the :after key but I removed the other keys to 
+    # beautify the URL :P
+    if options[:category].present?
+      options.delete(:after)
+      options.delete(:event_city)
+      options.delete(:event_state)
+      options.delete(:event_start_time)
+    end
 
     places_path(options)
   end

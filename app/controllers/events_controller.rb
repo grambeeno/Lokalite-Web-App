@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     elsif params[:category] == 'featured'
       @events = ensure_enough_featured_events(@events).shuffle 
     elsif params[:category] == 'suggested'
-      @events = Event.browse(params[:category] == 'suggested').shuffle
+      @events = Event.browse(params[:category] == 'suggested')
       params[:per_page] = 24
     else
       @events = Event.browse(params) 
