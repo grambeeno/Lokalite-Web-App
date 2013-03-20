@@ -1,0 +1,29 @@
+<div class='google_maps_info_window'>
+  <h1><%= link_to event.name, organization_path(event.slug, event.id) %></h1>
+ 
+  <div class="info">
+    <p class="description">
+      <% if event.description.length > 300 %>
+        <%= truncate(event.description, :length => 300) %>
+      <% else %>
+        <%= event.description %>
+      <% end %>
+    </p>
+    <p class="address">
+      <%= raw event.location.formatted_address('<br />') %>
+    </p>
+  </div>
+
+  <div class="image">
+    <% for category in event.categories -%>
+      <%= link_to category.name, events_path(:origin => params[:origin], :category => category.name.parameterize('_')), :class => "category-icon #{category.name.parameterize('_')} tooltip", :title => category.name %>
+    <% end -%>
+    <br />
+    <%= link_to image_tag(event.image.url(:small)), event_path(event.slug, event.id) %>
+  </div>
+
+</div>
+
+
+
+

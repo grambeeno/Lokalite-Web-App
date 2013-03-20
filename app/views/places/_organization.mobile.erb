@@ -1,3 +1,9 @@
+<%= stylesheet_link_tag 'mobile' %>
+
+<% if params[:view_type] == 'map' %>
+  <%= render :partial => 'map_view'%> 
+<% else %>
+
 <% @organizations.each do |organization| %>
 <%= link_to organization_path(organization.slug, organization.id) do %>
 
@@ -20,6 +26,7 @@
 </ul>
 <% end %>
 <% end %>
+<% end %>
 <div class="tiled-pagination">
-  <%= will_paginate @organizations %>
+  <%= will_paginate @organizations unless params[:category] == 'featured' or params[:category] == 'suggested' or params[:view_type] == 'map' %>
 </div>

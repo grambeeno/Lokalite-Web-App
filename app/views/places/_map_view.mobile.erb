@@ -1,0 +1,87 @@
+<script type="text/javascript">
+
+  var gallery_view_path = "<%= places_path_with_options %>";
+
+  function GalleryViewSwitcher(controlDiv, map) {
+
+    // Setting padding to 5 px will offset the control
+    // from the edge of the map
+    controlDiv.style.padding = '6px';
+
+    // Set CSS for the control border
+    var controlUI = document.createElement('DIV');
+    controlUI.className = 'google-maps-custom-button';
+    controlUI.title = 'View Events in Gallery View';
+    // controlDiv.appendChild(controlUI);
+
+    // Set CSS for the control interior
+    var controlText = document.createElement('DIV');
+    controlText.innerHTML = 'Switch to Gallery View';
+    controlUI.appendChild(controlText);
+
+    // Setup the click event listeners: simply set the map to Chicago
+    google.maps.event.addDomListener(controlUI, 'click', function() {
+      window.location = gallery_view_path;
+    });
+  }
+
+  jQuery(function($){
+
+    var myLatlng = new google.maps.LatLng(40.023868,-105.269194);
+    var myOptions = {
+      zoom: 13,
+      center: myLatlng, 
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      streetViewControl: false, 
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+      }, 
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    $("#map_canvas").width("100%");
+    $("#map_canvas").height("100%");
+
+    var galleryViewDiv = document.createElement('DIV');
+    var galleryView = new GalleryViewSwitcher(galleryViewDiv, map);
+    galleryViewDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(galleryViewDiv);
+
+    // maintain a single instance of the infowindow
+    // each marker is responsible for setting the content.
+    var infowindow = new google.maps.InfoWindow({
+      maxWidth: 380,
+    });
+
+    var markers = <%= markers_for_places(@organizations) %>;
+
+    $.each(markers, function(index, myEvent){
+      var coordinates = new google.maps.LatLng(myEvent.lat, myEvent.lng);
+      var marker = new google.maps.Marker({
+          position: coordinates,
+          map: map,
+          title: myEvent.name
+      });
+
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.close();
+        infowindow.setContent(myEvent.infoWindow);
+        infowindow.open(map,marker);
+      });
+    });
+
+    google.maps.event.addListener(map, 'click', function(event) {
+      if (infowindow) {
+        infowindow.close();
+      };
+    })
+
+
+ })
+</script>
+
+<div id="map_canvas"></div>
+
+

@@ -29,14 +29,26 @@
                 <%= title %>
               <% end %>
             </h1>
-            <% if params[:view_type] == 'map' %>
-              <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
-                <%= link_to 'Switch to List View', events_path_with_options(:view_type => nil), :id => 'map_button_nil', "data-theme" => "a" %>  
-              </a>
-            <% elsif params[:view_type] == nil && params[:category].present? %>
-              <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
-                <%= link_to 'Switch to Map View', events_path_with_options(:view_type => 'map'), :id => 'map_button', "data-theme" => "a" %>  
-              </a>
+            <% if @events.present? %>
+              <% if params[:view_type] == 'map' %>
+                <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+                  <%= link_to 'Switch to List View', events_path_with_options(:view_type => nil), :id => 'map_button_nil', "data-theme" => "a" %>  
+                </a>
+              <% elsif params[:view_type] == nil && params[:category].present? %>
+                <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+                  <%= link_to 'Switch to Map View', events_path_with_options(:view_type => 'map'), :id => 'map_button', "data-theme" => "a" %>  
+                </a>
+              <% end %>
+            <% else %>
+              <% if params[:view_type] == 'map' %>
+                <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+                  <%= link_to 'Switch to List View', places_path_with_options(:view_type => nil), :id => 'map_button_nil', "data-theme" => "a" %>  
+                </a>
+              <% elsif params[:view_type] == nil && params[:category].present? %>
+                <a class="ui-btn-right ui-btn ui-btn-corner-all ui-shadow ui-btn-up-a">
+                  <%= link_to 'Switch to Map View', places_path_with_options(:view_type => 'map'), :id => 'map_button', "data-theme" => "a" %>  
+                </a>
+              <% end %>
             <% end %>
           </div>
           <div data-role='navbar' data-theme='a'>
