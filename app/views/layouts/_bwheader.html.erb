@@ -154,9 +154,33 @@
         </div>
         <ul class="dd-menu3 dropdown-menu menu3 ddmboulder3">
           <li>   
-            <%= link_to 'CREATE EVENT', new_my_event_path %>
             <%= link_to "EVENTS", events_path(:origin => params[:origin], :category => 'featured') %>
             <%= link_to "PLACES", places_path(:origin => params[:origin]) %>
+            <%= link_to 'CREATE EVENT', new_my_event_path %>
+
+            <% if user_signed_in? %> 
+              <% if current_user.admin? or current_user.event_admin? %>
+                <%= link_to "All Businesses", my_organizations_path(:all => true) %>
+                <%= link_to "Manage Featured Events", manage_featured_events_path %>
+              <% else %> 
+                <% if current_user.organizations.size > 1 %>
+                  <%= link_to "My Businesses", my_organizations_path %>
+                <% elsif current_user.organizations.any? %>
+                  <%= link_to('Edit My Events', my_organization_path(current_user.organizations.first)) %>
+                <% end %> 
+              <% end %>
+              <% if current_user.admin? %>
+                <%= link_to "Approve New Events", approve_events_path %>
+                <%= link_to 'User List', admin_path %>
+              <% end %>
+              <%= link_to "Profile Settings", edit_profile_path %>
+              <% if user_sudoing? %>
+                <%= link_to 'Back to your user', :controller => 'admin/users', :action => :unsudo %>
+              <% end %>
+              <%= link_to 'Logout', destroy_user_session_path, :onclick => 'FB.logout();' %>
+            <% else %>
+              <%= link_to 'SIGN IN', new_user_session_path %>
+            <% end %>              
           </li>
         </ul>
       </div>
