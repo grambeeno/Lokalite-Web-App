@@ -156,7 +156,14 @@
           <li>   
             <%= link_to "EVENTS", events_path(:origin => params[:origin], :category => 'featured') %>
             <%= link_to "PLACES", places_path(:origin => params[:origin]) %>
-            <%= link_to 'CREATE EVENT', new_my_event_path %>
+            <% if user_signed_in? %>
+              <% if current_user.admin? or current_user.event_admin? %>
+              <% else %>
+                <%= link_to 'CREATE EVENT', new_my_event_path %> 
+              <% end %>
+            <% else %>
+              <%= link_to 'CREATE EVENT', new_my_event_path %> 
+            <% end %>
 
             <% if user_signed_in? %> 
               <% if current_user.admin? or current_user.event_admin? %>
