@@ -206,7 +206,7 @@ class User < ActiveRecord::Base
     else
       size = 50
     end
-    "http://static1.robohash.com/#{id}?size=#{size}x#{size}&&bgset=bg1"
+    "http://robohash.com/#{id}?size=#{size}x#{size}&&bgset=bg1"
   end
 
   # def User.root
