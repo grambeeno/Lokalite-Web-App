@@ -460,6 +460,7 @@ img.profile_small { width: 55px; }
 #middle > .content-with-align { text-align: center; }
 
 .middle { float: left; width: 950px; }
+.middle .scrollup { padding: 10px 40px; margin-left: 125px; z-index: 1031; }
 
 .facebook-comments { margin-top: 1em; }
 
