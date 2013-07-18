@@ -98,7 +98,7 @@ class Event < ActiveRecord::Base
   def self.next_featured_in_slot(slot)
     upcoming.includes(:event_features).
       where(['event_features.slot = ?', slot]).
-      where(['event_features.date >= ?', Time.zone.now.to_date]).
+      where(['event_features.date >= ?', Date.today]).
       order('event_features.date').
       limit(1).first
   end
