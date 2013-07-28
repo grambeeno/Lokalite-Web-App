@@ -90,6 +90,10 @@ class Event < ActiveRecord::Base
     includes(:event_features).where(['event_features.date = ?', date]).order('event_features.slot')
   })
 
+  scope(:featured_between, lambda{|date|
+    includes(:event_features).where(['event_features.date >= ?', date - 31.days]).where(['event_features.date <= ?', date]).order('event_features.slot')
+  })
+
   scope(:random, lambda{|*args|
     order('random()')
   })
@@ -505,9 +509,9 @@ class Event < ActiveRecord::Base
  
   def self.export_to_csv(options = {})
     FasterCSV.generate(options) do |csv|
-      csv << [ "Organization Name", "Location Name", "Location Address", "Location City", "Location State", "Location Zip Code", "Event Name", "Event Description", "Event Start Time", "Event End Time" ]
+      csv << [ "Organization Name", "Event Name", "Event Start Time", "Event End Time", "Feature ID", "Feature Date", "Feature Slot", "Feature Created Date", "Feature Updated Date" ]
       all.each do |event|
-        csv << [ event.organization.name, event.location.name, event.location.geocoded_street, event.location.locality, event.location.region, event.location.postal_code, event.name, event.description, event.starts_at, event.ends_at ]
+        csv << [ event.location.name, event.name, event.starts_at, event.ends_at, event.event_features.event_id, event.event_features.date, event.event_features.slot, event.event_features.created_at, event.event_features.updated_at ]
       end
     end
   end

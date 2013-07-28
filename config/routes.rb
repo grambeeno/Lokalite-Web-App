@@ -55,6 +55,7 @@ Lokalite::Application.routes.draw do |map|
   namespace :my do
     resources :organizations do
       match 'add_user', :action => 'add_user', :as => :add_user
+      match 'remove_user', :action => 'remove_user', :as => :remove_user
     end
     resources :events do
       put 'update_multiple', :action => 'update_multiple', :as => :update_multiple

@@ -71,6 +71,22 @@ class My::OrganizationsController < My::Controller
     end
   end
 
+  def remove_user
+    if request.post?
+      address = current_user.email 
+      organization = @organizations
+      if  address.present? && user = User.find_by_email(address)
+        @organization.users.clear # this is destroying the user and not the assocation with the organization
+
+        flash[:success] = "#{address} now has been removed from this organization."
+        redirect_to edit_profile_path
+      else
+        flash[:error] = "Sorry, we couldn't find #{address} for #{organization}." #address and organization still doesn't work
+        redirect_to :back
+      end
+    end
+  end
+
   private
 
   def find_organization_and_authorize

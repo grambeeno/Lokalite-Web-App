@@ -1,7 +1,7 @@
 class ProfileController < ApplicationController
 
   before_filter :authenticate_user!
-
+   
   def plans
     @plans = current_user.plans_attending.upcoming
   end

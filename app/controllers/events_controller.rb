@@ -20,7 +20,7 @@ class EventsController < ApplicationController
       # WP:  Date range for Boulder Weekly to download these files on Tuesday and pull results for Thursday to next Wednesday
       # I couldn't put results in the Event Model b/c it was effecting web and iPhone app results
       # Event.approved.after(Date.today + 3.days).before(Date.today + 9.days).order('events.starts_at ASC')
-      @events =  ensure_enough_featured_events(@events)
+      @events =  Event.featured_between(Time.zone.now.to_date)
     elsif params[:category] == 'featured'
       @events = ensure_enough_featured_events(@events).shuffle 
     elsif params[:category] == 'suggested'

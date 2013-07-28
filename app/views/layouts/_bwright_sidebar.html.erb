@@ -6,7 +6,7 @@
    <h3><%= link_to item[:title], events_path(:origin => params[:origin], :category => item[:category]) %></h3>
     <ul>
       <% for event in item[:events].limit(6).includes(:image, :organization) -%>
-        <li<%= report_grid_tracker(event, :type => 'Sidebar') %>>
+        <li>
           <%= link_to event_path(event.slug, event.id) do %>
             <div class="image">
               <%= image_tag(event.image.url(:thumb)) %>
@@ -16,7 +16,7 @@
                 <%= event.name %>
               </div>
               <div class="organization-name truncate">
-                <%= event.organization.name %>
+                <%= event.location.name %>
               </div>
             </div>
           <% end %>

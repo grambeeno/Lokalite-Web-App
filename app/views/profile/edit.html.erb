@@ -12,7 +12,20 @@
       <%#= form.input :time_zone %>
     <% end %>
 
-    <h2 class="big">Help us suggest events for you by checking the categories below!</h2>
+    <!-- <% if current_user.organizations.size > 0 %>
+      <h2>My Organizations</h2>
+      <ul class="list"> 
+        <% @organizations = current_user.organizations.order('name')%>
+        <% @organizations.each_with_index do |organization, index| %>
+        <li>
+          <div class="org_name"> <%= organization.name %> </div>
+          <%= link_to('Remove user', my_organization_remove_user_path(organization), :method => "POST", :style => "float: right") %> 
+        </li>
+        <% end %>  
+      </ul>
+    <% end %> -->
+
+    <h2>Favorite Categories</h2>
     <script type="text/javascript">
       $(function() {
         $('.check_boxes input').change(function() {
@@ -22,7 +35,7 @@
     </script>
     <input id="updated_categories" type="hidden" name="updated_categories"> 
     <%= form.inputs do %>
-      <%= form.input :event_categories, :as => :check_boxes, :collection => EVENT_CATEGORIES, :label => "Favorite Categories" %>
+      <%= form.input :event_categories, :as => :check_boxes, :collection => EVENT_CATEGORIES, :label => "" %>
     <% end %>
 
     <%= form.buttons do %>
