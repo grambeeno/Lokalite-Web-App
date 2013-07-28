@@ -12,18 +12,18 @@
       <%#= form.input :time_zone %>
     <% end %>
 
-    <!-- <% if current_user.organizations.size > 0 %>
+    <% if current_user.organizations.size > 0 %>
       <h2>My Organizations</h2>
       <ul class="list"> 
         <% @organizations = current_user.organizations.order('name')%>
         <% @organizations.each_with_index do |organization, index| %>
         <li>
           <div class="org_name"> <%= organization.name %> </div>
-          <%= link_to('Remove user', my_organization_remove_user_path(organization), :method => "POST", :style => "float: right") %> 
+          <%= link_to('Remove Organization', my_organization_remove_user_path(organization), :method => "POST", :style => "float: right") %> 
         </li>
         <% end %>  
       </ul>
-    <% end %> -->
+    <% end %> 
 
     <h2>Favorite Categories</h2>
     <script type="text/javascript">
@@ -35,7 +35,10 @@
     </script>
     <input id="updated_categories" type="hidden" name="updated_categories"> 
     <%= form.inputs do %>
-      <%= form.input :event_categories, :as => :check_boxes, :collection => EVENT_CATEGORIES, :label => "" %>
+      <div class="cat">
+        <%= form.input :event_categories, :as => :check_boxes, :collection => EVENT_CATEGORIES, :label => "", :class => "test"%>
+
+      </div>
     <% end %>
 
     <%= form.buttons do %>

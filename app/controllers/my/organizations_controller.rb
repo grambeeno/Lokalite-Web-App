@@ -75,10 +75,11 @@ class My::OrganizationsController < My::Controller
     if request.post?
       address = current_user.email 
       organization = @organizations
+      name = @organization.name 
       if  address.present? && user = User.find_by_email(address)
-        @organization.users.clear # this is destroying the user and not the assocation with the organization
+        @organization.users.delete(user)
 
-        flash[:success] = "#{address} now has been removed from this organization."
+        flash[:success] = "#{address} has been removed from #{name}."
         redirect_to edit_profile_path
       else
         flash[:error] = "Sorry, we couldn't find #{address} for #{organization}." #address and organization still doesn't work
