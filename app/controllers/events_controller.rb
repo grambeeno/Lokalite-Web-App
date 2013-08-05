@@ -42,12 +42,17 @@ class EventsController < ApplicationController
       redirect_to edit_profile_path
     end   
 
-    respond_to do |format|
+    if user_signed_in? && real_user_is_admin?
+      respond_to do |format|
+        format.html
+        format.csv { send_data @events.export_to_csv() }
+        format.xls # { send_data @events.to_csv(:col_sep => "\t") }
+        format.txt { send_data @events.export_to_csv }
+        # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
+      end
+    else respond_to do |format|
       format.html
-      format.csv { send_data @events.export_to_csv() }
-      format.xls # { send_data @events.to_csv(:col_sep => "\t") }
-      format.txt { send_data @events.export_to_csv }
-      # format.rtf WP: there isn't good support for rtf on ruby yet. Ruby-RTF gem is available but unstable.
+    end
     end 
   end
 

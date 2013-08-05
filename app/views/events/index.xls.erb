@@ -63,15 +63,15 @@
    </Row> 
    <% @events.each do |event| %>
    <Row>  
-    <Cell><Data ss:Type="String"><%= event.location.name %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.organization.name %></Data></Cell>
     <Cell><Data ss:Type="String"><%= event.name %></Data></Cell>
     <Cell><Data ss:Type="String"><%= event.starts_at %></Data></Cell>
     <Cell><Data ss:Type="String"><%= event.ends_at %></Data></Cell>
-    <Cell><Data ss:Type="String"><%= event.event_features(:event_id) %></Data></Cell>
-    <Cell><Data ss:Type="String"><%= event.event_features(:date) %></Data></Cell>
-    <Cell><Data ss:Type="String"><%= event.event_features(:slot) %></Data></Cell> 
-    <Cell><Data ss:Type="String"><%= event.event_features(:created_at) %></Data></Cell>
-    <Cell><Data ss:Type="String"><%= event.event_features(:updated_at) %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.event_features.to_a.map{|e| e.event_id}.compact.join(", ") %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.event_features.to_a.map{|e| e.date}.compact.join(", ") %></Data></Cell> 
+    <Cell><Data ss:Type="String"><%= event.event_features.to_a.map{|e| e.slot}.compact.join(", ") %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.event_features.to_a.map{|e| e.created_at}.compact.join(", ") %></Data></Cell>
+    <Cell><Data ss:Type="String"><%= event.event_features.to_a.map{|e| e.updated_at}.compact.join(", ") %></Data></Cell>
    </Row>
  <% end %>
   </Table>

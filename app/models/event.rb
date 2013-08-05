@@ -91,7 +91,7 @@ class Event < ActiveRecord::Base
   })
 
   scope(:featured_between, lambda{|date|
-    includes(:event_features).where(['event_features.date >= ?', date - 31.days]).where(['event_features.date <= ?', date]).order('event_features.slot')
+    includes(:event_features).where(['event_features.date >= ?', date - 31.days]).where(['event_features.date <= ?', date]).order('event_features.date')
   })
 
   scope(:random, lambda{|*args|
@@ -511,7 +511,7 @@ class Event < ActiveRecord::Base
     FasterCSV.generate(options) do |csv|
       csv << [ "Organization Name", "Event Name", "Event Start Time", "Event End Time", "Feature ID", "Feature Date", "Feature Slot", "Feature Created Date", "Feature Updated Date" ]
       all.each do |event|
-        csv << [ event.location.name, event.name, event.starts_at, event.ends_at, event.event_features.event_id, event.event_features.date, event.event_features.slot, event.event_features.created_at, event.event_features.updated_at ]
+        csv << [ event.location.name, event.name, event.starts_at, event.ends_at, event.event_features.to_a.map{|e| e.event_id}.compact.join(", "), event.event_features.to_a.map{|e| e.date}.compact.join(", "), event.event_features.to_a.map{|e| e.slot}.compact.join(", "), event.event_features.to_a.map{|e| e.created_at}.compact.join(", "), event.event_features.to_a.map{|e| e.updated_at}.compact.join(", ") ]
       end
     end
   end
