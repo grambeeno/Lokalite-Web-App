@@ -81,6 +81,7 @@ class Event < ActiveRecord::Base
     where('starts_at < ?', time)
   })
   scope :upcoming, by_date().after(Time.now) 
+  scope :upcoming_featured, order('event_features.date').after(Time.now)
 
   scope :repeating,  where(:repeating => true)
   scope :one_time,   where(:repeating => false)
@@ -100,10 +101,10 @@ class Event < ActiveRecord::Base
   scope :popular, order('trend_weight DESC').upcoming.includes(:organization).limit(12)
 
   def self.next_featured_in_slot(slot)
-    upcoming.includes(:event_features).
+    upcoming_featured.includes(:event_features).
       where(['event_features.slot = ?', slot]).
       where(['event_features.date >= ? AND event_features.date <= ?', Date.today, Date.tomorrow]).
-      order('event_features.date').
+      order(['event_features.date']).
       limit(1).first
   end
 
@@ -167,7 +168,7 @@ class Event < ActiveRecord::Base
         elsif options[:category] == 'suggested' and user = options[:user]
           results = results.tagged_with(user.event_categories, :on => 'categories', :any => true)
         elsif options[:category] == 'featured'
-          today = Time.zone.now.to_date
+          today = Date.today 
           results = results.featured_on(today)
         else
           categories = options[:category].to_a
