@@ -1,4 +1,15 @@
 <% if boulder_weekly? %>
+<nav>
+  <ul>
+    <li>
+      <% if mobile_device? %> 
+        <%= link_to 'Full Site', :mobile => 0 %>
+      <% else %> 
+        <%= link_to 'Mobile Site', :mobile => 1 %>
+      <% end %>
+    </li>
+  </ul>
+</nav>
 <% else %>
 <nav>
   <ul>
@@ -36,13 +47,13 @@
     <li>
       <%= link_to 'Press Coverage', static_path(:press_coverage) %>
     </li>
-   <!-- <li>
+    <li>
       <% if mobile_device? %> 
         <%= link_to 'Full Site', :mobile => 0 %>
-        <% else %> 
+      <% else %> 
         <%= link_to 'Mobile Site', :mobile => 1 %>
-        <% end %>
-      </li> -->
+      <% end %>
+    </li>
     <li>
         <%= link_to 'Site Map', static_path(:sitemap) %>
     </li>
