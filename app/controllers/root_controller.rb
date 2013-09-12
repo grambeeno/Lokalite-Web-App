@@ -4,7 +4,7 @@ class RootController < ApplicationController
     if session[:skip_landing_page]
       redirect_to events_path(:origin => params[:origin], :category => 'featured')
     else
-      render :action => :landing
+      render :action => :landing unless boulder_weekly?
     end
     session[:skip_landing_page] = true
 
