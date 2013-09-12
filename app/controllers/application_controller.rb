@@ -56,7 +56,7 @@ end
     if mobile_device?
       request.format = :mobile  
       if :mobile == '0'
-        session[:skip_landing_page] = true
+        redirect_to events_path(:origin => params[:origin], :category => 'featured')  
       end
     end
 #    if mobile_device? && request.subdomain != 'm'
