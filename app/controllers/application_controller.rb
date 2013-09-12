@@ -46,7 +46,7 @@ end
 
   def prepare_for_BW
     if boulder_weekly? && params[:controller] == 'root'
-      redirect_to events_path(:origin => params[:origin], :category => 'featured')  
+       session[:skip_landing_page] = true  
     end
   end
 
