@@ -3,8 +3,6 @@ class RootController < ApplicationController
   def index
     if session[:skip_landing_page]
       redirect_to events_path(:origin => params[:origin], :category => 'featured')
-    elsif boulder_weekly?
-      session[:skip_landing_page] = true
     else
       render :action => :landing
     end
