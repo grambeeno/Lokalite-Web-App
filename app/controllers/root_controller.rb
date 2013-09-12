@@ -1,7 +1,13 @@
 class RootController < ApplicationController
 
   def index
-    redirect_to events_path(:origin => params[:origin], :category => 'featured')
+    if session[:skip_landing_page]
+      redirect_to events_path(:origin => params[:origin], :category => 'featured')
+    else
+      redirect_to events_path(:origin => params[:origin], :category => 'featured')
+    end
+    session[:skip_landing_page] = true
+
   end
 
   # def set_location
