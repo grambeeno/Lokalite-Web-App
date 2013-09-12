@@ -45,8 +45,7 @@ end
   helper_method :boulder_weekly?
 
   def prepare_for_BW
-    if boulder_weekly? && params[:controller] == 'root'
-      redirect_to events_path(:origin => params[:origin], :category => 'featured') unless mobile_device? 
+    if boulder_weekly? && params[:controller] == 'root' 
       session[:skip_landing_page] = true
     end
   end
