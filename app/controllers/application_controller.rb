@@ -46,15 +46,15 @@ end
 
   def prepare_for_BW
     if boulder_weekly? && params[:controller] == 'root'
-      redirect_to events_path(:origin => params[:origin], :category => 'featured') unless mobile_device? 
+      redirect_to events_path(:origin => params[:origin], :category => 'featured')
+      session[:skip_landing_page] = true
     end
   end
 
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
     if mobile_device?
-      request.format = :mobile 
-      session[:skip_landing_page]
+      request.format = :mobile  
     end
 #    if mobile_device? && request.subdomain != 'm'
 #      redirect_to 'http://m.lokalite.com'
