@@ -7,6 +7,10 @@ class RootController < ApplicationController
       render :action => :landing
     end
     session[:skip_landing_page] = true
+
+    if boulder_weekly?
+      session[:skip_landing_page] = true
+    end
   end
 
   # def set_location
