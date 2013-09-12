@@ -56,7 +56,7 @@
               <li><%= link_to "Back", '/events/categories', "data-rel"=>"back" unless current_page? root_path %></li>
               <li><%= link_to "Home", '/events/categories', "data-role"=> "button" %></li>
               <% if boulder_weekly? %>
-                <li><%= link_to "Full Site", events_path(:mobile => '0'), :class => "button", "data-ajax" => "false" %></li> 
+                <li><%= link_to "Full Site", events_path(:mobile => '0'), :class => "button", "data-rel" => "external", "data-ajax" => "false" %></li> 
               <% else %>
                 <li><%= link_to "Full Site", root_path(:mobile => '0'), :class => "button", "data-rel" => "external", "data-ajax" => "false" %></li> 
               <% end %>
