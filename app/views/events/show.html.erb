@@ -46,10 +46,10 @@
     <%=
       link_to "Invite Friends", '#', {
         :class => 'btn primary facebook-invite',
-        'data-name'        => @event.name,
-        'data-description' => @event.description,
-        'data-link'        => event_invitation_url(@event),
-        'data-picture'     => File.join('http://lokalite.com', @event.image.image_url(:medium))
+        'og:title'        => @event.name,
+        'og:description' => @event.description,
+        'og:url'        => event_invitation_url(@event),
+        'og:image'     => File.join('http://lokalite.com', @event.image.image_url(:medium))
       }
     %>
   </div>
