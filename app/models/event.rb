@@ -104,7 +104,7 @@ class Event < ActiveRecord::Base
     upcoming_featured.includes(:event_features).
       where(['event_features.slot = ?', slot]).
       where(['event_features.date >= ? AND event_features.date <= ?', Date.today, Date.tomorrow]).
-      order(['event_features.date']).
+      order('event_features.date').
       limit(1).first
   end
 
