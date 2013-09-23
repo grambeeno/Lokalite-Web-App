@@ -1,8 +1,7 @@
 var displayOrganizationChart, extractComplexObjectId, extractObjectId, trackImpressions;
 var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 $(function() {
-  var active_hover_id, datepickerFormat, initQtip, observeEventDateFlitering, planDragOptions;
-  trackImpressions();
+  var active_hover_id, datepickerFormat, initQtip, observeEventDateFlitering, planDragOptions; 
   displayOrganizationChart();
   $('input, textarea').placeholder();
   $('.truncate').truncate();
@@ -325,15 +324,6 @@ displayOrganizationChart = function() {
         }
       }
     });
-  });
-};
-trackImpressions = function() {
-  return $('[data-reportgrid]').each(function() {
-    var data, path;
-    data = $.parseJSON($(this).attr('data-reportgrid'));
-    path = data.path;
-    delete data.path;
-    return ReportGrid.track(path, data);
   });
 };
 extractObjectId = function(element) {
