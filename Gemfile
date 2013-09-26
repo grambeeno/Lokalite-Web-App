@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'devise', '~>1.4.9'
 gem "oa-oauth", :require => "omniauth/oauth"
 
+gem 'nokogiri'
 gem 'pg'
 gem 'yajl-ruby', '0.8.1'
 
@@ -67,9 +68,8 @@ end
 # To use debugger
   gem 'ruby-debug'
   gem 'pry'
-# Bundle the extra gems:
+# Bundle the extra gems: 
 # gem 'bj'
-# gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
