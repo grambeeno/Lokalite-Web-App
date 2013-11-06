@@ -8,7 +8,7 @@
     <br />
     <% index += 1 %>
     <h3><%= index %>. Select an Organization</h3>
-    <%= select_tag :organization_id, options_from_collection_for_select(@organizations, 'id', 'name') %>
+    <%= select_tag :organization_id, options_from_collection_for_select(@organizations, 'id', 'name'), :style => "max-width: 710px" %>
     <br />
   <% end %>
 
