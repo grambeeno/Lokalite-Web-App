@@ -1,16 +1,3 @@
-<% if boulder_weekly? %>
-<nav>
-  <ul>
-    <li>
-      <% if mobile_device? %> 
-        <%= link_to 'Full Site', :mobile => 0 %>
-      <% else %> 
-        <%= link_to 'Mobile Site', :mobile => 1 %>
-      <% end %>
-    </li>
-  </ul>
-</nav>
-<% else %>
 <nav>
   <ul>
     <% if user_signed_in? and current_user.admin? %>
@@ -62,4 +49,4 @@
 
 
 <div class='copyright'>Copyright &copy; <%= Time.now.year %> lokalite.com</div>
-<% end %>
+

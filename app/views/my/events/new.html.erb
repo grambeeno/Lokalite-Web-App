@@ -12,13 +12,8 @@
     <h1>New Event</h1>
     <h2>Please select the venue where your event is taking place.</h2>
     <%#= link_to "Add a New Organization", new_my_organization_path, :class => 'btn medium' %> 
-    <% if boulder_weekly? %>
-      <h3> If the venue is not listed below, please click <%= link_to('here', new_my_organization_path) %>.</h3>
-      <br /><br />
-    <% else %>
-      <h3> If the venue is not listed below, please click <%= link_to('here', new_my_organization_path) %>.</h3>
-      <br /><br />
-    <% end %>
+    <h3> If the venue is not listed below, please click <%= link_to('here', new_my_organization_path) %>.</h3>
+    <br /><br /> 
     <% for organization in @organizations -%>
       <%= link_to(organization.name, new_my_event_path(:organization_id => organization.id)) %>
       <br />

@@ -26,12 +26,8 @@
     <meta name="description" content="<% if @event %> <%= @event.description %> <% else %> <%= title %> <% end %>">
     <meta name="author" content="lokalite.com">
     <meta name="keywords" content="Boulder, Boulder Events, Happy Hours, Pearl St., Downtown Boulder, Local Events, Boulder Nightlife, Boulder Restaurants, Music in Boulder, Drink Specials, Boulder Community, Localite, Lokalite"> 
-    <% if boulder_weekly? %>
-      <meta property="og:image" content="http://lokalite.com/images/BCE_FBlogo.png">
-    <% else %>
-      <meta property="og:image" content="http://lokalite.com/images/Logo.png">
-    <% end %>
-
+    <meta property="og:image" content="http://lokalite.com/images/Logo.png">
+    
     <!-- Alexa Traffic Site Tag -->
     <meta name="alexaVerifyID" content="pYn4tfsbhIEUBVhn6q5YorJoBZ4" />
 
@@ -67,54 +63,15 @@
   <body class="<%= params[:controller].parameterize %>-controller"> 
 
     <%= render :partial => '/layouts/facebook' %>
-
-    <% if boulder_weekly? %>
-      <div class="header2">        
-        <div class="bwcontent cf">
-          <div class="logo-wrap">
-            <a href="http://www.boulderweekly.com" class="logo" title="Boulder Weekly Home">Boulder Weekly</a>
-          </div> 
-          <div class="logo-wrap">
-            <a href="https://bestofboulderdeals.kostizi.com/" class="logo3" title="Boulder County Events Home">Best of Boulder Deals</a>
-          </div>
-          <div class="logo-wrap">
-            <a href="http://events.boulderweekly.com" class="logo2" title="Boulder County Events Home">Boulder County Events</a>
-          </div>
-        </div>
+ 
+    <header class="navbar-fixed-top">
+      <div class="content cf">
+        <%= render :partial => '/layouts/header' %>
       </div>
-      <header class="navbar-fixed-top boulderheader">
-        <div class="content cf">
-          <%= render :partial => '/layouts/bwheader' %>
-        </div>
-      </header>
-    <% else %>
-      <header class="navbar-fixed-top">
-        <div class="content cf">
-          <%= render :partial => '/layouts/header' %>
-        </div>
-      </header>
-    <% end %>
-
+    </header>
+   
     <% if params[:controller] == 'root' %>
-        <%= yield %>
-    <% elsif boulder_weekly? %>
-      <div id="main" style="width: 1200px; margin-top: 168px">
-        <div id="left-sidebar">
-          <%= render(:partial => '/layouts/left_sidebar') %>
-        </div>
-
-        <div id="middle">
-          <% flash.each do |kind, message| %>
-            <%= display_flash kind, message %>
-          <% end %>
-
-          <%= yield %>
-        </div>
-
-        <div id="right-sidebar" style="width: 240px">
-          <%= render(:partial => '/layouts/bwright_sidebar') %>
-        </div>
-      </div>
+        <%= yield %> 
     <% else %>
       <div id="main">
         <div id="left-sidebar">

@@ -1,6 +1,3 @@
-# Was able to provide FB integration to Boulder Weekly by placing their url in the 'Mobile Web' section of the developers.facebook.com page... not a long term fix
-# but should suffice until we figure out a long term solution.
-
 if Rails.env.development?
   REPORT_GRID_TOKEN = 'FD2973F7-A5E1-4692-B9C8-111D0E62CB78'
   FACEBOOK_APP_ID     = '221397624592914'

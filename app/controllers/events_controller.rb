@@ -17,7 +17,7 @@ class EventsController < ApplicationController
       redirect_to events_path(params)
     end
     if request.format == 'xls' or request.format == 'txt' or request.format == 'csv'  
-      # WP:  Date range for Boulder Weekly to download these files on Tuesday and pull results for Thursday to next Wednesday
+      # WP:  Date range to download these files 
       # I couldn't put results in the Event Model b/c it was effecting web and iPhone app results
       # Event.approved.after(Date.today + 3.days).before(Date.today + 9.days).order('events.starts_at ASC')
       @events =  Event.featured_between(Time.zone.now.to_date)

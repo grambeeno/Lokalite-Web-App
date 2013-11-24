@@ -94,29 +94,17 @@ module ApplicationHelper
     fullpath[1..-1].split(%r|[?]|).first.split(%r|/|).map{|word| Slug.for(word)}.join(sep)
   end
 
-  def title
-    if boulder_weekly?
-      parts = []
-      parts << "Boulder County Events"
-    else
-      parts = []
-      parts << @event.name if @event
-      parts << @organization.name if @organization
-      parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
-      parts << "lokalite" unless params[:category].present?
-      parts << 'For Local Events' if current_page?('/landing')
-      parts << 'For Local Events' if current_page?('/')
-      parts << title_for_category(params[:category]) if params[:category]
-      parts.join(' | ')
-    end
-  end
-
-   def bw_title
-     parts = []
-     parts << "Boulder Weekly Events" unless params[:category].present?
-     parts << title_for_category(params[:category]) if params[:category]
-     parts.join(' | ')
-   end
+  def title 
+    parts = []
+    parts << @event.name if @event
+    parts << @organization.name if @organization
+    parts << 'Promote your business' if current_page?(business_promo_path) || current_page?(business_sign_up_path)
+    parts << "lokalite" unless params[:category].present?
+    parts << 'For Local Events' if current_page?('/landing')
+    parts << 'For Local Events' if current_page?('/')
+    parts << title_for_category(params[:category]) if params[:category]
+    parts.join(' | ') 
+  end 
  
  def default_content_for(name, &block)
     if !content_for?(name)

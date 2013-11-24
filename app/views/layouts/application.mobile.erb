@@ -17,17 +17,9 @@
       
       <body>
         <div class='current' style="position:absolute; top:0; left:0; right:0; bottom:80px">
-          <% if boulder_weekly? %>
-            <div data-role='header' data-position='fixed' class='ui-bar-a-bw'> 
-          <% else %>
-            <div data-role='header' data-position='fixed'>
-          <% end %>
-            <h1>
-              <% if boulder_weekly? %>
-                <%= bw_title %>
-              <% else %>
-                <%= title %>
-              <% end %>
+          <div data-role='header' data-position='fixed'>
+            <h1> 
+              <%= title %>
             </h1>
             <% if @events.present? %>
               <% if params[:view_type] == 'map' %>
@@ -55,11 +47,7 @@
             <ul>
               <li><%= link_to "Back", '/events/categories', "data-rel"=>"back" unless current_page? root_path %></li>
               <li><%= link_to "Home", '/events/categories', "data-role"=> "button" %></li>
-              <% if boulder_weekly? %>
-                <li><%= link_to "Full Site", root_path(:mobile => 0), :class => "button", "data-rel" => "external", "data-ajax" => "false" %></li>
-              <% else %>
-                <li><%= link_to "Full Site", root_path(:mobile => 0), :class => "button", "data-rel" => "external", "data-ajax" => "false" %></li> 
-              <% end %>
+              <li><%= link_to "Full Site", root_path(:mobile => 0), :class => "button", "data-rel" => "external", "data-ajax" => "false" %></li>               
             </ul>
             </div>
 

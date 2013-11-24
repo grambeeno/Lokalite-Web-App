@@ -31,17 +31,7 @@ protected
     end
 end
 
-  helper_method :mobile_device?
-
-  def boulder_weekly?
-    if Rails.env.development?
-      request.subdomain == 'boulderweekly'
-    else
-      request.env['HTTP_HOST'] == "events.boulderweekly.com"
-    end
-  end
-
-  helper_method :boulder_weekly? 
+  helper_method :mobile_device? 
 
   def prepare_for_mobile
     session[:mobile_param] = params[:mobile] if params[:mobile]
